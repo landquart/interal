@@ -1,0 +1,3627 @@
+{
+  "schema_version": 6,
+  "stage": "oper-relat-independent-finite-continuation-20261004",
+  "source_head": "2351a07722d88faa82dc05049144c567d43923c8",
+  "production_enabled": false,
+  "binding_authorized": false,
+  "accepted_membership_authorized": false,
+  "predecessor_review_version": 16,
+  "predecessor_review_sha256": "2bad86c05923845d1dbd9f77c1a23c0f5cb1d5981d036b3d0b713e6b67273cb4",
+  "historical_dossiers": {
+    "audit/associative-family-v6/oper-musical-finite-head-research-20261003.json": "2695d9a8ffd43e384df9d0e668323f221f9333f30488d14e183a75a732fee7dd",
+    "audit/associative-family-v6/relativitaet-finite-head-research-20261003.json": "c2c1fd39d6942e38377468c5bbf7220d609cadc2821ade1733edb1672311f7e0"
+  },
+  "historical_source_frames": {
+    "audit/associative-family-v6/oper-musical-finite-source-frame-20261003.json.gz": "19741203a1c470f4d56f4d97dca77d40b833447c7d44220705aad10bdc5c36c9",
+    "audit/associative-family-v6/relativitaet-finite-source-frame-20261003.json.gz": "66b6d005f830a5fba42206c599ea4f75d123236e59c200b1ad8115b30ff4d0c4"
+  },
+  "records": [
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:04d6fad6ae306cb87a17",
+      "word": "riesenoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:04d6fad6ae306cb87a17",
+        "word": "riesenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token riesenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:riesenoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:04d6fad6ae306cb87a17:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "riesen",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:04d6fad6ae306cb87a17",
+        "word": "riesenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token riesenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:riesenoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:04d6fad6ae306cb87a17:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:04d6fad6ae306cb87a17",
+        "word": "riesenoper",
+        "normalized": "riesenoper",
+        "search_form": "riesenoper",
+        "rank": 687062,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "riesenoper",
+            "canonical_candidate": "riesenoper",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "riesenoper",
+                  "riesenoper",
+                  "riesenoper"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/b3.json.gz",
+        "family_id": "surface:de:riesenoper",
+        "record_sha256": "9334acf699841812188a5c7361d9ce17d89c7ce9c9b9eb37255876df1fad0592"
+      },
+      "input_sha256": "a99edfaa83eda5c0b0916bbb11dad7b7c030a9bf77d70c5d218fe7458427ec2e"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:0c67285b75ee670f59bc",
+      "word": "jochen-rindt-oper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:0c67285b75ee670f59bc",
+        "word": "jochen-rindt-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token jochen-rindt-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:jochenrindtop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:0c67285b75ee670f59bc:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "jochen-rindt-",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:0c67285b75ee670f59bc",
+        "word": "jochen-rindt-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token jochen-rindt-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:jochenrindtop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:0c67285b75ee670f59bc:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:0c67285b75ee670f59bc",
+        "word": "jochen-rindt-oper",
+        "normalized": "jochen-rindt-oper",
+        "search_form": "jochen-rindt-oper",
+        "rank": 217111,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "jochen-rindt-op",
+            "canonical_candidate": "jochenrindtop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "jochen-rindt-oper",
+                  "jochen-rindt-op",
+                  "jochen-rindt-op"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/b0.json.gz",
+        "family_id": "surface:de:jochenrindtop",
+        "record_sha256": "a6aa4f8d7db7fd4e5cbb3dd1926006a6b231ccc88a75d852da9feaadd7e7adbe"
+      },
+      "input_sha256": "3e5ea134ea7e82a8ca4207497e951f0bb5e8eaa906716ce5bd60ed7968adf488"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:16d08160d34ac53048ab",
+      "word": "barockoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:16d08160d34ac53048ab",
+        "word": "barockoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token barockoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:barockop",
+          "surface:de:koper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:16d08160d34ac53048ab:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "barock",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:16d08160d34ac53048ab",
+        "word": "barockoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token barockoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:barockop",
+          "surface:de:koper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:16d08160d34ac53048ab:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:16d08160d34ac53048ab",
+        "word": "barockoper",
+        "normalized": "barockoper",
+        "search_form": "barockoper",
+        "rank": 128120,
+        "frequency_score": 1.8334691886184091,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          },
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.17709
+            ],
+            "category_ipm": 0.17709,
+            "category_score": 2.856879986222835
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.17709
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "barockop",
+            "canonical_candidate": "barockop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "barockoper",
+                  "barockop",
+                  "barockop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/0a.json.gz",
+        "family_id": "surface:de:barockop",
+        "record_sha256": "c951c27863bcb7deec01e58ef5f8b38adf19a0f10c99bb4e373112f75fbfd137"
+      },
+      "input_sha256": "413d41406da70b0045935c2271d7eb0dc1cb5a4d7871675b1b5afe750465dd92"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:1a06aff9ead799d46dcc",
+      "word": "krateroper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:1a06aff9ead799d46dcc",
+        "word": "krateroper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token krateroper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:kraterop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:1a06aff9ead799d46dcc:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "krater",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:1a06aff9ead799d46dcc",
+        "word": "krateroper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token krateroper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:kraterop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:1a06aff9ead799d46dcc:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:1a06aff9ead799d46dcc",
+        "word": "krateroper",
+        "normalized": "krateroper",
+        "search_form": "krateroper",
+        "rank": 589089,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "kraterop",
+            "canonical_candidate": "kraterop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "krateroper",
+                  "kraterop",
+                  "kraterop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/d1.json.gz",
+        "family_id": "surface:de:kraterop",
+        "record_sha256": "6b319ef4c667bfb2b76903218640041f29fe6027fa6dea7b3f60ad4a33a84c3c"
+      },
+      "input_sha256": "9397f4263bd44caccc60b1828ff22f20d31f6951881f3c39ab3e56db79b75fee"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:1c807a4e340c2b8c1cb9",
+      "word": "dreigroschenoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:1c807a4e340c2b8c1cb9",
+        "word": "dreigroschenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token dreigroschenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:dreigroschenop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:1c807a4e340c2b8c1cb9:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "dreigroschen",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:1c807a4e340c2b8c1cb9",
+        "word": "dreigroschenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token dreigroschenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:dreigroschenop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:1c807a4e340c2b8c1cb9:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:1c807a4e340c2b8c1cb9",
+        "word": "dreigroschenoper",
+        "normalized": "dreigroschenoper",
+        "search_form": "dreigroschenoper",
+        "rank": 67911,
+        "frequency_score": 4.022968424689621,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.04506
+            ],
+            "category_ipm": 0.04506,
+            "category_score": 0.7722699929016624
+          },
+          "normative": {
+            "ipm_values": [
+              0.310813
+            ],
+            "category_ipm": 0.310813,
+            "category_score": 4.742287126860345
+          },
+          "web": {
+            "ipm_values": [
+              0.45363
+            ],
+            "category_ipm": 0.45363,
+            "category_score": 6.5543481543068545
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.310813
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.04506
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.45363
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "dreigroschenop",
+            "canonical_candidate": "dreigroschenop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "dreigroschenoper",
+                  "dreigroschenop",
+                  "dreigroschenop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/21.json.gz",
+        "family_id": "surface:de:dreigroschenop",
+        "record_sha256": "581ad019d7c4301a6b6a45a9d41a14b9d18f12855c2dd46ccd42de2c306c9dd0"
+      },
+      "input_sha256": "23bd78b5eac41e9ccb661d23597f4ecdfe8a635ea62d247c08113a0dcfa3c814"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:2665eed75952649a3fcd",
+      "word": "mozartoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:2665eed75952649a3fcd",
+        "word": "mozartoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token mozartoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:mozartop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:2665eed75952649a3fcd:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "mozart",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:2665eed75952649a3fcd",
+        "word": "mozartoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token mozartoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:mozartop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:2665eed75952649a3fcd:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:2665eed75952649a3fcd",
+        "word": "mozartoper",
+        "normalized": "mozartoper",
+        "search_form": "mozartoper",
+        "rank": 632134,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mozartop",
+            "canonical_candidate": "mozartop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "mozartoper",
+                  "mozartop",
+                  "mozartop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/5d.json.gz",
+        "family_id": "surface:de:mozartop",
+        "record_sha256": "ba4588cb2c12c6e369384c3fe9f0a540e5130783b07ceddc6720663b2f24182b"
+      },
+      "input_sha256": "6108c560eaeda5d357e8421b1e5ed938d730b3068a6ad1445a1db6162d969df3"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:29aa53e73d1ed76350cc",
+      "word": "kammeroper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:29aa53e73d1ed76350cc",
+        "word": "kammeroper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token kammeroper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:kammerop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:29aa53e73d1ed76350cc:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "kammer",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:29aa53e73d1ed76350cc",
+        "word": "kammeroper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token kammeroper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:kammerop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:29aa53e73d1ed76350cc:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": {
+        "source": "https://www.duden.de/rechtschreibung/Kammeroper",
+        "finding": "Dictionary word division and meaning establish kammer + oper, an opera for a smaller ensemble.",
+        "accessed": "2026-10-04"
+      },
+      "blocker": null,
+      "source_record": {
+        "lemma_id": "lemma:29aa53e73d1ed76350cc",
+        "word": "kammeroper",
+        "normalized": "kammeroper",
+        "search_form": "kammeroper",
+        "rank": 82505,
+        "frequency_score": 4.942378661670984,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.310813
+            ],
+            "category_ipm": 0.310813,
+            "category_score": 4.742287126860345
+          },
+          "web": {
+            "ipm_values": [
+              0.341095
+            ],
+            "category_ipm": 0.341095,
+            "category_score": 5.142470196481623
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.310813
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.341095
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "kammerop",
+            "canonical_candidate": "kammerop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "kammeroper",
+                  "kammerop",
+                  "kammerop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/c7.json.gz",
+        "family_id": "surface:de:kammerop",
+        "record_sha256": "17d851419987a4bbd9364ad1e299cda16f6e2c6f88187f4adde81b9e9579a252"
+      },
+      "input_sha256": "7bf7b476da7e7262d3058f6be1f3150dc4bea81f00a365e586814f909919045d"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:2c2291e9247ec39c7cd8",
+      "word": "lindenoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:2c2291e9247ec39c7cd8",
+        "word": "lindenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token lindenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:lindenop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:2c2291e9247ec39c7cd8:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "linden",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:2c2291e9247ec39c7cd8",
+        "word": "lindenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token lindenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:lindenop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:2c2291e9247ec39c7cd8:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:2c2291e9247ec39c7cd8",
+        "word": "lindenoper",
+        "normalized": "lindenoper",
+        "search_form": "lindenoper",
+        "rank": 239099,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lindenop",
+            "canonical_candidate": "lindenop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "lindenoper",
+                  "lindenop",
+                  "lindenop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+        "family_id": "surface:de:lindenop",
+        "record_sha256": "10f6407e4adec541052c3da50030a9c025b52fb43ac06b6306e40b7fee696c08"
+      },
+      "input_sha256": "c29620abfc6db5cd878dcc71525c911db1da91d3c3137143a2dc00edbe91f0b4"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:2f7ed403edcecba505fc",
+      "word": "verdi-oper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:2f7ed403edcecba505fc",
+        "word": "verdi-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token verdi-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:verdiop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:2f7ed403edcecba505fc:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "verdi-",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:2f7ed403edcecba505fc",
+        "word": "verdi-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token verdi-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:verdiop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:2f7ed403edcecba505fc:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:2f7ed403edcecba505fc",
+        "word": "verdi-oper",
+        "normalized": "verdi-oper",
+        "search_form": "verdi-oper",
+        "rank": 195513,
+        "frequency_score": 1.6055532004598967,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.09596
+            ],
+            "category_ipm": 0.09596,
+            "category_score": 1.6055532004598967
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.09596
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "verdi-op",
+            "canonical_candidate": "verdiop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "verdi-oper",
+                  "verdi-op",
+                  "verdi-op"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/e6.json.gz",
+        "family_id": "surface:de:verdiop",
+        "record_sha256": "af64f0e025d138aa63267fe642a488ea040ab52421e82543824d532ad1d0946e"
+      },
+      "input_sha256": "e3ac943da4f7b2525391845f2882445ab1faee6a87d7d2d3f682f112f37db0c2"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:3273c9080d5a8b5d02af",
+      "word": "nationaloper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:3273c9080d5a8b5d02af",
+        "word": "nationaloper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token nationaloper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "ety:9a1322c2a59f",
+          "family:nat",
+          "surface:de:nationalop",
+          "ety:b84169a26116",
+          "ety:43528410d9ca",
+          "ety:94847a65ea21",
+          "ety:b026f4ac8299",
+          "ety:7ce25eac2fe7",
+          "ety:d3f3c3e2077b",
+          "ety:5ab4dcba87ce"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:3273c9080d5a8b5d02af:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "national",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:3273c9080d5a8b5d02af",
+        "word": "nationaloper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token nationaloper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "ety:9a1322c2a59f",
+          "family:nat",
+          "surface:de:nationalop",
+          "ety:b84169a26116",
+          "ety:43528410d9ca",
+          "ety:94847a65ea21",
+          "ety:b026f4ac8299",
+          "ety:7ce25eac2fe7",
+          "ety:d3f3c3e2077b",
+          "ety:5ab4dcba87ce"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:3273c9080d5a8b5d02af:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:3273c9080d5a8b5d02af",
+        "word": "nationaloper",
+        "normalized": "nationaloper",
+        "search_form": "nationaloper",
+        "rank": 160499,
+        "frequency_score": 2.315845514573991,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.127365
+            ],
+            "category_ipm": 0.127365,
+            "category_score": 2.1005911177481145
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.127365
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nation",
+            "canonical_candidate": "nation",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "nationaloper",
+                  "nation",
+                  "nation"
+                ],
+                "confidence": 0.97
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/21.json.gz",
+        "family_id": "ety:9a1322c2a59f",
+        "record_sha256": "a4d4dc3829ea92c8c41800618f02d80550805ce692a9dddae7db46cd70228a6b"
+      },
+      "input_sha256": "23bd78b5eac41e9ccb661d23597f4ecdfe8a635ea62d247c08113a0dcfa3c814"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:33bfb54c3c18f6c15808",
+      "word": "seehasen-oper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:33bfb54c3c18f6c15808",
+        "word": "seehasen-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seehasen-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:seehasenop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:33bfb54c3c18f6c15808:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "seehasen-",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:33bfb54c3c18f6c15808",
+        "word": "seehasen-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seehasen-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:seehasenop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:33bfb54c3c18f6c15808:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:33bfb54c3c18f6c15808",
+        "word": "seehasen-oper",
+        "normalized": "seehasen-oper",
+        "search_form": "seehasen-oper",
+        "rank": 298438,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "seehasen-op",
+            "canonical_candidate": "seehasenop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "seehasen-oper",
+                  "seehasen-op",
+                  "seehasen-op"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/0c.json.gz",
+        "family_id": "surface:de:seehasenop",
+        "record_sha256": "96d1b982b276c7012dd955f0f0c80458e3060a7f2a789e9ca58a10ae2523e51f"
+      },
+      "input_sha256": "f7aa577a961ac5156ba8708e3c6c53cfe41aff95cef4681c230dd7c28905b3c3"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:439d55012f1ad7630192",
+      "word": "rockoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:439d55012f1ad7630192",
+        "word": "rockoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token rockoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:koper",
+          "surface:de:rockop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:439d55012f1ad7630192:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "rock",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:439d55012f1ad7630192",
+        "word": "rockoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token rockoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:koper",
+          "surface:de:rockop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:439d55012f1ad7630192:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": {
+        "source": "https://www.duden.de/rechtschreibung/Rockoper",
+        "finding": "Dictionary word division and meaning establish rock + oper, an opera using rock music.",
+        "accessed": "2026-10-04"
+      },
+      "blocker": null,
+      "source_record": {
+        "lemma_id": "lemma:439d55012f1ad7630192",
+        "word": "rockoper",
+        "normalized": "rockoper",
+        "search_form": "rockoper",
+        "rank": 97011,
+        "frequency_score": 1.8510640958504152,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.096557
+            ],
+            "category_ipm": 0.096557,
+            "category_score": 1.6150953255306233
+          },
+          "web": {
+            "ipm_values": [
+              0.126493
+            ],
+            "category_ipm": 0.126493,
+            "category_score": 2.087032866170207
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.096557
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.126493
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "koper",
+            "canonical_candidate": "koper",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "rockoper",
+                  "koper",
+                  "koper"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/26.json.gz",
+        "family_id": "surface:de:koper",
+        "record_sha256": "304217833e3a15ec0b0c2a14c11828f47b882a85e7afba34b3f1b3d00af4eac4"
+      },
+      "input_sha256": "5ea68c98b6eedfaac81cdea5850ef30ac4454ccf43089a91104a802df65644f0"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:61c26c1c1f450c44fd1d",
+      "word": "pferdeoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:61c26c1c1f450c44fd1d",
+        "word": "pferdeoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token pferdeoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:pferdeop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:61c26c1c1f450c44fd1d:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "pferde",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:61c26c1c1f450c44fd1d",
+        "word": "pferdeoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token pferdeoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:pferdeop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:61c26c1c1f450c44fd1d:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:61c26c1c1f450c44fd1d",
+        "word": "pferdeoper",
+        "normalized": "pferdeoper",
+        "search_form": "pferdeoper",
+        "rank": 660005,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "pferdeop",
+            "canonical_candidate": "pferdeop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "pferdeoper",
+                  "pferdeop",
+                  "pferdeop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/64.json.gz",
+        "family_id": "surface:de:pferdeop",
+        "record_sha256": "b487fc1f658d0907c02f043a1efb9cff06d5e063e746445c188cfb34e4d872d0"
+      },
+      "input_sha256": "f6ec307fa09ac7d3f3f6ab2afba03ce16025d8e855c24000e82f67ae792c522f"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:6a12c35807b0965f0936",
+      "word": "weltraumoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:6a12c35807b0965f0936",
+        "word": "weltraumoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token weltraumoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:weltraumoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:6a12c35807b0965f0936:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "weltraum",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:6a12c35807b0965f0936",
+        "word": "weltraumoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token weltraumoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:weltraumoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:6a12c35807b0965f0936:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:6a12c35807b0965f0936",
+        "word": "weltraumoper",
+        "normalized": "weltraumoper",
+        "search_form": "weltraumoper",
+        "rank": 280214,
+        "frequency_score": 0.33514174365876337,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.019311
+            ],
+            "category_ipm": 0.019311,
+            "category_score": 0.33514174365876337
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.019311
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "weltraumoper",
+            "canonical_candidate": "weltraumoper",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "weltraumoper",
+                  "weltraumoper",
+                  "weltraumoper"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/fa.json.gz",
+        "family_id": "surface:de:weltraumoper",
+        "record_sha256": "c8f3b59242481ff416e12df54b04550227eb128dc67f7248583fc74640a2d7c3"
+      },
+      "input_sha256": "ea305a9f80a6cb3d13125648cec2c030327ebc5800a05d4b7ea0d575e7df0b31"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:6fb26f28a902715a27dd",
+      "word": "märchenoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:6fb26f28a902715a27dd",
+        "word": "märchenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token märchenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:marchenop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:6fb26f28a902715a27dd:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "märchen",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:6fb26f28a902715a27dd",
+        "word": "märchenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token märchenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:marchenop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:6fb26f28a902715a27dd:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": {
+        "source": "https://www.duden.de/rechtschreibung/Maerchenoper",
+        "finding": "Dictionary word division and meaning establish märchen + oper, an opera with fairy-tale plot.",
+        "accessed": "2026-10-04"
+      },
+      "blocker": null,
+      "source_record": {
+        "lemma_id": "lemma:6fb26f28a902715a27dd",
+        "word": "märchenoper",
+        "normalized": "märchenoper",
+        "search_form": "marchenoper",
+        "rank": 255155,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "marchenop",
+            "canonical_candidate": "marchenop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "marchenoper",
+                  "marchenop",
+                  "marchenop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/84.json.gz",
+        "family_id": "surface:de:marchenop",
+        "record_sha256": "583c3528b5837eb6fdb14e45b9fa4dbfa72c700fa2ec55407ba7b448314adb26"
+      },
+      "input_sha256": "a8362cd77c5ac64f3f502deb8b340d579fba8e6fc1a4e204917f22a380f58d24"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:71a591b91e247bfa6ef7",
+      "word": "kinderoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:71a591b91e247bfa6ef7",
+        "word": "kinderoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token kinderoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:kinderoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:71a591b91e247bfa6ef7:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "kinder",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:71a591b91e247bfa6ef7",
+        "word": "kinderoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token kinderoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:kinderoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:71a591b91e247bfa6ef7:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": {
+        "source": "https://www.oper.koeln/kinderoper-koeln",
+        "finding": "The producing opera institution establishes Kinderoper as opera for children and describes the productions.",
+        "accessed": "2026-10-04"
+      },
+      "blocker": null,
+      "source_record": {
+        "lemma_id": "lemma:71a591b91e247bfa6ef7",
+        "word": "kinderoper",
+        "normalized": "kinderoper",
+        "search_form": "kinderoper",
+        "rank": 94667,
+        "frequency_score": 2.5371233434463307,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.04506
+            ],
+            "category_ipm": 0.04506,
+            "category_score": 0.7722699929016624
+          },
+          "web": {
+            "ipm_values": [
+              0.278284
+            ],
+            "category_ipm": 0.278284,
+            "category_score": 4.301976693990999
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.04506
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.278284
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "kinderoper",
+            "canonical_candidate": "kinderoper",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "kinderoper",
+                  "kinderoper",
+                  "kinderoper"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/74.json.gz",
+        "family_id": "surface:de:kinderoper",
+        "record_sha256": "70699abffc53c36006c078a2f4b9a5ba321a9c93e603039d7c4998324a3b5ba3"
+      },
+      "input_sha256": "6e562ddf0075b126571b6d092a1c53dd039399a65c5222daa7545e01923a5c60"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:86dd47c8f141ade2e272",
+      "word": "wagneroper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:86dd47c8f141ade2e272",
+        "word": "wagneroper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token wagneroper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:wagnerop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:86dd47c8f141ade2e272:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "wagner",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:86dd47c8f141ade2e272",
+        "word": "wagneroper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token wagneroper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:wagnerop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:86dd47c8f141ade2e272:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:86dd47c8f141ade2e272",
+        "word": "wagneroper",
+        "normalized": "wagneroper",
+        "search_form": "wagneroper",
+        "rank": 787398,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "wagnerop",
+            "canonical_candidate": "wagnerop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "wagneroper",
+                  "wagnerop",
+                  "wagnerop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/88.json.gz",
+        "family_id": "surface:de:wagnerop",
+        "record_sha256": "37738c7b05368d24a4c24c55ce4515fba75680907076f2fa3f6e35d0f8695ad9"
+      },
+      "input_sha256": "0b2e092aea2ea35d6c42715f1e49b884cf11f2de469159caf3f5da6bd72942ef"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:8d882e7ecd7d2b4ce108",
+      "word": "lieblingsoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:8d882e7ecd7d2b4ce108",
+        "word": "lieblingsoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token lieblingsoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:lieblingsoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:8d882e7ecd7d2b4ce108:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "lieblings",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:8d882e7ecd7d2b4ce108",
+        "word": "lieblingsoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token lieblingsoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:lieblingsoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:8d882e7ecd7d2b4ce108:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:8d882e7ecd7d2b4ce108",
+        "word": "lieblingsoper",
+        "normalized": "lieblingsoper",
+        "search_form": "lieblingsoper",
+        "rank": 152822,
+        "frequency_score": 1.651684952150765,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.04506
+            ],
+            "category_ipm": 0.04506,
+            "category_score": 0.7722699929016624
+          },
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.04506
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lieblingsoper",
+            "canonical_candidate": "lieblingsoper",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "lieblingsoper",
+                  "lieblingsoper",
+                  "lieblingsoper"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/62.json.gz",
+        "family_id": "surface:de:lieblingsoper",
+        "record_sha256": "b66686c08e6b194091acb8f10cc2bf47819574fbdad0731ee7cb307d51d3a368"
+      },
+      "input_sha256": "35544a810c9efe47ae81b95fef8c9a704e8d06038db0e73d8ab52eb4eaf49d85"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:963ba74b5215219f5417",
+      "word": "mozart-oper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:963ba74b5215219f5417",
+        "word": "mozart-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token mozart-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:mozartop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:963ba74b5215219f5417:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "mozart-",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:963ba74b5215219f5417",
+        "word": "mozart-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token mozart-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:mozartop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:963ba74b5215219f5417:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:963ba74b5215219f5417",
+        "word": "mozart-oper",
+        "normalized": "mozart-oper",
+        "search_form": "mozart-oper",
+        "rank": 192727,
+        "frequency_score": 1.6334297456131832,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.097705
+            ],
+            "category_ipm": 0.097705,
+            "category_score": 1.6334297456131832
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.097705
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mozart-op",
+            "canonical_candidate": "mozartop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "mozart-oper",
+                  "mozart-op",
+                  "mozart-op"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/5d.json.gz",
+        "family_id": "surface:de:mozartop",
+        "record_sha256": "f3c84b6cd43e123e69850dc6878bf29db35657fafd863ab62b95d9afa4e22d9b"
+      },
+      "input_sha256": "6108c560eaeda5d357e8421b1e5ed938d730b3068a6ad1445a1db6162d969df3"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:b494e40e3da2034e2aac",
+      "word": "schwimmoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:b494e40e3da2034e2aac",
+        "word": "schwimmoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token schwimmoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:schwimmop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:b494e40e3da2034e2aac:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "schwimm",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:b494e40e3da2034e2aac",
+        "word": "schwimmoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token schwimmoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:schwimmop",
+          "ety:7ce25eac2fe7"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:b494e40e3da2034e2aac:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:b494e40e3da2034e2aac",
+        "word": "schwimmoper",
+        "normalized": "schwimmoper",
+        "search_form": "schwimmoper",
+        "rank": 72123,
+        "frequency_score": 6.705454120659346,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.46622
+            ],
+            "category_ipm": 0.46622,
+            "category_score": 6.705454120659346
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.46622
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "schwimmop",
+            "canonical_candidate": "schwimmop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "schwimmoper",
+                  "schwimmop",
+                  "schwimmop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/0c.json.gz",
+        "family_id": "surface:de:schwimmop",
+        "record_sha256": "d9a7cdc026bd649c430b45fb25960f6e83344761eb34234dbc281b3a13300505"
+      },
+      "input_sha256": "f7aa577a961ac5156ba8708e3c6c53cfe41aff95cef4681c230dd7c28905b3c3"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:c86b215d4f19d43b7258",
+      "word": "hofoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:c86b215d4f19d43b7258",
+        "word": "hofoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token hofoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "ety:7ce25eac2fe7",
+          "surface:de:hofop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:c86b215d4f19d43b7258:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "hof",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:c86b215d4f19d43b7258",
+        "word": "hofoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token hofoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "ety:7ce25eac2fe7",
+          "surface:de:hofop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:c86b215d4f19d43b7258:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:c86b215d4f19d43b7258",
+        "word": "hofoper",
+        "normalized": "hofoper",
+        "search_form": "hofoper",
+        "rank": 136560,
+        "frequency_score": 1.588315762911113,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.032186
+            ],
+            "category_ipm": 0.032186,
+            "category_score": 0.5550774719255978
+          },
+          "web": {
+            "ipm_values": [
+              0.161387
+            ],
+            "category_ipm": 0.161387,
+            "category_score": 2.6215540538966287
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.032186
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.161387
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "oper",
+            "canonical_candidate": "oper",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "hofoper",
+                  "oper",
+                  "oper"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/a0.json.gz",
+        "family_id": "ety:7ce25eac2fe7",
+        "record_sha256": "265d245b5a78418ea7caf2748e793a47e8665b641d9462fd8de8423402cec0ea"
+      },
+      "input_sha256": "f007db13fc3c1b994f42c13e65f20b5806dec777ddff7a22f8e024d0365df99d"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:cedf7ac252d2ca68d060",
+      "word": "schauderoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:cedf7ac252d2ca68d060",
+        "word": "schauderoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token schauderoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:schauderop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:cedf7ac252d2ca68d060:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "schauder",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:cedf7ac252d2ca68d060",
+        "word": "schauderoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token schauderoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:schauderop",
+          "surface:de:roper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:cedf7ac252d2ca68d060:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:cedf7ac252d2ca68d060",
+        "word": "schauderoper",
+        "normalized": "schauderoper",
+        "search_form": "schauderoper",
+        "rank": 699151,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "schauderop",
+            "canonical_candidate": "schauderop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "schauderoper",
+                  "schauderop",
+                  "schauderop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/c5.json.gz",
+        "family_id": "surface:de:schauderop",
+        "record_sha256": "c079542bf201b9cf47581b5a6db6ce3e8346bd571d5832fa972c9a9b9f489ae8"
+      },
+      "input_sha256": "f61db5cb263029de5d2f9ba75e0e3837ccd13cd253a15bf3c94c93e81283cdbe"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:d34e01a21f934050d84b",
+      "word": "klingonenoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:d34e01a21f934050d84b",
+        "word": "klingonenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token klingonenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "ety:7ce25eac2fe7",
+          "surface:de:klingonenop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:d34e01a21f934050d84b:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "klingonen",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:d34e01a21f934050d84b",
+        "word": "klingonenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token klingonenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "ety:7ce25eac2fe7",
+          "surface:de:klingonenop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:d34e01a21f934050d84b:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:d34e01a21f934050d84b",
+        "word": "klingonenoper",
+        "normalized": "klingonenoper",
+        "search_form": "klingonenoper",
+        "rank": 581047,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "oper",
+            "canonical_candidate": "oper",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "klingonenoper",
+                  "oper",
+                  "oper"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/a0.json.gz",
+        "family_id": "ety:7ce25eac2fe7",
+        "record_sha256": "2df92257427a97aa9f4439b22f5c287cdf1005a7f81f5f4fa1fe7099548b91ce"
+      },
+      "input_sha256": "f007db13fc3c1b994f42c13e65f20b5806dec777ddff7a22f8e024d0365df99d"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:d9c1734c335b7d2ad604",
+      "word": "wagner-oper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:d9c1734c335b7d2ad604",
+        "word": "wagner-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token wagner-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:wagnerop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:d9c1734c335b7d2ad604:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "wagner-",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:d9c1734c335b7d2ad604",
+        "word": "wagner-oper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token wagner-oper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:wagnerop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:d9c1734c335b7d2ad604:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:d9c1734c335b7d2ad604",
+        "word": "wagner-oper",
+        "normalized": "wagner-oper",
+        "search_form": "wagner-oper",
+        "rank": 172325,
+        "frequency_score": 1.9097356356354702,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.115152
+            ],
+            "category_ipm": 0.115152,
+            "category_score": 1.9097356356354702
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.115152
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "wagner-op",
+            "canonical_candidate": "wagnerop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "wagner-oper",
+                  "wagner-op",
+                  "wagner-op"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/88.json.gz",
+        "family_id": "surface:de:wagnerop",
+        "record_sha256": "69dccc5adbb5f19c8bc9836f7d3776b8665f2b93e779f3738ba8630a153737d9"
+      },
+      "input_sha256": "0b2e092aea2ea35d6c42715f1e49b884cf11f2de469159caf3f5da6bd72942ef"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:f88a55f3e965a7b00182",
+      "word": "freiluftoper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:f88a55f3e965a7b00182",
+        "word": "freiluftoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token freiluftoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:luftoper",
+          "surface:de:freiluftop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:f88a55f3e965a7b00182:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "freiluft",
+          "component": "oper",
+          "after": "",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:f88a55f3e965a7b00182",
+        "word": "freiluftoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token freiluftoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:luftoper",
+          "surface:de:freiluftop"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:f88a55f3e965a7b00182:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:f88a55f3e965a7b00182",
+        "word": "freiluftoper",
+        "normalized": "freiluftoper",
+        "search_form": "freiluftoper",
+        "rank": 505519,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "luftoper",
+            "canonical_candidate": "luftoper",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "freiluftoper",
+                  "luftoper",
+                  "luftoper"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/b4.json.gz",
+        "family_id": "surface:de:luftoper",
+        "record_sha256": "bf7514583ce4c2b4590dfa0e61f54d7781082e49e140f002d68bff7753c65397"
+      },
+      "input_sha256": "69ee09a6f3f6faebd15835df97875f85c94fb741d6400a83f8394367dc977e44"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:3657074683d475704778",
+      "word": "dreigroschenoperfilm",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:3657074683d475704778",
+        "word": "dreigroschenoperfilm",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token dreigroschenoperfilm; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:dreigroschenop",
+          "surface:de:perf",
+          "ety:7ce25eac2fe7",
+          "ety:bd21f50b1217"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:3657074683d475704778:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "dreigroschen",
+          "component": "oper",
+          "after": "film",
+          "head": "oper",
+          "boundary_proof": "Individually inspected complete oper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:3657074683d475704778",
+        "word": "dreigroschenoperfilm",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token dreigroschenoperfilm; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:dreigroschenop",
+          "surface:de:perf",
+          "ety:7ce25eac2fe7",
+          "ety:bd21f50b1217"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:3657074683d475704778:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:3657074683d475704778",
+        "word": "dreigroschenoperfilm",
+        "normalized": "dreigroschenoperfilm",
+        "search_form": "dreigroschenoperfilm",
+        "rank": 467995,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "dreigroschenop",
+            "canonical_candidate": "dreigroschenop",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "dreigroschenoperfilm",
+                  "dreigroschenop",
+                  "dreigroschenop"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/21.json.gz",
+        "family_id": "surface:de:dreigroschenop",
+        "record_sha256": "c3e36341e525f22fc4ed08391494744bfb0b300f29b6763f90cfdc1a7502f044"
+      },
+      "input_sha256": "23bd78b5eac41e9ccb661d23597f4ecdfe8a635ea62d247c08113a0dcfa3c814"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:06f7d02708868ac10352",
+      "word": "lieblingsseifenoper",
+      "normalized_head": "seifenoper",
+      "sense": "broadcast_serial_metaphorical_opera_compound",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:06f7d02708868ac10352",
+        "word": "lieblingsseifenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token lieblingsseifenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:lieblingsseifenop",
+          "surface:de:seifenoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:06f7d02708868ac10352:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "lieblings",
+          "component": "seifenoper",
+          "after": "",
+          "head": "seifenoper",
+          "boundary_proof": "Individually inspected complete seifenoper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:06f7d02708868ac10352",
+        "word": "lieblingsseifenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token lieblingsseifenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:lieblingsseifenop",
+          "surface:de:seifenoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:06f7d02708868ac10352:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:06f7d02708868ac10352",
+        "word": "lieblingsseifenoper",
+        "normalized": "lieblingsseifenoper",
+        "search_form": "lieblingsseifenoper",
+        "rank": 337417,
+        "frequency_score": 0.22413855552463746,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.012874
+            ],
+            "category_ipm": 0.012874,
+            "category_score": 0.22413855552463746
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.012874
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lieblingsseifenop",
+            "canonical_candidate": "lieblingsseifenop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "lieblingsseifenoper",
+                  "lieblingsseifenop",
+                  "lieblingsseifenop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/11.json.gz",
+        "family_id": "surface:de:lieblingsseifenop",
+        "record_sha256": "71ba44f4285d99cfb81897cd799ec625dc677a57837b82782b54a621c3f40abc"
+      },
+      "input_sha256": "c2aacaf6f9e6c4e9bb3e20bbd0c75844aecac7ce76620baef135246dd32a6742"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:43c61cff832af9b5e771",
+      "word": "seifenoperhure",
+      "normalized_head": "seifenoper",
+      "sense": "broadcast_serial_metaphorical_opera_compound",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:43c61cff832af9b5e771",
+        "word": "seifenoperhure",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoperhure; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:hure",
+          "surface:de:seifenoperhur"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:43c61cff832af9b5e771:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "",
+          "component": "seifenoper",
+          "after": "hure",
+          "head": "seifenoper",
+          "boundary_proof": "Individually inspected complete seifenoper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:43c61cff832af9b5e771",
+        "word": "seifenoperhure",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoperhure; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:hure",
+          "surface:de:seifenoperhur"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:43c61cff832af9b5e771:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:43c61cff832af9b5e771",
+        "word": "seifenoperhure",
+        "normalized": "seifenoperhure",
+        "search_form": "seifenoperhure",
+        "rank": 714582,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "hure",
+            "canonical_candidate": "hure",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "seifenoperhure",
+                  "hure",
+                  "hure"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/73.json.gz",
+        "family_id": "surface:de:hure",
+        "record_sha256": "43c63cb46e3065ebdda5d0c04dd849668777a5d4fe07a28dcc48556261cb79c5"
+      },
+      "input_sha256": "927a0a28a2fcf3c6d024b1a20e8baf37a98ab93c585d35ebd862c7dad7e8251d"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:6e27dabadb206d854775",
+      "word": "seifenoperzeitschrift",
+      "normalized_head": "seifenoper",
+      "sense": "broadcast_serial_metaphorical_opera_compound",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:6e27dabadb206d854775",
+        "word": "seifenoperzeitschrift",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoperzeitschrift; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:erze",
+          "surface:de:seifenoper",
+          "surface:de:zeitschrift"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:6e27dabadb206d854775:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "",
+          "component": "seifenoper",
+          "after": "zeitschrift",
+          "head": "seifenoper",
+          "boundary_proof": "Individually inspected complete seifenoper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:6e27dabadb206d854775",
+        "word": "seifenoperzeitschrift",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoperzeitschrift; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:erze",
+          "surface:de:seifenoper",
+          "surface:de:zeitschrift"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:6e27dabadb206d854775:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:6e27dabadb206d854775",
+        "word": "seifenoperzeitschrift",
+        "normalized": "seifenoperzeitschrift",
+        "search_form": "seifenoperzeitschrift",
+        "rank": 714585,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "erze",
+            "canonical_candidate": "erze",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "seifenoperzeitschrift",
+                  "erze",
+                  "erze"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/ab.json.gz",
+        "family_id": "surface:de:erze",
+        "record_sha256": "4bba5a082b06814b023f4ca26aaf5659e4ba3ff51a8c3c29a88f0cf801e015bb"
+      },
+      "input_sha256": "c6a2ba5f20a08a1318748cde73f653957efcad731067572dc815afa525af45f6"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:9e048c09249683987e95",
+      "word": "seifenoperscheiße",
+      "normalized_head": "seifenoper",
+      "sense": "broadcast_serial_metaphorical_opera_compound",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:9e048c09249683987e95",
+        "word": "seifenoperscheiße",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoperscheiße; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:scheisse",
+          "surface:de:seifenoperscheiss"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:9e048c09249683987e95:oper",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "",
+          "component": "seifenoper",
+          "after": "scheiße",
+          "head": "seifenoper",
+          "boundary_proof": "Individually inspected complete seifenoper lexical-base component. Surrounding modifiers, names and nominal linking material stay outside the component; no whole-compound identity or POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:9e048c09249683987e95",
+        "word": "seifenoperscheiße",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoperscheiße; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:scheisse",
+          "surface:de:seifenoperscheiss"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:9e048c09249683987e95:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": null,
+      "blocker": "Generic historical component assertion lacks individually verified lexical/context attestation in this checkpoint. Keep original pending question; substring, translation and neighbouring accepted records grant no membership.",
+      "source_record": {
+        "lemma_id": "lemma:9e048c09249683987e95",
+        "word": "seifenoperscheiße",
+        "normalized": "seifenoperscheiße",
+        "search_form": "seifenoperscheisse",
+        "rank": 714584,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "scheisse",
+            "canonical_candidate": "scheisse",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "seifenoperscheisse",
+                  "scheisse",
+                  "scheisse"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/38.json.gz",
+        "family_id": "surface:de:scheisse",
+        "record_sha256": "4a847c68ed0c73498729614b37755c634cb517ba2c4226466084684bff28a19e"
+      },
+      "input_sha256": "ecb6444a63217c894f9d1e037f9a42ea4701a4807e3546ec6b87d5b7e6246adf"
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "lemma_id": "lemma:c1fbe90f618ede0faf30",
+      "word": "seifenoper",
+      "normalized_head": "seifenoper",
+      "sense": "broadcast_serial_metaphorical_opera_compound",
+      "historical_proposal": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:c1fbe90f618ede0faf30",
+        "word": "seifenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:seifenoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:c1fbe90f618ede0faf30:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "source_queue_record": {
+        "root": "oper",
+        "language": "de",
+        "lemma_id": "lemma:c1fbe90f618ede0faf30",
+        "word": "seifenoper",
+        "status": "pending_review",
+        "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+        "source_family_ids": [
+          "surface:de:seifenoper"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "oper",
+        "queue": "oper",
+        "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:c1fbe90f618ede0faf30:oper",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": {
+        "source": "https://www.duden.de/rechtschreibung/Seifenoper",
+        "finding": "Dictionary establishes the whole German noun, inflection and internal seifen + oper boundary. Translation alone is insufficient; the German Oper lexical component is independently explicit.",
+        "accessed": "2026-10-04"
+      },
+      "blocker": null,
+      "source_record": {
+        "lemma_id": "lemma:c1fbe90f618ede0faf30",
+        "word": "seifenoper",
+        "normalized": "seifenoper",
+        "search_form": "seifenoper",
+        "rank": 25186,
+        "frequency_score": 10.253926888047932,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.836825
+            ],
+            "category_ipm": 0.836825,
+            "category_score": 10.654052742477004
+          },
+          "normative": {
+            "ipm_values": [
+              0.777033
+            ],
+            "category_ipm": 0.777033,
+            "category_score": 10.074189790514401
+          },
+          "web": {
+            "ipm_values": [
+              0.772915
+            ],
+            "category_ipm": 0.772915,
+            "category_score": 10.033538131152387
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.777033
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.836825
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.772915
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "seifenoper",
+            "canonical_candidate": "seifenoper",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "seifenoper",
+                  "seifenoper",
+                  "seifenoper"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/e5.json.gz",
+        "family_id": "surface:de:seifenoper",
+        "record_sha256": "57ade8df926d2bcb0da3287762017956bfdc67e9e2915f1b324a03620eb4e450"
+      },
+      "input_sha256": "b92d3403d2cf49fd4604e72acf5458b0836f307d85dce608afa81ff64643a385"
+    },
+    {
+      "language": "de",
+      "root": "relat",
+      "lemma_id": "lemma:9548f77ea1cdb5786d98",
+      "word": "relativitätsjude",
+      "normalized_head": "relativität",
+      "sense": "relativity_nominal_lexical_base",
+      "historical_proposal": {
+        "root": "relat",
+        "language": "de",
+        "lemma_id": "lemma:9548f77ea1cdb5786d98",
+        "word": "relativitätsjude",
+        "status": "pending_review",
+        "reason": "Unconfirmed de lexical identity or grammar for relativitätsjude: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+        "source_family_ids": [
+          "ety:0b0ceb1e556e",
+          "ety:29e80c739eb2",
+          "surface:de:relativitatsjud"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "relat",
+        "queue": "relat",
+        "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:9548f77ea1cdb5786d98:relat",
+        "head_recognition": "requires_lexical_head_recognition",
+        "component_segmentation": {
+          "before": "",
+          "component": "relativität",
+          "after": "sjude",
+          "head": "relativität",
+          "boundary_proof": "Complete, individually inspected Relativität nominal lexical base; linking s and the following label stay outside it. No whole-compound identity/POS is asserted."
+        }
+      },
+      "source_queue_record": {
+        "root": "relat",
+        "language": "de",
+        "lemma_id": "lemma:9548f77ea1cdb5786d98",
+        "word": "relativitätsjude",
+        "status": "pending_review",
+        "reason": "Unconfirmed de lexical identity or grammar for relativitätsjude: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+        "source_family_ids": [
+          "ety:0b0ceb1e556e",
+          "ety:29e80c739eb2",
+          "surface:de:relativitatsjud"
+        ],
+        "historical_status": "uncertain",
+        "canonical_root": "relat",
+        "queue": "relat",
+        "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+        "review_unit": "unresolved:de:lemma:9548f77ea1cdb5786d98:relat",
+        "head_recognition": "requires_lexical_head_recognition"
+      },
+      "attestation": {
+        "source": "https://scilogs.spektrum.de/relativ-einfach/relativitaetstheorie-antisemitismus/",
+        "finding": "Original historical analysis identifies the Einstein epithet and relativity context. Primary newspaper PDF page 3 independently attests the exact word. The boundary is relativität + linking s + jude; only the complete noun component is bound.",
+        "accessed": "2026-10-04"
+      },
+      "blocker": null,
+      "source_record": {
+        "lemma_id": "lemma:9548f77ea1cdb5786d98",
+        "word": "relativitätsjude",
+        "normalized": "relativitätsjude",
+        "search_form": "relativitatsjude",
+        "rank": 683687,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "jude",
+            "canonical_candidate": "jude",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "relativitatsjude",
+                  "jude",
+                  "jude"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/16.json.gz",
+        "family_id": "ety:0b0ceb1e556e",
+        "record_sha256": "76e1a7d38edb921483f3186951b8620f0427ccee94326869fe06d120a3cbbe68"
+      },
+      "input_sha256": "7a7d14646c5afd2760b32d1f17fcc1798831eacaa78ebda0c5387ab1dd56318b"
+    }
+  ],
+  "counts": {
+    "candidates": 32,
+    "independently_evidenced": 6,
+    "withheld": 26
+  },
+  "scope_policy": "All 32 historical proposals inspected. Only six independent attestations support fresh decisions; the remaining 26 questions stay open. No family-size cap."
+}

@@ -1,0 +1,1807 @@
+{
+  "source_run_id": 35647932153,
+  "inputs": {
+    "relat": {
+      "candidate_path": "audit/associative-family-v5/relation-checkpoint-20261001/candidates.json.gz",
+      "candidate_sha256": "aff8a70e005c632dccf786a07b7ff2fbfb73fe3addffbf4f34536bd7e9e1cc07",
+      "previous_pending_path": "audit/associative-family-v5/creation-relation-independent-heads-20261002/pending-review.json.gz",
+      "previous_pending_sha256": "e9d6ebdeaf06d10aff0514111a0f217e19ce14674e40733af6f74843ae74ed3b",
+      "inventory_path": "audit/associative-family-v5/creation-relation-independent-heads-20261002/inventory.json",
+      "inventory_sha256": "27e319d2f07b5d1e5feb96f06738abfd58db0ef1ccd94b7c56b43d987137fdc6"
+    }
+  },
+  "decisions": [
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:a4a7c1384af51427e554",
+      "word": "aboutourrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: about our relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationship",
+        "surface:en:ourrelat",
+        "surface:en:tourr",
+        "surface:en:about"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "about our relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:4ad7ee9263d1796d3bb6",
+      "word": "almostrelated",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: almost related. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:almostrelat",
+        "surface:en:related"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "almost related",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:ef47201d91dab84916d0",
+      "word": "andhadbadrelationships",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: and had bad relationships. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ips",
+        "surface:en:andhadbadrelationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "and had bad relationships",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:fa482826aea093877708",
+      "word": "anyrelation",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: any relation. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:anyrelat",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "any relation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:021fefbe44cef945ea67",
+      "word": "anyrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: any relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:anyrelat",
+        "surface:en:relationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "any relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:108227c97779a30f2483",
+      "word": "anyrelative",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: any relative. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:anyrelative"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "any relative",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:e7333ad6720e7d1efd71",
+      "word": "anyrelatives",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: any relatives. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relatives",
+        "surface:en:anyrelative"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "any relatives",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:87cab9214a86093ce6bd",
+      "word": "arelatetoday",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: are late today. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:teto",
+        "surface:en:latet",
+        "surface:en:today",
+        "surface:en:arelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "are late today",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:6d80b9afc4172393d3ec",
+      "word": "completelyunrelated",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: completely unrelated. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:related",
+        "surface:en:completelyunrelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "completely unrelated",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:728f0895d95070edecb5",
+      "word": "correlationbetween",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: correlation between. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:between",
+        "surface:en:onbe",
+        "surface:en:correlation"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "correlation between",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:c2c1cfce9c6363d8f1d8",
+      "word": "didrelate",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: did relate. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:6a347a9c62fd",
+        "surface:en:didrelat",
+        "ety:82d312a16c43"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "did relate",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:0cfe047a2181b6852ec1",
+      "word": "havemanyrelations",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: have many relations. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:havemanyrelation"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "have many relations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:2351980285f94495f87d",
+      "word": "haverelation",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: have relation. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474",
+        "surface:en:haverelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "have relation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:795bf67047e058ded76e",
+      "word": "haverelationships",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: have relationships. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ips",
+        "surface:en:haverelationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "have relationships",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:2183cdd3f3b85c948314",
+      "word": "herrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: her relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:herre",
+        "surface:en:relationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "her relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:57f9b6be4cf02e4c08e7",
+      "word": "hisrelativeswill",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: his relatives will. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:18177803686f",
+        "surface:en:swill",
+        "surface:en:relatives"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "his relatives will",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:0b4f19abab4a9abfacf6",
+      "word": "itrelates",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: it relates. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:lates",
+        "surface:en:itrelate"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "it relates",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:5044a157871bb7e8a8bc",
+      "word": "myrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: my relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:elationship",
+        "surface:en:myrelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "my relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:a90be5ca096e22370636",
+      "word": "myrelatives",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: my relatives. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:tives",
+        "surface:en:myrelative"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "my relatives",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:70e060fd739a5e04a387",
+      "word": "ofrelation",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: of relation. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ofrelation"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "of relation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:fde30d877df91f8418e6",
+      "word": "ofrelations",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: of relations. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ofrelation"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "of relations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:1048cb061adf34ad47d5",
+      "word": "ofrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: of relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ofrelation",
+        "surface:en:elationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "of relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:8fdd61a78e905a3f5d7e",
+      "word": "ofrelatives",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: of relatives. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:tives",
+        "surface:en:ofrelative"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "of relatives",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:29b53db4f368b89bf4db",
+      "word": "ofrelativesarehere",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: of relatives are here. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ofrelativesareher",
+        "surface:en:ehere"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "of relatives are here",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:7552e3eef1d730303b1a",
+      "word": "ourrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: our relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationship",
+        "surface:en:ourrelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "our relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:88fa4fa2486d7b885b45",
+      "word": "ourrelatives",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: our relatives. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ourrelative",
+        "surface:en:relatives"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "our relatives",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:fb5e2f9327743c6fb3b8",
+      "word": "realrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: real relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:realre",
+        "surface:en:relationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "real relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:5b901d76439aa6868771",
+      "word": "relatedto",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: related to. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:6a347a9c62fd",
+        "ety:82d312a16c43",
+        "surface:en:dto"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "related to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:dcbfd81d057056c62e96",
+      "word": "relatedwarrants",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: related warrants. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relatedwarrant",
+        "surface:en:ants"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "related warrants",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:3281945dc5a58def6ca5",
+      "word": "relatestothe",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relates to the. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:tothe",
+        "surface:en:relatestoth"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relates to the",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:13c89af8be4db280a880",
+      "word": "relateto",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relate to. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relat",
+        "surface:en:teto"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relate to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:a636c3630db6896cb08d",
+      "word": "relatingto",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relating to. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:1221b084dd4a",
+        "ety:6cd3993bd1fe",
+        "surface:en:relati",
+        "surface:en:gto",
+        "ety:e73e78601f53"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relating to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:67e765dde56595341040",
+      "word": "relationsand",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relations and. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474",
+        "ety:5137a1ce34c9"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relations and",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:a1540ec9fa6364848b03",
+      "word": "relationshipcan",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship can. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:5d41e8c8ec56",
+        "surface:en:relationship",
+        "ety:5a6d8c11026b",
+        "ety:74f0bd9f1ba4",
+        "ety:d594849f73f7"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship can",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:f9bc5751856057b678db",
+      "word": "relationshiphas",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship has. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationshipha",
+        "surface:en:phas"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship has",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:c6adb50d93fc1c830c6e",
+      "word": "relationshipis",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship is. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationshipi",
+        "surface:en:pis"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship is",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:3e9645f0a61acac23672",
+      "word": "relationshipor",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship or. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationsh",
+        "surface:en:ipor",
+        "surface:en:shi"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship or",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:ee4542641ac9b67c0630",
+      "word": "relationshipsare",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationships are. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationshipsar",
+        "ety:58cb53056460"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationships are",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:495a5c1ae7dd958c7c3f",
+      "word": "relationshipsareforever",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationships are forever. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationshipsareforev",
+        "surface:en:forever"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationships are forever",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:4cd04eaf6572edeccb46",
+      "word": "relationshipson",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationships on. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:pson",
+        "surface:en:relationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationships on",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:e19ebd2213a2bc23910b",
+      "word": "relationshipsturned",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationships turned. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationshipsturn",
+        "surface:en:turned"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationships turned",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:f04be6813f4ce089ff84",
+      "word": "relationshipswith",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationships with. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationship",
+        "surface:en:shipsw",
+        "surface:en:swith"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationships with",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:2a8fe2fd9decd8ebb577",
+      "word": "relationshipthat",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship that. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:shipt",
+        "surface:en:relationship",
+        "surface:en:that"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship that",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:7e8dc5f4c84ce7344d59",
+      "word": "relationshipto",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship to. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:pto",
+        "surface:en:relationsh",
+        "surface:en:shi"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:06073ee87ec2f7aa4847",
+      "word": "relationshipwas",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship was. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:was",
+        "surface:en:relationshipwa"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship was",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:a8d01bcc7fc28f2546bc",
+      "word": "relationshipwere",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship were. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationshipwer",
+        "ety:61b6e98dc5b4"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship were",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:1199713f2fe15e431006",
+      "word": "relationshipwill",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship will. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:9721532428f2",
+        "surface:en:relationshipw"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship will",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:4b2abfd559b1323c296b",
+      "word": "relationshipwith",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship with. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:b8b153b0f5a4",
+        "ety:256060d2b1a2",
+        "surface:en:relationshipw"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship with",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:c7a3941d2e6d03e46f04",
+      "word": "relationshipyou",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relationship you. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:relationship",
+        "surface:en:you"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relationship you",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:c89cfbe3977ccafd19ca",
+      "word": "relationswith",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relations with. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474",
+        "surface:en:nsw",
+        "surface:en:swith"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relations with",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:96da78d8c0851180d809",
+      "word": "relationto",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relation to. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:latio",
+        "ety:9e12bf7b776f",
+        "surface:en:relati"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relation to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:1aa46b68c717bba4b79d",
+      "word": "relativelyjunior",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relatively junior. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:afd25ea57a99",
+        "surface:en:ely",
+        "surface:en:relativ"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relatively junior",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:0f8507965cd158610b6b",
+      "word": "relativeofthe",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relative of the. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ofthe",
+        "surface:en:relativeofth"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relative of the",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:4640e0e7350b8333a9e6",
+      "word": "relativesat",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relatives at. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:6a347a9c62fd",
+        "surface:en:esat",
+        "ety:a3dbee317218",
+        "ety:82d312a16c43"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relatives at",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:a864a55b2d00ddb1ae33",
+      "word": "somerelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: some relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:somere",
+        "surface:en:relationship",
+        "surface:en:erel"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "some relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:0f6d0545460a51b1618f",
+      "word": "somethingrelated",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: something related. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:somethingrelat",
+        "surface:en:related"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "something related",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:1a556068e48761c5eff7",
+      "word": "talkingaboutrelations",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: talking about relations. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:talkingaboutrelation"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "talking about relations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:bea5dfdcd1f0de053bc2",
+      "word": "theirrelation",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: their relation. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:theirrelat",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "their relation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:2fcd76d674f9715c294a",
+      "word": "theirrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: their relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:theirrelat",
+        "surface:en:relationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "their relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:94d68082424d9ea03159",
+      "word": "theirrelativesdied",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: their relatives died. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:theirrelativesdi",
+        "surface:en:died"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "their relatives died",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:9d1f6ef1f08c85bbf04a",
+      "word": "therelation",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: the relation. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474",
+        "surface:en:therelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "the relation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:aeceed200834bf73c024",
+      "word": "therelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: the relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:therelationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "the relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:18434101fcb5490c7ea0",
+      "word": "therelationships",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: the relationships. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:therelationship",
+        "surface:en:ips"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "the relationships",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:63a782099c9a617dbb17",
+      "word": "toseerelationships",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: to see relationships. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:ips",
+        "surface:en:toseerelationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "to see relationships",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:a33e5c657ea5f018bd16",
+      "word": "wasrelated",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: was related. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:related",
+        "surface:en:wasrelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "was related",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:19802757641bb0717127",
+      "word": "wayrelatedto",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: way related to. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:6a347a9c62fd",
+        "surface:en:way",
+        "ety:82d312a16c43",
+        "surface:en:dto"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "way related to",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "en",
+      "lemma_id": "lemma:677ca60e7a77177cdce7",
+      "word": "yourrelationship",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: your relationship. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:en:yourre",
+        "surface:en:relationship"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "your relationship",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/relationship"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:f5b1c86868a12e11679b",
+      "word": "istrelativ",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: ist relativ. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:de:istrel",
+        "ety:153787ddfcc6",
+        "ety:a3dbee317218"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "ist relativ",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/relativ"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "de",
+      "lemma_id": "lemma:802da150aae9d7823e69",
+      "word": "relativjung",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relativ jung. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:de:relativj",
+        "ety:f62b40f55f50"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relativ jung",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/relativ"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "fr",
+      "lemma_id": "lemma:a4453990be3b1e4ba532",
+      "word": "aucunerelation",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: aucune relation. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474",
+        "surface:fr:aucunerelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "aucune relation",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9R1460"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "fr",
+      "lemma_id": "lemma:c3975d6753e5c1abb75a",
+      "word": "auxévénementsrelatésici",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: aux événements relatés ici. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:fr:evenement",
+        "surface:fr:relat",
+        "surface:fr:sici",
+        "surface:fr:lates",
+        "surface:fr:sre",
+        "surface:fr:nts"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "aux événements relatés ici",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9R1460"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "fr",
+      "lemma_id": "lemma:48865a10848c56fafbe3",
+      "word": "relationamoureuse",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relation amoureuse. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:fr:amoureuse",
+        "surface:fr:relationamoureus"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relation amoureuse",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9R1460"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "fr",
+      "lemma_id": "lemma:1c8a6adc06158fb55a34",
+      "word": "relativementjuste",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relativement juste. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:2ab76ab4eabc",
+        "surface:fr:relativementjust",
+        "ety:b75f7cfcb216",
+        "ety:7ce866234b86"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relativement juste",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9R1460"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "fr",
+      "lemma_id": "lemma:7ae6aa9ccd64b9dd6372",
+      "word": "unerelation",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: une relation. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:ecc0be680474",
+        "surface:fr:unerelat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "une relation",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9R1460"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:f7167dee09cff4028c68",
+      "word": "estarrelacionada",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: estar relacionada. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:relacionada",
+        "surface:es:estarrelacionad"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "estar relacionada",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:ec5b10fd91f2e699d382",
+      "word": "estarrelacionados",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: estar relacionados. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:ados",
+        "surface:es:estarrelacionad"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "estar relacionados",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:8a1785f90c4a84d332c2",
+      "word": "objetivosdeunarelación",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: objetivos de una relación. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:relacion",
+        "surface:es:objetivosdeunarelac"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "objetivos de una relación",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:69438f4abf9462762005",
+      "word": "relacionadascon",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relacionadas con. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:das",
+        "surface:es:ascon",
+        "surface:es:relacionada"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relacionadas con",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:4b355005639f66216e8c",
+      "word": "relacionancon",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relacionan con. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:ancon",
+        "surface:es:onan",
+        "surface:es:relaciona"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relacionan con",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:efcf66f6144905bbc05c",
+      "word": "relacionesel",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relaciones el. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:one",
+        "surface:es:sel",
+        "surface:es:relacion"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relaciones el",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:412ba939cc2508474ed3",
+      "word": "relacionesúltimamente",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: relaciones últimamente. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:ultimame",
+        "surface:es:relacionesultima",
+        "ety:d4e12af70156"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "relaciones últimamente",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:e16f7bb3755afda32fb5",
+      "word": "tenerrelación",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: tener relación. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:tenerrelac",
+        "surface:es:relacion"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "tener relación",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:f061ffe6f9ce4d369d0b",
+      "word": "turelación",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: tu relación. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:turelac",
+        "surface:es:lacion"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "tu relación",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "relat",
+      "language": "es",
+      "lemma_id": "lemma:ca1b4cd074d0966f62f7",
+      "word": "unarelación",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation: una relación. Exact saved token is a fused syntactic phrase, not a lexical compound or word inflection. Its legitimate constituent head is not excluded; no corpus spelling or measured source record is changed.",
+      "source_family_ids": [
+        "surface:es:unarelac",
+        "surface:es:relacion"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "syntactic phrase",
+      "segmentation": "una relación",
+      "source_references": [
+        "https://dle.rae.es/relación"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "counts": {
+    "relat": {
+      "en": {
+        "accepted": 169,
+        "excluded": 70,
+        "reviewed_exclusions": 67,
+        "reviewed_uncertain": 0,
+        "pending_review": 118,
+        "total": 357,
+        "new_exclusions": 67
+      },
+      "de": {
+        "accepted": 91,
+        "excluded": 2,
+        "reviewed_exclusions": 2,
+        "reviewed_uncertain": 0,
+        "pending_review": 18,
+        "total": 111,
+        "new_exclusions": 2
+      },
+      "fr": {
+        "accepted": 32,
+        "excluded": 57,
+        "reviewed_exclusions": 6,
+        "reviewed_uncertain": 0,
+        "pending_review": 44,
+        "total": 133,
+        "new_exclusions": 5
+      },
+      "es": {
+        "accepted": 127,
+        "excluded": 40,
+        "reviewed_exclusions": 10,
+        "reviewed_uncertain": 0,
+        "pending_review": 95,
+        "total": 262,
+        "new_exclusions": 10
+      },
+      "it": {
+        "accepted": 53,
+        "excluded": 3334,
+        "reviewed_exclusions": 1,
+        "reviewed_uncertain": 0,
+        "pending_review": 41,
+        "total": 3428,
+        "new_exclusions": 0
+      },
+      "ru": {
+        "accepted": 15,
+        "excluded": 41,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 9,
+        "total": 65,
+        "new_exclusions": 0
+      }
+    }
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "limitations": [
+    "Only the explicitly segmented saved whole forms are newly adjudicated.",
+    "No source spelling, sense frequency, component or corpus measurement is changed."
+  ]
+}

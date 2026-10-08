@@ -1,0 +1,100 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "verdict": "pass",
+  "baseline_sha": "a29a3184336b981f2ca1c5cea019ad43e4b42729",
+  "application_sha": "b6d6d6fc4ce7c54e3a1c3ed60fd2d04f98369fb1",
+  "local_application_sha": "663daaa3778fb10d9941b4af94c74532bce05aa8",
+  "identical_application_tree": "f84a623f66de5f688a0e5aa6bfa79d5d2da97289",
+  "research_sha": "bb411263b14fd98720c38940649d06c0802641af",
+  "decision_sha": "a60602bb013e1b1fef23f33651e26991812c4c90",
+  "targeted_tests": 74,
+  "full_npm_test_files": 132,
+  "independent_v6_audit": "pass",
+  "independent_planning_audit": "pass",
+  "independent_history_certification_audit": "pass",
+  "migration_byte_replay_artifacts": 277,
+  "certification_byte_replay_artifacts": 5,
+  "planning_byte_replay_artifacts": 16,
+  "exact_differential": {
+    "additions": 0,
+    "removals": 0,
+    "changed_memberships": 0,
+    "real_corrections": 0
+  },
+  "historical_baseline_memberships": 19967,
+  "current_memberships": 21561,
+  "representative_rechecks": 19,
+  "catalog_certification_scopes": 18,
+  "root_bound_overlap": 0,
+  "corpus_only_overlap": 544,
+  "source_set_conservation": {
+    "corpus_ids": 100670,
+    "family_questions": 102314,
+    "frame_occurrences": 133060,
+    "packet_route_references": 181136
+  },
+  "protected_trees": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+    "audit/associative-family-v6/historical-overlay-20261003": "fbc2070588a3eb8e8ea81dd30c2133b8ca282b01",
+    "audit/associative-family-v6/queue-organization-20261004": "464a0f3d247830cac09b1cd9d0c5149962cf7faa",
+    "audit/associative-family-v6/oper-relat-continuation-20261004": "2a2016972ac30a76e84166ff5d874517961bda85"
+  },
+  "logs": {
+    "all-targeted.log.gz": {
+      "sha256": "5b0b1125be126dd21e658cf46cbf7ff86a107ff3602d684014c8eeb0b18b6374",
+      "original_bytes": 7051
+    },
+    "full-tests.log.gz": {
+      "sha256": "4b59a01eedd8d7537dd39e345f9ed65a8b5ec442f9552d116180a68f2a642b2d",
+      "original_bytes": 47836
+    },
+    "audit-retry.log.gz": {
+      "sha256": "18178e22f2cf2469e273ef5cf939e0c1146cb96927f0336b44ff3ec4213dd4db",
+      "original_bytes": 23547
+    },
+    "planning-audit.log.gz": {
+      "sha256": "b6bb8b4eb16a43c1f2f85380aae91193cfa6e286f443f674b85f6a41bf230537",
+      "original_bytes": 546
+    },
+    "history-replay.log.gz": {
+      "sha256": "00a379b3664faf0fdb4f03bd3137f0a191e99aa38a08588c768efac31d4cfc47",
+      "original_bytes": 1087
+    },
+    "frozen.log.gz": {
+      "sha256": "3653a568d18b60e4d65319f23ab035e5cfe3257c8e077433698145baea81d0ae",
+      "original_bytes": 749
+    },
+    "build.log.gz": {
+      "sha256": "6a6374fddafb98caf7ac2096e09048169a6f95b85c795fdc0917facbff29f452",
+      "original_bytes": 452
+    },
+    "replay.log.gz": {
+      "sha256": "9b134971cabda23f08052393add4e456250e5653bebce227aa34980366f71550",
+      "original_bytes": 425
+    }
+  },
+  "code_sha256": {
+    "scripts/lib/associative-v6-baseline-corrections.mjs": "7b2ce10e2f07cf7dd24b2fc86fd25347f6d58e50dda090805e046adf514fd374",
+    "associativvordes/js/associative-family-v6.js": "5c7650fcb4bb40c3feb252d1b81b3d11a9af7f66797b45f1bff0fdc9895452e9",
+    "scripts/build-associative-family-v6.mjs": "acaa0a332935c69858df18c6315c3ec0ef845810593fafd69608da450cb6b61f",
+    "scripts/audit-associative-family-v6.mjs": "4ec71735a0d949da01bd9c6bae88bbb13dbbd19e1650779a6a46f6052909f455",
+    "scripts/build-associative-v6-history-certification.mjs": "aa064ef2456d0b841cac86747b581276dca6a720cd1268f3fe07007a497b086a",
+    "scripts/audit-associative-v6-history-certification.py": "3db36146fd9f1d510005266e0bb090ccc3a0c68db1ac778b379c35b6d5c0180f",
+    "scripts/build-associative-v6-queue-organization.mjs": "49d35f674ee04656ee21eb29d29b5d7d45f48c1846d5ba9ba89bdc2047391cb7",
+    "scripts/lib/associative-v6-queue-organization.mjs": "5809f9c1ddb7d2da139afd39bb6d1d6748b43c629727424a012c60ae5c91a141",
+    "tests/associative-family-v6-baseline-corrections.test.mjs": "807cfcc9b11c85a58fb63240baf4ef4167858229ceca45a4b47d514592d240d1",
+    "tests/associative-family-v6-queue-organization.test.mjs": "13caa015cfed3edc6bbe541efc4bb6dfdb7a08f396c519015245cd5468117302"
+  },
+  "interrupted_attempt": {
+    "command": "v6 audit concurrent with replay/planning/full tests",
+    "exit_code": 137,
+    "cause": "cgroup 8 GiB memory limit killed one concurrent process",
+    "isolated_retry_exit_code": 0,
+    "interrupted_run_counted_as_pass": false
+  },
+  "remote_ci": "Read independently for exact published validation SHA; local pass does not establish remote conclusion.",
+  "full_dictionary_complete": false
+}

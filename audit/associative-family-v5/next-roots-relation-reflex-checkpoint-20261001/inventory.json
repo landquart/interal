@@ -1,0 +1,51 @@
+{
+  "source_run_id": 35647932153,
+  "source_tree_content_sha256": "c60b9b75d6f547f27cd0ed8dc9949dfed4c4b46f58c49168e6c5205c5190a8bb",
+  "retrieval_forms": {
+    "relat": [
+      "relat",
+      "relaz",
+      "релат",
+      "релят",
+      "реляц",
+      "relac",
+      "relacion",
+      "correlac"
+    ]
+  },
+  "method": "All six-language materialized member shards scanned; every matching original record and independent source-family route retained. Broad retrieval is not linguistic acceptance. Candidate completeness is relative to these explicit retrieval forms and available corpus.",
+  "counts": {
+    "en": {
+      "relat": 357
+    },
+    "de": {
+      "relat": 111
+    },
+    "fr": {
+      "relat": 133
+    },
+    "es": {
+      "relat": 262
+    },
+    "it": {
+      "relat": 97
+    },
+    "ru": {
+      "relat": 65
+    }
+  },
+  "artifacts": {
+    "en-candidates.json.gz": "7f35980eb2100a9994e81c586d3396545f8b8fe007f5da57548bfa748fba09ec",
+    "de-candidates.json.gz": "08069a4d92ee7a31c856db102d0ab8ff16dac463fee33b0d8717edbc48ec094b",
+    "fr-candidates.json.gz": "5a4d8276501ab11fd9658bd4ace690fa5f57036a7c6f481e4941da5ff9395f14",
+    "es-candidates.json.gz": "f7be83c8c494167889266ae3618e2fd1f96b51b1cd7f2ad1a38efd468a4bcea3",
+    "it-candidates.json.gz": "e35f8155ab3a53ee47d06e285aed3e6277a6f66b2ba05409cfa66724c8c8f20a",
+    "ru-candidates.json.gz": "c5026c6bf9e8bb7096162ea8303005c664e856d2bf0b85049a570da8c95754e1"
+  },
+  "review_status": "unadjudicated_source_candidates",
+  "limitations": [
+    "No inherited or reflex variant outside the declared retrieval frame is claimed covered.",
+    "No guessed frequency or synthetic corpus lemma is added.",
+    "creat is a retrieval group label; final associative canonical choice must cover the reviewed creation/create/crear/creare national forms."
+  ]
+}

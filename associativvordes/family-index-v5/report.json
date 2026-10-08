@@ -115,11 +115,11 @@
   },
   "uncertain_relation_count": 431390,
   "uncertain_relation_sample_size": 100000,
-  "total_families": 2456542,
-  "merged_families": 20773,
+  "total_families": 2456540,
+  "merged_families": 20771,
   "singleton_families": 1735280,
-  "multi_branch_families": 17676,
-  "multi_family_lemmas": 3332183,
+  "multi_branch_families": 17672,
+  "multi_family_lemmas": 3335536,
   "components_discovered": 9349982,
   "components_assigned": 9349982,
   "corpus_quality_counts": {
@@ -128,12 +128,12 @@
     "rejected": 9,
     "requires_manual_review": 0
   },
-  "review_required_families": 4026,
+  "review_required_families": 4035,
   "invariants": {
     "processed_lemmas_equals_source": true,
     "source_lemmas": 4924980,
-    "classified_unique_lemmas": 4924275,
-    "lemmas_with_zero_family": 705,
+    "classified_unique_lemmas": 4924151,
+    "lemmas_with_zero_family": 829,
     "families_with_zero_members": 0,
     "members_without_evidence": 0,
     "fuzzy_memberships": 0,
@@ -143,9 +143,9 @@
     "compound_edges_used_as_equivalence": 0,
     "unreviewed_high_risk_families": 0
   },
-  "generated_non_proto_families": 20766,
-  "verified_seed_families": 7,
-  "aliases_in_lookup": 1934051,
+  "generated_non_proto_families": 20755,
+  "verified_seed_families": 6,
+  "aliases_in_lookup": 1934055,
   "proto_review_candidates": 10209,
   "wide_etymon_review_candidates": 171,
   "etymon_key_policy": {
@@ -2829,6 +2829,47 @@
       "review_status": "needs_review"
     },
     {
+      "id": "family:inter",
+      "canonical": "inter",
+      "aliases": [
+        "inter"
+      ],
+      "verified": false,
+      "confidence": "B",
+      "source": "etymological_component_review+manual_override",
+      "runtime_curated": true,
+      "exact_component": true,
+      "etymon_keys": [
+        "la:inter"
+      ],
+      "relation_types": [
+        "affix_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/exact-components-20261001.json",
+          "relation_type": "affix_component",
+          "whole_lemma_union": false
+        }
+      ],
+      "canonical_selection": {
+        "method": "requested_exact_component"
+      },
+      "language_support": {
+        "en": 737,
+        "de": 1393,
+        "fr": 560,
+        "es": 638,
+        "it": 601,
+        "ru": 354
+      },
+      "support": 4283,
+      "suspicion_score": 0,
+      "suspicion_reasons": [],
+      "review_status": "needs_review"
+    },
+    {
       "id": "ety:5c06ec6f575c",
       "canonical": "ched",
       "aliases": [
@@ -3922,1040 +3963,6 @@
         "large_family"
       ],
       "review_status": "needs_review"
-    },
-    {
-      "id": "ety:474b418e1004",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "relation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:relatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "relation",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "relation",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Relation",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "relazione",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 27,
-        "de": 10,
-        "fr": 15,
-        "it": 3366
-      },
-      "support": 3418,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:dd07667af787",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "relation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:relati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "relation",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "relation",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Relation",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "relazione",
-          "sourceLang": "la",
-          "term": "relātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 27,
-        "de": 10,
-        "fr": 15,
-        "it": 3366
-      },
-      "support": 3418,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:a3b640366c27",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "creacion",
-        "creation",
-        "kreation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:creatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "creation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "création",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "creazione",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "creación",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Kreation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 13,
-        "de": 9,
-        "fr": 8,
-        "es": 6,
-        "it": 3366
-      },
-      "support": 3402,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:ab1eaa1c14b6",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "creacion",
-        "creation",
-        "kreation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:creati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "creation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "création",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "creazione",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "es",
-          "word": "creación",
-          "sourceLang": "la",
-          "term": "creatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Kreation",
-          "sourceLang": "la",
-          "term": "creātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 13,
-        "de": 9,
-        "fr": 8,
-        "es": 6,
-        "it": 3366
-      },
-      "support": 3402,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:61108b488e06",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "mutation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:mutatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mutatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "mutazione",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.85,
-          "depth": 1,
-          "template": "slbor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "ru",
-          "word": "мутация",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 8,
-        "de": 16,
-        "fr": 6,
-        "it": 3366
-      },
-      "support": 3396,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:727be1d24fa1",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "mutation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:mutati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "mutation",
-          "sourceLang": "la",
-          "term": "mutatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "mutazione",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.85,
-          "depth": 1,
-          "template": "slbor",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "de",
-          "word": "Mutation",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "ru",
-          "word": "мутация",
-          "sourceLang": "la",
-          "term": "mūtātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 8,
-        "de": 16,
-        "fr": 6,
-        "it": 3366
-      },
-      "support": 3396,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:58143b06b35a",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "operation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:operatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "operation",
-          "sourceLang": "la",
-          "term": "operātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "operazione",
-          "sourceLang": "la",
-          "term": "operātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "opération",
-          "sourceLang": "la",
-          "term": "operātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "ru",
-          "word": "операция",
-          "sourceLang": "la",
-          "term": "operatio",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 20,
-        "fr": 6,
-        "it": 3366
-      },
-      "support": 3392,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:8ef5f06ceb40",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "operation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:operati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "operation",
-          "sourceLang": "la",
-          "term": "operātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "operazione",
-          "sourceLang": "la",
-          "term": "operātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "opération",
-          "sourceLang": "la",
-          "term": "operātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "ru",
-          "word": "операция",
-          "sourceLang": "la",
-          "term": "operatio",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 20,
-        "fr": 6,
-        "it": 3366
-      },
-      "support": 3392,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:c28863eb7595",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "observation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:observatio"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "learned borrowing",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "osservazione",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 6,
-        "fr": 4,
-        "it": 3366
-      },
-      "support": 3376,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
-    },
-    {
-      "id": "ety:c80365cdd174",
-      "canonical": "azion",
-      "aliases": [
-        "azion",
-        "observation"
-      ],
-      "verified": false,
-      "confidence": "A",
-      "source": "wiktionary_non_proto_etymology",
-      "etymon_keys": [
-        "la:observati"
-      ],
-      "relation_types": [
-        "borrowed_form",
-        "direct_descendant"
-      ],
-      "relation_evidence": [
-        {
-          "language": "en",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observatio",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "learned borrowing",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "fr",
-          "word": "observation",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "borrowed_form",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.9,
-          "depth": 1,
-          "template": "bor+",
-          "path": [
-            "args",
-            2
-          ]
-        },
-        {
-          "language": "it",
-          "word": "osservazione",
-          "sourceLang": "la",
-          "term": "observātiō",
-          "relationType": "direct_descendant",
-          "mergeAllowed": true,
-          "reviewRequired": false,
-          "confidence": 0.95,
-          "depth": 1,
-          "template": "der",
-          "path": [
-            "args",
-            2
-          ]
-        }
-      ],
-      "canonical_selection": {
-        "method": "quality_score_v1",
-        "score": 1
-      },
-      "language_support": {
-        "en": 6,
-        "fr": 4,
-        "it": 3366
-      },
-      "support": 3376,
-      "suspicion_score": 20,
-      "suspicion_reasons": [
-        "large_family"
-      ],
-      "review_status": "safe_automatic"
     },
     {
       "id": "ety:75eed4d759a7",
@@ -7711,6 +6718,487 @@
         "large_family"
       ],
       "review_status": "needs_review"
+    },
+    {
+      "id": "family:alter",
+      "canonical": "alter",
+      "aliases": [
+        "alter",
+        "altern",
+        "altru"
+      ],
+      "verified": true,
+      "confidence": "A",
+      "source": "methodology_seed+manual_override",
+      "etymon_keys": [],
+      "relation_types": [
+        "direct_allomorph"
+      ],
+      "relation_evidence": [],
+      "canonical_selection": {
+        "method": "verified_seed"
+      },
+      "language_support": {
+        "en": 164,
+        "de": 1850,
+        "fr": 96,
+        "es": 176,
+        "it": 120,
+        "ru": 79
+      },
+      "support": 2485,
+      "suspicion_score": 0,
+      "suspicion_reasons": [],
+      "review_status": "manually_verified"
+    },
+    {
+      "id": "ety:930ddb8bc759",
+      "canonical": "alea",
+      "aliases": [
+        "ale",
+        "alea"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "la:alea"
+      ],
+      "relation_types": [
+        "borrowed_form",
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "it",
+          "word": "alea",
+          "sourceLang": "la",
+          "term": "ālea",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "uder",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "fr",
+          "word": "aléa",
+          "sourceLang": "la",
+          "term": "ālea",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "fr": 15,
+        "it": 2421
+      },
+      "support": 2436,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:9855375233b2",
+      "canonical": "skid",
+      "aliases": [
+        "ski",
+        "skid"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "non:skið"
+      ],
+      "relation_types": [
+        "direct_descendant"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "skid",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "skid",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "ski",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "ski",
+          "sourceLang": "non",
+          "term": "skíð",
+          "relationType": "direct_descendant",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "der",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "en": 2375
+      },
+      "support": 2375,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:f7099c0e85b5",
+      "canonical": "vals",
+      "aliases": [
+        "vals"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "fr:valse"
+      ],
+      "relation_types": [
+        "borrowed_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "en",
+          "word": "valse",
+          "sourceLang": "fr",
+          "term": "valse",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "en",
+          "word": "valse",
+          "sourceLang": "fr",
+          "term": "valse",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "ru",
+          "word": "вальс",
+          "sourceLang": "fr",
+          "term": "valse",
+          "relationType": "borrowed_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.9,
+          "depth": 1,
+          "template": "bor+",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "en": 2189,
+        "ru": 150
+      },
+      "support": 2339,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "surface:it:ile",
+      "canonical": "ile",
+      "aliases": [
+        "ile"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "it": 2339
+      },
+      "support": 2339,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "surface:es:ski",
+      "canonical": "ski",
+      "aliases": [
+        "ski"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 2279
+      },
+      "support": 2279,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "family:act",
+      "canonical": "act",
+      "aliases": [
+        "act",
+        "akt",
+        "action",
+        "accion",
+        "azion",
+        "att",
+        "attric",
+        "akc"
+      ],
+      "surface_forms": {
+        "en": [
+          "act"
+        ],
+        "de": [
+          "akt",
+          "act"
+        ],
+        "fr": [
+          "act"
+        ],
+        "es": [
+          "act",
+          "accion"
+        ],
+        "it": [
+          "act",
+          "att",
+          "attric",
+          "azion"
+        ],
+        "ru": [
+          "акт",
+          "акц"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:actus",
+        "la:actum",
+        "la:actio",
+        "la:actor"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/action-materialization-stage-20261002.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/action-positive-extension-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 2268,
+      "language_support": {
+        "en": 257,
+        "de": 963,
+        "fr": 208,
+        "es": 372,
+        "it": 223,
+        "ru": 245
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    },
+    {
+      "id": "surface:es:ero",
+      "canonical": "ero",
+      "aliases": [
+        "ero"
+      ],
+      "verified": false,
+      "confidence": "low",
+      "source": "surface_singleton",
+      "etymon_keys": [],
+      "language_support": {
+        "es": 2264
+      },
+      "support": 2264,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
+    },
+    {
+      "id": "ety:2026f61cfab5",
+      "canonical": "mann",
+      "aliases": [
+        "man",
+        "mann"
+      ],
+      "verified": false,
+      "confidence": "A",
+      "source": "wiktionary_non_proto_etymology",
+      "etymon_keys": [
+        "gmh:man"
+      ],
+      "relation_types": [
+        "inherited_form"
+      ],
+      "relation_evidence": [
+        {
+          "language": "de",
+          "word": "man",
+          "sourceLang": "gmh",
+          "term": "man",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        },
+        {
+          "language": "de",
+          "word": "Mann",
+          "sourceLang": "gmh",
+          "term": "man",
+          "relationType": "inherited_form",
+          "mergeAllowed": true,
+          "reviewRequired": false,
+          "confidence": 0.95,
+          "depth": 1,
+          "template": "inh",
+          "path": [
+            "args",
+            2
+          ]
+        }
+      ],
+      "canonical_selection": {
+        "method": "quality_score_v1",
+        "score": 2
+      },
+      "language_support": {
+        "de": 2260
+      },
+      "support": 2260,
+      "suspicion_score": 20,
+      "suspicion_reasons": [
+        "short_root"
+      ],
+      "review_status": "safe_automatic"
     }
   ],
   "highest_suspicion_families": [
@@ -13699,29 +13187,29 @@
     "illos_illis_family_decisions_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
     "suffix_batch_10_memberships_removed": 26757,
     "suffix_batch_10_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
-    "materialized_unique_lemmas": 4924275,
-    "lemmas_without_materialized_family": 705,
+    "materialized_unique_lemmas": 4924151,
+    "lemmas_without_materialized_family": 829,
     "suffix_batch_11_memberships_removed": 14711,
     "suffix_batch_11_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
     "suffix_batch_12_memberships_removed": 11782,
     "suffix_batch_12_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
     "unique_lemmas_by_language": {
-      "en": 1130945,
-      "de": 1113446,
-      "fr": 558904,
-      "es": 941516,
-      "it": 610087,
-      "ru": 569377
+      "en": 1130858,
+      "de": 1113440,
+      "fr": 558895,
+      "es": 941501,
+      "it": 610082,
+      "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619177,
-      "de": 2204874,
-      "fr": 1143056,
-      "es": 1796477,
-      "it": 1180989,
-      "ru": 1126735
+      "en": 2619284,
+      "de": 2211173,
+      "fr": 1144212,
+      "es": 1798422,
+      "it": 1148991,
+      "ru": 1127703
     },
-    "memberships": 10071308,
+    "memberships": 10049785,
     "nitidus_net_memberships_removed": 9924,
     "nitidus_net_memberships_added": 2,
     "nitidus_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
@@ -13734,6 +13222,111 @@
     "russian_short_batch_2_memberships_removed": 2556,
     "information_ledger_sha256": "ac2b972beaafe1e91a3313f8d517d442347c79ee00caef41de37d6f5ffade02f",
     "information_memberships_removed": 7014,
-    "information_memberships_added": 3
+    "information_memberships_added": 3,
+    "component_review_ledger_sha256": "94b83c9c463c887ba28c491484ffa8820f76133d36593ea05b5cb6ae88f6c923",
+    "component_false_memberships_removed": 11,
+    "exact_component_review": {
+      "repair": "materialize_reviewed_exact_component_memberships_20261001",
+      "source_run_id": 35647932153,
+      "removed_memberships": 2056,
+      "added_memberships": 6896,
+      "added_families": 2,
+      "decision_ledger_sha256": "0f32b1fcc5381a973922e7d739c02be2f1de1a5b938a2f4e800fd1e96fc8ff91",
+      "checkpoint_sha256": "1f1c3d04e6f6bc845856fd44cb5018a80f19978890df38b8b855ad01e634e9a3",
+      "full_family_certification": false,
+      "exact_fragment_required": true
+    },
+    "exact_component_continuation": {
+      "repair": "continue_exact_component_recall_and_exclusions_20261001",
+      "source_run_id": 35647932153,
+      "removed_memberships": 0,
+      "added_memberships": 15,
+      "decision_ledger_sha256": "2f3e10927391804c4fc62da94c837a27b314596b9f34027a3f633bd7cc5b9ab5",
+      "full_family_certification": false
+    },
+    "associative_reflex_review": {
+      "repair": "materialize_reviewed_action_subset_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 2098,
+      "removed_memberships": 0,
+      "net_family_delta": 1,
+      "alias_delta": 0,
+      "decision_ledger_sha256": "30fd69ba65a417f58d5b0d953c4d9f8cee619a676ca0a3b5695c700d0a12de4f",
+      "full_family_certification": false,
+      "legacy_containers_preserved": [
+        "ety:751cdacbf4a9",
+        "ety:9a86a987fafc"
+      ],
+      "component_preservation": "Original component arrays kept intact; reviewed act component appended."
+    },
+    "loc_reflex_review": {
+      "repair": "add_reviewed_german_russian_loc_reflex_members_20261001",
+      "source_run_id": 35647932153,
+      "added_memberships": 505,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "decision_ledger_sha256": "37e51a81e4b9836b7e6df51bb538d0039122851417da7d7ea8559f72019dc235",
+      "full_family_certification": false
+    },
+    "action_extension": {
+      "repair": "extend_reviewed_action_memberships_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 170,
+      "removed_memberships": 0,
+      "net_family_delta": 0,
+      "alias_delta": 0,
+      "decision_ledger_sha256": "84fb775197529d95238b5f03729c25e655b9bdab306f5b6938f44c4f7d30a7d0",
+      "full_family_certification": false
+    },
+    "reflex_continuation": {
+      "repair": "extend_reviewed_observ_inform_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 6,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "42ca6903c83709830dae714f4401895747bb40fa521f4f9cf4a9ad35bd1f6f7b",
+      "full_family_certification": false
+    },
+    "reflex_heads_extension": {
+      "repair": "extend_reviewed_observ_inform_heads_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 18,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "5d4cc19677a7c9539d1a055f821e0cd4da402949f33cb839bd185ce574cfec76",
+      "full_family_certification": false
+    },
+    "reflex_rare_heads_extension": {
+      "repair": "extend_reviewed_observ_inform_rare_heads_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 7,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "2551d3b3b9f12839e451645578d908ec0aad703c3977839e40d8f1f9cfd75edd",
+      "full_family_certification": false
+    },
+    "reflex_native_compounds_extension": {
+      "repair": "extend_reviewed_observ_inform_native_compounds_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 7,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "494bf69db6cc235cfc2b8098f45ffdb35fbabbf3b8853bc83f4775d1ac03b1c3",
+      "full_family_certification": false
+    },
+    "reflex_productive_variants_extension": {
+      "repair": "extend_reviewed_observ_inform_productive_variants_20261002",
+      "source_run_id": 35647932153,
+      "added_memberships": 10,
+      "removed_memberships": 0,
+      "alias_delta": 0,
+      "net_family_delta": 0,
+      "decision_ledger_sha256": "76ec157bc49380444ee8cade2516a102f39d4ca4f095f9b530cf5045deb73dd0",
+      "full_family_certification": false
+    }
   }
 }

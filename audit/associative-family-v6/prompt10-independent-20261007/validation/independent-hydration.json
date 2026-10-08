@@ -1,0 +1,18 @@
+{
+  "verdict": "pass",
+  "unique_rows": 21371,
+  "component_measurement_comparisons": 21566,
+  "fields": [
+    "lemma_id",
+    "word",
+    "normalized",
+    "search_form",
+    "rank",
+    "frequency_score",
+    "category_breakdown",
+    "sources",
+    "corpus_quality"
+  ],
+  "method": "Python decoded deep value equality against original immutable shard records; list order preserved and object key order irrelevant; no hydration/generator helper",
+  "source_proof_unchanged": true
+}

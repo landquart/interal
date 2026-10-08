@@ -1,0 +1,17 @@
+{
+  "runtime_applied": false,
+  "expected_additions": 18,
+  "expected_support": {
+    "observ": 309,
+    "inform": 1455
+  },
+  "tests": {
+    "command": "node --test tests/associative-reflex-heads-materialization.test.mjs tests/associative-reflex-continuation-materialization.test.mjs tests/associative-reflex-materialization.test.mjs tests/associative-information-repair.test.mjs",
+    "pass": 9,
+    "fail": 0,
+    "skip": 1,
+    "skip_reason": "Latest runtime application audit is inapplicable before materialization.",
+    "log_sha256": "46f44c435fcac72ddd3a401e28b8e9c6a32746c9b4618d20ff68492c2f5f3bd0"
+  },
+  "full_family_certification": false
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "a881152a940986e142fb0577f7a064491499e6de",
+  "research_sha": "b5cf9fc92d2b0d1b2b25caa636d0efc228b163ef",
+  "decision_sha": "65c82a647883f1e029c64cda308832ec8daaacc3",
+  "object_order_finding_sha": "28892e7679ab12a3c1d7ba41a8418e6c4914e538",
+  "application_sha": "438f0aba97b818c48ee9d7a75cf3896eb175733e",
+  "application_tree": "4ccde60e141c032aa1d9004ec5044ce101440507",
+  "production_enabled": false,
+  "merge_performed": false,
+  "catalog_forms_checked": 88,
+  "queries": 106,
+  "language_scoped_queries": 636,
+  "membership_differential": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "memberships": 21566,
+  "hydrated_unique_corpus_ids": 21371,
+  "multiple_accepted_components": 195,
+  "zero_membership_records_retrieved": 829,
+  "targeted_shadow_tests": 8,
+  "npm_test_files": 135,
+  "audits": [
+    "shadow actual routing and original measurements",
+    "v6 integrity",
+    "frozen historical snapshots"
+  ],
+  "replay": [
+    {
+      "scope": "migration",
+      "artifacts": 277,
+      "byte_identical": true
+    },
+    {
+      "scope": "shadow",
+      "artifacts": 7,
+      "byte_identical": true
+    }
+  ],
+  "changed_migration_artifacts": [
+    "associativvordes/family-index-v6/generated/manifest.json",
+    "associativvordes/family-index-v6/generated/source-lock.json"
+  ],
+  "protected_git_trees": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+    "audit/associative-family-v6/prompt06-history-20261005": "92975b35ac46c53a96a80d8e3e3daf0bd4c34a98",
+    "audit/associative-family-v6/prompt07-contamination-20261005": "56bdc0af750b845efb325334f9cf80e4c9dd5d76"
+  },
+  "code_sha256": {
+    "associativvordes/js/associative-family-v6.js": "e4b7cf4639ce594f81910eb5d083b5402520d02e5a38556b7e7d17b3c53cddd6",
+    "associativvordes/js/associative-family-v6-shadow.js": "43dbe150c1e0ac37e5f714c8b923fe6da5252c9851a9e58ebd0ed73cd0407db7",
+    "associativvordes/js/search-normalizer.js": "1a1347389cc6a855d6bda2c83e00fce0ae171991e8b5e3a6b95b124b5de96587",
+    "scripts/audit-associative-v6-shadow.mjs": "42c53ddfcdfb95151b3d69a35eb7b0b8ba2858603968cc01db6facf58ccf2139",
+    "tests/associative-family-v6-shadow.test.mjs": "43f5d4ecd99ca42c555a2cee99994c8283472e7e80448a18520e2dc7ad584b0f",
+    ".github/workflows/audit-associative-family-v6.yml": "a1f0eeaae8849175129822abe23d2c3b062e54c1ae96133ac96ec7f01238c949"
+  },
+  "logs_sha256": {
+    "targeted.log.gz": "fadf75b6c9eb827eecae2b99bb6befe77c7a2f9195b569bf8e6520026c95c3bf",
+    "targeted-initial.log.gz": "5103decb97779cca3ff629952e71439ea3e3da984c505d2f512c28160c5ce9bc",
+    "normalization-architecture.log.gz": "7f9df5c23cdbc92db7abc1e793ea2e0c1f99bfc1ef16f5a3aeec381fbaa3c15e",
+    "full-npm.log.gz": "42e70dee05212d150784b4dfdef6deeb8aa15e8f8c75e370256558960eb0a330",
+    "migration-build.log.gz": "cfdbd7f9da1968b1049e6500f7a7aa121d5b6283fbe403eb996e1daa2249fd43",
+    "shadow-audit.log.gz": "232d2db53a3619f0c82d7e7e7ef68bf43bed8028fc904c5ddfc3db3616e20d8e",
+    "shadow-replay.log.gz": "232d2db53a3619f0c82d7e7e7ef68bf43bed8028fc904c5ddfc3db3616e20d8e",
+    "frozen.log.gz": "3653a568d18b60e4d65319f23ab035e5cfe3257c8e077433698145baea81d0ae",
+    "v6-integrity.log.gz": "90d5e8583fb8e63b7f7f3aa69c247ca0e63c9c30d18e642941093d942be62182"
+  },
+  "real_correction_dossiers": 0,
+  "synthetic_fixtures_separate": true,
+  "unexpected_differentials": 0,
+  "ci_policy": "Check exact final validation/documentation SHA after publishing; application CI is not substituted for it.",
+  "full_dictionary_complete": false,
+  "limitations": [
+    "Runtime is a static accepted snapshot: reload after materialized revision/correction.",
+    "No real correction exists; revised/corrected search is tested with synthetic fixtures.",
+    "Zero-v5 word lookup exposes retained raw records, without invented aggregate scores."
+  ],
+  "transport_recovery": "Initial research transfer truncation was repaired; complete blob and application tree independently verified."
+}

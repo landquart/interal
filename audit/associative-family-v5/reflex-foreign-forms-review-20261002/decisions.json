@@ -1,0 +1,675 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_pending_sha256": "9fc5af66e15ed98f58f78a1885894fc428752df62f57f6acdc40769c49d4d29f",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "decisions": [
+    {
+      "lemma_id": "lemma:3a9e9dd34cd958858a1c",
+      "word": "observer",
+      "status": "uncertain",
+      "reason": "Investigated English observer noun (also French infinitive); the exact saved form has a dictionary-supported foreign lexical analysis. This de record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:de:observer"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observer noun (also French infinitive)",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observer",
+        "https://www.dictionnaire-academie.fr/article/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f1ce2c7bedcec6958545",
+      "word": "observer",
+      "status": "uncertain",
+      "reason": "Investigated English observer noun (also French infinitive); the exact saved form has a dictionary-supported foreign lexical analysis. This es record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "ety:25ecf39bc5dd",
+        "ety:68b7cf869ef7",
+        "ety:c88db3641611",
+        "surface:es:obser"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observer noun (also French infinitive)",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observer",
+        "https://www.dictionnaire-academie.fr/article/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:10d956ae3844afafb086",
+      "word": "observer",
+      "status": "uncertain",
+      "reason": "Investigated English observer noun (also French infinitive); the exact saved form has a dictionary-supported foreign lexical analysis. This it record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:it:ver"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observer noun (also French infinitive)",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observer",
+        "https://www.dictionnaire-academie.fr/article/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e40283f0fb5c55aae547",
+      "word": "observers",
+      "status": "uncertain",
+      "reason": "Investigated English observer plural; the exact saved form has a dictionary-supported foreign lexical analysis. This de record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "ety:01c7f3143855",
+        "surface:de:observer",
+        "ety:029820b5640e"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observer plural",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:69a541df0b1106fe2008",
+      "word": "observers",
+      "status": "uncertain",
+      "reason": "Investigated English observer plural; the exact saved form has a dictionary-supported foreign lexical analysis. This it record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:it:vers",
+        "surface:it:observ"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observer plural",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8526765083b45e671b40",
+      "word": "observes",
+      "status": "uncertain",
+      "reason": "Investigated English observe third-person singular; the exact saved form has a dictionary-supported foreign lexical analysis. This de record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:de:ves",
+        "surface:de:observe"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe third-person singular",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4d2b9d63c3a06d31f146",
+      "word": "observe",
+      "status": "uncertain",
+      "reason": "Investigated English observe verb; the exact saved form has a dictionary-supported foreign lexical analysis. This de record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:de:observe"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe verb",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7a06b4b9e5450ec1f03f",
+      "word": "observe",
+      "status": "uncertain",
+      "reason": "Investigated English observe verb; the exact saved form has a dictionary-supported foreign lexical analysis. This it record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:it:observ"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe verb",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9b1b54fc195c3faed369",
+      "word": "observed",
+      "status": "uncertain",
+      "reason": "Investigated English observe past/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This es record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:es:obser",
+        "surface:es:ved"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe past/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6cd7e4f47d8ad5d13a06",
+      "word": "observed",
+      "status": "uncertain",
+      "reason": "Investigated English observe past/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This fr record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:fr:obse",
+        "surface:fr:ved"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe past/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:effadcf57a7f16e72337",
+      "word": "observed",
+      "status": "uncertain",
+      "reason": "Investigated English observe past/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This it record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:it:ved"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe past/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d988a8ff9f28291ac041",
+      "word": "observing",
+      "status": "uncertain",
+      "reason": "Investigated English observe gerund/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This es record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:es:observ",
+        "surface:es:ving"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe gerund/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:52c4d6aca285824cf418",
+      "word": "observing",
+      "status": "uncertain",
+      "reason": "Investigated English observe gerund/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This it record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:it:ving",
+        "surface:it:observ"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observe gerund/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:30d5b11fed1ab7c391e0",
+      "word": "observatory",
+      "status": "uncertain",
+      "reason": "Investigated English observatory noun; the exact saved form has a dictionary-supported foreign lexical analysis. This de record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:de:observat",
+        "surface:de:tory"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observatory noun",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observatory"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:920d9e131a15ffef87f4",
+      "word": "observatory",
+      "status": "uncertain",
+      "reason": "Investigated English observatory noun; the exact saved form has a dictionary-supported foreign lexical analysis. This es record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:es:observat",
+        "surface:es:ory"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observatory noun",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observatory"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bad92838349e411b4b81",
+      "word": "observatory",
+      "status": "uncertain",
+      "reason": "Investigated English observatory noun; the exact saved form has a dictionary-supported foreign lexical analysis. This fr record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:fr:ory",
+        "surface:fr:observat"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observatory noun",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observatory"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:39c85156362efa19ca03",
+      "word": "observatory",
+      "status": "uncertain",
+      "reason": "Investigated English observatory noun; the exact saved form has a dictionary-supported foreign lexical analysis. This it record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "ety:2876587f0ca2",
+        "surface:it:rva",
+        "surface:it:observ",
+        "surface:it:ory"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English observatory noun",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observatory"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:799d99c6daf1a4f991a9",
+      "word": "informed",
+      "status": "uncertain",
+      "reason": "Investigated English inform past/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This de record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:de:med",
+        "surface:de:infor"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English inform past/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:aecfcb410c2cfdbfd561",
+      "word": "informed",
+      "status": "uncertain",
+      "reason": "Investigated English inform past/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This es record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:es:med",
+        "surface:es:infor"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English inform past/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b17d831a3650d4663d84",
+      "word": "informed",
+      "status": "uncertain",
+      "reason": "Investigated English inform past/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This fr record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:fr:med",
+        "surface:fr:infor"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English inform past/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:740711ca031983c970e5",
+      "word": "informed",
+      "status": "uncertain",
+      "reason": "Investigated English inform past/participle; the exact saved form has a dictionary-supported foreign lexical analysis. This it record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "ety:434dd4645619",
+        "ety:7155ab29a6ee",
+        "ety:1dc6cf2722b9",
+        "surface:it:infor"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English inform past/participle",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:af000036635873e184d7",
+      "word": "informs",
+      "status": "uncertain",
+      "reason": "Investigated English inform third-person singular; the exact saved form has a dictionary-supported foreign lexical analysis. This es record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:es:inf"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English inform third-person singular",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:79257e47b8cb5bab6373",
+      "word": "informs",
+      "status": "uncertain",
+      "reason": "Investigated English inform third-person singular; the exact saved form has a dictionary-supported foreign lexical analysis. This fr record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:fr:inform"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "English inform third-person singular",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/inform"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8e7edc126253e793b9bd",
+      "word": "informar",
+      "status": "uncertain",
+      "reason": "Investigated Spanish informar infinitive, gerund or infinitive + nos; finite morphological inference from the regular paradigm; the exact saved form has a dictionary-supported foreign lexical analysis. This en record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:en:formar",
+        "surface:en:info"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish informar infinitive, gerund or infinitive + nos; finite morphological inference from the regular paradigm",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b9184e436616ca37276e",
+      "word": "informando",
+      "status": "uncertain",
+      "reason": "Investigated Spanish informar infinitive, gerund or infinitive + nos; finite morphological inference from the regular paradigm; the exact saved form has a dictionary-supported foreign lexical analysis. This en record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:en:informa",
+        "surface:en:ando"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish informar infinitive, gerund or infinitive + nos; finite morphological inference from the regular paradigm",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e45399c2dd55b05d6926",
+      "word": "informarnos",
+      "status": "uncertain",
+      "reason": "Investigated Spanish informar infinitive, gerund or infinitive + nos; finite morphological inference from the regular paradigm; the exact saved form has a dictionary-supported foreign lexical analysis. This en record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:en:nos",
+        "surface:en:informarno"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish informar infinitive, gerund or infinitive + nos; finite morphological inference from the regular paradigm",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7be6cc49d9030006216a",
+      "word": "informados",
+      "status": "uncertain",
+      "reason": "Investigated Spanish informar masculine plural participle; regular number inflection; the exact saved form has a dictionary-supported foreign lexical analysis. This en record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:en:informado",
+        "surface:en:dos"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish informar masculine plural participle; regular number inflection",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f8cae97f64df040105d5",
+      "word": "informados",
+      "status": "uncertain",
+      "reason": "Investigated Spanish informar masculine plural participle; regular number inflection; the exact saved form has a dictionary-supported foreign lexical analysis. This fr record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:fr:ados",
+        "surface:fr:informado"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish informar masculine plural participle; regular number inflection",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:db600f8a3370fa304c3c",
+      "word": "observaste",
+      "status": "uncertain",
+      "reason": "Investigated Spanish observar second-person singular preterite; the exact saved form has a dictionary-supported foreign lexical analysis. This en record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:en:aste",
+        "surface:en:observast"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Spanish observar second-person singular preterite",
+      "source_references": [
+        "https://dle.rae.es/observar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:470856aefa321325cead",
+      "word": "osservatorio",
+      "status": "uncertain",
+      "reason": "Investigated Italian osservatorio noun; the exact saved form has a dictionary-supported foreign lexical analysis. This en record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "surface:en:rio",
+        "surface:en:osservat",
+        "surface:en:vato"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Italian osservatorio noun",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservatorio/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d942612fdbb96b9ab9f5",
+      "word": "osservate",
+      "status": "uncertain",
+      "reason": "Investigated Italian osservare plural imperative or feminine plural participle; regular inflection; the exact saved form has a dictionary-supported foreign lexical analysis. This en record contains aggregated source frequencies, not original sentences or sense annotation. Foreign quotation, title/name and target-language lexical use cannot be distinguished. The observation/information head is plausible but target-language membership is not certified. This is contextual uncertainty after lexical analysis, not an unreviewed default.",
+      "source_family_ids": [
+        "ety:2876587f0ca2",
+        "surface:en:osservat"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "foreign_lexical_context",
+      "segmentation_or_lexical_identity": "Italian osservare plural imperative or feminine plural participle; regular inflection",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dfc30eb581b8bb85918a",
+      "word": "einformará",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation of this exact token into a syntactic phrase. It does not constitute a lexical compound or an inflected word. The constituent head remains legitimate; no source spelling is repaired or source record deleted.",
+      "source_family_ids": [
+        "surface:es:ara",
+        "surface:es:einformar"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "e informará",
+      "source_references": [
+        "https://dle.rae.es/informar"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:064a34755c509f891d09",
+      "word": "observantsans",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation of this exact token into a syntactic phrase. It does not constitute a lexical compound or an inflected word. The constituent head remains legitimate; no source spelling is repaired or source record deleted.",
+      "source_family_ids": [
+        "ety:950a468352be",
+        "surface:fr:observantsan",
+        "ety:d8458c4b31a3"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "observant sans",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a5f6b8a6771719048a77",
+      "word": "informaticotatuato",
+      "status": "excluded",
+      "reason": "Finite reviewer segmentation of this exact token into a syntactic phrase. It does not constitute a lexical compound or an inflected word. The constituent head remains legitimate; no source spelling is repaired or source record deleted.",
+      "source_family_ids": [
+        "surface:it:informaticotatuat"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "phrase_fusion",
+      "segmentation_or_lexical_identity": "informatico tatuato",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informatico/"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "uncertain": 31,
+    "excluded": 3
+  },
+  "continuation_counts": {
+    "accepted": 6,
+    "excluded": 155,
+    "uncertain": 48,
+    "pending_review": 553
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "limitations": [
+    "Only explicit whole forms are reviewed; no open prefix/substring classifier.",
+    "Foreign lexical identities have been investigated but aggregated corpus sources cannot resolve quotation/title context.",
+    "Remaining records retain pending_review. No spelling repairs or synthetic corpus records."
+  ]
+}

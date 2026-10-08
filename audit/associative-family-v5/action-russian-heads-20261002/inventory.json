@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "canonical_root": "act",
+  "source_run_id": 35647932153,
+  "previous_checkpoint": "audit/associative-family-v5/action-independent-heads-20261002",
+  "previous_decision_sha256": "130a57ddecb65a16282ce4a70200e66065a5c6ac4ca62528545aa55f4536637c",
+  "source_candidate_count": 52277,
+  "adjudicated_in_this_stage": 40,
+  "excluded_added": 40,
+  "accepted_added": 0,
+  "membership_changes": 0,
+  "counts": {
+    "en": {
+      "accepted": 242,
+      "excluded": 8037,
+      "uncertain": 4,
+      "pending_review": 1450
+    },
+    "de": {
+      "accepted": 808,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4445
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3663,
+      "uncertain": 0,
+      "pending_review": 604
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2175,
+      "uncertain": 1,
+      "pending_review": 410
+    }
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "artifact_sha256": {
+    "decisions.json": "0b12623ec5396a3d93ce9f82332b12bb14ebe88ae9c0e41756fdd68aae100dcc",
+    "source-records.json.gz": "94327a58627f30c95f238ff292f03c8b47c1eda0cbe1e1d45d63dcbc1cdd0558"
+  }
+}

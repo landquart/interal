@@ -1,0 +1,185 @@
+{
+  "stage": "system-promotion-validation-20261003",
+  "validated_remote_application_head": "6a53dd6e0cbf7260ce739c526c283f64f32e9077",
+  "verdict": "pass",
+  "targeted_tests": 27,
+  "full_test_files": 127,
+  "deterministic_replay_artifacts": 273,
+  "v5_preservation": {
+    "associativvordes/family-index-v5": {
+      "source_git_tree": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+      "current_git_tree": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+      "byte_identical": true
+    },
+    "associativvordes/frequency lists": {
+      "source_git_tree": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+      "current_git_tree": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+      "byte_identical": true
+    },
+    "audit/associative-family-v5": {
+      "source_git_tree": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+      "current_git_tree": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+      "byte_identical": true
+    }
+  },
+  "logs_sha256": {
+    "audit/associative-family-v6/system-promotion-validation-20261003/build.log.gz": "50eba1afbff7e4ab2d795944f51a0d7762cf0baace6b0736252298b3f9fe17da",
+    "audit/associative-family-v6/system-promotion-validation-20261003/targeted.log.gz": "92cd495ade35ec54cf2ee1015c03bdd4634fd21aa3d50170315579ab236c45ab",
+    "audit/associative-family-v6/system-promotion-validation-20261003/full-tests.log.gz": "136875deaf27c261d5d1a1e6872c32fbd1be28709952300c9a8fc718feaf8fc7",
+    "audit/associative-family-v6/system-promotion-validation-20261003/audit.log.gz": "030efd9a93dc79fbfe1e59e44b4b8626a3d4a0031dc2bfb2506f13e88cd5c3d7",
+    "audit/associative-family-v6/system-promotion-validation-20261003/replay.log.gz": "72ad6ca73a2a15b0171d68cbdc027ecfdfb24976ab7c178fbecdb7e2ed3b7543"
+  },
+  "catalog_families": 17,
+  "accepted_memberships": 21021,
+  "family_promotion_metrics": {
+    "promoted_families": 1,
+    "head_decisions": 7,
+    "finite_memberships": 12,
+    "known_queue_resolutions": 0,
+    "full_linguistic_certification": false
+  },
+  "known_queue_metrics": {
+    "source_active_records": 25202,
+    "current_active_records": 24037,
+    "new_head_decisions": 22,
+    "records_reviewed": 1168,
+    "new_records_resolved": 1165,
+    "unresolved_reviewed_records": 3,
+    "new_review_reduction_factor": 52.95454545454545,
+    "newly_pending_records_resolved": 1150,
+    "investigated_uncertainties_resolved": 15,
+    "investigated_uncertainties_retained": 3,
+    "newly_pending_records_investigated_without_resolution": 0,
+    "pending_head_decisions": 15,
+    "pending_review_reduction_factor": 76.66666666666667,
+    "current_status_counts": {
+      "pending": 23067,
+      "uncertain": 970
+    },
+    "stages": [
+      {
+        "stage": "prior_observ_inform",
+        "head_decisions": 3,
+        "records_reviewed": 3,
+        "records_resolved": 3,
+        "previously_pending": 3,
+        "previously_uncertain": 0,
+        "accepted": 3,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 1
+      },
+      {
+        "stage": "relat-finite-lexical-evidence-20261003",
+        "head_decisions": 3,
+        "records_reviewed": 8,
+        "records_resolved": 8,
+        "previously_pending": 8,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 8,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 2.6666666666666665
+      },
+      {
+        "stage": "loc-finite-lexical-evidence-20261003",
+        "head_decisions": 6,
+        "records_reviewed": 15,
+        "records_resolved": 15,
+        "previously_pending": 0,
+        "previously_uncertain": 15,
+        "accepted": 8,
+        "excluded": 7,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 2.5
+      },
+      {
+        "stage": "creat-mut-finite-head-benchmark-20261003",
+        "head_decisions": 5,
+        "records_reviewed": 103,
+        "records_resolved": 103,
+        "previously_pending": 103,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 103,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 20.6
+      },
+      {
+        "stage": "oper-finite-military-head-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 5,
+        "records_resolved": 5,
+        "previously_pending": 5,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 5,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 5
+      },
+      {
+        "stage": "act-financial-aktie-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 340,
+        "records_resolved": 340,
+        "previously_pending": 340,
+        "previously_uncertain": 0,
+        "accepted": 340,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 340
+      },
+      {
+        "stage": "actin-identity-proven-family-edge-uncertain-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 3,
+        "records_resolved": 0,
+        "previously_pending": 0,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 3,
+        "new_review_reduction_factor": 0
+      },
+      {
+        "stage": "act-documentary-akte-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 165,
+        "records_resolved": 165,
+        "previously_pending": 165,
+        "previously_uncertain": 0,
+        "accepted": 165,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 165
+      },
+      {
+        "stage": "act-deliberate-aktion-finite-component-20261003",
+        "head_decisions": 1,
+        "records_reviewed": 526,
+        "records_resolved": 526,
+        "previously_pending": 526,
+        "previously_uncertain": 0,
+        "accepted": 526,
+        "excluded": 0,
+        "reviewed_records_retained_uncertain": 0,
+        "new_review_reduction_factor": 526
+      }
+    ],
+    "strict_remaining_frame_reduction": 1.0000832119825256,
+    "historical_component_bindings_represented": 872,
+    "historical_component_head_edges": 6,
+    "historical_representation_reuse_factor": 145.33333333333334,
+    "historical_boundary_reviews_are_not_newly_resolved_records": true
+  },
+  "unexpected_differential": 0,
+  "production_enabled": false,
+  "full_linguistic_certification": false,
+  "remote_ci_status": "pending_independent_confirmation",
+  "tested_code_sha256": {
+    "scripts/lib/associative-v6-family-promotion.mjs": "5d99cb27478572afd2101c2f87d6206cbabcf22c7bfd316ac7a6d509efa292e6",
+    "scripts/build-associative-family-v6.mjs": "c6e472d372a6e91f77b177a04226d7d95cbe3f6964070af0f1d5a3afb38b7708",
+    "scripts/audit-associative-family-v6.mjs": "5533235b516b5fe0b328a2ca0d6a630d9b405b4a43d4d04c99c28d1473b05f7c",
+    "tests/associative-family-v6-promotions.test.mjs": "675e90150108813caee90da49b890f2cd39d16561a92dc86fa69638dfcd932e0"
+  }
+}

@@ -1,0 +1,917 @@
+[
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:316bec0682a9790eaeb2",
+    "word": "régulo",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "5d26b206c565667f585b2985d567357d595c218dc19ec8f463e3bbdd6989e769"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/es_wordlist.lemmatized_stanza_ipm6.json",
+        "record_sha256": "dc1592eeb34eb473fc1640bbc3381440505e0b33a2b40484549ea10df6f05ee4"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "063f7fe45efe1afc36d91338626ca094b6f12b4a2cd3f5aa4e73faf4b76a7f3c"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "6305ac9ff80a9a240caa2e8d0de967c3f9559b4446ab0385aea19195e13d848d"
+      }
+    ],
+    "lexical_analysis": "Accented rex/regulus noun; accent cannot be removed for lexical identity.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:316bec0682a9790eaeb2",
+      "word": "régulo",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/r%C3%A9gulo"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-regulo"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/r%C3%A9gulo",
+        "finding": "Accented régulo descends from regulus, diminutive of rex; not the unaccented present first-person regulo.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Accented rex/regulus noun; accent cannot be removed for lexical identity.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "removed_historical_excluded",
+    "current_membership": null,
+    "historical_membership": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:316bec0682a9790eaeb2",
+      "word": "régulo",
+      "head_id": "head:legacy:es:316bec0682a9790eaeb2",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "5d26b206c565667f585b2985d567357d595c218dc19ec8f463e3bbdd6989e769"
+          },
+          "lemma_id": "lemma:316bec0682a9790eaeb2"
+        }
+      ]
+    },
+    "original_source_record": {
+      "lemma_id": "lemma:316bec0682a9790eaeb2",
+      "word": "régulo",
+      "normalized": "régulo",
+      "search_form": "regulo",
+      "rank": 55208,
+      "frequency_score": 0.6823135623207494,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.008419,
+            0.009483
+          ],
+          "category_ipm": 0.008951,
+          "category_score": 0.15614166969400384
+        },
+        "mixed": {
+          "ipm_values": [
+            0.137722
+          ],
+          "category_ipm": 0.137722,
+          "category_score": 2.260829240200986
+        }
+      },
+      "sources": [
+        {
+          "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+          "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+          "category": "mixed",
+          "ipm": 0.137722
+        },
+        {
+          "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.008419
+        },
+        {
+          "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.009483
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "regul",
+          "canonical_candidate": "regul",
+          "confidence": 1,
+          "evidence": [
+            {
+              "type": "morphological_parse",
+              "source": "manually_verified",
+              "path": [
+                "regulo",
+                "regul",
+                "regul"
+              ],
+              "confidence": 1
+            },
+            {
+              "type": "verified_seed_alias",
+              "source": "methodology_control_seed",
+              "path": [
+                "es",
+                "regul",
+                "family:regul"
+              ],
+              "confidence": 1
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/es/es_wordlist.lemmatized_stanza_ipm6.json",
+        "record_sha256": "dc1592eeb34eb473fc1640bbc3381440505e0b33a2b40484549ea10df6f05ee4",
+        "record": {
+          "original": "régulo",
+          "normalized": "régulo",
+          "search_form": "regulo",
+          "lemma": "régulo",
+          "frequency_lookup_key": "régulo",
+          "ipm": 0.137722,
+          "rank": 55208,
+          "source": "associativvordes/frequency lists/es/es_wordlist.lemmatized_stanza_ipm6.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "063f7fe45efe1afc36d91338626ca094b6f12b4a2cd3f5aa4e73faf4b76a7f3c",
+        "record": {
+          "original": "régulo",
+          "normalized": "régulo",
+          "search_form": "regulo",
+          "lemma": "régulo",
+          "frequency_lookup_key": "régulo",
+          "ipm": 0.008419,
+          "rank": 292679,
+          "source": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "6305ac9ff80a9a240caa2e8d0de967c3f9559b4446ab0385aea19195e13d848d",
+        "record": {
+          "original": "régulo",
+          "normalized": "régulo",
+          "search_form": "regulo",
+          "lemma": "régulo",
+          "frequency_lookup_key": "régulo",
+          "ipm": 0.009483,
+          "rank": 269125,
+          "source": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:68b83cf9d09c0d9897c4",
+    "word": "pedregullos",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f02843b888122167856ec2c37d5ae914b01e72e9dba3af748b50e6eb5727c510"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/61.json.gz",
+        "family_id": "surface:es:ullos",
+        "record_sha256": "5f543481ae1eaed5f02693bcfbd51d8380a227839537607aa8c603d954449ad7"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/d4.json.gz",
+        "family_id": "surface:es:pedregull",
+        "record_sha256": "cb4c56e19be28d870581a71db5d66522cac51c9650cbae1b21f3b3292a32dd30"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "fac372b9b86de74e0237da7a50cc459f8664d22fc440e161d3e3203c8dc27a85"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "2354b3ac1352699bc39ea08bad24346b8ed85528dd79815ca66820439813e1d4"
+      }
+    ],
+    "lexical_analysis": "Regular plural of Galician pedra-derived pedregullo, not regul.",
+    "head": null,
+    "component": {
+      "form": "regul",
+      "start": 3,
+      "end": 8,
+      "before": "ped",
+      "after": "los",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:68b83cf9d09c0d9897c4",
+      "word": "pedregullos",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/pedregullo"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-pedregullo"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/pedregullo",
+        "finding": "Spanish noun borrowed from Galician pedregullo, derived from pedra; plural pedregullos preserves that independent base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Regular plural of Galician pedra-derived pedregullo, not regul.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "removed_historical_excluded",
+    "current_membership": null,
+    "historical_membership": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:68b83cf9d09c0d9897c4",
+      "word": "pedregullos",
+      "head_id": "head:legacy:es:68b83cf9d09c0d9897c4",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "f02843b888122167856ec2c37d5ae914b01e72e9dba3af748b50e6eb5727c510"
+          },
+          "lemma_id": "lemma:68b83cf9d09c0d9897c4"
+        }
+      ]
+    },
+    "original_source_record": {
+      "lemma_id": "lemma:68b83cf9d09c0d9897c4",
+      "word": "pedregullos",
+      "normalized": "pedregullos",
+      "search_form": "pedregullos",
+      "rank": 375778,
+      "frequency_score": 0.090477407431868,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.005612,
+            0.004742
+          ],
+          "category_ipm": 0.005176999999999999,
+          "category_score": 0.090477407431868
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.005612
+        },
+        {
+          "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.004742
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "regul",
+          "canonical_candidate": "regul",
+          "confidence": 0.97,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "manually_verified",
+              "path": [
+                "pedregullos",
+                "regul",
+                "regul"
+              ],
+              "confidence": 0.97
+            },
+            {
+              "type": "verified_seed_alias",
+              "source": "methodology_control_seed",
+              "path": [
+                "es",
+                "regul",
+                "family:regul"
+              ],
+              "confidence": 1
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "fac372b9b86de74e0237da7a50cc459f8664d22fc440e161d3e3203c8dc27a85",
+        "record": {
+          "original": "pedregullos",
+          "normalized": "pedregullos",
+          "search_form": "pedregullos",
+          "lemma": "pedregullos",
+          "frequency_lookup_key": "pedregullos",
+          "ipm": 0.005612,
+          "rank": 375778,
+          "source": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "2354b3ac1352699bc39ea08bad24346b8ed85528dd79815ca66820439813e1d4",
+        "record": {
+          "original": "pedregullos",
+          "normalized": "pedregullos",
+          "search_form": "pedregullos",
+          "lemma": "pedregullos",
+          "frequency_lookup_key": "pedregullos",
+          "ipm": 0.004742,
+          "rank": 410928,
+          "source": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:b293d42b6de6d5d2c9be",
+    "word": "pedregullo",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/c8.json.gz",
+        "family_id": "surface:es:ullo",
+        "record_sha256": "f2fe25231ccc0c4e5dcf72e7891afc1078e075de288c8989470b37db2ea1a2e5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/d4.json.gz",
+        "family_id": "surface:es:pedregull",
+        "record_sha256": "dc5f5c825861478f47f0cf80168a51e86b5ee9105c8725bf3d6d667349ab2221"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "1075f6a6adce787cf2f825131aad42fa96de9e59dc2fa6eb55ceeb20a07e5678"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "ab78b4f18377343d3f110622b19a34ee7dd6d4fe4bfe0a6f64e9e2ff22bce574"
+      }
+    ],
+    "lexical_analysis": "Galician pedra-derived pedregullo, not regul.",
+    "head": null,
+    "component": {
+      "form": "regul",
+      "start": 3,
+      "end": 8,
+      "before": "ped",
+      "after": "lo",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:b293d42b6de6d5d2c9be",
+      "word": "pedregullo",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/pedregullo"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-pedregullo"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/pedregullo",
+        "finding": "Spanish noun borrowed from Galician pedregullo, derived from pedra; plural pedregullos preserves that independent base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Galician pedra-derived pedregullo, not regul.",
+    "missing_fact": null,
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "not_admitted_candidate",
+    "current_membership": null,
+    "historical_membership": null,
+    "original_source_record": {
+      "lemma_id": "lemma:b293d42b6de6d5d2c9be",
+      "word": "pedregullo",
+      "normalized": "pedregullo",
+      "search_form": "pedregullo",
+      "rank": 241997,
+      "frequency_score": 0.159918488208521,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.011225,
+            0.007112
+          ],
+          "category_ipm": 0.0091685,
+          "category_score": 0.159918488208521
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.011225
+        },
+        {
+          "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.007112
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "ullo",
+          "canonical_candidate": "ullo",
+          "confidence": 0.89,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "candidate_index",
+              "path": [
+                "pedregullo",
+                "ullo",
+                "ullo"
+              ],
+              "confidence": 0.89
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "1075f6a6adce787cf2f825131aad42fa96de9e59dc2fa6eb55ceeb20a07e5678",
+        "record": {
+          "original": "pedregullo",
+          "normalized": "pedregullo",
+          "search_form": "pedregullo",
+          "lemma": "pedregullo",
+          "frequency_lookup_key": "pedregullo",
+          "ipm": 0.011225,
+          "rank": 241997,
+          "source": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "ab78b4f18377343d3f110622b19a34ee7dd6d4fe4bfe0a6f64e9e2ff22bce574",
+        "record": {
+          "original": "pedregullo",
+          "normalized": "pedregullo",
+          "search_form": "pedregullo",
+          "lemma": "pedregullo",
+          "frequency_lookup_key": "pedregullo",
+          "ipm": 0.007112,
+          "rank": 314315,
+          "source": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:d74d8c570297d903d2cd",
+    "word": "regolfan",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "257ed03ebf464c8120a531fa384f1e9865d91a375b423e5081407a2f9685e3f5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/68.json.gz",
+        "family_id": "ety:2b5847a13819",
+        "record_sha256": "ab42baa6e8f296b1d767981d0fbbe1266cb6961867357c5cda6777f41448825c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "4a67a2b932beaa3d516470436018dd817dfae8ca6d35bd8e20ad807f340a43c5"
+      }
+    ],
+    "lexical_analysis": "Explicit regolfar conjugation: re- + golfo, not regul.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:d74d8c570297d903d2cd",
+      "word": "regolfan",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/regolfar"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-regolfar"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/regolfar",
+        "finding": "Derived from re- and golfo; regolfan is a listed finite conjugated form, independent of regul.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Explicit regolfar conjugation: re- + golfo, not regul.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "removed_historical_excluded",
+    "current_membership": null,
+    "historical_membership": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:d74d8c570297d903d2cd",
+      "word": "regolfan",
+      "head_id": "head:legacy:es:d74d8c570297d903d2cd",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "257ed03ebf464c8120a531fa384f1e9865d91a375b423e5081407a2f9685e3f5"
+          },
+          "lemma_id": "lemma:d74d8c570297d903d2cd"
+        }
+      ]
+    },
+    "original_source_record": {
+      "lemma_id": "lemma:d74d8c570297d903d2cd",
+      "word": "regolfan",
+      "normalized": "regolfan",
+      "search_form": "regolfan",
+      "rank": 691846,
+      "frequency_score": 0.04909788668913623,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.002806
+          ],
+          "category_ipm": 0.002806,
+          "category_score": 0.04909788668913623
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.002806
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "regol",
+          "canonical_candidate": "regol",
+          "confidence": 0.81,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "candidate_index",
+              "path": [
+                "regolfan",
+                "regol",
+                "regol"
+              ],
+              "confidence": 0.81
+            },
+            {
+              "type": "verified_seed_alias",
+              "source": "methodology_control_seed",
+              "path": [
+                "es",
+                "regol",
+                "family:regul"
+              ],
+              "confidence": 1
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "4a67a2b932beaa3d516470436018dd817dfae8ca6d35bd8e20ad807f340a43c5",
+        "record": {
+          "original": "regolfan",
+          "normalized": "regolfan",
+          "search_form": "regolfan",
+          "lemma": "regolfan",
+          "frequency_lookup_key": "regolfan",
+          "ipm": 0.002806,
+          "rank": 691846,
+          "source": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:e63e97f02d6595812201",
+    "word": "regolith",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "7ea9ffa3b91f35dac8e7bc33aac1aed1f99491c7a181905ca7e8b9a73c10a736"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/4b.json.gz",
+        "family_id": "surface:es:lith",
+        "record_sha256": "b4c36a2caa1bc102a4fa9205d411c031a5f07ac67c3d05976bf76141c8a5c797"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "73b0ca5b9ea79a64d9fdc6588d194a6dd31ff62c2cf4062810d9c8254a522367"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "f8c96c495062a413f4528fb2179cd91442b34d397c9fd6e6896f15fcb6a586fa"
+      }
+    ],
+    "lexical_analysis": "English geological word retains Greek components; language of occurrence is unresolved but neither analysis supplies regul.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e63e97f02d6595812201",
+      "word": "regolith",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regolith"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regolith"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regolith",
+        "finding": "Geological compound uses Greek rhegos and -lith; its regol substring is not the Italian national rule base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "English geological word retains Greek components; language of occurrence is unresolved but neither analysis supplies regul.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "removed_historical_excluded",
+    "current_membership": null,
+    "historical_membership": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e63e97f02d6595812201",
+      "word": "regolith",
+      "head_id": "head:legacy:es:e63e97f02d6595812201",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "7ea9ffa3b91f35dac8e7bc33aac1aed1f99491c7a181905ca7e8b9a73c10a736"
+          },
+          "lemma_id": "lemma:e63e97f02d6595812201"
+        }
+      ]
+    },
+    "original_source_record": {
+      "lemma_id": "lemma:e63e97f02d6595812201",
+      "word": "regolith",
+      "normalized": "regolith",
+      "search_form": "regolith",
+      "rank": 58999,
+      "frequency_score": 1.9002268976954853,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.131893,
+            0.097201
+          ],
+          "category_ipm": 0.11454700000000001,
+          "category_score": 1.9002268976954853
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.131893
+        },
+        {
+          "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.097201
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "regol",
+          "canonical_candidate": "regol",
+          "confidence": 0.81,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "candidate_index",
+              "path": [
+                "regolith",
+                "regol",
+                "regol"
+              ],
+              "confidence": 0.81
+            },
+            {
+              "type": "verified_seed_alias",
+              "source": "methodology_control_seed",
+              "path": [
+                "es",
+                "regol",
+                "family:regul"
+              ],
+              "confidence": 1
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "73b0ca5b9ea79a64d9fdc6588d194a6dd31ff62c2cf4062810d9c8254a522367",
+        "record": {
+          "original": "regolith",
+          "normalized": "regolith",
+          "search_form": "regolith",
+          "lemma": "regolith",
+          "frequency_lookup_key": "regolith",
+          "ipm": 0.131893,
+          "rank": 58999,
+          "source": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "f8c96c495062a413f4528fb2179cd91442b34d397c9fd6e6896f15fcb6a586fa",
+        "record": {
+          "original": "regolith",
+          "normalized": "regolith",
+          "search_form": "regolith",
+          "lemma": "regolith",
+          "frequency_lookup_key": "regolith",
+          "ipm": 0.097201,
+          "rank": 69591,
+          "source": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  }
+]

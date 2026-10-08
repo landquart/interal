@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "canonical_root": "act",
+  "source_run_id": 35647932153,
+  "previous_checkpoint": "audit/associative-family-v5/action-italian-stage-20261002",
+  "previous_decision_sha256": "dfdd26a028dcdcf8213537c6fbf555dcbcea4abc5fe40d6f2f30fd8e1fcf3096",
+  "source_candidate_count": 52277,
+  "adjudicated_in_this_stage": 128,
+  "excluded_added": 128,
+  "accepted_added": 0,
+  "membership_changes": 0,
+  "counts": {
+    "en": {
+      "accepted": 242,
+      "excluded": 8037,
+      "uncertain": 4,
+      "pending_review": 1450
+    },
+    "de": {
+      "accepted": 808,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4445
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3663,
+      "uncertain": 0,
+      "pending_review": 604
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2135,
+      "uncertain": 1,
+      "pending_review": 450
+    }
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "artifact_sha256": {
+    "decisions.json": "130a57ddecb65a16282ce4a70200e66065a5c6ac4ca62528545aa55f4536637c",
+    "source-records.json.gz": "765d3793075bf3d5b18374a652086a3f9d784d8634fd63ca18d4546a266639ed"
+  }
+}

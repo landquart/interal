@@ -1,0 +1,148 @@
+{
+  "schema_version": 6,
+  "stage": "actin-sense-investigation-20261003",
+  "production_enabled": false,
+  "binding_authorized": false,
+  "records": [
+    {
+      "lemma_id": "lemma:1df637f5e6969ea06aa8",
+      "word": "actin",
+      "status": "uncertain",
+      "branch": "protein_actin",
+      "reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+      "source_family_ids": [
+        "surface:en:actin"
+      ],
+      "previous_status": "uncertain",
+      "review_stage": "sense_and_recognizability_review",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/actin"
+      ],
+      "language": "en",
+      "root": "act",
+      "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "canonical_root": "act",
+      "queue": "act",
+      "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "review_unit": "unresolved:en:lemma:1df637f5e6969ea06aa8:act",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "lemma_id": "lemma:98bb155708ed34c74401",
+      "word": "f-actin",
+      "status": "uncertain",
+      "branch": "protein_actin",
+      "reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+      "source_family_ids": [
+        "surface:en:factin"
+      ],
+      "previous_status": "uncertain",
+      "review_stage": "sense_and_recognizability_review",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/actin"
+      ],
+      "language": "en",
+      "root": "act",
+      "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "canonical_root": "act",
+      "queue": "act",
+      "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "review_unit": "unresolved:en:lemma:98bb155708ed34c74401:act",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "lemma_id": "lemma:9d26aae158e2c71618d7",
+      "word": "actina",
+      "status": "uncertain",
+      "branch": "protein_actin",
+      "reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "surface:en:ina",
+        "ety:3b5769fa0463",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "previous_status": "uncertain",
+      "review_stage": "sense_and_recognizability_review",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/actin"
+      ],
+      "language": "en",
+      "root": "act",
+      "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "canonical_root": "act",
+      "queue": "act",
+      "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "review_unit": "unresolved:en:lemma:9d26aae158e2c71618d7:act",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "lemma_id": "lemma:ab9d38d956c5bcc053d3",
+      "word": "actin-binding",
+      "status": "uncertain",
+      "branch": "protein_actin",
+      "reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+      "source_family_ids": [
+        "ety:7001a3c8202d",
+        "ety:81da90c51822",
+        "ety:3b5769fa0463",
+        "surface:en:binding",
+        "ety:0c55e36e580b",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:5bed7c192e10",
+        "surface:en:actinbind",
+        "ety:aede8d1d6185",
+        "ety:4b3973e85707",
+        "ety:f66f0a228497",
+        "ety:be69e735d870",
+        "ety:ef562a6f4a42"
+      ],
+      "previous_status": "uncertain",
+      "review_stage": "sense_and_recognizability_review",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/actin"
+      ],
+      "language": "en",
+      "root": "act",
+      "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "canonical_root": "act",
+      "queue": "act",
+      "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "review_unit": "unresolved:en:lemma:ab9d38d956c5bcc053d3:act",
+      "head_recognition": "requires_lexical_head_recognition"
+    }
+  ],
+  "sources": [
+    "https://www.merriam-webster.com/dictionary/actin",
+    "https://www.merriam-webster.com/dictionary/actinic"
+  ],
+  "findings": [
+    {
+      "sense": "cellular_protein",
+      "finding": "Merriam-Webster separately records the protein noun, with tentative origin from act or activate plus -in. It does not justify automatic Greek-ray exclusion. Actin, f-actin and actin-binding remain investigated uncertain until the family-specific relation and compound boundaries have been adjudicated."
+    },
+    {
+      "sense": "Greek_ray_combining_form",
+      "finding": "Merriam-Webster records actin-/actini-/actino- from Greek aktis/aktin-, distinct from the protein noun. The actinic article explicitly confirms Greek ray/beam origin. No shared-spelling equivalence is approved."
+    },
+    {
+      "sense": "unknown_actina",
+      "finding": "actina cannot be assigned to either branch from spelling alone."
+    }
+  ],
+  "resolution_count": 0,
+  "new_memberships": 0,
+  "excluded_memberships": 0,
+  "expensive_resolving_head_decisions": 0,
+  "next_action": "Research the protein naming/activate derivation and adjudicate family:act relation before binding; do not conflate Greek-ray terms or prolactin."
+}

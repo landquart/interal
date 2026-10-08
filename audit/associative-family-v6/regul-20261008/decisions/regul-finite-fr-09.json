@@ -1,0 +1,818 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "id": "regul-finite-fr-09",
+  "operation": "extend_links",
+  "family_id": "family:regul",
+  "head_id": "head:fr:ba18f30ebb96a66e92e546f4",
+  "identity": {
+    "language": "fr",
+    "normalized_head": "régulier",
+    "sense": "regula_line_bounded_component"
+  },
+  "binding_authorized": true,
+  "review_authorized": true,
+  "accepted_membership_authorized": true,
+  "review_contract": "regul-20261008",
+  "component_stems": [
+    "régul"
+  ],
+  "predecessor": {
+    "head": {
+      "id": "head:fr:ba18f30ebb96a66e92e546f4",
+      "language": "fr",
+      "normalized_head": "régulier",
+      "identity_kind": "lexical_head",
+      "sense": "regula_line_bounded_component",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:ba18f30ebb96a66e92e546f4",
+          "language": "fr",
+          "head": "régulier",
+          "sense": "regula_line_bounded_component",
+          "status": "accepted",
+          "evidence_kind": "lexical_identity",
+          "sources": [
+            "https://www.cnrtl.fr/etymologie/r%C3%A9gulier"
+          ],
+          "finding": "Independent head and finite component analyses in audit/associative-family-v6/regul-20261008/decisions/review.json; no wildcard acceptance.",
+          "establishes_family_membership": false
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/research/prior.json",
+          "sha256": "e44cff673ca4a4c95f957bf51f3f8fb81a967a579935c35db0b7f9c827f80664",
+          "lemma_id": "lemma:c8d358461e538d46315e",
+          "word": "régulier"
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+          "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+          "lemma_id": "lemma:c8d358461e538d46315e",
+          "word": "régulier"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "213eee4645115324f38f8c696d165a12106162bfde76f9fe9c9c5ea1d356a73e"
+          },
+          "lemma_id": "lemma:c8d358461e538d46315e"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "ef24cbe14eba41d0e500b47b29d1fc7b6a3e1ff3c68c50727ff5806a4115eabb"
+          },
+          "lemma_id": "lemma:4eafaf3a6bdc48158997"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "c235203c39891035a264c16c1acbafaef4c4a3add5265bc61e68f106d4607e8e"
+          },
+          "lemma_id": "lemma:61ca334fcd7e3c1d4da1"
+        }
+      ],
+      "finite_component_stems": [
+        "régul"
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "cdc5347f07827b059b99219af607f09a1c25e8a89d4a1d31c21bb89ee50c2a35",
+    "edge": {
+      "head_id": "head:fr:ba18f30ebb96a66e92e546f4",
+      "family_id": "family:regul",
+      "status": "accepted",
+      "scope": "finite_evidenced_links",
+      "morphology_policy": "finite_reviewed_component_links",
+      "version": 1,
+      "evidence": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "213eee4645115324f38f8c696d165a12106162bfde76f9fe9c9c5ea1d356a73e"
+          },
+          "lemma_id": "lemma:c8d358461e538d46315e"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "ef24cbe14eba41d0e500b47b29d1fc7b6a3e1ff3c68c50727ff5806a4115eabb"
+          },
+          "lemma_id": "lemma:4eafaf3a6bdc48158997"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "c235203c39891035a264c16c1acbafaef4c4a3add5265bc61e68f106d4607e8e"
+          },
+          "lemma_id": "lemma:61ca334fcd7e3c1d4da1"
+        }
+      ],
+      "lemma_ids": [
+        "lemma:c8d358461e538d46315e",
+        "lemma:4eafaf3a6bdc48158997",
+        "lemma:61ca334fcd7e3c1d4da1"
+      ]
+    },
+    "edge_version": 1,
+    "edge_sha256": "4632149bdc3b688417e81795318fa46d1f9bf6cdcf32adafdfb1129bd6f36485",
+    "scope_sha256": "3e856f9ab7be4a8648f50e12fbc855bf3eed4fbfa266de028b89b4dac3f5947c"
+  },
+  "input_sha256": {
+    "audit/associative-family-v6/regul-20261008/decisions/review.json": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+    "audit/associative-family-v6/regul-20261008/research/evidence.json": "8c67441987a1dd99c277c90e5f5ee68449bdbf924666eba454346cd07c707110",
+    "associativvordes/family-index-v5/members/fr/40.json.gz": "eb3e591a81adb2b186652e6a4946c146e4afe6e32d727ba460eef820e1d7dc84",
+    "associativvordes/family-index-v5/members/fr/51.json.gz": "70a66348f5cc5b3282604f2143b6821f656a10fbd3697ad2a5e156a3ea1f2536",
+    "associativvordes/family-index-v5/members/fr/89.json.gz": "d5d79cc0a06bf8c970245088f8ffbedaed398ae25cb6f4665eef1385f4962d7c"
+  },
+  "records": [
+    {
+      "language": "fr",
+      "lemma_id": "lemma:c8d358461e538d46315e",
+      "word": "régulier",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "213eee4645115324f38f8c696d165a12106162bfde76f9fe9c9c5ea1d356a73e"
+      },
+      "source_record": {
+        "lemma_id": "lemma:c8d358461e538d46315e",
+        "word": "régulier",
+        "normalized": "régulier",
+        "search_form": "regulier",
+        "rank": 1805,
+        "frequency_score": 54.89692016623719,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              7.775054
+            ],
+            "category_ipm": 7.775054,
+            "category_score": 38.05626354539547
+          },
+          "web": {
+            "ipm_values": [
+              58.987884
+            ],
+            "category_ipm": 58.987884,
+            "category_score": 71.73757678707891
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 7.775054
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 58.987884
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regulier",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "manual_override",
+                "source": "methodology_control_word",
+                "path": [
+                  "fr",
+                  "régulier",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulier: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulier: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "régul",
+        "after": "ier",
+        "head": "régulier"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:c8d358461e538d46315e",
+        "word": "régulier",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.cnrtl.fr/etymologie/r%C3%A9gulier"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:4eafaf3a6bdc48158997",
+      "word": "régulière",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "ef24cbe14eba41d0e500b47b29d1fc7b6a3e1ff3c68c50727ff5806a4115eabb"
+      },
+      "source_record": {
+        "lemma_id": "lemma:4eafaf3a6bdc48158997",
+        "word": "régulière",
+        "normalized": "régulière",
+        "search_form": "reguliere",
+        "rank": 10347,
+        "frequency_score": 16.11090312438432,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              2.730751
+            ],
+            "category_ipm": 2.730751,
+            "category_score": 23.06963581909972
+          },
+          "web": {
+            "ipm_values": [
+              0.685942
+            ],
+            "category_ipm": 0.685942,
+            "category_score": 9.152170429668915
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 2.730751
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.685942
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "reguliere",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulière: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulière: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "régul",
+        "after": "ière",
+        "head": "régulier"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:4eafaf3a6bdc48158997",
+        "word": "régulière",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.cnrtl.fr/etymologie/r%C3%A9gulier"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:61ca334fcd7e3c1d4da1",
+      "word": "régulièrement",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "c235203c39891035a264c16c1acbafaef4c4a3add5265bc61e68f106d4607e8e"
+      },
+      "source_record": {
+        "lemma_id": "lemma:61ca334fcd7e3c1d4da1",
+        "word": "régulièrement",
+        "normalized": "régulièrement",
+        "search_form": "regulierement",
+        "rank": 1517,
+        "frequency_score": 56.60415072380231,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              7.737127
+            ],
+            "category_ipm": 7.737127,
+            "category_score": 37.98036688515904
+          },
+          "web": {
+            "ipm_values": [
+              72.21067
+            ],
+            "category_ipm": 72.21067,
+            "category_score": 75.22793456244558
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 7.737127
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 72.21067
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "regulierement",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulièrement: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régulièrement: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "régul",
+        "after": "ièrement",
+        "head": "régulier"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:61ca334fcd7e3c1d4da1",
+        "word": "régulièrement",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.cnrtl.fr/etymologie/r%C3%A9gulier"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:a24492789c0da16978f7",
+      "word": "irrégulièrement",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/51.json.gz",
+        "family_id": "surface:fr:erem",
+        "record_sha256": "2090144b55681d3c5cd1ac776bcc53920b5bde2d9abefb7bea4b414514296357"
+      },
+      "source_record": {
+        "lemma_id": "lemma:a24492789c0da16978f7",
+        "word": "irrégulièrement",
+        "normalized": "irrégulièrement",
+        "search_form": "irregulierement",
+        "rank": 30212,
+        "frequency_score": 5.894819902219765,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.093094
+            ],
+            "category_ipm": 0.093094,
+            "category_score": 1.5596721142061032
+          },
+          "web": {
+            "ipm_values": [
+              0.792902
+            ],
+            "category_ipm": 0.792902,
+            "category_score": 10.229967690233426
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.093094
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.792902
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "erem",
+            "canonical_candidate": "erem",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "irregulierement",
+                  "erem",
+                  "erem"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:irrégulièrement: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:irrégulièrement: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ir",
+        "component": "régul",
+        "after": "ièrement",
+        "head": "régulier"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:a24492789c0da16978f7",
+        "word": "irrégulièrement",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.cnrtl.fr/etymologie/r%C3%A9gulier"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:fb905ff1624fe584f2d5",
+      "word": "irrégulier",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/89.json.gz",
+        "family_id": "ety:497370be6193",
+        "record_sha256": "f946b4776006f535f7d9301c11c7d8849815c267df1029f8585e4093e07cd9b3"
+      },
+      "source_record": {
+        "lemma_id": "lemma:fb905ff1624fe584f2d5",
+        "word": "irrégulier",
+        "normalized": "irrégulier",
+        "search_form": "irregulier",
+        "rank": 6198,
+        "frequency_score": 33.971831651394425,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              3.385855
+            ],
+            "category_ipm": 3.385855,
+            "category_score": 25.90425839229411
+          },
+          "web": {
+            "ipm_values": [
+              10.014749
+            ],
+            "category_ipm": 10.014749,
+            "category_score": 42.03940491049474
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 3.385855
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 10.014749
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "irregulier",
+            "canonical_candidate": "irregulier",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "irregulier",
+                  "irregulier",
+                  "irregulier"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:irrégulier: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:irrégulier: retained lexical base in régulier; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.cnrtl.fr/etymologie/r%C3%A9gulier",
+            "finding": "Régulier continues regularis from regula; changes to -ier are scoped to this lexical branch, not a universal transformation.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ir",
+        "component": "régul",
+        "after": "ier",
+        "head": "régulier"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:fb905ff1624fe584f2d5",
+        "word": "irrégulier",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.cnrtl.fr/etymologie/r%C3%A9gulier"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+      "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+      "finite_reviewed_ids": [
+        "lemma:c8d358461e538d46315e",
+        "lemma:4eafaf3a6bdc48158997",
+        "lemma:61ca334fcd7e3c1d4da1",
+        "lemma:a24492789c0da16978f7",
+        "lemma:fb905ff1624fe584f2d5"
+      ]
+    }
+  ],
+  "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+  "decision": {
+    "status": "accepted",
+    "expected_version": 1,
+    "relation_kind": "lexical_continuity",
+    "lemma_ids": [
+      "lemma:c8d358461e538d46315e",
+      "lemma:4eafaf3a6bdc48158997",
+      "lemma:61ca334fcd7e3c1d4da1",
+      "lemma:a24492789c0da16978f7",
+      "lemma:fb905ff1624fe584f2d5"
+    ],
+    "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+    "evidence": [
+      {
+        "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+        "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+        "finite_reviewed_ids": [
+          "lemma:c8d358461e538d46315e",
+          "lemma:4eafaf3a6bdc48158997",
+          "lemma:61ca334fcd7e3c1d4da1",
+          "lemma:a24492789c0da16978f7",
+          "lemma:fb905ff1624fe584f2d5"
+        ]
+      }
+    ]
+  }
+}

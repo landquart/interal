@@ -1,0 +1,468 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:interal:associative-family-v6",
+  "title": "V6 separate associative entities",
+  "$defs": {
+    "lemma": {
+      "type": "object",
+      "required": [
+        "lemma_id",
+        "language",
+        "word",
+        "normalized",
+        "search_form",
+        "sources",
+        "category_breakdown",
+        "corpus_quality"
+      ],
+      "properties": {
+        "lemma_id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "word": {
+          "type": "string"
+        },
+        "normalized": {
+          "type": "string"
+        },
+        "search_form": {
+          "type": "string"
+        }
+      }
+    },
+    "component": {
+      "type": "object",
+      "required": [
+        "id",
+        "language",
+        "surface",
+        "associative_family_id",
+        "source_locator"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "surface": {
+          "type": "string"
+        },
+        "associative_family_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "head": {
+      "type": "object",
+      "required": [
+        "id",
+        "language",
+        "normalized_head",
+        "identity_kind",
+        "sense",
+        "version",
+        "evidence"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "normalized_head": {
+          "type": "string"
+        },
+        "identity_kind": {
+          "enum": [
+            "lexical_head",
+            "historically_reviewed_lexical_head",
+            "legacy_exact_record"
+          ]
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "family": {
+      "type": "object",
+      "required": [
+        "id",
+        "canonical",
+        "legacy_ids",
+        "canonical_decision",
+        "aliases"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^family:"
+        },
+        "canonical": {
+          "type": "string"
+        },
+        "legacy_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "canonical_decision": {
+          "type": "object",
+          "required": [
+            "status",
+            "reason"
+          ],
+          "properties": {
+            "status": {
+              "const": "accepted"
+            },
+            "reason": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "reflex": {
+      "type": "object",
+      "required": [
+        "family_id",
+        "language",
+        "realization",
+        "morphology_boundary",
+        "supporting_heads",
+        "positive_controls",
+        "negative_controls",
+        "status",
+        "evidence",
+        "realization_type",
+        "head_scope",
+        "general_family_realization",
+        "establishes_membership"
+      ],
+      "properties": {
+        "family_id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "realization": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "excluded",
+            "uncertain",
+            "pending"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object"
+          }
+        },
+        "realization_type": {
+          "enum": [
+            "canonical_reflex",
+            "lexical_branch_realization",
+            "derivational_stem",
+            "inflectional_form",
+            "query_alias",
+            "historical_evidence_form"
+          ]
+        },
+        "supporting_heads": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "head_scope": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "language",
+              "normalized_head",
+              "sense",
+              "evidence"
+            ],
+            "properties": {
+              "language": {
+                "type": "string"
+              },
+              "normalized_head": {
+                "type": "string"
+              },
+              "sense": {
+                "type": "string"
+              },
+              "evidence": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        },
+        "general_family_realization": {
+          "type": "boolean"
+        },
+        "establishes_membership": {
+          "const": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "realization_type": {
+                "const": "canonical_reflex"
+              },
+              "status": {
+                "const": "accepted"
+              }
+            },
+            "required": [
+              "realization_type",
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "supporting_heads": {
+                "minItems": 1
+              },
+              "head_scope": {
+                "minItems": 1
+              },
+              "general_family_realization": {
+                "const": true
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "general_family_realization": {
+                "const": false
+              }
+            }
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "legacy_id",
+        "etymon_keys",
+        "source_locator",
+        "associative_family_id"
+      ],
+      "properties": {
+        "legacy_id": {
+          "type": "string"
+        },
+        "etymon_keys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "associative_family_id": {
+          "type": "null"
+        }
+      }
+    },
+    "alias": {
+      "type": "object",
+      "required": [
+        "query",
+        "family_targets",
+        "evidence_targets",
+        "establishes_membership"
+      ],
+      "properties": {
+        "query": {
+          "type": "string"
+        },
+        "family_targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "evidence_targets": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "establishes_membership": {
+          "const": false
+        }
+      }
+    },
+    "edge": {
+      "type": "object",
+      "required": [
+        "head_id",
+        "family_id",
+        "status",
+        "scope",
+        "version",
+        "evidence",
+        "morphology_policy",
+        "lemma_ids"
+      ],
+      "properties": {
+        "head_id": {
+          "type": "string"
+        },
+        "family_id": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "excluded",
+            "uncertain",
+            "pending"
+          ]
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object"
+          }
+        },
+        "lemma_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "lemma_head_link": {
+      "type": "object",
+      "required": [
+        "language",
+        "lemma_id",
+        "word",
+        "head_id",
+        "family_id",
+        "evidence"
+      ],
+      "properties": {
+        "language": {
+          "type": "string"
+        },
+        "lemma_id": {
+          "type": "string"
+        },
+        "word": {
+          "type": "string"
+        },
+        "head_id": {
+          "type": "string"
+        },
+        "family_id": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object"
+          }
+        },
+        "link_role": {
+          "enum": [
+            "whole_lexeme",
+            "inflection",
+            "reviewed_lexical_base_component"
+          ]
+        },
+        "identity_fact_id": {
+          "type": "string"
+        },
+        "whole_compound_identity_established": {
+          "const": false
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "link_role": {
+                "const": "reviewed_lexical_base_component"
+              }
+            },
+            "required": [
+              "link_role"
+            ]
+          },
+          "then": {
+            "required": [
+              "component_segmentation",
+              "identity_proof",
+              "whole_compound_identity_established"
+            ],
+            "properties": {
+              "component_segmentation": {
+                "type": "object",
+                "required": [
+                  "before",
+                  "component",
+                  "after",
+                  "head",
+                  "boundary_proof"
+                ]
+              },
+              "identity_proof": {
+                "type": "array",
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,4 @@
+import{readFile,writeFile,readdir}from'node:fs/promises';import{gunzipSync}from'node:zlib';
+const root='/workspace/scratch/510f41b5cadf/interal/associativvordes/family-index-v5/members/fr',r='/workspace/scratch/dab7b6b0d8c3/review',ms=JSON.parse(await readFile(r+'/inter-fr.json')),seen=new Set(ms.map(m=>m.lemma_id));
+for(const f of await readdir(root))for(const[id,values]of Object.entries(JSON.parse(gunzipSync(await readFile(root+'/'+f)))))for(const m of values)if(/intér|intéress|désintér|réinter/.test(m.word)&&!seen.has(m.lemma_id)){seen.add(m.lemma_id);ms.push({...m,family_ids:[id],retrieval_only:true});}
+await writeFile(r+'/inter-fr.json',JSON.stringify(ms.sort((a,b)=>a.word.localeCompare(b.word))));console.log(ms.filter(m=>/^(?:intéress|intérêt|intérieur|intérior|intérim|désintéress|réinterpr)/.test(m.word)).map(m=>m.word).join(' '));

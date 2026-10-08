@@ -1,0 +1,2996 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-spelling-defects-review-20261002-1830/review-spec.json",
+    "spec_sha256": "f22fb9d301ca2ba649bb90475079ac39cadad3b652421ecebd873efb1a80a120",
+    "previous_pending_path": "audit/associative-family-v5/reflex-latin-context-review-20261002/pending-review.json",
+    "previous_pending_sha256": "cacc93562160780a61de39d4c84b657aec5d434fb8cdbefb98fa58f181fb9d75",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-latin-context-review-20261002/inventory.json",
+    "previous_inventory_sha256": "79c3f2c880f3b8b28e74ebdf0ed2cb206ab7f7df9e84dacd8f3fd0af30530c89",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "previous_pending_sha256": "cacc93562160780a61de39d4c84b657aec5d434fb8cdbefb98fa58f181fb9d75",
+  "decisions": [
+    {
+      "lemma_id": "lemma:c8574839c6a312d3e2af",
+      "word": "observatoes",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:observatoe",
+        "surface:en:toes"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observations",
+      "segmentation_or_lexical_identity": "observatoes ≠ observations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6a3a417afaddcdf257c8",
+      "word": "observatons",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:observaton",
+        "surface:en:tons"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observations",
+      "segmentation_or_lexical_identity": "observatons ≠ observations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3ea1f233e27b8ea3760f",
+      "word": "observatoqfs",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:observatoqf"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observations",
+      "segmentation_or_lexical_identity": "observatoqfs ≠ observations",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:08c1e341980c08da9016",
+      "word": "observatyion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:2ff6a6cec4b3",
+        "surface:en:observaty"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observation",
+      "segmentation_or_lexical_identity": "observatyion ≠ observation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:caa516bd467f19349712",
+      "word": "observayion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:2ff6a6cec4b3",
+        "surface:en:observay"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observation",
+      "segmentation_or_lexical_identity": "observayion ≠ observation",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:066d39fc116c33722547",
+      "word": "observervatory",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:observer",
+        "surface:en:tory",
+        "surface:en:verva",
+        "ety:a30de74148d0"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observatory",
+      "segmentation_or_lexical_identity": "observervatory ≠ observatory",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2fb68304df78e503b731",
+      "word": "observotories",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:observotorie",
+        "surface:en:ories"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observatories",
+      "segmentation_or_lexical_identity": "observotories ≠ observatories",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:844325dc0b7af90dc642",
+      "word": "informafion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informaf",
+        "surface:en:fion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informafion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7e2fd60ef4250b323526",
+      "word": "informaiion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informai",
+        "surface:en:maiion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informaiion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e30ca316fe26355be96b",
+      "word": "informaion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informa",
+        "surface:en:maion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informaion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:92c4513406d98398448c",
+      "word": "informaiton",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informai",
+        "surface:en:iton"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informaiton ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a0906b83650459a9167d",
+      "word": "informantion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:mantion",
+        "surface:en:informant"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informantion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b927dc88a3cd0ab9bd80",
+      "word": "informaon",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:en:maon"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informaon ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cef6498e41165fbcfd9a",
+      "word": "informatcs",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informatc"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informatics",
+      "segmentation_or_lexical_identity": "informatcs ≠ informatics",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0feb078769d7504633a0",
+      "word": "informatiom",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:tiom",
+        "surface:en:informat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informatiom ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:639fa9cc108ec3083abd",
+      "word": "informationn",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:tionn",
+        "surface:en:formati"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informationn ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fc79e0139e7dff543589",
+      "word": "informationt",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:iont",
+        "surface:en:informat",
+        "surface:en:formati"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informationt ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b182989b473eca5cf575",
+      "word": "informatior",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informat",
+        "surface:en:ior"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informatior ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3a3557c5d1440e912033",
+      "word": "informatn",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:en:atn"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informatn ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:982d41c390c022d119df",
+      "word": "informattion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:tion",
+        "surface:en:informatt"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informattion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:400b83492ae7835276b4",
+      "word": "informetion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:metion",
+        "surface:en:informet"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informetion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:46d85aece8d9622bbd60",
+      "word": "informion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "ety:3b6c34a40f7b",
+        "surface:en:mion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c798d37d6c7c8b43b900",
+      "word": "informjation",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:ation",
+        "surface:en:informjat"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informjation ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d582892f2276ba48ace8",
+      "word": "informmatlon",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:15cd88c4813d",
+        "surface:en:mmat",
+        "ety:3b6c34a40f7b",
+        "surface:en:lon",
+        "surface:en:formm"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informmatlon ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bb3a491ba2d6827e11e8",
+      "word": "informofion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informof",
+        "surface:en:fion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informofion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0641c31e084f2c101dcf",
+      "word": "informotion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:b47f620ed449",
+        "surface:en:informot",
+        "ety:cce0b997e30c"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informotion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:81a9bd40d2fb93183c8a",
+      "word": "informqtion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:tion",
+        "surface:en:informqt"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informqtion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7227206f6ff71d0dceda",
+      "word": "informstion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informst",
+        "surface:en:tion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informstion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a53113ebe6158f4593ae",
+      "word": "informtion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:informt",
+        "surface:en:tion"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informtion ≠ information",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8a9bd2e1f9f9f469b5e6",
+      "word": "lfinformed",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:formed",
+        "surface:en:lfinform"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informed",
+      "segmentation_or_lexical_identity": "lfinformed ≠ informed",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/informatics"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5d020a8ce79acde47b53",
+      "word": "observationsabteiiung",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:observationsabteii",
+        "surface:de:iung"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Observationsabteilung",
+      "segmentation_or_lexical_identity": "observationsabteiiung ≠ Observationsabteilung",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bc11594d0868ba1100da",
+      "word": "observationskuppei",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:observation",
+        "surface:de:kuppei"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Observationskuppel",
+      "segmentation_or_lexical_identity": "observationskuppei ≠ Observationskuppel",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1b258d2f3aa6e20dc2cc",
+      "word": "observatorlum",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:tor",
+        "surface:de:lum",
+        "surface:de:observat"
+      ],
+      "language": "de",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Observatorium",
+      "segmentation_or_lexical_identity": "observatorlum ≠ Observatorium",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a2d7f178e1e65e6ec9cc",
+      "word": "berusinformationstag",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:rus",
+        "surface:de:beru",
+        "surface:de:sin",
+        "surface:de:stag",
+        "surface:de:usi"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Berufsinformationstag",
+      "segmentation_or_lexical_identity": "berusinformationstag ≠ Berufsinformationstag",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fde764d079447e9cfa2d",
+      "word": "faischinformationen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informationen",
+        "surface:de:faischinformatione"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Falschinformationen",
+      "segmentation_or_lexical_identity": "faischinformationen ≠ Falschinformationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4e4ef0750225cdf268fc",
+      "word": "hintergruninformationen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:hintergruninformatione",
+        "surface:de:informationen"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Hintergrundinformationen",
+      "segmentation_or_lexical_identity": "hintergruninformationen ≠ Hintergrundinformationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c72f63dae358aa4c284e",
+      "word": "iinformationen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:iinformatione"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationen",
+      "segmentation_or_lexical_identity": "iinformationen ≠ Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c67ab2096b8252ff4ccd",
+      "word": "informalion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informalion"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Information",
+      "segmentation_or_lexical_identity": "informalion ≠ Information",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:56d796198b8b79017de1",
+      "word": "informalionen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informalione"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationen",
+      "segmentation_or_lexical_identity": "informalionen ≠ Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bbf395f418a11026e9ce",
+      "word": "informartionsmaterial",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:sma",
+        "surface:de:inform",
+        "surface:de:marti",
+        "surface:de:tion",
+        "ety:bb6f10f089b6",
+        "ety:b4805349a120"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationsmaterial",
+      "segmentation_or_lexical_identity": "informartionsmaterial ≠ Informationsmaterial",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9c56d2e8c9f3e049593d",
+      "word": "informatio-nen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informatione"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationen",
+      "segmentation_or_lexical_identity": "informatio-nen ≠ Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6a18fc09f168a8704d4b",
+      "word": "informatioen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:oen",
+        "surface:de:informatioe"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationen",
+      "segmentation_or_lexical_identity": "informatioen ≠ Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a42e3b4e782ee2699cbd",
+      "word": "informationenen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informationene",
+        "surface:de:nenen"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationen",
+      "segmentation_or_lexical_identity": "informationenen ≠ Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c9bf4b3ad3a37c71717f",
+      "word": "informationsmangei",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informationsma",
+        "surface:de:mangei"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationsmangel",
+      "segmentation_or_lexical_identity": "informationsmangei ≠ Informationsmangel",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9cc9f1ecdd0f83ea3f5d",
+      "word": "informationsqueiie",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informationsqueiie"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationsquelle",
+      "segmentation_or_lexical_identity": "informationsqueiie ≠ Informationsquelle",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4f6efbfec3fb9e529f48",
+      "word": "informationsqueiien",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informationsqueiie",
+        "surface:de:eiien"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationsquellen",
+      "segmentation_or_lexical_identity": "informationsqueiien ≠ Informationsquellen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fce9bff78d61a79e10cc",
+      "word": "informationszeitalte",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informationszeitalt",
+        "surface:de:alte"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationszeitalter",
+      "segmentation_or_lexical_identity": "informationszeitalte ≠ Informationszeitalter",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3c71fadb5395deb73d4a",
+      "word": "informatonen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informatone"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationen",
+      "segmentation_or_lexical_identity": "informatonen ≠ Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a90c5efcb43c01501d3e",
+      "word": "informmationen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:informmatione"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Informationen",
+      "segmentation_or_lexical_identity": "informmationen ≠ Informationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dc1472589aa1c5ba1572",
+      "word": "länderinforma-tionen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:landerinformatione"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Länderinformationen",
+      "segmentation_or_lexical_identity": "länderinforma-tionen ≠ Länderinformationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c6dc73611695f805de2d",
+      "word": "millitärinformationen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:millitarinformatione",
+        "surface:de:informationen"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Militärinformationen",
+      "segmentation_or_lexical_identity": "millitärinformationen ≠ Militärinformationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:28580e7bbf3fd291d368",
+      "word": "teilinformnationen",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:9a1322c2a59f",
+        "surface:de:teilinformnatione",
+        "ety:b84169a26116",
+        "ety:43528410d9ca",
+        "ety:94847a65ea21",
+        "ety:b026f4ac8299",
+        "ety:d3f3c3e2077b",
+        "ety:5ab4dcba87ce"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Teilinformationen",
+      "segmentation_or_lexical_identity": "teilinformnationen ≠ Teilinformationen",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bf1932f61627a3cd0a98",
+      "word": "umweltinformationsysteme",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:de:umweltinformationsystem",
+        "surface:de:systeme"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "Umweltinformationssysteme",
+      "segmentation_or_lexical_identity": "umweltinformationsysteme ≠ Umweltinformationssysteme",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Information",
+        "https://www.duden.de/rechtschreibung/Observatorium"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:87f2776e4d2ff09f4fa3",
+      "word": "observateir",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:eir",
+        "surface:fr:observat"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observateur",
+      "segmentation_or_lexical_identity": "observateir ≠ observateur",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f030399b6897fe29a067",
+      "word": "informateirs",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:irs",
+        "surface:fr:informateir"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informateurs",
+      "segmentation_or_lexical_identity": "informateirs ≠ informateurs",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d7d089e94934efcaeda0",
+      "word": "informaterus",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:rus",
+        "surface:fr:informateru"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informateurs",
+      "segmentation_or_lexical_identity": "informaterus ≠ informateurs",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e82273ac1aaee54a6f09",
+      "word": "informaion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informaion"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informaion ≠ information",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:440e30c8cf9808eb3c8d",
+      "word": "informaions",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informaion"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informations",
+      "segmentation_or_lexical_identity": "informaions ≠ informations",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5115d01f0dc36cc0f8cd",
+      "word": "informarions",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informarion"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informations",
+      "segmentation_or_lexical_identity": "informarions ≠ informations",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:85623e7f06a17edc4790",
+      "word": "informartions",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informartion"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informations",
+      "segmentation_or_lexical_identity": "informartions ≠ informations",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:75625ecf9c0823d0ef22",
+      "word": "informatiom",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:iom",
+        "surface:fr:informat"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informatiom ≠ information",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a2dbdd6f2c3039830d2d",
+      "word": "informationâ",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informati",
+        "surface:fr:ona"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informationâ ≠ information",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b1585179f8c201506acd",
+      "word": "informationss",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informations"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informations",
+      "segmentation_or_lexical_identity": "informationss ≠ informations",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8397b501c5e6c853444b",
+      "word": "informatitien",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:matit",
+        "surface:fr:informati",
+        "ety:4c046b807956"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informaticien",
+      "segmentation_or_lexical_identity": "informatitien ≠ informaticien",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:261eca25c52054568810",
+      "word": "informatoins",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informatoin",
+        "surface:fr:ins"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informations",
+      "segmentation_or_lexical_identity": "informatoins ≠ informations",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:617cfa0ba6afecb5c55d",
+      "word": "informtion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:informt",
+        "surface:fr:tion"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "information",
+      "segmentation_or_lexical_identity": "informtion ≠ information",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:731bd502e9683514a412",
+      "word": "ïobserver",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:iob",
+        "surface:fr:server"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observer",
+      "segmentation_or_lexical_identity": "ïobserver ≠ observer",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0e5f894b6df39baa022f",
+      "word": "ïinformations",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:fr:iinformation"
+      ],
+      "language": "fr",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informations",
+      "segmentation_or_lexical_identity": "ïinformations ≠ informations",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1218",
+        "https://www.cnrtl.fr/definition/observer"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3e04d5ab88778339b32f",
+      "word": "osservamdo",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:mdo",
+        "surface:it:osservamd"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "osservando",
+      "segmentation_or_lexical_identity": "osservamdo ≠ osservando",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c3e5e021c983eae6fc02",
+      "word": "osservao",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:osserva"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "osservato",
+      "segmentation_or_lexical_identity": "osservao ≠ osservato",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b26da55ba666d710db58",
+      "word": "osservarenle",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:osservarenl",
+        "surface:it:nle"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "osservarle",
+      "segmentation_or_lexical_identity": "osservarenle ≠ osservarle",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a919e6798069f70300d0",
+      "word": "osservateii",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:eii",
+        "surface:it:osservatei"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "osservateli",
+      "segmentation_or_lexical_identity": "osservateii ≠ osservateli",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b58c25b24cbd3ddd7224",
+      "word": "osservazionee",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:osservazione",
+        "surface:it:nee"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "osservazione",
+      "segmentation_or_lexical_identity": "osservazionee ≠ osservazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:55c2a648f8aa0c124813",
+      "word": "quesflosservazione",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "surface:it:osservazione",
+        "ety:c28863eb7595",
+        "ety:58143b06b35a",
+        "surface:it:quesflosservazion",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "questa-osservazione",
+      "segmentation_or_lexical_identity": "quesflosservazione ≠ questa-osservazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a1ebf829a0700ab59d40",
+      "word": "informaioni",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:ioni",
+        "surface:it:informaion"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazioni",
+      "segmentation_or_lexical_identity": "informaioni ≠ informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7c8d81284f3efd733cd4",
+      "word": "informaizone",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:informaizon"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazione",
+      "segmentation_or_lexical_identity": "informaizone ≠ informazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:42e696b13a9bc8f18484",
+      "word": "informaore",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:informaor",
+        "ety:0cc1db2776a2"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informatore",
+      "segmentation_or_lexical_identity": "informaore ≠ informatore",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2de7dd8be7c955806df4",
+      "word": "informazionee",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:informazione",
+        "surface:it:nee"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazione",
+      "segmentation_or_lexical_identity": "informazionee ≠ informazione",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9a163d3aaf779b989dd2",
+      "word": "informaziozioni",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:ioni",
+        "surface:it:informaziozion"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazioni",
+      "segmentation_or_lexical_identity": "informaziozioni ≠ informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:269e1667e6175c78ae2d",
+      "word": "informazlonl",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:onl",
+        "surface:it:mazl",
+        "surface:it:informaz"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazioni",
+      "segmentation_or_lexical_identity": "informazlonl ≠ informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f866e2475d6bc6d20fe5",
+      "word": "informazuoni",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:informazuon",
+        "surface:it:oni"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazioni",
+      "segmentation_or_lexical_identity": "informazuoni ≠ informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:10f0f546bf26380d7e92",
+      "word": "informtore",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:0cc1db2776a2",
+        "surface:it:informtor"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informatore",
+      "segmentation_or_lexical_identity": "informtore ≠ informatore",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:aff90e0d8d273f353cd3",
+      "word": "informzioni",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:it:ioni",
+        "surface:it:informzion"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informazioni",
+      "segmentation_or_lexical_identity": "informzioni ≠ informazioni",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informazione/",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f3b3bd274a3a193c78db",
+      "word": "дезинформациия",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:dezinformaciij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "дезинформация",
+      "segmentation_or_lexical_identity": "дезинформациия ≠ дезинформация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f815fa519cdcb481c741",
+      "word": "иинформация",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:iinformacij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "иинформация ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1cc0736e73b2d4e52672",
+      "word": "информавция",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informavcij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информавция ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:21f0c02db887a5665dec",
+      "word": "информагенство",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:mage",
+        "ety:e5810cb4d813",
+        "surface:ru:inform",
+        "surface:ru:gens",
+        "ety:bfbc971f4397"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информагентство",
+      "segmentation_or_lexical_identity": "информагенство ≠ информагентство",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:babd4304e81761069836",
+      "word": "информаицть",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:ct",
+        "ety:e5810cb4d813",
+        "surface:ru:inform",
+        "surface:ru:mai",
+        "ety:bfbc971f4397"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информаицть ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:16433b1a932be0b14c0e",
+      "word": "информайие",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:ie",
+        "surface:ru:informaji"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информайие ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a34f7ee34bb860481990",
+      "word": "информанция",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informancij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информанция ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6b921c76a429e61dc3b0",
+      "word": "информациия",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informaciij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информациия ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e021f3d541308cb38963",
+      "word": "информационой",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informacion",
+        "surface:ru:onoj"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информационной",
+      "segmentation_or_lexical_identity": "информационой ≠ информационной",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:db630d3925107782f075",
+      "word": "информационый",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informacion"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информационный",
+      "segmentation_or_lexical_identity": "информационый ≠ информационный",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e82cec98e6653339247c",
+      "word": "информацирнный",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informacirnn"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информационный",
+      "segmentation_or_lexical_identity": "информацирнный ≠ информационный",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b1d009bcd7a0538b2f69",
+      "word": "информиация",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informiacij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информиация ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c3d9acfe247502a5f840",
+      "word": "информированый",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informirovan"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информированный",
+      "segmentation_or_lexical_identity": "информированый ≠ информированный",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:2d84f9e21b6ae9b36cac",
+      "word": "информироровать",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:orov",
+        "surface:ru:informir",
+        "surface:ru:roro",
+        "ety:2af3920ce904"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информировать",
+      "segmentation_or_lexical_identity": "информироровать ≠ информировать",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:074a66fa9f0fba2af4d4",
+      "word": "информиция",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informicij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информиция ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d91d62927394bb641463",
+      "word": "информрация",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:informracij"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "информация",
+      "segmentation_or_lexical_identity": "информрация ≠ информация",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:90b5e6550f379736497a",
+      "word": "проинформироать",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:proinformir",
+        "surface:ru:roat",
+        "ety:2af3920ce904"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "проинформировать",
+      "segmentation_or_lexical_identity": "проинформироать ≠ проинформировать",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:94333214c5dd60600f35",
+      "word": "проинформируйт",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:ru:ujt",
+        "surface:ru:proinformir",
+        "surface:ru:informiru"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "проинформируйте",
+      "segmentation_or_lexical_identity": "проинформируйт ≠ проинформируйте",
+      "source_references": [
+        "https://gramota.ru/poisk?query=информация&mode=slovari",
+        "https://gramota.ru/poisk?query=информационный&mode=slovari"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3a68b5c8111ed1de20cb",
+      "word": "observabamos",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:observabam"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observábamos",
+      "segmentation_or_lexical_identity": "observabamos ≠ observábamos",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a7b10f2e5a814f545121",
+      "word": "observaclon",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:a71d0e00179f",
+        "surface:es:observac"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observación",
+      "segmentation_or_lexical_identity": "observaclon ≠ observación",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:33dab20567cf95611302",
+      "word": "obsérvaio",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:observai"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "obsérvalo",
+      "segmentation_or_lexical_identity": "obsérvaio ≠ obsérvalo",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:95d3a3ce051c69a2ae1f",
+      "word": "observándoie",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:oie",
+        "surface:es:observand"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observándole",
+      "segmentation_or_lexical_identity": "observándoie ≠ observándole",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:1e40decc293d48a07af3",
+      "word": "observándoio",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:observandoi"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observándolo",
+      "segmentation_or_lexical_identity": "observándoio ≠ observándolo",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fda872ca7c99a5fc7539",
+      "word": "observarndo",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:ndo",
+        "surface:es:observarnd"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observando",
+      "segmentation_or_lexical_identity": "observarndo ≠ observando",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4cff93ec15b37042bca1",
+      "word": "observarvando",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:observarvand"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observando",
+      "segmentation_or_lexical_identity": "observarvando ≠ observando",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3b48d0d9d08f02fa737b",
+      "word": "observasión",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:40e4b32e7d1d",
+        "ety:5fd4ed775a2c",
+        "ety:32045ce98f91",
+        "surface:es:observas"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observación",
+      "segmentation_or_lexical_identity": "observasión ≠ observación",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dac74f5f59c8d66771da",
+      "word": "obsérveie",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:observ",
+        "surface:es:veie"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "obsérvele",
+      "segmentation_or_lexical_identity": "obsérveie ≠ obsérvele",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dd86576e9c6a2743aa86",
+      "word": "obsérveio",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:observei"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "obsérvelo",
+      "segmentation_or_lexical_identity": "obsérveio ≠ obsérvelo",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8881b0f0a8f9b442dc63",
+      "word": "obsérvenios",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:ios",
+        "surface:es:observeni"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "obsérvenlos",
+      "segmentation_or_lexical_identity": "obsérvenios ≠ obsérvenlos",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a1a2b176c4fe74f1d943",
+      "word": "observnadome",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:observ",
+        "surface:es:nad"
+      ],
+      "language": "es",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "observándome",
+      "segmentation_or_lexical_identity": "observnadome ≠ observándome",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8d1496eb5a1efa6ce5cf",
+      "word": "informacdión",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:dion",
+        "surface:es:informacd"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informacdión ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:20471ba70cf2b3444c43",
+      "word": "informacián",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:macian",
+        "surface:es:informac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informacián ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:71127b2b833ef673da80",
+      "word": "informacicones",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:cones",
+        "surface:es:informacicon"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informaciones",
+      "segmentation_or_lexical_identity": "informacicones ≠ informaciones",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:93f60e0fb3cebe1228c6",
+      "word": "informacién",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:cien",
+        "surface:es:informac"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informacién ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ac7f92b052a95284b3e2",
+      "word": "informaciiónsóliida",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:ida",
+        "surface:es:informaciionsoliid"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información-sólida",
+      "segmentation_or_lexical_identity": "informaciiónsóliida ≠ información-sólida",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:12e6e55391abfc0555dc",
+      "word": "informaciñon",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:48eafe3308da",
+        "ety:65acb3f62260",
+        "surface:es:informaci"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informaciñon ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:a0664bfb77730e150588",
+      "word": "informacióm",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informaciom"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informacióm ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b0f9703d5a0acacb4c27",
+      "word": "informaciomes",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informaciom",
+        "surface:es:mes"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informaciones",
+      "segmentation_or_lexical_identity": "informaciomes ≠ informaciones",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f2f9ed045f9c44e20519",
+      "word": "informacióon",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:oon",
+        "surface:es:informaci"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informacióon ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e9e3e6b6126cc112bc2b",
+      "word": "informaicon",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:7ecd468d8c92",
+        "surface:es:informai",
+        "ety:418c2e030c1f"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informaicon ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:660972ee4752d5e1e4d0",
+      "word": "informaicón",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:7ecd468d8c92",
+        "surface:es:informai",
+        "ety:418c2e030c1f"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informaicón ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:198425621a1c7fe0ea5a",
+      "word": "informamrme",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:mam",
+        "surface:es:informa"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informarme",
+      "segmentation_or_lexical_identity": "informamrme ≠ informarme",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e951a72993f8a5aa7d92",
+      "word": "informancion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:ncion",
+        "surface:es:informanc"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informancion ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6f842233571524079e19",
+      "word": "informándolar",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:5a0aef610f86",
+        "surface:es:informand",
+        "surface:es:mando"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informándola",
+      "segmentation_or_lexical_identity": "informándolar ≠ informándola",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d42c87a526a7c2bc8f10",
+      "word": "informarción",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:cion",
+        "surface:es:informarc"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informarción ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0ec9f2976e592c26d715",
+      "word": "informaremosna",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informaremosn"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informaremos",
+      "segmentation_or_lexical_identity": "informaremosna ≠ informaremos",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fbdf1467424f97bbd2ab",
+      "word": "informarmale",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informar",
+        "surface:es:marm",
+        "surface:es:male"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informarle",
+      "segmentation_or_lexical_identity": "informarmale ≠ informarle",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5f7325c0b1f44d6d9bff",
+      "word": "informasión",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "ety:40e4b32e7d1d",
+        "ety:5fd4ed775a2c",
+        "surface:es:informas",
+        "ety:32045ce98f91"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informasión ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:0fd1705a30ab4d245ffd",
+      "word": "infórmatica",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informatica"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informática",
+      "segmentation_or_lexical_identity": "infórmatica ≠ informática",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:cea1acb270f941220a63",
+      "word": "informecion",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informec",
+        "surface:es:mecion"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informecion ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7302f90c71defb3ea4a3",
+      "word": "informeción",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informec",
+        "surface:es:mecion"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informeción ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:9afa22162f6be7d2ea83",
+      "word": "infórmeies",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:ies",
+        "surface:es:informei"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "infórmeles",
+      "segmentation_or_lexical_identity": "infórmeies ≠ infórmeles",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:3d3e234fb1f022ebd686",
+      "word": "informmación",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:informmac",
+        "surface:es:cion"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "información",
+      "segmentation_or_lexical_identity": "informmación ≠ información",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:e65fce25326057f40500",
+      "word": "informóñ",
+      "status": "excluded",
+      "reason": "The explicit saved token has the displayed letter omission/substitution/transposition/reduplication or intrusive boundary compared with the documented head and its regular finite morphology. The comparison is a reviewer diagnostic, not a correction of the corpus and not an assertion that a dictionary has an entry for this corrupted form. This whole malformed token is excluded; the genuine information/observation head and independent original routes are preserved. No general edit-distance exclusion, accent stripping or synthetic lemma.",
+      "source_family_ids": [
+        "surface:es:infor",
+        "ety:420388b3cb6e"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_spelling_defect",
+      "comparison_form": "informó",
+      "segmentation_or_lexical_identity": "informóñ ≠ informó",
+      "source_references": [
+        "https://dle.rae.es/información",
+        "https://dle.rae.es/observar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "excluded": 137
+  },
+  "continuation_counts": {
+    "accepted": 24,
+    "excluded": 299,
+    "uncertain": 62,
+    "pending_review": 377
+  },
+  "accepted_applied": 24,
+  "accepted_unapplied": 0,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "review_scope": "Explicit spelling defects only. Rare/foreign forms and debated accent/orthographic variants are deliberately outside this finite list."
+}

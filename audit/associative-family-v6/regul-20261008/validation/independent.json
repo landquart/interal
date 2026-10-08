@@ -1,0 +1,486 @@
+{
+  "schema_version": 6,
+  "baseline_sha": "ec43ff50383e6b632a95a5f6b9a4b8d7b0d44003",
+  "tested_sha": "53813013e7966c310e63136db4987d1f9e0a9f56",
+  "script_sha256": "e06ec467b2d0de5e34d5f7d83d2818e225be6e63987edaac26c7d89471da59ab",
+  "status": "pass",
+  "production_enabled": false,
+  "full_linguistic_certification": false,
+  "results": [
+    {
+      "name": "independent finite edge/link membership oracle",
+      "status": "pass",
+      "details": {
+        "links": 22021,
+        "accepted": 21359,
+        "oracle": "explicit edge status + exact finite scope + immutable links; no production generator"
+      }
+    },
+    {
+      "name": "exact real source locators and source measurements",
+      "status": "pass",
+      "details": {
+        "links": 22021,
+        "source_shards": 340,
+        "loss_source_word_is_not_loss_edge": true
+      }
+    },
+    {
+      "name": "frozen explicit compatibility grants independently cover every saved binding and decision",
+      "status": "pass",
+      "details": {
+        "bindings": 3341,
+        "decisions": 39,
+        "note": "grant coverage does not prove the runtime consumes grants"
+      }
+    },
+    {
+      "name": "stage CLI: authorized positive control",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "successful_positive_control",
+      "exit_code": 0,
+      "registry_unchanged": false,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "30ea4aed2fe3c701bcb88ed27c9a2590f925c5ed6b269f7f55d8aca87f132ca2",
+      "diagnostic": "{\"stage\":\"synthetic-disposable-only\",\"heads\":1,\"records\":1,\"production_enabled\":false}\n"
+    },
+    {
+      "name": "stage CLI: missing binding",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:14\nif(stage.binding_authorized!==true)throw Error('Finite identity binding not approved for research-only stage');\n                                         ^\n\nError: Finite identity binding not approved for research-only stage\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:14:42\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: explicit denied binding",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:14\nif(stage.binding_authorized!==true)throw Error('Finite identity binding not approved for research-only stage');\n                                         ^\n\nError: Finite identity binding not approved for research-only stage\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:14:42\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: string binding",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:14\nif(stage.binding_authorized!==true)throw Error('Finite identity binding not approved for research-only stage');\n                                         ^\n\nError: Finite identity binding not approved for research-only stage\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:14:42\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: missing accepted",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:15\nif(stage.groups.some(g=>g.status==='accepted')&&stage.accepted_membership_authorized!==true)throw Error('Accepted finite membership not explicitly approved');\n                                                                                                  ^\n\nError: Accepted finite membership not explicitly approved\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:15:99\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: explicit denied accepted",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:15\nif(stage.groups.some(g=>g.status==='accepted')&&stage.accepted_membership_authorized!==true)throw Error('Accepted finite membership not explicitly approved');\n                                                                                                  ^\n\nError: Accepted finite membership not explicitly approved\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:15:99\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: missing exclusion",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:16\nif(stage.groups.some(g=>g.status==='excluded')&&stage.excluded_membership_authorized!==true)throw Error('Excluded finite membership not explicitly approved');\n                                                                                                  ^\n\nError: Excluded finite membership not explicitly approved\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:16:99\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: explicit denied exclusion",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:16\nif(stage.groups.some(g=>g.status==='excluded')&&stage.excluded_membership_authorized!==true)throw Error('Excluded finite membership not explicitly approved');\n                                                                                                  ^\n\nError: Excluded finite membership not explicitly approved\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:16:99\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: missing uncertainty",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:17\nif(stage.groups.some(g=>g.status==='uncertain')&&stage.uncertain_membership_authorized!==true)throw Error('Uncertain finite membership not explicitly approved');\n                                                                                                    ^\n\nError: Uncertain finite membership not explicitly approved\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:17:101\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: explicit denied uncertainty",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:17\nif(stage.groups.some(g=>g.status==='uncertain')&&stage.uncertain_membership_authorized!==true)throw Error('Uncertain finite membership not explicitly approved');\n                                                                                                    ^\n\nError: Uncertain finite membership not explicitly approved\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:17:101\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: nonexistent ID",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27\nfor(const g of stage.groups)for(const r of g.records){const k=r.language+'\\0'+g.root+'\\0'+r.lemma_id,q=queue.get(k);if(scoped.has(k)||!q||q.language!==g.language||q.word!==r.word||q.status!==r.status||(r.canonical_root||r.root)!==g.root)throw Error('Unknown, changed or widened finite source queue scope');scoped.add(k);}\n                                                                                                                                                                                                                                                   ^\n\nError: Unknown, changed or widened finite source queue scope\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27:244\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: wrong language",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27\nfor(const g of stage.groups)for(const r of g.records){const k=r.language+'\\0'+g.root+'\\0'+r.lemma_id,q=queue.get(k);if(scoped.has(k)||!q||q.language!==g.language||q.word!==r.word||q.status!==r.status||(r.canonical_root||r.root)!==g.root)throw Error('Unknown, changed or widened finite source queue scope');scoped.add(k);}\n                                                                                                                                                                                                                                                   ^\n\nError: Unknown, changed or widened finite source queue scope\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27:244\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: wrong root",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27\nfor(const g of stage.groups)for(const r of g.records){const k=r.language+'\\0'+g.root+'\\0'+r.lemma_id,q=queue.get(k);if(scoped.has(k)||!q||q.language!==g.language||q.word!==r.word||q.status!==r.status||(r.canonical_root||r.root)!==g.root)throw Error('Unknown, changed or widened finite source queue scope');scoped.add(k);}\n                                                                                                                                                                                                                                                   ^\n\nError: Unknown, changed or widened finite source queue scope\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27:244\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: widened record scope",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27\nfor(const g of stage.groups)for(const r of g.records){const k=r.language+'\\0'+g.root+'\\0'+r.lemma_id,q=queue.get(k);if(scoped.has(k)||!q||q.language!==g.language||q.word!==r.word||q.status!==r.status||(r.canonical_root||r.root)!==g.root)throw Error('Unknown, changed or widened finite source queue scope');scoped.add(k);}\n                                                                                                                                                                                                                                                   ^\n\nError: Unknown, changed or widened finite source queue scope\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27:244\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: stale review version",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:19\nif(stage.predecessor_review_version!==undefined&&stage.predecessor_review_version!==doc.version)throw Error('Stale finite review predecessor version');\n                                                                                                      ^\n\nError: Stale finite review predecessor version\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:19:103\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: stale review hash",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:20\nif(stage.predecessor_review_sha256!==undefined&&stage.predecessor_review_sha256!==sha(await fs.readFile(reviewPath)))throw Error('Stale finite review predecessor hash');\n                                                                                                                           ^\n\nError: Stale finite review predecessor hash\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:20:124\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: malformed record",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27\nfor(const g of stage.groups)for(const r of g.records){const k=r.language+'\\0'+g.root+'\\0'+r.lemma_id,q=queue.get(k);if(scoped.has(k)||!q||q.language!==g.language||q.word!==r.word||q.status!==r.status||(r.canonical_root||r.root)!==g.root)throw Error('Unknown, changed or widened finite source queue scope');scoped.add(k);}\n                                                                                                                                                                                                                                                   ^\n\nError: Unknown, changed or widened finite source queue scope\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:27:244\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: synthetic registration",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "after_sha256": "7a85741e4fdbd1d43d285e5684e46c9c12bc875a517008fb02ad4485be5d86b8",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:18\nif(stage.synthetic_fixture===true)throw Error('Synthetic fixture cannot enter real registry');\n                                        ^\n\nError: Synthetic fixture cannot enter real registry\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:18:41\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "stage CLI: duplicate application",
+      "status": "pass",
+      "synthetic_fixture": true,
+      "expected": "reject_without_write",
+      "exit_code": 1,
+      "registry_unchanged": true,
+      "before_sha256": "30ea4aed2fe3c701bcb88ed27c9a2590f925c5ed6b269f7f55d8aca87f132ca2",
+      "after_sha256": "30ea4aed2fe3c701bcb88ed27c9a2590f925c5ed6b269f7f55d8aca87f132ca2",
+      "diagnostic": "file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:32\n if(doc.lexical_facts.some(f=>f.id===factId))throw Error('Existing fact requires explicit versioned extension, not replacement');\n                                                   ^\n\nError: Existing fact requires explicit versioned extension, not replacement\n    at file:///workspace/scratch/0f6ab3aff2d9/interal/scripts/integrate-associative-v6-reviewed-stage.mjs:32:52\n\nNode.js v24.19.0\n"
+    },
+    {
+      "name": "actual lexical loader rejects explicitly revoked frozen grant",
+      "status": "pass",
+      "registry_write": false,
+      "diagnostic": "Missing, changed or revoked frozen binding grant"
+    },
+    {
+      "name": "real promotion loader: denied promotion",
+      "status": "pass",
+      "registry_write": false,
+      "diagnostic": "Promotion requires explicit reviewed authorization"
+    },
+    {
+      "name": "real promotion loader: forged promotion locator",
+      "status": "pass",
+      "registry_write": false,
+      "diagnostic": "Duplicate, translated or unproved finite source identity"
+    },
+    {
+      "name": "real promotion loader: nonexistent promotion ID",
+      "status": "pass",
+      "registry_write": false,
+      "diagnostic": "Promotion requires an accepted finite lexical-row senses decision and aggregate frequency limitation"
+    },
+    {
+      "name": "real promotion loader: stale promotion evidence",
+      "status": "pass",
+      "registry_write": false,
+      "diagnostic": "Changed promotion evidence associativvordes/family-index-v5/members/en/8b.json.gz"
+    },
+    {
+      "name": "real promotion loader: competing senses with policy",
+      "status": "pass",
+      "registry_write": false,
+      "diagnostic": "Promotion requires an accepted finite lexical-row senses decision and aggregate frequency limitation"
+    },
+    {
+      "name": "real promotion loader: competing senses with omitted policy",
+      "status": "pass",
+      "registry_write": false,
+      "diagnostic": "Promotion omitted senses policy without an exact frozen historical compatibility grant"
+    },
+    {
+      "name": "real lifecycle: literal finite extension positive",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "exactly three memberships; old input unchanged"
+      }
+    },
+    {
+      "name": "real lifecycle: stale version",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Stale or unknown lifecycle predecessor"
+      }
+    },
+    {
+      "name": "real lifecycle: stale predecessor hash",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Stale or unknown lifecycle predecessor"
+      }
+    },
+    {
+      "name": "real lifecycle: changed sense",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Lifecycle identity mutation; sense migration requires separate adjudication"
+      }
+    },
+    {
+      "name": "real lifecycle: widened scope",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Unconfirmed finite lifecycle decision scope"
+      }
+    },
+    {
+      "name": "real lifecycle: wrong family transition",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Wrong lifecycle operation for existing edge"
+      }
+    },
+    {
+      "name": "real lifecycle: translated relation",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Non-lexical relation cannot authorize lifecycle membership"
+      }
+    },
+    {
+      "name": "real lifecycle: denied accepted",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Unauthorized accepted lifecycle scope"
+      }
+    },
+    {
+      "name": "real lifecycle: unproved boundary",
+      "status": "pass",
+      "details": {
+        "registry_write": false,
+        "source_path": "audit/associative-family-v6/system-de-extension-20261004.json",
+        "expected": "rejection without mutation",
+        "diagnostic": "Unproved new link identity or boundary"
+      }
+    },
+    {
+      "name": "recognition: substring collision",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "recognition: generic ending strip",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "recognition: translated gloss",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "recognition: wrong evidence language",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "recognition: competing senses/homonym",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "recognition: duplicate arrays",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "recognition: forged exact boundary",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "recognition: proper-name identity without a finite grant",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true,
+        "accepted": 0
+      }
+    },
+    {
+      "name": "morphological proposals grant no identity or membership",
+      "status": "pass",
+      "details": {
+        "synthetic_fixture": true
+      }
+    },
+    {
+      "name": "competing aggregate senses are deferred without fabricated frequency",
+      "status": "pass",
+      "details": {
+        "decision": "deferred",
+        "blocker": "incompatible_or_unproved_lexical_histories_require_provenanced_partition_or_common_component",
+        "head_scope": "whole_lexical_row",
+        "frequency_status": "aggregate_only_not_sense_frequency",
+        "token_senses_established": false,
+        "proper_name_observed": false
+      }
+    },
+    {
+      "name": "independent literal Russian alias expectations",
+      "status": "pass",
+      "details": {
+        "oper_ru": 138,
+        "mut_ru": 41
+      }
+    },
+    {
+      "name": "195 shared IDs deduplicate rows without double-counting measured frequency",
+      "status": "pass",
+      "details": {
+        "unique_rows": 21371,
+        "memberships": 21566
+      }
+    }
+  ],
+  "counts": {
+    "pass": 50,
+    "fail": 0
+  },
+  "limitations": [
+    "Independent technical oracle is not independent linguistic adjudication.",
+    "Synthetic negative fixtures are outside real registries.",
+    "Fail status blocks foundation closure even if old consistency CI succeeds."
+  ]
+}

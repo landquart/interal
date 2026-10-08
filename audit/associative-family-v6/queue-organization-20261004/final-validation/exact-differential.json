@@ -1,0 +1,142 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "63b8f44539f752cad6e4fc875bba85be39035bb9",
+  "protected_tree_sha": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c"
+  },
+  "original_v6_artifacts_byte_identical": 274,
+  "memberships_added": [],
+  "memberships_removed": [],
+  "memberships_changed": [],
+  "heads_added": [],
+  "heads_removed": [],
+  "edges_changed": [],
+  "exact_set_conservation": {
+    "before": {
+      "corpus_ids": {
+        "count": 100670,
+        "sha256": "612e1a123d83a74d62b301f2aab014caad0657c62b6c99aac68fbedf1e356115"
+      },
+      "membership_candidates": {
+        "count": 102314,
+        "sha256": "cf1e7b84731302fe93c7a062254e3ee9279a8e1f4e366a1af0dcfc29bbc41747"
+      },
+      "route_occurrences": {
+        "count": 133054,
+        "sha256": "3546e0fe62718124930558ca771017c34ed83f5579126a01d4d4f6365cb92a94"
+      },
+      "source_route_references": {
+        "count": 210697,
+        "sha256": "31534bd06d3062b100a1811f5f626b56c104be7e29c9f6fec0c33eeaf3f85532"
+      },
+      "packet_route_occurrences": {
+        "count": 181136,
+        "sha256": "76b90f77055ff73535e4344ead81b88c4352b45824fb40b82ec6e67b83963b11"
+      }
+    },
+    "after": {
+      "corpus_ids": {
+        "count": 100670,
+        "sha256": "612e1a123d83a74d62b301f2aab014caad0657c62b6c99aac68fbedf1e356115"
+      },
+      "membership_candidates": {
+        "count": 102314,
+        "sha256": "cf1e7b84731302fe93c7a062254e3ee9279a8e1f4e366a1af0dcfc29bbc41747"
+      },
+      "route_occurrences": {
+        "count": 133054,
+        "sha256": "3546e0fe62718124930558ca771017c34ed83f5579126a01d4d4f6365cb92a94"
+      },
+      "source_route_references": {
+        "count": 210697,
+        "sha256": "31534bd06d3062b100a1811f5f626b56c104be7e29c9f6fec0c33eeaf3f85532"
+      },
+      "packet_route_occurrences": {
+        "count": 181136,
+        "sha256": "76b90f77055ff73535e4344ead81b88c4352b45824fb40b82ec6e67b83963b11"
+      }
+    },
+    "added": [],
+    "removed": [],
+    "exact_sets": {
+      "corpus_ids": {
+        "shards": [
+          "cross-frame-en.json.gz",
+          "cross-frame-de.json.gz",
+          "cross-frame-fr.json.gz",
+          "cross-frame-es.json.gz",
+          "cross-frame-it.json.gz",
+          "cross-frame-ru.json.gz"
+        ],
+        "field": "corpus_id"
+      },
+      "membership_candidates": {
+        "path": "membership-questions.json.gz",
+        "field": "candidate_id"
+      },
+      "route_occurrences": {
+        "shards": [
+          "cross-frame-en.json.gz",
+          "cross-frame-de.json.gz",
+          "cross-frame-fr.json.gz",
+          "cross-frame-es.json.gz",
+          "cross-frame-it.json.gz",
+          "cross-frame-ru.json.gz"
+        ],
+        "field": "occurrences[*].occurrence_id"
+      },
+      "packet_route_occurrences": {
+        "shards": [
+          "cross-frame-en.json.gz",
+          "cross-frame-de.json.gz",
+          "cross-frame-fr.json.gz",
+          "cross-frame-es.json.gz",
+          "cross-frame-it.json.gz",
+          "cross-frame-ru.json.gz"
+        ],
+        "field": "packet_routes[*].locator"
+      },
+      "source_route_references": {
+        "shards": [
+          "cross-frame-en.json.gz",
+          "cross-frame-de.json.gz",
+          "cross-frame-fr.json.gz",
+          "cross-frame-es.json.gz",
+          "cross-frame-it.json.gz",
+          "cross-frame-ru.json.gz"
+        ],
+        "field": "occurrences[*].routes"
+      }
+    },
+    "verdict": "pass"
+  },
+  "current_units_before": 23238,
+  "current_units_after": 23238,
+  "new_proven_unit_reduction": 0,
+  "metrics": {
+    "corpus_ids": 100670,
+    "membership_candidates": 102314,
+    "route_incidences": 133054,
+    "packet_route_incidences": 181136,
+    "proven_groups": 92,
+    "disputed_groups": 124,
+    "proposal_groups": 98896,
+    "current_membership_candidates": 23240,
+    "current_proven_units": 23238,
+    "current_proven_reduction": 2,
+    "new_memberships": 0,
+    "new_verdicts": 0,
+    "packet_count": 16055,
+    "open_membership_questions": 78927
+  },
+  "production_enabled": false,
+  "implementation_sha256": {
+    "scripts/build-associative-v6-queue-organization.mjs": "d75c29bf72205e3d94765effd991fcf347cf0716dccf82e232ca9dd88e9ca59e",
+    "scripts/audit-associative-v6-queue-organization.mjs": "e7f2fc345f6329ae554598c6ccde5abd66cf6705c235dc12a5b95c8aa6da47e9",
+    "scripts/lib/associative-v6-queue-organization.mjs": "5a98e316dd2bef7df5aaaf8c908ff9552913243f4942b244fddaf20ae5625462",
+    "scripts/validate-associative-v6-prompt04.py": "28df7a1bb4befa3300b1f13935334fc4ccbf4782b7ed0c5d38dd96db65d1acc5"
+  }
+}

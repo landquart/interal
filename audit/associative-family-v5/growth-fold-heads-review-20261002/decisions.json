@@ -1,0 +1,483 @@
+{
+  "source_run_id": 35647932153,
+  "inputs": {
+    "creat": {
+      "candidate_path": "audit/associative-family-v5/creation-checkpoint-20261001/candidates.json.gz",
+      "candidate_sha256": "ea3edf87ff1d605e8587a23a0ef689848aceda1fc2817ba52f04f4f7fe97a148",
+      "previous_pending_path": "audit/associative-family-v5/credit-mute-heads-review-20261002/pending-review.json.gz",
+      "previous_pending_sha256": "3a11ed66b1d1e1bd2c135b508af3e97c984c73181c6df53ed1ec1ce7b0088873",
+      "inventory_path": "audit/associative-family-v5/credit-mute-heads-review-20261002/inventory.json",
+      "inventory_sha256": "b30f8be31de15a0810d5a21ce7419dcafa717718aaa4386003dcdaa6ba2e3bbd"
+    }
+  },
+  "decisions": [
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:da259c4bed85da7015f7",
+      "word": "increasable",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:increasabl",
+        "ety:d49c4d86b593"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "increasable",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:f4f9867681b422aafa02",
+      "word": "increasing",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:increasing"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "increasing",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:d8fc99766aca4c35d6e7",
+      "word": "increasingly",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:increasing",
+        "surface:en:gly"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "increasingly",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:cb745250cb09d1773873",
+      "word": "aboutincreasing",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:increasing",
+        "surface:en:aboutincreas"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "about increasing",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:0fa1f2d28c978fc554fe",
+      "word": "byincreasing",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:asing",
+        "surface:en:byincreas"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "by increasing",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:ba25cc606bcfb3ed93ba",
+      "word": "increasingat",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:easin",
+        "surface:en:increasi",
+        "surface:en:ngat"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "increasing at",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:9b713985592a3416bf4c",
+      "word": "increasinglyjumpy",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:easin",
+        "surface:en:gly",
+        "surface:en:increasi"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "increasingly jumpy",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:d458b0e4078d986f17d3",
+      "word": "increasinglyrave",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "ety:bae8671adef6",
+        "surface:en:increasinglyrav",
+        "ety:42484a803c5b"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "increasingly rave",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:3ed19faf127858247215",
+      "word": "ofincreasing",
+      "status": "excluded",
+      "reason": "Independent increase/growth head from Latin increscere/crescere, not the recognizable creat/create element. Explicit derivatives or fused phrases; per-token analysis is a reviewer inference.",
+      "source_family_ids": [
+        "surface:en:asing",
+        "surface:en:ofincreas"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "increase",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/increase"
+      ],
+      "segmentation": "of increasing",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:860a8868fd07f06ba7c2",
+      "word": "encrease",
+      "status": "excluded",
+      "reason": "Historical encrease spelling of increase documented by Oxford; growth lexical head, not the creat/create element.",
+      "source_family_ids": [
+        "surface:en:encreas",
+        "ety:342d07d534d7",
+        "ety:52df60536525",
+        "ety:989286a61155"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "encrease",
+      "source_references": [
+        "https://www.oxfordlearnersdictionaries.com/definition/english/increase_1"
+      ],
+      "segmentation": "encrease",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:d46a940ea1d512911a41",
+      "word": "decreasing",
+      "status": "excluded",
+      "reason": "Independent decrease/diminution head from decrescere, not creat/create. Finite -ing and -ly morphology and ever-compound preserve this head.",
+      "source_family_ids": [
+        "surface:en:decreasing"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "decrease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/decrease"
+      ],
+      "segmentation": "decreasing",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:849e1c4d2c9f64388eb9",
+      "word": "decreasingly",
+      "status": "excluded",
+      "reason": "Independent decrease/diminution head from decrescere, not creat/create. Finite -ing and -ly morphology and ever-compound preserve this head.",
+      "source_family_ids": [
+        "surface:en:gly",
+        "surface:en:decreasing"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "decrease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/decrease"
+      ],
+      "segmentation": "decreasingly",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:9206b1540d451d4b2a3f",
+      "word": "ever-decreasing",
+      "status": "excluded",
+      "reason": "Independent decrease/diminution head from decrescere, not creat/create. Finite -ing and -ly morphology and ever-compound preserve this head.",
+      "source_family_ids": [
+        "surface:en:asing",
+        "surface:en:everdecreas"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "decrease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/decrease"
+      ],
+      "segmentation": "ever-decreasing",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:9e4887ea25c6e35dddd0",
+      "word": "creaseless",
+      "status": "excluded",
+      "reason": "Independent crease/fold head, not creat/create. Merriam-Webster qualifies its proposed creste/crest history as probable. Finite morphology and phrase segmentation are reviewer inferences; proper names and opaque lookalikes are left pending.",
+      "source_family_ids": [
+        "surface:en:creaseles",
+        "ety:58d77e075bd3",
+        "ety:676e02c42b7c"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "crease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "segmentation": "creaseless",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:d2de81912dfb61c268d6",
+      "word": "creaser",
+      "status": "excluded",
+      "reason": "Independent crease/fold head, not creat/create. Merriam-Webster qualifies its proposed creste/crest history as probable. Finite morphology and phrase segmentation are reviewer inferences; proper names and opaque lookalikes are left pending.",
+      "source_family_ids": [
+        "surface:en:creaser"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "crease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "segmentation": "creaser",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:f1bef34becab90fb3c57",
+      "word": "creasers",
+      "status": "excluded",
+      "reason": "Independent crease/fold head, not creat/create. Merriam-Webster qualifies its proposed creste/crest history as probable. Finite morphology and phrase segmentation are reviewer inferences; proper names and opaque lookalikes are left pending.",
+      "source_family_ids": [
+        "surface:en:creaser",
+        "surface:en:sers"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "crease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "segmentation": "creasers",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:11599ce623276352077a",
+      "word": "creasy",
+      "status": "excluded",
+      "reason": "Independent crease/fold head, not creat/create. Merriam-Webster qualifies its proposed creste/crest history as probable. Finite morphology and phrase segmentation are reviewer inferences; proper names and opaque lookalikes are left pending.",
+      "source_family_ids": [
+        "ety:3d51d2d8fba6",
+        "surface:en:asy"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "crease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "segmentation": "creasy",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:7fd4e15007d4575cfecf",
+      "word": "uncreased",
+      "status": "excluded",
+      "reason": "Independent crease/fold head, not creat/create. Merriam-Webster qualifies its proposed creste/crest history as probable. Finite morphology and phrase segmentation are reviewer inferences; proper names and opaque lookalikes are left pending.",
+      "source_family_ids": [
+        "surface:en:eased",
+        "surface:en:uncreas"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "crease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "segmentation": "uncreased",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:3179cb804ef6284243ae",
+      "word": "creaseon",
+      "status": "excluded",
+      "reason": "Independent crease/fold head, not creat/create. Merriam-Webster qualifies its proposed creste/crest history as probable. Finite morphology and phrase segmentation are reviewer inferences; proper names and opaque lookalikes are left pending.",
+      "source_family_ids": [
+        "surface:en:creas",
+        "surface:en:seon"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "crease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "segmentation": "crease on",
+      "runtime_applied": false
+    },
+    {
+      "root": "creat",
+      "language": "en",
+      "lemma_id": "lemma:f91a327909a79f5c820f",
+      "word": "creasewhen",
+      "status": "excluded",
+      "reason": "Independent crease/fold head, not creat/create. Merriam-Webster qualifies its proposed creste/crest history as probable. Finite morphology and phrase segmentation are reviewer inferences; proper names and opaque lookalikes are left pending.",
+      "source_family_ids": [
+        "surface:en:asew",
+        "surface:en:when",
+        "surface:en:creas"
+      ],
+      "historical_status": "uncertain",
+      "previous_status": "pending_review",
+      "lexical_head": "crease",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/crease"
+      ],
+      "segmentation": "crease when",
+      "runtime_applied": false
+    }
+  ],
+  "counts": {
+    "creat": {
+      "en": {
+        "accepted": 68,
+        "excluded": 457,
+        "reviewed_exclusions": 28,
+        "reviewed_uncertain": 0,
+        "pending_review": 756,
+        "total": 1281,
+        "new_exclusions": 20
+      },
+      "de": {
+        "accepted": 174,
+        "excluded": 118,
+        "reviewed_exclusions": 8,
+        "reviewed_uncertain": 0,
+        "pending_review": 231,
+        "total": 523,
+        "new_exclusions": 0
+      },
+      "fr": {
+        "accepted": 70,
+        "excluded": 112,
+        "reviewed_exclusions": 6,
+        "reviewed_uncertain": 0,
+        "pending_review": 307,
+        "total": 489,
+        "new_exclusions": 0
+      },
+      "es": {
+        "accepted": 94,
+        "excluded": 336,
+        "reviewed_exclusions": 27,
+        "reviewed_uncertain": 0,
+        "pending_review": 754,
+        "total": 1184,
+        "new_exclusions": 0
+      },
+      "it": {
+        "accepted": 139,
+        "excluded": 3457,
+        "reviewed_exclusions": 5,
+        "reviewed_uncertain": 0,
+        "pending_review": 250,
+        "total": 3846,
+        "new_exclusions": 0
+      },
+      "ru": {
+        "accepted": 29,
+        "excluded": 23,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 17,
+        "total": 69,
+        "new_exclusions": 0
+      }
+    }
+  },
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "limitations": [
+    "Only the explicit 20 saved growth/fold forms are newly adjudicated; no global substring rule. Other roots in the previous pending file are conserved verbatim.",
+    "No source spelling, sense frequency, component or corpus measurement is changed."
+  ]
+}

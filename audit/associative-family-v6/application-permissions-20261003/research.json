@@ -1,0 +1,804 @@
+{
+  "schema_version": 6,
+  "source_sha": "2d84b206c694b395620bef6ba83db1977cfced7c",
+  "production_enabled": false,
+  "verdict": "legacy_missing_permissions_require_separate_reviewed_decision",
+  "not_proof_of_historical_unauthorized_application": true,
+  "entries": [
+    {
+      "path": "audit/associative-family-v6/actin-identity-uncertain-edge-20261003.json",
+      "sha256": "b9e2e44b587828e4beff1f7a0f4fe127d74b13507c9411e330a8fa4d0feadc50",
+      "stage": "actin-identity-proven-family-edge-uncertain-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": false,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "en",
+          "head": "actin",
+          "status": "uncertain",
+          "records": 3,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "uncertain_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/actin-protein-head-evidence-20261003.json",
+      "sha256": "307d4bc9abf2e236b7e8378b652f2881dbea3947bdd61569b4ef5a5a5be38847",
+      "stage": "actin-protein-naming-conflict-investigation-20261003",
+      "flags": {
+        "binding_authorized": false,
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "en",
+          "head": "actin",
+          "status": "uncertain",
+          "records": 3,
+          "applied_review_matches": 0,
+          "missing_permissions": [
+            "uncertain_membership_authorized"
+          ],
+          "explicit_denials": [
+            "binding_authorized"
+          ]
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/akte-document-head-evidence-20261003.json",
+      "sha256": "b991f45b2b475e6cdd93a4c94b9586d4d740c7e822746cc26e1b6a4c957db68c",
+      "stage": "act-documentary-akte-finite-component-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "akte",
+          "status": "accepted",
+          "records": 165,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "accepted_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/aktie-shared-head-evidence-20261003.json",
+      "sha256": "530b26a7889438b92685ea74810f408a9f3daa35d4671fb95b9091209cc8c496",
+      "stage": "act-financial-aktie-finite-component-20261003",
+      "flags": {
+        "binding_authorized": "missing",
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "aktie",
+          "status": "accepted",
+          "records": 340,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "accepted_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/aktion-deliberate-head-evidence-20261003.json",
+      "sha256": "c9685a77801fba90f8435c5ce0674a23979093eb2a13f1081337c17de88a02b1",
+      "stage": "act-deliberate-aktion-finite-component-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "aktion",
+          "status": "accepted",
+          "records": 526,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "accepted_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/aktivitaet-finite-head-research-20261003.json",
+      "sha256": "95b2363dd8706a0ec70b5935db44aabd9e661e1fc7feb813d37b3b6ecd77ef34",
+      "stage": "act-aktivitaet-finite-compound-head-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": true,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "aktivität",
+          "status": "accepted",
+          "records": 354,
+          "applied_review_matches": 1,
+          "missing_permissions": [],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/attraktivitaet-finite-head-research-20261003.json",
+      "sha256": "856bfbf2154e730b61dab87b56ce2e062ab3173c67945841e67ee3d382499c1a",
+      "stage": "act-attraktivitaet-finite-negative-head-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": false,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "attraktivität",
+          "status": "excluded",
+          "records": 8,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json",
+      "sha256": "489c34e5687c367855a811c8a0fc4fa8e1ceaf64a55dedfadc454b046398aefa",
+      "stage": "creat-mut-finite-head-benchmark-20261003",
+      "flags": {
+        "binding_authorized": "missing",
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "screen",
+          "status": "excluded",
+          "records": 48,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 1,
+          "language": "de",
+          "head": "screening",
+          "status": "excluded",
+          "records": 10,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 2,
+          "language": "de",
+          "head": "mammut",
+          "status": "excluded",
+          "records": 18,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 3,
+          "language": "de",
+          "head": "mammut-",
+          "status": "excluded",
+          "records": 19,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 4,
+          "language": "de",
+          "head": "mammutbaum",
+          "status": "excluded",
+          "records": 8,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/fraktion-finite-head-research-20261003.json",
+      "sha256": "6651709bcf1ef55bf93d60c2616293fd47a484da1c346644e77fabe6f9d4a2f2",
+      "stage": "act-fraktion-parliamentary-component-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": false,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "fraktion",
+          "status": "excluded",
+          "records": 213,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/fraktion-remaining-lexical-research-20261003.json",
+      "sha256": "e3da32811fe437a2ab29253d44eed6f6abcf9a53f8b1b38ca32eff5561bfe9b0",
+      "stage": "act-fraktion-remaining-lexical-branches-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": false,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "fraktion",
+          "status": "excluded",
+          "records": 9,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 1,
+          "language": "de",
+          "head": "refraktion",
+          "status": "excluded",
+          "records": 5,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 2,
+          "language": "de",
+          "head": "diffraktion",
+          "status": "excluded",
+          "records": 1,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 3,
+          "language": "de",
+          "head": "infraktion",
+          "status": "excluded",
+          "records": 1,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 4,
+          "language": "de",
+          "head": "fraktionieren",
+          "status": "excluded",
+          "records": 4,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 5,
+          "language": "de",
+          "head": "fraktionierung",
+          "status": "excluded",
+          "records": 2,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 6,
+          "language": "de",
+          "head": "fraktionell",
+          "status": "excluded",
+          "records": 1,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 7,
+          "language": "de",
+          "head": "interfraktionell",
+          "status": "excluded",
+          "records": 3,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/loc-shared-head-evidence-20261003.json",
+      "sha256": "37b9aaa85a786a536aacc413820f462ed8f0c5c800f61637f38fb8316c2ac1d3",
+      "stage": "loc-finite-lexical-evidence-20261003",
+      "flags": {
+        "binding_authorized": "missing",
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "lokal",
+          "status": "accepted",
+          "records": 6,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "accepted_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 1,
+          "language": "de",
+          "head": "lokomotive",
+          "status": "accepted",
+          "records": 2,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "accepted_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 2,
+          "language": "ru",
+          "head": "посёлок",
+          "status": "excluded",
+          "records": 2,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 3,
+          "language": "ru",
+          "head": "шерлок",
+          "status": "excluded",
+          "records": 2,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 4,
+          "language": "ru",
+          "head": "локон",
+          "status": "excluded",
+          "records": 1,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 5,
+          "language": "ru",
+          "head": "стрелок",
+          "status": "excluded",
+          "records": 2,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/muetze-finite-head-research-20261003.json",
+      "sha256": "1763702256c5446b9bab656482f822e7ea6db36f1d7e1b8ffa9630ffa6cf8a7e",
+      "stage": "mut-muetze-finite-compound-head-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": false,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "mütze",
+          "status": "excluded",
+          "records": 13,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/mut-courage-finite-head-research-20261003.json",
+      "sha256": "8221bee2433d95161fb94a3c27b7096d430f24f7e515826059d43dc22f05c293",
+      "stage": "mut-courage-finite-compound-head-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": false,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "mut",
+          "status": "excluded",
+          "records": 10,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/oper-musical-finite-head-research-20261003.json",
+      "sha256": "2695d9a8ffd43e384df9d0e668323f221f9333f30488d14e183a75a732fee7dd",
+      "stage": "oper-musical-and-soap-finite-heads-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": true,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "oper",
+          "status": "accepted",
+          "records": 26,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        },
+        {
+          "index": 1,
+          "language": "de",
+          "head": "seifenoper",
+          "status": "accepted",
+          "records": 5,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/oper-shared-head-evidence-20261003.json",
+      "sha256": "6bc04003b285443d800acfc370e07972b698ab3ddf0e75c9ae9dd613719d5be7",
+      "stage": "oper-finite-military-head-20261003",
+      "flags": {
+        "binding_authorized": "missing",
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "en",
+          "head": "trooper",
+          "status": "excluded",
+          "records": 5,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/redaktion-finite-head-research-20261003.json",
+      "sha256": "011a9b400a4959557901850a9f7959b60a82d33d34908b9b0590ea4450c524a9",
+      "stage": "act-redaktion-finite-editorial-head-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": true,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "redaktion",
+          "status": "accepted",
+          "records": 173,
+          "applied_review_matches": 1,
+          "missing_permissions": [],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/relat-shared-head-evidence-20261003.json",
+      "sha256": "f66ebc98be586cf3b8167b1c9e6c862645f3ed8000db151e1a796c296612724f",
+      "stage": "relat-finite-lexical-evidence-20261003",
+      "flags": {
+        "binding_authorized": "missing",
+        "accepted_membership_authorized": "missing",
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "en",
+          "head": "relace",
+          "status": "excluded",
+          "records": 3,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 1,
+          "language": "fr",
+          "head": "relacer",
+          "status": "excluded",
+          "records": 3,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        },
+        {
+          "index": 2,
+          "language": "it",
+          "head": "querelare",
+          "status": "excluded",
+          "records": 2,
+          "applied_review_matches": 1,
+          "missing_permissions": [
+            "binding_authorized",
+            "excluded_membership_authorized"
+          ],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/relativitaet-finite-head-research-20261003.json",
+      "sha256": "c2c1fd39d6942e38377468c5bbf7220d609cadc2821ade1733edb1672311f7e0",
+      "stage": "relat-relativitaet-finite-physical-head-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": true,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "de",
+          "head": "relativität",
+          "status": "accepted",
+          "records": 1,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": null
+    },
+    {
+      "path": "audit/associative-family-v6/system-finite-promotion-20261003.json",
+      "sha256": "bdd8dcace8261dd65a635181afe0fda121441f9f66ee39c28520dd136e4f5668",
+      "stage": "system-finite-promotion-20261003",
+      "flags": {
+        "binding_authorized": true,
+        "accepted_membership_authorized": true,
+        "excluded_membership_authorized": "missing",
+        "uncertain_membership_authorized": "missing"
+      },
+      "groups": [
+        {
+          "index": 0,
+          "language": "en",
+          "head": "system",
+          "status": "accepted",
+          "records": 2,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        },
+        {
+          "index": 1,
+          "language": "de",
+          "head": "system",
+          "status": "accepted",
+          "records": 2,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        },
+        {
+          "index": 2,
+          "language": "fr",
+          "head": "système",
+          "status": "accepted",
+          "records": 2,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        },
+        {
+          "index": 3,
+          "language": "es",
+          "head": "sistema",
+          "status": "accepted",
+          "records": 1,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        },
+        {
+          "index": 4,
+          "language": "it",
+          "head": "sistema",
+          "status": "accepted",
+          "records": 1,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        },
+        {
+          "index": 5,
+          "language": "ru",
+          "head": "система",
+          "status": "accepted",
+          "records": 3,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        },
+        {
+          "index": 6,
+          "language": "es",
+          "head": "sistematizar",
+          "status": "accepted",
+          "records": 1,
+          "applied_review_matches": 0,
+          "missing_permissions": [],
+          "explicit_denials": []
+        }
+      ],
+      "promotion_status": "accepted"
+    }
+  ],
+  "review_document": {
+    "sha256": "2bad86c05923845d1dbd9f77c1a23c0f5cb1d5981d036b3d0b713e6b67273cb4",
+    "bindings": 2837,
+    "reviews": 36,
+    "bindings_without_binding_authorized": 2837,
+    "reviews_without_explicit_mode_authorization": 36
+  }
+}

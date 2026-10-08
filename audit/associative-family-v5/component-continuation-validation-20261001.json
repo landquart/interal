@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-01",
+  "tests": {
+    "command": "npm test",
+    "test_files": 85,
+    "exit_code": 0,
+    "result": "All tests passed."
+  },
+  "exhaustive_audit": {
+    "command": "node scripts/audit-repository-associative-family-v5.mjs",
+    "exit_code": 0,
+    "verdict": "pass",
+    "counts": {
+      "families": 2456544,
+      "aliases": 1934051,
+      "lemmas": 4924980,
+      "components": 9349982,
+      "memberships": 10076152,
+      "materialized_unique_lemmas": 4924157,
+      "multi_family_lemmas": 3333647,
+      "lemmas_without_materialized_family": 823,
+      "unique_lemmas_by_language": {
+        "en": 1130858,
+        "de": 1113442,
+        "fr": 558898,
+        "es": 941502,
+        "it": 610082,
+        "ru": 569375
+      },
+      "memberships_by_language": {
+        "en": 2618654,
+        "de": 2207526,
+        "fr": 1143719,
+        "es": 1797335,
+        "it": 1181824,
+        "ru": 1127094
+      },
+      "materialized_families": 2456544
+    },
+    "index_tree_content_sha256": "5f4d383ff027f549e04f3452c8fa0e514b7f5c5117024b2a1d3efe8259fe92cc"
+  },
+  "decision_ledger_sha256": "2f3e10927391804c4fc62da94c837a27b314596b9f34027a3f633bd7cc5b9ab5",
+  "candidate_disposition_totals": {
+    "accepted": 6911,
+    "excluded_absent_exact_fragment": 10688,
+    "pending_etymology_or_token_review": 38087
+  },
+  "runtime_guards": [
+    "lieu/lieutenant excluded from loc; naive/naïve excluded from nat",
+    "all six complete inter arrays used in preposition mode through actual candidate loader",
+    "lexical nat/loc families cannot masquerade as reviewed prepositions",
+    "prior frozen decisions and original corpus records preserved"
+  ],
+  "limitations": [
+    "Coverage includes all 18 saved candidate arrays; pending entries are not certified or silently accepted.",
+    "Unaccented source spellings are retained as corpus variants; source IDs and frequencies are never rewritten.",
+    "Historical candidate snapshots, including excluded lieu, remain evidence only."
+  ]
+}

@@ -1,0 +1,2776 @@
+
+> test
+> node scripts/run-tests.mjs
+
+Discovered 134 test files; running 134.
+
+> node tests/altervordes-multilingual-conclusion.test.mjs
+Alter vordes multilingual conclusion tests passed.
+
+> node tests/altervordes-prompts.test.mjs
+Alter vordes binary derivational potential tests passed.
+
+> node tests/association-demographic-weighting.test.mjs
+association demographic weighting tests passed
+
+> node tests/associative-action-checkpoint.test.mjs
+TAP version 13
+# Subtest: action checkpoint covers all saved IDs, preserves source hashes, and separates lexical and name branches
+ok 1 - action checkpoint covers all saved IDs, preserves source hashes, and separates lexical and name branches
+  ---
+  duration_ms: 1178.458798
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1181.957216
+
+> node tests/associative-action-extension.test.mjs
+TAP version 13
+# Subtest: action extension preserves the complete decision frame and all original accepted records
+ok 1 - action extension preserves the complete decision frame and all original accepted records
+  ---
+  duration_ms: 3455.022722
+  type: 'test'
+  ...
+# Subtest: new reviewed action compounds reach runtime while source measurements and components remain intact
+ok 2 - new reviewed action compounds reach runtime while source measurements and components remain intact
+  ---
+  duration_ms: 2451.923781
+  type: 'test'
+  ...
+# Subtest: reapplying the extension fails before changing any corpus file
+ok 3 - reapplying the extension fails before changing any corpus file
+  ---
+  duration_ms: 37.796904
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5948.373936
+
+> node tests/associative-action-independent-heads.test.mjs
+Action head delta: 52,277 IDs conserved; earlier positives and complete source records preserved.
+
+> node tests/associative-action-italian-stage.test.mjs
+TAP version 13
+# Subtest: Italian action stage overlays only pending IDs and preserves the complete source frame and runtime selection
+ok 1 - Italian action stage overlays only pending IDs and preserves the complete source frame and runtime selection
+  ---
+  duration_ms: 1015.686998
+  type: 'test'
+  ...
+# Subtest: Italian nominal bases are unchanged existing corpus records, not synthetic lemma IDs
+ok 2 - Italian nominal bases are unchanged existing corpus records, not synthetic lemma IDs
+  ---
+  duration_ms: 5242.894967
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6264.09356
+
+> node tests/associative-action-materialization.test.mjs
+TAP version 13
+# Subtest: action uses only adjudicated heads, retains source fields and all independent components
+ok 1 - action uses only adjudicated heads, retains source fields and all independent components
+  ---
+  duration_ms: 1068.467809
+  type: 'test'
+  ...
+# Subtest: action runtime keeps national actor/action forms and withholds unrelated suffixes, names and overlaps
+ok 2 - action runtime keeps national actor/action forms and withholds unrelated suffixes, names and overlaps
+  ---
+  duration_ms: 4568.931786
+  type: 'test'
+  ...
+# Subtest: action checkpoint is immutable and a repeated materialization refuses before writes
+ok 3 - action checkpoint is immutable and a repeated materialization refuses before writes
+  ---
+  duration_ms: 791.272677
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6485.897593
+
+> node tests/associative-action-russian-heads.test.mjs
+Russian action review: exact source records retained, 40 independent heads excluded, all prior positives conserved.
+
+> node tests/associative-affix-boundary.test.mjs
+Associative affix boundary tests passed.
+
+> node tests/associative-atomic-pipeline.test.mjs
+Associative production pipeline integration tests passed.
+
+> node tests/associative-build-component-preservation.test.mjs
+TAP version 13
+# Subtest: methodology controls upsert inter while preserving independent components and source evidence
+ok 1 - methodology controls upsert inter while preserving independent components and source evidence
+  ---
+  duration_ms: 5.921444
+  type: 'test'
+  ...
+# Subtest: review-required components survive even with no automatic root nodes or usable etymon key
+ok 2 - review-required components survive even with no automatic root nodes or usable etymon key
+  ---
+  duration_ms: 6.382117
+  type: 'test'
+  ...
+# Subtest: Latin ending proposals cannot merge Actium with actio or create duplicate observatio containers
+ok 3 - Latin ending proposals cannot merge Actium with actio or create duplicate observatio containers
+  ---
+  duration_ms: 2.099066
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18.390495
+
+> node tests/associative-candidate-finder.test.mjs
+associative candidate finder family tests passed
+
+> node tests/associative-candidate-index-loader-missing-shards.test.mjs
+associative candidate-index missing shard tests passed
+
+> node tests/associative-candidate-index-loader.test.mjs
+ok - manifest loads once and repeated calls share cache
+ok - concurrent manifest calls use one promise
+ok - loads only needed shard for root and not the whole language
+ok - repeat shard request uses cache
+ok - different languages have different shard cache keys
+ok - missing language returns LANGUAGE_NOT_INDEXED
+ok - missing shard returns SHARD_NOT_LISTED
+ok - manifest HTTP error returns MANIFEST_FETCH_FAILED
+ok - damaged manifest is rejected
+ok - incompatible version is rejected
+ok - incompatible normalizer_version is rejected
+ok - shard HTTP error returns SHARD_FETCH_FAILED
+ok - damaged shard is rejected and not returned as empty array
+ok - normalizes legacy fixture source metadata without deriving category from id
+ok - source category is required even when legacy id contains one
+ok - entry without sources is rejected
+ok - non-finite frequency_score is rejected
+ok - AbortSignal stops operation without poisoning cache
+ok - passes AbortSignal to fetch options
+ok - abort cancels the mock shard request and returns ABORTED
+ok - aborted shard is not cached and retry performs a new fetch
+ok - completed shard cache survives an aborted consumer
+ok - completed manifest cache is shared after successful load
+ok - diagnostics count fetches and cache hits
+ok - special roots add _other only when needed and skip if not listed
+ok - production base URL is relative and overridable
+
+> node tests/associative-candidate-integrity.test.mjs
+Associative deterministic candidate-integrity tests passed.
+
+> node tests/associative-component-materialization.test.mjs
+TAP version 13
+# Subtest: historical eleven-link removal remains reproducible after the full exact-component review
+ok 1 - historical eleven-link removal remains reproducible after the full exact-component review
+  ---
+  duration_ms: 203.226408
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 206.443156
+
+> node tests/associative-component-membership.test.mjs
+TAP version 13
+# Subtest: reviewed prepositional compounds survive curated precedence without approving substring peers
+ok 1 - reviewed prepositional compounds survive curated precedence without approving substring peers
+  ---
+  duration_ms: 2.053688
+  type: 'test'
+  ...
+# Subtest: component controls cannot cross language, family, or rejected corpus status
+ok 2 - component controls cannot cross language, family, or rejected corpus status
+  ---
+  duration_ms: 0.364638
+  type: 'test'
+  ...
+# Subtest: component templates request membership review while keeping whole-lemma union disabled
+ok 3 - component templates request membership review while keeping whole-lemma union disabled
+  ---
+  duration_ms: 0.63836
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7.981622
+
+> node tests/associative-creation-reflex.test.mjs
+TAP version 13
+# Subtest: creation queries expose all reviewed national forms and preserve corpus measurements
+ok 1 - creation queries expose all reviewed national forms and preserve corpus measurements
+  ---
+  duration_ms: 2709.561156
+  type: 'test'
+  ...
+# Subtest: creation decisions cover the entire checkpoint and withhold unresolved candidates
+ok 2 - creation decisions cover the entire checkpoint and withhold unresolved candidates
+  ---
+  duration_ms: 92.556107
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2805.335281
+
+> node tests/associative-credit-mute-heads.test.mjs
+TAP version 13
+# Subtest: credit/mute review preserves every prior accepted record and exact pending source
+ok 1 - credit/mute review preserves every prior accepted record and exact pending source
+  ---
+  duration_ms: 150.46806
+  type: 'test'
+  ...
+# Subtest: credit/mute review reconstructs exact archived artifacts
+ok 2 - credit/mute review reconstructs exact archived artifacts
+  ---
+  duration_ms: 318.356684
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 473.30523
+
+> node tests/associative-exact-components.test.mjs
+TAP version 13
+# Subtest: all frozen source-supported decisions reach runtime without a twenty-word cap or etymology-only substitutions
+ok 1 - all frozen source-supported decisions reach runtime without a twenty-word cap or etymology-only substitutions
+  ---
+  duration_ms: 4169.707114
+  type: 'test'
+  ...
+# Subtest: checkpoint artifacts and unrelated contents of changed shards are preserved
+ok 2 - checkpoint artifacts and unrelated contents of changed shards are preserved
+  ---
+  duration_ms: 1114.749869
+  type: 'test'
+  ...
+# Subtest: exact runtime guard rejects a stale manually linked etymological allomorph
+ok 3 - exact runtime guard rejects a stale manually linked etymological allomorph
+  ---
+  duration_ms: 0.795636
+  type: 'test'
+  ...
+# Subtest: continuation preserves frozen decisions and assigns a traceable disposition to every retrieved candidate
+ok 4 - continuation preserves frozen decisions and assigns a traceable disposition to every retrieved candidate
+  ---
+  duration_ms: 493.33303
+  type: 'test'
+  ...
+# Subtest: preposition mode uses the complete reviewed inter family in all languages without broad fallback
+ok 5 - preposition mode uses the complete reviewed inter family in all languages without broad fallback
+  ---
+  duration_ms: 525.481015
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6313.439634
+
+> node tests/associative-family-annotation-scoring.test.mjs
+TAP version 13
+# Subtest: Wilson interval is finite and contains the observed precision
+ok 1 - Wilson interval is finite and contains the observed precision
+  ---
+  duration_ms: 0.833913
+  type: 'test'
+  ...
+# Subtest: agreement statistics preserve uncertain as its own category
+ok 2 - agreement statistics preserve uncertain as its own category
+  ---
+  duration_ms: 0.183556
+  type: 'test'
+  ...
+# Subtest: weighted precision reports resolved, conservative and optimistic estimates
+ok 3 - weighted precision reports resolved, conservative and optimistic estimates
+  ---
+  duration_ms: 0.126841
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6.776965
+
+> node tests/associative-family-corrective-v5.test.mjs
+TAP version 13
+# Subtest: corrective build accepts an immutable input-lock artifact
+ok 1 - corrective build accepts an immutable input-lock artifact
+  ---
+  duration_ms: 1.135116
+  type: 'test'
+  ...
+# Subtest: structured expansion never pairs lang and term from adjacent nodes
+ok 2 - structured expansion never pairs lang and term from adjacent nodes
+  ---
+  duration_ms: 2.931856
+  type: 'test'
+  ...
+# Subtest: malformed and unknown expansion data are review-only
+ok 3 - malformed and unknown expansion data are review-only
+  ---
+  duration_ms: 0.390647
+  type: 'test'
+  ...
+# Subtest: etymon ancestry is typed, depth-aware, and cannot merge
+ok 4 - etymon ancestry is typed, depth-aware, and cannot merge
+  ---
+  duration_ms: 0.207452
+  type: 'test'
+  ...
+# Subtest: direct templates use an explicit typed policy
+ok 5 - direct templates use an explicit typed policy
+  ---
+  duration_ms: 0.281002
+  type: 'test'
+  ...
+# Subtest: etymologyPairs preserves uncertain evidence instead of inventing equivalence
+ok 6 - etymologyPairs preserves uncertain evidence instead of inventing equivalence
+  ---
+  duration_ms: 0.168643
+  type: 'test'
+  ...
+# Subtest: exact seed claims do not absorb an automatic family transitively
+ok 7 - exact seed claims do not absorb an automatic family transitively
+  ---
+  duration_ms: 0.751379
+  type: 'test'
+  ...
+# Subtest: short accidental prefix cannot anchor valkyrie and walkure equivalence
+ok 8 - short accidental prefix cannot anchor valkyrie and walkure equivalence
+  ---
+  duration_ms: 0.123736
+  type: 'test'
+  ...
+# Subtest: automatic canonical scoring rejects a two-letter accidental anchor
+ok 9 - automatic canonical scoring rejects a two-letter accidental anchor
+  ---
+  duration_ms: 0.473411
+  type: 'test'
+  ...
+# Subtest: known audit noise and generic markup are rejected deterministically
+ok 10 - known audit noise and generic markup are rejected deterministically
+  ---
+  duration_ms: 1.318381
+  type: 'test'
+  ...
+# Subtest: etymon-key distribution is deterministic and exposes the long tail
+ok 11 - etymon-key distribution is deterministic and exposes the long tail
+  ---
+  duration_ms: 4.262376
+  type: 'test'
+  ...
+# Subtest: wide etymon keys are review-only and never create automatic families
+ok 12 - wide etymon keys are review-only and never create automatic families
+  ---
+  duration_ms: 0.205178
+  type: 'test'
+  ...
+# Subtest: exact language-aware controls add the reviewed seed without deleting independent rows
+ok 13 - exact language-aware controls add the reviewed seed without deleting independent rows
+  ---
+  duration_ms: 4.655307
+  type: 'test'
+  ...
+# Subtest: verified control families cover every runtime language
+ok 14 - verified control families cover every runtime language
+  ---
+  duration_ms: 0.222685
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 22.90853
+
+> node tests/associative-family-manual-cases.test.mjs
+TAP version 13
+# Subtest: individually rejected etymologies are absent from repository-backed runtime
+ok 1 - individually rejected etymologies are absent from repository-backed runtime
+  ---
+  duration_ms: 1591.533555
+  type: 'test'
+  ...
+# Subtest: sense-ambiguous enm:net is quarantined without deleting its member data
+ok 2 - sense-ambiguous enm:net is quarantined without deleting its member data
+  ---
+  duration_ms: 49.461497
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1645.474584
+
+> node tests/associative-family-production.test.mjs
+TAP version 13
+# Subtest: discovers every compound component
+ok 1 - discovers every compound component
+  ---
+  duration_ms: 6.712899
+  type: 'test'
+  ...
+# Subtest: surface fallback preserves complete coverage
+ok 2 - surface fallback preserves complete coverage
+  ---
+  duration_ms: 0.292439
+  type: 'test'
+  ...
+# Subtest: compound containment never merges families
+ok 3 - compound containment never merges families
+  ---
+  duration_ms: 0.45218
+  type: 'test'
+  ...
+# Subtest: proto relation never merges families
+ok 4 - proto relation never merges families
+  ---
+  duration_ms: 0.096034
+  type: 'test'
+  ...
+# Subtest: equivalence requires linguistic evidence
+ok 5 - equivalence requires linguistic evidence
+  ---
+  duration_ms: 0.226891
+  type: 'test'
+  ...
+# Subtest: lemma IDs are stable and language scoped
+ok 6 - lemma IDs are stable and language scoped
+  ---
+  duration_ms: 0.167261
+  type: 'test'
+  ...
+# Subtest: lexical aliases cannot collide with JavaScript object prototypes
+ok 7 - lexical aliases cannot collide with JavaScript object prototypes
+  ---
+  duration_ms: 0.131848
+  type: 'test'
+  ...
+# Subtest: runtime resolves alias to materialized family members
+ok 8 - runtime resolves alias to materialized family members
+  ---
+  duration_ms: 1.516319
+  type: 'test'
+  ...
+# Subtest: candidate loader prefers the exhaustive family index over literal static search
+ok 9 - candidate loader prefers the exhaustive family index over literal static search
+  ---
+  duration_ms: 0.482726
+  type: 'test'
+  ...
+# Subtest: family runtime fails closed before fetching an excessive alias fan-out
+ok 10 - family runtime fails closed before fetching an excessive alias fan-out
+  ---
+  duration_ms: 0.524898
+  type: 'test'
+  ...
+# Subtest: manual override is language-aware and never exposes stale non-manual members
+ok 11 - manual override is language-aware and never exposes stale non-manual members
+  ---
+  duration_ms: 0.456676
+  type: 'test'
+  ...
+# Subtest: blocked, rejected, and split-required families never reach runtime candidates
+ok 12 - blocked, rejected, and split-required families never reach runtime candidates
+  ---
+  duration_ms: 0.276276
+  type: 'test'
+  ...
+# Subtest: v5 runtime excludes rejected corpus members while remaining v4-compatible
+ok 13 - v5 runtime excludes rejected corpus members while remaining v4-compatible
+  ---
+  duration_ms: 0.349766
+  type: 'test'
+  ...
+# Subtest: manual family with no language-specific overrides fails closed
+ok 14 - manual family with no language-specific overrides fails closed
+  ---
+  duration_ms: 0.193591
+  type: 'test'
+  ...
+# Subtest: authoritative empty family result never falls back to the static index
+ok 15 - authoritative empty family result never falls back to the static index
+  ---
+  duration_ms: 0.107141
+  type: 'test'
+  ...
+# Subtest: curated nitidus aliases return only reviewed members and never use broad fallback
+ok 16 - curated nitidus aliases return only reviewed members and never use broad fallback
+  ---
+  duration_ms: 1508.795099
+  type: 'test'
+  ...
+# Subtest: Russian curated short aliases preserve complete ordinary results in other languages
+ok 17 - Russian curated short aliases preserve complete ordinary results in other languages
+  ---
+  duration_ms: 9107.559908
+  type: 'test'
+  ...
+# Subtest: empty, rejected or malformed curated members never suppress ordinary language results
+ok 18 - empty, rejected or malformed curated members never suppress ordinary language results
+  ---
+  duration_ms: 0.840453
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10633.217752
+
+> node tests/associative-family-routing-repairs.test.mjs
+TAP version 13
+# Subtest: val routing retains member arrays, alternate roots, exact full results and no fallback
+ok 1 - val routing retains member arrays, alternate roots, exact full results and no fallback
+  ---
+  duration_ms: 7383.073783
+  type: 'test'
+  ...
+# Subtest: Russian short batch has only reviewed members, without cross-language suppression or fallback
+ok 2 - Russian short batch has only reviewed members, without cross-language suppression or fallback
+  ---
+  duration_ms: 8897.181888
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16284.816917
+
+> node tests/associative-family-runtime-benchmark.test.mjs
+TAP version 13
+# Subtest: runtime benchmark percentiles are deterministic nearest-rank values
+ok 1 - runtime benchmark percentiles are deterministic nearest-rank values
+  ---
+  duration_ms: 0.464338
+  type: 'test'
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4.21744
+
+> node tests/associative-family-semantic-sampling.test.mjs
+TAP version 13
+# Subtest: semantic sample locks its input and requested size
+ok 1 - semantic sample locks its input and requested size
+  ---
+  duration_ms: 0.490617
+  type: 'test'
+  ...
+# Subtest: stratified selection is deterministic and visits distinct strata first
+ok 2 - stratified selection is deterministic and visits distinct strata first
+  ---
+  duration_ms: 5.276832
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10.444881
+
+> node tests/associative-family-v6-architecture.test.mjs
+TAP version 13
+# Subtest: canonical decisions choose ped and preserve creat; no mechanical stripping
+ok 1 - canonical decisions choose ped and preserve creat; no mechanical stripping
+  ---
+  duration_ms: 3.118618
+  type: 'test'
+  ...
+# Subtest: surface, etymon and alias do not grant identity or membership
+ok 2 - surface, etymon and alias do not grant identity or membership
+  ---
+  duration_ms: 1.282348
+  type: 'test'
+  ...
+# Subtest: finite morphology is family and language bound, including cross-script reflexes
+ok 3 - finite morphology is family and language bound, including cross-script reflexes
+  ---
+  duration_ms: 0.389266
+  type: 'test'
+  ...
+# Subtest: invented corpus IDs, words, languages, conflicts and unlisted propagation are rejected
+ok 4 - invented corpus IDs, words, languages, conflicts and unlisted propagation are rejected
+  ---
+  duration_ms: 0.374924
+  type: 'test'
+  ...
+# Subtest: one versioned negative-head review deterministically resolves exact finite links
+ok 5 - one versioned negative-head review deterministically resolves exact finite links
+  ---
+  duration_ms: 0.310917
+  type: 'test'
+  ...
+# Subtest: duplicate metrics are review aids and never merge identities
+ok 6 - duplicate metrics are review aids and never merge identities
+  ---
+  duration_ms: 0.194232
+  type: 'test'
+  ...
+# Subtest: current review frames conserve latest decisions and exclude duplicate historical pending rows
+ok 7 - current review frames conserve latest decisions and exclude duplicate historical pending rows
+  ---
+  duration_ms: 294.288566
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 305.547241
+
+> node tests/associative-family-v6-baseline-corrections.test.mjs
+TAP version 13
+# Subtest: synthetic accepted to excluded retains measured rows, sibling scope, other family and historical acceptance
+ok 1 - synthetic accepted to excluded retains measured rows, sibling scope, other family and historical acceptance
+  ---
+  duration_ms: 9.262814
+  type: 'test'
+  ...
+# Subtest: synthetic accepted to uncertain retains measured rows, sibling scope, other family and historical acceptance
+ok 2 - synthetic accepted to uncertain retains measured rows, sibling scope, other family and historical acceptance
+  ---
+  duration_ms: 2.12173
+  type: 'test'
+  ...
+# Subtest: synthetic rejects unknown correction atomically
+ok 3 - synthetic rejects unknown correction atomically
+  ---
+  duration_ms: 2.158504
+  type: 'test'
+  ...
+# Subtest: synthetic rejects stale previous hash atomically
+ok 4 - synthetic rejects stale previous hash atomically
+  ---
+  duration_ms: 1.260384
+  type: 'test'
+  ...
+# Subtest: synthetic rejects stale edge hash atomically
+ok 5 - synthetic rejects stale edge hash atomically
+  ---
+  duration_ms: 1.541607
+  type: 'test'
+  ...
+# Subtest: synthetic rejects partial wrong-ID scope atomically
+ok 6 - synthetic rejects partial wrong-ID scope atomically
+  ---
+  duration_ms: 1.395889
+  type: 'test'
+  ...
+# Subtest: synthetic rejects omitted dossier ID atomically
+ok 7 - synthetic rejects omitted dossier ID atomically
+  ---
+  duration_ms: 1.043539
+  type: 'test'
+  ...
+# Subtest: synthetic rejects changed measured row atomically
+ok 8 - synthetic rejects changed measured row atomically
+  ---
+  duration_ms: 1.170149
+  type: 'test'
+  ...
+# Subtest: synthetic rejects missing authorization atomically
+ok 9 - synthetic rejects missing authorization atomically
+  ---
+  duration_ms: 2.183142
+  type: 'test'
+  ...
+# Subtest: synthetic rejects string authorization atomically
+ok 10 - synthetic rejects string authorization atomically
+  ---
+  duration_ms: 2.096842
+  type: 'test'
+  ...
+# Subtest: synthetic rejects missing individual evidence atomically
+ok 11 - synthetic rejects missing individual evidence atomically
+  ---
+  duration_ms: 1.908288
+  type: 'test'
+  ...
+# Subtest: synthetic rejects invented acceptance atomically
+ok 12 - synthetic rejects invented acceptance atomically
+  ---
+  duration_ms: 2.118064
+  type: 'test'
+  ...
+# Subtest: synthetic rejects wrong previous verdict atomically
+ok 13 - synthetic rejects wrong previous verdict atomically
+  ---
+  duration_ms: 1.687506
+  type: 'test'
+  ...
+# Subtest: synthetic rejects stale version atomically
+ok 14 - synthetic rejects stale version atomically
+  ---
+  duration_ms: 1.303119
+  type: 'test'
+  ...
+# Subtest: synthetic multi-ID dossier rejects partially edited scope
+ok 15 - synthetic multi-ID dossier rejects partially edited scope
+  ---
+  duration_ms: 0.415495
+  type: 'test'
+  ...
+# Subtest: synthetic versioned uncertain revision preserves previous excluded verdict and hash
+ok 16 - synthetic versioned uncertain revision preserves previous excluded verdict and hash
+  ---
+  duration_ms: 0.738971
+  type: 'test'
+  ...
+# Subtest: synthetic baseline loss without ledger, unexpected addition, and correction search leak reject
+ok 17 - synthetic baseline loss without ledger, unexpected addition, and correction search leak reject
+  ---
+  duration_ms: 0.360141
+  type: 'test'
+  ...
+# Subtest: synthetic fixtures never enter the real registry
+ok 18 - synthetic fixtures never enter the real registry
+  ---
+  duration_ms: 0.546261
+  type: 'test'
+  ...
+# Subtest: real registry deliberately contains no invented corrections
+ok 19 - real registry deliberately contains no invented corrections
+  ---
+  duration_ms: 0.102825
+  type: 'test'
+  ...
+# Subtest: synthetic lifecycle cannot hide baseline loss upstream of the correction registry
+ok 20 - synthetic lifecycle cannot hide baseline loss upstream of the correction registry
+  ---
+  duration_ms: 0.279751
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 41.610571
+
+> node tests/associative-family-v6-contamination.test.mjs
+TAP version 13
+# Subtest: synthetic: reused arrays conserve independent routes, measured payloads and sibling links
+ok 1 - synthetic: reused arrays conserve independent routes, measured payloads and sibling links
+  ---
+  duration_ms: 2.774961
+  type: 'test'
+  ...
+# Subtest: synthetic: homonymous canonical and multiple senses stay separate overlapping questions
+ok 2 - synthetic: homonymous canonical and multiple senses stay separate overlapping questions
+  ---
+  duration_ms: 0.301193
+  type: 'test'
+  ...
+# Subtest: synthetic: every unassigned occurrence has a separate unresolved route partition
+ok 3 - synthetic: every unassigned occurrence has a separate unresolved route partition
+  ---
+  duration_ms: 0.240582
+  type: 'test'
+  ...
+# Subtest: synthetic: semantic_translation_gloss changes triage but creates no linguistic verdict
+ok 4 - synthetic: semantic_translation_gloss changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.337948
+  type: 'test'
+  ...
+# Subtest: synthetic: alias_pool_reuse changes triage but creates no linguistic verdict
+ok 5 - synthetic: alias_pool_reuse changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.210006
+  type: 'test'
+  ...
+# Subtest: synthetic: unrelated_homonym changes triage but creates no linguistic verdict
+ok 6 - synthetic: unrelated_homonym changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.161223
+  type: 'test'
+  ...
+# Subtest: synthetic: suffix_ending changes triage but creates no linguistic verdict
+ok 7 - synthetic: suffix_ending changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.148413
+  type: 'test'
+  ...
+# Subtest: synthetic: accidental_fragment changes triage but creates no linguistic verdict
+ok 8 - synthetic: accidental_fragment changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.117837
+  type: 'test'
+  ...
+# Subtest: synthetic: proper_name_identity changes triage but creates no linguistic verdict
+ok 9 - synthetic: proper_name_identity changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.235545
+  type: 'test'
+  ...
+# Subtest: synthetic: damaged_spelling changes triage but creates no linguistic verdict
+ok 10 - synthetic: damaged_spelling changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.317928
+  type: 'test'
+  ...
+# Subtest: synthetic: duplicate_routing changes triage but creates no linguistic verdict
+ok 11 - synthetic: duplicate_routing changes triage but creates no linguistic verdict
+  ---
+  duration_ms: 0.153541
+  type: 'test'
+  ...
+# Subtest: synthetic: unknown or wrong-ID scopes, stale payload and repeated occurrence reject atomically
+ok 12 - synthetic: unknown or wrong-ID scopes, stale payload and repeated occurrence reject atomically
+  ---
+  duration_ms: 1.018691
+  type: 'test'
+  ...
+# Subtest: synthetic: authority leaks, unknown flags and undocumented dictionary heads reject
+ok 13 - synthetic: authority leaks, unknown flags and undocumented dictionary heads reject
+  ---
+  duration_ms: 0.596016
+  type: 'test'
+  ...
+# Subtest: synthetic: deterministic replay and input permutation conserve exact evidence
+ok 14 - synthetic: deterministic replay and input permutation conserve exact evidence
+  ---
+  duration_ms: 0.806503
+  type: 'test'
+  ...
+# Subtest: real: val Russian and independent tower conservation; permanent negatives remain separate
+ok 15 - real: val Russian and independent tower conservation; permanent negatives remain separate
+  ---
+  duration_ms: 724.236592
+  type: 'test'
+  ...
+# Subtest: real: system→состав and botanical anis→scientific aniso never enter current accepted search
+ok 16 - real: system→состав and botanical anis→scientific aniso never enter current accepted search
+  ---
+  duration_ms: 36.891727
+  type: 'test'
+  ...
+# Subtest: synthetic: language and source-route swaps cannot preserve only ID/count while moving proof
+ok 17 - synthetic: language and source-route swaps cannot preserve only ID/count while moving proof
+  ---
+  duration_ms: 0.580222
+  type: 'test'
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 821.214753
+
+> node tests/associative-family-v6-head-lifecycle.test.mjs
+TAP version 13
+# Subtest: synthetic correction preserves source and immutable input, rejects repeated/stale/conflicting predecessor
+ok 1 - synthetic correction preserves source and immutable input, rejects repeated/stale/conflicting predecessor
+  ---
+  duration_ms: 4.028225
+  type: 'test'
+  ...
+# Subtest: synthetic head supports independent accepted, excluded and uncertain family edges
+ok 2 - synthetic head supports independent accepted, excluded and uncertain family edges
+  ---
+  duration_ms: 6.926352
+  type: 'test'
+  ...
+# Subtest: synthetic finite additions require identity, boundary and a fresh full scope; no inherited verdict
+ok 3 - synthetic finite additions require identity, boundary and a fresh full scope; no inherited verdict
+  ---
+  duration_ms: 1.699665
+  type: 'test'
+  ...
+# Subtest: synthetic clarification keeps identity and old proofs addressable
+ok 4 - synthetic clarification keeps identity and old proofs addressable
+  ---
+  duration_ms: 1.11073
+  type: 'test'
+  ...
+# Subtest: synthetic queue history determines latest state without unique-count inflation
+ok 5 - synthetic queue history determines latest state without unique-count inflation
+  ---
+  duration_ms: 1.494977
+  type: 'test'
+  ...
+# Subtest: real registry proof is exactly one immutable Systeme ID and cannot contain synthetic fixtures
+ok 6 - real registry proof is exactly one immutable Systeme ID and cannot contain synthetic fixtures
+  ---
+  duration_ms: 564.074291
+  type: 'test'
+  ...
+# Subtest: synthetic independent uncertain edge keeps a reused head in the other queue benchmark
+ok 7 - synthetic independent uncertain edge keeps a reused head in the other queue benchmark
+  ---
+  duration_ms: 1.558363
+  type: 'test'
+  ...
+# Subtest: synthetic extension retains one benchmark head across initial and lifecycle identity proofs
+ok 8 - synthetic extension retains one benchmark head across initial and lifecycle identity proofs
+  ---
+  duration_ms: 0.94475
+  type: 'test'
+  ...
+# Subtest: synthetic extend_links adds only the explicitly segmented component without whole-compound identity
+ok 9 - synthetic extend_links adds only the explicitly segmented component without whole-compound identity
+  ---
+  duration_ms: 1.070018
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 588.659499
+
+> node tests/associative-family-v6-head-recognition.test.mjs
+TAP version 13
+# Subtest: finite recognition validates language, whole source spelling and independent identity evidence
+ok 1 - finite recognition validates language, whole source spelling and independent identity evidence
+  ---
+  duration_ms: 0.973193
+  type: 'test'
+  ...
+# Subtest: same spelling with incompatible senses remains unmerged
+ok 2 - same spelling with incompatible senses remains unmerged
+  ---
+  duration_ms: 0.168023
+  type: 'test'
+  ...
+# Subtest: morphology retrieval cannot resolve a record, and finite scopes never match future strings
+ok 3 - morphology retrieval cannot resolve a record, and finite scopes never match future strings
+  ---
+  duration_ms: 0.198358
+  type: 'test'
+  ...
+# Subtest: shared component head does not assert identity of the whole compound
+ok 4 - shared component head does not assert identity of the whole compound
+  ---
+  duration_ms: 0.118017
+  type: 'test'
+  ...
+# Subtest: new compound reviews retain exact component proof in materialized links
+ok 5 - new compound reviews retain exact component proof in materialized links
+  ---
+  duration_ms: 2.391756
+  type: 'test'
+  ...
+# Subtest: pending review acceleration is separate from resolving investigated uncertainties
+ok 6 - pending review acceleration is separate from resolving investigated uncertainties
+  ---
+  duration_ms: 0.606371
+  type: 'test'
+  ...
+# Subtest: uncertain family review groups proven identities but preserves the entire active queue
+ok 7 - uncertain family review groups proven identities but preserves the entire active queue
+  ---
+  duration_ms: 1.379654
+  type: 'test'
+  ...
+# Subtest: research-only withdrawn evidence cannot mutate finite review bindings
+ok 8 - research-only withdrawn evidence cannot mutate finite review bindings
+  ---
+  duration_ms: 44.53049
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 56.680384
+
+> node tests/associative-family-v6-migration.test.mjs
+TAP version 13
+# Subtest: full global inventory and generated artifacts retain exact manual counts and fingerprints
+ok 1 - full global inventory and generated artifacts retain exact manual counts and fingerprints
+  ---
+  duration_ms: 225.206158
+  type: 'test'
+  ...
+# Subtest: parallel runtime distinguishes user families, exact corpus proofs and val evidence targets
+ok 2 - parallel runtime distinguishes user families, exact corpus proofs and val evidence targets
+  ---
+  duration_ms: 284.833898
+  type: 'test'
+  ...
+# Subtest: shadow routing retains normal accent/transliteration handling without granting substring membership
+ok 3 - shadow routing retains normal accent/transliteration handling without granting substring membership
+  ---
+  duration_ms: 96.159325
+  type: 'test'
+  ...
+# Subtest: production corpus enumeration retains every original ID including optional zero-family records
+ok 4 - production corpus enumeration retains every original ID including optional zero-family records
+  ---
+  duration_ms: 2.569322
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 619.177649
+
+> node tests/associative-family-v6-packet-lifecycle.test.mjs
+TAP version 13
+# Subtest: synthetic fixtures require explicit mode and expose seven review states
+ok 1 - synthetic fixtures require explicit mode and expose seven review states
+  ---
+  duration_ms: 0.945562
+  type: 'test'
+  ...
+# Subtest: synthetic partial promotion retains residual IDs and routes
+ok 2 - synthetic partial promotion retains residual IDs and routes
+  ---
+  duration_ms: 0.437478
+  type: 'test'
+  ...
+# Subtest: synthetic split and deferred subset need a blocker
+ok 3 - synthetic split and deferred subset need a blocker
+  ---
+  duration_ms: 5.300208
+  type: 'test'
+  ...
+# Subtest: synthetic scoped rejection does not delete sources or authorize exclusion
+ok 4 - synthetic scoped rejection does not delete sources or authorize exclusion
+  ---
+  duration_ms: 0.247763
+  type: 'test'
+  ...
+# Subtest: synthetic canonical-only, missing identity/edge and fake dossier cannot promote
+ok 5 - synthetic canonical-only, missing identity/edge and fake dossier cannot promote
+  ---
+  duration_ms: 0.211779
+  type: 'test'
+  ...
+# Subtest: synthetic wrong families, translations, unmaterialized bindings and authority leaks fail
+ok 6 - synthetic wrong families, translations, unmaterialized bindings and authority leaks fail
+  ---
+  duration_ms: 0.224167
+  type: 'test'
+  ...
+# Subtest: synthetic wrong IDs/routes, duplicate events, stale versions and dropped evidence fail
+ok 7 - synthetic wrong IDs/routes, duplicate events, stale versions and dropped evidence fail
+  ---
+  duration_ms: 0.223856
+  type: 'test'
+  ...
+# Subtest: synthetic all-reviewed rejection residuals never become fully promoted
+ok 8 - synthetic all-reviewed rejection residuals never become fully promoted
+  ---
+  duration_ms: 0.134723
+  type: 'test'
+  ...
+# Subtest: real sample and zero-v5 triage preserve exact IDs and remain review-only
+ok 9 - real sample and zero-v5 triage preserve exact IDs and remain review-only
+  ---
+  duration_ms: 14.404062
+  type: 'test'
+  ...
+# Subtest: real promotion and extension reuse three heads and one atom identity
+ok 10 - real promotion and extension reuse three heads and one atom identity
+  ---
+  duration_ms: 109.7614
+  type: 'test'
+  ...
+# Subtest: real partial packet state preserves unreviewed source frame and scoped negatives
+ok 11 - real partial packet state preserves unreviewed source frame and scoped negatives
+  ---
+  duration_ms: 20.738043
+  type: 'test'
+  ...
+# Subtest: real fake hashes, source paths, translation relation and synthetic registry entries fail
+ok 12 - real fake hashes, source paths, translation relation and synthetic registry entries fail
+  ---
+  duration_ms: 874.733836
+  type: 'test'
+  ...
+# Subtest: real preflight needs component boundary and refuses repeated initial promotion
+ok 13 - real preflight needs component boundary and refuses repeated initial promotion
+  ---
+  duration_ms: 3.25972
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1034.087472
+
+> node tests/associative-family-v6-promotions.test.mjs
+TAP version 13
+# Subtest: promotion has twelve real IDs, six national rows and a separate derivational head
+ok 1 - promotion has twelve real IDs, six national rows and a separate derivational head
+  ---
+  duration_ms: 8.062029
+  type: 'test'
+  ...
+# Subtest: research-only, unapproved heads and container imports fail before materialization
+ok 2 - research-only, unapproved heads and container imports fail before materialization
+  ---
+  duration_ms: 1.140724
+  type: 'test'
+  ...
+# Subtest: translation, invented IDs, duplicate IDs and accidental boundaries cannot acquire memberships
+ok 3 - translation, invented IDs, duplicate IDs and accidental boundaries cannot acquire memberships
+  ---
+  duration_ms: 1.434977
+  type: 'test'
+  ...
+# Subtest: changed source evidence and corpus snapshots are rejected
+ok 4 - changed source evidence and corpus snapshots are rejected
+  ---
+  duration_ms: 211.208824
+  type: 'test'
+  ...
+# Subtest: all pre-promotion memberships and known resolution statistics remain unchanged
+ok 5 - all pre-promotion memberships and known resolution statistics remain unchanged
+  ---
+  duration_ms: 285.437336
+  type: 'test'
+  ...
+# Subtest: Prompt 02 admits six anis rows while all seven tower aggregates remain individually withheld
+ok 6 - Prompt 02 admits six anis rows while all seven tower aggregates remain individually withheld
+  ---
+  duration_ms: 2.337454
+  type: 'test'
+  ...
+# Subtest: finite senses policy rejects promotion of unresolved lexical histories and lost frequency limitations
+ok 7 - finite senses policy rejects promotion of unresolved lexical histories and lost frequency limitations
+  ---
+  duration_ms: 3.034361
+  type: 'test'
+  ...
+# Subtest: documented torre homonyms require withholding regardless of rarity or unknown POS
+ok 8 - documented torre homonyms require withholding regardless of rarity or unknown POS
+  ---
+  duration_ms: 0.920984
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 517.040177
+
+> node tests/associative-family-v6-queue-organization.test.mjs
+TAP version 13
+# Subtest: synthetic: one corpus ID retains accepted, negative and uncertain independent questions
+ok 1 - synthetic: one corpus ID retains accepted, negative and uncertain independent questions
+  ---
+  duration_ms: 6.663226
+  type: 'test'
+  ...
+# Subtest: synthetic: two components remain independent identities for one word
+ok 2 - synthetic: two components remain independent identities for one word
+  ---
+  duration_ms: 0.280592
+  type: 'test'
+  ...
+# Subtest: synthetic: correction and uncertain retention conserve exact source IDs and routes
+ok 3 - synthetic: correction and uncertain retention conserve exact source IDs and routes
+  ---
+  duration_ms: 1.276909
+  type: 'test'
+  ...
+# Subtest: synthetic: morphology retrieval cannot create proved reduction or membership
+ok 4 - synthetic: morphology retrieval cannot create proved reduction or membership
+  ---
+  duration_ms: 0.297027
+  type: 'test'
+  ...
+# Subtest: synthetic: stale/unknown packet scope, duplicates and conflicting corpus identity reject
+ok 5 - synthetic: stale/unknown packet scope, duplicates and conflicting corpus identity reject
+  ---
+  duration_ms: 0.963919
+  type: 'test'
+  ...
+# Subtest: historical labels and legacy exact membership do not establish new identity
+ok 6 - historical labels and legacy exact membership do not establish new identity
+  ---
+  duration_ms: 0.086741
+  type: 'test'
+  ...
+# Subtest: synthetic: historical and candidate pools remain open independently of current metrics
+ok 7 - synthetic: historical and candidate pools remain open independently of current metrics
+  ---
+  duration_ms: 0.288453
+  type: 'test'
+  ...
+# Subtest: real saved cache covers multilingual positive, negative and uncertain finite branches
+ok 8 - real saved cache covers multilingual positive, negative and uncertain finite branches
+  ---
+  duration_ms: 1048.333568
+  type: 'test'
+  ...
+# Subtest: synthetic: regroup and finite additions preserve task identity across movable positions
+ok 9 - synthetic: regroup and finite additions preserve task identity across movable positions
+  ---
+  duration_ms: 0.576206
+  type: 'test'
+  ...
+# Subtest: current planning cache tracks finite decisions independently of the frozen historical cache
+ok 10 - current planning cache tracks finite decisions independently of the frozen historical cache
+  ---
+  duration_ms: 67.861217
+  type: 'test'
+  ...
+# Subtest: synthetic per-question correction preserves historical occurrence and sibling family verdict
+ok 11 - synthetic per-question correction preserves historical occurrence and sibling family verdict
+  ---
+  duration_ms: 0.766503
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1134.001082
+
+> node tests/associative-family-v6-realizations.test.mjs
+TAP version 13
+# Subtest: productive realization requires independently scoped head evidence
+ok 1 - productive realization requires independently scoped head evidence
+  ---
+  duration_ms: 0.69833
+  type: 'test'
+  ...
+# Subtest: inflections, branch stems and aliases cannot grant a general reflex
+ok 2 - inflections, branch stems and aliases cannot grant a general reflex
+  ---
+  duration_ms: 0.555394
+  type: 'test'
+  ...
+# Subtest: reviewed catalog separates syncretic creation forms and Italian action branches
+ok 3 - reviewed catalog separates syncretic creation forms and Italian action branches
+  ---
+  duration_ms: 1.627015
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7.687055
+
+> node tests/associative-family-v6-senses-policy.test.mjs
+TAP version 13
+# Subtest: common base survives POS ambiguity without token or frequency claims
+ok 1 - common base survives POS ambiguity without token or frequency claims
+  ---
+  duration_ms: 0.473391
+  type: 'test'
+  ...
+# Subtest: different lexical histories cannot be selected by dominant frequency
+ok 2 - different lexical histories cannot be selected by dominant frequency
+  ---
+  duration_ms: 0.094472
+  type: 'test'
+  ...
+# Subtest: hypothetical name does not become observed pollution or a veto
+ok 3 - hypothetical name does not become observed pollution or a veto
+  ---
+  duration_ms: 0.063475
+  type: 'test'
+  ...
+# Subtest: unproved morphology and missing lexical evidence remain blockers
+ok 4 - unproved morphology and missing lexical evidence remain blockers
+  ---
+  duration_ms: 0.631869
+  type: 'test'
+  ...
+# Subtest: real 25-row adjudication preserves individual blockers and shared sistema base
+ok 5 - real 25-row adjudication preserves individual blockers and shared sistema base
+  ---
+  duration_ms: 0.829107
+  type: 'test'
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 5
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7.331391
+
+> node tests/associative-family-v6-stage-authorization.test.mjs
+TAP version 13
+# Subtest: finite stage rejects missing binding before registry mutation
+ok 1 - finite stage rejects missing binding before registry mutation
+  ---
+  duration_ms: 28.121973
+  type: 'test'
+  ...
+# Subtest: finite stage rejects false binding before registry mutation
+ok 2 - finite stage rejects false binding before registry mutation
+  ---
+  duration_ms: 26.187194
+  type: 'test'
+  ...
+# Subtest: finite stage rejects string binding before registry mutation
+ok 3 - finite stage rejects string binding before registry mutation
+  ---
+  duration_ms: 24.814801
+  type: 'test'
+  ...
+# Subtest: finite stage rejects missing acceptance before registry mutation
+ok 4 - finite stage rejects missing acceptance before registry mutation
+  ---
+  duration_ms: 24.506589
+  type: 'test'
+  ...
+# Subtest: finite stage rejects false acceptance before registry mutation
+ok 5 - finite stage rejects false acceptance before registry mutation
+  ---
+  duration_ms: 24.649923
+  type: 'test'
+  ...
+# Subtest: finite stage rejects synthetic registry before registry mutation
+ok 6 - finite stage rejects synthetic registry before registry mutation
+  ---
+  duration_ms: 24.571275
+  type: 'test'
+  ...
+# Subtest: finite stage rejects stale version before registry mutation
+ok 7 - finite stage rejects stale version before registry mutation
+  ---
+  duration_ms: 25.622876
+  type: 'test'
+  ...
+# Subtest: finite stage rejects stale hash before registry mutation
+ok 8 - finite stage rejects stale hash before registry mutation
+  ---
+  duration_ms: 27.174256
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 211.546042
+
+> node tests/associative-frequency-top-five.test.mjs
+Associative match-quality-first top-five tests passed.
+
+> node tests/associative-growth-fold-heads.test.mjs
+TAP version 13
+# Subtest: growth/fold review preserves every prior accepted record and exact pending source
+ok 1 - growth/fold review preserves every prior accepted record and exact pending source
+  ---
+  duration_ms: 83.093557
+  type: 'test'
+  ...
+# Subtest: growth/fold review reconstructs exact archived artifacts
+ok 2 - growth/fold review reconstructs exact archived artifacts
+  ---
+  duration_ms: 199.105653
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 290.70173
+
+> node tests/associative-index-builder.test.mjs
+
+> node tests/associative-index-core.test.mjs
+
+> node tests/associative-index-empty-search-form.test.mjs
+associative index empty search_form tests passed
+
+> node tests/associative-index-large-range.test.mjs
+associative index large numeric range tests passed
+
+> node tests/associative-index-memory-audit.test.mjs
+associative index memory audit tests passed
+
+> node tests/associative-index-merge.test.mjs
+ok - six valid artifacts merge into one separated candidate-index manifest
+ok - rejects five artifacts when ru is missing
+ok - rejects incompatible version
+ok - rejects incompatible normalizer_version
+ok - rejects missing shard
+ok - rejects incorrect entries metadata
+ok - rejects candidate without sources
+ok - rejects damaged non-finite number value
+ok - rejects language mismatch between directory and manifest
+ok - error keeps existing output and removes temp directory
+ok - rerun is deterministic, does not duplicate, and removes stale shards
+ok - input directory order does not change manifest
+ok - one artifact cannot silently overwrite another language
+ok - rejects incompatible global_config_hash
+
+> node tests/associative-index-russian-normalization.test.mjs
+
+> node tests/associative-index-validator.test.mjs
+
+> node tests/associative-index-workflow.test.mjs
+
+> node tests/associative-information-repair.test.mjs
+TAP version 13
+# Subtest: broader inform root preserves the historical reviewed information subset and restores informational derivatives
+ok 1 - broader inform root preserves the historical reviewed information subset and restores informational derivatives
+  ---
+  duration_ms: 2770.70656
+  type: 'test'
+  ...
+# Subtest: untouched information neighbours and source memberships remain byte-equivalent; retired etymon containers are archived
+ok 2 - untouched information neighbours and source memberships remain byte-equivalent; retired etymon containers are archived
+  ---
+  duration_ms: 2542.145483
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 5317.066407
+
+> node tests/associative-loc-reflex.test.mjs
+TAP version 13
+# Subtest: loc and lok expose the complete reviewed place-root family with original members and corpus measurements intact
+ok 1 - loc and lok expose the complete reviewed place-root family with original members and corpus measurements intact
+  ---
+  duration_ms: 3255.601842
+  type: 'test'
+  ...
+# Subtest: loc repair keeps unrelated shard contents and supplies a disposition for every saved lok spelling candidate
+ok 2 - loc repair keeps unrelated shard contents and supplies a disposition for every saved lok spelling candidate
+  ---
+  duration_ms: 719.176561
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3977.965624
+
+> node tests/associative-model-family.test.mjs
+Associative lexical model family tests passed.
+
+> node tests/associative-model-selection-policy.test.mjs
+Associative model-selection and threshold policy tests passed.
+
+> node tests/associative-morpheme-model-parser-v2.test.mjs
+Associative morpheme model parser v2 tests passed. 1000 words: 4.75ms, avg 0.0048ms, cache 71
+
+> node tests/associative-morpheme-model-parser.test.mjs
+Associative morpheme model parser tests passed.
+
+> node tests/associative-multiple-roots-continuation.test.mjs
+TAP version 13
+# Subtest: creation-relation: complete source proof and exact unresolved partition
+ok 1 - creation-relation: complete source proof and exact unresolved partition
+  ---
+  duration_ms: 123.352539
+  type: 'test'
+  ...
+# Subtest: creation-relation: byte-identical reconstruction without runtime writes
+ok 2 - creation-relation: byte-identical reconstruction without runtime writes
+  ---
+  duration_ms: 253.72336
+  type: 'test'
+  ...
+# Subtest: operation-mutation: complete source proof and exact unresolved partition
+ok 3 - operation-mutation: complete source proof and exact unresolved partition
+  ---
+  duration_ms: 152.168684
+  type: 'test'
+  ...
+# Subtest: operation-mutation: byte-identical reconstruction without runtime writes
+ok 4 - operation-mutation: byte-identical reconstruction without runtime writes
+  ---
+  duration_ms: 382.440404
+  type: 'test'
+  ...
+1..4
+# tests 4
+# suites 0
+# pass 4
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 916.911353
+
+> node tests/associative-mutation-reflex.test.mjs
+TAP version 13
+# Subtest: mutation queries expose all reviewed national forms and preserve corpus measurements
+ok 1 - mutation queries expose all reviewed national forms and preserve corpus measurements
+  ---
+  duration_ms: 3470.969242
+  type: 'test'
+  ...
+# Subtest: mutation decisions cover the entire checkpoint and withhold unresolved candidates
+ok 2 - mutation decisions cover the entire checkpoint and withhold unresolved candidates
+  ---
+  duration_ms: 111.39062
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3585.668856
+
+> node tests/associative-operation-reflex.test.mjs
+TAP version 13
+# Subtest: operation queries expose all reviewed national forms and preserve corpus measurements
+ok 1 - operation queries expose all reviewed national forms and preserve corpus measurements
+  ---
+  duration_ms: 3869.756809
+  type: 'test'
+  ...
+# Subtest: operation decisions cover the entire checkpoint and withhold unresolved candidates
+ok 2 - operation decisions cover the entire checkpoint and withhold unresolved candidates
+  ---
+  duration_ms: 101.200359
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3974.293823
+
+> node tests/associative-paint-wait.test.mjs
+Associative paint wait tests passed.
+
+> node tests/associative-persistence-loader.test.mjs
+associative persistence loader tests passed
+
+> node tests/associative-production-hardening.test.mjs
+Associative hardening regression tests passed.
+
+> node tests/associative-qwen-backend-model-routing.test.mjs
+associative qwen backend model routing tests passed
+
+> node tests/associative-qwen-candidate-generation.test.mjs
+Associative Qwen top-five refinement tests passed.
+
+> node tests/associative-qwen-local-index.test.mjs
+Associative Qwen local-index verification tests passed.
+
+> node tests/associative-qwen-runtime-finalization.test.mjs
+Associative Qwen runtime finalization tests passed.
+
+> node tests/associative-reflex-accent-defects.test.mjs
+TAP version 13
+# Subtest: finite accent review conserves exact source records and all 762 IDs
+ok 1 - finite accent review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 44.063941
+  type: 'test'
+  ...
+# Subtest: finite accent review reproduces byte-identical evidence
+ok 2 - finite accent review reproduces byte-identical evidence
+  ---
+  duration_ms: 111.697365
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 164.194632
+
+> node tests/associative-reflex-attested-heads.test.mjs
+TAP version 13
+# Subtest: attested-head review conserves all 762 continuation IDs and exact source measurements
+ok 1 - attested-head review conserves all 762 continuation IDs and exact source measurements
+  ---
+  duration_ms: 48.113158
+  type: 'test'
+  ...
+# Subtest: attested-head review reconstructs byte-identical artifacts independently of runtime
+ok 2 - attested-head review reconstructs byte-identical artifacts independently of runtime
+  ---
+  duration_ms: 179.646434
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 245.153947
+
+> node tests/associative-reflex-continuation-materialization.test.mjs
+TAP version 13
+# Subtest: six exact selections have frozen prior prefixes and every source route
+ok 1 - six exact selections have frozen prior prefixes and every source route
+  ---
+  duration_ms: 5169.304367
+  type: 'test'
+  ...
+# Subtest: applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+ok 2 - applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+  ---
+  duration_ms: 5243.823837
+  type: 'test'
+  ...
+# Subtest: materializer refuses stale HEAD or repeated application before any writes
+ok 3 - materializer refuses stale HEAD or repeated application before any writes
+  ---
+  duration_ms: 39.311941
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 10456.506518
+
+> node tests/associative-reflex-continuation.test.mjs
+Reflex continuation: 762 original IDs conserved, source metadata intact, homonyms withheld.
+
+> node tests/associative-reflex-foreign-forms.test.mjs
+TAP version 13
+# Subtest: foreign-form review conserves all 762 continuation IDs and exact source measurements
+ok 1 - foreign-form review conserves all 762 continuation IDs and exact source measurements
+  ---
+  duration_ms: 76.169453
+  type: 'test'
+  ...
+# Subtest: foreign-form review reconstructs byte-identical artifacts independently of runtime
+ok 2 - foreign-form review reconstructs byte-identical artifacts independently of runtime
+  ---
+  duration_ms: 111.073708
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 191.865519
+
+> node tests/associative-reflex-foreign-paradigms.test.mjs
+TAP version 13
+# Subtest: finite foreign paradigm review conserves exact source records and all 762 IDs
+ok 1 - finite foreign paradigm review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 47.624478
+  type: 'test'
+  ...
+# Subtest: finite foreign paradigm review reproduces byte-identical evidence
+ok 2 - finite foreign paradigm review reproduces byte-identical evidence
+  ---
+  duration_ms: 108.244748
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 164.059985
+
+> node tests/associative-reflex-forms.test.mjs
+TAP version 13
+# Subtest: reviewed reflexes are root- and language-specific, not unrestricted spelling substitutions
+ok 1 - reviewed reflexes are root- and language-specific, not unrestricted spelling substitutions
+  ---
+  duration_ms: 0.842266
+  type: 'test'
+  ...
+# Subtest: reflex query and canonical query use the same reviewed family and keep manual evidence mandatory
+ok 2 - reflex query and canonical query use the same reviewed family and keep manual evidence mandatory
+  ---
+  duration_ms: 1.90915
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6.979411
+
+> node tests/associative-reflex-functional-boundaries.test.mjs
+TAP version 13
+# Subtest: finite functional boundary review conserves exact source records and all 762 IDs
+ok 1 - finite functional boundary review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 48.854927
+  type: 'test'
+  ...
+# Subtest: finite functional boundary review reproduces byte-identical evidence
+ok 2 - finite functional boundary review reproduces byte-identical evidence
+  ---
+  duration_ms: 100.955312
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 154.299145
+
+> node tests/associative-reflex-heads-materialization.test.mjs
+TAP version 13
+# Subtest: 18 exact selections have frozen prior prefixes and every source route
+ok 1 - 18 exact selections have frozen prior prefixes and every source route
+  ---
+  duration_ms: 2586.559609
+  type: 'test'
+  ...
+# Subtest: applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+ok 2 - applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+  ---
+  duration_ms: 5050.424986
+  type: 'test'
+  ...
+# Subtest: materializer refuses stale HEAD or repeated application before any writes
+ok 3 - materializer refuses stale HEAD or repeated application before any writes
+  ---
+  duration_ms: 44.385538
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 7685.486882
+
+> node tests/associative-reflex-latin-context.test.mjs
+TAP version 13
+# Subtest: Latin-context review conserves all 762 continuation IDs and exact source measurements
+ok 1 - Latin-context review conserves all 762 continuation IDs and exact source measurements
+  ---
+  duration_ms: 46.025101
+  type: 'test'
+  ...
+# Subtest: Latin-context review reconstructs byte-identical artifacts independently of runtime
+ok 2 - Latin-context review reconstructs byte-identical artifacts independently of runtime
+  ---
+  duration_ms: 101.502301
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 152.008017
+
+> node tests/associative-reflex-materialization.test.mjs
+TAP version 13
+# Subtest: all reviewed observ and inform memberships reach canonical and compatibility queries without truncation
+ok 1 - all reviewed observ and inform memberships reach canonical and compatibility queries without truncation
+  ---
+  duration_ms: 6115.250733
+  type: 'test'
+  ...
+# Subtest: each retrieved candidate has one accountable disposition and accepted records retain corpus measurements
+ok 2 - each retrieved candidate has one accountable disposition and accepted records retain corpus measurements
+  ---
+  duration_ms: 480.570512
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6608.013611
+
+> node tests/associative-reflex-multilingual-heads.test.mjs
+TAP version 13
+# Subtest: finite multilingual review conserves exact source records and all 762 IDs
+ok 1 - finite multilingual review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 41.494509
+  type: 'test'
+  ...
+# Subtest: finite multilingual review reproduces byte-identical evidence
+ok 2 - finite multilingual review reproduces byte-identical evidence
+  ---
+  duration_ms: 105.002145
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 154.417681
+
+> node tests/associative-reflex-native-compounds-materialization.test.mjs
+TAP version 13
+# Subtest: 7 exact selections have frozen prior prefixes and every source route
+ok 1 - 7 exact selections have frozen prior prefixes and every source route
+  ---
+  duration_ms: 939.261077
+  type: 'test'
+  ...
+# Subtest: applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+ok 2 - applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+  ---
+  duration_ms: 2634.087931
+  type: 'test'
+  ...
+# Subtest: materializer refuses stale HEAD or repeated application before any writes
+ok 3 - materializer refuses stale HEAD or repeated application before any writes
+  ---
+  duration_ms: 39.621834
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3616.948722
+
+> node tests/associative-reflex-native-compounds.test.mjs
+TAP version 13
+# Subtest: finite native compound review conserves exact source records and all 762 IDs
+ok 1 - finite native compound review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 48.50731
+  type: 'test'
+  ...
+# Subtest: finite native compound review reproduces byte-identical evidence
+ok 2 - finite native compound review reproduces byte-identical evidence
+  ---
+  duration_ms: 109.064252
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 162.104625
+
+> node tests/associative-reflex-phrase-review.test.mjs
+TAP version 13
+# Subtest: phrase review conserves all 762 continuation IDs and exact source measurements
+ok 1 - phrase review conserves all 762 continuation IDs and exact source measurements
+  ---
+  duration_ms: 86.516541
+  type: 'test'
+  ...
+# Subtest: phrase review reconstructs byte-identical artifacts independently of runtime
+ok 2 - phrase review reconstructs byte-identical artifacts independently of runtime
+  ---
+  duration_ms: 121.793074
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 212.812182
+
+> node tests/associative-reflex-productive-variants-materialization.test.mjs
+TAP version 13
+# Subtest: 10 exact selections have frozen prior prefixes and every source route
+ok 1 - 10 exact selections have frozen prior prefixes and every source route
+  ---
+  duration_ms: 1140.687705
+  type: 'test'
+  ...
+# Subtest: applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+ok 2 - applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+  ---
+  duration_ms: 2408.369841
+  type: 'test'
+  ...
+# Subtest: materializer refuses stale HEAD or repeated application before any writes
+ok 3 - materializer refuses stale HEAD or repeated application before any writes
+  ---
+  duration_ms: 38.494984
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3591.448806
+
+> node tests/associative-reflex-productive-variants.test.mjs
+TAP version 13
+# Subtest: finite productive variants review conserves exact source records and all 762 IDs
+ok 1 - finite productive variants review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 47.568103
+  type: 'test'
+  ...
+# Subtest: finite productive variants review reproduces byte-identical evidence
+ok 2 - finite productive variants review reproduces byte-identical evidence
+  ---
+  duration_ms: 101.021411
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 152.928556
+
+> node tests/associative-reflex-rare-heads-materialization.test.mjs
+TAP version 13
+# Subtest: 7 exact selections have frozen prior prefixes and every source route
+ok 1 - 7 exact selections have frozen prior prefixes and every source route
+  ---
+  duration_ms: 1000.408478
+  type: 'test'
+  ...
+# Subtest: applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+ok 2 - applied continuation preserves complete old prefixes, metadata, routes and unrelated bytes
+  ---
+  duration_ms: 3235.989199
+  type: 'test'
+  ...
+# Subtest: materializer refuses stale HEAD or repeated application before any writes
+ok 3 - materializer refuses stale HEAD or repeated application before any writes
+  ---
+  duration_ms: 38.698219
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4278.630299
+
+> node tests/associative-reflex-rare-native-heads.test.mjs
+TAP version 13
+# Subtest: finite rare native head review conserves exact source records and all 762 IDs
+ok 1 - finite rare native head review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 40.761058
+  type: 'test'
+  ...
+# Subtest: finite rare native head review reproduces byte-identical evidence
+ok 2 - finite rare native head review reproduces byte-identical evidence
+  ---
+  duration_ms: 111.569176
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 160.890882
+
+> node tests/associative-reflex-spanish-enclitics.test.mjs
+TAP version 13
+# Subtest: Spanish-enclitic review conserves all 762 continuation IDs and exact source measurements
+ok 1 - Spanish-enclitic review conserves all 762 continuation IDs and exact source measurements
+  ---
+  duration_ms: 47.485708
+  type: 'test'
+  ...
+# Subtest: Spanish-enclitic review reconstructs byte-identical artifacts independently of runtime
+ok 2 - Spanish-enclitic review reconstructs byte-identical artifacts independently of runtime
+  ---
+  duration_ms: 106.299785
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 158.324376
+
+> node tests/associative-reflex-spelling-defects.test.mjs
+TAP version 13
+# Subtest: finite spelling review conserves exact source records and all 762 IDs
+ok 1 - finite spelling review conserves exact source records and all 762 IDs
+  ---
+  duration_ms: 65.652314
+  type: 'test'
+  ...
+# Subtest: finite spelling review reproduces byte-identical evidence
+ok 2 - finite spelling review reproduces byte-identical evidence
+  ---
+  duration_ms: 117.257867
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 187.397286
+
+> node tests/associative-relation-phrases.test.mjs
+TAP version 13
+# Subtest: relation phrase review preserves every prior accepted record and exact pending source
+ok 1 - relation phrase review preserves every prior accepted record and exact pending source
+  ---
+  duration_ms: 44.955405
+  type: 'test'
+  ...
+# Subtest: relation phrase review reconstructs exact archived artifacts
+ok 2 - relation phrase review reconstructs exact archived artifacts
+  ---
+  duration_ms: 98.184948
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 151.765697
+
+> node tests/associative-relation-reflex.test.mjs
+TAP version 13
+# Subtest: relation root queries expose every reviewed national record with original corpus measurements
+ok 1 - relation root queries expose every reviewed national record with original corpus measurements
+  ---
+  duration_ms: 3158.722477
+  type: 'test'
+  ...
+# Subtest: relation dispositions cover all saved candidates and keep unresolved records out of runtime
+ok 2 - relation dispositions cover all saved candidates and keep unresolved records out of runtime
+  ---
+  duration_ms: 58.308998
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 3223.51461
+
+> node tests/associative-repository-materialization.test.mjs
+TAP version 13
+# Subtest: recount observes last-membership loss and multi-family to single-family transitions
+ok 1 - recount observes last-membership loss and multi-family to single-family transitions
+  ---
+  duration_ms: 6.091617
+  type: 'test'
+  ...
+# Subtest: provenance excludes itself, survives root relocation and detects content changes
+ok 2 - provenance excludes itself, survives root relocation and detects content changes
+  ---
+  duration_ms: 6.628203
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 15.624696
+
+> node tests/associative-russian-model-family.test.mjs
+Russian associative model-family deduplication tests passed
+
+> node tests/associative-search-runtime-patch.test.mjs
+Associative search runtime patch tests passed.
+
+> node tests/associative-static-index-load-control.test.mjs
+Associative static index load-control tests passed.
+
+> node tests/associative-static-search-index.test.mjs
+Static associative family search tests passed.
+
+> node tests/associative-tab-width-restore.test.mjs
+Associative restored tab-width tests passed
+
+> node tests/associative-target-translation-backend.test.mjs
+
+> node tests/associativvordes-card-compat.test.mjs
+associativvordes browser card compatibility tests passed
+
+> node tests/associativvordes-card-metadata.test.mjs
+associativvordes card metadata tests passed
+
+> node tests/associativvordes-card-normalization.test.mjs
+associativvordes card normalization tests passed
+
+> node tests/associativvordes-error-handling.test.mjs
+associativvordes error-handling tests passed
+
+> node tests/associativvordes-language-statuses.test.mjs
+associativvordes language-status tests passed
+
+> node tests/associativvordes-no-data.test.mjs
+associativvordes no-data tests passed
+
+> node tests/associativvordes-persistence.test.mjs
+associativvordes persistence tests passed
+
+> node tests/associativvordes-qwen-review.test.mjs
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 1,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes qwen review tests passed
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 0
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+
+> node tests/associativvordes-render-sources.test.mjs
+
+> node tests/associativvordes-root-matcher.test.mjs
+
+> node tests/associativvordes-runtime-index.test.mjs
+
+> node tests/associativvordes-sources-diagnostics.test.mjs
+associativvordes sources diagnostics tests passed
+
+> node tests/associativvordes-state-invalidation.test.mjs
+associativvordes state behavior tests passed
+
+> node tests/associativvordes-target-language-cache.test.mjs
+associativvordes target language and cache tests passed
+
+> node tests/associativvordes-target-translation-batch.test.mjs
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 0,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes target translation batch tests passed
+
+> node tests/associativvordes-thresholds.test.mjs
+
+> node tests/button-status-controller.test.mjs
+button status controller tests passed
+
+> node tests/button-status-success.test.mjs
+button status success tests passed
+
+> node tests/card-schema.test.mjs
+card-schema tests passed
+
+> node tests/four-tools-regression.test.mjs
+tool regression tests passed
+
+> node tests/frequency-loader-source-descriptors.test.mjs
+frequency-loader source descriptor tests passed
+
+> node tests/frequency-record-stream.test.mjs
+
+> node tests/i18n-and-assets.test.mjs
+i18n/assets tests passed
+
+> node tests/indoeuropan-hindi-persian.test.mjs
+Indo-European Hindi/Persian tests passed
+
+> node tests/instrumentes-lexeme-goal.test.mjs
+instrumentes lexeme goal tests passed
+
+> node tests/interal-ipa.test.mjs
+Interal IPA generation tests passed.
+
+> node tests/json-author-autosave.test.mjs
+JSON author autosave wiring tests passed.
+
+> node tests/json-card-utils.test.mjs
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+
+> node tests/liquid-glass-theme-parity.test.mjs
+liquid glass theme parity tests passed
+
+> node tests/methodology-20260909.test.mjs
+Methodology controls passed
+Missing-data and uncertainty controls passed
+
+> node tests/modal-motion-runtime.test.mjs
+Modal motion runtime tests passed
+
+> node tests/modal-motion.test.mjs
+Modal motion tests passed
+
+> node tests/persistence-helper.test.mjs
+Saved page state is invalid: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at Object.restoreDraft [as restore] (evalmachine.<anonymous>:931:22)
+    at file:///home/runner/work/interal/interal/tests/persistence-helper.test.mjs:50:44
+persistence-helper tests passed
+
+> node tests/registry-altervordes-ui.test.mjs
+Alter vordes registry UI test passed.
+
+> node tests/target-meaning-translator.test.mjs
+
+> node tests/ui-motion-components.test.mjs
+UI motion components tests passed
+
+> node tests/vercel-associative-index-gate.test.mjs
+Vercel associative index deployment gate tests passed
+
+All tests passed.

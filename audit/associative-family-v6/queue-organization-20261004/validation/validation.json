@@ -1,0 +1,31 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "63b8f44539f752cad6e4fc875bba85be39035bb9",
+  "application_sha": "317abb0d524d7cab4dd410422e72907dc795ac91",
+  "targeted_tests": 51,
+  "full_npm_test_files": 130,
+  "migration_replay_artifacts": 274,
+  "planning_replay_artifacts": 16,
+  "independent_v6_audit": "pass",
+  "independent_planning_audit": "pass",
+  "exact_differential": "exact-differential.json",
+  "production_enabled": false,
+  "proof_sha256": {
+    "v6-audit.log.gz": "d9cbd9fdca791861f76247fdf7f981c58859f6bb7870cc5c87f6a5ec596e01ad",
+    "full-tests.log.gz": "99827d5641bb4cf8d4909c34b683e3fbc961e704b415873b39c31a09df386ea3",
+    "targeted.log.gz": "56c10905e4a52ae195788ba5db9bca7cea6d2ce0073bb93883feee0060b53c2f",
+    "planning-audit.log.gz": "9aaeb7fde0628d02f38405eef926d3dfaee5110d9da8439e71db7e04d6661c14",
+    "planning-replay.log.gz": "821613b36ec9ac6b85ef2aaaca3b85177acb5641d2f4772b6f576c42c873b9f3",
+    "v6-replay.log.gz": "76d648e4a9aae77796167e3838969f96712de62c110c28b356e7fc4eee70179e",
+    "build.log.gz": "821613b36ec9ac6b85ef2aaaca3b85177acb5641d2f4772b6f576c42c873b9f3",
+    "planning-diff.log.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "exact-differential.json": "a595dd1319303865b2aec11419ea73796de511d4380862be897975f382f50ef0",
+    "v6-integrity.json": "ae681682eae0640b12c3ec61136e6e049b81d5d2bc97fc12e8cac8714c3bfba4"
+  },
+  "limitations": [
+    "No new proved reduction: 23238 units remain.",
+    "Global packet-only unique corpus size is unmeasured; overlaps for all indexed IDs are exact.",
+    "This block completes queue organization, not the dictionary."
+  ]
+}

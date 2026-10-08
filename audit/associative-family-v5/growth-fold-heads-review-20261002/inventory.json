@@ -1,0 +1,79 @@
+{
+  "source_run_id": 35647932153,
+  "inputs": {
+    "creat": {
+      "candidate_path": "audit/associative-family-v5/creation-checkpoint-20261001/candidates.json.gz",
+      "candidate_sha256": "ea3edf87ff1d605e8587a23a0ef689848aceda1fc2817ba52f04f4f7fe97a148",
+      "previous_pending_path": "audit/associative-family-v5/credit-mute-heads-review-20261002/pending-review.json.gz",
+      "previous_pending_sha256": "3a11ed66b1d1e1bd2c135b508af3e97c984c73181c6df53ed1ec1ce7b0088873",
+      "inventory_path": "audit/associative-family-v5/credit-mute-heads-review-20261002/inventory.json",
+      "inventory_sha256": "b30f8be31de15a0810d5a21ce7419dcafa717718aaa4386003dcdaa6ba2e3bbd"
+    }
+  },
+  "artifact_sha256": {
+    "decisions.json": "91618aff979395ee82a5d85ed6603b1d57395a974a9603975cf19220d506ecf4",
+    "pending-review.json.gz": "aeaf608b4f0eb047c0e09286cef1cf0bdf4fbdbf9fc69f1672bca6274d112be6",
+    "source-records.json.gz": "6f9b21f67b967241a7da9559d394852e93674b629aa4257b6b5910146b79d512"
+  },
+  "new_exclusions": 20,
+  "pending_review": 4967,
+  "counts": {
+    "creat": {
+      "en": {
+        "accepted": 68,
+        "excluded": 457,
+        "reviewed_exclusions": 28,
+        "reviewed_uncertain": 0,
+        "pending_review": 756,
+        "total": 1281,
+        "new_exclusions": 20
+      },
+      "de": {
+        "accepted": 174,
+        "excluded": 118,
+        "reviewed_exclusions": 8,
+        "reviewed_uncertain": 0,
+        "pending_review": 231,
+        "total": 523,
+        "new_exclusions": 0
+      },
+      "fr": {
+        "accepted": 70,
+        "excluded": 112,
+        "reviewed_exclusions": 6,
+        "reviewed_uncertain": 0,
+        "pending_review": 307,
+        "total": 489,
+        "new_exclusions": 0
+      },
+      "es": {
+        "accepted": 94,
+        "excluded": 336,
+        "reviewed_exclusions": 27,
+        "reviewed_uncertain": 0,
+        "pending_review": 754,
+        "total": 1184,
+        "new_exclusions": 0
+      },
+      "it": {
+        "accepted": 139,
+        "excluded": 3457,
+        "reviewed_exclusions": 5,
+        "reviewed_uncertain": 0,
+        "pending_review": 250,
+        "total": 3846,
+        "new_exclusions": 0
+      },
+      "ru": {
+        "accepted": 29,
+        "excluded": 23,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 17,
+        "total": 69,
+        "new_exclusions": 0
+      }
+    }
+  },
+  "runtime_changes": false
+}

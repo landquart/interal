@@ -1,0 +1,47 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "63b8f44539f752cad6e4fc875bba85be39035bb9",
+  "initial_application_sha": "317abb0d524d7cab4dd410422e72907dc795ac91",
+  "initial_validation_sha": "09663df51ae7c8dc5ccb0daac055bf6d35ee987c",
+  "initial_validation_ci": {
+    "Tests": {
+      "run_id": 37208697167,
+      "conclusion": "success"
+    },
+    "Audit": {
+      "run_id": 37208697181,
+      "conclusion": "success"
+    }
+  },
+  "final_engine_sha": "8b190c1aa2ea02a9485cfc20f625d86f0d1c5881",
+  "targeted_tests": 52,
+  "full_npm_test_files": 130,
+  "migration_replay_artifacts": 274,
+  "planning_replay_artifacts": 16,
+  "independent_v6_audit": "pass",
+  "independent_planning_audit": "pass",
+  "open_membership_questions": 78927,
+  "current_membership_questions": 23240,
+  "current_units": 23238,
+  "new_proven_reduction": 0,
+  "new_memberships": 0,
+  "production_enabled": false,
+  "proof_sha256": {
+    "v6-audit.log.gz": "d9cbd9fdca791861f76247fdf7f981c58859f6bb7870cc5c87f6a5ec596e01ad",
+    "full-tests.log.gz": "09651fed03ceb493392fe0d24b8f010d9c686c523bc94420d6f4678f80798adb",
+    "targeted.log.gz": "ace09a01d150b4e80c76c0d4133a905262e958ba824bc58f738d65049e821482",
+    "planning-audit.log.gz": "88b812991b3d77644d68b586f75bdee64e26a58ab9c05a9cac21539095b7391a",
+    "planning-replay.log.gz": "9c2f06e1b9aa099bfa441a20c86006d7202e4ba60d47906e4ea714839679c2f5",
+    "v6-replay.log.gz": "76d648e4a9aae77796167e3838969f96712de62c110c28b356e7fc4eee70179e",
+    "build.log.gz": "9c2f06e1b9aa099bfa441a20c86006d7202e4ba60d47906e4ea714839679c2f5",
+    "planning-diff.log.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "exact-differential.json": "dd77840cf40871bee39613ba3ae58e8f6b06037e22a30e494d715ae15633a387",
+    "v6-integrity.json": "ae681682eae0640b12c3ec61136e6e049b81d5d2bc97fc12e8cac8714c3bfba4"
+  },
+  "limitations": [
+    "Historical/candidate open scopes remain independently addressable; grouping creates no verdict.",
+    "Global packet-only unique corpus size remains unmeasured.",
+    "Dictionary work remains unfinished."
+  ]
+}

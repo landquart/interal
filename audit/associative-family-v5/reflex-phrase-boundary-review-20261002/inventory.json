@@ -1,0 +1,24 @@
+{
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-continuation-20261002",
+  "previous_pending_sha256": "6e7351530ab27394acfe9b2fd74c46e4cab788b7036a5d24aa66b03d92c57b25",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 143,
+  "new_counts": {
+    "excluded": 129,
+    "uncertain": 14
+  },
+  "continuation_counts": {
+    "accepted": 6,
+    "excluded": 152,
+    "uncertain": 17,
+    "pending_review": 587
+  },
+  "artifact_sha256": {
+    "decisions.json": "fb1acde1dd44bb2a2d689cd32d9d131148d6291a31eb0cd1b8c084fb5340e019",
+    "pending-review.json": "9fc5af66e15ed98f58f78a1885894fc428752df62f57f6acdc40769c49d4d29f",
+    "source-records.json.gz": "e6882595a08983cf12ace6d152cf041ddc3cd5fc6caac0456065c7958c7c6a9e"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

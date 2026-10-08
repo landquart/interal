@@ -1,0 +1,109 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "review_method": "Recall pass over undecided checkpoint candidates. Explicit additional lexical choices; each must already exist in the saved source snapshot and retain the whole normalized element. Existing source frequency records only.",
+  "additional_words": {
+    "nat": {
+      "en": [
+        "denaturating",
+        "good-naturedly",
+        "goodnatured",
+        "illnatured",
+        "intranational",
+        "micronation",
+        "nationalsocialism",
+        "nationalsocialist",
+        "nationalsocialists",
+        "naturalborn",
+        "host-nation"
+      ],
+      "de": [
+        "pronatalistische"
+      ],
+      "fr": [],
+      "it": [
+        "giusnaturalismo",
+        "giusnaturalista",
+        "giusnaturalistico",
+        "innatamente",
+        "innatismo",
+        "ipernaturali",
+        "pseudonatura",
+        "soprannaturale",
+        "soprannaturalmente",
+        "sottonaturali",
+        "sovrannaturale",
+        "sovrannaturalisti",
+        "supernatura",
+        "supernaturale",
+        "storico-naturalistico",
+        "uomo-natura",
+        "contronatura"
+      ],
+      "es": [
+        "paranatural",
+        "posnatal",
+        "seudonaturaleza",
+        "supranatural",
+        "preternatural",
+        "preternaturalmente"
+      ],
+      "ru": [
+        "антенатальный",
+        "натуралок",
+        "супранатуральный"
+      ]
+    },
+    "loc": {
+      "en": [
+        "co-locate",
+        "co-located",
+        "co-locating"
+      ],
+      "fr": [
+        "locavore",
+        "locavores",
+        "loci",
+        "loco-régional",
+        "loco-régionale",
+        "locorégionale",
+        "locotracteur",
+        "locum"
+      ],
+      "it": [
+        "ricollocamento",
+        "ricollocare",
+        "ricollocarla",
+        "ricollocarli",
+        "ricollocarlo",
+        "ricollocarmi",
+        "ricollocarti",
+        "ricollocarvi"
+      ],
+      "es": [
+        "descolocación",
+        "descolocado",
+        "descolocamiento",
+        "descolocándose",
+        "descolocar",
+        "descolocarle",
+        "descolocarlo",
+        "descolocarme",
+        "descolocarse",
+        "descolocarte",
+        "colocón",
+        "colocones",
+        "locomoción",
+        "locomóvil",
+        "relocación",
+        "relocado",
+        "relocados",
+        "relocamos",
+        "relocarse",
+        "reloco"
+      ]
+    },
+    "inter": {}
+  },
+  "missing_example_source_check": "English natalism, antinatalism and pronatalism were also searched in all four repository English frequency input files; no records matched. Do not create replacement frequency records."
+}

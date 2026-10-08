@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-spelling-defects-review-20261002-1830",
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-foreign-paradigms-review-20261002-1900/review-spec.json",
+    "spec_sha256": "8e3277438d8c9c9156c08b22805904d6bdecddb7fdd28b0e758310433f1fdcff",
+    "previous_pending_path": "audit/associative-family-v5/reflex-spelling-defects-review-20261002-1830/pending-review.json",
+    "previous_pending_sha256": "1af30065f286a8a6cb9d225f6603ea7a082be876832662b94d45133f7d214095",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-spelling-defects-review-20261002-1830/inventory.json",
+    "previous_inventory_sha256": "1af3e3d045a3a660a87a11965d5b771f30bc26b758b0180211c02dff46a6a62f",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 57,
+  "new_counts": {
+    "uncertain": 57
+  },
+  "continuation_counts": {
+    "accepted": 24,
+    "excluded": 299,
+    "uncertain": 119,
+    "pending_review": 320
+  },
+  "artifact_sha256": {
+    "decisions.json": "29e4b5f4ad9c0049693d1fbcab92e07d464660432f9c3c6627727a4f0fa7f236",
+    "pending-review.json": "264323cb74e0254a774000286fb281888bce91f46cd359950b7c1a0c5778f126",
+    "source-records.json.gz": "32f1544bb72c6303bceadd767be234e7730e0de113860996611faa7e0231af0c"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

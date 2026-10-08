@@ -1,0 +1,2194 @@
+{
+  "schema_version": 6,
+  "source_head": "5a986fc9bed17de344d5df8127727f4ca7b6dd04",
+  "stage": "creat-mut-finite-head-benchmark-20261003",
+  "production_enabled": false,
+  "source_queue": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+  "source_queue_sha256": "aeaf608b4f0eb047c0e09286cef1cf0bdf4fbdbf9fc69f1672bca6274d112be6",
+  "groups": [
+    {
+      "language": "de",
+      "normalized_head": "screen",
+      "sense": "computer_display_component",
+      "root": "creat",
+      "status": "excluded",
+      "forms": [],
+      "component_stems": [
+        "screen"
+      ],
+      "records": [
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:50748eb4a771c5bac9d5",
+          "word": "flatscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for flatscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:flatscreen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "flat",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:50748eb4a771c5bac9d5"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:378b1d906ad03fe4caf4",
+          "word": "flatscreen-monitor",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for flatscreen-monitor in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:tor",
+            "surface:de:flatscr"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "flat",
+            "component": "screen",
+            "after": "-monitor",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:378b1d906ad03fe4caf4"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:d7c7735303c2eba6906d",
+          "word": "flatscreenfernseher",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for flatscreenfernseher in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:fernseher",
+            "surface:de:flatscreenfernseh"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "flat",
+            "component": "screen",
+            "after": "fernseher",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:d7c7735303c2eba6906d"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:e706c8c4a76aefcdf9e5",
+          "word": "flatscreens",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for flatscreens in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:flatscreen",
+            "surface:de:ens"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "flat",
+            "component": "screen",
+            "after": "s",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:e706c8c4a76aefcdf9e5"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:85665bd30ea0bba3c48d",
+          "word": "full-touchscreen-handy",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for full-touchscreen-handy in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:ful",
+            "surface:de:scr"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "full-touch",
+            "component": "screen",
+            "after": "-handy",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:85665bd30ea0bba3c48d"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:24540c01ddcf7714deb5",
+          "word": "fullscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for fullscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:fullscree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "full",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:24540c01ddcf7714deb5"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:2e4ace8caca877ae85d0",
+          "word": "homescreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for homescreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:screen",
+            "surface:de:homescree"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "home",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:2e4ace8caca877ae85d0"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:48c1326b3a188ab482e3",
+          "word": "infoscreen-monitors",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for infoscreen-monitors in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:tors",
+            "surface:de:infoscreenmonitor"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "info",
+            "component": "screen",
+            "after": "-monitors",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:48c1326b3a188ab482e3"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:b20920c99c879b3957d4",
+          "word": "infoscreens",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for infoscreens in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:infoscreen",
+            "surface:de:ens"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "info",
+            "component": "screen",
+            "after": "s",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:b20920c99c879b3957d4"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:ee8e106b9e59c2941c9d",
+          "word": "multiscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for multiscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:multiscree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "multi",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:ee8e106b9e59c2941c9d"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:e77371e7db379d2fad09",
+          "word": "multiscreen-terminalsysteme",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for multiscreen-terminalsysteme in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:multiscreenterminalsystem",
+            "surface:de:systeme"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "multi",
+            "component": "screen",
+            "after": "-terminalsysteme",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:e77371e7db379d2fad09"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:b27fb0cc16d82978fd3f",
+          "word": "on-screen-menü",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for on-screen-menü in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:onscreenmenu"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "on-",
+            "component": "screen",
+            "after": "-menü",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:b27fb0cc16d82978fd3f"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:16f626a8efbac5bdbead",
+          "word": "riesentouchscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for riesentouchscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:riesentouchscree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "riesentouch",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:16f626a8efbac5bdbead"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:fb0bdd91de6dfb5e0963",
+          "word": "screen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:fb0bdd91de6dfb5e0963"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:37292151a229dfa2fdf9",
+          "word": "screen-designerin",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screen-designerin in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:screendesigneri",
+            "surface:de:nerin"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "-designerin",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:37292151a229dfa2fdf9"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:8d9933c127a0580264f6",
+          "word": "screen-reader-programm",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screen-reader-programm in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:scr",
+            "ety:712a3560ead2",
+            "surface:de:rog"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "-reader-programm",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:8d9933c127a0580264f6"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:c09e4e5238c5ef83e746",
+          "word": "screendesign",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screendesign in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:design",
+            "surface:de:screendesig"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "design",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:c09e4e5238c5ef83e746"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:652fdc2f9f51d5f00b51",
+          "word": "screenreader",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screenreader in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:reader",
+            "surface:de:screenread"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "reader",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:652fdc2f9f51d5f00b51"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:578f066a170d587d2ca5",
+          "word": "screens",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screens in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:ens",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "s",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:578f066a170d587d2ca5"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:da3208c523d72bd459b4",
+          "word": "screensaver",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screensaver in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:saver",
+            "surface:de:screensav"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "saver",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:da3208c523d72bd459b4"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:94e610dbba8f2c909bb4",
+          "word": "screensaver-studio",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screensaver-studio in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:screensav",
+            "surface:de:erst",
+            "surface:de:dio"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "saver-studio",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:94e610dbba8f2c909bb4"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:de0186d04a2b5bdb0e69",
+          "word": "screenschutz",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screenschutz in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:schutz",
+            "surface:de:ensch",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "schutz",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:de0186d04a2b5bdb0e69"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:f2b446c1f8699aed2d88",
+          "word": "screenshot",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screenshot in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "ety:d917ca6da1c7"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "shot",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:f2b446c1f8699aed2d88"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:a02abc755f098883ef0b",
+          "word": "screenshot-galerie",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screenshot-galerie in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:erie",
+            "surface:de:screenshotgaleri"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "shot-galerie",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:a02abc755f098883ef0b"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:9bf01215359b1b732d23",
+          "word": "screenshots",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screenshots in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "ety:d917ca6da1c7"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "shots",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:9bf01215359b1b732d23"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:3847c997cef591c0f818",
+          "word": "screentext",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for screentext in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "ety:754014aa4a52",
+            "surface:de:screent",
+            "ety:304bb2940cfc"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "screen",
+            "after": "text",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:3847c997cef591c0f818"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:76b04e15c65eb9abe29f",
+          "word": "slimscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for slimscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:slimscree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "slim",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:76b04e15c65eb9abe29f"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:5f6e2ad26c7342097b61",
+          "word": "splashscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for splashscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:splashscree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "splash",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:5f6e2ad26c7342097b61"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:947378b29453ff191b34",
+          "word": "splitscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for splitscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:splitscree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "split",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:947378b29453ff191b34"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:5bf8c48c803d895f2b46",
+          "word": "touch-screen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touch-screen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:een",
+            "surface:de:touchscree"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch-",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:5bf8c48c803d895f2b46"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:5e33bb3f917ba2c19f4b",
+          "word": "touch-screen-monitors",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touch-screen-monitors in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:tors",
+            "surface:de:touchscreenmonitor"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch-",
+            "component": "screen",
+            "after": "-monitors",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:5e33bb3f917ba2c19f4b"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:fde43fd099aca3533594",
+          "word": "touchscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:screen",
+            "surface:de:touchscree"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:fde43fd099aca3533594"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:13eb539041f0655e235b",
+          "word": "touchscreen-ausführung",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-ausführung in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscreenausfuhr",
+            "surface:de:fuhrung"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-ausführung",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:13eb539041f0655e235b"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:c3a515f5ea1a46abd3b1",
+          "word": "touchscreen-bedienteil",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-bedienteil in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:enteil",
+            "surface:de:touchscreenbedien"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-bedienteil",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:c3a515f5ea1a46abd3b1"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:faa618791381c18e7b78",
+          "word": "touchscreen-bedienung",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-bedienung in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscreenbedien",
+            "surface:de:nung"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-bedienung",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:faa618791381c18e7b78"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:75fe69fc06150737ab77",
+          "word": "touchscreen-display",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-display in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:nd",
+            "surface:de:play",
+            "surface:de:isp",
+            "surface:de:touchscree"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-display",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:75fe69fc06150737ab77"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:41bb5216dfc8a6e41db3",
+          "word": "touchscreen-gerät",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-gerät in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscr"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-gerät",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:41bb5216dfc8a6e41db3"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:4773dfb743f0441bff42",
+          "word": "touchscreen-gestenerkennung",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-gestenerkennung in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:erkennung",
+            "surface:de:touchscreengestenerkenn"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-gestenerkennung",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:4773dfb743f0441bff42"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:db7c38c56b6864f98de7",
+          "word": "touchscreen-handys",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-handys in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscreenhandy"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-handys",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:db7c38c56b6864f98de7"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:24fd9c5c8cafb9399b53",
+          "word": "touchscreen-imac",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-imac in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscr"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-imac",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:24fd9c5c8cafb9399b53"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:153c845ff3404bce15a6",
+          "word": "touchscreen-konzept",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-konzept in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscr",
+            "surface:de:zept"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-konzept",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:153c845ff3404bce15a6"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:f2716baeb911fc1515fa",
+          "word": "touchscreen-navi",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-navi in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscr"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-navi",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:f2716baeb911fc1515fa"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:7bce76537cc7957d4f7f",
+          "word": "touchscreen-preis",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-preis in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscreenprei"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-preis",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:7bce76537cc7957d4f7f"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:b3d2ed8018d5d9d1cb3a",
+          "word": "touchscreen-smartphones",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-smartphones in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:hones",
+            "surface:de:touchscreensmartphone"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-smartphones",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:b3d2ed8018d5d9d1cb3a"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:bb883a2183fa5ee9ec29",
+          "word": "touchscreen-technologie",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for touchscreen-technologie in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:touchscreentechnologi",
+            "surface:de:ologie"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "touch",
+            "component": "screen",
+            "after": "-technologie",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:bb883a2183fa5ee9ec29"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:e366c5c101e5fc26153c",
+          "word": "vga-touchscreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for vga-touchscreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:vgatouchscree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "vga-touch",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:e366c5c101e5fc26153c"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:bda3ee3e8f4143e51664",
+          "word": "widescreen",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for widescreen in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:widescree",
+            "surface:de:screen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "wide",
+            "component": "screen",
+            "after": "",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:bda3ee3e8f4143e51664"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:8df8267c78200bb2ae01",
+          "word": "widescreen-display",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for widescreen-display in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:widescree",
+            "surface:de:nd",
+            "surface:de:play",
+            "surface:de:isp"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "wide",
+            "component": "screen",
+            "after": "-display",
+            "head": "screen",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:8df8267c78200bb2ae01"
+          }
+        }
+      ],
+      "reason": "Duden identifies the German computer-display noun Screen as an English loan. Only these finite, manually segmented computing compounds and forms depend on that display head. They do not contain the create/creat base. Medical screening, cinema terms, surnames, corrupt tochscreen and unclear screenfx/screenos strings are outside this sense scope.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Screen",
+        "https://www.duden.de/rechtschreibung/Screenshot",
+        "https://www.duden.de/rechtschreibung/Screenreader",
+        "https://www.duden.de/rechtschreibung/Screensaver"
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "screening",
+      "sense": "systematic_medical_exam_component",
+      "root": "creat",
+      "status": "excluded",
+      "forms": [],
+      "component_stems": [
+        "screening"
+      ],
+      "records": [
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:27a7d1f7b6ebe78052f3",
+          "word": "bakterienscreening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for bakterienscreening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:bakterien",
+            "surface:de:screening",
+            "surface:de:ens",
+            "surface:de:nsc"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "bakterien",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:27a7d1f7b6ebe78052f3"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:42beefe41a34f89d6d06",
+          "word": "drogenscreening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for drogenscreening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:drogenscreening"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "drogen",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:42beefe41a34f89d6d06"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:5c3940f3a31ddf67ada4",
+          "word": "drogenscreenings",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for drogenscreenings in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:drogenscreening"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "drogen",
+            "component": "screening",
+            "after": "s",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:5c3940f3a31ddf67ada4"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:7fc19b5b612a2d825307",
+          "word": "ersttrimester-screening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for ersttrimester-screening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:ening",
+            "surface:de:rimes",
+            "surface:de:erstt",
+            "surface:de:trim",
+            "surface:de:een"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "ersttrimester-",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:7fc19b5b612a2d825307"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:fe56a426be92e56577b0",
+          "word": "hochdurchsatz-screening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for hochdurchsatz-screening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:ening",
+            "surface:de:durch",
+            "surface:de:een",
+            "surface:de:hoch"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "hochdurchsatz-",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:fe56a426be92e56577b0"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:7e8828a6baeb4e34e47b",
+          "word": "hörscreening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for hörscreening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:screening",
+            "surface:de:hors"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "hör",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:7e8828a6baeb4e34e47b"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:2eb9f83c88966b851c1e",
+          "word": "mammographie-screening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for mammographie-screening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:mammographiescreening"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "mammographie-",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:2eb9f83c88966b851c1e"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:4a7514343b4b6f54f47a",
+          "word": "mammographie-screenings",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for mammographie-screenings in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:mammographiescreening"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "mammographie-",
+            "component": "screening",
+            "after": "s",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:4a7514343b4b6f54f47a"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:a16937553323d5c873f2",
+          "word": "massen-screening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for massen-screening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:ening",
+            "surface:de:mas",
+            "surface:de:een"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "massen-",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:a16937553323d5c873f2"
+          }
+        },
+        {
+          "root": "creat",
+          "language": "de",
+          "lemma_id": "lemma:8d8c27bcdf7e02fcc2c3",
+          "word": "toxscreening",
+          "status": "pending_review",
+          "reason": "No confirmed lexical, inflectional or compound analysis for toxscreening in de. Possible foreign quotation, proper name, phrase fusion or spelling artifact; withheld pending context or lexical evidence.",
+          "source_family_ids": [
+            "surface:de:screening",
+            "surface:de:toxscree"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "tox",
+            "component": "screening",
+            "after": "",
+            "head": "screening",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:8d8c27bcdf7e02fcc2c3"
+          }
+        }
+      ],
+      "reason": "The medical/systematic examination noun Screening derives from English to screen (test/select/sift), independently of create. Explicit bacteria/drugs/trimester/throughput/hearing/mammography/mass/toxicology modifiers support the examination sense. Bare Screening and movie-screening candidates are not bound to this sense.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Screening"
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "mammut",
+      "sense": "extinct_elephant_component",
+      "root": "mut",
+      "status": "excluded",
+      "forms": [],
+      "component_stems": [
+        "mammut"
+      ],
+      "records": [
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:a5b65d43c344e510d489",
+          "word": "mammut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:a5b65d43c344e510d489"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:046e885fbbeea5827e34",
+          "word": "mammutdetektor",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutdetektor; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:detektor",
+            "ety:b7d8ccb9dc9a",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "detektor",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:046e885fbbeea5827e34"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:a39a928179cfc727c6d3",
+          "word": "mammutdickhäuter",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutdickhäuter; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutdickhaut",
+            "surface:de:dickhauter"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "dickhäuter",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:a39a928179cfc727c6d3"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:cdcb254126436b29980d",
+          "word": "mammutelfenbein",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutelfenbein; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutelfenbei",
+            "surface:de:elfenbein"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "elfenbein",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:cdcb254126436b29980d"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:0c8aad1cf5e0cfc1d641",
+          "word": "mammutfleisch",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutfleisch; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "surface:de:fleisch",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "fleisch",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:0c8aad1cf5e0cfc1d641"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:80c962472d882b02c6f4",
+          "word": "mammutgenoms",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutgenoms; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutgenom"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "genoms",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:80c962472d882b02c6f4"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:59e80e9f2ea85ae51f6f",
+          "word": "mammutgestank",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutgestank; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mutg",
+            "ety:b7d8ccb9dc9a",
+            "surface:de:gestank",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "gestank",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:59e80e9f2ea85ae51f6f"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:40056363f1d1cad68639",
+          "word": "mammuthals",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammuthals; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammuthal",
+            "surface:de:hals"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "hals",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:40056363f1d1cad68639"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:0da1c9d7708925d2184d",
+          "word": "mammutherz",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutherz; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "surface:de:herz",
+            "surface:de:muth",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "herz",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:0da1c9d7708925d2184d"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:04477a64649cc4766217",
+          "word": "mammutkieferknochen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutkieferknochen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutkieferknoche",
+            "surface:de:kieferknochen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "kieferknochen",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:04477a64649cc4766217"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:acb730ee5ea51e240dc3",
+          "word": "mammutknochen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutknochen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutknoche",
+            "surface:de:knochen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "knochen",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:acb730ee5ea51e240dc3"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:6507f7a87ab413ab27ec",
+          "word": "mammutreste",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutreste; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutrest",
+            "surface:de:reste"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "reste",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:6507f7a87ab413ab27ec"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:0283d87abbde735e8187",
+          "word": "mammuts",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammuts; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "s",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:0283d87abbde735e8187"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:e16961b953edaa317b39",
+          "word": "mammutsteak",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutsteak; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "ety:687b2a3f309b",
+            "ety:4aeef440b165",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "steak",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:e16961b953edaa317b39"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:a8b8286257df4d513ef3",
+          "word": "mammutzahn",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutzahn; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:zahn",
+            "surface:de:mammutzah"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "zahn",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:a8b8286257df4d513ef3"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:aa7608dc77d218a6ee3c",
+          "word": "wollhaarmammuts",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for wollhaarmammuts; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:wollhaarmammut"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "wollhaar",
+            "component": "mammut",
+            "after": "s",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:aa7608dc77d218a6ee3c"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:477e5c8f3c046035aaed",
+          "word": "wollmammut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for wollmammut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:wollmammut"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "woll",
+            "component": "mammut",
+            "after": "",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:477e5c8f3c046035aaed"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:732cc6448d6ea68b2a6d",
+          "word": "wollmammuts",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for wollmammuts; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:wollmammut"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "woll",
+            "component": "mammut",
+            "after": "s",
+            "head": "mammut",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:732cc6448d6ea68b2a6d"
+          }
+        }
+      ],
+      "reason": "Duden derives the extinct-elephant noun via French mammouth and Russian mamont. Exact finite animal/body/fossil compounds and the listed genitive/plural have no mutation base. Intensifying Mammut- and botanical Mammutbaum are represented separately.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Mammut"
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "mammut-",
+      "sense": "augmentative_combining_form",
+      "root": "mut",
+      "status": "excluded",
+      "forms": [],
+      "component_stems": [
+        "mammut"
+      ],
+      "records": [
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:b224f91877e453ac8f28",
+          "word": "mammut-bauprojekt",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammut-bauprojekt; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:8f29724078fc",
+            "ety:86818e80c594",
+            "surface:de:mam"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "-bauprojekt",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:b224f91877e453ac8f28"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:68d00a0718fc6592464f",
+          "word": "mammut-programm",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammut-programm; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mam",
+            "ety:712a3560ead2"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "-programm",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:68d00a0718fc6592464f"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:ccbf4c01aac68445407e",
+          "word": "mammut-projekt",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammut-projekt; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:jekt",
+            "surface:de:mam"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "-projekt",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:ccbf4c01aac68445407e"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:97cf2f7b8576fe0e9029",
+          "word": "mammut-prozess",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammut-prozess; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutprozes",
+            "surface:de:zess"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "-prozess",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:97cf2f7b8576fe0e9029"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:e4308705846500ada9a6",
+          "word": "mammutaktion",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutaktion; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:mammutaktio",
+            "surface:de:aktion"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "aktion",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:e4308705846500ada9a6"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:52612662c9173f494ae8",
+          "word": "mammutaufgabe",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutaufgabe; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:aufgabe",
+            "surface:de:mammutaufgab"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "aufgabe",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:52612662c9173f494ae8"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:82a5d2bdb13bdb14a8e4",
+          "word": "mammutbehörde",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutbehörde; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:behorde",
+            "surface:de:mammutbehord"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "behörde",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:82a5d2bdb13bdb14a8e4"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:e772ae9f2afa3d2066c4",
+          "word": "mammutfeuerwerk",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutfeuerwerk; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "ety:37a7fdbe2e15",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "feuerwerk",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:e772ae9f2afa3d2066c4"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:fa8bfa31907e6bd4166d",
+          "word": "mammutprogramm",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutprogramm; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "ety:c55cae5dc308",
+            "ety:d86fe44dd775",
+            "ety:4e62763376d9",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "programm",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:fa8bfa31907e6bd4166d"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:bdd585f816432d64622a",
+          "word": "mammutprojekt",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutprojekt; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:8f29724078fc",
+            "ety:b7d8ccb9dc9a",
+            "ety:86818e80c594",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "projekt",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:bdd585f816432d64622a"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:3100140cdeec7cbbf165",
+          "word": "mammutprozesses",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutprozesses; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:ses",
+            "surface:de:mammutprozesse"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "prozesses",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:3100140cdeec7cbbf165"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:08568c48e8d2472caa1a",
+          "word": "mammutsitzung",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutsitzung; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:sitzung",
+            "surface:de:mammutsitz"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "sitzung",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:08568c48e8d2472caa1a"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:4192fdd3b5abf2edf0bd",
+          "word": "mammutstrafverfahren",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutstrafverfahren; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutstrafverfahre",
+            "surface:de:strafverfahren"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "strafverfahren",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:4192fdd3b5abf2edf0bd"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:c14c12df20c607f0383a",
+          "word": "mammutturnier",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutturnier; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:399e2b4ac21e",
+            "ety:a4588cf26bfc",
+            "ety:5a6ad80095bd",
+            "surface:de:mammutturni"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "turnier",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:c14c12df20c607f0383a"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:9dee71931ba3a3ad0292",
+          "word": "mammutumzug",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutumzug; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mutu",
+            "ety:b7d8ccb9dc9a",
+            "surface:de:umzug",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "umzug",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:9dee71931ba3a3ad0292"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:7bc77e3400d8e34e7ef9",
+          "word": "mammutunterfangen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutunterfangen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutunterfange",
+            "surface:de:unterfangen"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "unterfangen",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:7bc77e3400d8e34e7ef9"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:eb4b419060b2f3218c38",
+          "word": "mammutverfahren",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutverfahren; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutverfahre",
+            "surface:de:verfahren"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "verfahren",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:eb4b419060b2f3218c38"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:8539ac90cddf833baaca",
+          "word": "mammutwerk",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutwerk; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "ety:b7d8ccb9dc9a",
+            "ety:2c4ef21d5bed",
+            "ety:53351d6e3d82",
+            "ety:de1c5d75067b"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammut",
+            "after": "werk",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:8539ac90cddf833baaca"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:758c4b3ba5eddac705a6",
+          "word": "superhypermammutquiz",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for superhypermammutquiz; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perm",
+            "ety:b7d8ccb9dc9a",
+            "surface:de:quiz",
+            "surface:de:superh",
+            "ety:de1c5d75067b",
+            "surface:de:hyper",
+            "surface:de:rhy"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "superhyper",
+            "component": "mammut",
+            "after": "quiz",
+            "head": "mammut-",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:758c4b3ba5eddac705a6"
+          }
+        }
+      ],
+      "reason": "Duden separately records Mammut- as an augmentative combining form expressing exceptional magnitude, exemplified by Mammutprojekt. The explicitly inspected compounds use that magnitude element rather than mut/change. No substring rule and no merger with the literal animal sense. Unclear Mammutkonsul, Mammutläufer, Mammutstraße and corrupt Mammutprogamm remain unbound.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Mammut_"
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "mammutbaum",
+      "sense": "sequoia_tree_component",
+      "root": "mut",
+      "status": "excluded",
+      "forms": [],
+      "component_stems": [
+        "mammutbaum",
+        "mammutbäum"
+      ],
+      "records": [
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:12fe53dfda8dbbdfa662",
+          "word": "mammutbaum",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutbaum; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutbaum"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammutbaum",
+            "after": "",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:12fe53dfda8dbbdfa662"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:5fe67e04d145ded2cedc",
+          "word": "mammutbaumholz",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutbaumholz; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:holz",
+            "surface:de:mammutbaum"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammutbaum",
+            "after": "holz",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:5fe67e04d145ded2cedc"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:b57a5c698191411a5d1c",
+          "word": "mammutbaums",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutbaums; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:ums",
+            "surface:de:mammutbaum"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammutbaum",
+            "after": "s",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:b57a5c698191411a5d1c"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:48c0f4cc0141410ac256",
+          "word": "mammutbäume",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutbäume; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutbaume"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammutbäum",
+            "after": "e",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:48c0f4cc0141410ac256"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:e86081de41702c08e10e",
+          "word": "mammutbäumen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mammutbäumen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutbaume",
+            "surface:de:men"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "",
+            "component": "mammutbäum",
+            "after": "en",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:e86081de41702c08e10e"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:dbbc9026c59252c1d7cd",
+          "word": "küstenmammutbäume",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for küstenmammutbäume; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:mammutbaume",
+            "surface:de:kustenmammutbaum"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "küsten",
+            "component": "mammutbäum",
+            "after": "e",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:dbbc9026c59252c1d7cd"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:ea251ddfdaaea222ba0b",
+          "word": "riesenmammutbaum",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for riesenmammutbaum; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:riesenmammutbaum"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "riesen",
+            "component": "mammutbaum",
+            "after": "",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:ea251ddfdaaea222ba0b"
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:5088acc74d673f63c416",
+          "word": "riesenmammutbaumes",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for riesenmammutbaumes; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:riesenmammutbaume",
+            "surface:de:baumes"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "riesen",
+            "component": "mammutbaum",
+            "after": "es",
+            "head": "mammutbaum",
+            "boundary_proof": "audit/associative-family-v6/creat-mut-shared-head-evidence-20261003.json#lemma:5088acc74d673f63c416"
+          }
+        }
+      ],
+      "reason": "Duden attests the giant-tree noun and its umlaut plural. These exact tree/wood/coast/giant compounds contain its branch-specific stems, without any change/mutation base; no merger with animal or magnitude senses.",
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Mammutbaum"
+      ]
+    }
+  ],
+  "records_resolved": 103,
+  "expensive_head_decisions": 5,
+  "limitations": [
+    "Manually enumerated component boundaries only; matching substrings were never accepted as identity.",
+    "Display/examination and animal/augmentative/tree scopes remain separate.",
+    "All excluded corpus records and their measured values remain present; exclusions affect these family edges only."
+  ]
+}

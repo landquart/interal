@@ -1,0 +1,24 @@
+{
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-attested-heads-review-20261002",
+  "previous_pending_sha256": "9d57608333608a73c6b1218a3e7e1723c392c93fec11737ebf768d7f28cedcab",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 12,
+  "new_counts": {
+    "accepted": 11,
+    "excluded": 1
+  },
+  "continuation_counts": {
+    "accepted": 24,
+    "excluded": 161,
+    "uncertain": 50,
+    "pending_review": 527
+  },
+  "artifact_sha256": {
+    "decisions.json": "c4d55ecccc1a882345d5a7a92525a97636e9bac91441b0a3829f42701277464a",
+    "pending-review.json": "39e58059413236d23803f249c708f63a8fec52077d06bfca07d38b449606f081",
+    "source-records.json.gz": "6ba26da771f5ed5f10332e92befb7c98c919e9134c8cad8f823439bf49da9a28"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

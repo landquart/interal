@@ -2,7 +2,6 @@ const DEFAULT_LANGUAGE_CODES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const PAGE_STATE_VERSION = 2;
 const PAGE_STATE_NAME = 'associativvordes';
 export const MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE = 5;
-const MAX_STATE_CANDIDATES_PER_LANGUAGE = 20;
 const MAX_STATE_SOURCES_PER_CANDIDATE = 12;
 const MAX_STATE_WARNING_LENGTH = 240;
 const MAX_STATE_EXPLANATION_LENGTH = 1200;
@@ -249,7 +248,6 @@ function compactAssociativeLanguages(languages, languageList = DEFAULT_LANGUAGE_
   for (const code of languageCodes(languageList)) {
     output[code] = (Array.isArray(languages?.[code]) ? languages[code] : [])
       .filter((item) => item && (item.selected || item.word))
-      .slice(0, MAX_STATE_CANDIDATES_PER_LANGUAGE)
       .map((item) => {
         const sourceState = compactStateSources(item.sources);
         return {

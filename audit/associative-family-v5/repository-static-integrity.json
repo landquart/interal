@@ -5,31 +5,31 @@
   "storage": "git_repository_static_files",
   "encoding": "gzip",
   "counts": {
-    "families": 2456542,
-    "aliases": 1934051,
+    "families": 2456540,
+    "aliases": 1934055,
     "lemmas": 4924980,
     "components": 9349982,
-    "memberships": 10071308,
-    "materialized_unique_lemmas": 4924275,
-    "multi_family_lemmas": 3332183,
-    "lemmas_without_materialized_family": 705,
+    "memberships": 10049785,
+    "materialized_unique_lemmas": 4924151,
+    "multi_family_lemmas": 3335536,
+    "lemmas_without_materialized_family": 829,
     "unique_lemmas_by_language": {
-      "en": 1130945,
-      "de": 1113446,
-      "fr": 558904,
-      "es": 941516,
-      "it": 610087,
-      "ru": 569377
+      "en": 1130858,
+      "de": 1113440,
+      "fr": 558895,
+      "es": 941501,
+      "it": 610082,
+      "ru": 569375
     },
     "memberships_by_language": {
-      "en": 2619177,
-      "de": 2204874,
-      "fr": 1143056,
-      "es": 1796477,
-      "it": 1180989,
-      "ru": 1126735
+      "en": 2619284,
+      "de": 2211173,
+      "fr": 1144212,
+      "es": 1798422,
+      "it": 1148991,
+      "ru": 1127703
     },
-    "materialized_families": 2456542
+    "materialized_families": 2456540
   },
   "invariants": {
     "manifest_report_counts_match": true,
@@ -50,6 +50,74 @@
     "provenance_locked": true
   },
   "rejected_corpus_noise": [],
+  "action_stage": {
+    "added_memberships": 2268,
+    "removed_memberships": 0,
+    "full_family_certification": false,
+    "counts": {
+      "en": {
+        "accepted": 257,
+        "excluded": 8037,
+        "uncertain": 4,
+        "pending_review": 1435
+      },
+      "de": {
+        "accepted": 963,
+        "excluded": 11934,
+        "uncertain": 134,
+        "pending_review": 4290
+      },
+      "fr": {
+        "accepted": 208,
+        "excluded": 3663,
+        "uncertain": 0,
+        "pending_review": 604
+      },
+      "es": {
+        "accepted": 372,
+        "excluded": 4170,
+        "uncertain": 2,
+        "pending_review": 1249
+      },
+      "it": {
+        "accepted": 223,
+        "excluded": 3245,
+        "uncertain": 2,
+        "pending_review": 8654
+      },
+      "ru": {
+        "accepted": 245,
+        "excluded": 2175,
+        "uncertain": 1,
+        "pending_review": 410
+      }
+    }
+  },
+  "reflex_heads_extension": {
+    "added_memberships": 18,
+    "removed_memberships": 0,
+    "full_family_certification": false
+  },
+  "reflex_productive_variants_extension": {
+    "added_memberships": 10,
+    "removed_memberships": 0,
+    "full_family_certification": false
+  },
+  "reflex_native_compounds_extension": {
+    "added_memberships": 7,
+    "removed_memberships": 0,
+    "full_family_certification": false
+  },
+  "reflex_rare_heads_extension": {
+    "added_memberships": 7,
+    "removed_memberships": 0,
+    "full_family_certification": false
+  },
+  "reflex_continuation": {
+    "added_memberships": 6,
+    "removed_memberships": 0,
+    "full_family_certification": false
+  },
   "provenance": {
     "schema_version": 1,
     "source_run_id": 35647932153,
@@ -65,8 +133,8 @@
     },
     "storage": "git_repository_static_files",
     "file_count_before_provenance": 2050,
-    "total_bytes_before_provenance": 720273492,
-    "tree_content_sha256": "74afd4e9258d1bf0264b51fa515f3e737ac9be73fd76e0df6ee0b03d894e89cf",
+    "total_bytes_before_provenance": 717790893,
+    "tree_content_sha256": "0ab4007cdea03a9048553e05a0c4ee961684e13d57225bcb7e66af055bc92f01",
     "repository_repairs": [
       {
         "repair": "exclude_known_rejected_corpus_noise_from_runtime",
@@ -499,6 +567,173 @@
         "added_aliases": 1,
         "decision_ledger_sha256": "ac2b972beaafe1e91a3313f8d517d442347c79ee00caef41de37d6f5ffade02f",
         "not_individual_lexical_annotation": true
+      },
+      {
+        "repair": "remove_reviewed_inter_false_memberships_and_nat_acronym_alias_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 11,
+        "added_memberships": 0,
+        "removed_alias_pairs": [
+          [
+            "nat",
+            "ety:496b7cec5a43"
+          ]
+        ],
+        "decision_ledger_sha256": "94b83c9c463c887ba28c491484ffa8820f76133d36593ea05b5cb6ae88f6c923",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_exact_component_memberships_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 2056,
+        "added_memberships": 6896,
+        "added_families": 2,
+        "decision_ledger_sha256": "0f32b1fcc5381a973922e7d739c02be2f1de1a5b938a2f4e800fd1e96fc8ff91",
+        "checkpoint_sha256": "1f1c3d04e6f6bc845856fd44cb5018a80f19978890df38b8b855ad01e634e9a3",
+        "full_family_certification": false,
+        "exact_fragment_required": true
+      },
+      {
+        "repair": "continue_exact_component_recall_and_exclusions_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 0,
+        "added_memberships": 15,
+        "decision_ledger_sha256": "2f3e10927391804c4fc62da94c837a27b314596b9f34027a3f633bd7cc5b9ab5",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_observ_and_inform_associative_reflex_families_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6937,
+        "added_memberships": 1740,
+        "net_family_delta": -1,
+        "alias_delta": 1,
+        "decision_ledger_sha256": "6ddfbe3f66b82e4d738ba89aeef505a934cee3bd9daf7fc18f64a650e2b3cf8a",
+        "full_family_certification": false
+      },
+      {
+        "repair": "add_reviewed_german_russian_loc_reflex_members_20261001",
+        "source_run_id": 35647932153,
+        "added_memberships": 505,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "decision_ledger_sha256": "37e51a81e4b9836b7e6df51bb538d0039122851417da7d7ea8559f72019dc235",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_creation_associative_root_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6804,
+        "added_memberships": 574,
+        "net_family_delta": -1,
+        "alias_delta": 0,
+        "decision_ledger_sha256": "80532ab2bc22bcd8f35a930f904cb4ed7974fde0c5c30ec7e028021457d48a9a",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_relation_associative_root_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6836,
+        "added_memberships": 487,
+        "net_family_delta": -1,
+        "alias_delta": 0,
+        "decision_ledger_sha256": "ee4738605da1f06dc566132f8b8f162a9502767f9ac38ceaea241d0e8f5a6c36",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_operation_associative_root_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6784,
+        "added_memberships": 1595,
+        "net_family_delta": -1,
+        "alias_delta": 2,
+        "decision_ledger_sha256": "6202cfae56711bd21a7c0c1c3ebfb46a1ad7fa34feb7d0cd3d06deda0c147713",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_mutation_associative_root_20261001",
+        "source_run_id": 35647932153,
+        "removed_memberships": 6792,
+        "added_memberships": 569,
+        "net_family_delta": -1,
+        "alias_delta": 1,
+        "decision_ledger_sha256": "52b215e9c76d12f03f9a5a93ae7c59ee2deef8ab4d345afafe84b1245deb9c1c",
+        "full_family_certification": false
+      },
+      {
+        "repair": "materialize_reviewed_action_subset_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 2098,
+        "removed_memberships": 0,
+        "net_family_delta": 1,
+        "alias_delta": 0,
+        "decision_ledger_sha256": "30fd69ba65a417f58d5b0d953c4d9f8cee619a676ca0a3b5695c700d0a12de4f",
+        "full_family_certification": false,
+        "legacy_containers_preserved": [
+          "ety:751cdacbf4a9",
+          "ety:9a86a987fafc"
+        ],
+        "component_preservation": "Original component arrays kept intact; reviewed act component appended."
+      },
+      {
+        "repair": "extend_reviewed_action_memberships_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 170,
+        "removed_memberships": 0,
+        "net_family_delta": 0,
+        "alias_delta": 0,
+        "decision_ledger_sha256": "84fb775197529d95238b5f03729c25e655b9bdab306f5b6938f44c4f7d30a7d0",
+        "full_family_certification": false
+      },
+      {
+        "repair": "extend_reviewed_observ_inform_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 6,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "net_family_delta": 0,
+        "decision_ledger_sha256": "42ca6903c83709830dae714f4401895747bb40fa521f4f9cf4a9ad35bd1f6f7b",
+        "full_family_certification": false
+      },
+      {
+        "repair": "extend_reviewed_observ_inform_heads_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 18,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "net_family_delta": 0,
+        "decision_ledger_sha256": "5d4cc19677a7c9539d1a055f821e0cd4da402949f33cb839bd185ce574cfec76",
+        "full_family_certification": false
+      },
+      {
+        "repair": "extend_reviewed_observ_inform_rare_heads_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 7,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "net_family_delta": 0,
+        "decision_ledger_sha256": "2551d3b3b9f12839e451645578d908ec0aad703c3977839e40d8f1f9cfd75edd",
+        "full_family_certification": false
+      },
+      {
+        "repair": "extend_reviewed_observ_inform_native_compounds_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 7,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "net_family_delta": 0,
+        "decision_ledger_sha256": "494bf69db6cc235cfc2b8098f45ffdb35fbabbf3b8853bc83f4775d1ac03b1c3",
+        "full_family_certification": false
+      },
+      {
+        "repair": "extend_reviewed_observ_inform_productive_variants_20261002",
+        "source_run_id": 35647932153,
+        "added_memberships": 10,
+        "removed_memberships": 0,
+        "alias_delta": 0,
+        "net_family_delta": 0,
+        "decision_ledger_sha256": "76ec157bc49380444ee8cade2516a102f39d4ca4f095f9b530cf5045deb73dd0",
+        "full_family_certification": false
       }
     ]
   }

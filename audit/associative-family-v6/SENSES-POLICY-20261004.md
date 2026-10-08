@@ -1,0 +1,18 @@
+# Explicit lexical-row/component senses policy (Prompt 02)
+
+Membership relates an immutable aggregate lexical row, or an explicitly bounded component of that row, to a lexical head and an approved finite family edge. It does not assert that every token has one POS or sense. This makes explicit the existing schema (lemma sources/category_breakdown; head sense; finite links/edges) and the accepted Italian sistema component precedent. Token classification is unavailable in these frequency files and is not the membership object. No source IDs, historical decisions or frequencies change.
+
+Dictionary senses and corpus observations are separate evidence dimensions. A documented lexical interpretation is not a claim that that interpretation occurs in every aggregate. A hypothetical personal/place/brand name does not prove contamination. Even a name attested outside the corpus is not observed in these rows. Preserve that risk and the aggregate-frequency limitation without demanding missing token contexts for an otherwise evidenced row.
+
+* POS variants: dictionaries must prove the shared lexical base in every established analysis. Admit the common bounded component, retaining POS uncertainty; do not assert whole-noun identity. Sistema/sistemare meets this criterion.
+* Polysemy/metonymy: independent dictionary history or explicit derivation must connect the senses to the same base. Plant, seed and flavoured drink need no invented sense frequencies. Russian apple naming has separate aroma-based evidence.
+* Proven lexical homonyms with different histories/verdicts: withhold the unsplit aggregate. Frequency or a dominant sense cannot select the favourable history. A real sense-tagged source partition with provenance, or a component independently proved in all analyses, can unblock it. French tour and Russian тура fail the common-base test.
+* Unproved alternative history: record a concrete lexical evidence blocker, distinct from hypothetical names. Formal recognizability is independently required; remote ancestry alone cannot authorize an edge.
+
+Frequency status is always aggregate_only_not_sense_frequency for rows without annotations. Neither acceptance nor withholding invents a botanical/tower/verb/name frequency. Downstream calculations must retain this label and cannot present aggregate IPM as a measured sense-specific frequency; this stage does not change the production v5 calculator.
+
+Canonical boundary, national whole lexical form, finite branch stem, inflection and query alias have independent roles. Existing lexical_branch_realization represents a scoped whole national form; derivational_stem requires its own derivational evidence. A type, query match, transliteration, dictionary translation or common ancestor cannot grant membership. No new realization type or universal s/c, rr/r, u/o or ending-stripping algorithm is introduced.
+
+Controls remain ped (pede navigates by alias), creat (cre excluded), observ/osserv independently evidenced, loc/lok/лок scoped, nat/naive separated, system/состав separated, botanical anis/scientific aniso separated. No family size cap. Historical research-only decisions remain immutable and are superseded only by explicit finite decisions.
+
+Final tower adjudication also documents Spanish torre as torrar < torrere (RAE) and Italian torre as togliere < tollere (Treccani). Both unsplit rows are deferred, exactly as tour/тура: lexical rarity does not erase proven different histories. Shared letters torr do not prove a shared tower component. This differs from sistema/sistemare, whose noun-derived common component is independently proved. Turr remains a research-only canonical boundary; no tower core aggregate passes promotion in this block.

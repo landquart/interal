@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "validated_commit": "63ffcb701b89358ce00ed320159547db46a31620",
+  "runtime_changes_in_following_reflex_stage": false,
+  "full_test_command": "npm test",
+  "dependency_install_command": "npm ci --ignore-scripts",
+  "full_tests": "pass",
+  "log_sha256": "49170466d164fd1008e541893df9ee563e00a1cc1a929920f12c2aad4955ffd4",
+  "decompressed_log_sha256": "6a09099ffe41490f661ea7a5b387205ebb42bb14a0b4b7d59f94efc0ad1ebd3d",
+  "exhaustive_audit_command": "node scripts/audit-repository-associative-family-v5.mjs",
+  "exhaustive_audit": "pass",
+  "audit_artifact_sha256": "1b04e61a6d2515ea44819b43230d05ca393fc09c3e732dc5aaccada4d27003eb",
+  "following_stage_test_command": "node tests/associative-reflex-continuation.test.mjs",
+  "following_stage_test": "pass",
+  "limitations": [
+    "The full suite passed before the new continuation test was added; that new test passed separately. Runtime data is unchanged in the following stage.",
+    "Test and integrity passes do not certify remaining linguistic review queues."
+  ]
+}

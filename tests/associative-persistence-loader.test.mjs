@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
-import { compactAssociativeState } from '../associativvordes/js/associative-state.js';
+import { compactAssociativeState, restoreAssociativeState } from '../associativvordes/js/associative-state.js';
 
 const copyPlainSource = fs.readFileSync('shared/copy-plain.js', 'utf8');
 
@@ -132,8 +132,10 @@ function makeCopyPlainContext({ includeDeclaredFormDraft = true } = {}) {
     calculateResult: () => ({ finalAssociation: 60, accepted: true })
   });
 
+  const restored = restoreAssociativeState(compact, { languages: codes });
+  for (const items of Object.values(restored.state.languages)) assert.equal(items.length, 35);
   for (const items of Object.values(compact.state.languages)) {
-    assert.equal(items.length, 20);
+    assert.equal(items.length, 35);
     assert.equal(items.filter((item) => item.selected).length, 5);
     assert.equal(items[0].sources.length, 1);
   }

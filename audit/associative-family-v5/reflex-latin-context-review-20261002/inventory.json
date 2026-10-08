@@ -1,0 +1,24 @@
+{
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-spanish-enclitics-review-20261002",
+  "previous_pending_sha256": "39e58059413236d23803f249c708f63a8fec52077d06bfca07d38b449606f081",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 13,
+  "new_counts": {
+    "uncertain": 12,
+    "excluded": 1
+  },
+  "continuation_counts": {
+    "accepted": 24,
+    "excluded": 162,
+    "uncertain": 62,
+    "pending_review": 514
+  },
+  "artifact_sha256": {
+    "decisions.json": "36fc17d0a47c4fb91552863be9cdb3f2263eb39bc58c891118e7509f193fd4d7",
+    "pending-review.json": "cacc93562160780a61de39d4c84b657aec5d434fb8cdbefb98fa58f181fb9d75",
+    "source-records.json.gz": "612292f66ac24373daa9afd2cfaf1a6ea8ae4778319e3a0ba2117645a78a0aa5"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

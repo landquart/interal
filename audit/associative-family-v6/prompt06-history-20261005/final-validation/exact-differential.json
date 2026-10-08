@@ -1,0 +1,32 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "a29a3184336b981f2ca1c5cea019ad43e4b42729",
+  "current_memberships": 21561,
+  "historical_baseline_memberships": 19967,
+  "exact_differential": {
+    "additions": [],
+    "removals": [],
+    "changed_memberships": []
+  },
+  "protected_trees": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+    "audit/associative-family-v6/historical-overlay-20261003": "fbc2070588a3eb8e8ea81dd30c2133b8ca282b01",
+    "audit/associative-family-v6/queue-organization-20261004": "464a0f3d247830cac09b1cd9d0c5149962cf7faa",
+    "audit/associative-family-v6/oper-relat-continuation-20261004": "2a2016972ac30a76e84166ff5d874517961bda85"
+  },
+  "certified_scope_families": 18,
+  "full_dictionary_complete": false,
+  "representative_rechecks": 19,
+  "root_bound_overlap": 0,
+  "root_bound_union": 69624,
+  "all_historical_current_overlap": 827,
+  "effective_review_eligible_historical": 47723,
+  "effective_historical_current_overlap": 827,
+  "effective_review_eligible_union": 70130,
+  "planning_source_sets_conserved": true,
+  "certification_replay_artifacts": 5,
+  "planning_replay_artifacts": 16
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "validated_commit": "85169e0ef262d77aef4fd5720cfbbc82283ea691",
+  "source_run_id": 35647932153,
+  "full_test_command": "npm test",
+  "full_tests": "pass",
+  "new_continuation_tests_included": true,
+  "full_test_log_sha256": "91f97398559b5ac989d512a3b7ccc1b2426b9d29175e1968ad382c8692dd23a6",
+  "decompressed_log_sha256": "6e2d5d5025bf72a77ca55a026efe4f1b9f5c4db35454d1c733cb8154ab3e71c8",
+  "exhaustive_audit": "pass",
+  "exhaustive_audit_artifact": "audit/associative-family-v5/repository-static-integrity.json",
+  "exhaustive_audit_artifact_sha256": "1b04e61a6d2515ea44819b43230d05ca393fc09c3e732dc5aaccada4d27003eb",
+  "audit_counts": {
+    "families": 2456540,
+    "aliases": 1934055,
+    "lemmas": 4924980,
+    "components": 9349982,
+    "memberships": 10049567,
+    "materialized_unique_lemmas": 4924151,
+    "multi_family_lemmas": 3335517,
+    "lemmas_without_materialized_family": 829,
+    "unique_lemmas_by_language": {
+      "en": 1130858,
+      "de": 1113440,
+      "fr": 558895,
+      "es": 941501,
+      "it": 610082,
+      "ru": 569375
+    },
+    "memberships_by_language": {
+      "en": 2619261,
+      "de": 2211011,
+      "fr": 1144210,
+      "es": 1798409,
+      "it": 1148980,
+      "ru": 1127696
+    },
+    "materialized_families": 2456540
+  },
+  "runtime_changed_since_exhaustive_audit": false,
+  "action_counts": {
+    "accepted": 2098,
+    "excluded": 33224,
+    "uncertain": 143,
+    "pending_review": 16812
+  },
+  "reflex_continuation_counts": {
+    "excluded": 23,
+    "accepted": 6,
+    "uncertain": 3,
+    "pending_review": 730
+  },
+  "full_family_certification": false,
+  "remaining_scope": [
+    "Complete pending action review and cautiously retire legacy actio/acti containers.",
+    "Materialize six reviewed observ/inform continuation selections with preservation preflight.",
+    "Continue national reflex queues, nat/loc/inter frame, Russian short roots, fifteen val routes and subsequent lexical risks."
+  ],
+  "limitations": [
+    "Integrity and test passes do not certify unresolved linguistic membership.",
+    "The exhaustive audit applies to the unchanged runtime corpus; review-only commits followed it."
+  ]
+}

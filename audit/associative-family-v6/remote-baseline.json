@@ -1,0 +1,235 @@
+{
+  "schema_version": 6,
+  "source_head": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
+  "pr650": {
+    "url": "https://github.com/landquart/interal/pull/650",
+    "number": 650,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": false,
+    "body": "The Latin information family was expanded through the Italian -azione suffix, so ordinary lookups returned thousands of unrelated words and fused phrases. The full informatio key and truncated informati key also materialized identical family evidence and identical member arrays.\n\nThis bounded repair consolidates the exact duplicate under ety:497564008159, changes its canonical to informatio, and removes both information targets from azion. Five lexical aliases return the complete curated lists: en 6, de 154, fr 5, es 7, it 12, ru 1 (185 total).\n\n- Removes 7,014 memberships: 3,598 technical duplicate links plus 3,416 rejected or unresolved links. Adds three existing corpus records: German informationsbildschirm/informationsflut and Russian информация. Their original family memberships and all source lemmas remain.\n- Explicit retained/excluded lists, original ordered member hashes and morphological analyses are committed. German productive compounds have a documented exception to twenty. Metadata stays verified:false / needs_review; this does not claim individual dictionary certification of every rare compound.\n- Preserves all metadata and full arrays in nineteen neighbouring families. The two German additions prevent the new curated informatio route from hiding genuine pre-existing results.\n- Preserves original extraction relation_evidence and records borrowed ancestry with French mediation in English; a der template alone is not inheritance evidence.\n- Recounts membership/coverage aggregates and family summaries, refreshes provenance, and extends the exhaustive audit with exact positives, duplicate absence, alias routing and unchanged-neighbour controls.\n\n| Field | Before | After |\n|---|---:|---:|\n| Families | 2,456,543 | 2,456,542 |\n| Aliases | 1,934,050 | 1,934,051 |\n| Memberships | 10,078,319 | 10,071,308 |\n| Materialized unique lemmas | 4,924,281 | 4,924,275 |\n| Lemmas without a materialized family | 699 | 705 |\n| Multi-family lemmas | 3,332,240 | 3,332,183 |\n\nValidation: 24 relevant Node tests passed; clean replay produces all 2,051 materialization files byte-identically, including report and provenance, without manual finalization; exhaustive repository audit and git diff --check pass. The remote final Git tree exactly matches the audited local tree.\n\nImmutable source run 35647932153 remains locked. No full rebuild. Six newly unassigned lemmas remain in the source corpus; replacement links require independent justification.\n\nRemaining: five other exact azion concept pairs, the nonidentical actio/acti pair, deferred Russian kh/nl/lo/ca/um, and full retained val membership/key review. Complete diagnostics and continuation instructions are in audit/associative-family-v5/. The global linguistic-validation goal remains open.\n\nFinal CI on commit 7ddc5b5a: [Tests](https://github.com/landquart/interal/actions/runs/36780734947) passed, including the browser regression; [exhaustive repository audit](https://github.com/landquart/interal/actions/runs/36780734765) passed, including comparison with committed integrity evidence. Vercel preview deployment completed successfully.",
+    "title": "Consolidate information family and remove suffix contamination",
+    "base": "main",
+    "base_sha": "78182754c4254b6c26aba42e556cb67158bb8c14",
+    "head": "fix/associative-information-20260930",
+    "head_sha": "3da2717f7de702f68cf465c7434e15ff7abd2d50",
+    "head_repo_id": 1207751910,
+    "head_repo_full_name": "landquart/interal",
+    "merge_commit_sha": "67ccb6b47689d29e0481bed8a2613cebc53ad028",
+    "user": {
+      "login": "landquart",
+      "name": "landquart",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/121970722?v=4",
+      "id": 121970722
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-09-30T21:38:34Z",
+    "updated_at": "2026-09-30T21:57:57Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 6,
+    "changed_files": 34,
+    "additions": 64849,
+    "deletions": 312,
+    "display_url": "https://github.com/landquart/interal/pull/650",
+    "display_title": "Consolidate information family and remove suffix contamination"
+  },
+  "pr651": {
+    "url": "https://github.com/landquart/interal/pull/651",
+    "number": 651,
+    "state": "open",
+    "merged": false,
+    "mergeable": true,
+    "draft": false,
+    "body": "Repairs additive component overrides and Latin stem proposals, and materializes reviewed national forms for observ (315), inform (1,473), loc (1,218), creat (574), relat (487), oper (1,595), mut (569), and act (2,268). Original measured corpus fields, source metadata, ordered component arrays and independent routes are preserved. Exact reviewed records gain a manual component; no productive substring classifier is introduced.\n\nThe observ/inform continuation applies 48 exact existing corpus records in five separately guarded stages: six earlier, eighteen additional heads, seven rare native heads, seven native compounds and ten productive variants. Evidence covers native borrowing, historical/regional forms, transparent compounds and documented Spanish voseo. Whole-token attestations and finite morphological inferences are explicitly distinguished. Each application preserves frozen historical prefixes and original independent routes; repeated application is refused. No memberships are removed, no aliases change and no family containers are created or retired in these continuation additions. Ten informazion source routes retired by earlier repairs remain absent, each anchored to its exact immutable retirement ledger; both extant routes remain intact.\n\nAll 762 continuation IDs are conserved: 48 applied positives, 358 exclusions, 155 investigated uncertain and 201 pending. Reviews separate unrelated lexical heads, spelling defects, native regional forms and genuinely unresolved foreign/contextual identities. No family is certified complete. A separate thirteen-record research checkpoint preserves exact pending/source records, primary findings for informadorxs, Kominform and Informbüro, and remaining OCR or borrowing-context questions; it does not silently reclassify pending records.\n\nThe action frame conserves 52,277 IDs: 2,268 applied positives, 33,224 exclusions, 143 investigated uncertain and 16,642 pending. Legacy actio/acti containers remain. Independent creat/relat/oper/mut frames retain 2,315 / 325 / 2,082 / 2,652 pending (7,374 total). Relation phrase-boundary and growth/fold decisions remain separate immutable stages.\n\nValidation: all fifteen targeted application tests pass with zero skips. The full local npm suite passes all 122 discovered test files. The fresh exhaustive repository audit passes for 2,456,540 families, 1,934,055 aliases and 10,049,785 memberships; 3,335,536 lemmas have multiple families. The committed integrity report is byte-identical to fresh audit stdout. Complete logs, tested-code hashes and exact queues are saved in audit/associative-family-v5/productive-variants-extension-validation-20261002. Runtime application is 821554605cd3abdb8686120525bc38ddbda2e3fe; separate validation is 22e6293f72a22e80e364079d83031a1f8f2a36d6. Remote Actions must independently confirm the final head; local success is not a claim of final-head CI success.\n\nRemaining scope: 201 observ/inform pending and 155 genuine uncertainties, then 325 relation and 842 loc reflex records; other action/creat/oper/mut queues, modern reconciliation of historical nat/loc/inter decisions, Russian kh/nl/lo/ca/um keys, fifteen retained uncertified val routes and subsequent risk clusters. Structural validation does not certify linguistic completeness. WORK-CHECKPOINT-20261002-CONTINUATION.md records the current resumable state and dated stages. PR #651 remains based on #650; no merge.",
+    "title": "Review associative national families and materialize action with preserved source evidence",
+    "base": "fix/associative-information-20260930",
+    "base_sha": "3da2717f7de702f68cf465c7434e15ff7abd2d50",
+    "head": "fix/associative-component-membership-20261001",
+    "head_sha": "22e6293f72a22e80e364079d83031a1f8f2a36d6",
+    "head_repo_id": 1207751910,
+    "head_repo_full_name": "landquart/interal",
+    "merge_commit_sha": "6557a42b842f159f2d9cf226ed5cfbf185bc26a4",
+    "user": {
+      "login": "landquart",
+      "name": "landquart",
+      "email": null,
+      "avatar_url": "https://avatars.githubusercontent.com/u/121970722?v=4",
+      "id": 121970722
+    },
+    "requested_reviewers": null,
+    "requested_team_reviewers": null,
+    "diff": null,
+    "comments": null,
+    "created_at": "2026-10-01T10:25:09Z",
+    "updated_at": "2026-10-02T20:27:39Z",
+    "closed_at": null,
+    "merged_at": null,
+    "commits": 63,
+    "changed_files": 613,
+    "additions": 808081,
+    "deletions": 1269,
+    "display_url": "https://github.com/landquart/interal/pull/651",
+    "display_title": "Review associative national families and materialize action with preserved source evidence"
+  },
+  "main": {
+    "name": "main",
+    "commit": {
+      "sha": "78182754c4254b6c26aba42e556cb67158bb8c14",
+      "node_id": "C_kwDOR_zU5toAKDc4MTgyNzU0YzQyNTRiNmMyNmFiYTQyZTU1NmNiNjcxNThiYjhjMTQ",
+      "commit": {
+        "author": {
+          "name": "landquart",
+          "email": "121970722+landquart@users.noreply.github.com",
+          "date": "2026-09-30T16:44:24Z"
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "noreply@github.com",
+          "date": "2026-09-30T16:44:24Z"
+        },
+        "message": "Merge pull request #649 from landquart/fix/associative-family-nitid-short-ru-20260929\n\nPrune nitidus and Russian short families; repair net/val routing",
+        "tree": {
+          "sha": "832592fa4e8eefdbe4582471cd391a2e9ecd5a29",
+          "url": "https://api.github.com/repos/landquart/interal/git/trees/832592fa4e8eefdbe4582471cd391a2e9ecd5a29"
+        },
+        "url": "https://api.github.com/repos/landquart/interal/git/commits/78182754c4254b6c26aba42e556cb67158bb8c14",
+        "comment_count": 0,
+        "verification": {
+          "verified": true,
+          "reason": "valid",
+          "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqvTxoCRC1aQ7uu5UhlAAA/KcQAII8uwMMX6W2Sjy+YzPMSGyT\nJk2IPJVi6cYJHFrGjiAFuKxl9apdgYe566+9e3ctulFsKMtOf5mhI6jcEVJbgTBs\njNeTYpCVW8fd+98W/Hj9UpRPKl4Fd7ZRAkdq2EeiAXssdsFY1xtE2KnbZGGv+ttQ\ntrNKpcDVLcPBz5mtIDoer2DGbK+gABBwzpGh+iz+iZvJPxMvc0EJ7l1KlkWxWD2z\nrnHJmM5myYbvckGAVLRvYWp8/J8s8S9UDAZas2L0YWaYyUu2N9SwG541uJbY42yT\nPfOubD7/LIRNkQKbJbZ3o1sFolCKGlfUvPav7n2Ohe2URy8UgDKu2z+UjbBHZG5n\npPxYbL94UfzdtpWy5TtEee3fhJg6RU6C6HQYnoruZeVTg8UVR3i3mGXum62/Vxpe\neOHjPbaBv9teFF3q+ut9nHoDO/VFFnps++WQ+2K1a17ezzHKkWNS5v7ZREhLVkGc\nZv0sbAI6uTLxVKts+FyINCGNgpolKjmhyCR6safL0mFQBjl7R/cxpVECR63vd28D\npWW/LtwAsoh81ngU59Gpa8Fbn5aOAH8xo/yVk5U6VvWQo9Rr8Pg/LGPFud0Su8DT\nfcgcY+q5pYiDkGZhV/hNBUByPXSw9FpFYqwxkODUmd5E54ot9pNACj2QU3IPw6wR\nymPme4v+hxYnEyHFDsez\n=ikpi\n-----END PGP SIGNATURE-----\n",
+          "payload": "tree 832592fa4e8eefdbe4582471cd391a2e9ecd5a29\nparent 7d09632761eb6c1c818d82833c139c5785e71099\nparent b7df1249077f94fc60218f00454c457623ca250b\nauthor landquart <121970722+landquart@users.noreply.github.com> 1790786664 +0300\ncommitter GitHub <noreply@github.com> 1790786664 +0300\n\nMerge pull request #649 from landquart/fix/associative-family-nitid-short-ru-20260929\n\nPrune nitidus and Russian short families; repair net/val routing",
+          "verified_at": "2026-09-30T16:44:25Z"
+        }
+      },
+      "url": "https://api.github.com/repos/landquart/interal/commits/78182754c4254b6c26aba42e556cb67158bb8c14",
+      "html_url": "https://github.com/landquart/interal/commit/78182754c4254b6c26aba42e556cb67158bb8c14",
+      "comments_url": "https://api.github.com/repos/landquart/interal/commits/78182754c4254b6c26aba42e556cb67158bb8c14/comments",
+      "author": {
+        "login": "landquart",
+        "id": 121970722,
+        "node_id": "U_kgDOB0UgIg",
+        "avatar_url": "https://avatars.githubusercontent.com/u/121970722?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/landquart",
+        "html_url": "https://github.com/landquart",
+        "followers_url": "https://api.github.com/users/landquart/followers",
+        "following_url": "https://api.github.com/users/landquart/following{/other_user}",
+        "gists_url": "https://api.github.com/users/landquart/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/landquart/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/landquart/subscriptions",
+        "organizations_url": "https://api.github.com/users/landquart/orgs",
+        "repos_url": "https://api.github.com/users/landquart/repos",
+        "events_url": "https://api.github.com/users/landquart/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/landquart/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "committer": {
+        "login": "web-flow",
+        "id": 19864447,
+        "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+        "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/web-flow",
+        "html_url": "https://github.com/web-flow",
+        "followers_url": "https://api.github.com/users/web-flow/followers",
+        "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+        "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+        "organizations_url": "https://api.github.com/users/web-flow/orgs",
+        "repos_url": "https://api.github.com/users/web-flow/repos",
+        "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/web-flow/received_events",
+        "type": "User",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "parents": [
+        {
+          "sha": "7d09632761eb6c1c818d82833c139c5785e71099",
+          "url": "https://api.github.com/repos/landquart/interal/commits/7d09632761eb6c1c818d82833c139c5785e71099",
+          "html_url": "https://github.com/landquart/interal/commit/7d09632761eb6c1c818d82833c139c5785e71099"
+        },
+        {
+          "sha": "b7df1249077f94fc60218f00454c457623ca250b",
+          "url": "https://api.github.com/repos/landquart/interal/commits/b7df1249077f94fc60218f00454c457623ca250b",
+          "html_url": "https://github.com/landquart/interal/commit/b7df1249077f94fc60218f00454c457623ca250b"
+        }
+      ]
+    },
+    "_links": {
+      "self": "https://api.github.com/repos/landquart/interal/branches/main",
+      "html": "https://github.com/landquart/interal/tree/main"
+    },
+    "protected": false,
+    "protection": {
+      "enabled": false,
+      "required_status_checks": {
+        "enforcement_level": "off",
+        "contexts": [],
+        "checks": []
+      }
+    },
+    "protection_url": "https://api.github.com/repos/landquart/interal/branches/main/protection"
+  },
+  "ci650": {
+    "workflow_runs": [
+      {
+        "id": 36782532132,
+        "name": "Audit repository associative family v5",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 65,
+        "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/36782532132/jobs",
+        "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/36782532132/logs",
+        "workflow_id": 364193655
+      },
+      {
+        "id": 36782531760,
+        "name": "Tests",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 816,
+        "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/36782531760/jobs",
+        "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/36782531760/logs",
+        "workflow_id": 315247986
+      }
+    ]
+  },
+  "ci651": {
+    "workflow_runs": [
+      {
+        "id": 37060531905,
+        "name": "Audit repository associative family v5",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 128,
+        "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/37060531905/jobs",
+        "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/37060531905/logs",
+        "workflow_id": 364193655
+      },
+      {
+        "id": 37060531890,
+        "name": "Tests",
+        "status": "completed",
+        "conclusion": "success",
+        "run_number": 879,
+        "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/37060531890/jobs",
+        "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/37060531890/logs",
+        "workflow_id": 315247986
+      }
+    ]
+  },
+  "architecture_branch": "feat/associative-family-v6-head-architecture-20261003",
+  "production_switch": false,
+  "merge_authorized": false
+}

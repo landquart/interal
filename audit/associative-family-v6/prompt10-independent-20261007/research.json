@@ -1,0 +1,56 @@
+{
+  "baseline_sha": "ec43ff50383e6b632a95a5f6b9a4b8d7b0d44003",
+  "production_enabled": false,
+  "full_linguistic_certification": false,
+  "fresh_read": [
+    "CHECKPOINT.md",
+    "WORK-REPORT-20261003.md",
+    "WORK-REPORT-PROMPT08-20261005.md",
+    "WORK-REPORT-PROMPT09-20261007.md",
+    "generated/manifest.json",
+    "generated/head-review-metrics.json",
+    "generated/migration-report.json"
+  ],
+  "counts": {
+    "accepted": 21566,
+    "historical_baseline": 19967,
+    "heads_total": 19079,
+    "lexical_heads": 222,
+    "links": 21962,
+    "review_units": 23232
+  },
+  "sample_design": {
+    "unit": "language/family/lemma/head/version question",
+    "selection": "deterministic hash-ranked finite sample, fixed public seed; no random-seed probability claim",
+    "strata": {
+      "de|newly_reviewed": 1573,
+      "de|promoted": 6,
+      "de|seed_inherited": 8875,
+      "en|promoted": 5,
+      "en|seed_inherited": 3066,
+      "es|newly_reviewed": 1,
+      "es|promoted": 3,
+      "es|seed_inherited": 2803,
+      "fr|newly_reviewed": 1,
+      "fr|promoted": 3,
+      "fr|seed_inherited": 1761,
+      "it|promoted": 2,
+      "it|seed_inherited": 2109,
+      "ru|promoted": 5,
+      "ru|seed_inherited": 1353
+    },
+    "n": 40,
+    "per_stratum": 3,
+    "high_risk": "additional purposive cases, separate from finite hash sample",
+    "uncertainty": "unresolved labels remain uncertain; do not drop from denominator",
+    "confidence_intervals": "Wilson 95% only for stated binary adjudicated denominators; descriptive sensitivity, not population certification; partial identification bounds include unresolved labels",
+    "false_negatives": "withheld and surface-only are separate enriched frames, not full lexical recall; no gold head inventory"
+  },
+  "findings": [
+    "Current stage integrator lacks explicit excluded/uncertain mode checks required by Prompt01 decision.",
+    "Frozen application grants exist but current lexical loader does not consume them.",
+    "Stage integrator passes its own proposed records to recognition without independent queue identity validation."
+  ],
+  "input_code_output_sha256_manifest": "baseline-hashes.json",
+  "research_not_application": true
+}

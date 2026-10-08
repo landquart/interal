@@ -1,0 +1,37 @@
+{
+  "schema_version": 6,
+  "baseline": "26ed0861fad8768f70ed2a1831e4bc8e52dc0c78",
+  "production_enabled": false,
+  "binding_authorized": false,
+  "stages": [
+    {
+      "name": "reaktion",
+      "frame": 196,
+      "selected": 29,
+      "withheld": 167,
+      "source_sha256": "9e722ab56f217188a40fb47ebe3ca4ca45fff1d2c729c9371398eddf7b9a2969"
+    },
+    {
+      "name": "perlmutt",
+      "frame": 20,
+      "selected": 20,
+      "withheld": 0,
+      "source_sha256": "55524c38ba2d4287aa28ee402b914f80a5a49d0579c3b1960b93a8f7921be868"
+    },
+    {
+      "name": "osservator",
+      "frame": 10,
+      "selected": 1,
+      "withheld": 9,
+      "source_sha256": "2a934624f280095861b8a1b6d48c8690a463ec0a1dc1018b3dc7a088bde9bc3f"
+    },
+    {
+      "name": "oper-extension",
+      "frame": 187,
+      "selected": 4,
+      "withheld": 183,
+      "source_sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778"
+    }
+  ],
+  "scope_policy": "Substring retrieval defines research frames only. Every selected finite boundary is independently assessed. Frame sizes are not family-size caps. Existing source IDs/frequencies/routes are retained; no corpus reclustering."
+}

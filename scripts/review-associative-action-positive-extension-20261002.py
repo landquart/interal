@@ -1,0 +1,36 @@
+"""Explicit whole-record positive action extension; no open acceptance classifier."""
+import json,gzip,hashlib
+from pathlib import Path
+B=Path('audit/associative-family-v5');P=B/'action-russian-heads-20261002';O=B/'action-positive-extension-20261002'
+sha=lambda b:hashlib.sha256(b).hexdigest();MW='https://www.merriam-webster.com/dictionary/';DU='https://www.duden.de/rechtschreibung/'
+GROUPS=[
+('en','action','action','all-action bolt-action class-action',[MW+'act',MW+'bolt-action',MW+'class%20action']),
+('en','actor','actor','footballer-turned-actor',[MW+'actor']),
+('en','active','activ','research-active structure-activity semiactive vasoactive',[MW+'active',MW+'vasoactive']),
+('en','act','act','self-acting short-acting three-act',[MW+'act']),
+('en','actual','actual','self-actualisation self-actualization',[MW+'self-actualization']),
+('en','transact','act','transact-sql',[MW+'transact']),
+('en','activate','activ','voice-activated',[MW+'activate']),
+('de','Aktion','aktion','abfangaktion abfrageaktion abholaktion abhöraktion abhöraktionen abhörungsaktion abhörungsaktionen ablenkungsaktion ablenkungsaktionen abo-karten-aktion abschlachtungsaktion abschleppaktion abwehraktion abzugsaktion agit-prop-aktion aktionismus-aktivitäten alibiaktion alpschweineaktion anfängeraktion angriffsaktion anreiseaktion anti-kriegs-aktionen anti-rassismus-aktion anwerbeaktion ariva-adventsaktion attrappen-aktion aufklärungsaktion aufräumaktion auftaktaktionen ausreißaktionen ausrottungsaktion',[DU+'Aktion']),
+('de','Aktionär','aktion','accor-aktionäre airports-aktionäre aktionären aktionärs aktionärsbasis aktionärsberichte aktionärsbrief aktionärschützer aktionärsdinner aktionärsfreundlich aktionärsgeldern aktionärsgesprächen aktionärshauptversammlung aktionärsinformationen aktionärskommission aktionärskreis aktionärspakt aktionärsrechte aktionärsschützer aktionärsschützern aktionärssitzung aktionärsstimmen aktionärsstruktur aktionärstreffen aktionärsversammlung aktionärsversammlungen aktionärsvertreter aktionärsvertretung aktionärszahlen aktionärtreffen alleinaktionärin alt-aktionäre altaktionär altaktionäre altaktionären ameritrade-aktionären anglo-aktionäre arcandor-aktionäre arcelor-aktionäre at-home-großaktionär',[DU+'Aktionaer']),
+('de','Reaktion','aktion','abstoßreaktion abstoßungsreaktion abstoßungsreaktionen abwehrreaktion abwehrreaktionen allgemeinreaktionen ameisen-pflanzen-interaktionen analystenreaktion anfangsreaktion angstreaktion angstreaktionsstudie anpassungsreaktion antigen-antikörperreaktion antimateriereaktion antizeitreaktion arzneimittelreaktion atemwegsreaktion atomreaktion auflagerreaktionen',[DU+'Reaktion']),
+('de','aktiv','aktiv','abendaktivitäten agenturaktivitäten aids-aktivistin aktiviertem aktivierter aktivistenführer aktivistenführerin aktivistengruppe aktivistenleben aktivistenschläger aktivistentage aktivistinnenflugblätter aktivistischen aktivitätenangebot aktivitätenbericht aktivitäts-planung aktivitätsbereiche aktivitätslevel aktivitätsmuster aktivitätsniveau aktivitätsprognose aktivitätsprotokoll aktivitätspunkte aktivitätsrhythmus aktivitätssektoren aktivitätsspektrum aktivitätssteigerung aktivitätsströme aktivitätsstütze aktivitätsüberwachung aktivitätswoche aktivitätswochenparty aktivitätszeiten aktivitätszunahme aktivste aktivurlaub aktivurlauber aktivzustand alltagsaktivitäten angriffsaktivitäten anlegeraktivisten anti-atom-aktivisten anti-kriegs-aktivitäten antiatomaktivisten antirassismus-aktivisten anzeigenaktivitäten asien-aktivitäten atmungsaktiv atmungsaktive atmungsaktivem atmungsaktiven atmungsaktiver atmungsaktivität audioaktivität augenaktivität ausbauaktivitäten ausgleichsaktivitäten auslandsaktivität auslandsaktivitäten außenaktivierung außenaktivitäten außenbordaktivität',[DU+'aktiv']),
+('de','Aktivkohle','aktiv','aktivkohle aktivkohle-filter aktivkohlefilter',[DU+'Aktivkohle',DU+'aktiv']),
+]
+
+def main():
+ old_bytes=(B/'action-continuation-20261002/linguistic-decisions.json.gz').read_bytes();old=json.loads(gzip.decompress(old_bytes));prior_bytes=(P/'decisions.json').read_bytes();prior=json.loads(prior_bytes);inv=json.loads((P/'inventory.json').read_text());assert sha(prior_bytes)==inv['artifact_sha256']['decisions.json']
+ states={(l,m['lemma_id']):m for l,rs in old['decisions'].items() for m in rs}
+ for folder in ['action-italian-stage-20261002','action-independent-heads-20261002','action-russian-heads-20261002']:
+  for m in json.loads((B/folder/'decisions.json').read_text())['decisions']:
+   k=(m['language'],m['lemma_id']);assert states[k]['status']==m['previous_status'];states[k]={**states[k],**m}
+ sources={l:{m['lemma_id']:m for m in json.loads(gzip.decompress((B/'action-reflex-checkpoint-20261001'/f'{l}-candidates.json.gz').read_bytes()))['act']} for l in ['en','de']}
+ by_word={(l,m['word']):m for (l,_),m in states.items()};delta=[];proof=[];used=set();counts={l:dict(cs) for l,cs in prior['counts'].items()}
+ for l,h,surface,words,refs in GROUPS:
+  for word in words.split():
+   r=by_word[(l,word)];assert r['status']=='pending_review',(l,word,r['status']);k=(l,r['lemma_id']);assert k not in used;used.add(k);m=sources[l][r['lemma_id']];assert m['word']==word and m['source_family_ids']==r['source_family_ids'];assert m.get('corpus_quality',{}).get('status')!='rejected'
+   reason=f'{word}: explicitly reviewed whole form with {h} lexical head. Its inflection, derivative or transparent compound preserves the {surface} national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.'
+   delta.append({'language':l,'lemma_id':r['lemma_id'],'word':word,'status':'accepted','previous_status':'pending_review','lexical_head':h,'national_realization':surface,'source_references':refs,'source_family_ids':r['source_family_ids'],'reason':reason,'runtime_applied':False});proof.append({'language':l,'member':m});counts[l]['accepted']+=1;counts[l]['pending_review']-=1
+ assert sum(sum(cs.values()) for cs in counts.values())==52277
+ O.mkdir(parents=True,exist_ok=True);d={'schema_version':1,'source_run_id':35647932153,'canonical_root':'act','base_commit':'52830263e6b62c7647a6724f19bbbc4ac0dd4688','previous_checkpoint':str(P),'previous_decision_sha256':sha(prior_bytes),'initial_continuation_sha256':sha(old_bytes),'decisions':delta,'counts':counts,'runtime_changes':False,'full_family_certification':False,'limitations':['Only these finite whole forms are selected. Unlisted records stay pending.','Source rank/frequency/quality and original component arrays must be preserved during materialization.']};(O/'decisions.json').write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n');(O/'source-records.json.gz').write_bytes(gzip.compress(json.dumps({'schema_version':1,'records':proof},ensure_ascii=False,sort_keys=True).encode(),mtime=0));iv={'schema_version':1,'source_candidate_count':52277,'accepted_added':len(delta),'excluded_added':0,'runtime_changes':False,'counts':counts,'artifact_sha256':{n:sha((O/n).read_bytes()) for n in ['decisions.json','source-records.json.gz']}};(O/'inventory.json').write_text(json.dumps(iv,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'accepted':len(delta),'counts':counts}))
+if __name__=='__main__':main()

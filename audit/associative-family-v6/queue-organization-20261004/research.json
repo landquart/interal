@@ -1,0 +1,38 @@
+{
+  "schema_version": 6,
+  "stage": "prompt04-research",
+  "baseline_sha": "63b8f44539f752cad6e4fc875bba85be39035bb9",
+  "production_enabled": false,
+  "input_sha256": {
+    "associativvordes/family-index-v6/generated/migration-report.json": "a91ea63743548a4d3b74a1afdf843f7bd5bd64b15d441e018bbb4c12b2a00453",
+    "associativvordes/family-index-v6/generated/review-backlog.json.gz": "e1ba65cfbdea577215c0b06f1c6101f116ecef5966d8f34dd36102b5cd26761e",
+    "associativvordes/family-index-v6/generated/review-queue-frames.json": "1936355c547e0e386d55f34884d0f7448bb3c75f88ab98073fde433151ec1ac7",
+    "associativvordes/family-index-v6/generated/head-recognition-benchmarks.json.gz": "549b037298a1a2a4aa59455fad1bb1ee31a15180e6e9d10c6c9813a153c39c56",
+    "associativvordes/family-index-v6/generated/head-review-metrics.json": "d5123b3d57750724c092b31da5050ffcef7d64c0494f550fbd5b02f6c03fd667",
+    "associativvordes/family-index-v6/generated/heads.json.gz": "365df4639bb60414f8dd8ee9c368185f16b0a4c170b07cbb1baa44e0154fff83",
+    "associativvordes/family-index-v6/generated/edges.json.gz": "3ee275de4d593d81330e4e9b3388027ffa7e42d60a711d51a511923f7272b019",
+    "associativvordes/family-index-v6/generated/lemma-head-links.json.gz": "2f4899d08ac7d649b163f0279b2d0645c56ab61d9f0e8360a0350ac58eed6efd",
+    "associativvordes/family-index-v6/generated/head-review-ledger.json": "b6ddb1f677b3586fde7ec7c7f6afa054174d8b7aa4aa57bf7e508e2702b64cc3",
+    "associativvordes/family-index-v6/generated/family-promotion-ledger.json": "e7a34a129d078991ffbda90fba256d4aac5f741896a2b853638ce8d92d2ecf75",
+    "associativvordes/family-index-v6/generated/head-lifecycle-ledger.json": "d94e6fe4625f11214874af0d7d8cfe16d861fddc6b339474399da56cb0f0bcc7",
+    "associativvordes/family-index-v6/lexical-head-review.json.gz": "2bad86c05923845d1dbd9f77c1a23c0f5cb1d5981d036b3d0b713e6b67273cb4",
+    "audit/associative-family-v6/historical-overlay-20261003/records.json.gz": "7138ba4ad967375a31f3001ca24a847dfd9964c63c8af27a4185fff2f6f4ebcf",
+    "audit/associative-family-v6/historical-overlay-20261003/report.json": "f56130fe24b7ab7bd902058742aa11eb0f830d31802bd23a63371ff157c685c6",
+    "audit/associative-family-v6/candidate-root-clusters-20261003/clusters.json.gz": "ae4acc253c8c6fda0d79fd9047476213de8e16e52b2e8194450387869b27c832",
+    "audit/associative-family-v6/candidate-root-clusters-20261003/report.json": "48e4fc9c35850328bed3e597977bcf4213e8145f93e0afd586c6ce1cecf1df76",
+    "audit/associative-family-v6/val-route-review-20261003/records.json.gz": "56cd533a50a59a430178aecd8ce0225fc9c3e9244805fac32efc71050d2bbeae",
+    "audit/associative-family-v6/russian-short-review-20261003/records.json.gz": "adde7dcba897b5904dd33eb80f5ba4d07f6ff257d27e88bad901c72a89bc3ed8"
+  },
+  "current_records": 23240,
+  "current_units": 23238,
+  "historical_records": 55686,
+  "historical_unresolved": 46390,
+  "packets": 16055,
+  "findings": [
+    "Prompt03 is complete; retain one Systeme extension and its versioned proofs.",
+    "Use saved queue records and historical candidate family_ids for route references; never retrieve membership by spelling.",
+    "Packets have no enumerated global corpus-ID universe. Measure exact packet intersections within indexed finite frames; report remaining packet support only as incidence upper bound.",
+    "Read saved packet index, existing lexical evidence cache and finite promotion registries. Do not recluster or enumerate source corpus again.",
+    "Build a separate nonmutating planning layer; original generated migration artifacts and membership engine remain byte-identical."
+  ]
+}

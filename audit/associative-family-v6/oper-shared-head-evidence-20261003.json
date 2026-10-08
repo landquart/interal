@@ -1,0 +1,136 @@
+{
+  "schema_version": 6,
+  "source_head": "4b1606a1833824cded48cae98ff999a98a0ba6b7",
+  "stage": "oper-finite-military-head-20261003",
+  "production_enabled": false,
+  "source_queue": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+  "source_queue_sha256": "1f8d22733c08d6cfd37a775c83cdcb9716ef0beb20543985a02939f05c3be7a3",
+  "groups": [
+    {
+      "language": "en",
+      "normalized_head": "trooper",
+      "sense": "military_person_component",
+      "root": "oper",
+      "status": "excluded",
+      "forms": [],
+      "component_stems": [
+        "trooper"
+      ],
+      "records": [
+        {
+          "root": "oper",
+          "language": "en",
+          "lemma_id": "lemma:c299b19ebfc317c9a04d",
+          "word": "paratrooper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for en token paratrooper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "ety:67f3f553132a",
+            "surface:en:paratroop"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "para",
+            "component": "trooper",
+            "after": "",
+            "head": "trooper",
+            "boundary_proof": "audit/associative-family-v6/oper-shared-head-evidence-20261003.json#lemma:c299b19ebfc317c9a04d"
+          }
+        },
+        {
+          "root": "oper",
+          "language": "en",
+          "lemma_id": "lemma:68888077b4b50e10f127",
+          "word": "shocktrooper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for en token shocktrooper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:en:shocktrooper"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "shock",
+            "component": "trooper",
+            "after": "",
+            "head": "trooper",
+            "boundary_proof": "audit/associative-family-v6/oper-shared-head-evidence-20261003.json#lemma:68888077b4b50e10f127"
+          }
+        },
+        {
+          "root": "oper",
+          "language": "en",
+          "lemma_id": "lemma:b03e577b7f411d9adc29",
+          "word": "shocktroopers",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for en token shocktroopers; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:en:shocktrooper",
+            "surface:en:pers"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "shock",
+            "component": "trooper",
+            "after": "s",
+            "head": "trooper",
+            "boundary_proof": "audit/associative-family-v6/oper-shared-head-evidence-20261003.json#lemma:b03e577b7f411d9adc29"
+          }
+        },
+        {
+          "root": "oper",
+          "language": "en",
+          "lemma_id": "lemma:2e5a3715ee78e300d0dd",
+          "word": "stormtrooper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for en token stormtrooper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:en:stormtrooper"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "storm",
+            "component": "trooper",
+            "after": "",
+            "head": "trooper",
+            "boundary_proof": "audit/associative-family-v6/oper-shared-head-evidence-20261003.json#lemma:2e5a3715ee78e300d0dd"
+          }
+        },
+        {
+          "root": "oper",
+          "language": "en",
+          "lemma_id": "lemma:cb094ea69aacf6d881e7",
+          "word": "stormtroopers",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for en token stormtroopers; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:en:stormtrooper",
+            "surface:en:pers"
+          ],
+          "historical_status": "uncertain",
+          "component_segmentation": {
+            "before": "storm",
+            "component": "trooper",
+            "after": "s",
+            "head": "trooper",
+            "boundary_proof": "audit/associative-family-v6/oper-shared-head-evidence-20261003.json#lemma:cb094ea69aacf6d881e7"
+          }
+        }
+      ],
+      "reason": "Trooper is a soldier noun derived from troop, unrelated to Latin opus/oper-. These five finite compound identities denote military personnel; explicit source-corpus boundaries identify the component. This does not resolve other trooper-containing strings or assert whole-compound identity.",
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/trooper",
+        "https://www.merriam-webster.com/dictionary/paratrooper",
+        "https://www.merriam-webster.com/dictionary/storm%20trooper",
+        "https://www.merriam-webster.com/dictionary/shock%20troops",
+        "https://www.merriam-webster.com/dictionary/troop"
+      ]
+    }
+  ],
+  "records_resolved": 5,
+  "expensive_head_decisions": 1,
+  "limitations": [
+    "Finite reviewed identities only. No general substring rule.",
+    "Cocktroopers, parentrooper, spacetrooper, troopergate and trooperies remain unresolved.",
+    "Storm and shock compound spellings are source-corpus forms; external dictionaries document their military lexical bases, not these corpus IDs."
+  ]
+}

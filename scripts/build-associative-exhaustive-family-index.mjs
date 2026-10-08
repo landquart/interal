@@ -14,6 +14,7 @@ import { getLanguageConfig } from '../associativvordes/js/morphology/languages/i
 import { nullDictionary, stableLemmaId } from './lib/associative-family-graph.mjs';
 import { RELATION_TYPE, templateRelations } from './lib/associative-etymology-policy.mjs';
 import { classifyCorpusLemma } from './lib/associative-corpus-quality.mjs';
+import { INTER_COMPONENT_CONTROLS } from '../associativvordes/js/associative-component-controls.js';
 
 const LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const INDEX_VERSION = '5';
@@ -64,7 +65,7 @@ const CONTROL_WORDS = Object.freeze({
     it: ['libertà', 'liberale'], ru: ['либертарианский', 'либеральный']
   },
   'family:inter': {
-    en: ['international', 'interdisciplinary'], de: ['international', 'interdisziplinär'],
+    en: ['international', 'interdisciplinary', ...INTER_COMPONENT_CONTROLS], de: ['international', 'interdisziplinär'],
     fr: ['international', 'interdisciplinaire'], es: ['internacional', 'interdisciplinario'],
     it: ['internazionale', 'interdisciplinare'], ru: ['интернациональный']
   }
@@ -78,7 +79,16 @@ export function exactControlFamilyId(language, normalizedWord) {
 export function applyExactControlOverride({ language, word, searchForm, componentRows, families }) {
   const familyId = exactControlFamilyId(language, word);
   if (!familyId) return { familyId: null, componentRows };
-  return { familyId, componentRows: [{ surface: searchForm || word, canonical_candidate: families.get(familyId)?.canonical || familyId.slice(7), family_ids: [familyId], confidence: 1, evidence: [{ type: 'manual_override', source: 'methodology_control_word', path: [language, word, familyId], confidence: 1 }] }] };
+  const evidence = { type: 'manual_override', source: 'methodology_control_word', path: [language, word, familyId], confidence: 1 };
+  const rows = componentRows.map(row => ({ ...row, family_ids: [...row.family_ids], evidence: [...row.evidence] }));
+  const compare = (a,b) => JSON.stringify([a.canonical_candidate,a.surface,a.family_ids]).localeCompare(JSON.stringify([b.canonical_candidate,b.surface,b.family_ids]), 'en');
+  rows.sort(compare);
+  const existing = rows.find(row => row.family_ids.includes(familyId));
+  if (existing) {
+    if (!existing.evidence.some(item => JSON.stringify(item) === JSON.stringify(evidence))) existing.evidence.push(evidence);
+  } else rows.push({ surface: searchForm || word, canonical_candidate: families.get(familyId)?.canonical || familyId.slice(7), family_ids: [familyId], confidence: 1, evidence: [evidence] });
+  rows.sort(compare);
+  return { familyId, componentRows: rows };
 }
 
 
@@ -179,19 +189,26 @@ function isProtoLanguage(code) {
   return c.endsWith('-pro') || c === 'ine-pro' || c.includes('proto');
 }
 
-function etymonKeys(language, term) {
+export function etymonKeys(language, term) {
   const lang = String(language || '').toLowerCase();
   const normalized = normalizeEtymonTerm(term);
   if (!lang || !normalized || normalized.length < 3) return [];
-  const keys = new Set([`${lang}:${normalized}`]);
-  if (lang === 'la' || lang === 'la-lat' || lang === 'la-vul') {
-    for (const ending of ['ibus','arum','orum','ium','ae','am','em','is','os','as','um','us','i','o','a','e']) {
-      if (!normalized.endsWith(ending)) continue;
-      const stem = normalized.slice(0, -ending.length);
-      if (stem.length >= 4) keys.add(`la:${stem}`);
-    }
+  // An etymon key identifies the supplied lexeme. Removing Latin endings can
+  // collapse unrelated Actium and actio into acti and duplicate observatio.
+  return [`${lang}:${normalized}`];
+}
+
+export function latinStemProposals(language, term) {
+  const lang = String(language || '').toLowerCase();
+  const normalized = normalizeEtymonTerm(term);
+  if (!['la','la-lat','la-vul'].includes(lang) || !normalized) return [];
+  const proposals = new Set();
+  for (const ending of ['ibus','arum','orum','ium','ae','am','em','is','os','as','um','us','i','o','a','e']) {
+    if (!normalized.endsWith(ending)) continue;
+    const stem = normalized.slice(0, -ending.length);
+    if (stem.length >= 4) proposals.add(`la:${stem}`);
   }
-  return [...keys];
+  return [...proposals];
 }
 
 export function etymologyPairs(entry) {
@@ -216,7 +233,7 @@ export function isMergeEligibleComponent(word, component) {
   return root.length >= 4 || root.length * 2 >= form.length;
 }
 
-async function scanEtymologies(gzipPath, wordRoots, languages) {
+export async function scanEtymologies(gzipPath, wordRoots, languages) {
   const nonProto = new Map();
   const proto = new Map();
   const reviewRelations = [];
@@ -249,6 +266,15 @@ async function scanEtymologies(gzipPath, wordRoots, languages) {
     for (const relation of parsedPairs.relations) {
       const { sourceLang, term, relationType, mergeAllowed } = relation;
       relationCounts[relationType] = (relationCounts[relationType] || 0) + 1;
+      // Preserve every review-required relation independently of automatic
+      // graph eligibility, normalization and etymon-key deduplication.
+      if (relation.reviewRequired) reviewRelations.push({ language, word: entry.word, reason: 'relation_policy_requires_review', ...relation });
+      for (const proposedKey of latinStemProposals(sourceLang, term)) reviewRelations.push({
+        language, word: entry.word, ...relation,
+        reason: 'latin_ending_stem_proposal_requires_review',
+        proposed_etymon_key: proposedKey, source_etymon_keys: etymonKeys(sourceLang,term),
+        mergeAllowed: false, reviewRequired: true
+      });
       for (const etyKey of etymonKeys(sourceLang, term)) {
         if (seen.has(etyKey)) continue;
         seen.add(etyKey);
@@ -269,7 +295,7 @@ async function scanEtymologies(gzipPath, wordRoots, languages) {
       }
     }
     uncertainRelationCount += parsedPairs.uncertain.length;
-    for (const item of parsedPairs.uncertain) if (reviewRelations.length < 100000) reviewRelations.push({ language, word: entry.word, ...item });
+    for (const item of parsedPairs.uncertain) reviewRelations.push({ language, word: entry.word, ...item });
     parsed += 1;
     if (parsed % 100000 === 0) console.error(`[families] Wiktionary matched ${parsed} entries`);
   }
@@ -423,7 +449,7 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
         return { surface: component.surface, canonical_candidate: component.root, family_ids: familyIds, confidence: component.confidence, evidence: [...component.evidence, ...seedEvidence] };
       });
       const { familyId: controlSeedId, componentRows } = applyExactControlOverride({ language, word: wordKey, searchForm: row.search_form || row.word, componentRows: discoveredComponentRows, families });
-      if (controlSeedId) totalComponents += 1 - discoveredComponentRows.length;
+      if (controlSeedId) totalComponents += componentRows.length - discoveredComponentRows.length;
       const familyIds = [...new Set(componentRows.flatMap(item => item.family_ids))].sort();
       if (familyIds.length > 1) multiFamilyLemmas += 1;
       if (componentRows.some(item => !item.family_ids[0].startsWith('surface:'))) merged += 1;
@@ -448,7 +474,7 @@ async function writeAssignments({ candidateRoot, manifest, languages, outputRoot
         controls[seedId][language] ||= {};
         const forbidden = familyIds.filter(id => CONTROL_FORBIDDEN_FAMILY_IDS.has(id));
         const extras = familyIds.filter(id => id !== seedId);
-        controls[seedId][language][wordKey] = { family_ids: familyIds, required_family: seedId, forbidden_family_ids: forbidden, extra_family_ids: extras, ok: familyIds.includes(seedId) && forbidden.length === 0 && extras.length === 0 };
+        controls[seedId][language][wordKey] = { family_ids: familyIds, required_family: seedId, forbidden_family_ids: forbidden, extra_family_ids: extras, ok: familyIds.includes(seedId) && forbidden.length === 0 };
       }
     }
     gzip.end();
@@ -648,6 +674,9 @@ async function main() {
     reviewRequiredFamilies += 1;
     await writeLine(reviewGzip, { family_id: null, reason: [item.reason], review_status: item.review_status, suspicion_score: item.review_status === 'blocked_from_runtime' ? 100 : 60, representative_words: {}, branches: item.aliases, etymology_paths: [item.etymon_key], relation_types: item.relation_types, evidence: item.evidence, possible_actions: ['keep separate', 'split homonyms', 'manual check'] });
   }
+  for (const item of ety.reviewRelations) {
+    await writeLine(reviewGzip, { family_id: null, reason: [item.reason], review_status: 'needs_review', relation_types: item.relationType ? [item.relationType] : [], evidence: [item], possible_actions: ['review component containment', 'keep independent', 'exclude unrelated'] });
+  }
   reviewGzip.end();
   await once(reviewOutput, 'finish');
   for (const stream of [...familyStreams.values(), ...aliasStreams.values()]) stream.end();
@@ -705,7 +734,8 @@ async function main() {
     etymology_coverage: ety.coverage,
     etymology_relation_counts: ety.relationCounts,
     uncertain_relation_count: ety.uncertainRelationCount,
-    uncertain_relation_sample_size: ety.reviewRelations.length,
+    uncertain_relation_sample_size: ety.reviewRelations.filter(item => !item.reviewRequired).length,
+    review_required_relations: ety.reviewRelations.filter(item => item.reviewRequired).length,
     total_families: totalFamilies,
     merged_families: mergedFamilies,
     singleton_families: singletonFamilies,

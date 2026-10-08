@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "source_commit": "4d11a00bd44abcb9c260a44c77888378f7c8c956",
+  "npm_test": "pass",
+  "targeted_tests": 15,
+  "exhaustive_audit": {
+    "relation": {
+      "verdict": "pass",
+      "counts": {
+        "families": 2456541,
+        "aliases": 1934052,
+        "lemmas": 4924980,
+        "components": 9349982,
+        "memberships": 10058881,
+        "materialized_unique_lemmas": 4924154,
+        "multi_family_lemmas": 3334601,
+        "lemmas_without_materialized_family": 826,
+        "unique_lemmas_by_language": {
+          "en": 1130858,
+          "de": 1113441,
+          "fr": 558897,
+          "es": 941501,
+          "it": 610082,
+          "ru": 569375
+        },
+        "memberships_by_language": {
+          "en": 2618888,
+          "de": 2209145,
+          "fr": 1143835,
+          "es": 1797793,
+          "it": 1161948,
+          "ru": 1127272
+        },
+        "materialized_families": 2456541
+      },
+      "output_sha256": "41597d2068547e5b1d98bfe2dd9d0cded7b4d84ae25df366b458d177400eca85"
+    },
+    "operation": {
+      "verdict": "pass",
+      "counts": {
+        "families": 2456540,
+        "aliases": 1934054,
+        "lemmas": 4924980,
+        "components": 9349982,
+        "memberships": 10053692,
+        "materialized_unique_lemmas": 4924152,
+        "multi_family_lemmas": 3335133,
+        "lemmas_without_materialized_family": 828,
+        "unique_lemmas_by_language": {
+          "en": 1130858,
+          "de": 1113441,
+          "fr": 558895,
+          "es": 941501,
+          "it": 610082,
+          "ru": 569375
+        },
+        "memberships_by_language": {
+          "en": 2618957,
+          "de": 2210069,
+          "fr": 1143936,
+          "es": 1797951,
+          "it": 1155369,
+          "ru": 1127410
+        },
+        "materialized_families": 2456540
+      },
+      "output_sha256": "d3910e50acd7e960f3feefcd2e4f74cae05ba4e43a505db80dec39107edf60b6"
+    }
+  },
+  "mutation_review_runtime_applied": false,
+  "remaining_scope": [
+    "mutation materialization and remaining uncertainty",
+    "actio versus Actium with national reflexes",
+    "nat/loc/inter frozen candidates",
+    "short Russian keys kh/nl/lo/ca/um",
+    "all fifteen val routes",
+    "next high-risk clusters"
+  ]
+}

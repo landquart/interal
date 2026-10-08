@@ -1,0 +1,104 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "stage": "prompt08-decision",
+  "research_sha256": "26e220fc71539a9c1afa2c940e66d826454ff6fe09f72fdc0f59e91c2c531085",
+  "promotion_dossier": "audit/associative-family-v6/prompt08-coverage-20261005/atom-promotion-decision.json",
+  "initial_memberships": 4,
+  "subsequent_extension": {
+    "operation": "extend_forms",
+    "reuse_head": {
+      "language": "en",
+      "normalized_head": "atom",
+      "sense": "atomic_particle_lexical_row"
+    },
+    "finite_new_record": {
+      "language": "en",
+      "word": "atoms",
+      "lemma_id": "lemma:bc82dd53d41aa09fb0f2",
+      "source_record": {
+        "lemma_id": "lemma:bc82dd53d41aa09fb0f2",
+        "word": "atoms",
+        "normalized": "atoms",
+        "search_form": "atoms",
+        "rank": 33731,
+        "frequency_score": 8.268675887658498,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.603041
+            ],
+            "category_ipm": 0.603041,
+            "category_score": 8.268675887658498
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.603041
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atom",
+            "canonical_candidate": "atom",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atoms",
+                  "atom",
+                  "atom"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "82855472b2bfd4933b7ac4f61da174ecef5e9628986cad2d209129a67674d8fc"
+      }
+    },
+    "canonical_is_not_redecided": true,
+    "requires_materialized_predecessor": true,
+    "reason": "Merriam-Webster independently attests atoms as the plural of atom; only this exact existing corpus ID extends the initial head."
+  },
+  "packet_policy": {
+    "source_packets_are_not_families": true,
+    "all_source_ids_remain_addressable": true,
+    "unreviewed_residuals_remain_open": true,
+    "rejected_subset_does_not_create_exclusion": true
+  },
+  "zero_v5_policy": {
+    "all_829_retained": true,
+    "prospective_dictionary_rows": [
+      "en:splinter",
+      "de:tennis-profi"
+    ],
+    "membership_authorized": false,
+    "evidence_blocker": "No aggregated immutable v5 member record exists for these IDs. Original raw frequency records survive; do not invent rank/score or bypass promotion source guards."
+  },
+  "turr_still_deferred": true,
+  "anis_existing_promotion_not_repeated": true,
+  "explicit_guards": [
+    "canonical",
+    "lexical_identity",
+    "independent_family_edge",
+    "national_realization",
+    "alias",
+    "real_source_locator_and_hash",
+    "negative_controls",
+    "finite_senses"
+  ]
+}

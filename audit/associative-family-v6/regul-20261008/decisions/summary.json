@@ -1,0 +1,83 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "research_questions": 2658,
+  "full_linguistic_certification": false,
+  "scope_status": "finite decisions with explicit unresolved evidence/policy questions; uncertain does not mean adjudicated correct",
+  "counts": {
+    "en": {
+      "prior": {
+        "accepted": 46,
+        "excluded": 1,
+        "uncertain": 80
+      },
+      "additional": {
+        "accepted": 18,
+        "excluded": 1,
+        "uncertain": 50
+      }
+    },
+    "de": {
+      "prior": {
+        "accepted": 219,
+        "excluded": 0,
+        "uncertain": 23
+      },
+      "additional": {
+        "accepted": 14,
+        "excluded": 1,
+        "uncertain": 1156
+      }
+    },
+    "fr": {
+      "prior": {
+        "accepted": 29,
+        "excluded": 0,
+        "uncertain": 43
+      },
+      "additional": {
+        "accepted": 7,
+        "excluded": 1,
+        "uncertain": 139
+      }
+    },
+    "es": {
+      "prior": {
+        "accepted": 65,
+        "excluded": 4,
+        "uncertain": 49
+      },
+      "additional": {
+        "accepted": 6,
+        "excluded": 1,
+        "uncertain": 438
+      }
+    },
+    "it": {
+      "prior": {
+        "accepted": 89,
+        "excluded": 1,
+        "uncertain": 25
+      },
+      "additional": {
+        "accepted": 7,
+        "excluded": 0,
+        "uncertain": 36
+      }
+    },
+    "ru": {
+      "prior": {
+        "accepted": 50,
+        "excluded": 1,
+        "uncertain": 39
+      },
+      "additional": {
+        "accepted": 7,
+        "excluded": 1,
+        "uncertain": 11
+      }
+    }
+  },
+  "review_sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+  "evidence_sha256": "8c67441987a1dd99c277c90e5f5ee68449bdbf924666eba454346cd07c707110"
+}

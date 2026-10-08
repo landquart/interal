@@ -1,0 +1,250 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/review-spec.json",
+    "spec_sha256": "4a581e35c17406f6e22b9ef192e958a3914d940e23194afe196e407998410c86",
+    "previous_pending_path": "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245/pending-review.json",
+    "previous_pending_sha256": "fad3b41a71caec4c8c590f9bf8fb9ddd77d9a050de0a4692f00b58c152c9e4a1",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245/inventory.json",
+    "previous_inventory_sha256": "839f623a5291a163c3e139e29cae29aad9117dc1bdf9e057db49e1e1b5255c95",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "previous_pending_sha256": "fad3b41a71caec4c8c590f9bf8fb9ddd77d9a050de0a4692f00b58c152c9e4a1",
+  "decisions": [
+    {
+      "lemma_id": "lemma:6e32d1ef0dd1a12ecece",
+      "word": "observeur",
+      "status": "accepted",
+      "reason": "APCI, the award organizer, directly attests Observeur in French and its observational/prospective design role. The lexical base is observer with productive agent suffix -eur, a finite morphological inference corroborated by the exact native name, not a spelling correction to observateur. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:fr:observ",
+        "surface:fr:eur"
+      ],
+      "language": "fr",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "observer",
+      "segmentation_or_lexical_identity": "observ(e)- + agent suffix -eur; native award name Observeur du design",
+      "source_references": [
+        "https://apci-design.fr/observeur-du-design/",
+        "https://www.dictionnaire-academie.fr/conjuguer/A9O0082"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4a0ab3a90bc01550afe3",
+      "word": "informalavoro",
+      "status": "accepted",
+      "reason": "Comune di Cardano al Campo directly attests both InformaLavoro and Informalavoro and describes provision of job information. The transparent verb-noun compound retains informare in the informing branch; the boundary is informa+lavoro, not negative in+formale. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:it:informalavor",
+        "ety:3a9bef69ed1b"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "informa + lavoro",
+      "source_references": [
+        "https://comune.cardanoalcampo.va.it/servizio/informalavoro-e-informagiovani/",
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8c8578cfa8a1d1647b04",
+      "word": "informahandicap",
+      "status": "accepted",
+      "reason": "Unione delle Terre d’Argine directly names Informahandicap and describes information, advice and documentation for disability services. The finite verb-noun compound has recognizable informare, with no language transfer or edit-distance inference. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:it:cap",
+        "surface:it:mahan",
+        "surface:it:informa",
+        "surface:it:handi"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "informa + handicap",
+      "source_references": [
+        "https://www.terredargine.it/assistenza-sociale/persone-con-disabilita/informahandicap/",
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:7ced577326bf134bcb15",
+      "word": "informanziani",
+      "status": "accepted",
+      "reason": "Regione Liguria directly names Informanziani and defines it as an information/orientation service for older people. Native lexical identity and service semantics establish the informing branch; informa+anziani with boundary vowel coalescence is the finite morphological analysis, not an assertion that every truncated inform token is valid. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:it:iani",
+        "surface:it:informanzian"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "inform(a) + anziani; shared boundary vowel a",
+      "source_references": [
+        "https://www.regione.liguria.it/homepage-welfare/cosa-cerchi/welfare-territoriale/informanziani.html",
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:fa5ccbdc7efe63f1f9e7",
+      "word": "уралинформбюро",
+      "status": "accepted",
+      "reason": "The agency’s own about page attests the exact name Уралинформбюро and explicitly identifies it as an information agency. The recognizable shortened information head belongs to the informing branch in this native compound. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:ru:linf",
+        "surface:ru:ural",
+        "surface:ru:mb",
+        "surface:ru:inform",
+        "surface:ru:alin",
+        "ety:e336db5a09d6"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "информация / информатизация",
+      "segmentation_or_lexical_identity": "Урал + информ(ационное) + бюро",
+      "source_references": [
+        "https://www.uralinform.ru/about"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6693ccc8d7292fd68719",
+      "word": "уралсвязьинформ",
+      "status": "accepted",
+      "reason": "The successor’s Russian-language official page directly attests Уралсвязьинформ. The state archive identifies its predecessor as a communications/informatics enterprise. Together these establish the finite native communications/informatization compound and its information head, without accepting unrelated names by substring. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:ru:urals",
+        "surface:ru:inform",
+        "surface:ru:zin",
+        "surface:ru:svjazi",
+        "surface:ru:lsvj",
+        "surface:ru:alsv"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "информация / информатизация",
+      "segmentation_or_lexical_identity": "Урал + связь + информ(атизация)",
+      "source_references": [
+        "https://www.company.rt.ru/regions/ural/about/info/",
+        "https://gaso-ural.ru/nsa/spravochnik2021/fondi-organov-gosvlasti/svyz1_/telekommunikacion-kompanii/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:6721787c0db760cd72e7",
+      "word": "комиинформа",
+      "status": "accepted",
+      "reason": "The agency’s own service page directly attests the genitive Комиинформа, its nominative Комиинформ and its information-agency function. The inflected native compound transparently retains the information head. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "ety:e5810cb4d813",
+        "surface:ru:komiinform",
+        "ety:bfbc971f4397"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_native_compound",
+      "lexical_head": "информация / информатизация",
+      "segmentation_or_lexical_identity": "Коми + информ + genitive singular -а",
+      "source_references": [
+        "https://komiinform.ru/page/services.ki"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4e19006dea566aa88f1f",
+      "word": "informalita",
+      "status": "excluded",
+      "reason": "Treccani explicitly derives informale from negative in- plus formale. The unaccented source token is analyzed through this independent negative formal head plus abstract-noun suffix; it does not derive from informare. The dictionary establishes the head, while the exact suffix/diacritic analysis is reviewer inference, not dictionary attestation of the malformed surface. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:it:informalit",
+        "surface:it:ita"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_negative_formal_head",
+      "lexical_head": "informal",
+      "segmentation_or_lexical_identity": "informal- + -ità; diagnostic accented form informalità",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informale/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ce9c8c74c92cd5107ffe",
+      "word": "informalde",
+      "status": "excluded",
+      "reason": "RAE establishes informal as the nonformal adjective. The exact token consists of this independent negative formal head and residual/fused de, so no information-branch lexeme is established. No split replacement is created. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:es:alde",
+        "surface:es:informa"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_negative_formal_head",
+      "lexical_head": "informal",
+      "segmentation_or_lexical_identity": "informal + de (fused adjective/preposition boundary)",
+      "source_references": [
+        "https://dle.rae.es/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b920a44f4fd04f64219f",
+      "word": "informalizadas",
+      "status": "excluded",
+      "reason": "Priberam explicitly establishes informalizar from informal+-izar with a regular participle. RAE establishes the same independent nonformal adjective. The surface is a regular feminine-plural derivative of that head; uncertainty about Portuguese contact versus a Spanish productive formation does not create an information-branch derivation. No claim is made that the Portuguese dictionary proves native Spanish corpus context. This is an exact finite decision for the existing corpus lemma; spelling, measured fields and all independent source routes are preserved. No generic substring/name rule, corrected lemma or whole-lemma union is introduced.",
+      "source_family_ids": [
+        "surface:es:das",
+        "surface:es:informalizad"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_negative_formal_head",
+      "lexical_head": "informal",
+      "segmentation_or_lexical_identity": "informal + -izar + feminine plural participle -adas",
+      "source_references": [
+        "https://dicionario.priberam.org/informalizar",
+        "https://dle.rae.es/informal"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "accepted": 7,
+    "excluded": 3
+  },
+  "continuation_counts": {
+    "accepted": 38,
+    "excluded": 357,
+    "uncertain": 154,
+    "pending_review": 213
+  },
+  "accepted_applied": 31,
+  "accepted_unapplied": 7,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "review_scope": "Seven exact native lexical compounds/agent names accepted using primary native attestation and finite morphology; three independent negative formal heads excluded. No generic name or substring classifier. Application requires a separate frozen preflight."
+}

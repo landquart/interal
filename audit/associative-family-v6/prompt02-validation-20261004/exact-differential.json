@@ -1,0 +1,130 @@
+{
+  "baseline_sha": "08a5ce1e6453c0d3a2ccad08b8dd5ee92b774c75",
+  "baseline_memberships": 21548,
+  "current_memberships": 21554,
+  "preserved_byte_equivalent_membership_objects": 21548,
+  "additions": [
+    {
+      "language": "de",
+      "family_id": "family:anis",
+      "lemma_id": "lemma:206d965d8055251fd5fd",
+      "word": "anis",
+      "head_id": "head:de:cd5ff5862ba6321fd60ef63e",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "217b29802f1cd1b8f3629dc58e3c669804f1c96bf921590e853d91401a7f95f4"
+          },
+          "lemma_id": "lemma:206d965d8055251fd5fd"
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "family_id": "family:anis",
+      "lemma_id": "lemma:ca97144c9bc0ac6a1986",
+      "word": "anise",
+      "head_id": "head:en:2a4e8eb2a514e46af319fd5f",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/en/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "abec9d58225bece42839c9109baed43870440404e928110a31301febcdd98382"
+          },
+          "lemma_id": "lemma:ca97144c9bc0ac6a1986"
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "family_id": "family:anis",
+      "lemma_id": "lemma:cc3ebbe90b986c2bf625",
+      "word": "anís",
+      "head_id": "head:es:265f268555fa05e60daccf86",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/es/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "dcfefd0791f1958cc01334591f56381921e9d5387acf811dab47e546fe23ccfc"
+          },
+          "lemma_id": "lemma:cc3ebbe90b986c2bf625"
+        }
+      ]
+    },
+    {
+      "language": "fr",
+      "family_id": "family:anis",
+      "lemma_id": "lemma:e3b7aad4289f896fbd19",
+      "word": "anis",
+      "head_id": "head:fr:d5c0a625ee2c67e1d99e0334",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "a71b78cd93a5884adf6be4538460bfede675b5d31c179ac34d6ce39a47a1cf6f"
+          },
+          "lemma_id": "lemma:e3b7aad4289f896fbd19"
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "family_id": "family:anis",
+      "lemma_id": "lemma:a21752adeb1d87c8039c",
+      "word": "anice",
+      "head_id": "head:it:dffe3ce333780867838fbe68",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/it/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "80eae5973c969fea65616d5dc8dc61ddb52eae905091f75b3bd87accbcf9e0c9"
+          },
+          "lemma_id": "lemma:a21752adeb1d87c8039c"
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "family_id": "family:anis",
+      "lemma_id": "lemma:4c62cdc8398fb78e160e",
+      "word": "анис",
+      "head_id": "head:ru:99722f43ee9ed811ae78c476",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/ru/1e.json.gz",
+            "family_id": "ety:87f837c8c242",
+            "record_sha256": "8fb33dbd0d6bb735677f091aba0d1b30c0b832304b65c37559bc2d17ed471925"
+          },
+          "lemma_id": "lemma:4c62cdc8398fb78e160e"
+        }
+      ]
+    }
+  ],
+  "removals": [],
+  "unexpected_additions": [],
+  "unexpected_removals": [],
+  "preserved_v5_frequency_and_audit_git_trees": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c"
+  },
+  "production_v5_unchanged": true,
+  "known_queue_resolutions": 0,
+  "existing_system_memberships_preserved": 12,
+  "provisional_torre_admissions_withdrawn_before_publication": true,
+  "final_tower_core_decisions": 7,
+  "turr_catalog_promotion": false
+}

@@ -1,0 +1,61 @@
+{
+  "repair": "extend_reviewed_action_memberships_20261002",
+  "source_run_id": 35647932153,
+  "added_memberships": 170,
+  "removed_memberships": 0,
+  "net_family_delta": 0,
+  "alias_delta": 0,
+  "decision_ledger_sha256": "84fb775197529d95238b5f03729c25e655b9bdab306f5b6938f44c4f7d30a7d0",
+  "full_family_certification": false,
+  "runtime_applied": true,
+  "review_decision_sha256": "bf921cdeface9c335927042d66935b31fbac5489006caa5670d61a8b3966719f",
+  "runtime_support": 2268,
+  "counts": {
+    "en": {
+      "accepted": 257,
+      "excluded": 8037,
+      "uncertain": 4,
+      "pending_review": 1435
+    },
+    "de": {
+      "accepted": 963,
+      "excluded": 11934,
+      "uncertain": 134,
+      "pending_review": 4290
+    },
+    "fr": {
+      "accepted": 208,
+      "excluded": 3663,
+      "uncertain": 0,
+      "pending_review": 604
+    },
+    "es": {
+      "accepted": 372,
+      "excluded": 4170,
+      "uncertain": 2,
+      "pending_review": 1249
+    },
+    "it": {
+      "accepted": 223,
+      "excluded": 3245,
+      "uncertain": 2,
+      "pending_review": 8654
+    },
+    "ru": {
+      "accepted": 245,
+      "excluded": 2175,
+      "uncertain": 1,
+      "pending_review": 410
+    }
+  },
+  "targeted_tests": {
+    "command": "node --test tests/associative-action-materialization.test.mjs tests/associative-action-extension.test.mjs",
+    "verdict": "pass",
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "log_sha256": "208d07f423f0da51a0b10c0ffd641ed9ce541a5979a3cf6346c38d4f5e2b227e"
+  },
+  "full_tests": "pending_in_separate_validation_stage",
+  "exhaustive_audit": "pending_in_separate_validation_stage"
+}

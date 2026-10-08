@@ -1,0 +1,122 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "verdict": "pass",
+  "baseline_sha": "a29a3184336b981f2ca1c5cea019ad43e4b42729",
+  "application_sha": "25cc15eaa41d3f740d8009272d97050179a83b4c",
+  "local_application_sha": "f98304903a126f343f9988325f906272dceea504",
+  "identical_application_tree": "8608069ffbe41e1d801f8dc5c2f41e83df24893f",
+  "research_sha": "bb411263b14fd98720c38940649d06c0802641af",
+  "decision_sha": "a60602bb013e1b1fef23f33651e26991812c4c90",
+  "targeted_tests": 75,
+  "full_npm_test_files": 132,
+  "independent_v6_audit": "pass",
+  "independent_planning_audit": "pass",
+  "independent_history_certification_audit": "pass",
+  "migration_byte_replay_artifacts": 277,
+  "certification_byte_replay_artifacts": 5,
+  "planning_byte_replay_artifacts": 16,
+  "exact_differential": {
+    "additions": 0,
+    "removals": 0,
+    "changed_memberships": 0,
+    "real_corrections": 0
+  },
+  "historical_baseline_memberships": 19967,
+  "current_memberships": 21561,
+  "representative_rechecks": 19,
+  "catalog_certification_scopes": 18,
+  "root_bound_overlap": 0,
+  "corpus_only_overlap": 544,
+  "source_set_conservation": {
+    "corpus_ids": 100670,
+    "family_questions": 102314,
+    "frame_occurrences": 133060,
+    "packet_route_references": 181136
+  },
+  "protected_trees": {
+    "associativvordes/family-index-v5": "b6f8ff3fb46388932217dbd98a2208239e01f70d",
+    "associativvordes/frequency lists": "b9c6725761ce1f8acdd21e0fdb216cf1fb5464c7",
+    "audit/associative-family-v5": "c1bc9ceab39d1e10fcc3b19bf3fc9ae56af2b82c",
+    "audit/associative-family-v6/historical-overlay-20261003": "fbc2070588a3eb8e8ea81dd30c2133b8ca282b01",
+    "audit/associative-family-v6/queue-organization-20261004": "464a0f3d247830cac09b1cd9d0c5149962cf7faa",
+    "audit/associative-family-v6/oper-relat-continuation-20261004": "2a2016972ac30a76e84166ff5d874517961bda85"
+  },
+  "logs": {
+    "targeted.log.gz": {
+      "sha256": "08a3e0fda004652c4ff3a1ac5ebd1b0dd75f1f004d15e2013cafa814506c0c6c",
+      "original_bytes": 7150
+    },
+    "full-tests.log.gz": {
+      "sha256": "d562f1b892a14650cafe99240889137d87cf6471d94fadf6ca2f5d50eda6737e",
+      "original_bytes": 47918
+    },
+    "v6-audit.log.gz": {
+      "sha256": "18178e22f2cf2469e273ef5cf939e0c1146cb96927f0336b44ff3ec4213dd4db",
+      "original_bytes": 23547
+    },
+    "build.log.gz": {
+      "sha256": "6a6374fddafb98caf7ac2096e09048169a6f95b85c795fdc0917facbff29f452",
+      "original_bytes": 452
+    },
+    "migration-replay.log.gz": {
+      "sha256": "56d0fe0abf11e8d1d6561425fb59b6e51822f49db23ea7078cc05be184c2c59f",
+      "original_bytes": 433
+    },
+    "planning-audit.log.gz": {
+      "sha256": "b6bb8b4eb16a43c1f2f85380aae91193cfa6e286f443f674b85f6a41bf230537",
+      "original_bytes": 546
+    },
+    "history-replay.log.gz": {
+      "sha256": "3476a9acaa54b2f03fc4347edf4546bd7a69687c7f5316551bb10aa44d8d5c4f",
+      "original_bytes": 1260
+    },
+    "certification-replay.log.gz": {
+      "sha256": "e6b6ce548322b755633738da1a2c43907640d224e9bb7479c7aa9011688c81fa",
+      "original_bytes": 1429
+    }
+  },
+  "code_sha256": {
+    "scripts/lib/associative-v6-baseline-corrections.mjs": "4fb28dc1364cf516812261be348f0cc8e3db78431b803f5a6d05c61d73278899",
+    "associativvordes/js/associative-family-v6.js": "5c7650fcb4bb40c3feb252d1b81b3d11a9af7f66797b45f1bff0fdc9895452e9",
+    "scripts/build-associative-family-v6.mjs": "acaa0a332935c69858df18c6315c3ec0ef845810593fafd69608da450cb6b61f",
+    "scripts/audit-associative-family-v6.mjs": "4ec71735a0d949da01bd9c6bae88bbb13dbbd19e1650779a6a46f6052909f455",
+    "scripts/build-associative-v6-history-certification.mjs": "727be5ff27f11bbfee68beb990ed201e0d44cd0822a5e76a01ea42113ad6f2a7",
+    "scripts/audit-associative-v6-history-certification.py": "f0bdb69f2cb160810bd33cbd32755798f5ffbf28a4b74227e4567a58666edc8a",
+    "scripts/build-associative-v6-queue-organization.mjs": "49d35f674ee04656ee21eb29d29b5d7d45f48c1846d5ba9ba89bdc2047391cb7",
+    "scripts/lib/associative-v6-queue-organization.mjs": "5809f9c1ddb7d2da139afd39bb6d1d6748b43c629727424a012c60ae5c91a141",
+    "tests/associative-family-v6-baseline-corrections.test.mjs": "0a7760e00d4fbabf93498ab6d3d9fda11598375e3be0d9b3c9def8f4d5cca006",
+    "tests/associative-family-v6-queue-organization.test.mjs": "13caa015cfed3edc6bbe541efc4bb6dfdb7a08f396c519015245cd5468117302"
+  },
+  "interrupted_attempt": {
+    "command": "v6 audit concurrent with replay/planning/full tests",
+    "exit_code": 137,
+    "cause": "cgroup 8 GiB memory limit killed one concurrent process",
+    "isolated_retry_exit_code": 0,
+    "interrupted_run_counted_as_pass": false
+  },
+  "remote_ci": "Verify exact final validation SHA independently; initial 0bf4fc46 CI success is historical, not final-SHA proof.",
+  "full_dictionary_complete": false,
+  "data_application_sha": "276e7f7745fb17d507d55c608bbedd6ad4fcce01",
+  "data_application_tree": "f9a088cd127ea8db4fd65066cdc91fa6df3353fd",
+  "guard_decision_sha": "c837dfa4e807151ddf7764f2f141f926d8938574",
+  "overlap_scope_decision_sha": "ebc962b27c5a16389e5f60d09ab6bc669fdf832a",
+  "pre_overlay_baseline_conservation": "pass; upstream lifecycle loss and count-preserving wrong-ID replacement reject",
+  "all_historical_current_root_bound_overlap": 827,
+  "effective_historical_review_eligible_questions": 47723,
+  "effective_historical_current_root_bound_overlap": 827,
+  "effective_review_eligible_union": 70130,
+  "original_unresolved_reference_overlap": 0,
+  "initial_validation_sha": "0bf4fc46d9b98480378436881bffcac45bbf50dd",
+  "initial_validation_ci": {
+    "Tests": {
+      "run_id": 37245810172,
+      "conclusion": "success"
+    },
+    "Audit parallel associative family v6": {
+      "run_id": 37245810241,
+      "conclusion": "success"
+    }
+  },
+  "initial_validation_preserved_unchanged": true
+}

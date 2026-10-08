@@ -1,0 +1,3855 @@
+{
+  "stage": "operation-mutation-independent-heads-20261002",
+  "historical_artifacts": {
+    "oper": {
+      "audit/associative-family-v5/operation-checkpoint-20261001/linguistic-decisions.json": "524865fab03f9f34f59b7e057623d9159450449135fee7d199da8d1aa53afc48",
+      "audit/associative-family-v5/operation-checkpoint-20261001/candidates.json.gz": "f77cef67f31efd091f4abbe1ad69e237e423ea7d8a0df975e04b2794e2b9b768",
+      "audit/associative-family-v5/operation-checkpoint-20261001/inventory.json": "d415d0290e15451f2beff0dd8402d2068bd5582929856f13a5c0452ce8fe9bd6",
+      "audit/associative-family-v5/operation-checkpoint-20261001/original-families.json.gz": "0542694c740f04de2d3ec5da950aa83e6ebd0cb56f9672804bd8cc3026f61b9d"
+    },
+    "mut": {
+      "audit/associative-family-v5/mutation-checkpoint-20261001/linguistic-decisions.json": "1b6cb03096252c0c69598730353f19e01d4c9c23519ea7eb133693852bf0dcbe",
+      "audit/associative-family-v5/mutation-checkpoint-20261001/candidates.json.gz": "dfa2d87232d006c061d6b2829b53f72f38998f82cd43ef768dcb4ce79990087f",
+      "audit/associative-family-v5/mutation-checkpoint-20261001/inventory.json": "ae1eddc586b6cfe584c2a307782c06c7cee6e2db9cc2cea464e88f9d995af815",
+      "audit/associative-family-v5/mutation-checkpoint-20261001/original-families.json.gz": "1036b636f18023ab8a568a65d814841a710459bb501f999ef501eed6c944caef"
+    }
+  },
+  "runtime_changed": false,
+  "decisions": [
+    {
+      "root": "oper",
+      "language": "en",
+      "lemma_id": "lemma:9846bd486cfc59e39fcd",
+      "word": "blooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:en:blooper"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "en",
+      "lemma_id": "lemma:e3d3a7863cd3d4d36103",
+      "word": "bloopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:en:blooper",
+        "surface:en:pers"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "en",
+      "lemma_id": "lemma:405eadcd33d4e3e1b5b2",
+      "word": "trooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:67f3f553132a"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "en",
+      "lemma_id": "lemma:45b08571f31e5943d30b",
+      "word": "troopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:67f3f553132a",
+        "surface:en:pers"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "fr",
+      "lemma_id": "lemma:9466b5305417ad7fd0cf",
+      "word": "blooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:blooper"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "fr",
+      "lemma_id": "lemma:a88d02719f0da3d70e11",
+      "word": "bloopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:f92ed7420ff6",
+        "surface:fr:blooper"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "fr",
+      "lemma_id": "lemma:00d3a0ea057854464a4d",
+      "word": "trooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:trooper"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "fr",
+      "lemma_id": "lemma:f4ca8150451fa83f490e",
+      "word": "troopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:fr:trooper",
+        "ety:f92ed7420ff6"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "es",
+      "lemma_id": "lemma:f1de88397dfafd54b3b7",
+      "word": "blooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:es:oper",
+        "surface:es:blo"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "es",
+      "lemma_id": "lemma:15baef7e3ccb4de4b509",
+      "word": "bloopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:17db4ecc463e",
+        "ety:56611beaa336",
+        "surface:es:blo",
+        "ety:f92ed7420ff6"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "es",
+      "lemma_id": "lemma:6ddd5d2af76ca0ab239e",
+      "word": "trooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:es:troo",
+        "surface:es:oper"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "es",
+      "lemma_id": "lemma:b5207a6f682c6bfc3080",
+      "word": "troopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:17db4ecc463e",
+        "ety:56611beaa336",
+        "surface:es:troop",
+        "ety:f92ed7420ff6"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "it",
+      "lemma_id": "lemma:bc4ce754365c5bbe7542",
+      "word": "blooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:blo",
+        "surface:it:oper"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "it",
+      "lemma_id": "lemma:c3541c9579ed07ab9713",
+      "word": "bloopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "blooper",
+      "reason": "Independent bloop/blooper error head; oper letters are internal to it.",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/blooper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:blo",
+        "surface:it:pers"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "it",
+      "lemma_id": "lemma:ccf7013a699f369b487b",
+      "word": "trooper",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:oper",
+        "surface:it:troo"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "it",
+      "lemma_id": "lemma:c5abea77d88913615fab",
+      "word": "troopers",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "trooper",
+      "reason": "Troop + agent -er, independent of operate/operation; foreign occurrence retains that analysis.",
+      "source_references": [
+        "https://www.merriam-webster.com/grammar/usage-trooper-vs-trouper"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:it:troop",
+        "surface:it:pers"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:8feac8b08535d01d3b6a",
+      "word": "автопереключение",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:avtoperekljucheni"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:278946987aad31754c9c",
+      "word": "автопереход",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:opere",
+        "surface:ru:perehod",
+        "surface:ru:toper",
+        "surface:ru:avto"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:789df753c5e2d4e3066d",
+      "word": "аудиоперемотка",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:tka",
+        "surface:ru:audioperemotk"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:d3b4784d6582bfe6f3e5",
+      "word": "взаимопереход",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:vzaim",
+        "surface:ru:opere",
+        "surface:ru:perehod",
+        "surface:ru:aimo",
+        "surface:ru:mope"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:b9d10ebf4468bcf36919",
+      "word": "видеопереговоры",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:videoperegovor",
+        "surface:ru:ry"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:341bd283c9f63114ecc2",
+      "word": "газоперекачивающий",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:gazoperekachivajushch",
+        "surface:ru:shchij"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:b4ddae51b480595f88a7",
+      "word": "знакопеременный",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:znakoperemenn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:a6f21b21666df078cc53",
+      "word": "микропереключатель",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:mikrope",
+        "surface:ru:opere",
+        "surface:ru:kroper",
+        "surface:ru:perekljuchatel"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:ab70781c24a596e00e61",
+      "word": "противоперегрузочный",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:protivoperegruzochn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:087df5e8b3cc731cbe67",
+      "word": "радиопереговор",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:radioperegovor"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:7677069067687302aa67",
+      "word": "радиопереговоры",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:ry",
+        "surface:ru:radioperegovor"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:1604dc663c1a9ec3d4b0",
+      "word": "скотоперегонный",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:skotoperegonn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "oper",
+      "language": "ru",
+      "lemma_id": "lemma:569d291776109e2fc7d2",
+      "word": "цветопеременный",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "пере-компонент",
+      "reason": "Reviewed compound boundary: first component ending in о + пере- head. The overlapping опер letters do not form an independent operation component. The cited dictionary establishes переключ-; the other finite boundary analyses are reviewer inferences.",
+      "source_references": [
+        "https://gramota.ru/meta/pereklyuchit"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:ru:cvetoperemenn"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:a74eee69056144d06e53",
+      "word": "abiturmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:abiturmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3a1288a5028fffd560b2",
+      "word": "absolventenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:absolventenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:943935445c2c3602edd6",
+      "word": "altherrenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:altherrenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:410fe9400755ac21f303",
+      "word": "alumütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:alumutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c95ccbac3a0d035aef1c",
+      "word": "arbeitsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:arbeitsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:4f6f41eb0c11d3f5862f",
+      "word": "baby-mützchen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:babymutzche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f939ba701a482948c318",
+      "word": "babymützchen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:babymutzche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:af6328ea2d850b7fabd9",
+      "word": "babymütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:babymutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:84a06b04ddb9400d47ea",
+      "word": "baseball-mütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:baseballmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:77e65ea7f099ed6e010a",
+      "word": "baseballmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:baseballmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1e9444e24b1699190862",
+      "word": "baseballmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:baseballmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e07fddf1122333ba858f",
+      "word": "baskenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:baskenmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:ebaafc32c54edc762857",
+      "word": "baskenmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:baskenmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5179144a7850c56536c3",
+      "word": "bemützter",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:bemutzt",
+        "surface:de:ter"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:ca1ef2431602940f2764",
+      "word": "bergarbeitermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:bergarbeitermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:7637ac299648c4ddedfd",
+      "word": "bibermützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:bibermutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:77500b5f3953b14473f4",
+      "word": "bikermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:bikermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0c207eb464a5b6c3aaf9",
+      "word": "bischofsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:bischofsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:8d27ff2993b31e5bf22d",
+      "word": "blaumütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:blaumutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d68098bb87c5046bb041",
+      "word": "blechmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:blechmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:050607c576dba9bf2291",
+      "word": "bommelmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:bommelmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5e908c821479e1b1d50a",
+      "word": "bundeswehrmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:bundeswehrmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:13585c832c976d0b880d",
+      "word": "bärenfellmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:barenfellmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:865315c5f11824a66f9b",
+      "word": "bärenfellmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:barenfellmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1d4356c62f617e4bb212",
+      "word": "chauffeursmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:chauffeursmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:937ad118e4eabba7fd8c",
+      "word": "chefkochmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kochmutze",
+        "surface:de:chefkochmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:08897b60bbb9390e2bc1",
+      "word": "computermützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:computermutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:dc651829dd400808908e",
+      "word": "denkmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:denkmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c54d91822ee27e4ae765",
+      "word": "denkmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:denkmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5413000e28be9d9ed7fb",
+      "word": "dienstmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:dienstmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0761343b6b11d8f40c53",
+      "word": "dienstmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:dienstmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:60b88898cdbd57af8dc1",
+      "word": "eisenbahnermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:eisenbahnermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:9c2714257a73bd069f76",
+      "word": "elfenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:elfenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:b07f6c1f2562025339cf",
+      "word": "erstsemestermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:erstsemestermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:077dfd919b305936d1b2",
+      "word": "erzschlafmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schlafmutze",
+        "surface:de:erzschlafmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3187b44a85ba8a32d568",
+      "word": "eselsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:eselsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:57a599f257fcda43cc34",
+      "word": "fahrermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:fahrermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0a98b559251d9be8a522",
+      "word": "federmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:federmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:42061cb9b9b38247762b",
+      "word": "fellmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:fellmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1cf6b608df29e3e7b4f0",
+      "word": "ferrari-mütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:ferrarimutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:adf8bd7da5a89a2f1e4f",
+      "word": "festtagsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:festtagsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e667ad96593bb7c41a12",
+      "word": "fischermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:fischermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d42bb42b6c58eb8c911a",
+      "word": "fliegermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:fliegermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:a03624fa69d480056042",
+      "word": "garnisonsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:garnisonsmutz",
+        "surface:de:mutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:93f0bd46e6c76e0c5527",
+      "word": "gebetsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:gebetsmutz",
+        "surface:de:mutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:322a999eac43e3035135",
+      "word": "gedankenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:gedankenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:bcb2f807828ee767129d",
+      "word": "generalsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:generalsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:931ac6c1a5fc9e854f6a",
+      "word": "glücksmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:glucksmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3e9166f48a55817b4238",
+      "word": "golfmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:golfmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:411aaefe9ec2d1c5fd97",
+      "word": "hanfmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:hanfmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3d550421547839670ea1",
+      "word": "häkelmützchen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:hakelmutzche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:29e15d27227b2802cbbe",
+      "word": "ig-metall-schirmmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:igmetallschirmmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3c80818f4f799f61467f",
+      "word": "jagdmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:jagdmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d41380fc3eeeb22ebe4d",
+      "word": "jagdmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:jagdmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:374183c977bf075d15b7",
+      "word": "jakobinermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:jakobinermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5f4a097577983628ed8c",
+      "word": "kapitänsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kapitansmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:6608c151cd28f24f2757",
+      "word": "kapitänsmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kapitansmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1a83f227db5e944ba1d4",
+      "word": "kapuzenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kapuzenmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:67ec7d9d9d5758fa25f1",
+      "word": "kapuzenmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kapuzenmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f6378fe166b46c9cb19c",
+      "word": "karomütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:karomutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:70d9823be39b3c42604a",
+      "word": "ketzermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:ketzermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:80b15a28dbefa9798125",
+      "word": "kleinkindermützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kleinkindermutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:b2268ab2ecebf93e1d3b",
+      "word": "klorollenmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:klorollenmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:35448ad5b7afb23d0138",
+      "word": "kochmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kochmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:27fc3225279b8eb7a9b5",
+      "word": "kochmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kochmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c3915215d424ad4cec06",
+      "word": "kochmützenträgern",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:kochmutzentrager",
+        "surface:de:gern"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5a86dc8c844d4cc098d8",
+      "word": "leutnantsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:leutnantsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:2160a1dcfd406d5d26d2",
+      "word": "lieblingsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:lieblingsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:4cdafb6b7f3210a7a519",
+      "word": "mardermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:mardermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:68de2ff7f659a2e8d2fe",
+      "word": "matrosenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:matrosenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:daae9460c3418956ff8d",
+      "word": "mützchen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutzche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e4f1428481162886fd06",
+      "word": "mütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:4ea1977aa805c8bcf1dd",
+      "word": "mützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:6dfe32a360272ad1ccbe",
+      "word": "mützenbursche",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutzenbursche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:410a56b336f4d727829e",
+      "word": "mützenburschen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:burschen",
+        "surface:de:mutzenbursche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:01624f7fb7eefed04ba7",
+      "word": "mützenbänder",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutzenband",
+        "surface:de:bander"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f1afb91f57c305ca2850",
+      "word": "mützengröße",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutzengross",
+        "surface:de:grosse"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:68661060b43a10a87227",
+      "word": "mützenhalter",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutzenhalt",
+        "surface:de:halter"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:42c5d6a4b79e02df0b97",
+      "word": "mützenmacher",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutzenmach",
+        "surface:de:macher"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:100505a97df32312cfdd",
+      "word": "mützenmann",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "ety:560fbf7901b6",
+        "surface:de:mutzenman",
+        "ety:2026f61cfab5"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c0951d00b6a0b8029ead",
+      "word": "mützensammelns",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutzensammeln"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0a2ff495afb15ef8b636",
+      "word": "mützenschirm",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:zens",
+        "surface:de:ensch",
+        "surface:de:schirm"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:a6961938e8d05817429d",
+      "word": "mützenverbot",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:enver",
+        "surface:de:verbot"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:deb19dea2541b1eba7dc",
+      "word": "mützenwerfen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:werfen",
+        "surface:de:mutzenwerfe"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:602cbdb0fa81140f3ce2",
+      "word": "nachtmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:nachtmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:eaba55b8ab6fb7951370",
+      "word": "nachtmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:nachtmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:498466e93352d043490e",
+      "word": "nikolausmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:nikolausmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:4c0cb7e83554a820e765",
+      "word": "ofenrohrmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:ofenrohrmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:14f4faa4db3a73d4e189",
+      "word": "offiziersmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:offiziersmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:a721b9b90b3f9895dc0c",
+      "word": "pagenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:pagenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:9d07e34f1c70e30ed7e6",
+      "word": "papiermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:papiermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:171932d32ad1d44ecf8a",
+      "word": "papstmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:papstmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:af029e08a75e2b0b56d6",
+      "word": "pelzmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:pelzmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:8e8ef9aab4b1e4275696",
+      "word": "pelzmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:pelzmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1182261b27b05bf5bce0",
+      "word": "pilotenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:pilotenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c8a85e22bff4d7dbb238",
+      "word": "pioniersmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:pioniersmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0243680ab9c89555b7f3",
+      "word": "polizeimütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:polizeimutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:eb856a83601ac464eb95",
+      "word": "polizeimützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:polizeimutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:837d37a5843054845b9f",
+      "word": "polizistenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:polizistenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:28437c7cecc0452d201e",
+      "word": "porzellanmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:porzellanmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:bc8e32c69844690bce3c",
+      "word": "primanermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:primanermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d207ba85d0e5f1f00065",
+      "word": "propellermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:propellermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:6b718d044f74fcbcc9cc",
+      "word": "pudelmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:pudelmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:356dd7a1741972a9a50c",
+      "word": "pudelmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:pudelmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f070106e5fd477cebb88",
+      "word": "radmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:radmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:810089cb33ed098cc627",
+      "word": "rattenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:rattenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:808621e069a12c365591",
+      "word": "reisemütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:reisemutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:a64f5b9b6c2e1f195a85",
+      "word": "reisemützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:reisemutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f83cf6d1dd3d313ac2b7",
+      "word": "riesenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:riesenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:520b7b8921d67c08bcce",
+      "word": "russenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:russenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5b2f130f664f4207b63e",
+      "word": "samtmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:samtmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3a26b7c03e63edeb25bc",
+      "word": "schaffnermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:schaffnermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d7a3969c11b85aa32ec5",
+      "word": "schiebermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schiebermutz",
+        "surface:de:mutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c728aa595b8567212c79",
+      "word": "schiffermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:schiffermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:cfd7b48052e5eb421799",
+      "word": "schildmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schildmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:130bb8952fd6242da999",
+      "word": "schirmmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schirmmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1cdc6d5d3a9595cde4c7",
+      "word": "schirmmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schirmmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:4725e0504662641cf1f5",
+      "word": "schlafmützchen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schlafmutzche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5e9cc4ead25f9643bbb1",
+      "word": "schlafmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schlafmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e4d58c472123d6d79520",
+      "word": "schlafmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schlafmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:77c160335f0be515bb72",
+      "word": "schlafmützig",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schlafmutzig"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:6a5c5028fed194d2c9e4",
+      "word": "schlafmützigkeit",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:schlafmutzig",
+        "surface:de:igkeit"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:db2a12a27f7132d3b9d6",
+      "word": "schlumpfmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:schlumpfmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:fef8588298e75ea882ec",
+      "word": "schlägermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:schlagermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c87f4f6f6da62620a833",
+      "word": "schottenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:schottenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:6e1928306c6f17aa2401",
+      "word": "schülermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:schulermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e4534c6fba5aa82cb7fb",
+      "word": "seemannsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:seemannsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3eadd922b947aaa3c563",
+      "word": "segelmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:segelmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1564d57af72152ed57fc",
+      "word": "skimütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:skimutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:bc6950d85cfd8aeca614",
+      "word": "skimützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:skimutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1f9fcf81cc4b5525d964",
+      "word": "soldatenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:soldatenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f3af44d51a2c0c5ba367",
+      "word": "sonntagsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:sonntagsmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:7e35ff3f9fde2564331a",
+      "word": "spitzmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:spitzmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:7ac7a4fc3f749f94774a",
+      "word": "sportmützchen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:sportmutzche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:748777580ac5b4b80f76",
+      "word": "sportmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:sportmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:69c1c8e8e98f26e868cf",
+      "word": "sportmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:sportmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:097b01fd7c79bfbddb30",
+      "word": "stoffmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:stoffmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c9ba54166e9e90ca3f91",
+      "word": "strickmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:strickmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:548f79d692b266567215",
+      "word": "strickmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:strickmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:55b5c73a7c8728c24e85",
+      "word": "strumpfmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:strumpfmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:12f4e0452c239e0c2884",
+      "word": "studentenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:studentenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e916a3688cef125b465e",
+      "word": "tellermützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:tellermutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d64227d6072a27e9af58",
+      "word": "tiermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:tiermutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f5b010d5d3ab4b85b425",
+      "word": "totenkopfmützenträger",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:totenkopfmutzentrag",
+        "surface:de:trager"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c8eabb02a97646167a5c",
+      "word": "totenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:totenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:78236e3e211120da9cb4",
+      "word": "tuchmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:tuchmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:41f424d1f4e53e037f01",
+      "word": "tweedmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:tweedmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5d48db28313cd42ad552",
+      "word": "uniformmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:uniformmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:6af51b44b46bd0748707",
+      "word": "vereinsmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:vereinsmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3700dc565fd527a0ca4f",
+      "word": "waschbärenfellmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:waschbarenfellmutz",
+        "surface:de:barenfellmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:a656ac12d0b4caddb737",
+      "word": "waschbärenmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:waschbarenmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e7a2609832ca99522523",
+      "word": "waschbärfellmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:waschbarfellmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:415608962a9c5e071418",
+      "word": "weihnachtsmannmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:weihnachtsmannmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f89a5d744c77401b22e4",
+      "word": "weihnachtsmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:weihnachtsmutz",
+        "surface:de:mutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:465705f8b61f83d09103",
+      "word": "wintermützchen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:wintermutzche"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:af855b15ecd5635ce78d",
+      "word": "wintermütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:wintermutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:4c16c09f3ca0ff5235a7",
+      "word": "wintermützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:wintermutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:b39d1a57c7c0af1ed179",
+      "word": "wollmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:wollmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5d46f14c2e05a2780734",
+      "word": "wollmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:wollmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:27af8c70ba8b0d72e62e",
+      "word": "zarenfellmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:zarenfellmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:ee3f74fface40eabe303",
+      "word": "zipfelmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:zipfelmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:712e1d08bac0d1610140",
+      "word": "zipfelmützen",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:zipfelmutze"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:ce9b70fe8d8b07029090",
+      "word": "zobelmütze",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Mütze",
+      "reason": "Independent German cap/hat Mütze head. Duden records almutium/almutia with unresolved deeper origin, not mutare. The selected compounds, diminutives and inflections preserve this head; folded ü must not manufacture mutation membership.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Muetze"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:mutze",
+        "surface:de:zobelmutz"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:074ecc777c80d5892c4d",
+      "word": "anmut",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Anmut",
+      "reason": "Independent German an + muot/Mut branch, not Latin mutare. Selected derivatives and inflections are reviewer morphological inferences.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Anmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:anmut"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:bed1818fbafbe84a1d1b",
+      "word": "anmuten",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Anmut",
+      "reason": "Independent German an + muot/Mut branch, not Latin mutare. Selected derivatives and inflections are reviewer morphological inferences.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Anmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:anmute"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:fb9fcc08f354b602a017",
+      "word": "anmutend",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Anmut",
+      "reason": "Independent German an + muot/Mut branch, not Latin mutare. Selected derivatives and inflections are reviewer morphological inferences.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Anmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:anmutend"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:682fc86f5fd42431a30e",
+      "word": "anmutende",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Anmut",
+      "reason": "Independent German an + muot/Mut branch, not Latin mutare. Selected derivatives and inflections are reviewer morphological inferences.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Anmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:tende",
+        "surface:de:anmutend"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d915dcbbeeed8fba736d",
+      "word": "anmutet",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Anmut",
+      "reason": "Independent German an + muot/Mut branch, not Latin mutare. Selected derivatives and inflections are reviewer morphological inferences.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Anmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:anm",
+        "surface:de:tet"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:28cb0f03207abae570a2",
+      "word": "anmutung",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Anmut",
+      "reason": "Independent German an + muot/Mut branch, not Latin mutare. Selected derivatives and inflections are reviewer morphological inferences.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Anmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:anmut",
+        "surface:de:tung"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:abfa30090456c82955b8",
+      "word": "edelmut",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Edelmut",
+      "reason": "Independent German edel + Mut courage/disposition branch, not Latin mutare; selected genitive retains the same head.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Edelmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:edelmut"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:7869b8b4f0e503265b7f",
+      "word": "edelmutes",
+      "previous_status": "uncertain",
+      "status": "excluded",
+      "lexical_head": "Edelmut",
+      "reason": "Independent German edel + Mut courage/disposition branch, not Latin mutare; selected genitive retains the same head.",
+      "source_references": [
+        "https://www.duden.de/rechtschreibung/Edelmut"
+      ],
+      "analysis_scope": "finite whole-form review; dictionary head plus explicit reviewer inference",
+      "source_family_ids": [
+        "surface:de:edelmute"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "counts": {
+    "oper": {
+      "en": {
+        "accepted": 109,
+        "excluded": 139,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 524,
+        "total": 772
+      },
+      "fr": {
+        "accepted": 113,
+        "excluded": 58,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 302,
+        "total": 473
+      },
+      "es": {
+        "accepted": 158,
+        "excluded": 34,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 487,
+        "total": 679
+      },
+      "it": {
+        "accepted": 153,
+        "excluded": 3452,
+        "reviewed_exclusions": 4,
+        "reviewed_uncertain": 0,
+        "pending_review": 363,
+        "total": 3968
+      },
+      "ru": {
+        "accepted": 138,
+        "excluded": 205,
+        "reviewed_exclusions": 13,
+        "reviewed_uncertain": 0,
+        "pending_review": 195,
+        "total": 538
+      },
+      "de": {
+        "accepted": 924,
+        "excluded": 22,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 211,
+        "total": 1157
+      }
+    },
+    "mut": {
+      "en": {
+        "accepted": 78,
+        "excluded": 101,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 823,
+        "total": 1002
+      },
+      "fr": {
+        "accepted": 78,
+        "excluded": 56,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 244,
+        "total": 378
+      },
+      "es": {
+        "accepted": 86,
+        "excluded": 59,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 446,
+        "total": 591
+      },
+      "it": {
+        "accepted": 120,
+        "excluded": 3391,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 360,
+        "total": 3871
+      },
+      "ru": {
+        "accepted": 41,
+        "excluded": 108,
+        "reviewed_exclusions": 0,
+        "reviewed_uncertain": 0,
+        "pending_review": 254,
+        "total": 403
+      },
+      "de": {
+        "accepted": 166,
+        "excluded": 1580,
+        "reviewed_exclusions": 171,
+        "reviewed_uncertain": 0,
+        "pending_review": 535,
+        "total": 2281
+      }
+    }
+  },
+  "limitations": [
+    "All decisions are confined to saved forms. No general substring or suffix rule.",
+    "Remaining historical uncertain rows are unreviewed, not investigated uncertainty.",
+    "Historical ledgers, source components, route ordering and runtime files are unchanged."
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_stage": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010",
+  "inputs": {
+    "spec_path": "audit/associative-family-v5/reflex-functional-boundaries-review-20261002-2245/review-spec.json",
+    "spec_sha256": "9215467272c2b7abbd52d81597fec91475c35026fbde413d3d7d72856e862c7c",
+    "previous_pending_path": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010/pending-review.json",
+    "previous_pending_sha256": "032e0cfe3c733fd9229fde575743e6fad04f97000de1c981925eb37e1771c3ca",
+    "previous_inventory_path": "audit/associative-family-v5/reflex-multilingual-heads-review-20261002-2010/inventory.json",
+    "previous_inventory_sha256": "4cd2109a23268adc31c4d7a2ccb073fc2edb398d99aebc37f8f4a0ccdc0f786d",
+    "source_candidate_path": "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz",
+    "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb"
+  },
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "reviewed_count": 20,
+  "new_counts": {
+    "excluded": 20
+  },
+  "continuation_counts": {
+    "accepted": 31,
+    "excluded": 354,
+    "uncertain": 154,
+    "pending_review": 223
+  },
+  "artifact_sha256": {
+    "decisions.json": "466b2a455848692aca5d08c7f645ba23bbd14fbc5f96cb04fc661b00b8001b1d",
+    "pending-review.json": "fad3b41a71caec4c8c590f9bf8fb9ddd77d9a050de0a4692f00b58c152c9e4a1",
+    "source-records.json.gz": "0227c9b15a28ec3fc5a5702750a3ecff9963d0e0447a218fed8498c2d92a6e7a"
+  },
+  "runtime_changes": false,
+  "full_family_certification": false
+}

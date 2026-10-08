@@ -1,0 +1,69 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "a881152a940986e142fb0577f7a064491499e6de",
+  "original_application_sha": "438f0aba97b818c48ee9d7a75cf3896eb175733e",
+  "initial_validation_sha": "15ccf9ab584d3976529a839d604275404c794662",
+  "rebind_decision_sha": "c9108ec1fb21fd0284b91a9992fc48929d6738a3",
+  "rebind_application_sha": "7302973c22e31685595fca537580a051da8d831a",
+  "ci_finding": {
+    "run": 37621279292,
+    "verdict": "failure",
+    "cause": "Old planning source-lock input hash after runtime hash update; integrity/migration/frozen/corpus enumeration passed."
+  },
+  "production_enabled": false,
+  "membership_differential": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "prompt08_tree_preserved": true,
+  "replay": {
+    "planning": {
+      "artifacts": 16,
+      "replay_byte_identical": true,
+      "changed_semantic_payloads": 0,
+      "new_manifest_differs_from_prompt08": [
+        "manifest.json"
+      ]
+    },
+    "certification": {
+      "artifacts": 5,
+      "replay_byte_identical": true,
+      "changed_semantic_payloads": 0,
+      "new_manifest_differs_from_prompt08": []
+    }
+  },
+  "audits": [
+    "planning original",
+    "planning indexed (identical actual report)",
+    "history/certification",
+    "contamination (40-artifact replay)",
+    "candidate coverage/source reconstruction",
+    "packet lifecycle (6-artifact replay)"
+  ],
+  "new_targeted_tests": 15,
+  "indexing_semantics": "First-match question lookup and exact language/lemma_id/word triples preserve all original audit checks. No audit requirement is removed.",
+  "logs_sha256": {
+    "ci-failure-excerpt.log.gz": "26a96e23c47eb06c035b1ac22387c2e9d37d8d669fce255b05bfc6b3b9d87e1e",
+    "planning-build.log.gz": "388660efdf158feaf9c283ff21fe7bd8adf434e5ca90fd0ff82cd4e6d86b3a50",
+    "certification-build.log.gz": "5358da93ee27653f7b3c500359cc7e6c891d79220be9bacbf7b15ba779b47fc6",
+    "planning-audit.log.gz": "fdfe4d60bba48a0aca3f0888817e712ed596b5453b41e99e8b26f5c456e8f40c",
+    "planning-audit-indexed.log.gz": "fdfe4d60bba48a0aca3f0888817e712ed596b5453b41e99e8b26f5c456e8f40c",
+    "planning-replay.log.gz": "388660efdf158feaf9c283ff21fe7bd8adf434e5ca90fd0ff82cd4e6d86b3a50",
+    "certification-replay.log.gz": "5358da93ee27653f7b3c500359cc7e6c891d79220be9bacbf7b15ba779b47fc6",
+    "history-audit.log.gz": "79fa1f2056d3d10abe8d5e149e1945f3675af21198fa3d2bf32a627f128546de",
+    "contamination-audit.log.gz": "e478c761e62403340d4ce18df8d2d70f7224edca2f7413f806a818fc26f3868f",
+    "contamination-replay.log.gz": "e12a53750bb2e9afad2630fe491150dea68c8c0ceebcc36435f3f1a9e6454819",
+    "coverage-audit.log.gz": "656e9ef166cdac668e69adc5db60dfc534cfd4e8cf778590c09a50c24a4297b1",
+    "packet-replay.log.gz": "607960fcde6bad12de6777cd571663274d3216f7eaa174c4cb6dfb8a30650ea5",
+    "rebind-targeted.log.gz": "03155db21393deddf3b852fc279118ef189689cd1ad38a60a89c27613ff343f6"
+  },
+  "code_sha256": {
+    "scripts/audit-associative-v6-queue-organization.mjs": "f9bfaccb23db1a12783897e85d9266b7bbd3b92cd7474eb4e69daad145e9f924",
+    "associativvordes/family-index-v6/queue-planning.json": "94c22437355af3a99422b16e6fefb11a49c2a7571514747efca5ce6dfad20e13",
+    ".github/workflows/audit-associative-family-v6.yml": "7882004e404c02b9602617aa454fa52206dcb1b1bf072158218790d72e240eeb"
+  },
+  "initial_runtime_tests_and_277_migration_7_shadow_replays_still_applicable": "Runtime and migration/shadow artifacts unchanged since initial application; final SHA CI reruns the whole pipeline.",
+  "full_dictionary_complete": false
+}

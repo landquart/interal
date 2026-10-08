@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "source_run_id": 35647932153,
+  "previous_pending_sha256": "6f4d60e7b86207211ea61a45d515504d33fcd1a9beeadafc113c6131d83ad2a8",
+  "source_candidate_sha256": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+  "decisions": [
+    {
+      "lemma_id": "lemma:e1c46c1203016a7f7c97",
+      "word": "imageobserver",
+      "status": "accepted",
+      "reason": "Oracle documents ImageObserver as an interface receiving image updates. The exact technical identifier retains the English observer constituent, not an accidental substring. Image + observer is a finite morphological inference supported by its documented function. Existing corpus record only; no synthetic lemma.",
+      "source_family_ids": [
+        "surface:en:observer",
+        "surface:en:imageobserv"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_technical_compound",
+      "segmentation_or_lexical_identity": "Image + observer",
+      "source_references": [
+        "https://docs.oracle.com/en/java/javase/24/docs/api/java.desktop/java/awt/image/ImageObserver.html"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:60c13b80015b5c09b5e3",
+      "word": "informatisierung",
+      "status": "accepted",
+      "reason": "Attested German head describes adoption of information systems and is used in a German informatics publication. This is the information/informatics branch, not negative in- + formal. Finite derivative analysis preserves the visible inform constituent.",
+      "source_family_ids": [
+        "surface:de:erung",
+        "surface:de:informatisier"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_derivative",
+      "segmentation_or_lexical_identity": "Informatisierung information/computerization process",
+      "source_references": [
+        "https://hls-dhs-dss.ch/de/articles/013724/2019-07-12/",
+        "https://link.springer.com/chapter/10.1007/978-3-642-77808-7_31"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:5f69db222f03acdadb6d",
+      "word": "башинформ",
+      "status": "accepted",
+      "reason": "Attested Bashinform news agency. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:inform",
+        "surface:ru:shin",
+        "surface:ru:bash"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "Баш + информ",
+      "source_references": [
+        "https://www.bashinform.ru/pages/about"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:d782ecd1c386bccefffb",
+      "word": "информрегистр",
+      "status": "accepted",
+      "reason": "Attested Informregistr registration/information-resource institution. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:informr",
+        "ety:bff810e2b190",
+        "surface:ru:mre"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "информ + регистр",
+      "source_references": [
+        "https://www.inforeg.ru/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:01481b2a3627b92b1bbb",
+      "word": "совинформбюро",
+      "status": "accepted",
+      "reason": "Attested Soviet Information Bureau. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:mb",
+        "surface:ru:inform",
+        "ety:e336db5a09d6",
+        "surface:ru:sovin"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "Сов + информ + бюро",
+      "source_references": [
+        "https://guides.rusarchives.ru/funds/6/sovetskoe-informacionnoe-byuro-sovinformbyuro-pri-gosudarstvennom-komitete-po-kulturnym"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:ff7105d5730296384ca1",
+      "word": "юстицинформ",
+      "status": "accepted",
+      "reason": "Attested Justitsinform legal-information publisher/group. Official institutional evidence establishes an information-related referent; the saved name contains the Russian информ constituent. The displayed segmentation is a finite reviewer inference, not a claimed historical naming derivation. Native named compounds are permitted when the actual information constituent is evidenced; no frequency or original component is replaced.",
+      "source_family_ids": [
+        "surface:ru:justici",
+        "surface:ru:inform",
+        "surface:ru:cin"
+      ],
+      "language": "ru",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "юстици + информ",
+      "source_references": [
+        "https://jusinf.ru/about/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:86d2219986bcd7c40c36",
+      "word": "assinform",
+      "status": "accepted",
+      "reason": "Official association profile identifies Assinform within the Italian information/communication-technology association. The inform segment is the information/informatics constituent of this attested ICT name, a finite morphological inference. No inference that arbitrary names containing inform qualify.",
+      "source_family_ids": [
+        "surface:it:assin",
+        "surface:it:inform"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "attested_information_name",
+      "segmentation_or_lexical_identity": "Ass + inform (ICT association)",
+      "source_references": [
+        "https://www.anitec-assinform.it/scopri-di-piu/english/who-we-are/profilo/organisation-profile.kl"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f8950a05b20a3e32ad7c",
+      "word": "winforms",
+      "status": "excluded",
+      "reason": "Microsoft identifies WinForms as Windows Forms. The apparent inform sequence spans the end of Win and the Forms constituent; it is not the information head. This whole technical name is excluded, without rejecting unrelated compounds.",
+      "source_family_ids": [
+        "surface:en:rms",
+        "surface:en:winform"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_technical_name",
+      "segmentation_or_lexical_identity": "Win + Forms",
+      "source_references": [
+        "https://learn.microsoft.com/en-us/dotnet/desktop/winforms/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:eded54b5a380ed2cb874",
+      "word": "jobserve",
+      "status": "excluded",
+      "reason": "Official JobServe evidence describes a recruitment/job service. Its name is analyzed as Job + Serve; the apparent observe letters cross that boundary. This is not an observer constituent. The segmentation is a finite reviewer inference supported by the actual service.",
+      "source_family_ids": [
+        "surface:en:jobserv",
+        "ety:c035f4c585c4",
+        "ety:f3c02d82e642",
+        "ety:a3f730d2043b",
+        "ety:756983cbe7e0",
+        "ety:0c9fbf1deec1"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_technical_name",
+      "segmentation_or_lexical_identity": "Job + Serve",
+      "source_references": [
+        "https://www.jobserve.com/in/en/content/about/the-company.htm"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:8bda7ff8b58648fbed3b",
+      "word": "informel",
+      "status": "excluded",
+      "reason": "The investigated foreign lexical identity belongs to the nonformal/formless branch, not informer/informare/information. Whether the occurrence is a quotation or a borrowed use does not change this constituent analysis. Exact whole form only, not a spelling substitution or global informal-prefix rule.",
+      "source_family_ids": [
+        "surface:en:formel",
+        "surface:en:info"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_formal_head",
+      "segmentation_or_lexical_identity": "French informal/art informel adjective",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1224"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:87ecfbd1c10c8f262b15",
+      "word": "informality",
+      "status": "excluded",
+      "reason": "The investigated foreign lexical identity belongs to the nonformal/formless branch, not informer/informare/information. Whether the occurrence is a quotation or a borrowed use does not change this constituent analysis. Exact whole form only, not a spelling substitution or global informal-prefix rule.",
+      "source_family_ids": [
+        "surface:es:informal"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_formal_head",
+      "segmentation_or_lexical_identity": "English nonformal quality noun",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informality"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:f3b6eebd988691f1c981",
+      "word": "informal",
+      "status": "excluded",
+      "reason": "The investigated foreign lexical identity belongs to the nonformal/formless branch, not informer/informare/information. Whether the occurrence is a quotation or a borrowed use does not change this constituent analysis. Exact whole form only, not a spelling substitution or global informal-prefix rule.",
+      "source_family_ids": [
+        "surface:it:informal"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "independent_formal_head",
+      "segmentation_or_lexical_identity": "English nonformal adjective",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/informal"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:10eb7d20756b1bda0a10",
+      "word": "informale",
+      "status": "uncertain",
+      "reason": "Investigated two competing valid analyses: Italian nonformal informale and Spanish voseo informá + le, which is correctly written informale because one enclitic makes it a plain word ending in a vowel. This inflection is a reviewer inference from the documented voseo paradigm and RAE enclitic accentuation. Corpus metadata has no sentence or sense annotation to choose. Preserve the exact saved spelling and genuine uncertainty; neither the Italian identity nor the Spanish inflection alone is decisive.",
+      "source_family_ids": [
+        "surface:es:male",
+        "surface:es:inform"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "native_or_foreign_head_ambiguity",
+      "segmentation_or_lexical_identity": "Italian informale versus Spanish voseo informa + le",
+      "source_references": [
+        "https://www.treccani.it/vocabolario/informale/",
+        "https://dle.rae.es/informar",
+        "https://www.rae.es/dpd/tilde"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:b3e722d2aa3080116392",
+      "word": "informel",
+      "status": "uncertain",
+      "reason": "Investigated French nonformal informel and the possibility of a one-letter-defective German informell. Duden separately attests information-related and nonformal informell homonyms. Original sentences and sense annotations are absent. Spelling-defect interpretation is a hypothesis, not a repaired source record; actual information membership cannot be certified or ruled out from aggregate frequencies.",
+      "source_family_ids": [
+        "surface:de:mel",
+        "surface:de:infor"
+      ],
+      "language": "de",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "spelling_or_foreign_head_ambiguity",
+      "segmentation_or_lexical_identity": "French informel versus defective German informell homonyms",
+      "source_references": [
+        "https://www.dictionnaire-academie.fr/article/A9I1224",
+        "https://www.duden.de/rechtschreibung/informell_formlos",
+        "https://www.duden.de/rechtschreibung/informell_informierend"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "new_counts": {
+    "accepted": 7,
+    "excluded": 5,
+    "uncertain": 2
+  },
+  "continuation_counts": {
+    "accepted": 13,
+    "excluded": 160,
+    "uncertain": 50,
+    "pending_review": 539
+  },
+  "accepted_applied": 6,
+  "accepted_unapplied": 7,
+  "runtime_changes": false,
+  "full_family_certification": false,
+  "limitations": [
+    "Accepted additions are reviewed but not materialized; guarded additive application is a later independent stage.",
+    "Only explicit whole forms are reviewed; no open prefix/substring classifier.",
+    "Foreign lexical identities have been investigated but aggregated corpus sources cannot resolve quotation/title context.",
+    "Remaining records retain pending_review. No spelling repairs or synthetic corpus records."
+  ]
+}

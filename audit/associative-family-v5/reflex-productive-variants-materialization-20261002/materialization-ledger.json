@@ -1,0 +1,1735 @@
+{
+  "schema_version": 1,
+  "repair": "extend_reviewed_observ_inform_productive_variants_20261002",
+  "source_run_id": 35647932153,
+  "baseline_commit": "f0eac851fed9214237f479fd71120a12d64845e7",
+  "source_hashes": {
+    "audit/associative-family-v5/reflex-productive-variants-review-20261002/decisions.json": "b4407fcb56b6d3af1b441019b28f3ec12e3a71110fe77fcaeaacb6b2a3e54f44",
+    "audit/associative-family-v5/reflex-productive-variants-review-20261002/pending-review.json": "217911b0b3eb64da4fe37ba59a8a40a77e8a9e6b93d0866110a78263ed458381",
+    "audit/associative-family-v5/reflex-productive-variants-review-20261002/source-records.json.gz": "3eaada735c79bad789e273834272192d4910644c157ab814bd33b9ff830b9258",
+    "audit/associative-family-v5/reflex-checkpoint-20261001/candidates.json.gz": "ce3cc11eb045a4fe9f77bf79239fc585a9a324231c8a6d5530606df1e5488cfb",
+    "audit/associative-family-v5/reflex-native-compounds-review-20261002-2315/pending-review.json": "d24101c9de1c70e48a32c442b20c5e2990d68b0560ee7db803e69caefbf445d7",
+    "audit/associative-family-v5/reflex-productive-variants-review-20261002/inventory.json": "5ec2ebd14b01d2bb4fd3652f8e487e74b19d5935ea618c8d932d342f0b4d154c",
+    "audit/associative-family-v5/reflex-productive-variants-review-20261002/review-spec.json": "5b5785160cd6c1eb6ab3f1f9a297aacf12d716aba5964320d3a857e970d584cf",
+    "scripts/lib/associative-reflex-finite-review.py": "082b62dd8ca0b0f6a9021deba3f49bd28ad3c70dda668f4d47e9c6deaab39010",
+    "scripts/review-associative-reflex-productive-variants-20261002.py": "3bac7ed7aa798dd663603d30a157eaa37868cef89a2c896f297ddd708afbb4c0",
+    "audit/associative-family-v5/reflex-productive-variants-materialization-20261002/historical-route-retirement.json": "be84bed2bb4259365045fc490f7c59385b7614ab37a53016539bdc71b6a0b7de",
+    "audit/associative-family-v5/operation-families-20261001.json": "6202cfae56711bd21a7c0c1c3ebfb46a1ad7fa34feb7d0cd3d06deda0c147713",
+    "audit/associative-family-v5/relation-families-20261001.json": "ee4738605da1f06dc566132f8b8f162a9502767f9ac38ceaea241d0e8f5a6c36",
+    "audit/associative-family-v5/reflex-families-20261001.json": "6ddfbe3f66b82e4d738ba89aeef505a934cee3bd9daf7fc18f64a650e2b3cf8a",
+    "audit/associative-family-v5/creation-families-20261001.json": "80532ab2bc22bcd8f35a930f904cb4ed7974fde0c5c30ec7e028021457d48a9a",
+    "audit/associative-family-v5/mutation-families-20261001.json": "52b215e9c76d12f03f9a5a93ae7c59ee2deef8ab4d345afafe84b1245deb9c1c"
+  },
+  "source_routes": [
+    {
+      "language": "es",
+      "family_id": "surface:es:astes",
+      "member": {
+        "lemma_id": "lemma:fd1b69327c39e8a028c7",
+        "word": "informastes",
+        "normalized": "informastes",
+        "search_form": "informastes",
+        "rank": 275680,
+        "frequency_score": 0.13554151465136516,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.008419,
+              0.007112
+            ],
+            "category_ipm": 0.0077655,
+            "category_score": 0.13554151465136516
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.008419
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "astes",
+            "canonical_candidate": "astes",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informastes",
+                  "astes",
+                  "astes"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:informast",
+      "member": {
+        "lemma_id": "lemma:fd1b69327c39e8a028c7",
+        "word": "informastes",
+        "normalized": "informastes",
+        "search_form": "informastes",
+        "rank": 275680,
+        "frequency_score": 0.13554151465136516,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.008419,
+              0.007112
+            ],
+            "category_ipm": 0.0077655,
+            "category_score": 0.13554151465136516
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.008419
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.007112
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informast",
+            "canonical_candidate": "informast",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informastes",
+                  "informast",
+                  "informast"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:informat",
+      "member": {
+        "lemma_id": "lemma:400fad19109af80eef05",
+        "word": "informates",
+        "normalized": "informates",
+        "search_form": "informates",
+        "rank": 384600,
+        "frequency_score": 0.06600356668229963,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002806,
+              0.004742
+            ],
+            "category_ipm": 0.0037739999999999996,
+            "category_score": 0.06600356668229963
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002806
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004742
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informat",
+            "canonical_candidate": "informat",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informates",
+                  "informat",
+                  "informat"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "es",
+      "family_id": "surface:es:mates",
+      "member": {
+        "lemma_id": "lemma:400fad19109af80eef05",
+        "word": "informates",
+        "normalized": "informates",
+        "search_form": "informates",
+        "rank": 384600,
+        "frequency_score": 0.06600356668229963,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002806,
+              0.004742
+            ],
+            "category_ipm": 0.0037739999999999996,
+            "category_score": 0.06600356668229963
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002806
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004742
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mates",
+            "canonical_candidate": "mates",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informates",
+                  "mates",
+                  "mates"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "ety:f920a9544844",
+      "member": {
+        "lemma_id": "lemma:bcd9b1de047684602faf",
+        "word": "informacittà",
+        "normalized": "informacittà",
+        "search_form": "informacitta",
+        "rank": 18126,
+        "frequency_score": 18.707815306061818,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              1.908611
+            ],
+            "category_ipm": 1.908611,
+            "category_score": 18.707815306061818
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 1.908611
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "citta",
+            "canonical_candidate": "citta",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informacitta",
+                  "citta",
+                  "citta"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:informacitt",
+      "member": {
+        "lemma_id": "lemma:bcd9b1de047684602faf",
+        "word": "informacittà",
+        "normalized": "informacittà",
+        "search_form": "informacitta",
+        "rank": 18126,
+        "frequency_score": 18.707815306061818,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              1.908611
+            ],
+            "category_ipm": 1.908611,
+            "category_score": 18.707815306061818
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 1.908611
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informacitt",
+            "canonical_candidate": "informacitt",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informacitta",
+                  "informacitt",
+                  "informacitt"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "ety:150cdb545a96",
+      "member": {
+        "lemma_id": "lemma:bcd9b1de047684602faf",
+        "word": "informacittà",
+        "normalized": "informacittà",
+        "search_form": "informacitta",
+        "rank": 18126,
+        "frequency_score": 18.707815306061818,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              1.908611
+            ],
+            "category_ipm": 1.908611,
+            "category_score": 18.707815306061818
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 1.908611
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "citta",
+            "canonical_candidate": "citta",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informacitta",
+                  "citta",
+                  "citta"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:ata",
+      "member": {
+        "lemma_id": "lemma:dbc44674f86dfdda7235",
+        "word": "innosservata",
+        "normalized": "innosservata",
+        "search_form": "innosservata",
+        "rank": 396921,
+        "frequency_score": 0.07242624270174723,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.004142
+            ],
+            "category_ipm": 0.004142,
+            "category_score": 0.07242624270174723
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004142
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "ata",
+            "canonical_candidate": "ata",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "innosservata",
+                  "ata",
+                  "ata"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:innosservat",
+      "member": {
+        "lemma_id": "lemma:dbc44674f86dfdda7235",
+        "word": "innosservata",
+        "normalized": "innosservata",
+        "search_form": "innosservata",
+        "rank": 396921,
+        "frequency_score": 0.07242624270174723,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.004142
+            ],
+            "category_ipm": 0.004142,
+            "category_score": 0.07242624270174723
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004142
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "innosservat",
+            "canonical_candidate": "innosservat",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "innosservata",
+                  "innosservat",
+                  "innosservat"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:osservazzion",
+      "member": {
+        "lemma_id": "lemma:c8d9f00a5ee9b56ca3c6",
+        "word": "osservazzione",
+        "normalized": "osservazzione",
+        "search_form": "osservazzione",
+        "rank": 392136,
+        "frequency_score": 0.09387627061505811,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.005372
+            ],
+            "category_ipm": 0.005372,
+            "category_score": 0.09387627061505811
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.005372
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "osservazzion",
+            "canonical_candidate": "osservazzion",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "osservazzione",
+                  "osservazzion",
+                  "osservazzion"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "surface:it:informazzion",
+      "member": {
+        "lemma_id": "lemma:4a15cb97cb9ffb04be73",
+        "word": "informazzione",
+        "normalized": "informazzione",
+        "search_form": "informazzione",
+        "rank": 395958,
+        "frequency_score": 0.07242624270174723,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.004142
+            ],
+            "category_ipm": 0.004142,
+            "category_score": 0.07242624270174723
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.004142
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informazzion",
+            "canonical_candidate": "informazzion",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "informazzione",
+                  "informazzion",
+                  "informazzion"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "ety:9a86a987fafc",
+      "member": {
+        "lemma_id": "lemma:303504eb20639c105042",
+        "word": "informazion",
+        "normalized": "informazion",
+        "search_form": "informazion",
+        "rank": 154065,
+        "frequency_score": 0.3302762853388649,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.021489,
+              0.016567
+            ],
+            "category_ipm": 0.019028,
+            "category_score": 0.3302762853388649
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.021489
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.016567
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "azion",
+            "canonical_candidate": "azion",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "informazion",
+                  "azion",
+                  "azion"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "it",
+      "family_id": "ety:751cdacbf4a9",
+      "member": {
+        "lemma_id": "lemma:303504eb20639c105042",
+        "word": "informazion",
+        "normalized": "informazion",
+        "search_form": "informazion",
+        "rank": 154065,
+        "frequency_score": 0.3302762853388649,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.021489,
+              0.016567
+            ],
+            "category_ipm": 0.019028,
+            "category_score": 0.3302762853388649
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.021489
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.016567
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "azion",
+            "canonical_candidate": "azion",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "informazion",
+                  "azion",
+                  "azion"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:getting",
+      "member": {
+        "lemma_id": "lemma:82ed4873209eb56786b7",
+        "word": "informationgetting",
+        "normalized": "informationgetting",
+        "search_form": "informationgetting",
+        "rank": 615309,
+        "frequency_score": 0.029036169457900194,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00187,
+              0.001447
+            ],
+            "category_ipm": 0.0016584999999999998,
+            "category_score": 0.029036169457900194
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00187
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "getting",
+            "canonical_candidate": "getting",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informationgetting",
+                  "getting",
+                  "getting"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:informationgett",
+      "member": {
+        "lemma_id": "lemma:82ed4873209eb56786b7",
+        "word": "informationgetting",
+        "normalized": "informationgetting",
+        "search_form": "informationgetting",
+        "rank": 615309,
+        "frequency_score": 0.029036169457900194,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00187,
+              0.001447
+            ],
+            "category_ipm": 0.0016584999999999998,
+            "category_score": 0.029036169457900194
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00187
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "informationgett",
+            "canonical_candidate": "informationgett",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "informationgetting",
+                  "informationgett",
+                  "informationgett"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:share",
+      "member": {
+        "lemma_id": "lemma:90ce1bfda74059f102a0",
+        "word": "information-share",
+        "normalized": "information-share",
+        "search_form": "information-share",
+        "rank": 120041,
+        "frequency_score": 1.1281718158830223,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.066504
+            ],
+            "category_ipm": 0.066504,
+            "category_score": 1.1281718158830223
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.066504
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "share",
+            "canonical_candidate": "share",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "information-share",
+                  "share",
+                  "share"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:informationshar",
+      "member": {
+        "lemma_id": "lemma:90ce1bfda74059f102a0",
+        "word": "information-share",
+        "normalized": "information-share",
+        "search_form": "information-share",
+        "rank": 120041,
+        "frequency_score": 1.1281718158830223,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.066504
+            ],
+            "category_ipm": 0.066504,
+            "category_score": 1.1281718158830223
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.066504
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "information-shar",
+            "canonical_candidate": "informationshar",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "information-share",
+                  "information-shar",
+                  "information-shar"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "ety:3310de2be5d7",
+      "member": {
+        "lemma_id": "lemma:682f26ed79c96b7d9d6b",
+        "word": "observationrange",
+        "normalized": "observationrange",
+        "search_form": "observationrange",
+        "rank": 700462,
+        "frequency_score": 0.029036169457900194,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00187,
+              0.001447
+            ],
+            "category_ipm": 0.0016584999999999998,
+            "category_score": 0.029036169457900194
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00187
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "range",
+            "canonical_candidate": "range",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "observationrange",
+                  "range",
+                  "range"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "en",
+      "family_id": "surface:en:observationrang",
+      "member": {
+        "lemma_id": "lemma:682f26ed79c96b7d9d6b",
+        "word": "observationrange",
+        "normalized": "observationrange",
+        "search_form": "observationrange",
+        "rank": 700462,
+        "frequency_score": 0.029036169457900194,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.00187,
+              0.001447
+            ],
+            "category_ipm": 0.0016584999999999998,
+            "category_score": 0.029036169457900194
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.00187
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "observationrang",
+            "canonical_candidate": "observationrang",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "observationrange",
+                  "observationrang",
+                  "observationrang"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "retired_source_routes": [
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:8ef5f06ceb40",
+      "retirement_ledger": "audit/associative-family-v5/operation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:dd07667af787",
+      "retirement_ledger": "audit/associative-family-v5/relation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:474b418e1004",
+      "retirement_ledger": "audit/associative-family-v5/relation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:c80365cdd174",
+      "retirement_ledger": "audit/associative-family-v5/reflex-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:c28863eb7595",
+      "retirement_ledger": "audit/associative-family-v5/reflex-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:58143b06b35a",
+      "retirement_ledger": "audit/associative-family-v5/operation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:a3b640366c27",
+      "retirement_ledger": "audit/associative-family-v5/creation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:ab1eaa1c14b6",
+      "retirement_ledger": "audit/associative-family-v5/creation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:727be1d24fa1",
+      "retirement_ledger": "audit/associative-family-v5/mutation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    },
+    {
+      "language": "it",
+      "word": "informazion",
+      "lemma_id": "lemma:303504eb20639c105042",
+      "family_id": "ety:61108b488e06",
+      "retirement_ledger": "audit/associative-family-v5/mutation-families-20261001.json",
+      "reason": "Historical source container retired by an already applied finite root repair. Record its absence, preserve every still-existing source route, and never recreate the retired container."
+    }
+  ],
+  "before_families": {
+    "family:observ": {
+      "id": "family:observ",
+      "canonical": "observ",
+      "aliases": [
+        "observ",
+        "osserv",
+        "observation",
+        "osservazione",
+        "observatio",
+        "observati"
+      ],
+      "surface_forms": {
+        "en": [
+          "observ"
+        ],
+        "de": [
+          "observ"
+        ],
+        "fr": [
+          "observ"
+        ],
+        "es": [
+          "observ"
+        ],
+        "it": [
+          "osserv"
+        ],
+        "ru": [
+          "обсерв"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:observare",
+        "la:observatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-rare-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-native-compounds-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 312,
+      "language_support": {
+        "en": 39,
+        "de": 72,
+        "fr": 22,
+        "es": 112,
+        "it": 61,
+        "ru": 6
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    },
+    "family:inform": {
+      "id": "family:inform",
+      "canonical": "inform",
+      "aliases": [
+        "inform",
+        "informatio",
+        "information",
+        "informacion",
+        "informacija",
+        "informazione"
+      ],
+      "surface_forms": {
+        "en": [
+          "inform"
+        ],
+        "de": [
+          "inform"
+        ],
+        "fr": [
+          "inform"
+        ],
+        "es": [
+          "inform"
+        ],
+        "it": [
+          "inform"
+        ],
+        "ru": [
+          "информ"
+        ]
+      },
+      "associative_component": true,
+      "exact_component": true,
+      "runtime_curated": true,
+      "verified": false,
+      "confidence": "B",
+      "review_status": "needs_review",
+      "source": "associative_reflex_review+manual_override",
+      "etymon_keys": [
+        "la:informare",
+        "la:informatio"
+      ],
+      "relation_types": [
+        "compound_component"
+      ],
+      "relation_evidence": [
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-families-20261001.json",
+          "whole_lemma_union": false,
+          "language_reflex": true
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-continuation-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-rare-heads-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        },
+        {
+          "type": "manual_override",
+          "source": "audit/associative-family-v5/reflex-native-compounds-materialization-20261002/materialization-ledger.json",
+          "whole_lemma_union": false,
+          "language_reflex": true,
+          "full_family_certification": false
+        }
+      ],
+      "support": 1466,
+      "language_support": {
+        "en": 61,
+        "de": 1030,
+        "fr": 53,
+        "es": 155,
+        "it": 85,
+        "ru": 82
+      },
+      "suspicion_score": 0,
+      "suspicion_reasons": []
+    }
+  },
+  "before_members": {
+    "family:observ": {
+      "en": {
+        "existed": true,
+        "count": 39,
+        "ordered_sha256": "937605551b63dc8fa89d58cad4c4d71e2dbf8269ff78d17afed5cfef8cf0f0a8"
+      },
+      "de": {
+        "existed": true,
+        "count": 72,
+        "ordered_sha256": "fe8b39b1592f88a313f9bcc9a7b8552accde6affc00de453854e890673b920fd"
+      },
+      "fr": {
+        "existed": true,
+        "count": 22,
+        "ordered_sha256": "7b8f414acd4261044f8b262d98d57c76405339b9b7456282bf8bce4eda7d3a74"
+      },
+      "es": {
+        "existed": true,
+        "count": 112,
+        "ordered_sha256": "5d1454f91bc8db38d5c32332ad35126c117f1d9f5eecbd4d5ab61e2f3da2e6cb"
+      },
+      "it": {
+        "existed": true,
+        "count": 61,
+        "ordered_sha256": "7f3f746adb879ca3088ded3f295e1c5276e33247017e7c25ab0a827b372432cc"
+      },
+      "ru": {
+        "existed": true,
+        "count": 6,
+        "ordered_sha256": "0d744ccb3268275bc20b49ea9109867f8d665074c9e866e2c64f3cbd62c7b858"
+      }
+    },
+    "family:inform": {
+      "en": {
+        "existed": true,
+        "count": 61,
+        "ordered_sha256": "2dd6f3b75e12295988d9e1df58fe4d91e37e74da54588b2818b64bdcb9695a67"
+      },
+      "de": {
+        "existed": true,
+        "count": 1030,
+        "ordered_sha256": "dcaf365325d8013b0cdebdb962272d4ae1e489e3f422084320d65b5825801cb7"
+      },
+      "fr": {
+        "existed": true,
+        "count": 53,
+        "ordered_sha256": "82c6370515d5b7b82ae6e109324b11498d070db89a9c78339ecaea87870d8275"
+      },
+      "es": {
+        "existed": true,
+        "count": 155,
+        "ordered_sha256": "c1bddda7604edc7a52dffab2fe9d7fbffe08fe57516a46702fc2b2cc64b3be8a"
+      },
+      "it": {
+        "existed": true,
+        "count": 85,
+        "ordered_sha256": "8ad4b3944c42758bb2972bd78bb38f97a3fc202d455270997a474a8271af9cbf"
+      },
+      "ru": {
+        "existed": true,
+        "count": 82,
+        "ordered_sha256": "02101f1e3d297a8dc7921e74978cd5deb700fc92b1708e3c8561f83290efa49f"
+      }
+    }
+  },
+  "additions": [
+    {
+      "lemma_id": "lemma:fd1b69327c39e8a028c7",
+      "word": "informastes",
+      "status": "accepted",
+      "reason": "RAE documents nondiphthongized second-plural preterite endings for voseo, including colloquial -stes forms, although these are disfavored in the educated standard. Informar is the proven first-conjugation head; informastes is a finite regular application of the documented regional ending, not a typo inferred solely from similarity. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "surface:es:astes",
+        "surface:es:informast"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informar",
+      "segmentation_or_lexical_identity": "inform- + -astes, nondiphthongized voseo preterite",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://www.rae.es/dpd/voseo"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:400fad19109af80eef05",
+      "word": "informates",
+      "status": "accepted",
+      "reason": "RAE explicitly documents Colombian/Andean Venezuelan conversational -ates variants with loss of the first s of -aste(s). Applying that finite ending to proven informar establishes informates; no generic rule for deleting s in unrelated words is introduced. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "surface:es:informat",
+        "surface:es:mates"
+      ],
+      "language": "es",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informar",
+      "segmentation_or_lexical_identity": "inform- + colloquial voseo preterite -ates",
+      "source_references": [
+        "https://dle.rae.es/informar",
+        "https://www.rae.es/dpd/voseo"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:bcd9b1de047684602faf",
+      "word": "informacittà",
+      "status": "accepted",
+      "reason": "Comune di Olbia directly attests Informacittà as a municipal information/orientation service. It is a transparent native verb-noun compound in the informing branch; acceptance concerns this exact recorded token. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "ety:f920a9544844",
+        "surface:it:informacitt",
+        "ety:150cdb545a96"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informare",
+      "segmentation_or_lexical_identity": "informa + città",
+      "source_references": [
+        "https://www.comune.olbia.ot.it/it/vivere/informacitta-99",
+        "https://www.treccani.it/vocabolario/informare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:dbc44674f86dfdda7235",
+      "word": "innosservata",
+      "status": "accepted",
+      "reason": "Goldoni’s L’amante di sè medesimo, Act III scene III, directly attests innosservata in the sense of going unobserved. Historical gemination is source attestation, not correction to modern inosservata; the past-participial observation head remains recognizable. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "surface:it:ata",
+        "surface:it:innosservat"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "osservare",
+      "segmentation_or_lexical_identity": "historical negative in(n)- + osservata",
+      "source_references": [
+        "https://it.wikisource.org/wiki/L%27amante_di_s%C3%A8_medesimo/Atto_III",
+        "https://www.treccani.it/vocabolario/osservare/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:c8d9f00a5ee9b56ca3c6",
+      "word": "osservazzione",
+      "status": "accepted",
+      "reason": "The native Romanesco periodical Rugantino (26 June 2012, page 2) directly attests osservazzione in prose about observations. The finite regional noun corresponds to osservazione; source attestation establishes the regional realization and avoids a generic z/zz spelling rule. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "surface:it:osservazzion"
+      ],
+      "language": "it",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "osservazione",
+      "segmentation_or_lexical_identity": "Romanesco osserv- + -azzione",
+      "source_references": [
+        "https://www.rugantino.it/wp-content/uploads/bsk-pdf-manager/rugantino12947_364.pdf",
+        "https://www.treccani.it/vocabolario/osservazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:4a15cb97cb9ffb04be73",
+      "word": "informazzione",
+      "status": "accepted",
+      "reason": "Logos’ published multilingual lexical example explicitly labels the exact informazzione realization as Roman (Romanesco), corresponding to Italian informazione. This establishes a finite regional information noun; no claim is made that Treccani lists the whole regional spelling as standard Italian. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "surface:it:informazzion"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informazione",
+      "segmentation_or_lexical_identity": "Romanesco inform- + -azzione",
+      "source_references": [
+        "https://www.logosdictionary.org/index.php?code=6907752&from=IT",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:303504eb20639c105042",
+      "word": "informazion",
+      "status": "accepted",
+      "reason": "Ernesto Kosovitz’s 1890 Dizionario-Vocabolario del dialetto triestino, section I, directly defines Informazion as informazione alongside Informar as informare. This is a proved exact native regional lexical head, not an arbitrary truncated stem. The historical dictionary is read through its Wikisource transcription. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "ety:8ef5f06ceb40",
+        "ety:dd07667af787",
+        "ety:474b418e1004",
+        "ety:c80365cdd174",
+        "ety:9a86a987fafc",
+        "ety:751cdacbf4a9",
+        "ety:c28863eb7595",
+        "ety:58143b06b35a",
+        "ety:a3b640366c27",
+        "ety:ab1eaa1c14b6",
+        "ety:727be1d24fa1",
+        "ety:61108b488e06"
+      ],
+      "language": "it",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "informazione",
+      "segmentation_or_lexical_identity": "Triestine informazion, regional apocope of information noun",
+      "source_references": [
+        "https://it.wikisource.org/wiki/Dizionario_-_Vocabolario_del_dialetto_triestino/I",
+        "https://www.treccani.it/vocabolario/informazione/"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:82ed4873209eb56786b7",
+      "word": "informationgetting",
+      "status": "accepted",
+      "reason": "Merriam-Webster establishes the information and getting heads; Sligo and colleagues’ original research abstract uses the nominal information-getting concept in information exchange. The closed orthography of this exact corpus token is a finite productive compound analysis, not a claim that the dictionary or spaced research wording directly attests the whole closed token. No article, pronoun or finite clause is fused here. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "surface:en:getting",
+        "surface:en:informationgett"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "information",
+      "segmentation_or_lexical_identity": "information + getting (nominal compound)",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/getting",
+        "https://www.sciencedirect.com/science/article/abs/pii/S0743016706000416"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:90ce1bfda74059f102a0",
+      "word": "information-share",
+      "status": "accepted",
+      "reason": "Merriam-Webster establishes information and the nominal share head. Their transparent hyphenated compound denotes a share or sharing of information, preserving the information branch. Whole-compound interpretation is finite reviewer morphological inference from the proved heads; dictionary proof is limited to the heads, without invented attestation of the entire compound. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "surface:en:share",
+        "surface:en:informationshar"
+      ],
+      "language": "en",
+      "canonical_root": "inform",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "information",
+      "segmentation_or_lexical_identity": "information + share, hyphenated noun compound",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/information",
+        "https://www.merriam-webster.com/dictionary/share"
+      ],
+      "runtime_applied": false
+    },
+    {
+      "lemma_id": "lemma:682f26ed79c96b7d9d6b",
+      "word": "observationrange",
+      "status": "accepted",
+      "reason": "Merriam-Webster establishes the observation and nominal range heads. The exact closed noun compound transparently denotes the range of observation, retaining the observation branch. This is finite productive compound inference, not a claim of dictionary attestation of the whole closed token or proof of a particular software identifier. No finite-clause or grammatical-function boundary is being removed. Exact finite source-token review: no universal spelling replacement, substring rule, corrected lemma or fabricated corpus evidence. All measured source fields and independent routes are preserved.",
+      "source_family_ids": [
+        "ety:3310de2be5d7",
+        "surface:en:observationrang"
+      ],
+      "language": "en",
+      "canonical_root": "observ",
+      "previous_status": "pending_review",
+      "analysis_type": "finite_productive_or_native_variant",
+      "lexical_head": "observation",
+      "segmentation_or_lexical_identity": "observation + range, technical nominal compound",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/observation",
+        "https://www.merriam-webster.com/dictionary/range"
+      ],
+      "runtime_applied": false
+    }
+  ],
+  "preservation": [
+    {
+      "part": "families",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "4a30c2690a66356e3b6fdf8e64a112780a1bdc6b13f6a6d6c5b80fb242b4f4c1"
+    },
+    {
+      "part": "members/es",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "d8e58b0025b24cf03d1001cb99ac58c4663e661e297ac1bd1ccf71c24ba33dad"
+    },
+    {
+      "part": "members/it",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "49fd9a1b69eabfa2ab6e5814740374248ce0865bef96a25a6084c749e557d743"
+    },
+    {
+      "part": "families",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "6ba53f49c956f65825fcd38cad9b949b14ab208b8ab8a61b2b6121964773880b"
+    },
+    {
+      "part": "members/it",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "4cbc9c6554cd48cad7922a0a6c00b44b90856a9afcd65f5c5f3039297c25b718"
+    },
+    {
+      "part": "members/en",
+      "bucket": "5c",
+      "ignore": [
+        "family:inform"
+      ],
+      "unrelated_sha256": "2f959dc94e2e9cd5f25192d30604305e3c78edeee68547b6f690988ef4a892a8"
+    },
+    {
+      "part": "members/en",
+      "bucket": "6c",
+      "ignore": [
+        "family:observ"
+      ],
+      "unrelated_sha256": "6a4f8c37a68f24a5227f7741ab49d4ef3d0bcf79e019854218f4c6663f30e218"
+    }
+  ],
+  "runtime_preflight_sha256": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "516b190041ba93da169658caf65973234a069c56040c5f36777a03c95333fbc7",
+    "repository-provenance.json": "20b939f55fbccf6085346432b9ae78e2c4f4152f79d8b7681a4dba52cf872800",
+    "families/5c.json.gz": "8c5665de1da6d1bc0ea86a810f2ab85a55d954116f4acc87aaae0733d6d53045",
+    "members/es/5c.json.gz": "d899c54a85b8c68fc327d9411fecd35fb1fe36f71d716363cedf686fa2f32ab2",
+    "members/it/5c.json.gz": "4b4055d47076f4f6381a162b9d1d627c983680f0ffbd228b835e9cc3cb52eedc",
+    "families/6c.json.gz": "00801cb29ad78a52226aa8ebe046b845ec1d7ec858ac1820030cb2189a2f7ccf",
+    "members/it/6c.json.gz": "0e67e48bfc1f4193e6afbf1451d82178ea86d3f3bcbecf7b0a0d85140da27fb1",
+    "members/en/5c.json.gz": "841e6550c9022361e1f2a4411637eb86e3f924253233a975a043d715a214ea2d",
+    "members/en/6c.json.gz": "ffaee6c05190ba5bb110eba852fb11c7021553d6ac363d53f4c492ad8021d0ac"
+  },
+  "expected_written_files": [
+    "families/5c.json.gz",
+    "families/6c.json.gz",
+    "manifest.json",
+    "members/en/5c.json.gz",
+    "members/en/6c.json.gz",
+    "members/es/5c.json.gz",
+    "members/it/5c.json.gz",
+    "members/it/6c.json.gz",
+    "report.json",
+    "repository-provenance.json"
+  ],
+  "untouched_files_sha256": "163533bb69633f7d6028ecd3c41d74e5d6d191f6119cf175fe0727a6e5422186",
+  "metadata_preflight": {
+    "manifest.json": "3c3b5d4e113b078fbd8b9f29bf1f2d751190d2bc5f7c2fee53acafb46636fc15",
+    "report.json": "516b190041ba93da169658caf65973234a069c56040c5f36777a03c95333fbc7",
+    "repository-provenance.json": "20b939f55fbccf6085346432b9ae78e2c4f4152f79d8b7681a4dba52cf872800"
+  },
+  "expected_added_memberships": 10,
+  "expected_removed_memberships": 0,
+  "alias_delta": 0,
+  "net_family_delta": 0,
+  "status": "ready_to_materialize",
+  "full_family_certification": false
+}
