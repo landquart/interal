@@ -1,11 +1,29 @@
 import {createHash} from 'node:crypto';
 import {applyHeadReview,normalizeHead} from '../../associativvordes/js/associative-family-v6.js';
 import {recognizeFiniteHeadBindings,proposeMorphologicalHeads,validateLexicalFacts} from '../../associativvordes/js/associative-family-v6-head-recognition.js';
+import {decideLexicalRow} from './associative-v6-senses-policy.mjs';
 const hash=bytes=>createHash('sha256').update(bytes).digest('hex');
 export async function loadLexicalReview({read,readBytes,catalog,inputs}) {
  const path='associativvordes/family-index-v6/lexical-head-review.json.gz',doc=await read(path);
  if(doc.schema_version!==6||doc.production_enabled!==false||doc.source_head!==catalog.source_head)throw Error('Invalid guarded lexical review frame');
  inputs[path]=hash(await readBytes(path));validateLexicalFacts(doc.lexical_facts,doc.evidence_cache);
+ const authorizationPath='associativvordes/family-index-v6/review-application-authorizations.json';
+ const grants=await read(authorizationPath);
+ if(grants.schema_version!==6||grants.production_enabled!==false||grants.application_status!=='reviewed'||!Array.isArray(grants.bindings)||!Array.isArray(grants.reviews))throw Error('Missing frozen review authorization registry');
+ inputs[authorizationPath]=hash(await readBytes(authorizationPath));
+ const objectHash=o=>hash(Buffer.from(JSON.stringify(o))),B=new Map(grants.bindings.map(g=>[g.binding_sha256,g])),D=new Map(grants.reviews.map(g=>[g.decision_sha256,g]));
+ if(B.size!==grants.bindings.length||D.size!==grants.reviews.length)throw Error('Duplicate frozen authorization');
+ const frozenSources=new Map();
+ for(const b of doc.finite_bindings){
+  const g=B.get(objectHash(b));if(!g||g.binding_authorized!==true||b.binding_authorized===false)throw Error('Missing, changed or revoked frozen binding grant');
+  const s=g.source_locator;if(!s?.path||!s.family_id||!s.sha256||!s.record_sha256||s.path.split('/')[3]!==b.language)throw Error('Missing frozen immutable source locator');
+  if(!frozenSources.has(s.path)){const bytes=await readBytes(s.path);frozenSources.set(s.path,{sha256:hash(bytes),rows:await read(s.path)});}
+  const cached=frozenSources.get(s.path);if(cached.sha256!==s.sha256)throw Error('Changed frozen corpus shard');inputs[s.path]=s.sha256;
+  const row=cached.rows[s.family_id]?.find(r=>r.lemma_id===b.lemma_id);
+  if(!row||row.word!==b.word||objectHash(row)!==s.record_sha256)throw Error('Changed frozen corpus identity');
+  if(b.family_id==='family:regul'&&(!b.senses_decision||decideLexicalRow(b.senses_decision).decision!=='accepted'||b.senses_decision.language!==b.language||b.senses_decision.lemma_id!==b.lemma_id||b.senses_decision.word!==b.word||b.senses_decision.family_id!==b.family_id))throw Error('New regul identity requires finite accepted senses policy');
+ }
+ for(const d of doc.head_reviews){const g=D.get(objectHash(d)),flag={accepted:'accepted_membership_authorized',excluded:'excluded_membership_authorized',uncertain:'uncertain_membership_authorized'}[d.status];if(!flag||!g||g.binding_authorized!==true||g[flag]!==true||d.binding_authorized===false||d[flag]===false)throw Error('Missing, changed or revoked frozen decision grant');}
  const loaded=new Map();
  function contains(x,p){if(!x||typeof x!=='object')return false;if(x.lemma_id===p.lemma_id&&x.word===p.word&&(!p.reason||x.reason===p.reason))return true;return Object.values(x).some(v=>contains(v,p));}
  for(const b of doc.finite_bindings)for(const p of b.identity_proof){

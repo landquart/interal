@@ -13,9 +13,18 @@ if(stage.schema_version!==6||stage.production_enabled!==false||!stage.groups.len
 if(sha(await fs.readFile(stage.source_queue))!==stage.source_queue_sha256)throw Error('Changed finite source queue');
 if(stage.binding_authorized!==true)throw Error('Finite identity binding not approved for research-only stage');
 if(stage.groups.some(g=>g.status==='accepted')&&stage.accepted_membership_authorized!==true)throw Error('Accepted finite membership not explicitly approved');
+if(stage.groups.some(g=>g.status==='excluded')&&stage.excluded_membership_authorized!==true)throw Error('Excluded finite membership not explicitly approved');
+if(stage.groups.some(g=>g.status==='uncertain')&&stage.uncertain_membership_authorized!==true)throw Error('Uncertain finite membership not explicitly approved');
 if(stage.synthetic_fixture===true)throw Error('Synthetic fixture cannot enter real registry');
 if(stage.predecessor_review_version!==undefined&&stage.predecessor_review_version!==doc.version)throw Error('Stale finite review predecessor version');
 if(stage.predecessor_review_sha256!==undefined&&stage.predecessor_review_sha256!==sha(await fs.readFile(reviewPath)))throw Error('Stale finite review predecessor hash');
+// Authority is the independently loaded frozen queue, never the stage itself.
+const queued=[];
+function collect(x){if(!x||typeof x!=='object')return;if(x.language&&x.lemma_id&&x.word&&x.status&&(x.canonical_root||x.root))queued.push(x);else for(const v of Object.values(x))collect(v);}
+collect(await read(stage.source_queue));
+const queue=new Map();for(const r of queued){const k=r.language+'\0'+(r.canonical_root||r.root)+'\0'+r.lemma_id;if(queue.has(k)&&JSON.stringify(queue.get(k))!==JSON.stringify(r))throw Error('Conflicting frozen queue identity');queue.set(k,r);}
+const scoped=new Set();
+for(const g of stage.groups)for(const r of g.records){const k=r.language+'\0'+g.root+'\0'+r.lemma_id,q=queue.get(k);if(scoped.has(k)||!q||q.language!==g.language||q.word!==r.word||q.status!==r.status||(r.canonical_root||r.root)!==g.root)throw Error('Unknown, changed or widened finite source queue scope');scoped.add(k);}
 const stageHash=sha(await fs.readFile(stagePath)),records=[];
 for(const g of stage.groups){
  if(!['accepted','excluded','uncertain'].includes(g.status)||!g.sources.length||!g.reason||!g.sense||!g.records.length)throw Error('Incomplete linguistic decision');

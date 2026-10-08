@@ -33,6 +33,11 @@ export async function loadFamilyPromotions({read,readBytes,catalog,inputs}) {
  inputs[registryPath]=sha(await readBytes(registryPath));const results=[],familyIds=new Set();
  for(const path of registry.decisions){
   const bytes=await readBytes(path),doc=validatePromotionDecision(await read(path)),f=catalog.families.find(f=>f.id===doc.family.id);
+  if(!doc.senses_policy){
+   const grantPath='associativvordes/family-index-v6/promotion-compatibility-authorizations.json',grants=await read(grantPath);
+   if(grants.schema_version!==6||grants.production_enabled!==false||!Array.isArray(grants.grants)||!grants.grants.some(g=>g.path===path&&g.sha256===sha(bytes)&&g.historical_compatibility_authorized===true))throw Error('Promotion omitted senses policy without an exact frozen historical compatibility grant');
+   inputs[grantPath]=sha(await readBytes(grantPath));
+  }
   if(doc.synthetic_fixture===true)throw Error('Synthetic promotion cannot enter real registry');
   if(familyIds.has(doc.family.id)||!f||JSON.stringify(f)!==JSON.stringify(doc.family))throw Error('Promotion catalog decision mismatch');familyIds.add(f.id);inputs[path]=sha(bytes);
   const cache=new Map();
