@@ -18,6 +18,7 @@ export async function loadLexicalReview({read,readBytes,catalog,inputs}) {
   const g=B.get(objectHash(b));if(!g||g.binding_authorized!==true||b.binding_authorized===false)throw Error('Missing, changed or revoked frozen binding grant');
   const s=g.source_locator;if(!s?.path||!s.family_id||!s.sha256||!s.record_sha256||s.path.split('/')[3]!==b.language)throw Error('Missing frozen immutable source locator');
   if(!frozenSources.has(s.path)){const bytes=await readBytes(s.path);frozenSources.set(s.path,{sha256:hash(bytes),rows:await read(s.path)});}
+  if(frozenSources.size>8)frozenSources.delete(frozenSources.keys().next().value);
   const cached=frozenSources.get(s.path);if(cached.sha256!==s.sha256)throw Error('Changed frozen corpus shard');inputs[s.path]=s.sha256;
   const row=cached.rows[s.family_id]?.find(r=>r.lemma_id===b.lemma_id);
   if(!row||row.word!==b.word||objectHash(row)!==s.record_sha256)throw Error('Changed frozen corpus identity');
