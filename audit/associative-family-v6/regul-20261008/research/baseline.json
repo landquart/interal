@@ -1,0 +1,105 @@
+{
+  "source_sha": "f70c217d08329f7f93fd56945cb7366562e579e9",
+  "working_tree_before": "clean",
+  "applicable_AGENTS": "No AGENTS.md in repository tree or workspace ancestors",
+  "input_sha256": {
+    "associativvordes/family-index-v6/catalog.json": "879e6a1893edbe016c61688f2116df493b06459df838c590f79018bc90bd1f26",
+    "associativvordes/family-index-v6/generated/migration-report.json": "37dea563505a8cd1ff88fa912c0f7b97a4d4d8630bfde229868e9fcfd8e1b3f6",
+    "associativvordes/family-index-v5/families/40.json.gz": "6bd86b792a59123f30dd73d993eb2d066793e42f0304454fa5521c95018df6da",
+    "associativvordes/family-index-v6/baseline-corrections.json": "d349626470ecc7a021b9c198671556053e205ee1cc78b8c1f27c9e36a9928a8d",
+    "scripts/lib/associative-v6-baseline-corrections.mjs": "4fb28dc1364cf516812261be348f0cc8e3db78431b803f5a6d05c61d73278899",
+    "audit/associative-family-v6/CHECKPOINT.md": "b2081d3e38866c3b53e07be0a5aca7a82f0404d2101ff799cc6c1f5f072ab1dc",
+    "audit/associative-family-v6/FOUNDATION-READINESS.md": "af299b56d68acc7e357a7e8c11f205fe32c233d2aaa1467541418822daaf58ce",
+    "audit/associative-family-v6/SENSES-POLICY-20261004.md": "6b7d496c23232b17ce6d58eb24ea12c52c753ce27d78dc0e1812f2423c130411",
+    "audit/associative-family-v6/prompt10-independent-20261007/BACKLOG-HANDOFF.md": "d534c304a6f20540aa6919f9e4f9e3300bf7885f86abf1ad7d7c1ec576319016",
+    "associativvordes/family-index-v5/members/en/40.json.gz": "9b2fc92ba950c6e864c0586ee714112cdd927c00ccde2263153fc283ba836a6c",
+    "associativvordes/family-index-v5/members/de/40.json.gz": "c29620abfc6db5cd878dcc71525c911db1da91d3c3137143a2dc00edbe91f0b4",
+    "associativvordes/family-index-v5/members/fr/40.json.gz": "eb3e591a81adb2b186652e6a4946c146e4afe6e32d727ba460eef820e1d7dc84",
+    "associativvordes/family-index-v5/members/es/40.json.gz": "8403067b869eac28ef873b4f0c5b08b8d0f6ba80316e160c56bbca6219bac26e",
+    "associativvordes/family-index-v5/members/it/40.json.gz": "71cebf43e9f338ea47ab41a1938e606a145ae30b2636fb220a0315d000f1ca67",
+    "associativvordes/family-index-v5/members/ru/40.json.gz": "82c724f672f29cf7889e1d3c7dd1340a2e06da0846f38815696fb3612493efb8"
+  },
+  "legacy_family_record": {
+    "id": "family:regul",
+    "canonical": "regul",
+    "aliases": [
+      "regol",
+      "regul",
+      "regule"
+    ],
+    "verified": true,
+    "confidence": "A",
+    "source": "methodology_seed+manual_override",
+    "etymon_keys": [],
+    "relation_types": [
+      "direct_allomorph"
+    ],
+    "relation_evidence": [],
+    "canonical_selection": {
+      "method": "verified_seed"
+    },
+    "language_support": {
+      "en": 127,
+      "de": 242,
+      "fr": 72,
+      "es": 118,
+      "it": 115,
+      "ru": 90
+    },
+    "support": 764,
+    "suspicion_score": 0,
+    "suspicion_reasons": [],
+    "review_status": "manually_verified"
+  },
+  "v6_catalog_record": {
+    "id": "family:regul",
+    "canonical": "regul",
+    "legacy_ids": [
+      "family:regul"
+    ],
+    "promotion_status": "catalog_approved_existing_family",
+    "element_type": "root",
+    "aliases": [
+      "regol",
+      "regul",
+      "regule"
+    ],
+    "canonical_decision": {
+      "status": "accepted",
+      "possible_stems": [
+        "regul"
+      ],
+      "removed_segment": null,
+      "reason": "Retain the individually named international associative base in the user mandate and existing curated family. No ending-stripping inference or inherited etymon selection is used; membership remains finite and unreviewed branches stay unresolved.",
+      "evidence": [
+        "audit/associative-family-v6/task-20261003.txt",
+        "family:regul"
+      ],
+      "negative_over_stripping": [],
+      "negative_under_stripping": [],
+      "positive_examples": [],
+      "lexical_heads": [],
+      "membership_certification": "Existing individual membership proofs retained; root catalog approval does not certify unresolved lexical identity."
+    },
+    "realizations": {},
+    "reflexes": []
+  },
+  "instructions_read": [
+    "associativvordes/family-index-v6/catalog.json",
+    "associativvordes/family-index-v6/generated/migration-report.json",
+    "associativvordes/family-index-v5/families/40.json.gz",
+    "associativvordes/family-index-v6/baseline-corrections.json",
+    "scripts/lib/associative-v6-baseline-corrections.mjs",
+    "audit/associative-family-v6/CHECKPOINT.md",
+    "audit/associative-family-v6/FOUNDATION-READINESS.md",
+    "audit/associative-family-v6/SENSES-POLICY-20261004.md",
+    "audit/associative-family-v6/prompt10-independent-20261007/BACKLOG-HANDOFF.md",
+    "associativvordes/family-index-v5/members/en/40.json.gz",
+    "associativvordes/family-index-v5/members/de/40.json.gz",
+    "associativvordes/family-index-v5/members/fr/40.json.gz",
+    "associativvordes/family-index-v5/members/es/40.json.gz",
+    "associativvordes/family-index-v5/members/it/40.json.gz",
+    "associativvordes/family-index-v5/members/ru/40.json.gz"
+  ],
+  "production_enabled": false
+}
