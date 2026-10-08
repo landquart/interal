@@ -1,3 +1,13 @@
+## Regul — конечные решения применены, 2026-10-08
+
+Исходный снимок `f70c217d`; исследование `b4c532e3`, решения `ee92d11a`, закрытие F01–F04 `349dbd46`, применение `d6224ed4`. Повторный fetch подтверждает удалённый baseline; изменения локальные. Отправка ранее отклонена автоматической проверкой разрешений; не повторять без явного разрешения. Production v5; merge не выполнялся.
+
+2658 вопросов = 764 прежних связи + 1894 кандидата. 557 accepted /12 excluded /2089 uncertain. Применение +59/−266/498 изменённых представлений: 498 прежних связей подтверждены, 7 исключены, 259 удержаны как uncertain. Остальные 20802 членства и все рёбра других семей неизменны. Общий accepted v6: 21359. Полные списки и измерения — regul-20261008/final/.
+
+Strict independent: 50/50 pass. Регул conservation, queue organization и history certification pass; protected v5/frequencies/history сохранены. Общие npm, integrity и byte replay: итог смотреть в regul-20261008/validation/run-summary.json; не предполагать успешность до проверки этого файла.
+
+Семья НЕ сертифицирована полностью: 2089 неопределённых точных записей требуют дальнейшей лингвистической проверки. Сначала обычные деривации и национальные реализации; затем finite compound scopes и омонимические агрегаты. Не переносить неопределённость в accepted ради покрытия. Отчёт — regul-20261008/WORK-REPORT.md.
+
 ## Prompt 10 — независимая проверка завершена; foundation FAIL, 2026-10-07
 
 Fresh baseline **ec43ff50383e6b632a95a5f6b9a4b8d7b0d44003**. Durable research **3d139742c3685260666dbd6cdcf7357133278f06**, decision **613d5f7eed65be57d89f05601e45a53be280f4b2**, independent application **33e66dda255c6c4074134bef461d8c0be3c39a34**, final tested code/sense refinement **43bee7b0a4ee45ef2538d351ebeb0894ce321871**. Blob/tree identities verified; fast-forward lease only. Validation/readiness/handoff is a separate following commit. No merge/rollout; production v5; main → #650 → #651 → draft #652 stays intact.

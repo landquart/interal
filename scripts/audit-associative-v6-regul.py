@@ -23,7 +23,7 @@ for r in reviews:
  source_rows[(r['language'],r['lemma_id'])]=C[(r['language'],r['lemma_id'])]['source_record']
  for x in C[(r['language'],r['lemma_id'])]['frequency_source_records']:
   assert x['record']['original']==r['word'] and x['record']['normalized']==C[(r['language'],r['lemma_id'])]['normalized']
- changes={'added':[N[k] for k in sorted(N.keys()-O.keys())],'removed':[O[k] for k in sorted(O.keys()-N.keys())],'changed':[{'before':O[k],'after':N[k]} for k in sorted(O.keys()&N.keys()) if O[k]!=N[k]],'unchanged':[N[k] for k in sorted(O.keys()&N.keys()) if O[k]==N[k]]}
+changes={'added':[N[k] for k in sorted(N.keys()-O.keys())],'removed':[O[k] for k in sorted(O.keys()-N.keys())],'changed':[{'before':O[k],'after':N[k]} for k in sorted(O.keys()&N.keys()) if O[k]!=N[k]],'unchanged':[N[k] for k in sorted(O.keys()&N.keys()) if O[k]==N[k]]}
 # No list truncation: one applied state and source payload for every reviewed ID.
 for language in ['en','de','fr','es','it','ru']:
  rows=[]

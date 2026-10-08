@@ -1,0 +1,142 @@
+[
+  {
+    "language": "fr",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:59e8a5de8d92c150d43c",
+    "word": "régulus",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/fr/42.json.gz",
+        "family_id": "surface:fr:regulu",
+        "record_sha256": "111faa28ed956c10a973b88589b0dfe7135683421683c85a590b4a71c42fbe30"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/fr/a0.json.gz",
+        "family_id": "surface:fr:lus",
+        "record_sha256": "1e4e69c868da41ee2f124070b372fb16fab0e698cda2d577dcccadd36eff4d91"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/fr/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "55c6ece9ed83608febeab231ecd604fa2734b7dffd50c7157d62c0018c317659"
+      }
+    ],
+    "lexical_analysis": "Latin rex-derived name/term; no rule component is proved.",
+    "head": null,
+    "component": {
+      "form": "régul",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "us",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "fr",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:59e8a5de8d92c150d43c",
+      "word": "régulus",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regulus"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regulus"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regulus",
+        "finding": "Star and metallurgical noun derive from diminutive of rex; reguline is attached to that metallurgical head.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Latin rex-derived name/term; no rule component is proved.",
+    "missing_fact": null,
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "not_admitted_candidate",
+    "current_membership": null,
+    "historical_membership": null,
+    "original_source_record": {
+      "lemma_id": "lemma:59e8a5de8d92c150d43c",
+      "word": "régulus",
+      "normalized": "régulus",
+      "search_form": "regulus",
+      "rank": 204341,
+      "frequency_score": 0.18031659537310277,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.010344
+          ],
+          "category_ipm": 0.010344,
+          "category_score": 0.18031659537310277
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.010344
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "regulu",
+          "canonical_candidate": "regulu",
+          "confidence": 0.92,
+          "evidence": [
+            {
+              "type": "morphological_parse",
+              "source": "candidate_index",
+              "path": [
+                "regulus",
+                "regulu",
+                "regulu"
+              ],
+              "confidence": 0.92
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/fr/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "55c6ece9ed83608febeab231ecd604fa2734b7dffd50c7157d62c0018c317659",
+        "record": {
+          "original": "régulus",
+          "normalized": "régulus",
+          "search_form": "regulus",
+          "lemma": "régulus",
+          "frequency_lookup_key": "régulus",
+          "ipm": 0.010344,
+          "rank": 204341,
+          "source": "associativvordes/frequency lists/fr/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  }
+]

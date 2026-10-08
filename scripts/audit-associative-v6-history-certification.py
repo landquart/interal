@@ -31,6 +31,9 @@ for name in ['heads.json.gz','edges.json.gz','lemma-head-links.json.gz','head-re
   lookup={ident(r):r for r in after};protected=[r for r in before if (r['id'] not in regul_old_heads if name.startswith('heads') else r['family_id']!='family:regul')];assert all(lookup.get(ident(r))==r for r in protected),'unexpected old proof mutation '+name
  elif name in ['family-promotion-ledger.json','head-lifecycle-ledger.json']:
   assert after['decisions'][:len(before['decisions'])]==before['decisions']
+ elif name=='head-review-metrics.json':
+  expected={**before,'historical_component_bindings_represented':1370,'historical_component_head_edges':26,'historical_representation_reuse_factor':1370/26}
+  assert after==expected,'unexpected review metric mutation'
  else:assert before==after,'unexpected mutation '+name
 historical=read('audit/associative-family-v6/historical-overlay-20261003/records.json.gz');mapped=read(C/'historical-reconciliation.json.gz');assert len(mapped)==len(historical)==55686
 representatives=read(R/'representative-decisions.json');rp=index(representatives['rows']);assert len(rp)==19

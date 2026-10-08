@@ -39,9 +39,9 @@ test('changed source evidence and corpus snapshots are rejected',async()=>{
  await assert.rejects(loadFamilyPromotions({catalog,inputs:{},read:p=>p===promotions[0].path?Promise.resolve(corrupt):read(p),readBytes:p=>fs.readFile(p)}),/corpus record/);
  await assert.rejects(loadFamilyPromotions({catalog,inputs:{},read,readBytes:p=>p===Object.keys(doc.input_sha256)[0]?Promise.resolve(Buffer.from('changed')):fs.readFile(p)}),/Changed promotion evidence/);
 });
-test('all pre-promotion memberships and known resolution statistics remain unchanged',async()=>{
+test('promotion history and queue statistics survive finite baseline corrections',async()=>{
  const root='associativvordes/family-index-v6/generated',m=await read(root+'/memberships.json.gz'),d=await read(root+'/differential.json.gz'),metrics=await read(root+'/head-review-metrics.json');
- assert.equal(m.length,21566);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1575);assert.equal(d.family_promotion_additions.length,22);
+ assert.equal(m.length,21359);assert.equal(d.manual_memberships.length,19967);assert.equal(d.accepted_membership_additions.length,1575);assert.equal(d.family_promotion_additions.length,22);
  assert.equal(metrics.current_active_records,23234);assert.equal(metrics.new_records_resolved,1968);assert.equal(metrics.new_head_decisions,39);
 });
 test('Prompt 02 admits six anis rows while all seven tower aggregates remain individually withheld',()=>{
