@@ -1,0 +1,57 @@
+{
+  "accepted_frame": {
+    "frame_n": 21566,
+    "sample_n": 40,
+    "counts": {
+      "accepted": 15,
+      "uncertain": 23,
+      "excluded": 2
+    },
+    "independently_adjudicated_n": 17,
+    "observed_errors": 2,
+    "wilson95_on_binary_adjudicated_subset_only": [
+      0.03287977376379267,
+      0.3433635059488588
+    ],
+    "finite_sample_error_partial_identification_bounds": [
+      0.05,
+      0.625
+    ],
+    "population_error_rate": null,
+    "why_not_extrapolate": "Fixed public deterministic hash seed, tiny unequal stratified sample, nonrandom annotation missingness; no blind second annotator. Interval is descriptive sensitivity only, not a whole-index probability estimate."
+  },
+  "withheld_purposive": {
+    "n": 11,
+    "labels": {
+      "accepted": 3,
+      "uncertain": 6,
+      "excluded": 2
+    },
+    "confirmed_supported_missing_memberships": [
+      {
+        "language": "en",
+        "family_id": "family:atom",
+        "lemma_id": "lemma:97df563df64033609e43",
+        "scope": "exact_derivational_component"
+      },
+      {
+        "language": "de",
+        "family_id": "family:atom",
+        "lemma_id": "lemma:d71ccaf503ddab530fd1",
+        "scope": "exact_derivational_component"
+      }
+    ],
+    "false_negative_population_rate": null,
+    "why": "Targeted derivatives deliberately enriched for omissions; no gold inventory or random full-source frame."
+  },
+  "surface_only": {
+    "routing_frame_n": 3999388,
+    "saved_rank_frame_n": 600,
+    "diagnostic_n": 18,
+    "uncertain": 18,
+    "population_recall": null,
+    "why": "Selected within the earlier enriched rank frame, not a sample of all surface-only IDs; no proved family gold label."
+  },
+  "no_membership_mutation": true,
+  "full_linguistic_certification": false
+}

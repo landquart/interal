@@ -1,0 +1,3732 @@
+[
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:13d3a46d5c45a66bfd80",
+    "word": "нерегулярно",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "2dc240afeaeeac42558fdd1ecc12dfc003659d45a1f7a34154fda98cb2c9ec76"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/87.json.gz",
+        "family_id": "surface:ru:arno",
+        "record_sha256": "1dbf2c17ea080175c3240aee39a77e34abadcd1fbeeace6d752a1e66aeea1804"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/a6.json.gz",
+        "family_id": "surface:ru:nereguljar",
+        "record_sha256": "ddea67b48949f794efabcd00bad800b137dbe0e5746c289e1c143f2f0ac836cc"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "873e2d0fc3937bd1cc4707104993778dd6265bb49546ea77a090afcffc4b6f72"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "6f520eba6d23ebf24abd892f3ac99b7a23550b8f48c923b02e7e006492fe7982"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "5eb895c43cf7fd30ab157d120e830cd5407cb02b7a96fb05134c51e0b13ee8f5"
+      }
+    ],
+    "lexical_analysis": "нерегулярно is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "не",
+      "after": "ярно",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:13d3a46d5c45a66bfd80",
+      "word": "нерегулярно",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "нерегулярно is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:14de3fc5a0614115dff5",
+    "word": "регуляр",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "eeda30e23991d0efbefa9aee396155c60243fc4e26ffe0be656b39b62660b080"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "52530222e4d44e49cfc73f49731e0c0464a9d36f9a7e4b95b563c797de207554"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "f34d52ccb42e9f776c349fb84a70914edb366df83554eb58a7d060120e2026a1"
+      }
+    ],
+    "lexical_analysis": "регуляр is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "яр",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:14de3fc5a0614115dff5",
+      "word": "регуляр",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регуляр is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:181e18d2dcb87f07d9d9",
+    "word": "нерегулярный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "dc714d28a8438d708b83fdb3d81686e5808d8de5726e128cbb31b29e952498f7"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d8.json.gz",
+        "family_id": "surface:ru:nereguljarn",
+        "record_sha256": "68888b86a1fa47c070536e513f7f39aa2e26431c754a91d82971801a7400cd95"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "47e728b981d759eec8fefe45f2e4ab1b840016996922d8565f7433c001a4e89b"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "df2d79d0e639a1b12e8fb02af71a4732a26a7a5f79bff562407f814d953d2d78"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "d603edf3d2a1744a40d09ebaa83d2afed3bbcaafeef7db58490fac1ff5e54be7"
+      }
+    ],
+    "lexical_analysis": "нерегулярный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "не",
+      "after": "ярный",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:181e18d2dcb87f07d9d9",
+      "word": "нерегулярный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "нерегулярный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:1af70c9c485c3898096f",
+    "word": "регуляторный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/2e.json.gz",
+        "family_id": "surface:ru:reguljatorn",
+        "record_sha256": "0f7bd5d5ba6c9e2b2e02c131a994a4cfafd3e8658665a61461b66d871fc9e79f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "005c980edbc6bdac5fa03afe841863e6500d2d848b72f1ac055e44fb65c4cc77"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "b5bebbf2acaf80de8804ce123de21254f7bb880468bdc5b7d81fee3b71925fcb"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "17e0e5d72a185cb462ec8c457c36979adf099a5fcf8636093832b77ca61e5607"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "db576c6ce36be7cc389fed3e71399cfcb3be62f7a6c246e19f3807bc68505220"
+      }
+    ],
+    "lexical_analysis": "регуляторный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "яторный",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:1af70c9c485c3898096f",
+      "word": "регуляторный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регуляторный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:1fccca61b65d86e79945",
+    "word": "регулярность",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/37.json.gz",
+        "family_id": "surface:ru:reguljarn",
+        "record_sha256": "8262ac2e63c748859b8f2562ebbbc044cae84c555adb3a5eb75a55cdb4a12de1"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "7938353b08fba3c71a27bb002da6c5bf1e808a206a7ceac2ba546b9fa47c9dc1"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/87.json.gz",
+        "family_id": "surface:ru:arno",
+        "record_sha256": "965f9a4de0b751d5946396f7fb3cb647e4bed58b15420e7f52a51008f8189ac0"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "4ef16410f12af89341e0a63302903867e1d0ecbbd37752fe99f1aa5643673a28"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "252e089c3bf51583b91b97d1b7fdc271fe83a4e412e1283025ff0b7c670f1eeb"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "77624855e546136236bf7a41a82c64a5885352ff8a70c960591324479462fe50"
+      }
+    ],
+    "lexical_analysis": "регулярность is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ярность",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:1fccca61b65d86e79945",
+      "word": "регулярность",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулярность is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:2a87eee30111310ebd80",
+    "word": "регулять",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "63c4aeeb73cf721dd0a57b9479fcacc422a765384dd4c85f6248baf800d3209a"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "8c51be4f7cdb7715e693120a00f82c241658cdc1204a40b736708a24e96dc775"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулять was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ять",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:2a87eee30111310ebd80",
+      "word": "регулять",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулять was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулять; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:301266f203b33ff80c35",
+    "word": "регулятый",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "c0648ec6cdb4f5d9b4b2e241a2c4fbfd65ff8a8e9f3bf7bd280e0d3aae07d599"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/95.json.gz",
+        "family_id": "surface:ru:reguljat",
+        "record_sha256": "89b6cdd63725afaf4fcc318a7f79181830c8df4da4ede4a083e1adb0f48588d6"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "a6cff37ba61f73455d3c03171f9aa3ed7374078a4a45f81ad47d6d2ae1632211"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулятый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ятый",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:301266f203b33ff80c35",
+      "word": "регулятый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулятый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулятый; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:30145f68207ce2d744e6",
+    "word": "регуляризация",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "528a15bece3dbe14c041a81f8a8b3af64494eb9785fa5df18fc24a623f8e66f4"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/df.json.gz",
+        "family_id": "surface:ru:reguljarizacij",
+        "record_sha256": "3982374d7b2ca0b5534cc69d3a56f16373f9932717c7769179044040ad7d6241"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "e3251296bacd9510bb2f7fe259df3665637b954208e6feb6ad21ef98e9fea41a"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "86e1e3f3635557304bb5019ea5701b8b282ebf289d153e193e2ea9809f09ba83"
+      }
+    ],
+    "lexical_analysis": "регуляризация is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "яризация",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:30145f68207ce2d744e6",
+      "word": "регуляризация",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регуляризация is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:31a5c31bef11cb70956e",
+    "word": "регулярый",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/23.json.gz",
+        "family_id": "surface:ru:reguljar",
+        "record_sha256": "d559ed14da5b8c391046c2f18da202383ee3d9eef734f5b1c9878e33c254776d"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "4a0c5aaabbe105f0b9a3ca96ca76160263bb4f77773f94a89e97a8603a00618f"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "df88a35abb7c8d642f385d7626811ad63bd76267cc3a2d70b68a60ee0480a2fd"
+      }
+    ],
+    "lexical_analysis": "регулярый is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ярый",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:31a5c31bef11cb70956e",
+      "word": "регулярый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулярый is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:348a2200ffb7b2287647",
+    "word": "энергорегулятор",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "50e8d0adcc50bdadcba2a170fb80513f92a765fea2cbfe550b5ebec60cab7bf0"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/9d.json.gz",
+        "family_id": "surface:ru:energor",
+        "record_sha256": "835f78b80ae463d7231776f732f586dfb06ca51edf6f769e4610f2058b456075"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b4.json.gz",
+        "family_id": "surface:ru:reguljator",
+        "record_sha256": "8e1ebf04ce0f8767fce0487fdcc6085ae5bef8a2eabf31a24186e27c943c5c2e"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e0.json.gz",
+        "family_id": "surface:ru:gore",
+        "record_sha256": "1f1388398b8f84a26ce14648342ac24c996fd047aa257953ffca8e2c45bf6d65"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ea.json.gz",
+        "family_id": "surface:ru:oreg",
+        "record_sha256": "e62a71127884200fb604f6ea917a097e65f7dcd54c1c1d7b29a44e5ad4c80dd3"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "9923384c7eef364a2e3413e603d515bb5e5dd30d86d9aa88489c580428ca5efe"
+      }
+    ],
+    "lexical_analysis": "энергорегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 6,
+      "end": 11,
+      "before": "энерго",
+      "after": "ятор",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:348a2200ffb7b2287647",
+      "word": "энергорегулятор",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "энергорегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:379e94b8ce94f376d779",
+    "word": "преголь",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/0d.json.gz",
+        "family_id": "surface:ru:preg",
+        "record_sha256": "17cf9beb74d80376233e3a28af6b5bf38ecc45c2569ed7f9bb0009ba304ceb8d"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b0.json.gz",
+        "family_id": "surface:ru:egol",
+        "record_sha256": "64c25559ea6acac7f80ad1d8025cbad06e5b03565077a660f834d09f306f5d23"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "9bbb1765db937a9823c84998c58ab4d839b93bf70c318c1e6037586b364e3617"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:преголь was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:379e94b8ce94f376d779",
+      "word": "преголь",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:преголь was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:преголь; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:3808e28ed7ff782cdba6",
+    "word": "регулак",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "313b2b85e76beffbc3bfcc014c0338cc1027eb9298d1bdec595e2eb4ef2cf904"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/41.json.gz",
+        "family_id": "surface:ru:regula",
+        "record_sha256": "b7831288abd524fcc2e6342a91b1654f79e56591212fbb4f6ff7d82d46422e32"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/91.json.gz",
+        "family_id": "surface:ru:gulak",
+        "record_sha256": "efa439c4806e6e203b63e24ecca09d38cd2ba80051fa3e0f14dd861b3b2e0768"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "136a51e8738d5567bcc6efc0f780d8865b9c01730bb2671676dfe0b72d0ca48f"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулак was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ак",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:3808e28ed7ff782cdba6",
+      "word": "регулак",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулак was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулак; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:3f35073cc87dc0fe30c2",
+    "word": "преголодный",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/f1.json.gz",
+        "family_id": "surface:ru:pregolodn",
+        "record_sha256": "bd03b47cc05d1d58e36a8b2b1801c51dd014b03aab9044928c9fdbe5ce0fec72"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "2affb0c29129aaf7b03bdcd7d6d6723019490808b9e48efa69828db89a2914c5"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:преголодный was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:3f35073cc87dc0fe30c2",
+      "word": "преголодный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:преголодный was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:преголодный; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:493c1300f1155be55320",
+    "word": "регулярка",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "27ce45a60be7fc7c64082f5c26d3d5f4a095f1383045cdd5ffab2a804339e70b"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/58.json.gz",
+        "family_id": "surface:ru:reguljark",
+        "record_sha256": "f6ea9f555455ddfac237dfb964ff046e55f108c078d18702d67f7baed8e1c426"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e8.json.gz",
+        "family_id": "surface:ru:arka",
+        "record_sha256": "fc5865137a5e3904ab07e4d614eb66fcb495e86974093d22a109a81167e411f8"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "0bab636a6f435c6c9329166095781140a45894bddb96f2fdda8e99e99786cdce"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "e049bf8c0591ef8682ac55f5d642a43d90328c2682636ab82ad5ac79dba70231"
+      }
+    ],
+    "lexical_analysis": "регулярка is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ярка",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:493c1300f1155be55320",
+      "word": "регулярка",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулярка is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:4aa844c78bc6816bb121",
+    "word": "регуляность",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "e46d72a9513c49da1ac0ef808ee37fb3aca8e3810b4e1451368d7e8352a95180"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d7.json.gz",
+        "family_id": "surface:ru:reguljan",
+        "record_sha256": "09b01a5705bd06d881f2a3123f70499df7e2af4bcff6ad452bdafb14a7df7918"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e9.json.gz",
+        "family_id": "surface:ru:jano",
+        "record_sha256": "64ccad0cf9789433323aaeaf5dddeacfb752788d8d9b1324d15459377556578b"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "8dee4da412b9a4b1156c2a685ee1cc78a919d7c6e8deb5c7d0acf4b11d26f71d"
+      }
+    ],
+    "lexical_analysis": "регуляность does not match the reviewed finite spelling/segmentation. A typographic corruption or joined tokens is plausible; the source word is preserved.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "яность",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "malformed_or_token_join_unresolved",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:4aa844c78bc6816bb121",
+      "word": "регуляность",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регуляность does not match the reviewed finite spelling/segmentation. A typographic corruption or joined tokens is plausible; the source word is preserved.",
+    "missing_fact": "Original source context or independent lexical attestation; cannot transfer frequency or ID to a guessed correction.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:4f4a5e772bce3e0488b2",
+    "word": "поурегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "eb3dcf198d5e2bc337c385470172af76ed032b5e04ecad992b9328866b666cb0"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/90.json.gz",
+        "family_id": "surface:ru:pouregulirovani",
+        "record_sha256": "d505d7f6c54e067e8c3f08593be9e9b680090e5ba6d9b77ee3469c2566566975"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "1fb76df3865463deee03f602aef2648e8125f8e9ae61d86f84c119a7d4adf64b"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:поурегулирование was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "поу",
+      "after": "ирование",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:4f4a5e772bce3e0488b2",
+      "word": "поурегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:поурегулирование was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:поурегулирование; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:5017fb10961e382ec714",
+    "word": "регулярно",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/23.json.gz",
+        "family_id": "surface:ru:reguljar",
+        "record_sha256": "76045dc236ade075d69cf1a1582e8b9ed99a3ab061f8fe1239dadbc00ee68c40"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "e95d2cbd562c9c57f2e80bd1dea84a922f336c1f298b878e46f376f237ca8b34"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/87.json.gz",
+        "family_id": "surface:ru:arno",
+        "record_sha256": "30132de8d913ccdc1fc0df6ec986172851202343f6e767dfadeb0e7c7137d41a"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "8a95298ab16e13a134e666b3e775480bd660b4e3fa3e46e86341f9a8a78d96b7"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "61e48da15e6dace496ac05d24b109af9f1c69b6c07a6be4c7864ee1e8745b622"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "4525fc1a60ceaab123c69500d7b063b25f5f33b0bb148f03ed57f12f0f799044"
+      }
+    ],
+    "lexical_analysis": "регулярно is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ярно",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:5017fb10961e382ec714",
+      "word": "регулярно",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулярно is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:51f09b90f14b2fb49851",
+    "word": "регул",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "642be35336bd7b3ba7868e8163dee677b60b92c2788cabd7619b4ab9fd80bd79"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "fb5f0d9e21fff653304893b7a36b9eef987e00977a724bb8ad04a7dfead37805"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "f325fcb97d84e8d76f4738638ba6faf19e5b49358f006ddf45a13074bf91decd"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регул was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:51f09b90f14b2fb49851",
+      "word": "регул",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регул was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регул; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:5497bc2753db7c66dbf3",
+    "word": "фреголь",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/67.json.gz",
+        "family_id": "surface:ru:freg",
+        "record_sha256": "f0bfc5240e78048e1a0ef379c57d61e551b267f68a9b4dcef62f999b30dd71d3"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b0.json.gz",
+        "family_id": "surface:ru:egol",
+        "record_sha256": "b9a1d56b56b287c8f4542bf68cafd2899a09d65a9f7176329ee7977eade129b2"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "70b54ff5ad6cdc8de3ec890641e6b8231be6f79f632426f86f8cee20b95c0a03"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:фреголь was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:5497bc2753db7c66dbf3",
+      "word": "фреголь",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:фреголь was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:фреголь; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:55c3db281266973a38b7",
+    "word": "саморегулировань",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "3348fa3f91df04c867c7aa7276a26896103071e8bad4acc97d4c7ae90cb73482"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "84d06e3dcf3c43c5a99e8c96ddbd941deb286388ae85740c212f761625931b9e"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:саморегулировань was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "ировань",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:55c3db281266973a38b7",
+      "word": "саморегулировань",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:саморегулировань was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:саморегулировань; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:5935cc0930adacce5135",
+    "word": "урегулированний",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/a2.json.gz",
+        "family_id": "surface:ru:uregulirovann",
+        "record_sha256": "d58d859e4c82ef624107c32f086f69fb29d46f6d7db70f3af8435f015099d1c7"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/cc.json.gz",
+        "family_id": "surface:ru:nij",
+        "record_sha256": "834c402c2a3617c23d8ac6ba3cefe107dac40509173647b85b9238e98cfe7a2c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "42be853d27797af051b4c2aa37ef020a4a7b05e3e60415da1c0868ec26d9066e"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:урегулированний was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ированний",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:5935cc0930adacce5135",
+      "word": "урегулированний",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:урегулированний was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:урегулированний; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:5c80cc37dfbfa8865ab9",
+    "word": "иррегулярный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "c4788fcfe8b199e2e6f4f9fe7eb98874ff77684c7e2f4bd1e15f33e5a1eb8153"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ee.json.gz",
+        "family_id": "surface:ru:irreguljarn",
+        "record_sha256": "f10dbd6a937ea08c60bd2a726cc6448493a83607b06e679fad4642f6e82fcc28"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "3ed8fa6aae2534a52e47f1ccdf597f86beb68e64af28150ae019dbefde5fae3a"
+      }
+    ],
+    "lexical_analysis": "иррегулярный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "ир",
+      "after": "ярный",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:5c80cc37dfbfa8865ab9",
+      "word": "иррегулярный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "иррегулярный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:6377d5ae2b9c79caa035",
+    "word": "регулы",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "8a50c2c19263068e51ab186237e6d2095a91cac49e9960acef0501c59189f09f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ed.json.gz",
+        "family_id": "surface:ru:uly",
+        "record_sha256": "199641fae79ae7cfa183afa7aa7df86aff2a0140c73a40af2a2445a5a63a0465"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "d5fa976f6fe7ec8552507acd398d8fa05d4d04e647fa5412e82fe5612e6e2193"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулы was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ы",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:6377d5ae2b9c79caa035",
+      "word": "регулы",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулы was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулы; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:6b37706a189effda276f",
+    "word": "регулюм",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "2bc042dcf275849a9e8758fc81b9419daae338910b8210e97709a726f6d9d5c1"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/9b.json.gz",
+        "family_id": "surface:ru:ljum",
+        "record_sha256": "343e212a890128dfba38e1736eef631397da10c4b37ede8fd693b4fcb8027dc5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/f0.json.gz",
+        "family_id": "surface:ru:regulj",
+        "record_sha256": "dffac22830e99d77075e65e3c425ac5893e606c330e0ec7a1efe715ed2c7b4b3"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "7e178f6100aefd362e9e6f84c4350e34014eb374dda58e12a4dcf4fe09e164e3"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулюм was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "юм",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:6b37706a189effda276f",
+      "word": "регулюм",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулюм was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулюм; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:80b8784038aa6f50d0b4",
+    "word": "пузыреголов",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/1f.json.gz",
+        "family_id": "surface:ru:puzyregolov",
+        "record_sha256": "a91b3e6179558ad35f2b8f72766c5ca5c160d858f1277dcb2d6db5c6e00a41a5"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "686a7b3ebf1782e83b7c0a1b1a5566f454094c567e90eca6d0aad0f1a9f50b3a"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:пузыреголов was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:80b8784038aa6f50d0b4",
+      "word": "пузыреголов",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:пузыреголов was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:пузыреголов; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:8cb2453008e5e45e38fc",
+    "word": "нерегулярность",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "d818cc4b5b51ffa215492fdd4c7983783afe175761c51d3fcd23ce2ffea2d872"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/87.json.gz",
+        "family_id": "surface:ru:arno",
+        "record_sha256": "3368832614c9d1ed6fa916a27f8fb37f89db12db70b58e28f4846c4f9dd2651c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d8.json.gz",
+        "family_id": "surface:ru:nereguljarn",
+        "record_sha256": "16314560a80323f2ce96638d92394896e7ceacb32939f56acfc05aa2bbc18a52"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "fd008b32279fdf3ee3c40a617f92b36713d8de10aacb8221b9a714d0a3a311b2"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "e4567e6aedd712fa0d0d6e1a4f75d0222ea161ca378eed98081ad662565f0751"
+      }
+    ],
+    "lexical_analysis": "нерегулярность is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "не",
+      "after": "ярность",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:8cb2453008e5e45e38fc",
+      "word": "нерегулярность",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "нерегулярность is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:8d6a8883c24015cbcb2a",
+    "word": "терморегулятор",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "9eace2a79aed95028a1ff01ebaa09508b6c1453a481ce872e2a330b7d56aa084"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ad.json.gz",
+        "family_id": "surface:ru:termoregulj",
+        "record_sha256": "44e7a26ab800eac6e13d22b64ab3e27951b92dad046c134378507c8aa0f4871f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b4.json.gz",
+        "family_id": "surface:ru:reguljator",
+        "record_sha256": "1b76677de971b46ec0290829a8817c9896f68af502aaa2d7d917b62f04194785"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "fa0083b7a8a92ab70eeadebc654a2b18a9ea95965cb7fc45efbc3490d18b6f14"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "6ae23452e4a70ddde249aac895faf007c2c024b82bc948568a4d34d0a5750a73"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "40838c77e78eb6d2901539aff75b3a569126eb36ec50d254c680b969a73425c6"
+      }
+    ],
+    "lexical_analysis": "терморегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "термо",
+      "after": "ятор",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:8d6a8883c24015cbcb2a",
+      "word": "терморегулятор",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "терморегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:8e1f1009a993151e52ac",
+    "word": "дерегулировань",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "b2297fcb9289319bb20b28e29d2d9280310f61304231dd61a6bb1311bc305540"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "e9294dce0f9f7d4e2429ca40c8803f9fe5e33d6c3b16e3abdbd4eff8724a74ee"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:дерегулировань was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "де",
+      "after": "ировань",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:8e1f1009a993151e52ac",
+      "word": "дерегулировань",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:дерегулировань was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:дерегулировань; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:91f039036ef7eb77e617",
+    "word": "светорегулятор",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "02e75a315e18237f1a0d7ce9cffb1fd824a4e66f69b448640bd60bb90a26262e"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/48.json.gz",
+        "family_id": "surface:ru:sveto",
+        "record_sha256": "6fdf84c283e8c7ac2ff958e441e25988e2655dd5c485cd8f9406cd9031a4ef04"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b4.json.gz",
+        "family_id": "surface:ru:reguljator",
+        "record_sha256": "c7c886a1e536eb6a7fe160962723c5afbe8950bde2928e8cd2add58ea51e223b"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ea.json.gz",
+        "family_id": "ety:a1631e64c283",
+        "record_sha256": "8d5ca7945e4229f34c0ba59def5ee72a08cbaa94aa7363276c36777ef539c632"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ea.json.gz",
+        "family_id": "surface:ru:oreg",
+        "record_sha256": "4f9975b29ecf0bdb0d0ace65d6c77e730c58c772ae9f34191b8201460bd57537"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "bdd8d12865750e33a59f90e4f5322e0828b9fc82555f1d91fcc93d52553693fb"
+      }
+    ],
+    "lexical_analysis": "светорегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "свето",
+      "after": "ятор",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:91f039036ef7eb77e617",
+      "word": "светорегулятор",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "светорегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:929cd180506c13a3e87b",
+    "word": "панциреголовый",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/9d.json.gz",
+        "family_id": "surface:ru:golovyj",
+        "record_sha256": "5e1a45c55b22e50c66fcb7214f553b2be9f218a606d11455bad21ec95cff9035"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/c6.json.gz",
+        "family_id": "surface:ru:panciregolov",
+        "record_sha256": "f4fc508f7758f8971f8ce9d05c5e5f3b8f38e3c2416a80c54fa4beea45c1dce1"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "4b42344ea531002cb649eabb32fd943d4fbe820ab883af1d10c622a7c89be4b6"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:панциреголовый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:929cd180506c13a3e87b",
+      "word": "панциреголовый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:панциреголовый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:панциреголовый; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:9c7ee9a263a595af6e6d",
+    "word": "иррегулярность",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "5a5fc314ef01940225cdfee21d828fc0ca0561637058b22e75e0acf31ce64640"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/87.json.gz",
+        "family_id": "surface:ru:arno",
+        "record_sha256": "03d1eef8cffbc37ca517cdb5dec08241d6e9cd7ec1dc2f1ad8770205cbb3775a"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ee.json.gz",
+        "family_id": "surface:ru:irreguljarn",
+        "record_sha256": "966bc4db83bfd226efab46fbf51d4e114c3f572dd3777cc3f45b4a84f62ef208"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "c936d04304309d7c4d650ac851ccc92b68b657403dcad18d1fd21cba73744405"
+      }
+    ],
+    "lexical_analysis": "иррегулярность is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "ир",
+      "after": "ярность",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:9c7ee9a263a595af6e6d",
+      "word": "иррегулярность",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "иррегулярность is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:9f262275ef55aaa82c5f",
+    "word": "переголосование",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e0.json.gz",
+        "family_id": "surface:ru:peregolosovani",
+        "record_sha256": "2d7ccfa92ae3a87f6730154f9b666b94d5ff2e76749d1df7067d1e232578e1e0"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "882a712b62a16d7f84f4a2ba0fd4b03853ba0a5a0020b863dd56168eca0b88f1"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "ab63658a78c73c77cda5d3a5181497021991dca809b91c4f7c533fd64a64d1ab"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:переголосование was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:9f262275ef55aaa82c5f",
+      "word": "переголосование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:переголосование was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:переголосование; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:9f9f16c5742bcf2bb6de",
+    "word": "дрэгулеска",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/05.json.gz",
+        "family_id": "surface:ru:dregulesk",
+        "record_sha256": "7da272ce6236d9222e0f7dbf954852ea2ea6ca77b9bbecb95f34941a6a9eed5a"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/44.json.gz",
+        "family_id": "surface:ru:ska",
+        "record_sha256": "d7b4fd9586d0581e5312e23319c31f3f18d861245064b9c8e14b920de9297296"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "ee2d34a9a3b208604251c6bca35936b7db371c0b190f4d6d809323b48f84a0e4"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:дрэгулеска was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:9f9f16c5742bcf2bb6de",
+      "word": "дрэгулеска",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:дрэгулеска was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:дрэгулеска; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:a116c9630a9f3d68456f",
+    "word": "регулировань",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "4b4ab5415d63c0629900af9e2fe628c3410a2f14577ac5a319f9c2141dd2ee42"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "1c1ebe464cdd457d5b5acc5ac4395ec88ae54d7bf8b998307847ecbcf5581237"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулировань was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ировань",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:a116c9630a9f3d68456f",
+      "word": "регулировань",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулировань was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулировань; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:a60acf4d2c04208255b8",
+    "word": "перьеголовый",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/84.json.gz",
+        "family_id": "surface:ru:peregolov",
+        "record_sha256": "9ed315569e541fadf09eaf65e970370967cded444394a7d59b17e950e877cf30"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/9d.json.gz",
+        "family_id": "surface:ru:golovyj",
+        "record_sha256": "8859b5286f5a274469e2519720a6820435f1cab75db69845e6cd7ed5a0586ec1"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "b5907f67be0b1a485015b4a557fb324e5fa7cfc119ae73ffcd0b28015426a4c2"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:перьеголовый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:a60acf4d2c04208255b8",
+      "word": "перьеголовый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:перьеголовый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:перьеголовый; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:a8bdf0d66cb6dd1b4341",
+    "word": "регулус",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/0e.json.gz",
+        "family_id": "surface:ru:ulus",
+        "record_sha256": "dac7f8982dfe29e370fb386a2df0e831d5e6e991f703e1736ac1148a1d654c7c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "894539cb0930d14bb218232a6e1526c30b85c3844657ec2abcc5800fbe399f19"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "323b5b56bf81dc47cb06884dcb1552d54f17e7f80a9f1ff2a6ef16dbaf18ecb8"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "929ac80b48636ba1299e1173e72c07b95ae4697b41d8b62d7fd3aa36ae7c28c2"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулус was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ус",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:a8bdf0d66cb6dd1b4341",
+      "word": "регулус",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулус was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулус; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:bbb0f5cc3ebb8fa052af",
+    "word": "регулятор",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "ea5f867d8aeb4e4f058db9f9f0f797ea6c98fad339be76cabf2dfbba773e2983"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "a234cd971c7c127ac9a771378687b9f27eb300bbb8f3ef728653100691804ede"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "6d621899cef6f470f1e91db72e098d7533a085994d56ea29a7a5f06db977ad97"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "528f4107c32dee5e9e5318e8fdd9386dbf31b611e86a17368826a4118dde655f"
+      }
+    ],
+    "lexical_analysis": "регулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ятор",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:bbb0f5cc3ebb8fa052af",
+      "word": "регулятор",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:bc232c418d06dffda19f",
+    "word": "спецрегулятор",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "cedb4bce2f9078c2dbabc45ac51a00df69212169caf5d33c4b55dd8831feaf61"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/82.json.gz",
+        "family_id": "surface:ru:cr",
+        "record_sha256": "1943d8b76c4af0c4ce1d694947633272f2071072e06086c6dfa2f2e8676b57a4"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b4.json.gz",
+        "family_id": "surface:ru:reguljator",
+        "record_sha256": "60bbe8238db21748a51e1e851754f6ae7d2438cf321c4feb5f7f36166cd0c337"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b8.json.gz",
+        "family_id": "surface:ru:spec",
+        "record_sha256": "efeddbfc5bcd3332ed749038e99dce4d2c2227e6fa0657dc5ddca0da3b0c410f"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "cc9804203ec8c9d85487891a050fbf819fbdf8786116bc668c9dc465608e1a10"
+      }
+    ],
+    "lexical_analysis": "спецрегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "спец",
+      "after": "ятор",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:bc232c418d06dffda19f",
+      "word": "спецрегулятор",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "спецрегулятор is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:bdd47582a0f401014b04",
+    "word": "регулоно",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "ff92b2d55c0a448910c6565a98732ad65a072a30d8c7abe1e519b90d7c76528c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b1.json.gz",
+        "family_id": "surface:ru:lono",
+        "record_sha256": "fe9293636926f6c3796c51d59da738e7c4c6eda7e0cf3793f35d6e5a2d431492"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/cf.json.gz",
+        "family_id": "surface:ru:regulo",
+        "record_sha256": "a84dc52765acadc057483bdc33dc0048875bc1664e0c422c161ae52f5f581810"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "e34b2125975f1edb10ecd0413a2a3102529efadceaa095c262f6fe8a0699e1ef"
+      }
+    ],
+    "lexical_analysis": "регулоно is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "оно",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:bdd47582a0f401014b04",
+      "word": "регулоно",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://www.sciencedirect.com/science/article/pii/S002228366480200X"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regulon"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.sciencedirect.com/science/article/pii/S002228366480200X",
+        "finding": "Primary search extraction proposes regulon for a system controlled by one repressor; full article retrieval failed. Biological lexical use is supported, but every language mediation and commercial name derivation still needs inspection.",
+        "access_status": "primary_search_only_article_unavailable"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулоно is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:c50ed894d764b4ddc963",
+    "word": "регуланский",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/33.json.gz",
+        "family_id": "surface:ru:regulansk",
+        "record_sha256": "208cd2f8844fa1b316831abbe2f586a8391a4c32ccae450924b295d5de9a1d67"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "203e79c1b3067e05939ec6bed56a72d32e9c47373579f88c98c29de047157399"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "b351e8d94562de7497684c332c361efba0ec7c587bb2a97d0ca01875b1f5ff36"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регуланский was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "анский",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:c50ed894d764b4ddc963",
+      "word": "регуланский",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регуланский was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регуланский; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:c7a5bd13b3e16982a036",
+    "word": "нерегулы",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "325e3705e5a68da8c4c5edf43fce833727ded65af75c014c70dd57385dd52d31"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/c1.json.gz",
+        "family_id": "surface:ru:neregul",
+        "record_sha256": "5a9902f40804bd9b2c8e9470482334a57eec6551d623a555391b674cebacb2ea"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ed.json.gz",
+        "family_id": "surface:ru:uly",
+        "record_sha256": "c4701cd1b06c346ddcf3493df89c11d277507841aab888c5661ddb9e8b03a7ad"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "8945bc05230155baf85fa95b4528d9c44af26743266d79c157ec040347e76ca3"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:нерегулы was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "не",
+      "after": "ы",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:c7a5bd13b3e16982a036",
+      "word": "нерегулы",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:нерегулы was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:нерегулы; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:ca70e220d611235c4044",
+    "word": "регулярный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "e0960cd1ec9bd750246195bd30fe0e86c8176504203d2f3275391fd23afcafd2"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "adb257ba9ec165abfa9ffcf9de793dae42b66ee9d57d7de724639f81f54d8226"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "f0b16cf46fe5cb1dcdd1abe522f461cdcc02133d0030a945e3eb8024e0213c6c"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "41d3e3e9a2b654fdc825f749529f391dd3a2ce6ed418e43e6c1bf87b1ea897dc"
+      }
+    ],
+    "lexical_analysis": "регулярный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ярный",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:ca70e220d611235c4044",
+      "word": "регулярный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулярный is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:cb89800eda97c97731b2",
+    "word": "регулизировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/38.json.gz",
+        "family_id": "surface:ru:guli",
+        "record_sha256": "313c9b6983d9d21edc25d5b3c9d3d360aa60fb59623c414818ed50442f91b045"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "9f4a69d6f1d5586d90e0707c4cc4a6523c819e91f3b3a6932cb46e2a1c0207a6"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/96.json.gz",
+        "family_id": "surface:ru:izirov",
+        "record_sha256": "6c1fbc7d47eb8c37e169a46b0a5566261036b0a439d1013510132588a6681bdb"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d5.json.gz",
+        "family_id": "surface:ru:lizi",
+        "record_sha256": "00169cddc54554f130d22b72629e05091358bee43492eebccd6f96464c19c29c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "5ec1b80231e8c7a24f395fb26db0c8bdb81b99767929196366186aded31755a8"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулизировать was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "изировать",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:cb89800eda97c97731b2",
+      "word": "регулизировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулизировать was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулизировать; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:cfa8022355e0f9adbe1c",
+    "word": "пузыреголовый",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/1f.json.gz",
+        "family_id": "surface:ru:puzyregolov",
+        "record_sha256": "2d360255979c1ebd65e96aff40f89552c5610e90dd359bd79db4f8c5763e53ea"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/9d.json.gz",
+        "family_id": "surface:ru:golovyj",
+        "record_sha256": "0f6330542cfd0542d5717db0f30aa0589c5fc22ade0861de3a874da50eda3d3c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "cac0177ab9082958b7f84509aab55de5494b66ae2455cf919993855608efd74d"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:пузыреголовый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:cfa8022355e0f9adbe1c",
+      "word": "пузыреголовый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:пузыреголовый was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:пузыреголовый; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:d4e0cb850bb16c9d6dbf",
+    "word": "регулярнее",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/16.json.gz",
+        "family_id": "surface:ru:reguljarne",
+        "record_sha256": "05a85193540564afe023cc04cdaac1f5d7ec56d391b7a2ccf7470bf82e3eb259"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "be18db0c5a54fbdaabe4aa3509c7c0349b86abfef5f5f898bcef461875ff2b37"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/45.json.gz",
+        "family_id": "surface:ru:nee",
+        "record_sha256": "a61ff92fab1e5659d275f4963449d37265c081012f948bfe7bd0ce8702e4a914"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "df0901c6e6e5ae2e0ccba3fc644b2610f75ff094ab7ae3ef30ab7109ab2d7afb"
+      }
+    ],
+    "lexical_analysis": "регулярнее is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ярнее",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:d4e0cb850bb16c9d6dbf",
+      "word": "регулярнее",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regular"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D1%8F%D1%80%D0%BD%D1%8B%D0%B9",
+        "finding": "Search retrieval supports the adjective and inflection; full article currently returns 403. Further direct historical inspection remains required for its branch.",
+        "access_status": "search_only_full_article_403"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулярнее is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:e7054b7e2997a2c413fe",
+    "word": "регулятивный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f073296f111c29fbc04e83021d88ebfe98726045ee2a783531636014d6647608"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/98.json.gz",
+        "family_id": "surface:ru:reguljativn",
+        "record_sha256": "bad8c853f4c187f90f77088607d040015c374fefce14d42e9c53bcc8e330ddcb"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "7c664777415f4376b11606d5b79895a8430faf3d4a4e705a7d3d32592705bada"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "41c23019f669e82c42d1d37cab0eb9efb115f8cfb0842caf252848053ff1ead2"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "765df814d203600af75f9136a9ffd0120735aef5191df5ef15724757ec2df3a9"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулятивный was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ятивный",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e7054b7e2997a2c413fe",
+      "word": "регулятивный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулятивный was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулятивный; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:ea5dc8d0d6845feb796d",
+    "word": "регулон",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "06a838cd9c801885cc707c553e02c909891726c8bbb1bcae16755c443b4306ab"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/44.json.gz",
+        "family_id": "surface:ru:lon",
+        "record_sha256": "1bed6443080f654efaa9a95c802afcf2f0d6c9ea5554a83a53570fe7585dc73e"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/cf.json.gz",
+        "family_id": "surface:ru:regulo",
+        "record_sha256": "e6d5d0fc95b54162bf8768dda0b1617ae2e2398e804f8b5fd653b8eb72f4b2e5"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "20105e6f4fb9b502987d1b36afe6721df4710f5915170882d30f4b894e77099b"
+      }
+    ],
+    "lexical_analysis": "регулон is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "он",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "incomplete_direct_branch_evidence",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:ea5dc8d0d6845feb796d",
+      "word": "регулон",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://www.sciencedirect.com/science/article/pii/S002228366480200X"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regulon"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.sciencedirect.com/science/article/pii/S002228366480200X",
+        "finding": "Primary search extraction proposes regulon for a system controlled by one repressor; full article retrieval failed. Biological lexical use is supported, but every language mediation and commercial name derivation still needs inspection.",
+        "access_status": "primary_search_only_article_unavailable"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "регулон is plausibly a real regular/regulator/scientific derivative. Not rejected as rare. Direct branch article, mediation or name analysis remains insufficient.",
+    "missing_fact": "Independent complete dictionary/scientific entry proving this exact lexical branch and form; unavailable full article and ambiguous commercial-name provenance cannot be treated as proof.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:f34281a3c1868018ffcb",
+    "word": "регулятив",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "8ccb2bcd0c838cd5aea2e93dddf36edd72edf20c8f08025c4e8cbf2b223b533f"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "e161c775b7ac54426cc4552798379ff200e55c477762f943365ae184b139bc4a"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:регулятив was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ятив",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:f34281a3c1868018ffcb",
+      "word": "регулятив",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:регулятив was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:регулятив; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:f9f29cadb90fd81d2bd9",
+    "word": "переголосовать",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ae.json.gz",
+        "family_id": "surface:ru:peregolosov",
+        "record_sha256": "88a0838a5a82fa0d28ba3a4ef1058fcb0a656e72127d0be84f6d15ada43e6d36"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "d937146d3f901a16e32cbba54bb8aaefd99c59b61cfeed87aa5f7b56ce863b51"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:переголосовать was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": null,
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:f9f29cadb90fd81d2bd9",
+      "word": "переголосовать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:переголосовать was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:переголосовать; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:fb27e95086ed07c874f0",
+    "word": "дерегулы",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "b2c09a0bc692403468e243ebe7d488f44e99c9dd9d7354f761a299b995ef0345"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/97.json.gz",
+        "family_id": "surface:ru:deregul",
+        "record_sha256": "cbc2c0f93212307c536f0c6581070f5f41b00b14d280506838be683b686bb1ce"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ed.json.gz",
+        "family_id": "surface:ru:uly",
+        "record_sha256": "5ff3479c63ad40194f1fb962ece88834faf8a218c9ffdc53f90b8f781340c4e5"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "28ec94e0a101131f15de23b44d0a7366201326fe6441cddca62f431f8a3f95e5"
+      }
+    ],
+    "lexical_analysis": "Exact source ru:дерегулы was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "де",
+      "after": "ы",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "individual_lexical_evidence_required",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:fb27e95086ed07c874f0",
+      "word": "дерегулы",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "not_established",
+          "verdict": "uncertain",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "uncertain",
+    "reason": "Exact source ru:дерегулы was screened against the documented family branches. No finite lexical identity/boundary proof for this spelling was established; a search substring or old manually_verified seed is insufficient.",
+    "missing_fact": "Independent lexical history, exact grammatical form and component boundary for ru:дерегулы; if a name or damaged token, corpus context or name derivation is required.",
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "investigated_uncertainty_not_linguistic_certification"
+  }
+]

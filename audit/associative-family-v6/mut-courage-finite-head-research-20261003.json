@@ -1,0 +1,1312 @@
+{
+  "schema_version": 6,
+  "stage": "mut-courage-finite-compound-head-20261003",
+  "source_head": "3d1aa530a350f0e35145755a15078b9460b61042",
+  "production_enabled": false,
+  "binding_authorized": true,
+  "accepted_membership_authorized": false,
+  "source_queue": "audit/associative-family-v6/mut-courage-finite-source-frame-20261003.json.gz",
+  "source_queue_sha256": "582b57f3546a5fbf577c1dbf9c92f46b7b51d9843b340ac24632d87e8dee272a",
+  "groups": [
+    {
+      "language": "de",
+      "root": "mut",
+      "normalized_head": "mut",
+      "sense": "german_courage_or_temperament_nominal_base",
+      "head_scope": "finite_compound_components",
+      "status": "excluded",
+      "forms": [
+        "mut"
+      ],
+      "component_stems": [
+        "mut"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Mut"
+      ],
+      "reason": "Duden independently identifies German Mut as courage/readiness and traces it through Middle and Old High German muot, denoting temperament, passion and resolve. This lexical noun is independent of the Latin mutare mutation family. Ten finite transparent noun compounds retain this complete terminal courage/temperament component and are excluded from family mut. Bare homographic names (Helmut, Hartmut, Almut), mammoth fragments, permutations, malformed spellings and different full lexical heads such as Anmut/Unmut/Gleichmut remain separate. No blanket rule for words ending in mut, no general national realization or additional family.",
+      "records": [
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:0c911958fa88493a85b2",
+          "word": "lebensmut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for lebensmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:smut",
+            "surface:de:ens",
+            "surface:de:leben"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:0c911958fa88493a85b2:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "lebens",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:1a4a33c308b5333c0b17",
+          "word": "todesmut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for todesmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:todesmut"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:1a4a33c308b5333c0b17:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "todes",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:3869c180adf8f1f7814d",
+          "word": "heldenmut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for heldenmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:heldenmut"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:3869c180adf8f1f7814d:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "helden",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:45167e2732b28ab72a36",
+          "word": "opfermut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for opfermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:opfer",
+            "surface:de:ermut"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:45167e2732b28ab72a36:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "opfer",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:75c7180e16f02ef23156",
+          "word": "kriegsmut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for kriegsmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:smut",
+            "ety:7634e2fb36bd"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:75c7180e16f02ef23156:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kriegs",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:86bb5f6c5cec4026837b",
+          "word": "frühlingsmut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for frühlingsmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:smut",
+            "surface:de:fruhlings"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:86bb5f6c5cec4026837b:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "frühlings",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:9881a91682ad97ac9a6c",
+          "word": "mannesmut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for mannesmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:smut",
+            "surface:de:manne",
+            "surface:de:nes"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:9881a91682ad97ac9a6c:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "mannes",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:e762a333b65ebd4115c9",
+          "word": "kampfesmut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for kampfesmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:kampfesmut"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:e762a333b65ebd4115c9:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kampfes",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:44aa972b24d9a96c795d",
+          "word": "schustermut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for schustermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:ermut",
+            "surface:de:schuster"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:44aa972b24d9a96c795d:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "schuster",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:84142c7b2e288871f6b5",
+          "word": "fahrermut",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for fahrermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:ermut",
+            "surface:de:fahrer"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:84142c7b2e288871f6b5:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "fahrer",
+            "component": "mut",
+            "after": "",
+            "head": "mut",
+            "boundary_proof": "Individually inspected complete final German courage/temperament noun Mut. The preceding modifier remains opaque. This is not a mutation noun, mammoth substring or a bare personal/geographic name; no identity/POS of the whole compound is asserted."
+          }
+        }
+      ]
+    }
+  ],
+  "source_records": 68,
+  "finite_record_count": 10,
+  "withheld_count": 58,
+  "head_decisions": 1,
+  "unlisted_propagation_authorized": false,
+  "withheld_records": [
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:04c33cf302ba943b77f5",
+      "word": "wankelmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for wankelmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:wankelmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:04c33cf302ba943b77f5:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:04d87fd5f11d5409ac51",
+      "word": "hans-helmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for hans-helmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:helmut",
+        "surface:de:hans"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:04d87fd5f11d5409ac51:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:064f15b9c899bb283a35",
+      "word": "aupumut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for aupumut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:064f15b9c899bb283a35:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0749eb1eef25fb03d3c3",
+      "word": "kamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for kamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:kamut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:0749eb1eef25fb03d3c3:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0c692481b99d4c982dc1",
+      "word": "diemut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for diemut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:die",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:0c692481b99d4c982dc1:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:0f0833afe7801d10dbfa",
+      "word": "schmermut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for schmermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:mer",
+        "surface:de:ermut",
+        "surface:de:schm"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:0f0833afe7801d10dbfa:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:1c3cea3b6c84839a2785",
+      "word": "permut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for permut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:permut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:1c3cea3b6c84839a2785:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:25bef91e346c90234f62",
+      "word": "wilmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for wilmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:wil",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:25bef91e346c90234f62:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:29a2ca19895e00be3721",
+      "word": "freimut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for freimut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:freimut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:29a2ca19895e00be3721:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:2a0839198bfa9f555960",
+      "word": "grossmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for grossmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:grossmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:2a0839198bfa9f555960:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:2d6c589c4fa3b7599e6d",
+      "word": "königsmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for königsmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:smut",
+        "surface:de:konigs"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:2d6c589c4fa3b7599e6d:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:325f7e64b946535cfce0",
+      "word": "großmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for großmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:grossmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:325f7e64b946535cfce0:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3a5ad3026c0f87dd31a4",
+      "word": "kleinmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for kleinmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:kleinmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:3a5ad3026c0f87dd31a4:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:3f4df2a1745d7e1ed3bc",
+      "word": "reumut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for reumut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:reumut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:3f4df2a1745d7e1ed3bc:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:41e8fbe3c0e07c0edc27",
+      "word": "schwachmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for schwachmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:schwachmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:41e8fbe3c0e07c0edc27:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:484bcce05c6e7ae77d00",
+      "word": "hellmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for hellmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:hell",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:484bcce05c6e7ae77d00:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:505f096ecc6d813c6f33",
+      "word": "simut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for simut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:simut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:505f096ecc6d813c6f33:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:5611cb03cc794c18e292",
+      "word": "hauptmammut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for hauptmammut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "ety:b7d8ccb9dc9a",
+        "surface:de:hauptm",
+        "ety:de1c5d75067b"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:5611cb03cc794c18e292:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:56eb88d4d532955a91a5",
+      "word": "priesemut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for priesemut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:ese",
+        "surface:de:prie",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:56eb88d4d532955a91a5:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:58d055a52a40fa940510",
+      "word": "malamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for malamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:malamut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:58d055a52a40fa940510:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:592697d2884d08dd082b",
+      "word": "missmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for missmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:missmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:592697d2884d08dd082b:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:59aa7c37b902cd0d71ce",
+      "word": "gamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for gamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "ety:edaed0ba0172"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:59aa7c37b902cd0d71ce:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:624f101b1508088ea7f2",
+      "word": "mitanmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for mitanmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:anmut",
+        "surface:de:mita"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:624f101b1508088ea7f2:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:6882d168ef8ed67cf3bf",
+      "word": "übermut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for übermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:ubermut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:6882d168ef8ed67cf3bf:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:715ebfc32637d0247897",
+      "word": "smut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for smut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:smut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:715ebfc32637d0247897:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:72d12a2c1145f5f577be",
+      "word": "richtermut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for richtermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:ermut",
+        "surface:de:richter"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:72d12a2c1145f5f577be:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:742d5bd19419f53fd81b",
+      "word": "zygmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for zygmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:zygmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:742d5bd19419f53fd81b:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:75de0a61d21c32249e9a",
+      "word": "langmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for langmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:langmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:75de0a61d21c32249e9a:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:7b1b8143f438fdf4bf32",
+      "word": "frohmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for frohmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "ety:74b8b349cfcd",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:7b1b8143f438fdf4bf32:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:81c7f082e78a400346dc",
+      "word": "derrimut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for derrimut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:derri",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:81c7f082e78a400346dc:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:86f483a374cbb8ff3e88",
+      "word": "bachmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for bachmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:mut",
+        "surface:de:bach"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:86f483a374cbb8ff3e88:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:88f98b02bbaca8936c0a",
+      "word": "mamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for mamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:mamut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:88f98b02bbaca8936c0a:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:8cd32f6bc77d30a5e806",
+      "word": "almut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for almut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:almut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:8cd32f6bc77d30a5e806:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:8fc70528bcfb78ac605f",
+      "word": "hermut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for hermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:mut",
+        "ety:a5f22d9e6187"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:8fc70528bcfb78ac605f:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:963884bfa4cff7e1c8f4",
+      "word": "erdmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for erdmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:erdmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:963884bfa4cff7e1c8f4:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:96db1fcea1f8b9f27473",
+      "word": "qamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for qamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:qamut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:96db1fcea1f8b9f27473:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:acdb901188d84ab2ab82",
+      "word": "zumut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for zumut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:zumut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:acdb901188d84ab2ab82:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:b2a2ac71937615ce2126",
+      "word": "hartmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for hartmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "ety:2ee20e1c6fd9",
+        "surface:de:mut",
+        "ety:a9468e058a73"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:b2a2ac71937615ce2126:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:b8da76982eee7a2a767c",
+      "word": "bewegungsanmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for bewegungsanmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:san",
+        "surface:de:bewegung",
+        "surface:de:anmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:b8da76982eee7a2a767c:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c3a0a4a9fa923b949b51",
+      "word": "großmammut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for großmammut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "ety:b7d8ccb9dc9a",
+        "surface:de:grossm",
+        "ety:de1c5d75067b"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:c3a0a4a9fa923b949b51:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c46ce901d618643abc2e",
+      "word": "sittenanmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for sittenanmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:ena",
+        "surface:de:sitten",
+        "surface:de:anmut",
+        "surface:de:nan"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:c46ce901d618643abc2e:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c9ce478f10f7b66194b8",
+      "word": "sanftmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for sanftmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:sanftmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:c9ce478f10f7b66194b8:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:c9ebd45a92f0b19f8565",
+      "word": "samut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for samut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:samut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:c9ebd45a92f0b19f8565:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:cab6c61905792a1acf5a",
+      "word": "mißmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for mißmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:missmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:cab6c61905792a1acf5a:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:cacbdbfa859915fc7f37",
+      "word": "vermut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for vermut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:vermut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:cacbdbfa859915fc7f37:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:d6b3484ef6730abe064d",
+      "word": "taubenmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for taubenmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:tauben",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:d6b3484ef6730abe064d:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:dc5eb175120a01d4abc1",
+      "word": "alamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for alamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:alamut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:dc5eb175120a01d4abc1:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e039127a82bf7f2a1535",
+      "word": "wundermammut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for wundermammut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "ety:b7d8ccb9dc9a",
+        "surface:de:wunderm",
+        "ety:de1c5d75067b"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:e039127a82bf7f2a1535:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e283fbd3c31b14bd95fa",
+      "word": "belomut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for belomut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:belo",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:e283fbd3c31b14bd95fa:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:e754065a321597e587f2",
+      "word": "gratismut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for gratismut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:gratis",
+        "surface:de:smut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:e754065a321597e587f2:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:ef0d21620dfc9aa24a3f",
+      "word": "heidenmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for heidenmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "ety:9f6c131cf41a",
+        "surface:de:den",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:ef0d21620dfc9aa24a3f:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f53d26c3f7427748b0d4",
+      "word": "unmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for unmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:unmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:f53d26c3f7427748b0d4:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:f6a72725a06093ed0905",
+      "word": "gleichmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for gleichmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:gleichmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:f6a72725a06093ed0905:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:fb30c575e00e94e9d9e9",
+      "word": "tinghamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for tinghamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:gha",
+        "surface:de:mut",
+        "surface:de:ting"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:fb30c575e00e94e9d9e9:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:fb58d14172a99e765611",
+      "word": "lamut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for lamut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:lamut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:fb58d14172a99e765611:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:fbd5c4c497788dd9f22a",
+      "word": "vollanmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for vollanmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:lan",
+        "surface:de:anmut",
+        "ety:21c9f1afca53"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:fbd5c4c497788dd9f22a:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:fd702cd1557bdf56d01e",
+      "word": "mahmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for mahmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:mah",
+        "surface:de:mut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:fd702cd1557bdf56d01e:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    },
+    {
+      "root": "mut",
+      "language": "de",
+      "lemma_id": "lemma:fdafff66a0d2d92d576d",
+      "word": "helmut",
+      "status": "pending_review",
+      "reason": "Unconfirmed de lexical identity or grammar for helmut; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+      "source_family_ids": [
+        "surface:de:helmut"
+      ],
+      "historical_status": "uncertain",
+      "canonical_root": "mut",
+      "queue": "creat_mut",
+      "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+      "review_unit": "unresolved:de:lemma:fdafff66a0d2d92d576d:mut",
+      "head_recognition": "requires_lexical_head_recognition"
+    }
+  ]
+}

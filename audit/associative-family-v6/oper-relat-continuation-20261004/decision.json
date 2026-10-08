@@ -1,0 +1,269 @@
+{
+  "schema_version": 6,
+  "stage": "oper-relat-independent-finite-continuation-20261004",
+  "source_head": "2351a07722d88faa82dc05049144c567d43923c8",
+  "production_enabled": false,
+  "binding_authorized": true,
+  "accepted_membership_authorized": true,
+  "predecessor_review_version": 16,
+  "predecessor_review_sha256": "2bad86c05923845d1dbd9f77c1a23c0f5cb1d5981d036b3d0b713e6b67273cb4",
+  "source_queue": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+  "source_queue_sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+  "groups": [
+    {
+      "language": "de",
+      "root": "oper",
+      "normalized_head": "oper",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "head_scope": "finite_whole_lexeme_and_compound_components",
+      "status": "accepted",
+      "forms": [
+        "oper"
+      ],
+      "component_stems": [
+        "oper"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Oper",
+        "https://www.duden.de/rechtschreibung/Opus",
+        "https://www.duden.de/rechtschreibung/operieren",
+        "https://www.duden.de/rechtschreibung/Kammeroper",
+        "https://www.duden.de/rechtschreibung/Rockoper",
+        "https://www.duden.de/rechtschreibung/Maerchenoper",
+        "https://www.oper.koeln/kinderoper-koeln"
+      ],
+      "reason": "Four independently attested complete Oper components only: kammer+oper, rock+oper, märchen+oper, kinder+oper. Duden establishes the musical work/performance/institution base and opera/oper lexical work lineage; each selected compound independently preserves that component for family:oper. Twenty-two other historical Oper proposals remain pending. No inference from names, OCR fragments, trooper, translations or shared distant ancestors. No whole-compound POS claim.",
+      "records": [
+        {
+          "root": "oper",
+          "language": "de",
+          "lemma_id": "lemma:29aa53e73d1ed76350cc",
+          "word": "kammeroper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token kammeroper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:de:kammerop",
+            "surface:de:roper"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "oper",
+          "queue": "oper",
+          "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:29aa53e73d1ed76350cc:oper",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kammer",
+            "component": "oper",
+            "after": "",
+            "head": "oper",
+            "boundary_proof": "Dictionary word division and meaning establish kammer + oper, an opera for a smaller ensemble.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Kammeroper"
+            ]
+          }
+        },
+        {
+          "root": "oper",
+          "language": "de",
+          "lemma_id": "lemma:439d55012f1ad7630192",
+          "word": "rockoper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token rockoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:de:koper",
+            "surface:de:rockop"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "oper",
+          "queue": "oper",
+          "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:439d55012f1ad7630192:oper",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "rock",
+            "component": "oper",
+            "after": "",
+            "head": "oper",
+            "boundary_proof": "Dictionary word division and meaning establish rock + oper, an opera using rock music.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Rockoper"
+            ]
+          }
+        },
+        {
+          "root": "oper",
+          "language": "de",
+          "lemma_id": "lemma:6fb26f28a902715a27dd",
+          "word": "märchenoper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token märchenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:de:marchenop",
+            "ety:7ce25eac2fe7"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "oper",
+          "queue": "oper",
+          "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:6fb26f28a902715a27dd:oper",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "märchen",
+            "component": "oper",
+            "after": "",
+            "head": "oper",
+            "boundary_proof": "Dictionary word division and meaning establish märchen + oper, an opera with fairy-tale plot.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Maerchenoper"
+            ]
+          }
+        },
+        {
+          "root": "oper",
+          "language": "de",
+          "lemma_id": "lemma:71a591b91e247bfa6ef7",
+          "word": "kinderoper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token kinderoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:de:kinderoper"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "oper",
+          "queue": "oper",
+          "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:71a591b91e247bfa6ef7:oper",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kinder",
+            "component": "oper",
+            "after": "",
+            "head": "oper",
+            "boundary_proof": "The producing opera institution establishes Kinderoper as opera for children and describes the productions.",
+            "source_references": [
+              "https://www.oper.koeln/kinderoper-koeln"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "oper",
+      "normalized_head": "seifenoper",
+      "sense": "broadcast_serial_metaphorical_opera_compound",
+      "head_scope": "finite_whole_lexeme_and_compound_components",
+      "status": "accepted",
+      "forms": [
+        "seifenoper"
+      ],
+      "component_stems": [
+        "seifenoper"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Seifenoper",
+        "https://www.duden.de/rechtschreibung/Oper"
+      ],
+      "reason": "Only the whole German noun Seifenoper is admitted. Duden establishes its identity, meaning and internal Seifen+Oper structure. The independent family:oper decision follows its preserved German Oper lexical component, not translation of soap opera. Four historical compounds remain pending without independently proved boundaries.",
+      "records": [
+        {
+          "root": "oper",
+          "language": "de",
+          "lemma_id": "lemma:c1fbe90f618ede0faf30",
+          "word": "seifenoper",
+          "status": "pending_review",
+          "reason": "Unconfirmed lexical identity, spelling or compound boundary for de token seifenoper; possible proper name, foreign quotation, malformed inflection or phrase fusion. Withheld pending context/lexical evidence.",
+          "source_family_ids": [
+            "surface:de:seifenoper"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "oper",
+          "queue": "oper",
+          "source": "audit/associative-family-v5/operation-mutation-independent-heads-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:c1fbe90f618ede0faf30:oper",
+          "head_recognition": "requires_lexical_head_recognition"
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "relat",
+      "normalized_head": "relativität",
+      "sense": "relativity_nominal_lexical_base",
+      "head_scope": "finite_compound_component",
+      "status": "accepted",
+      "forms": [
+        "relativität"
+      ],
+      "component_stems": [
+        "relativität"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Relativitaet",
+        "https://www.duden.de/rechtschreibung/relativ",
+        "https://scilogs.spektrum.de/relativ-einfach/relativitaetstheorie-antisemitismus/"
+      ],
+      "reason": "Only relativitätsjude is admitted for its complete Relativität component. Original historical analysis and primary newspaper PDF page 3 independently attest the word and relativity context. Duden establishes the nominal base and the documented relativ/relatum lexical route for the independent family:relat decision. Linking s and the historical hostile label remain outside the component. No whole-compound POS or token-sense claim. Seventeen other records in the older current frame remain pending.",
+      "records": [
+        {
+          "root": "relat",
+          "language": "de",
+          "lemma_id": "lemma:9548f77ea1cdb5786d98",
+          "word": "relativitätsjude",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for relativitätsjude: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "ety:0b0ceb1e556e",
+            "ety:29e80c739eb2",
+            "surface:de:relativitatsjud"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "relat",
+          "queue": "relat",
+          "source": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:9548f77ea1cdb5786d98:relat",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "relativität",
+            "after": "sjude",
+            "head": "relativität",
+            "boundary_proof": "Original historical analysis identifies the Einstein epithet and relativity context. Primary newspaper PDF page 3 independently attests the exact word. The boundary is relativität + linking s + jude; only the complete noun component is bound.",
+            "source_references": [
+              "https://scilogs.spektrum.de/relativ-einfach/relativitaetstheorie-antisemitismus/"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "withheld_lemma_ids": [
+    "lemma:04d6fad6ae306cb87a17",
+    "lemma:0c67285b75ee670f59bc",
+    "lemma:16d08160d34ac53048ab",
+    "lemma:1a06aff9ead799d46dcc",
+    "lemma:1c807a4e340c2b8c1cb9",
+    "lemma:2665eed75952649a3fcd",
+    "lemma:2c2291e9247ec39c7cd8",
+    "lemma:2f7ed403edcecba505fc",
+    "lemma:3273c9080d5a8b5d02af",
+    "lemma:33bfb54c3c18f6c15808",
+    "lemma:61c26c1c1f450c44fd1d",
+    "lemma:6a12c35807b0965f0936",
+    "lemma:86dd47c8f141ade2e272",
+    "lemma:8d882e7ecd7d2b4ce108",
+    "lemma:963ba74b5215219f5417",
+    "lemma:b494e40e3da2034e2aac",
+    "lemma:c86b215d4f19d43b7258",
+    "lemma:cedf7ac252d2ca68d060",
+    "lemma:d34e01a21f934050d84b",
+    "lemma:d9c1734c335b7d2ad604",
+    "lemma:f88a55f3e965a7b00182",
+    "lemma:3657074683d475704778",
+    "lemma:06f7d02708868ac10352",
+    "lemma:43c61cff832af9b5e771",
+    "lemma:6e27dabadb206d854775",
+    "lemma:9e048c09249683987e95"
+  ],
+  "exact_scope": "Six finite links, three new heads and three independently assessed accepted family edges. Existing identities and links remain unchanged."
+}

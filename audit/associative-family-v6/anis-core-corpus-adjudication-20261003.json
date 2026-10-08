@@ -1,0 +1,1107 @@
+{
+  "schema_version": 6,
+  "stage": "anis-core-corpus-adjudication-20261003",
+  "source_head": "597794f2e22a413724a7363cc8ce645feeb45636",
+  "production_enabled": false,
+  "promotion_status": "deferred_insufficient_corpus_sense_evidence",
+  "binding_authorized": false,
+  "accepted_membership_authorized": false,
+  "candidate_packet": "candidate-root:13d983a02dd5164ee6e91ff5",
+  "canonical_decision": {
+    "canonical": "anis",
+    "status": "accepted_linguistic_boundary_research_only",
+    "reason": "Preserves the complete shared botanical nominal base; ani strips a lexical s, anic is an Italian stem and anise an English surface. No general substring or cross-language reflex is authorized.",
+    "evidence": [
+      "https://www.merriam-webster.com/dictionary/anise",
+      "https://www.duden.de/rechtschreibung/Anis",
+      "https://www.dictionnaire-academie.fr/article/A9A1808",
+      "https://dle.rae.es/an%C3%ADs",
+      "https://www.treccani.it/vocabolario/anice/",
+      "https://lexicography.online/etymology/vasmer/а/анис"
+    ],
+    "rejected_canonicals": [
+      "ani",
+      "anic",
+      "anise"
+    ],
+    "establishes_catalog_family": false
+  },
+  "core_record_decisions": [
+    {
+      "language": "en",
+      "lemma_id": "lemma:ca97144c9bc0ac6a1986",
+      "word": "anise",
+      "dictionary_identity_status": "proved_lexical_noun_history",
+      "source_scan": [
+        {
+          "path": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "51637",
+              "source_entry": {
+                "anise": 0.156583
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anise"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "31134",
+              "source_entry": {
+                "anise": 0.302944
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anise"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "31442",
+              "source_entry": {
+                "anise": 0.295279
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anise"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "46482",
+              "source_entry": {
+                "anise": 0.342663
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anise"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        }
+      ],
+      "corpus_binding_status": "deferred",
+      "reason": "Available immutable frequency rows retain rank, spelling and aggregate frequency only. They cannot partition botanical lexical use, lexical metonymy and possible unrelated proper-name use. This is insufficient disambiguation evidence, not a claim that every row actually contains names. No occurrence proportions or POS are invented.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "form": "anise",
+        "status": "dictionary_supported_research_only",
+        "general_family_realization": false
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:206d965d8055251fd5fd",
+      "word": "anis",
+      "dictionary_identity_status": "proved_lexical_noun_history",
+      "source_scan": [
+        {
+          "path": "associativvordes/frequency lists/de/deu_lemma_rank_word_ipm_corrected.json",
+          "matches": [
+            {
+              "source_rank_key": "49210",
+              "source_entry": {
+                "anis": 0.621627
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anis"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/de/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "44165",
+              "source_entry": {
+                "anis": 0.341167
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anis"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/de/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "41198",
+              "source_entry": {
+                "anis": 0.940409
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anis"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        }
+      ],
+      "corpus_binding_status": "deferred",
+      "reason": "Available immutable frequency rows retain rank, spelling and aggregate frequency only. They cannot partition botanical lexical use, lexical metonymy and possible unrelated proper-name use. This is insufficient disambiguation evidence, not a claim that every row actually contains names. No occurrence proportions or POS are invented.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "form": "anis",
+        "status": "dictionary_supported_research_only",
+        "general_family_realization": false
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:e3b7aad4289f896fbd19",
+      "word": "anis",
+      "dictionary_identity_status": "proved_lexical_noun_history",
+      "source_scan": [
+        {
+          "path": "associativvordes/frequency lists/fr/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "27237",
+              "source_entry": {
+                "anis": 0.444781
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anis"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/fr/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "16899",
+              "source_entry": {
+                "anis": 2.046974
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anis"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        }
+      ],
+      "corpus_binding_status": "deferred",
+      "reason": "Available immutable frequency rows retain rank, spelling and aggregate frequency only. They cannot partition botanical lexical use, lexical metonymy and possible unrelated proper-name use. This is insufficient disambiguation evidence, not a claim that every row actually contains names. No occurrence proportions or POS are invented.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "form": "anis",
+        "status": "dictionary_supported_research_only",
+        "general_family_realization": false
+      }
+    },
+    {
+      "language": "es",
+      "lemma_id": "lemma:cc3ebbe90b986c2bf625",
+      "word": "anís",
+      "dictionary_identity_status": "proved_lexical_noun_history",
+      "source_scan": [
+        {
+          "path": "associativvordes/frequency lists/es/es_wordlist.lemmatized_stanza_ipm6.json",
+          "matches": [],
+          "retained_annotation_fields": [],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "23800",
+              "source_entry": {
+                "anís": 0.684723
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anís"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "22119",
+              "source_entry": {
+                "anís": 0.775241
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anís"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        }
+      ],
+      "corpus_binding_status": "deferred",
+      "reason": "Available immutable frequency rows retain rank, spelling and aggregate frequency only. They cannot partition botanical lexical use, lexical metonymy and possible unrelated proper-name use. This is insufficient disambiguation evidence, not a claim that every row actually contains names. No occurrence proportions or POS are invented.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "form": "anís",
+        "status": "dictionary_supported_research_only",
+        "general_family_realization": false
+      }
+    },
+    {
+      "language": "it",
+      "lemma_id": "lemma:a21752adeb1d87c8039c",
+      "word": "anice",
+      "dictionary_identity_status": "proved_lexical_noun_history",
+      "source_scan": [
+        {
+          "path": "associativvordes/frequency lists/it/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "32191",
+              "source_entry": {
+                "anice": 0.456632
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anice"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/it/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "matches": [
+            {
+              "source_rank_key": "31600",
+              "source_entry": {
+                "anice": 0.472159
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anice"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/it/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "36687",
+              "source_entry": {
+                "anice": 0.53359
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "anice"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        }
+      ],
+      "corpus_binding_status": "deferred",
+      "reason": "Available immutable frequency rows retain rank, spelling and aggregate frequency only. They cannot partition botanical lexical use, lexical metonymy and possible unrelated proper-name use. This is insufficient disambiguation evidence, not a claim that every row actually contains names. No occurrence proportions or POS are invented.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "form": "anice",
+        "status": "dictionary_supported_research_only",
+        "general_family_realization": false
+      }
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:4c62cdc8398fb78e160e",
+      "word": "анис",
+      "dictionary_identity_status": "proved_lexical_noun_history",
+      "source_scan": [
+        {
+          "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "36153",
+              "source_entry": {
+                "анис": 0.457683
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "анис"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "45397",
+              "source_entry": {
+                "анис": 0.607086
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "анис"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        },
+        {
+          "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+          "matches": [
+            {
+              "source_rank_key": "44209",
+              "source_entry": {
+                "анис": 0.725006
+              }
+            }
+          ],
+          "retained_annotation_fields": [
+            "анис"
+          ],
+          "contains_token_context_or_pos": false,
+          "original_casing_is_not_available_in_selected_row": true
+        }
+      ],
+      "corpus_binding_status": "deferred",
+      "reason": "Available immutable frequency rows retain rank, spelling and aggregate frequency only. They cannot partition botanical lexical use, lexical metonymy and possible unrelated proper-name use. This is insufficient disambiguation evidence, not a claim that every row actually contains names. No occurrence proportions or POS are invented.",
+      "national_form_decision": {
+        "type": "whole_lexical_form",
+        "form": "анис",
+        "status": "dictionary_supported_research_only",
+        "general_family_realization": false
+      }
+    }
+  ],
+  "italian_boundary": {
+    "lexical_form": "anice",
+    "possible_stem": "anic",
+    "stem_authorization": "withheld_no_productive_scope_proved",
+    "s_to_c_generalization_authorized": false,
+    "only_whole_lexical_form_supported": true
+  },
+  "scientific_aniso_branch": "unrelated_and_excluded_from_botanical_candidate",
+  "input_sha256": {
+    "audit/associative-family-v6/anis-promotion-research-20261003.json": "ff60347252b5e044ef2422fc8f46251d7a1a2e806ba92db0c256a18bec496e4f",
+    "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json": "2691268ec8a894bbcd6409a71a042e6ae5341b0f775272b321f47d69c4a49d1f",
+    "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "e196731638caafd1dc26c1cdfc14b7042204ba7b9bbf075a99c9b1c05679b89d",
+    "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "f2457a009c364a82bc6e43b30d591e5fd99f43ef8a763ed7fdba5a9eab7abc50",
+    "associativvordes/frequency lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json": "4535e7a9050a8dfa9e858b3c101cef994fecd0d57ab5d66984fea71de3d1da5b",
+    "associativvordes/frequency lists/de/deu_lemma_rank_word_ipm_corrected.json": "ff4cc4c96a64f4b66496b028c723527b6d54f749be30c46b8370af3425f7632a",
+    "associativvordes/frequency lists/de/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "9a316d6dbba603f5765ff05f088a553aad4a15bd68a9fb70191290ff6e3278d2",
+    "associativvordes/frequency lists/de/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json": "3f2ff24991667137c9b7b656d1572c435e236b15e900b9bd3aefbf36265bd289",
+    "associativvordes/frequency lists/fr/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "d93b12033496e2db2f89e67277722ecd9d9f3fca90c83e3fa845142a40ddc9b8",
+    "associativvordes/frequency lists/fr/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json": "09de70450141e70237837a9bf4df91b18b4e3e22322c61e96bcdab31e5064f2c",
+    "associativvordes/frequency lists/es/es_wordlist.lemmatized_stanza_ipm6.json": "dadd74f3d1f788a594ba92d304445f1ee0ddec1b04f0cdd882f4cdda7afa95e2",
+    "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "b017fcceac5f7eaac6f58ddb765414cbf31ab75e42f2501f8ceb4d8b24a2832d",
+    "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "81cce70f6e084a18e5501ccfd49f558e1320932964e528c66843d62e198b0fca",
+    "associativvordes/frequency lists/it/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "17f53a140d7a59ba3352122437d64e0cef6d009c6ea59d6c246340a957c193f1",
+    "associativvordes/frequency lists/it/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json": "0f651600bb46ec9a86fea54cdbc5bd661d1077bb6b75197f70990db059557418",
+    "associativvordes/frequency lists/it/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json": "aa1dc78b2bcf1eb34c47c34a47c315933b2ea914e4059281321efdfb531493a1",
+    "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json": "2a63796590a682ec3effa86f8e56b811253fa1a907a4e01fa3796337ebd67733",
+    "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json": "c832651af893bba8ec251af4c18991c2da609850590d66bf8025d077b48911c2",
+    "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json": "3ef3d1d8240c41dd970bc0bbbad4783cfcc29d3ac37ca223223d7418ce988369"
+  },
+  "negative_controls": [
+    {
+      "language": "en",
+      "word": "americanise",
+      "lemma_id": "lemma:2b0db961834dc9c6f249",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:2b0db961834dc9c6f249",
+        "word": "americanise",
+        "normalized": "americanise",
+        "search_form": "americanise",
+        "rank": 51629,
+        "frequency_score": 1.7724865246710504,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.01309,
+              0.015922
+            ],
+            "category_ipm": 0.014505999999999998,
+            "category_score": 0.2523482785792403
+          },
+          "normative": {
+            "ipm_values": [
+              0.156583
+            ],
+            "category_ipm": 0.156583,
+            "category_score": 2.5489251413098413
+          },
+          "web": {
+            "ipm_values": [
+              0.154424
+            ],
+            "category_ipm": 0.154424,
+            "category_score": 2.516186154124069
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 0.156583
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.01309
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.015922
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.154424
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anise",
+            "canonical_candidate": "anise",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "americanise",
+                  "anise",
+                  "anise"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "f3e307ddc1af00807522ed5138360432007699b6c3e147f297ce5199b7bfb6ea"
+      }
+    },
+    {
+      "language": "en",
+      "word": "balkanise",
+      "lemma_id": "lemma:7b0cc3ca7f7a6b530b74",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:7b0cc3ca7f7a6b530b74",
+        "word": "balkanise",
+        "normalized": "balkanise",
+        "search_form": "balkanise",
+        "rank": 539880,
+        "frequency_score": 0.025336011347990555,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.001447
+            ],
+            "category_ipm": 0.001447,
+            "category_score": 0.025336011347990555
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.001447
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anise",
+            "canonical_candidate": "anise",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "balkanise",
+                  "anise",
+                  "anise"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "bd5347d9de474b9badef41b036717db71c281514004c48832c2de43825a77972"
+      }
+    },
+    {
+      "language": "de",
+      "word": "afghanis",
+      "lemma_id": "lemma:b29becff655ffdf4b8f0",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:b29becff655ffdf4b8f0",
+        "word": "afghanis",
+        "normalized": "afghanis",
+        "search_form": "afghanis",
+        "rank": 135917,
+        "frequency_score": 0.8798649537168144,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.051497
+            ],
+            "category_ipm": 0.051497,
+            "category_score": 0.8798649537168144
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.051497
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anis",
+            "canonical_candidate": "anis",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "afghanis",
+                  "anis",
+                  "anis"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "1dd87664d88e9b0923514073efb05a221129a96edae6ed7a7aaf12dd7ad1425c"
+      }
+    },
+    {
+      "language": "de",
+      "word": "afghanistan-abzug",
+      "lemma_id": "lemma:5cf84594ab9dd7c3db31",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:5cf84594ab9dd7c3db31",
+        "word": "afghanistan-abzug",
+        "normalized": "afghanistan-abzug",
+        "search_form": "afghanistan-abzug",
+        "rank": 119530,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anis",
+            "canonical_candidate": "anis",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "afghanistan-abzug",
+                  "anis",
+                  "anis"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "75f805701c9e69afa1e1e46dcb114893b58d6804ad64dde7ff340e7f03d84e9f"
+      }
+    },
+    {
+      "language": "fr",
+      "word": "anisotropy",
+      "lemma_id": "lemma:3a681a4141d4ffb5c04b",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unequal anis-/aniso- scientific homonym",
+      "source_record": {
+        "lemma_id": "lemma:3a681a4141d4ffb5c04b",
+        "word": "anisotropy",
+        "normalized": "anisotropy",
+        "search_form": "anisotropy",
+        "rank": 288523,
+        "frequency_score": 0.06031194627701871,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.003448
+            ],
+            "category_ipm": 0.003448,
+            "category_score": 0.06031194627701871
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.003448
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "ani",
+            "canonical_candidate": "ani",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "anisotropy",
+                  "ani",
+                  "ani"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "08ff55d8325c9b7d34630bd9bcc56528fe784ec7389ea1631dcd4472bdabd26d"
+      }
+    },
+    {
+      "language": "fr",
+      "word": "mechanicsburg",
+      "lemma_id": "lemma:8e1321165fe11dd2c1d8",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:8e1321165fe11dd2c1d8",
+        "word": "mechanicsburg",
+        "normalized": "mechanicsburg",
+        "search_form": "mechanicsburg",
+        "rank": 197196,
+        "frequency_score": 0.18031659537310277,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.010344
+            ],
+            "category_ipm": 0.010344,
+            "category_score": 0.18031659537310277
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.010344
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "ani",
+            "canonical_candidate": "ani",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "mechanicsburg",
+                  "ani",
+                  "ani"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "e8a25cf7a9b6738b856e770ace17dab291fc00f88ccd4297ed5cd214a36f9d5c"
+      }
+    },
+    {
+      "language": "es",
+      "word": "americanis",
+      "lemma_id": "lemma:aec1023e39f65ad150d4",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:aec1023e39f65ad150d4",
+        "word": "americanis",
+        "normalized": "americanis",
+        "search_form": "americanis",
+        "rank": 423373,
+        "frequency_score": 0.04909788668913623,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.002806
+            ],
+            "category_ipm": 0.002806,
+            "category_score": 0.04909788668913623
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.002806
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anis",
+            "canonical_candidate": "anis",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "americanis",
+                  "anis",
+                  "anis"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/es/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "3f66929f42686f8901220dc8b0c7257c4c5a463ecb6b28927f40167db67f0613"
+      }
+    },
+    {
+      "language": "es",
+      "word": "anisotropy",
+      "lemma_id": "lemma:cc90848a96c17b480392",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unequal anis-/aniso- scientific homonym",
+      "source_record": {
+        "lemma_id": "lemma:cc90848a96c17b480392",
+        "word": "anisotropy",
+        "normalized": "anisotropy",
+        "search_form": "anisotropy",
+        "rank": 216745,
+        "frequency_score": 0.20103742954726886,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.011225,
+              0.011854
+            ],
+            "category_ipm": 0.011539500000000001,
+            "category_score": 0.20103742954726886
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.011225
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.011854
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anis",
+            "canonical_candidate": "anis",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "anisotropy",
+                  "anis",
+                  "anis"
+                ],
+                "confidence": 0.81
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/es/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "20e00770c25a61f8f3a1f7bd5c9951697c249846c094ba9e4d54519f92bdae42"
+      }
+    },
+    {
+      "language": "it",
+      "word": "humanic",
+      "lemma_id": "lemma:212d61af03a578d3800f",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:212d61af03a578d3800f",
+        "word": "humanic",
+        "normalized": "humanic",
+        "search_form": "humanic",
+        "rank": 108732,
+        "frequency_score": 0.6544336764108265,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.042977,
+              0.033134
+            ],
+            "category_ipm": 0.0380555,
+            "category_score": 0.6544336764108265
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.042977
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.033134
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anic",
+            "canonical_candidate": "anic",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "humanic",
+                  "anic",
+                  "anic"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/it/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "445a0e60381c6f9967e1e4441e59dfdc8f37989d85d083feb2cb13ef8aa5c08f"
+      }
+    },
+    {
+      "language": "it",
+      "word": "mechanic",
+      "lemma_id": "lemma:ff46d3782ab357d967f5",
+      "status": "excluded_from_botanical_candidate_frame",
+      "reason": "Unrelated spelling contamination; no botanical lexical head or attested formal continuity",
+      "source_record": {
+        "lemma_id": "lemma:ff46d3782ab357d967f5",
+        "word": "mechanic",
+        "normalized": "mechanic",
+        "search_form": "mechanic",
+        "rank": 110839,
+        "frequency_score": 0.5881995422297859,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.026861,
+              0.041417
+            ],
+            "category_ipm": 0.034139,
+            "category_score": 0.5881995422297859
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.026861
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.041417
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "anic",
+            "canonical_candidate": "anic",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "mechanic",
+                  "anic",
+                  "anic"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/it/1e.json.gz",
+        "family_id": "ety:87f837c8c242",
+        "record_sha256": "246193b2516e563aa31be76139ef46fd340b6f1abb432dabcb5a4482674bbefd"
+      }
+    }
+  ],
+  "pool_policy": {
+    "unique_identities": 801,
+    "source_route_incidences": 1602,
+    "core_identities": 6,
+    "outside_core": 795,
+    "whole_container_import_authorized": false,
+    "outside_core_blanket_verdict": null
+  },
+  "promotion_count_change": 0,
+  "membership_change": 0,
+  "known_queue_resolutions": 0,
+  "next_evidence_required": [
+    "Sense-tagged or contextual source evidence for ambiguous spellings.",
+    "Independent finite botanical derivative/compound IDs whose botanical component survives all supported readings."
+  ],
+  "no_repeated_dictionary_research": true
+}

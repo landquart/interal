@@ -1,0 +1,199 @@
+[
+  {
+    "language": "it",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:140c65ef915a2840f162",
+    "word": "regolite",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/it/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "a677fb529d495efc8f24f02aae2735bc52bda52cd24b6af5255bb000aeb86a4f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/it/95.json.gz",
+        "family_id": "surface:it:ite",
+        "record_sha256": "0ba06c5726ae7ca3fc74a98b3e4b130db16e3d3c8b5a44691a47335a936109cc"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/it/a5.json.gz",
+        "family_id": "surface:it:regolit",
+        "record_sha256": "040fd0ca9b3788287de184eca851514206add324d87a1a21af912d0bfa94e78c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/it/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "c0f549cbb4d3b9c25164ac59defaf5b2df10e351def74cbeb59bbfd69abc1fcb"
+      },
+      {
+        "path": "associativvordes/frequency lists/it/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "e5288c057d8adaa5a3b0a601bb79e96c26e1975930c2d1f01122dfcd804193d1"
+      }
+    ],
+    "lexical_analysis": "Greek rhegos + lite, not Italian regol- from regula.",
+    "head": null,
+    "component": {
+      "form": "regol",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ite",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "it",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:140c65ef915a2840f162",
+      "word": "regolite",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.treccani.it/vocabolario/regolite/"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "it-regolite"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.treccani.it/vocabolario/regolite/",
+        "finding": "Greek rhegos plus -lite following English regolith; not a rule-family derivative.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Greek rhegos + lite, not Italian regol- from regula.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "removed_historical_excluded",
+    "current_membership": null,
+    "historical_membership": {
+      "language": "it",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:140c65ef915a2840f162",
+      "word": "regolite",
+      "head_id": "head:legacy:it:140c65ef915a2840f162",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/it/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "a677fb529d495efc8f24f02aae2735bc52bda52cd24b6af5255bb000aeb86a4f"
+          },
+          "lemma_id": "lemma:140c65ef915a2840f162"
+        }
+      ]
+    },
+    "original_source_record": {
+      "lemma_id": "lemma:140c65ef915a2840f162",
+      "word": "regolite",
+      "normalized": "regolite",
+      "search_form": "regolite",
+      "rank": 160853,
+      "frequency_score": 0.27341542882692055,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.010744,
+            0.020709
+          ],
+          "category_ipm": 0.0157265,
+          "category_score": 0.27341542882692055
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.010744
+        },
+        {
+          "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.020709
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "regol",
+          "canonical_candidate": "regol",
+          "confidence": 1,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "manually_verified",
+              "path": [
+                "regolite",
+                "regol",
+                "regol"
+              ],
+              "confidence": 1
+            },
+            {
+              "type": "verified_seed_alias",
+              "source": "methodology_control_seed",
+              "path": [
+                "it",
+                "regol",
+                "family:regul"
+              ],
+              "confidence": 1
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/it/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "c0f549cbb4d3b9c25164ac59defaf5b2df10e351def74cbeb59bbfd69abc1fcb",
+        "record": {
+          "original": "regolite",
+          "normalized": "regolite",
+          "search_form": "regolite",
+          "lemma": "regolite",
+          "frequency_lookup_key": "regolite",
+          "ipm": 0.010744,
+          "rank": 242517,
+          "source": "associativvordes/frequency lists/it/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/it/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "e5288c057d8adaa5a3b0a601bb79e96c26e1975930c2d1f01122dfcd804193d1",
+        "record": {
+          "original": "regolite",
+          "normalized": "regolite",
+          "search_form": "regolite",
+          "lemma": "regolite",
+          "frequency_lookup_key": "regolite",
+          "ipm": 0.020709,
+          "rank": 160853,
+          "source": "associativvordes/frequency lists/it/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  }
+]

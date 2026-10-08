@@ -1,0 +1,1280 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "id": "oper-finite-extension-prompt05-recovery-20261004",
+  "operation": "extend_links",
+  "head_id": "head:de:05a3d386f583b0c178afa198",
+  "family_id": "family:oper",
+  "identity": {
+    "language": "de",
+    "normalized_head": "oper",
+    "sense": "musical_work_performance_institution_common_nominal_base"
+  },
+  "predecessor": {
+    "head": {
+      "id": "head:de:05a3d386f583b0c178afa198",
+      "language": "de",
+      "normalized_head": "oper",
+      "identity_kind": "lexical_head",
+      "sense": "musical_work_performance_institution_common_nominal_base",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:05a3d386f583b0c178afa198",
+          "language": "de",
+          "head": "oper",
+          "sense": "musical_work_performance_institution_common_nominal_base",
+          "status": "accepted",
+          "evidence_kind": "lexical_identity",
+          "finding": "Four independently attested complete Oper components only: kammer+oper, rock+oper, märchen+oper, kinder+oper. Duden establishes the musical work/performance/institution base and opera/oper lexical work lineage; each selected compound independently preserves that component for family:oper. Twenty-two other historical Oper proposals remain pending. No inference from names, OCR fragments, trooper, translations or shared distant ancestors. No whole-compound POS claim.",
+          "sources": [
+            "https://www.duden.de/rechtschreibung/Oper",
+            "https://www.duden.de/rechtschreibung/Opus",
+            "https://www.duden.de/rechtschreibung/operieren",
+            "https://www.duden.de/rechtschreibung/Kammeroper",
+            "https://www.duden.de/rechtschreibung/Rockoper",
+            "https://www.duden.de/rechtschreibung/Maerchenoper",
+            "https://www.oper.koeln/kinderoper-koeln"
+          ],
+          "establishes_family_membership": false,
+          "decision_version": 1
+        },
+        {
+          "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+          "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+          "lemma_id": "lemma:29aa53e73d1ed76350cc",
+          "word": "kammeroper"
+        },
+        {
+          "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+          "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+          "lemma_id": "lemma:29aa53e73d1ed76350cc",
+          "word": "kammeroper"
+        }
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "62e878ba379c935d4fbd89b31af41253bb66dbedf57fa103092775f07b272720",
+    "edge": {
+      "fact_id": "lexical-fact:05a3d386f583b0c178afa198",
+      "family_id": "family:oper",
+      "status": "accepted",
+      "expected_version": 0,
+      "lemma_ids": [
+        "lemma:29aa53e73d1ed76350cc",
+        "lemma:439d55012f1ad7630192",
+        "lemma:6fb26f28a902715a27dd",
+        "lemma:71a591b91e247bfa6ef7"
+      ],
+      "morphology_policy": "finite_explicit_lemma_ids",
+      "reason": "Four independently attested complete Oper components only: kammer+oper, rock+oper, märchen+oper, kinder+oper. Duden establishes the musical work/performance/institution base and opera/oper lexical work lineage; each selected compound independently preserves that component for family:oper. Twenty-two other historical Oper proposals remain pending. No inference from names, OCR fragments, trooper, translations or shared distant ancestors. No whole-compound POS claim.",
+      "evidence": [
+        {
+          "source": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+          "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f"
+        },
+        {
+          "source": "https://www.duden.de/rechtschreibung/Oper"
+        },
+        {
+          "source": "https://www.duden.de/rechtschreibung/Opus"
+        },
+        {
+          "source": "https://www.duden.de/rechtschreibung/operieren"
+        },
+        {
+          "source": "https://www.duden.de/rechtschreibung/Kammeroper"
+        },
+        {
+          "source": "https://www.duden.de/rechtschreibung/Rockoper"
+        },
+        {
+          "source": "https://www.duden.de/rechtschreibung/Maerchenoper"
+        },
+        {
+          "source": "https://www.oper.koeln/kinderoper-koeln"
+        }
+      ],
+      "decision_version": 1,
+      "review_stage": "oper-relat-independent-finite-continuation-20261004",
+      "head_id": "head:de:05a3d386f583b0c178afa198",
+      "version": 1,
+      "scope": "finite_evidenced_links"
+    },
+    "edge_version": 1,
+    "edge_sha256": "e14102078142f39ba2aae1670ac222843a22743205e1daadde22c2b904c1d81f",
+    "scope_sha256": "b1154a798ffc289bec6d4eb86b8831a0fb20a88bc61db673c8c826e79e955511"
+  },
+  "binding_authorized": true,
+  "review_authorized": true,
+  "accepted_membership_authorized": true,
+  "reason": "Reuse established Oper lexical identity; each new exact component independently attested as musical work or institution, with fresh family:oper edge review. Existing four Oper bindings stay in the versioned finite scope; remaining proposals withheld.",
+  "sources": [
+    "https://www.duden.de/rechtschreibung/Oper",
+    "https://www.duden.de/rechtschreibung/Barockoper",
+    "https://www.semperoper.de/die-semperoper/semperoper-dresden/geschichte-der-semperoper",
+    "https://www.salzburgerfestspiele.at/magazin/mozart-begegnet-seinen-figuren-mit-viel-liebe",
+    "https://www.staatsoper.de/biographien/berinde-maria-michaela"
+  ],
+  "evidence": [
+    {
+      "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+      "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+      "finding": "Reuse established Oper lexical identity; each new exact component independently attested as musical work or institution, with fresh family:oper edge review. Existing four Oper bindings stay in the versioned finite scope; remaining proposals withheld."
+    }
+  ],
+  "finite_forms": [
+    "oper"
+  ],
+  "records": [
+    {
+      "language": "de",
+      "lemma_id": "lemma:29aa53e73d1ed76350cc",
+      "word": "kammeroper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/c7.json.gz",
+        "family_id": "surface:de:kammerop",
+        "record_sha256": "17d851419987a4bbd9364ad1e299cda16f6e2c6f88187f4adde81b9e9579a252"
+      },
+      "source_record": {
+        "lemma_id": "lemma:29aa53e73d1ed76350cc",
+        "word": "kammeroper",
+        "normalized": "kammeroper",
+        "search_form": "kammeroper",
+        "rank": 82505,
+        "frequency_score": 4.942378661670984,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.310813
+            ],
+            "category_ipm": 0.310813,
+            "category_score": 4.742287126860345
+          },
+          "web": {
+            "ipm_values": [
+              0.341095
+            ],
+            "category_ipm": 0.341095,
+            "category_score": 5.142470196481623
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.310813
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.341095
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "kammerop",
+            "canonical_candidate": "kammerop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "kammeroper",
+                  "kammerop",
+                  "kammerop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "kammer",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "Dictionary word division and meaning establish kammer + oper, an opera for a smaller ensemble.",
+        "source_references": [
+          "https://www.duden.de/rechtschreibung/Kammeroper"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Preserve the independently proved predecessor finite Oper identity.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:29aa53e73d1ed76350cc",
+            "word": "kammeroper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:29aa53e73d1ed76350cc",
+            "word": "kammeroper"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Dictionary word division and meaning establish kammer + oper, an opera for a smaller ensemble.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:29aa53e73d1ed76350cc",
+            "word": "kammeroper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:29aa53e73d1ed76350cc",
+            "word": "kammeroper"
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:439d55012f1ad7630192",
+      "word": "rockoper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/26.json.gz",
+        "family_id": "surface:de:koper",
+        "record_sha256": "304217833e3a15ec0b0c2a14c11828f47b882a85e7afba34b3f1b3d00af4eac4"
+      },
+      "source_record": {
+        "lemma_id": "lemma:439d55012f1ad7630192",
+        "word": "rockoper",
+        "normalized": "rockoper",
+        "search_form": "rockoper",
+        "rank": 97011,
+        "frequency_score": 1.8510640958504152,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.096557
+            ],
+            "category_ipm": 0.096557,
+            "category_score": 1.6150953255306233
+          },
+          "web": {
+            "ipm_values": [
+              0.126493
+            ],
+            "category_ipm": 0.126493,
+            "category_score": 2.087032866170207
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.096557
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.126493
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "koper",
+            "canonical_candidate": "koper",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "rockoper",
+                  "koper",
+                  "koper"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "rock",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "Dictionary word division and meaning establish rock + oper, an opera using rock music.",
+        "source_references": [
+          "https://www.duden.de/rechtschreibung/Rockoper"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Preserve the independently proved predecessor finite Oper identity.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:439d55012f1ad7630192",
+            "word": "rockoper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:439d55012f1ad7630192",
+            "word": "rockoper"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Dictionary word division and meaning establish rock + oper, an opera using rock music.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:439d55012f1ad7630192",
+            "word": "rockoper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:439d55012f1ad7630192",
+            "word": "rockoper"
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:6fb26f28a902715a27dd",
+      "word": "märchenoper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/84.json.gz",
+        "family_id": "surface:de:marchenop",
+        "record_sha256": "583c3528b5837eb6fdb14e45b9fa4dbfa72c700fa2ec55407ba7b448314adb26"
+      },
+      "source_record": {
+        "lemma_id": "lemma:6fb26f28a902715a27dd",
+        "word": "märchenoper",
+        "normalized": "märchenoper",
+        "search_form": "marchenoper",
+        "rank": 255155,
+        "frequency_score": 2.531099911399868,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "marchenop",
+            "canonical_candidate": "marchenop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "marchenoper",
+                  "marchenop",
+                  "marchenop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "märchen",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "Dictionary word division and meaning establish märchen + oper, an opera with fairy-tale plot.",
+        "source_references": [
+          "https://www.duden.de/rechtschreibung/Maerchenoper"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Preserve the independently proved predecessor finite Oper identity.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:6fb26f28a902715a27dd",
+            "word": "märchenoper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:6fb26f28a902715a27dd",
+            "word": "märchenoper"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Dictionary word division and meaning establish märchen + oper, an opera with fairy-tale plot.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:6fb26f28a902715a27dd",
+            "word": "märchenoper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:6fb26f28a902715a27dd",
+            "word": "märchenoper"
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:71a591b91e247bfa6ef7",
+      "word": "kinderoper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/74.json.gz",
+        "family_id": "surface:de:kinderoper",
+        "record_sha256": "70699abffc53c36006c078a2f4b9a5ba321a9c93e603039d7c4998324a3b5ba3"
+      },
+      "source_record": {
+        "lemma_id": "lemma:71a591b91e247bfa6ef7",
+        "word": "kinderoper",
+        "normalized": "kinderoper",
+        "search_form": "kinderoper",
+        "rank": 94667,
+        "frequency_score": 2.5371233434463307,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.04506
+            ],
+            "category_ipm": 0.04506,
+            "category_score": 0.7722699929016624
+          },
+          "web": {
+            "ipm_values": [
+              0.278284
+            ],
+            "category_ipm": 0.278284,
+            "category_score": 4.301976693990999
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.04506
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.278284
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "kinderoper",
+            "canonical_candidate": "kinderoper",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "kinderoper",
+                  "kinderoper",
+                  "kinderoper"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "kinder",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "The producing opera institution establishes Kinderoper as opera for children and describes the productions.",
+        "source_references": [
+          "https://www.oper.koeln/kinderoper-koeln"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Preserve the independently proved predecessor finite Oper identity.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:71a591b91e247bfa6ef7",
+            "word": "kinderoper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:71a591b91e247bfa6ef7",
+            "word": "kinderoper"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "The producing opera institution establishes Kinderoper as opera for children and describes the productions.",
+        "evidence": [
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/research.json",
+            "sha256": "ef638876574534edbd8f1006ca13a52f13c92be1bbc339ff2e9bead990a92a2f",
+            "lemma_id": "lemma:71a591b91e247bfa6ef7",
+            "word": "kinderoper"
+          },
+          {
+            "path": "audit/associative-family-v6/oper-relat-continuation-20261004/decision.json",
+            "sha256": "5aae14f954f8635ab635a88fe3c3e83662d74c0a53e494bbc571242f7939a94f",
+            "lemma_id": "lemma:71a591b91e247bfa6ef7",
+            "word": "kinderoper"
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:16d08160d34ac53048ab",
+      "word": "barockoper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/0a.json.gz",
+        "family_id": "surface:de:barockop",
+        "record_sha256": "c951c27863bcb7deec01e58ef5f8b38adf19a0f10c99bb4e373112f75fbfd137"
+      },
+      "source_record": {
+        "lemma_id": "lemma:16d08160d34ac53048ab",
+        "word": "barockoper",
+        "normalized": "barockoper",
+        "search_form": "barockoper",
+        "rank": 128120,
+        "frequency_score": 1.8334691886184091,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          },
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.17709
+            ],
+            "category_ipm": 0.17709,
+            "category_score": 2.856879986222835
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.17709
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "barockop",
+            "canonical_candidate": "barockop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "barockoper",
+                  "barockop",
+                  "barockop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "barock",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "Dictionary establishes an opera from the Baroque period; Barock + Oper.",
+        "source_references": [
+          "https://www.duden.de/rechtschreibung/Barockoper"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Dictionary establishes an opera from the Baroque period; Barock + Oper.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:16d08160d34ac53048ab",
+            "word": "barockoper"
+          },
+          {
+            "source": "https://www.duden.de/rechtschreibung/Barockoper"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Dictionary establishes an opera from the Baroque period; Barock + Oper.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:16d08160d34ac53048ab",
+            "word": "barockoper"
+          },
+          {
+            "source": "https://www.duden.de/rechtschreibung/Barockoper"
+          }
+        ]
+      },
+      "formal_continuity_status": "accepted",
+      "relation_kind": "lexical_continuity"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:2665eed75952649a3fcd",
+      "word": "mozartoper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/5d.json.gz",
+        "family_id": "surface:de:mozartop",
+        "record_sha256": "ba4588cb2c12c6e369384c3fe9f0a540e5130783b07ceddc6720663b2f24182b"
+      },
+      "source_record": {
+        "lemma_id": "lemma:2665eed75952649a3fcd",
+        "word": "mozartoper",
+        "normalized": "mozartoper",
+        "search_form": "mozartoper",
+        "rank": 632134,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "mozartop",
+            "canonical_candidate": "mozartop",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "mozartoper",
+                  "mozartop",
+                  "mozartop"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "mozart",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "Producing festival explicitly uses Mozartoper for an opera production; Mozart + Oper. Composer modifier stays outside the lexical component.",
+        "source_references": [
+          "https://www.salzburgerfestspiele.at/magazin/mozart-begegnet-seinen-figuren-mit-viel-liebe"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Producing festival explicitly uses Mozartoper for an opera production; Mozart + Oper. Composer modifier stays outside the lexical component.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:2665eed75952649a3fcd",
+            "word": "mozartoper"
+          },
+          {
+            "source": "https://www.salzburgerfestspiele.at/magazin/mozart-begegnet-seinen-figuren-mit-viel-liebe"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Producing festival explicitly uses Mozartoper for an opera production; Mozart + Oper. Composer modifier stays outside the lexical component.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:2665eed75952649a3fcd",
+            "word": "mozartoper"
+          },
+          {
+            "source": "https://www.salzburgerfestspiele.at/magazin/mozart-begegnet-seinen-figuren-mit-viel-liebe"
+          }
+        ]
+      },
+      "formal_continuity_status": "accepted",
+      "relation_kind": "lexical_continuity"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:3273c9080d5a8b5d02af",
+      "word": "nationaloper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/21.json.gz",
+        "family_id": "ety:9a1322c2a59f",
+        "record_sha256": "a4d4dc3829ea92c8c41800618f02d80550805ce692a9dddae7db46cd70228a6b"
+      },
+      "source_record": {
+        "lemma_id": "lemma:3273c9080d5a8b5d02af",
+        "word": "nationaloper",
+        "normalized": "nationaloper",
+        "search_form": "nationaloper",
+        "rank": 160499,
+        "frequency_score": 2.315845514573991,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.155407
+            ],
+            "category_ipm": 0.155407,
+            "category_score": 2.531099911399868
+          },
+          "web": {
+            "ipm_values": [
+              0.127365
+            ],
+            "category_ipm": 0.127365,
+            "category_score": 2.1005911177481145
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.155407
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.127365
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nation",
+            "canonical_candidate": "nation",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "nationaloper",
+                  "nation",
+                  "nation"
+                ],
+                "confidence": 0.97
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "national",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "Producing institution independently names the Griechische Nationaloper as an opera institution; National + Oper. No whole-name or token-sense claim.",
+        "source_references": [
+          "https://www.staatsoper.de/biographien/berinde-maria-michaela"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Producing institution independently names the Griechische Nationaloper as an opera institution; National + Oper. No whole-name or token-sense claim.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:3273c9080d5a8b5d02af",
+            "word": "nationaloper"
+          },
+          {
+            "source": "https://www.staatsoper.de/biographien/berinde-maria-michaela"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Producing institution independently names the Griechische Nationaloper as an opera institution; National + Oper. No whole-name or token-sense claim.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:3273c9080d5a8b5d02af",
+            "word": "nationaloper"
+          },
+          {
+            "source": "https://www.staatsoper.de/biographien/berinde-maria-michaela"
+          }
+        ]
+      },
+      "formal_continuity_status": "accepted",
+      "relation_kind": "lexical_continuity"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:c86b215d4f19d43b7258",
+      "word": "hofoper",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/a0.json.gz",
+        "family_id": "ety:7ce25eac2fe7",
+        "record_sha256": "265d245b5a78418ea7caf2748e793a47e8665b641d9462fd8de8423402cec0ea"
+      },
+      "source_record": {
+        "lemma_id": "lemma:c86b215d4f19d43b7258",
+        "word": "hofoper",
+        "normalized": "hofoper",
+        "search_form": "hofoper",
+        "rank": 136560,
+        "frequency_score": 1.588315762911113,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.032186
+            ],
+            "category_ipm": 0.032186,
+            "category_score": 0.5550774719255978
+          },
+          "web": {
+            "ipm_values": [
+              0.161387
+            ],
+            "category_ipm": 0.161387,
+            "category_score": 2.6215540538966287
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.032186
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.161387
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "oper",
+            "canonical_candidate": "oper",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "hofoper",
+                  "oper",
+                  "oper"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "hof",
+        "component": "oper",
+        "after": "",
+        "head": "oper",
+        "boundary_proof": "Producing institution documents Dresdner Hofoper and opera productions; Hof + Oper institutional sense.",
+        "source_references": [
+          "https://www.semperoper.de/die-semperoper/semperoper-dresden/geschichte-der-semperoper"
+        ]
+      },
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Producing institution documents Dresdner Hofoper and opera productions; Hof + Oper institutional sense.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:c86b215d4f19d43b7258",
+            "word": "hofoper"
+          },
+          {
+            "source": "https://www.semperoper.de/die-semperoper/semperoper-dresden/geschichte-der-semperoper"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Producing institution documents Dresdner Hofoper and opera productions; Hof + Oper institutional sense.",
+        "evidence": [
+          {
+            "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+            "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+            "lemma_id": "lemma:c86b215d4f19d43b7258",
+            "word": "hofoper"
+          },
+          {
+            "source": "https://www.semperoper.de/die-semperoper/semperoper-dresden/geschichte-der-semperoper"
+          }
+        ]
+      },
+      "formal_continuity_status": "accepted",
+      "relation_kind": "lexical_continuity"
+    }
+  ],
+  "input_sha256": {
+    "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778",
+    "associativvordes/family-index-v5/members/de/c7.json.gz": "7bf7b476da7e7262d3058f6be1f3150dc4bea81f00a365e586814f909919045d",
+    "associativvordes/family-index-v5/members/de/26.json.gz": "5ea68c98b6eedfaac81cdea5850ef30ac4454ccf43089a91104a802df65644f0",
+    "associativvordes/family-index-v5/members/de/84.json.gz": "a8362cd77c5ac64f3f502deb8b340d579fba8e6fc1a4e204917f22a380f58d24",
+    "associativvordes/family-index-v5/members/de/74.json.gz": "6e562ddf0075b126571b6d092a1c53dd039399a65c5222daa7545e01923a5c60",
+    "associativvordes/family-index-v5/members/de/0a.json.gz": "413d41406da70b0045935c2271d7eb0dc1cb5a4d7871675b1b5afe750465dd92",
+    "associativvordes/family-index-v5/members/de/5d.json.gz": "6108c560eaeda5d357e8421b1e5ed938d730b3068a6ad1445a1db6162d969df3",
+    "associativvordes/family-index-v5/members/de/21.json.gz": "23bd78b5eac41e9ccb661d23597f4ecdfe8a635ea62d247c08113a0dcfa3c814",
+    "associativvordes/family-index-v5/members/de/a0.json.gz": "f007db13fc3c1b994f42c13e65f20b5806dec777ddff7a22f8e024d0365df99d"
+  },
+  "withheld_lemma_ids": [
+    "lemma:0139769626cc26328b70",
+    "lemma:01b26873b9163b601de8",
+    "lemma:01ef81a301799c4f4201",
+    "lemma:04105d235c782aaf98be",
+    "lemma:04d6fad6ae306cb87a17",
+    "lemma:05c08972beb693c42ad1",
+    "lemma:061543d1b3f94994007c",
+    "lemma:06f7d02708868ac10352",
+    "lemma:08c3ac4addbf040e74d5",
+    "lemma:0a5ce1fd459dba56af25",
+    "lemma:0c028c738b464e353c70",
+    "lemma:0c67285b75ee670f59bc",
+    "lemma:0e9f1c8e0a246478bae4",
+    "lemma:1049bd9a802d732f7163",
+    "lemma:11bada11b3ac0aba31dd",
+    "lemma:12ddd9f0df17138f89a9",
+    "lemma:13a712a51d44cbb3cd38",
+    "lemma:150de92d8fe91cecd0c9",
+    "lemma:16b048f715eaf8b46456",
+    "lemma:1706dd3176669d81da76",
+    "lemma:170edaa1eb14c7cb80f3",
+    "lemma:1979a8d8fd05b132f8a4",
+    "lemma:1a06aff9ead799d46dcc",
+    "lemma:1a1cabc86093a2cf3296",
+    "lemma:1c47c59ababa3304639b",
+    "lemma:1c807a4e340c2b8c1cb9",
+    "lemma:1e9ea00f02f5b1e4a5a0",
+    "lemma:1f4876344834e08cab13",
+    "lemma:2133e4f1a0326c74022f",
+    "lemma:2319626ef7215a07708c",
+    "lemma:27d50a6ebf1f065b50e8",
+    "lemma:29f53dc44de3e93647ef",
+    "lemma:2c2291e9247ec39c7cd8",
+    "lemma:2c6629dae251d29dc145",
+    "lemma:2cae234c2819c8f95007",
+    "lemma:2cbf213036800a2b4a94",
+    "lemma:2de88a85b169fc9ff396",
+    "lemma:2f7ed403edcecba505fc",
+    "lemma:319611537d98c8e9e6af",
+    "lemma:322b0b54119d66b67cdc",
+    "lemma:33bc3e93dd9ecb08f4f7",
+    "lemma:33bfb54c3c18f6c15808",
+    "lemma:34028f7e0e791f80ef3b",
+    "lemma:35b3850952017ba92820",
+    "lemma:35d3c592bac72b710081",
+    "lemma:360190e50f6780e90c8a",
+    "lemma:3657074683d475704778",
+    "lemma:370988a09261f9c4d242",
+    "lemma:37277f3ab34fad3b3433",
+    "lemma:377ebd4db5c7e464d7bf",
+    "lemma:3854fac0a63bc4e5a766",
+    "lemma:3943033aff5472dac2fa",
+    "lemma:3969d76c31f7e4d33551",
+    "lemma:3aa2f291dd952969e6e3",
+    "lemma:3cc54223b8e6750263db",
+    "lemma:3db46c78c9d07a7d6702",
+    "lemma:3e62f4e0d49e2ce4da30",
+    "lemma:408f0e54b4a37e987688",
+    "lemma:40937d1f3d3658543fb7",
+    "lemma:415f84983ce2318450a3",
+    "lemma:41b4931ccaea4eadd20e",
+    "lemma:43c61cff832af9b5e771",
+    "lemma:4460fdc883b8609d74c4",
+    "lemma:495d88552e8cd0aa4a76",
+    "lemma:49ddf28dcde7d91b50a4",
+    "lemma:4a2bec31adfba7a9fa9f",
+    "lemma:4cf4d0ac69d1fa4276bd",
+    "lemma:4db7d090bc57188a9859",
+    "lemma:4df2e4c5514fc6d5eef4",
+    "lemma:4ed62c8e9691a3a4b662",
+    "lemma:5080e048bdb0b26828fc",
+    "lemma:52d4b308ca5e2eb91008",
+    "lemma:56b11a9d0ceed3bcc535",
+    "lemma:56f1cf60bd506a8190c4",
+    "lemma:5db1dd24c212b27cce38",
+    "lemma:5df851ff56bf2fffec2b",
+    "lemma:5ee06b06b5d7121f1591",
+    "lemma:6074e149f2b294947474",
+    "lemma:61c26c1c1f450c44fd1d",
+    "lemma:63cc24f2ae8d6c2744c7",
+    "lemma:64df47f933e2e70e0fc8",
+    "lemma:6766ed48a57060a03c79",
+    "lemma:681c3e15b8da19138c4b",
+    "lemma:693865326b1d0d8037b3",
+    "lemma:6a12c35807b0965f0936",
+    "lemma:6bb892c0da2126721491",
+    "lemma:6cbc9c195ccba07d7195",
+    "lemma:6d459a4efb54c17ca86e",
+    "lemma:6e27dabadb206d854775",
+    "lemma:7000cda4f3031e44dd34",
+    "lemma:70cf40c898fa4eaca420",
+    "lemma:73699a309fa650869908",
+    "lemma:736bbd643f53ab7ec827",
+    "lemma:737cb860002a980fddc7",
+    "lemma:7452d8d86bf128eb96b4",
+    "lemma:7479b105c4414e44c449",
+    "lemma:759f84f953728350dd23",
+    "lemma:7c17c6c970c6f444ebaf",
+    "lemma:7cb8b1c7386b698e7975",
+    "lemma:7db8c9f0ed2c447ad682",
+    "lemma:7dcfd041099372ab26a4",
+    "lemma:86dd47c8f141ade2e272",
+    "lemma:8790acafec0d1b8b9d64",
+    "lemma:8af097cd26274b02e35f",
+    "lemma:8b15be1bcdcab93cb13d",
+    "lemma:8bb2752ac82c3aa24509",
+    "lemma:8d882e7ecd7d2b4ce108",
+    "lemma:8eae73b9ec31ede7b7c9",
+    "lemma:908ff97d6636048060a3",
+    "lemma:93d5f36675d67c2697ed",
+    "lemma:959fe2d380745c9e69d1",
+    "lemma:963ba74b5215219f5417",
+    "lemma:978020445d0093b706e8",
+    "lemma:97ee7fef6f50583eb836",
+    "lemma:98ad00aa5a5de99e03e1",
+    "lemma:9b82adf7865ddbf3c3b7",
+    "lemma:9bcfab7a9994a2bac113",
+    "lemma:9df9ac54520fc7ef74e2",
+    "lemma:9e048c09249683987e95",
+    "lemma:a1358eedb26f7756d6c2",
+    "lemma:a21b19e4f4c42986bbc6",
+    "lemma:a935d0ac84e28a6f7c50",
+    "lemma:aa0abd77ed5682d1e05c",
+    "lemma:acb7d4e4753f4ef1ebbc",
+    "lemma:ad435ff9bc91e5768cfa",
+    "lemma:af18fd69ab0fa5cb4822",
+    "lemma:b3ba8faf73f1cef1bcf8",
+    "lemma:b410c85470751606ca63",
+    "lemma:b494e40e3da2034e2aac",
+    "lemma:b4bd3509c834a79eff3f",
+    "lemma:b85a5e88eaa55e047853",
+    "lemma:ba568c7ef08f25932351",
+    "lemma:ba6610abc97882ff6eae",
+    "lemma:bab514c7b0b3f431d5d6",
+    "lemma:bb461e5212f4a91c657e",
+    "lemma:bd0f634dc078b6bef88b",
+    "lemma:bec8b4d5c81b7ce961f8",
+    "lemma:bfc69fbac2cbcbf90eea",
+    "lemma:c09945493f37cf8b658a",
+    "lemma:c0bd273a6997c9ea7d74",
+    "lemma:c4a455df62efe97bc504",
+    "lemma:c7ec4193cbc2e8d408f3",
+    "lemma:c84e531bc39a804624f3",
+    "lemma:c855ac32adff1f3199bf",
+    "lemma:c8d5c3da10573ffa394d",
+    "lemma:c8f2759b3366520eb678",
+    "lemma:ca8f38a4e3f3d6e2a0b0",
+    "lemma:cd05dcce527f6d26cc71",
+    "lemma:cedf7ac252d2ca68d060",
+    "lemma:cf662fb34a7c21e635d6",
+    "lemma:d24772909f6366601915",
+    "lemma:d28725c4449fc2f61a19",
+    "lemma:d34e01a21f934050d84b",
+    "lemma:d39782885a63e0b3bf36",
+    "lemma:d4a90d9f239c1c3de95a",
+    "lemma:d80f6770f8355feba6d4",
+    "lemma:d86bd070cc6360281165",
+    "lemma:d946293797aafec7e4cb",
+    "lemma:d9a91c2faf23de95f547",
+    "lemma:d9c1734c335b7d2ad604",
+    "lemma:da54794bf6481ec24c44",
+    "lemma:dfa4848d4f637b536b0d",
+    "lemma:dfe38ac733fec5e5095a",
+    "lemma:e0ab64cd00dabd26c376",
+    "lemma:e2038a4dc6a7da8a76d6",
+    "lemma:e3b00794ce0b12657c24",
+    "lemma:e86075dac39c61079ce8",
+    "lemma:e96430c0699dcd4bb933",
+    "lemma:ea3db2b1ac59b4d12120",
+    "lemma:eb0e2a343a5abdf55c52",
+    "lemma:ec325c86e5e4ea5dab30",
+    "lemma:ed83e776796e7595ee0f",
+    "lemma:ee6cbc8945b2ae204e0e",
+    "lemma:eeefdb2dce1990835f63",
+    "lemma:eefc1e84b20279f103ae",
+    "lemma:f148d3df2448121e14a0",
+    "lemma:f27e175345bcaee1910c",
+    "lemma:f2901c6ce69933048372",
+    "lemma:f88a55f3e965a7b00182",
+    "lemma:f9bfcf8f3530e00cb2c4",
+    "lemma:fb97dc84b1c4feb845e8",
+    "lemma:fba58d3d5ab136eefd72",
+    "lemma:fe41688d9585ddab989c"
+  ],
+  "decision": {
+    "status": "accepted",
+    "expected_version": 1,
+    "lemma_ids": [
+      "lemma:29aa53e73d1ed76350cc",
+      "lemma:439d55012f1ad7630192",
+      "lemma:6fb26f28a902715a27dd",
+      "lemma:71a591b91e247bfa6ef7",
+      "lemma:16d08160d34ac53048ab",
+      "lemma:2665eed75952649a3fcd",
+      "lemma:3273c9080d5a8b5d02af",
+      "lemma:c86b215d4f19d43b7258"
+    ],
+    "reason": "Fresh finite family:oper decision rechecks original four components and four independently attested new musical/institutional components. Reuse identity only; no old verdict inheritance for new links.",
+    "relation_kind": "lexical_continuity",
+    "evidence": [
+      {
+        "source": "audit/associative-family-v6/prompt05-recovery-20261004/oper-extension-research.json.gz",
+        "sha256": "4d39d22ba14a701c23850badac88175d35acac260fed1d780a9336600de23778"
+      },
+      {
+        "source": "https://www.duden.de/rechtschreibung/Oper"
+      },
+      {
+        "source": "https://www.duden.de/rechtschreibung/Barockoper"
+      },
+      {
+        "source": "https://www.semperoper.de/die-semperoper/semperoper-dresden/geschichte-der-semperoper"
+      },
+      {
+        "source": "https://www.salzburgerfestspiele.at/magazin/mozart-begegnet-seinen-figuren-mit-viel-liebe"
+      },
+      {
+        "source": "https://www.staatsoper.de/biographien/berinde-maria-michaela"
+      }
+    ]
+  }
+}

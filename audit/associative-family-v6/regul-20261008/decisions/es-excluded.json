@@ -1,0 +1,363 @@
+[
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:316bec0682a9790eaeb2",
+    "word": "régulo",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "5d26b206c565667f585b2985d567357d595c218dc19ec8f463e3bbdd6989e769"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/es_wordlist.lemmatized_stanza_ipm6.json",
+        "record_sha256": "dc1592eeb34eb473fc1640bbc3381440505e0b33a2b40484549ea10df6f05ee4"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "063f7fe45efe1afc36d91338626ca094b6f12b4a2cd3f5aa4e73faf4b76a7f3c"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "6305ac9ff80a9a240caa2e8d0de967c3f9559b4446ab0385aea19195e13d848d"
+      }
+    ],
+    "lexical_analysis": "Accented rex/regulus noun; accent cannot be removed for lexical identity.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:316bec0682a9790eaeb2",
+      "word": "régulo",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/r%C3%A9gulo"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-regulo"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/r%C3%A9gulo",
+        "finding": "Accented régulo descends from regulus, diminutive of rex; not the unaccented present first-person regulo.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Accented rex/regulus noun; accent cannot be removed for lexical identity.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:68b83cf9d09c0d9897c4",
+    "word": "pedregullos",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f02843b888122167856ec2c37d5ae914b01e72e9dba3af748b50e6eb5727c510"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/61.json.gz",
+        "family_id": "surface:es:ullos",
+        "record_sha256": "5f543481ae1eaed5f02693bcfbd51d8380a227839537607aa8c603d954449ad7"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/d4.json.gz",
+        "family_id": "surface:es:pedregull",
+        "record_sha256": "cb4c56e19be28d870581a71db5d66522cac51c9650cbae1b21f3b3292a32dd30"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "fac372b9b86de74e0237da7a50cc459f8664d22fc440e161d3e3203c8dc27a85"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "2354b3ac1352699bc39ea08bad24346b8ed85528dd79815ca66820439813e1d4"
+      }
+    ],
+    "lexical_analysis": "Regular plural of Galician pedra-derived pedregullo, not regul.",
+    "head": null,
+    "component": {
+      "form": "regul",
+      "start": 3,
+      "end": 8,
+      "before": "ped",
+      "after": "los",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:68b83cf9d09c0d9897c4",
+      "word": "pedregullos",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/pedregullo"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-pedregullo"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/pedregullo",
+        "finding": "Spanish noun borrowed from Galician pedregullo, derived from pedra; plural pedregullos preserves that independent base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Regular plural of Galician pedra-derived pedregullo, not regul.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:b293d42b6de6d5d2c9be",
+    "word": "pedregullo",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/c8.json.gz",
+        "family_id": "surface:es:ullo",
+        "record_sha256": "f2fe25231ccc0c4e5dcf72e7891afc1078e075de288c8989470b37db2ea1a2e5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/d4.json.gz",
+        "family_id": "surface:es:pedregull",
+        "record_sha256": "dc5f5c825861478f47f0cf80168a51e86b5ee9105c8725bf3d6d667349ab2221"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "1075f6a6adce787cf2f825131aad42fa96de9e59dc2fa6eb55ceeb20a07e5678"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "ab78b4f18377343d3f110622b19a34ee7dd6d4fe4bfe0a6f64e9e2ff22bce574"
+      }
+    ],
+    "lexical_analysis": "Galician pedra-derived pedregullo, not regul.",
+    "head": null,
+    "component": {
+      "form": "regul",
+      "start": 3,
+      "end": 8,
+      "before": "ped",
+      "after": "lo",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:b293d42b6de6d5d2c9be",
+      "word": "pedregullo",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/pedregullo"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-pedregullo"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/pedregullo",
+        "finding": "Spanish noun borrowed from Galician pedregullo, derived from pedra; plural pedregullos preserves that independent base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Galician pedra-derived pedregullo, not regul.",
+    "missing_fact": null,
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:d74d8c570297d903d2cd",
+    "word": "regolfan",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "257ed03ebf464c8120a531fa384f1e9865d91a375b423e5081407a2f9685e3f5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/68.json.gz",
+        "family_id": "ety:2b5847a13819",
+        "record_sha256": "ab42baa6e8f296b1d767981d0fbbe1266cb6961867357c5cda6777f41448825c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "4a67a2b932beaa3d516470436018dd817dfae8ca6d35bd8e20ad807f340a43c5"
+      }
+    ],
+    "lexical_analysis": "Explicit regolfar conjugation: re- + golfo, not regul.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:d74d8c570297d903d2cd",
+      "word": "regolfan",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://dle.rae.es/regolfar"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "es-regolfar"
+    ],
+    "evidence": [
+      {
+        "source": "https://dle.rae.es/regolfar",
+        "finding": "Derived from re- and golfo; regolfan is a listed finite conjugated form, independent of regul.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Explicit regolfar conjugation: re- + golfo, not regul.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  },
+  {
+    "language": "es",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:e63e97f02d6595812201",
+    "word": "regolith",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/es/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "7ea9ffa3b91f35dac8e7bc33aac1aed1f99491c7a181905ca7e8b9a73c10a736"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/es/4b.json.gz",
+        "family_id": "surface:es:lith",
+        "record_sha256": "b4c36a2caa1bc102a4fa9205d411c031a5f07ac67c3d05976bf76141c8a5c797"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "73b0ca5b9ea79a64d9fdc6588d194a6dd31ff62c2cf4062810d9c8254a522367"
+      },
+      {
+        "path": "associativvordes/frequency lists/es/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "f8c96c495062a413f4528fb2179cd91442b34d397c9fd6e6896f15fcb6a586fa"
+      }
+    ],
+    "lexical_analysis": "English geological word retains Greek components; language of occurrence is unresolved but neither analysis supplies regul.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "es",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e63e97f02d6595812201",
+      "word": "regolith",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regolith"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regolith"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regolith",
+        "finding": "Geological compound uses Greek rhegos and -lith; its regol substring is not the Italian national rule base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "English geological word retains Greek components; language of occurrence is unresolved but neither analysis supplies regul.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  }
+]

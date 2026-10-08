@@ -1,0 +1,122 @@
+{
+  "schema_version": 6,
+  "synthetic_fixture": false,
+  "production_enabled": false,
+  "membership_authorized": false,
+  "recipes": [
+    {
+      "packet_ids": [
+        "candidate-root:94c75d82c99af8f1e16f2166",
+        "candidate-root:974767da7b9be9ed2f585f70",
+        "candidate-root:8a7606273202a05481a007ad"
+      ],
+      "branch_id": "atom-modern-row",
+      "state": "research_in_progress",
+      "corpus_keys": [
+        "en\u0000lemma:5218ba84f65daad15b89",
+        "de\u0000lemma:5f7009e449a8e2d3dea4",
+        "ru\u0000lemma:00daa383c16b08e70475"
+      ],
+      "reason": "Three independent dictionary heads; packet source signals remain unverified as whole pools."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:94c75d82c99af8f1e16f2166",
+        "candidate-root:974767da7b9be9ed2f585f70",
+        "candidate-root:8a7606273202a05481a007ad"
+      ],
+      "branch_id": "attimo-development",
+      "state": "split",
+      "corpus_keys": [
+        "it\u0000lemma:b6a55365044117f93b84"
+      ],
+      "reason": "The related Italian development is a separate recognizable-boundary question."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:94c75d82c99af8f1e16f2166",
+        "candidate-root:974767da7b9be9ed2f585f70",
+        "candidate-root:8a7606273202a05481a007ad"
+      ],
+      "branch_id": "attimo-development",
+      "state": "rejected_with_scope",
+      "corpus_keys": [
+        "it\u0000lemma:b6a55365044117f93b84"
+      ],
+      "reason": "This exact attimo ID is outside the approved atom boundary; no corpus deletion or general lexical rejection."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:94c75d82c99af8f1e16f2166",
+        "candidate-root:974767da7b9be9ed2f585f70",
+        "candidate-root:8a7606273202a05481a007ad"
+      ],
+      "branch_id": "atom-modern-row",
+      "state": "promoted_finite_frame",
+      "decision_path": "audit/associative-family-v6/prompt08-coverage-20261005/atom-promotion-decision.json",
+      "reason": "Independent canonical, national lexical identities and exact family edges have actually materialized."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:94c75d82c99af8f1e16f2166",
+        "candidate-root:974767da7b9be9ed2f585f70",
+        "candidate-root:8a7606273202a05481a007ad"
+      ],
+      "branch_id": "atom-plural-extension",
+      "state": "deferred_with_evidence_blocker",
+      "corpus_keys": [
+        "en\u0000lemma:bc82dd53d41aa09fb0f2"
+      ],
+      "reason": "Plural research is supported; it requires a materialized predecessor and an independent revised edge.",
+      "evidence_blocker": "Versioned extension must follow initial materialization."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:94c75d82c99af8f1e16f2166",
+        "candidate-root:974767da7b9be9ed2f585f70",
+        "candidate-root:8a7606273202a05481a007ad"
+      ],
+      "branch_id": "atom-plural-extension",
+      "state": "promoted_finite_frame",
+      "decision_path": "audit/associative-family-v6/prompt08-coverage-20261005/atom-extension-decision.json",
+      "reason": "One existing English atom head is revised with the exact atoms ID; no second initial promotion."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:9ab8a851be71bb3227c0c162",
+        "candidate-root:58deec834e4b763605cc4313"
+      ],
+      "branch_id": "inherited-finite-promotion",
+      "state": "promoted_finite_frame",
+      "decision_path": "audit/associative-family-v6/system-finite-promotion-20261003.json",
+      "reason": "Existing accepted finite dossier remains addressable; no repeat promotion or new resolution is claimed."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:13d983a02dd5164ee6e91ff5"
+      ],
+      "branch_id": "inherited-finite-promotion",
+      "state": "promoted_finite_frame",
+      "decision_path": "audit/associative-family-v6/anis-finite-lexical-row-promotion-20261004.json",
+      "reason": "Existing accepted finite dossier remains addressable; no repeat promotion or new resolution is claimed."
+    },
+    {
+      "packet_ids": [
+        "candidate-root:b1d1803a0d1c69bf965b3462"
+      ],
+      "branch_id": "tower-withheld-finite-rows",
+      "state": "deferred_with_evidence_blocker",
+      "corpus_keys": [
+        "en\u0000lemma:fbb12b86b76ffff488fe",
+        "de\u0000lemma:e10d98a4cae30621277d",
+        "fr\u0000lemma:ea7fdcd66cda3892ded2",
+        "es\u0000lemma:63adf237a08c24f59920",
+        "it\u0000lemma:0d23cbf326af4b0f1718",
+        "ru\u0000lemma:158283923dc337e93d69",
+        "en\u0000lemma:222cc76e64e0b5805573"
+      ],
+      "reason": "Turr remains research-only; independent head histories and aggregate ambiguity are not erased.",
+      "evidence_blocker": "National boundary and incompatible torre/tour/тура histories need their own approved finite decisions."
+    }
+  ]
+}

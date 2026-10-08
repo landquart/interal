@@ -1,0 +1,392 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "id": "regul-finite-fr-08",
+  "operation": "extend_links",
+  "family_id": "family:regul",
+  "head_id": "head:fr:8104506ec1e95d4c7198a7d2",
+  "identity": {
+    "language": "fr",
+    "normalized_head": "régularité",
+    "sense": "regula_line_bounded_component"
+  },
+  "binding_authorized": true,
+  "review_authorized": true,
+  "accepted_membership_authorized": true,
+  "review_contract": "regul-20261008",
+  "component_stems": [
+    "régul"
+  ],
+  "predecessor": {
+    "head": {
+      "id": "head:fr:8104506ec1e95d4c7198a7d2",
+      "language": "fr",
+      "normalized_head": "régularité",
+      "identity_kind": "lexical_head",
+      "sense": "regula_line_bounded_component",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:8104506ec1e95d4c7198a7d2",
+          "language": "fr",
+          "head": "régularité",
+          "sense": "regula_line_bounded_component",
+          "status": "accepted",
+          "evidence_kind": "lexical_identity",
+          "sources": [
+            "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707"
+          ],
+          "finding": "Independent head and finite component analyses in audit/associative-family-v6/regul-20261008/decisions/review.json; no wildcard acceptance.",
+          "establishes_family_membership": false
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/research/prior.json",
+          "sha256": "e44cff673ca4a4c95f957bf51f3f8fb81a967a579935c35db0b7f9c827f80664",
+          "lemma_id": "lemma:88168f5d9ec7c72b0fb3",
+          "word": "régularité"
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+          "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+          "lemma_id": "lemma:88168f5d9ec7c72b0fb3",
+          "word": "régularité"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "eee971b4566ef9d87db05259976564e8ecfa263878fbad8e330c5f7a272ff93c"
+          },
+          "lemma_id": "lemma:88168f5d9ec7c72b0fb3"
+        }
+      ],
+      "finite_component_stems": [
+        "régul"
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "a7e8d5087d8fb6047ec0a2af6c2c818022cd0805128de3020cd4853ac1008619",
+    "edge": {
+      "head_id": "head:fr:8104506ec1e95d4c7198a7d2",
+      "family_id": "family:regul",
+      "status": "accepted",
+      "scope": "finite_evidenced_links",
+      "morphology_policy": "finite_reviewed_component_links",
+      "version": 1,
+      "evidence": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "eee971b4566ef9d87db05259976564e8ecfa263878fbad8e330c5f7a272ff93c"
+          },
+          "lemma_id": "lemma:88168f5d9ec7c72b0fb3"
+        }
+      ],
+      "lemma_ids": [
+        "lemma:88168f5d9ec7c72b0fb3"
+      ]
+    },
+    "edge_version": 1,
+    "edge_sha256": "5f2a05e17882242f3e59b31f0a1e06ffc0ca46bd7ff2110624345d49f45d56c5",
+    "scope_sha256": "bee8fe2a0bf23f6f0946b338888468e09e19b74d42e8d9dceb078d25ad433a45"
+  },
+  "input_sha256": {
+    "audit/associative-family-v6/regul-20261008/decisions/review.json": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+    "audit/associative-family-v6/regul-20261008/research/evidence.json": "8c67441987a1dd99c277c90e5f5ee68449bdbf924666eba454346cd07c707110",
+    "associativvordes/family-index-v5/members/fr/40.json.gz": "eb3e591a81adb2b186652e6a4946c146e4afe6e32d727ba460eef820e1d7dc84",
+    "associativvordes/family-index-v5/members/fr/c7.json.gz": "f22e3ac3b730d07c20a02827ed20b162c892fbdadeeb9f47ec3533ae66669601"
+  },
+  "records": [
+    {
+      "language": "fr",
+      "lemma_id": "lemma:88168f5d9ec7c72b0fb3",
+      "word": "régularité",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "eee971b4566ef9d87db05259976564e8ecfa263878fbad8e330c5f7a272ff93c"
+      },
+      "source_record": {
+        "lemma_id": "lemma:88168f5d9ec7c72b0fb3",
+        "word": "régularité",
+        "normalized": "régularité",
+        "search_form": "regularite",
+        "rank": 7161,
+        "frequency_score": 21.95408818771844,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.355136
+            ],
+            "category_ipm": 0.355136,
+            "category_score": 5.324968402587803
+          },
+          "web": {
+            "ipm_values": [
+              8.042957
+            ],
+            "category_ipm": 8.042957,
+            "category_score": 38.583207972849074
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.355136
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 8.042957
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "regularite",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "fr",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régularité: retained lexical base in régularité; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+            "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:régularité: retained lexical base in régularité; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+            "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "régul",
+        "after": "arité",
+        "head": "régularité"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:88168f5d9ec7c72b0fb3",
+        "word": "régularité",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:5a43e881c659b7318a63",
+      "word": "irrégularité",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/fr/c7.json.gz",
+        "family_id": "surface:fr:irregularite",
+        "record_sha256": "237b5ebc0f8787c5e7fdbb2cd2e3a157a4fd89e7b096ef543e1dddd611d23bf1"
+      },
+      "source_record": {
+        "lemma_id": "lemma:5a43e881c659b7318a63",
+        "word": "irrégularité",
+        "normalized": "irrégularité",
+        "search_form": "irregularite",
+        "rank": 10234,
+        "frequency_score": 22.160582045792985,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              1.27573
+            ],
+            "category_ipm": 1.27573,
+            "category_score": 14.408358028969696
+          },
+          "web": {
+            "ipm_values": [
+              4.513264
+            ],
+            "category_ipm": 4.513264,
+            "category_score": 29.912806062616276
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.27573
+          },
+          {
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 4.513264
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "irregularite",
+            "canonical_candidate": "irregularite",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "irregularite",
+                  "irregularite",
+                  "irregularite"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:irrégularité: retained lexical base in régularité; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+            "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of fr:irrégularité: retained lexical base in régularité; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707",
+            "finding": "Régulariser makes something regular or lawful and is tied to regularis; it does not derive from the alloy noun.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ir",
+        "component": "régul",
+        "after": "arité",
+        "head": "régularité"
+      },
+      "senses_decision": {
+        "language": "fr",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:5a43e881c659b7318a63",
+        "word": "irrégularité",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "régul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.larousse.fr/dictionnaires/francais/r%C3%A9gulariser/67707"
+            ],
+            "proved_components": [
+              "régul"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+      "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+      "finite_reviewed_ids": [
+        "lemma:88168f5d9ec7c72b0fb3",
+        "lemma:5a43e881c659b7318a63"
+      ]
+    }
+  ],
+  "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+  "decision": {
+    "status": "accepted",
+    "expected_version": 1,
+    "relation_kind": "lexical_continuity",
+    "lemma_ids": [
+      "lemma:88168f5d9ec7c72b0fb3",
+      "lemma:5a43e881c659b7318a63"
+    ],
+    "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+    "evidence": [
+      {
+        "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+        "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+        "finite_reviewed_ids": [
+          "lemma:88168f5d9ec7c72b0fb3",
+          "lemma:5a43e881c659b7318a63"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,160 @@
+[
+  {
+    "language": "en",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:3cfe7b0eff3651ada585",
+    "word": "regulus",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/en/84.json.gz",
+        "family_id": "surface:en:ulus",
+        "record_sha256": "6859e8a3c42c06654572fcee1514ddd2fa179e088387dbe6aa7096976dfeebe6"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/en/d7.json.gz",
+        "family_id": "surface:en:regulu",
+        "record_sha256": "5fdd4edcb8b63f1a341a6932e1402a70c0c8f16898136d1e24d2f96bcb156295"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json",
+        "record_sha256": "138636147b94cfa2ea12d3e83411b3702d5ca1168411905b20a0bb5e9f4a0ea8"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "fd9f4a07902531d5489417ec9659e0dcdc74d6cc0e2a2688358f46c6f8c2f1ed"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "588af9d3d9711148cb5d70218828362ecd7260c4d23d32faf5ed60825afe2aa3"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "8afe6eff6569ebebddd3a0798d6620d1fc3b7c86bbaa6c36f0433488eafa8345"
+      }
+    ],
+    "lexical_analysis": "Star/metallurgical rex-derived regulus; unrelated rule component.",
+    "head": null,
+    "component": {
+      "form": "regul",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "us",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "en",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:3cfe7b0eff3651ada585",
+      "word": "regulus",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regulus"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regulus"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regulus",
+        "finding": "Star and metallurgical noun derive from diminutive of rex; reguline is attached to that metallurgical head.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Star/metallurgical rex-derived regulus; unrelated rule component.",
+    "missing_fact": null,
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  },
+  {
+    "language": "en",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:979d41d903836a31490a",
+    "word": "regolith",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/en/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "d4526e1f050714439229806153e89fdb4ecf8bf02efcbdca8c1c8d4d948f6cc2"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/en/87.json.gz",
+        "family_id": "ety:4381d443ac0a",
+        "record_sha256": "d56572aeaa4272bd8f5b2578cbdcf0e3b589bc7af27532be095ee8acd54f0969"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json",
+        "record_sha256": "b150926bb2538e5492bdefc1dfbed08b779a9b823ab44355e30e5c4ac58fc157"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "c13212d3e29cd1d637800499141ff64ff59af1e49f78dddbad9688bb2e332e27"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "d9161264880c89a5d10e65726beff9ade574a74dd0c934ea41e277274081b5e7"
+      }
+    ],
+    "lexical_analysis": "Greek rhegos + lith, not regula.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "en",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:979d41d903836a31490a",
+      "word": "regolith",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regolith"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regolith"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regolith",
+        "finding": "Geological compound uses Greek rhegos and -lith; its regol substring is not the Italian national rule base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Greek rhegos + lith, not regula.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  }
+]

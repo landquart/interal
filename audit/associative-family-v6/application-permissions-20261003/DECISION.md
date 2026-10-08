@@ -1,0 +1,9 @@
+# Reviewed decision — finite compatibility replay
+
+This is a new prospective authorization under Prompt 01, not a claim that absent historical flags were true. The original review document and research files remain untouched.
+
+Approve identity replay for the exact 2,837 current binding objects at source SHA 2d84b206c694b395620bef6ba83db1977cfced7c. Approve their existing finite reviewed outcomes: 1,569 accepted additions, 393 exclusions and three investigated uncertainties through 36 exact decisions; 872 representation bindings have identity-only approval and cannot create a new family edge. Each complete binding/decision object is SHA-256 frozen. Every binding additionally has a verified immutable v5 member locator with file and record hashes. Stage source scopes are separately checked by full language/lemma_id/word/root, never by dossier self-presence.
+
+The accepted grants require both explicit boolean flags. Exclusions and uncertainties have independent explicit mode grants. A missing/new/changed object has no migration entry and fails closed. Existing explicit denials are not overridden. The migration cannot extend heads, senses, records, groups, canonicals or family membership counts. No queued oper stage, withheld actin protein recipe, anis or tower research is included. Existing system promotion keeps its own strict approvals and locator validation.
+
+New application stages must carry binding_authorized=true plus the corresponding accepted_membership_authorized, excluded_membership_authorized or uncertain_membership_authorized=true. No generic research status, filename, hash or linguistic similarity is approval. Mixed stages are validated in full before persistence. Runtime loaders independently verify saved permissions. All durable writes use temporary files and replacement after validation.

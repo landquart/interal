@@ -1,0 +1,958 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "id": "regul-finite-de-02",
+  "operation": "extend_links",
+  "family_id": "family:regul",
+  "head_id": "head:de:f734a4b53870ceda9e57bf5d",
+  "identity": {
+    "language": "de",
+    "normalized_head": "regulär",
+    "sense": "regula_line_bounded_component"
+  },
+  "binding_authorized": true,
+  "review_authorized": true,
+  "accepted_membership_authorized": true,
+  "review_contract": "regul-20261008",
+  "component_stems": [
+    "regul"
+  ],
+  "predecessor": {
+    "head": {
+      "id": "head:de:f734a4b53870ceda9e57bf5d",
+      "language": "de",
+      "normalized_head": "regulär",
+      "identity_kind": "lexical_head",
+      "sense": "regula_line_bounded_component",
+      "version": 1,
+      "evidence": [
+        {
+          "id": "evidence:f734a4b53870ceda9e57bf5d",
+          "language": "de",
+          "head": "regulär",
+          "sense": "regula_line_bounded_component",
+          "status": "accepted",
+          "evidence_kind": "lexical_identity",
+          "sources": [
+            "https://www.duden.de/rechtschreibung/regulaer"
+          ],
+          "finding": "Independent head and finite component analyses in audit/associative-family-v6/regul-20261008/decisions/review.json; no wildcard acceptance.",
+          "establishes_family_membership": false
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/research/prior.json",
+          "sha256": "e44cff673ca4a4c95f957bf51f3f8fb81a967a579935c35db0b7f9c827f80664",
+          "lemma_id": "lemma:f6e6b8849349abf20b7c",
+          "word": "ganzreguläre"
+        },
+        {
+          "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+          "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+          "lemma_id": "lemma:f6e6b8849349abf20b7c",
+          "word": "ganzreguläre"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "21248d8bc9bf8b61dbc30a4115dac1029aa42387ed403a78cd395974e82c1b7a"
+          },
+          "lemma_id": "lemma:f6e6b8849349abf20b7c"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "adea813b88b3daf2bf517054995f5c3d72a2bd5423908981feb47d1f0b7a10f6"
+          },
+          "lemma_id": "lemma:a92ede5f36ae0d4177f3"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "f38add49ee9b2552315829c5283197b1877c56a293a204b74f8f1fd25397e17c"
+          },
+          "lemma_id": "lemma:8e29009c029445b64886"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "845ea49504b259a64b8057d70ec972c81a02c714d4f19f4d2d20121078c51a7d"
+          },
+          "lemma_id": "lemma:8183157fa9ac3a8f034f"
+        }
+      ],
+      "finite_component_stems": [
+        "regul"
+      ]
+    },
+    "head_version": 1,
+    "head_sha256": "43046d296bdde064f068b7d76f3ad4870f9ec1b6a0f3236ad8b297ea91818229",
+    "edge": {
+      "head_id": "head:de:f734a4b53870ceda9e57bf5d",
+      "family_id": "family:regul",
+      "status": "accepted",
+      "scope": "finite_evidenced_links",
+      "morphology_policy": "finite_reviewed_component_links",
+      "version": 1,
+      "evidence": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "21248d8bc9bf8b61dbc30a4115dac1029aa42387ed403a78cd395974e82c1b7a"
+          },
+          "lemma_id": "lemma:f6e6b8849349abf20b7c"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "adea813b88b3daf2bf517054995f5c3d72a2bd5423908981feb47d1f0b7a10f6"
+          },
+          "lemma_id": "lemma:a92ede5f36ae0d4177f3"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "f38add49ee9b2552315829c5283197b1877c56a293a204b74f8f1fd25397e17c"
+          },
+          "lemma_id": "lemma:8e29009c029445b64886"
+        },
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "845ea49504b259a64b8057d70ec972c81a02c714d4f19f4d2d20121078c51a7d"
+          },
+          "lemma_id": "lemma:8183157fa9ac3a8f034f"
+        }
+      ],
+      "lemma_ids": [
+        "lemma:f6e6b8849349abf20b7c",
+        "lemma:a92ede5f36ae0d4177f3",
+        "lemma:8e29009c029445b64886",
+        "lemma:8183157fa9ac3a8f034f"
+      ]
+    },
+    "edge_version": 1,
+    "edge_sha256": "cd96b0230cef0942743c1922a847b3882bb46f0bf79aac58a0c2843cef26f623",
+    "scope_sha256": "720fb8399cf7ee4dcba49c7406433863eace0e31aab19dcba23217eab82d838d"
+  },
+  "input_sha256": {
+    "audit/associative-family-v6/regul-20261008/decisions/review.json": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+    "audit/associative-family-v6/regul-20261008/research/evidence.json": "8c67441987a1dd99c277c90e5f5ee68449bdbf924666eba454346cd07c707110",
+    "associativvordes/family-index-v5/members/de/40.json.gz": "c29620abfc6db5cd878dcc71525c911db1da91d3c3137143a2dc00edbe91f0b4",
+    "associativvordes/family-index-v5/members/de/0e.json.gz": "d425fd3205db95edbe2863e26963c371919d6d4a7546564dc929e0ba361c5f00"
+  },
+  "records": [
+    {
+      "language": "de",
+      "lemma_id": "lemma:f6e6b8849349abf20b7c",
+      "word": "ganzreguläre",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "21248d8bc9bf8b61dbc30a4115dac1029aa42387ed403a78cd395974e82c1b7a"
+      },
+      "source_record": {
+        "lemma_id": "lemma:f6e6b8849349abf20b7c",
+        "word": "ganzreguläre",
+        "normalized": "ganzreguläre",
+        "search_form": "ganzregulare",
+        "rank": 511655,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "ganzregulare",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "de",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:ganzreguläre: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:ganzreguläre: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ganz",
+        "component": "regul",
+        "after": "äre",
+        "head": "regulär"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:f6e6b8849349abf20b7c",
+        "word": "ganzreguläre",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/regulaer"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:a92ede5f36ae0d4177f3",
+      "word": "halbregulären",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "adea813b88b3daf2bf517054995f5c3d72a2bd5423908981feb47d1f0b7a10f6"
+      },
+      "source_record": {
+        "lemma_id": "lemma:a92ede5f36ae0d4177f3",
+        "word": "halbregulären",
+        "normalized": "halbregulären",
+        "search_form": "halbregularen",
+        "rank": 535479,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "halbregularen",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "de",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:halbregulären: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:halbregulären: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "halb",
+        "component": "regul",
+        "after": "ären",
+        "head": "regulär"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:a92ede5f36ae0d4177f3",
+        "word": "halbregulären",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/regulaer"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8e29009c029445b64886",
+      "word": "regulär",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f38add49ee9b2552315829c5283197b1877c56a293a204b74f8f1fd25397e17c"
+      },
+      "source_record": {
+        "lemma_id": "lemma:8e29009c029445b64886",
+        "word": "regulär",
+        "normalized": "regulär",
+        "search_form": "regular",
+        "rank": 4128,
+        "frequency_score": 41.368670251921344,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              2.285175
+            ],
+            "category_ipm": 2.285175,
+            "category_score": 20.841018795709513
+          },
+          "normative": {
+            "ipm_values": [
+              19.425828
+            ],
+            "category_ipm": 19.425828,
+            "category_score": 52.8603800966309
+          },
+          "web": {
+            "ipm_values": [
+              16.754638
+            ],
+            "category_ipm": 16.754638,
+            "category_score": 50.4046118634236
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 19.425828
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 2.285175
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 16.754638
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regular",
+            "canonical_candidate": "regul",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "manual_override",
+                "source": "methodology_control_word",
+                "path": [
+                  "de",
+                  "regulär",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:regulär: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:regulär: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "regul",
+        "after": "är",
+        "head": "regulär"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:8e29009c029445b64886",
+        "word": "regulär",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/regulaer"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:8183157fa9ac3a8f034f",
+      "word": "reguläre",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "845ea49504b259a64b8057d70ec972c81a02c714d4f19f4d2d20121078c51a7d"
+      },
+      "source_record": {
+        "lemma_id": "lemma:8183157fa9ac3a8f034f",
+        "word": "reguläre",
+        "normalized": "reguläre",
+        "search_form": "regulare",
+        "rank": 104107,
+        "frequency_score": 3.3942832933772897,
+        "category_breakdown": {
+          "normative": {
+            "ipm_values": [
+              0.310813
+            ],
+            "category_ipm": 0.310813,
+            "category_score": 4.742287126860345
+          },
+          "web": {
+            "ipm_values": [
+              0.123876
+            ],
+            "category_ipm": 0.123876,
+            "category_score": 2.046279459894235
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.310813
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.123876
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "regul",
+            "canonical_candidate": "regul",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "regulare",
+                  "regul",
+                  "regul"
+                ],
+                "confidence": 0.97
+              },
+              {
+                "type": "verified_seed_alias",
+                "source": "methodology_control_seed",
+                "path": [
+                  "de",
+                  "regul",
+                  "family:regul"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:reguläre: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:reguläre: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "",
+        "component": "regul",
+        "after": "äre",
+        "head": "regulär"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:8183157fa9ac3a8f034f",
+        "word": "reguläre",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/regulaer"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:4d7faf3f222143db559f",
+      "word": "irregulär",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/0e.json.gz",
+        "family_id": "surface:de:irregular",
+        "record_sha256": "a9b39b8a2dee07e761867e5a9e986cdfc13f94b69b1a5bd27e9248e0e5b86674"
+      },
+      "source_record": {
+        "lemma_id": "lemma:4d7faf3f222143db559f",
+        "word": "irregulär",
+        "normalized": "irregulär",
+        "search_form": "irregular",
+        "rank": 34099,
+        "frequency_score": 9.398799264271194,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.257484
+            ],
+            "category_ipm": 0.257484,
+            "category_score": 4.014516780373448
+          },
+          "normative": {
+            "ipm_values": [
+              0.777033
+            ],
+            "category_ipm": 0.777033,
+            "category_score": 10.074189790514401
+          },
+          "web": {
+            "ipm_values": [
+              1.237013
+            ],
+            "category_ipm": 1.237013,
+            "category_score": 14.10769122192573
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 0.777033
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.257484
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 1.237013
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "irregular",
+            "canonical_candidate": "irregular",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "irregular",
+                  "irregular",
+                  "irregular"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irregulär: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irregulär: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ir",
+        "component": "regul",
+        "after": "är",
+        "head": "regulär"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:4d7faf3f222143db559f",
+        "word": "irregulär",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/regulaer"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:b979bfc33f3dfcf7a6ad",
+      "word": "irreguläre",
+      "family_id": "family:regul",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/0e.json.gz",
+        "family_id": "surface:de:irregular",
+        "record_sha256": "541c63eab114b7d51e9c759bcf5ddadeb2995e1d4380d2131bbbd7eb9f09a8e5"
+      },
+      "source_record": {
+        "lemma_id": "lemma:b979bfc33f3dfcf7a6ad",
+        "word": "irreguläre",
+        "normalized": "irreguläre",
+        "search_form": "irregulare",
+        "rank": 174648,
+        "frequency_score": 1.868567283450434,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.112535
+            ],
+            "category_ipm": 0.112535,
+            "category_score": 1.868567283450434
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.112535
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "irregular",
+            "canonical_candidate": "irregular",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "irregulare",
+                  "irregular",
+                  "irregular"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "relation_kind": "lexical_continuity",
+      "formal_continuity_status": "accepted",
+      "identity_decision": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irreguläre: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "boundary_proof": {
+        "status": "accepted",
+        "reason": "Finite analysis of de:irreguläre: retained lexical base in regulär; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+        "evidence": [
+          {
+            "source": "https://www.duden.de/rechtschreibung/regulaer",
+            "finding": "Adjective continues regularis from regula; ordinary inflection retains regulär-.",
+            "access_status": "article_read"
+          }
+        ]
+      },
+      "link_role": "reviewed_lexical_base_component",
+      "component_segmentation": {
+        "before": "ir",
+        "component": "regul",
+        "after": "äre",
+        "head": "regulär"
+      },
+      "senses_decision": {
+        "language": "de",
+        "family_id": "family:regul",
+        "lemma_id": "lemma:b979bfc33f3dfcf7a6ad",
+        "word": "irreguläre",
+        "membership_object": "lexical_row_or_component",
+        "formal_continuity": "accepted",
+        "component": "regul",
+        "analyses": [
+          {
+            "history": "regula_regularis_regulare",
+            "verdict": "accepted",
+            "evidence": [
+              "https://www.duden.de/rechtschreibung/regulaer"
+            ],
+            "proved_components": [
+              "regul"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+      "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+      "finite_reviewed_ids": [
+        "lemma:f6e6b8849349abf20b7c",
+        "lemma:a92ede5f36ae0d4177f3",
+        "lemma:8e29009c029445b64886",
+        "lemma:8183157fa9ac3a8f034f",
+        "lemma:4d7faf3f222143db559f",
+        "lemma:b979bfc33f3dfcf7a6ad"
+      ]
+    }
+  ],
+  "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+  "decision": {
+    "status": "accepted",
+    "expected_version": 1,
+    "relation_kind": "lexical_continuity",
+    "lemma_ids": [
+      "lemma:f6e6b8849349abf20b7c",
+      "lemma:a92ede5f36ae0d4177f3",
+      "lemma:8e29009c029445b64886",
+      "lemma:8183157fa9ac3a8f034f",
+      "lemma:4d7faf3f222143db559f",
+      "lemma:b979bfc33f3dfcf7a6ad"
+    ],
+    "reason": "Exact finite accepted regula-line lexical/component scope; aggregate source measurements preserved.",
+    "evidence": [
+      {
+        "path": "audit/associative-family-v6/regul-20261008/decisions/review.json",
+        "sha256": "bc9b421c24f0764819d4aaf7760522c9556b1df64802b1a4b14e4fbcbc2069a6",
+        "finite_reviewed_ids": [
+          "lemma:f6e6b8849349abf20b7c",
+          "lemma:a92ede5f36ae0d4177f3",
+          "lemma:8e29009c029445b64886",
+          "lemma:8183157fa9ac3a8f034f",
+          "lemma:4d7faf3f222143db559f",
+          "lemma:b979bfc33f3dfcf7a6ad"
+        ]
+      }
+    ]
+  }
+}

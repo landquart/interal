@@ -1,0 +1,1192 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "binding_authorized": true,
+  "accepted_membership_authorized": true,
+  "stage": "reaktion-prompt05-recovery-20261004",
+  "source_head": "26ed0861fad8768f70ed2a1831e4bc8e52dc0c78",
+  "source_backlog_sha256": "725881bcd9d1c4e1370021a67f9bcd4f6c86e1ac910008edeab9dd2034054013",
+  "groups": [
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "reaktion",
+      "sense": "response_or_transformation_nominal_lexical_base",
+      "status": "accepted",
+      "forms": [
+        "reaktion",
+        "reaktionen"
+      ],
+      "component_stems": [
+        "reaktion"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Reaktion",
+        "https://www.duden.de/rechtschreibung/Aktion",
+        "https://scilogs.spektrum.de/relativ-einfach/berichterstattung-ueber-kernfusion-vor-einem-jahr-die-verflixte-energiebilanz/2/",
+        "https://static.klett.de/software/html5/elemente/ec02df315/ec02df315.html",
+        "https://www.duden.de/rechtschreibung/Fluchtreaktion",
+        "https://www.duden.de/rechtschreibung/Gegenreaktion",
+        "https://www.duden.de/rechtschreibung/Hautreaktion",
+        "https://www.duden.de/rechtschreibung/Immunreaktion",
+        "https://www.duden.de/rechtschreibung/Kernreaktion",
+        "https://www.duden.de/rechtschreibung/Kettenreaktion",
+        "https://www.duden.de/rechtschreibung/Kurzschlussreaktion",
+        "https://www.duden.de/rechtschreibung/Panikreaktion",
+        "https://www.duden.de/rechtschreibung/Stressreaktion",
+        "https://www.duden.de/rechtschreibung/Ueberreaktion",
+        "https://www.spektrum.de/lexikon/biochemie/enzyme/1972",
+        "https://www.spektrum.de/lexikon/chemie/indikatoren/4426",
+        "https://www.spektrum.de/lexikon/chemie/ninhydrinreaktion/6313",
+        "https://www.spektrum.de/magazin/lise-meitner-und-die-kernspaltung/824545",
+        "https://www.spektrum.de/news/wie-gross-ist-die-expansion-des-universums/1778340"
+      ],
+      "reason": "Reaktion is documented as re- plus Aktion (Latin actio). Everyday response, chemical transformations and metaphorical chain-response share formal lexical history; component only, no whole-compound POS or token-sense frequency. Exactly individually checked dictionary and scientific uses; no reaktionär, invented SF processes, OCR, wildcard or automatic branch propagation.",
+      "records": [
+        {
+          "lemma_id": "lemma:0185881c92bbc2fac893",
+          "word": "fusionsreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:fusionsreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:0185881c92bbc2fac893:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "fusions",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Scientific author explicitly uses Fusionsreaktionen for fusion processes; Fusion + s + Reaktion + en.",
+            "source_references": [
+              "https://scilogs.spektrum.de/relativ-einfach/berichterstattung-ueber-kernfusion-vor-einem-jahr-die-verflixte-energiebilanz/2/"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:021d662d77e9d0bc8071",
+          "word": "stressreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:stressreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:021d662d77e9d0bc8071:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "stress",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Stressreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:07001440d7ab4f301531",
+          "word": "panikreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:panikreaktione",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:07001440d7ab4f301531:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "panik",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Panikreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:0df338fbf29e852e416f",
+          "word": "neutronenreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:reaktion",
+            "surface:de:neutronenreaktio"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:0df338fbf29e852e416f:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "neutronen",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Publisher historical scientific article independently attests Neutronenreaktion for a nuclear process; Neutronen + Reaktion.",
+            "source_references": [
+              "https://www.spektrum.de/magazin/lise-meitner-und-die-kernspaltung/824545"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:163094bfab9e9e49f0c5",
+          "word": "kettenreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:kettenreaktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:163094bfab9e9e49f0c5:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "ketten",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Kettenreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:234583edb188e00e9eb4",
+          "word": "streßreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:stressreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:234583edb188e00e9eb4:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "streß",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Historical ss/ß spelling outside the unchanged Reaktion component; finite nominal -en where present. No spelling correction of the corpus record.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Stressreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:239be76c98095e47b3e6",
+          "word": "immunreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:immunreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:239be76c98095e47b3e6:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "immun",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Immunreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:2da6cb9d252a2f3d5aa2",
+          "word": "gegenreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:gegenreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:2da6cb9d252a2f3d5aa2:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "gegen",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Gegenreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:329c0256c42240bfe146",
+          "word": "hautreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:329c0256c42240bfe146:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "haut",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Hautreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:454c0448f0bff5976a47",
+          "word": "gegenreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:454c0448f0bff5976a47:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "gegen",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Gegenreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:4b46c642e2b77c620fbc",
+          "word": "streßreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:stressreaktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:4b46c642e2b77c620fbc:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "streß",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Historical ss/ß spelling outside the unchanged Reaktion component; finite nominal -en where present. No spelling correction of the corpus record.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Stressreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:4ff8d3816b06bc4e5e8d",
+          "word": "kurzschlußreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:kurzschlussreaktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:4ff8d3816b06bc4e5e8d:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kurzschluß",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Historical ss/ß spelling outside the unchanged Reaktion component; finite nominal -en where present. No spelling correction of the corpus record.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Kurzschlussreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:50735d79ff7e07d9d4eb",
+          "word": "panikreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:50735d79ff7e07d9d4eb:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "panik",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Panikreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:55a25086036069b1f831",
+          "word": "enzymreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:reaktion",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:enzymreaktio",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:55a25086036069b1f831:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "enzym",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Publisher biochemistry dictionary explicitly discusses Enzymreaktion and catalysis mechanisms; Enzym + Reaktion.",
+            "source_references": [
+              "https://www.spektrum.de/lexikon/biochemie/enzyme/1972"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:6152ed9c8e7b1d3a08d5",
+          "word": "thermitreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:thermitreaktio",
+            "surface:de:reaktion",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:6152ed9c8e7b1d3a08d5:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "thermit",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Educational publisher explicitly identifies the aluminium/iron-oxide redox process as Thermitreaktion; Thermit + Reaktion.",
+            "source_references": [
+              "https://static.klett.de/software/html5/elemente/ec02df315/ec02df315.html"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:634b23e9aaf2f99a5afe",
+          "word": "überreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:uberreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:634b23e9aaf2f99a5afe:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "über",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Ueberreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:6a8c3b46551dbc38d6bf",
+          "word": "kernreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:reaktion",
+            "surface:de:kernreaktio"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:6a8c3b46551dbc38d6bf:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kern",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Kernreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:75e6a41a9fc59ef0d17f",
+          "word": "kurzschlussreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:kurzschlussreaktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:75e6a41a9fc59ef0d17f:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kurzschluss",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Kurzschlussreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:a46a71602b7dc75c2175",
+          "word": "fluchtreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:fluchtreaktione",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:a46a71602b7dc75c2175:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "flucht",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Fluchtreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:b07fccaaec47009d16e3",
+          "word": "farbreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:reaktion",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:farbreaktio",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:b07fccaaec47009d16e3:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "farb",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Publisher chemistry dictionary explicitly uses Farbreaktion for a concentration-indicating chemical process; Farb + Reaktion.",
+            "source_references": [
+              "https://www.spektrum.de/lexikon/chemie/indikatoren/4426"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:b6d7f2c6d45f2365339a",
+          "word": "hautreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:hautreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:b6d7f2c6d45f2365339a:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "haut",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Hautreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:b82778e1a5ed88665aa9",
+          "word": "fluchtreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:b82778e1a5ed88665aa9:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "flucht",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Fluchtreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:bbff1609caa3a3fc34f3",
+          "word": "immunreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:immunreaktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:bbff1609caa3a3fc34f3:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "immun",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Immunreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:bcbd1c4d7ca88ec83a47",
+          "word": "kurzschlussreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:kurzschlussreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:bcbd1c4d7ca88ec83a47:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kurzschluss",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Kurzschlussreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:d3ed8b3cfd0c0d5a2f8f",
+          "word": "nachweisreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:reaktion",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:nachweisreaktio",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:d3ed8b3cfd0c0d5a2f8f:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "nachweis",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Publisher chemistry dictionary describes a Nachweisreaktion detecting amino compounds; Nachweis + Reaktion.",
+            "source_references": [
+              "https://www.spektrum.de/lexikon/chemie/ninhydrinreaktion/6313"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:ddd571601cdc9d25fb90",
+          "word": "stressreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:stressreaktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:ddd571601cdc9d25fb90:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "stress",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Stressreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:eb159126be6a70e688d1",
+          "word": "überreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:eb159126be6a70e688d1:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "über",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Ueberreaktion"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:ed496632788256d990cc",
+          "word": "kernfusionsreaktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:kernfusionsreaktio",
+            "surface:de:fusionsreaktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:ed496632788256d990cc:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "kernfusions",
+            "component": "reaktion",
+            "after": "",
+            "head": "reaktion",
+            "boundary_proof": "Publisher scientific article independently uses Kernfusionsreaktion for nuclear fusion combustion; Kernfusion + s + Reaktion.",
+            "source_references": [
+              "https://www.spektrum.de/news/wie-gross-ist-die-expansion-des-universums/1778340"
+            ]
+          }
+        },
+        {
+          "lemma_id": "lemma:f2e3cb7a98c61e1bae35",
+          "word": "kettenreaktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:kettenreaktione"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:f2e3cb7a98c61e1bae35:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "ketten",
+            "component": "reaktion",
+            "after": "en",
+            "head": "reaktion",
+            "boundary_proof": "Dictionary division and response/transformation definition prove the complete Reaktion component; finite nominal -en where present.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Kettenreaktion"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "source_queue": "audit/associative-family-v6/prompt05-recovery-20261004/reaktion-research.json.gz",
+  "source_queue_sha256": "9e722ab56f217188a40fb47ebe3ca4ca45fff1d2c729c9371398eddf7b9a2969",
+  "predecessor_review_version": 17,
+  "predecessor_review_sha256": "2bc751f2f2f19ff93e1927e0abb31a225350cd67ec2103e8443ab266af3bf346",
+  "withheld_lemma_ids": [
+    "lemma:0052511872649ec3a567",
+    "lemma:03bfed6c8fc5b9ec18bc",
+    "lemma:044e4ba8e460f32c6a03",
+    "lemma:047a934e03cc65219267",
+    "lemma:04969d625f737fddafb9",
+    "lemma:055518e98f43b093ac9e",
+    "lemma:06075c5a0acf6ee85902",
+    "lemma:065e8676178d2661aeb5",
+    "lemma:0dbbddca53637c70b2c8",
+    "lemma:10f71de63b450ffb1881",
+    "lemma:11038f49e1abc85b8a26",
+    "lemma:113c187807f12e6afd59",
+    "lemma:114cef330c4ee62a6bf7",
+    "lemma:11b0a92a73c7f4c63712",
+    "lemma:11cfcceaf6bde9ebb59e",
+    "lemma:13780e0508bfa8e48117",
+    "lemma:1446ea730b75bc1eda35",
+    "lemma:1584aec8f8d362e1e878",
+    "lemma:174e0d9e28aeede61257",
+    "lemma:18010311ca5641cf9a69",
+    "lemma:183fbf7b6ae531898c84",
+    "lemma:188fc14794423ca0d3f2",
+    "lemma:19f157a5a31b4e261b96",
+    "lemma:1aaca206241aea56d703",
+    "lemma:1ab14a5464d3152c185e",
+    "lemma:1c4172664a3a2fbf7775",
+    "lemma:1fc3d1f24ed959ea51a8",
+    "lemma:207316176b3996dce743",
+    "lemma:2221d7075bf9ad6d0d1b",
+    "lemma:25246e42e41645a24893",
+    "lemma:28ea07007251c8c48469",
+    "lemma:293ea88fcbd9d1638c81",
+    "lemma:296c1da5d5a685b9f9ac",
+    "lemma:2a22509c9ba391ae25b1",
+    "lemma:2bf12db57fcbf4c9af94",
+    "lemma:2e3dfd2c33d3881ea171",
+    "lemma:2e65c1361375cb0a230b",
+    "lemma:2fac8ca8abfb4cedd5df",
+    "lemma:30ee99f3808672ddbc58",
+    "lemma:3432b896a52f438762ac",
+    "lemma:34d7c8315cdcc3da2910",
+    "lemma:378cb4486f78b7a78f02",
+    "lemma:37d854d5aa58c5efcb21",
+    "lemma:3a9c218f4d5730c2e0e4",
+    "lemma:3bce887d038f54b3d631",
+    "lemma:3e9dd4f23dcff2d35cc0",
+    "lemma:42c1b00cc2c0c2c30986",
+    "lemma:42cecb1e9af7810de516",
+    "lemma:432bfebc51b00e9a037a",
+    "lemma:4392524803a7d045205f",
+    "lemma:46fecf1878434abea160",
+    "lemma:4767b8387c43642f0577",
+    "lemma:4ae4923856bbf3d47e74",
+    "lemma:50d20823dc39b4a44709",
+    "lemma:51fb25eee58d00989b26",
+    "lemma:526ab14b94066d22b630",
+    "lemma:538b0cfa53fd7ae7547c",
+    "lemma:53a5eb46ccb41a1a3c5d",
+    "lemma:54eda08f36c742073a57",
+    "lemma:558d5921e457c7b4e216",
+    "lemma:55e91ba1df3e40ed4f60",
+    "lemma:572fc8308218123f38d8",
+    "lemma:58058332df529a743046",
+    "lemma:598fb7d0e67abb16882d",
+    "lemma:5a55bdec56dcc8baef9f",
+    "lemma:6117abecf5d6d9cac502",
+    "lemma:6575f64fce8259e299bf",
+    "lemma:65e543b70b4bdd7c1efa",
+    "lemma:6839d8cde6042704c531",
+    "lemma:688b3b0d7de0e49e90b8",
+    "lemma:6aa2d4b8d7a0c4e16fae",
+    "lemma:6c7ec546552d9a505b02",
+    "lemma:702e994923d03d0de318",
+    "lemma:705146fb6a3771b05311",
+    "lemma:72b99daf7b4244eb20c1",
+    "lemma:74307659f0a64fa0019e",
+    "lemma:749f7cbc16cebe6a9728",
+    "lemma:7618a3a5cd557b9fe5b1",
+    "lemma:78c0ffa25b1ba48c76cc",
+    "lemma:7b1a279c9afaecf86f04",
+    "lemma:7b218f69d9fb666fda91",
+    "lemma:7c10c17a6f9ea6f0e0ea",
+    "lemma:7f314f8b4a16260ba59d",
+    "lemma:801f4845318c182f5f2c",
+    "lemma:8210b2a86beaa28dcfca",
+    "lemma:83d8d968a6dc5335b9b8",
+    "lemma:87ffa37511155e069437",
+    "lemma:891105606494c88a23e3",
+    "lemma:89eb8f612914e1012900",
+    "lemma:8f1d585a8d9a4aa51e31",
+    "lemma:90917857d62da1461128",
+    "lemma:91ebaff11edf90b4831e",
+    "lemma:91f3ab9d64d73f7c0cd9",
+    "lemma:92bab3e215adc19ff2ac",
+    "lemma:94a50bd107b35cc125d8",
+    "lemma:9904074f2651bb0c631b",
+    "lemma:9a3f52218076b53eea08",
+    "lemma:9de2e5b6dbad37607f51",
+    "lemma:9f201469c1a7308475fc",
+    "lemma:a074ffe9392303be53df",
+    "lemma:a08d8a50a56797690986",
+    "lemma:a2a8afb7ffd7f88cdbe7",
+    "lemma:a48c50f4ac7aed4e614c",
+    "lemma:a5cc31b4c8754aea991f",
+    "lemma:a69bc75ab7ee6e878918",
+    "lemma:a846e9c4e84e2eade736",
+    "lemma:a9161357f1396e474a1d",
+    "lemma:a996d716e3227c765e46",
+    "lemma:a9f2a34b9e55b59cf071",
+    "lemma:ab92304c032947654aca",
+    "lemma:ac07ba70b4bf4f0b7756",
+    "lemma:ace783bd04bfd3443f02",
+    "lemma:ae0375e63706f3af0048",
+    "lemma:b18fafe33e7ed465550a",
+    "lemma:b329c946644b84346507",
+    "lemma:b513f891823a9321eb08",
+    "lemma:b6190df87a3f025c2f1e",
+    "lemma:b67a1abda7733c5b38eb",
+    "lemma:b773577b56d56ab0a6db",
+    "lemma:b7cdf6398e9cbeabaeb9",
+    "lemma:b889d3ceb69c2f799d4e",
+    "lemma:b9b79dd97d2ffbe903b3",
+    "lemma:b9e5b87055d0dce1f505",
+    "lemma:ba05d09a27174e631f64",
+    "lemma:ba58d7391d06d939ee63",
+    "lemma:bd618f720f4437905b3b",
+    "lemma:be04167cdba081079434",
+    "lemma:c055a5de01da49940e12",
+    "lemma:c0646521fa8d74bb25a3",
+    "lemma:c2d29a436b2f739ccf0c",
+    "lemma:c3640c24d70d020ae9dc",
+    "lemma:c412b2cf84e3d229f7c2",
+    "lemma:c6635e4f2b14dcf0f8bd",
+    "lemma:c70cde226158bbdef580",
+    "lemma:c770765d9ed3fd675941",
+    "lemma:c7fb5939c15ffffc9139",
+    "lemma:c86785ba7d589df9fc59",
+    "lemma:ca3b026ab1bc91413f26",
+    "lemma:cb858dc2fc2ada029a5b",
+    "lemma:cc6ab7b30eec6e4ca8d8",
+    "lemma:cd253c0a565af1719247",
+    "lemma:cdd1dbf18153b9903965",
+    "lemma:cefe98410348424957f1",
+    "lemma:d3ebf4d3fccd3f7894b2",
+    "lemma:d5fe2260cdea764540ea",
+    "lemma:d83a7f6d18f333dd5ab6",
+    "lemma:de6af4f1ebcffcf7ad7f",
+    "lemma:dfbf97f0e450ebaed965",
+    "lemma:e07dae3cb15e4d56c1ac",
+    "lemma:e35d89f4b802b8472250",
+    "lemma:e4262e3cbf70c0534992",
+    "lemma:e63a384c0b5d791498e9",
+    "lemma:e91893ed17b955f6751e",
+    "lemma:e966025945e3eade3d63",
+    "lemma:e9b05fd784670cc61528",
+    "lemma:eaab70363fe67995233e",
+    "lemma:ec3054f433eef9be894b",
+    "lemma:ed279dfd83001c760d0a",
+    "lemma:edd0200201f5b2b05db5",
+    "lemma:f5b1792fd850bf25655c",
+    "lemma:f6a987041a7a347e0b45",
+    "lemma:fa35e81a02fc85dd43fa",
+    "lemma:fa6e48896ab97ea479f9",
+    "lemma:fcf96d13582fb02411b4",
+    "lemma:fd73cbe868b04102ffb9",
+    "lemma:fe8c4ed397cc23dc9186",
+    "lemma:fe9a9c9072cf706b05ff"
+  ]
+}

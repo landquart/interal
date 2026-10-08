@@ -1,0 +1,136 @@
+{
+  "schema_version": 6,
+  "stage": "turr-finite-lexical-row-promotion-20261004",
+  "source_head": "08a5ce1e6453c0d3a2ccad08b8dd5ee92b774c75",
+  "production_enabled": false,
+  "promotion_status": "deferred_proven_incompatible_lexical_histories",
+  "binding_authorized": false,
+  "accepted_membership_authorized": false,
+  "decision_scope": "Only enumerated real immutable rows; lexical-row semantics, not token/sense frequencies.",
+  "senses_policy": "audit/associative-family-v6/SENSES-POLICY-20261004.md",
+  "candidate_packets": [
+    "candidate-root:b1d1803a0d1c69bf965b3462"
+  ],
+  "family": {
+    "id": "family:turr",
+    "canonical": "turr",
+    "legacy_ids": [],
+    "promotion_status": "research_only_boundary",
+    "element_type": "root",
+    "aliases": [
+      "turr"
+    ],
+    "canonical_decision": {
+      "status": "accepted_linguistic_boundary_research_only",
+      "reason": "Choose turr as the bounded international associative base of the evidenced Latin tower lexeme. Lewis and Short supplies turris with accusatives turrim/turrem, ablatives turri/turre and attested plural turres: the complete consonantal turr persists while specifically identified nominal case material varies. This is an explicit associative-boundary choice from a sourced paradigm, not a universal rule for removing final letters and not a claim about all Latin grammatical stems. National spellings remain independently evidenced head rows; no arbitrary rr/r, u/o or Turm/Tour reflex rule is authorized.",
+      "evidence": [
+        "https://atlas.perseus.tufts.edu/dictionaries/entry/urn:cite2:scaife-viewer:dictionary-entries.atlas_v1:lat.ls.perseus-eng2-n49506/"
+      ]
+    },
+    "realizations": {},
+    "reflexes": [],
+    "source_evidence_clusters": [
+      "ety:f12c43164882",
+      "ety:f6fc9545f482"
+    ]
+  },
+  "groups": [],
+  "input_sha256": {
+    "audit/associative-family-v6/prompt02-research-20261004.json": "94afc02210947bb39c33d57eb9415ce66d85d408748a6ae87d239a7e52096882",
+    "audit/associative-family-v6/prompt02-torre-homonym-research-20261004.json": "0ed0d6bdde08af8896978087ff0e859f8735273334a49711834bb0143637d361",
+    "audit/associative-family-v6/anis-promotion-research-20261003.json": "ff60347252b5e044ef2422fc8f46251d7a1a2e806ba92db0c256a18bec496e4f",
+    "audit/associative-family-v6/anis-core-corpus-adjudication-20261003.json": "883ddc35aa22d7a7ec9dd82ed28e1956deb5ff9ee85deefc8ff18e8c50f22dcf",
+    "audit/associative-family-v6/tower-canonical-boundary-adjudication-20261003.json": "ed4606b35c170ea748c9318dde3fb9b68bc515de8c2ccddb75b33468147bc226",
+    "audit/associative-family-v6/tower-promotion-research-20261003.json": "a2cd1825d0e5eaf3461a2e44e73f3d589801b41e8c69a13b72a15fbd93aa862a"
+  },
+  "negative_controls": [
+    {
+      "language": "en",
+      "lemma_id": "lemma:651960ea689efcbc3c97",
+      "word": "tor"
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:1b26792ff85af5779c9c",
+      "word": "torres"
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:20fbd8bae8d1b9a8a366",
+      "word": "tours"
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:6ddb615021c7176fd993",
+      "word": "demi-tour"
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:fa216e83c0411a8404c5",
+      "word": "acceptor"
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:92cd169dcd1a3c24417a",
+      "word": "agricultor"
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:4e0a11d643859cb9c79f",
+      "word": "аббревиатура"
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:ec680eca255ea8f2a240",
+      "word": "адвокатура"
+    },
+    {
+      "language": "it",
+      "lemma_id": "lemma:0e828e305c1d90c4326a",
+      "word": "torremolinos"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:765d4a815e7f1e15f66c",
+      "word": "bismarckturm"
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:fbb12b86b76ffff488fe",
+      "word": "tower"
+    },
+    {
+      "language": "de",
+      "lemma_id": "lemma:e10d98a4cae30621277d",
+      "word": "turm"
+    },
+    {
+      "language": "fr",
+      "lemma_id": "lemma:ea7fdcd66cda3892ded2",
+      "word": "tour"
+    },
+    {
+      "language": "es",
+      "lemma_id": "lemma:63adf237a08c24f59920",
+      "word": "torre"
+    },
+    {
+      "language": "it",
+      "lemma_id": "lemma:0d23cbf326af4b0f1718",
+      "word": "torre"
+    },
+    {
+      "language": "ru",
+      "lemma_id": "lemma:158283923dc337e93d69",
+      "word": "тура"
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:222cc76e64e0b5805573",
+      "word": "turret"
+    }
+  ],
+  "positive_controls": [],
+  "frequency_limitation": "aggregate_only_not_sense_frequency",
+  "unreviewed_source_container_policy": "No blanket verdict; unlisted IDs remain unadjudicated."
+}

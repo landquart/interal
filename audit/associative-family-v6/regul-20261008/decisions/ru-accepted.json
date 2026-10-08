@@ -1,0 +1,4485 @@
+[
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:0116e3a9ed0087661281",
+    "word": "урегулировка",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/38.json.gz",
+        "family_id": "surface:ru:uregulirovk",
+        "record_sha256": "b2df664d4a14e688cfd3725cac8569d09edf968baa0aaa2b1f6e94b4da6147c9"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/43.json.gz",
+        "family_id": "surface:ru:vka",
+        "record_sha256": "52987ad16a8a2c618fa75a615e46fbcf08eeb3f0c548e33b0b9b42e02027f7e6"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "d8d6117339155115e2deb2bde5866c6172f24d62289d8f0eeaf0b4bb9575aa90"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:урегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ировка",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:0116e3a9ed0087661281",
+      "word": "урегулировка",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:урегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "finite_addition",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:022062b2797ac6710a1a",
+    "word": "регулирующий",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/2d.json.gz",
+        "family_id": "surface:ru:regulirujushch",
+        "record_sha256": "4b1ff88347bcf27dde8fbedf75a52819927c72949089d887713c7570973b395f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "surface:ru:shchij",
+        "record_sha256": "95ad7f25fe3daedc508aadc2ab5d0c7cc91de72b7f5c3e0d8a95ce734da49fdb"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "cc26b12872facaa39d376fd3c8724e7b724e85647f73b8bb6a5b29a5e9682622"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "c6dabace274eec8872cc31e6838c8c42869971efbcd2e64c6ce16290bd1cfc02"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулирующий: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ирующий",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:022062b2797ac6710a1a",
+      "word": "регулирующий",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулирующий: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:035e90b14402677d5231",
+    "word": "росалкогольрегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "fcc815c52534497ab91704ae9273b46f207b9b3c0f3dffaca3b96619fbe5ab31"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/c5.json.gz",
+        "family_id": "surface:ru:rosalkogolregulirovani",
+        "record_sha256": "8e61ea7df7d07a6cea26ee1ebc70228e82970202fb913b614a292f3d10c497cc"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "4910fb61d752cbf4ab82e960a08349e2c37d24b159bb2c8d15b7e84649cf24de"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:росалкогольрегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 11,
+      "end": 16,
+      "before": "росалкоголь",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:035e90b14402677d5231",
+      "word": "росалкогольрегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:росалкогольрегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:08b8219c0410795768a4",
+    "word": "урегулироваться",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/af.json.gz",
+        "family_id": "surface:ru:uregulirovatsj",
+        "record_sha256": "8e7bd13681550f1455d0ed2341af025155a22be0ebed926834d2f857f0a5ddc7"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "9049ba10bb813f360d9f61c6dfa51b2df81c4fe0ebcb2fae64ba622431347d94"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "df77ec1008b71ab0c3775aef683ffc491e92882961916473ab3004ee4deaa137"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:урегулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ироваться",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:08b8219c0410795768a4",
+      "word": "урегулироваться",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:урегулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "finite_addition",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:09cc0d3b3467d97f7387",
+    "word": "порегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "27c39a9f20c36e0084a8226450109f633a57e30586d89ba1bf844aaf2c90365c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/5b.json.gz",
+        "family_id": "surface:ru:pore",
+        "record_sha256": "6a14713ba510b9deafa9fbf3b69cb76ad6823d160e4d7bbf8a1f7ed5f65f0e6c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/94.json.gz",
+        "family_id": "surface:ru:regulirov",
+        "record_sha256": "ce2860a86d549665e79c8c21ee0046551a113c7666ab0857239cf6078100522c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "5f56a0be6d2ad7efbf04a49b00629493782803b2ec39277dfd94ee3142477b96"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:порегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "по",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:09cc0d3b3467d97f7387",
+      "word": "порегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:порегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:130e898258f787860ab0",
+    "word": "нерегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "577a34f06749dbac0c1d64c1a8441f2499fc6dbab4933469f9fc8cfb914a5ef6"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/94.json.gz",
+        "family_id": "surface:ru:regulirov",
+        "record_sha256": "042a7feb7b9adb94cb20fd408b7546f8d60d5a6759e9e70d8ddf0f7970b5a112"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/be.json.gz",
+        "family_id": "surface:ru:neregulir",
+        "record_sha256": "fef63763e223245bb01f5dd653aadeaadc6a6523467c4ed7b5b3a7f5334df0bd"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "86376032d68765a3c057b0bd6bfd3d597bd6930a8fc43784e8021bb5f4ca62ff"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:нерегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "не",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:130e898258f787860ab0",
+      "word": "нерегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:нерегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:1651ee21ebdf9aa8af45",
+    "word": "авторегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "0cde880c3086b3c1ebe6d69fa373bc282c09507bb33395cf9ac2b279960de384"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/4c.json.gz",
+        "family_id": "surface:ru:avtoregulirovani",
+        "record_sha256": "d099a4f0682861210d0ac62da15409aa0a3b9b691c39fe4238336cbe7419b705"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "f9b8e2f7367576d62c90d3c4402b3d1bca80107c23f2fb1c70b40a8cc597f82c"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:авторегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "авто",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:1651ee21ebdf9aa8af45",
+      "word": "авторегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:авторегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:209c0c6fcfc4d510a280",
+    "word": "терморегулирующий",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/00.json.gz",
+        "family_id": "surface:ru:termoregulirujushch",
+        "record_sha256": "a6b0530be55d37afccaa7ec0a8ade1f4fb0833925493a2732e721ef5aae84235"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "surface:ru:shchij",
+        "record_sha256": "2610e0d5ff86f973ba8276cece112aad0baab99472bc232160ec05bae990f366"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "d0ce61e6ed44eccabeb2944cd607025877c970def3c2631e465e4d58b95a838a"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "c97d713fef833e663f33508df69bf2bc21eb3f213ab7684ceb34d7aa8af55383"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:терморегулирующий: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "термо",
+      "after": "ирующий",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:209c0c6fcfc4d510a280",
+      "word": "терморегулирующий",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:терморегулирующий: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:2487550fcb3da0247d85",
+    "word": "саморегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/08.json.gz",
+        "family_id": "surface:ru:samoregulirov",
+        "record_sha256": "e47e2f6be6e7fe9065cf7e7ddfb52ce47cfc1fb4d31a75e879b8b51ff4d92a33"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "ae006083ea6e9d90fd085c77d9321f1321f581506686098d80e30b73b8df9c8e"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "ddfa3f86235402e4d19acd878464243d4f5052c28b086fcad2d8daf2a66f9f17"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:саморегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:2487550fcb3da0247d85",
+      "word": "саморегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:саморегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:32063fa6921c61fccfe4",
+    "word": "авторегулировка",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "27fe967bd56324dbeffcddda46ba9f59887ef7c8ef861a5911d4d635bea6436c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/43.json.gz",
+        "family_id": "surface:ru:vka",
+        "record_sha256": "660abcba81b0439d8da36527a31a098f56fbb1b008d4450c234269477cbc8fd1"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d3.json.gz",
+        "family_id": "surface:ru:avtoregulirovk",
+        "record_sha256": "f42c058fa1534c16546cf06e77e1619dc593fd8c1e58ef1738ede9dfebf7b558"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "4f3345cb81ba93bc8ce88c8d814619b92ceb28618e47c10d75f8a65bb85bc7b8"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:авторегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "авто",
+      "after": "ировка",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:32063fa6921c61fccfe4",
+      "word": "авторегулировка",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:авторегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:32103b22d1302c59521a",
+    "word": "психорегуляция",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "288454fa59ceb8fc7a4bda96fe12837775f056056036ce396054d30e1e1a1822"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b4.json.gz",
+        "family_id": "surface:ru:psihoreguljacij",
+        "record_sha256": "45f7a52a4ea86a05c59ad07a9b7b2f38f58147b97e8ba508be8921468ed2c355"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "47a8f794933039fbd45a094f2dc157dba8b74ade8013877bd31ef838a054f7a5"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:психорегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "психо",
+      "after": "яция",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:32103b22d1302c59521a",
+      "word": "психорегуляция",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:психорегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:3bbf7c1286e2abd8efb4",
+    "word": "регулируемый",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "6631aa6495f02ba13f3713d33a503d70b19f3dbe0d82a1423170672f5b1719f4"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e2.json.gz",
+        "family_id": "surface:ru:reguliruem",
+        "record_sha256": "f0d3a67ac6321cc62d8f54cc711e784ce59965fd62fe3212bb1b9814ea79f14c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "4bdfff7b62ea4f7dcf58ed38bbc74f790699c4d3f2dd20ca5fd851aaf09fd0f5"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "052342610fab26ba99e722a3b3be93fc7987f5d71b896f5eee3a4900eedede59"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ируемый",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:3bbf7c1286e2abd8efb4",
+      "word": "регулируемый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:41d837b933ffa8263d9c",
+    "word": "саморегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "4589517660782d2c099cb1a633a6541b48b4c49edf8b60081cd9fefd8bc758b2"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/62.json.gz",
+        "family_id": "surface:ru:samoregulirovani",
+        "record_sha256": "a7981a478f5b1559d9146b9707737ab0ecf47dc2ec782db17de9174e0d493598"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "7791ccc80bc82d24a256d8ba95c856e5da9a964cffba94285d0b9c759faa2e2a"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "44684982344e8bd3caaa7afc86d41aeca2c70ed0d44a270719d795203e0a7c86"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "680e5578a461459961c4c9ff273918d843fe32bcd330dc84c62bf1497aae93ec"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:саморегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:41d837b933ffa8263d9c",
+      "word": "саморегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:саморегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:45e25ce554797f54514f",
+    "word": "саморегулируемый",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "559b17e90f3366f5682a793af66b00c72a54a6258a309fd295563223779ec326"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/96.json.gz",
+        "family_id": "surface:ru:samoreguliruem",
+        "record_sha256": "54efa6a6d9944b4b6ae9aee2aa7c14a4cf0088423dc9ca8e7c90447971a125e8"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "fd21dd837c87b9bcb8b98efa242bce63ebb8bb52cb9fdfd887b18c0af2dff81a"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "bbec6de855b5b0ef563d26430b5e464f68f86d9fcd72b26da2d6594fb32f296b"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "6d175acb49a5ff66aa001f2de242e6f8eb88c3857bf84c65d89feecbf8050833"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:саморегулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "ируемый",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:45e25ce554797f54514f",
+      "word": "саморегулируемый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:саморегулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:48cfea69c291374c2b39",
+    "word": "урегулировочный",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/9b.json.gz",
+        "family_id": "surface:ru:uregulirovochn",
+        "record_sha256": "ecb231f8c174d633c36834b1f461360b08d87c93b6dff8f3b442008f5d9c7159"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "3b3211da5111e55f0087be6f14eda6b7f848b8ee53e5964df90f21c583dc4fe8"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:урегулировочный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ировочный",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:48cfea69c291374c2b39",
+      "word": "урегулировочный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:урегулировочный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "finite_addition",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:4dc1c99c58ea8e4da2c4",
+    "word": "регулировщица",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "45da19bd4cbae4e14cd772211a7aad5d77de28cf6c1e200261dfb25be2a480a0"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/44.json.gz",
+        "family_id": "surface:ru:regulirovshchic",
+        "record_sha256": "d0e27a9cc9588ce4f2f5e3cea40db86abc7d0c5d13216564c65e297061d88a94"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e6.json.gz",
+        "family_id": "surface:ru:ica",
+        "record_sha256": "5dde34caf7e5073257e9877ae8f33e3643fcf6453e3c2150828971300930b654"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "bc9cb99d0335932984c3ae26c2875506e79afe6494715876b858ac8e03b42aa4"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулировщица: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ировщица",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:4dc1c99c58ea8e4da2c4",
+      "word": "регулировщица",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулировщица: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:4eafdb5478a7cc210b5c",
+    "word": "саморегулироваться",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "be0f8aa2d3c673c65595f5d62e46f2078e782928785e132c0be00ee2d5a93b41"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b0.json.gz",
+        "family_id": "surface:ru:samoregulirovatsj",
+        "record_sha256": "3334a1585c06fc84adb7fac9d9db0d7c872224a52a9f3b56cf81eb064185c1d9"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "6178088eefee902bf94f9e9501fd2f3e2895f9d8f9872e6886403e7177f880ff"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "a99d3ac6421a60529e1e0e01b69ead5656ff3232e39c119a2b0855cb95a3226c"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:саморегулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "ироваться",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:4eafdb5478a7cc210b5c",
+      "word": "саморегулироваться",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:саморегулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:4f173b284cb71bc40530",
+    "word": "саморегуляция",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/3f.json.gz",
+        "family_id": "surface:ru:samoreguljacij",
+        "record_sha256": "b583ef6aae482af16d7b2961d117092f4313ce56406b1c8ea445d568f4fa11b5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "2a379fb5296cb567c760ae773579b8bf188be15c10299fb91c6fa2f051167a2a"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "5329fbdc442de19c24579a9f646388c3fe663f90c93607ee7cdacc2ea6369d8e"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "dfed4846c18f0d14bdf0e57b81fe475bc8b7fe055cc7bf87e394ed2e696346e0"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "bcb4f5089c08b01ea6d9ebc98a74595071e251215ddcf003927d6c836bcafbe3"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:саморегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "яция",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:4f173b284cb71bc40530",
+      "word": "саморегуляция",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:саморегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:4f9afb6963394f211247",
+    "word": "дерегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "2344646b865d804b2fc858fa21ad00011f9ba930a5ab8ed7b3f94c30be6e409f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e1.json.gz",
+        "family_id": "surface:ru:deregulirovani",
+        "record_sha256": "41abbacecf5a3da51c7d2780334bfaa7e2036b00202447ecb34c0dd05ace40bc"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "928f1606279e5e74cca20b2e6d32a565c7cfaefa5647be10c5d3e90c2d83c46a"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "5faf064937170c7988ff6168b621b259fcc36a37d51ce753ef0a668cf4cf63d7"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "0013da157f1390d63171b1e143d1a2210c851aff2a445a1e3aab4f43212731ca"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:дерегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "де",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:4f9afb6963394f211247",
+      "word": "дерегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:дерегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:4fed1d01c8dd66f38ed2",
+    "word": "терморегулируемый",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "d409c836382323e7921ff435bd157bb2eeaa69b823bbb5d3436e0035fd953025"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b7.json.gz",
+        "family_id": "surface:ru:termoreguliruem",
+        "record_sha256": "87d1c4122d2f0b9c8af86e08298733fb520fbe54562dbf2ebf14382033489616"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "2e0013f38d46064f6d6c9f45d573c3f01189ab1b2ac1d33b24fce1f1dd19b35e"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:терморегулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "термо",
+      "after": "ируемый",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:4fed1d01c8dd66f38ed2",
+      "word": "терморегулируемый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:терморегулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:54c410ea88d2cba39b6c",
+    "word": "регулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f9bb02f664ca29132fc130cd796919004ad4ea270e17ae06a7aa67eeee98b0c5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/94.json.gz",
+        "family_id": "surface:ru:regulirov",
+        "record_sha256": "6fc37ee71e172f6bb41f1e0cb65f8615855a4237651394627d9af77d0013b07c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "4683f6032d0269106e1ec51f67d0565a6b83b377e241f8041aa119a09ff6c42e"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "0516989e05c7e071ac28305ff7737504c7d80118a776e4a66067cfc7890c23f1"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "0a24ca00245cc09a5d84f60dfe14002ba5ac899b2a82349f5027dc4ab2d07a5c"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:54c410ea88d2cba39b6c",
+      "word": "регулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:5c97b41eefc901ca41bd",
+    "word": "отрегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/39.json.gz",
+        "family_id": "surface:ru:otregulirov",
+        "record_sha256": "816c8d4b6c9e2ec865a3febb03e32ce17c1f99222f390aac53a24a37ec660066"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "e4131a58919c78982686c35559311ef761e4e9255086cf31a102c1a2c341c0e5"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "96c294eb9248cd96a9944a9d7a78ef52895b1f5937e87b2b2275dcdd3a5b1e4c"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "82399fed1517e85ce8a56908a0dbcc6e9530a7d6de2f2e93d796ed2bf16a8337"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "90e53e2b31bd99beecc99340906f18e5d13e66cfc277ae3370527bd7e6b56c98"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:отрегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "от",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:5c97b41eefc901ca41bd",
+      "word": "отрегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:отрегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:729776840e8dd77f921e",
+    "word": "неурегулированность",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "eeb4697a171b565a2786b80df00d03dea5dfa8fe882076c82bbb548d16396482"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/4b.json.gz",
+        "family_id": "surface:ru:anno",
+        "record_sha256": "d6d24ab362b00fa7416a7c65d9cd4b5a5f5ef9be285bc93dd42de9b6ca4e5831"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/81.json.gz",
+        "family_id": "surface:ru:neuregulirovann",
+        "record_sha256": "a8b2fa7df815e7aa72cd51d1685e17360f59cd0c8f748087de93cc2f86a6000b"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "dec4d3e2bea946b0550a232d3d84eb85680234ecc3dad53256d07f22f4e88775"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "52cd19ad2ee48ea4a88cff9e3e025c96e1dc1c782d4a48914de928477d523b71"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:неурегулированность: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "неу",
+      "after": "ированность",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:729776840e8dd77f921e",
+      "word": "неурегулированность",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:неурегулированность: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:7598404646ea30a64d90",
+    "word": "терморегуляция",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f0efa3a742debc01bf366db0709e09fe71a3c473403a23f5d0cf5629247a4307"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ea.json.gz",
+        "family_id": "surface:ru:termoreguljacij",
+        "record_sha256": "1736baffb26812bd87a77108aa55d49300f2e6c0a56a11ec9e526ec30b776ce7"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "a7f64e783eb32343f1602e81e20211aed14a8439a7cad643ccfb9d5a344d2ddd"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "d98eeb27e401c0efe9135d4692a7d78456a2a8e3abd1d919366a02dca18472ca"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:терморегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "термо",
+      "after": "яция",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:7598404646ea30a64d90",
+      "word": "терморегуляция",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:терморегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:79b286ab0c8183ffa9a8",
+    "word": "регулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "552b463168bbff805320ca95ef2f38dd6f82295f013fa16bfd40ba44c4048bf8"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "1cd47e6217e3b3bbd5b9381c7a410bfd827de8a02cb367558ca4b15d56359db7"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "c78dbb916695cbb734d227c4204c77ee33a4c91347324d84ee4aea000489e408"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "3d13bb9b42b2ea3accc6878a5a13b3a6b677167a09cbbbdb8bd16bd5f4e8532b"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:79b286ab0c8183ffa9a8",
+      "word": "регулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:7c483b813154c841565b",
+    "word": "госрегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "187c1cca3571da9b4d611c90c4ce18286d02d18a5e5587298e4b8b5ec005fbda"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/6f.json.gz",
+        "family_id": "surface:ru:gosregulirovani",
+        "record_sha256": "95be2dba6b333cf2a2ef18e1ccf6910e7bdf4019df8c254ccb801250ec5b57a0"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "d4a40437f1387598625d3d828f483198ad2612024921bf1b2ab7ae8b2d280467"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "53f5356af8270ef25b3bc16ed617cf4294da2436f843e52a7a7e022d6f25bdc7"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "d4bd7dd43e34ce1497da93fe1c853130f69c4f9dbc01ead038064a4ca1174507"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:госрегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "гос",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:7c483b813154c841565b",
+      "word": "госрегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:госрегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:7e922bde6a364067bdb3",
+    "word": "отрегулироваться",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "1c22ff9b68ea4d105c066afaa55754c130f0dd67ed69fcb43bb751fb74a09817"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/fd.json.gz",
+        "family_id": "surface:ru:otregulirovatsj",
+        "record_sha256": "a59920fbc8bb655c2061fb9ebcc4ce7a617df3f270fc118e0d90686cbd26cb70"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "4a0fc7176904fe78c727945a822c44bafd2d0b8088f5e94f8c288afe6855b74f"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:отрегулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "от",
+      "after": "ироваться",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:7e922bde6a364067bdb3",
+      "word": "отрегулироваться",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:отрегулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:827fe3734cdde1769230",
+    "word": "урегулировщик",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d3.json.gz",
+        "family_id": "surface:ru:shchik",
+        "record_sha256": "555a5a67bb57639c23dde496e5c4bb2168bd2cf5884a10ed23a70a49944dbb44"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d6.json.gz",
+        "family_id": "surface:ru:uregulirovshchi",
+        "record_sha256": "12e785f267bb6eb5826a29658b3987ed35e4b80a4f8c6bc0253e8bd31af0af23"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "d15824f33c82431e1a8ecb7a47d5d532e29048254ac17ace9991c0815ee43c55"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:урегулировщик: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ировщик",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:827fe3734cdde1769230",
+      "word": "урегулировщик",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:урегулировщик: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "finite_addition",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:84894c296cb1679e12ae",
+    "word": "дерегуляция",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "96f226f07f872ba30def40ab597065ee1027370a0189d4eae6bca09448c16ea3"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/fc.json.gz",
+        "family_id": "surface:ru:dereguljacij",
+        "record_sha256": "d6ac9e0e8284f69521cf58dbe7ac88ed54aa09ab8857660305d3b6cac299990a"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "92689a4e303ab9081c202797cf675348874a7916be465aad7c72c892c7e1577f"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:дерегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "де",
+      "after": "яция",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:84894c296cb1679e12ae",
+      "word": "дерегуляция",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:дерегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:899a089effeb9522f371",
+    "word": "урегулирование",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/c3.json.gz",
+        "family_id": "surface:ru:uregulirovani",
+        "record_sha256": "6a701adb8fea32c54ab5089b4fe92ec5de0e2c24eff71587f52208864c9f5ffa"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "987d774aa62e67211cd8995a52147ecb1ab5fdc0332be6e2cee646e5852efaf6"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "436d64d32f1093cd198fbee78e8ed6a29d2aab144a81474d1280ee992e5ea9a0"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "4c3baa3ed104f96ebf4debfc2b4e640029ce541d637f52b7aaff9b3633f3f8db"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:урегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:899a089effeb9522f371",
+      "word": "урегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:урегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "finite_addition",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:8f6ce57ad8505b18eafe",
+    "word": "перерегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/38.json.gz",
+        "family_id": "surface:ru:pereregulirovani",
+        "record_sha256": "dc0250384a50c6b2301e7bfaaa04174ba5bbe66225f42840f5d9ea1f3e513045"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "cefdeff465eb01a5a5872437d572a85b484f4d794a3ec6967fe343bea1ae1abe"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "dcc46b952d32a049f137fce723cdf434db06e17f0bd0bebd82a3944240aae948"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:перерегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "пере",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:8f6ce57ad8505b18eafe",
+      "word": "перерегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:перерегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:91b8ed36916dd2a6b78e",
+    "word": "дисрегуляция",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "6d41702a05d2ee7e92212fd38eafd66f6a8b9ada775992877cc3d663f59e3f7e"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e1.json.gz",
+        "family_id": "surface:ru:disreguljacij",
+        "record_sha256": "b0e51ec37c111c9b42d4fbd51b38a7a5e2bc5327c67d5ef155a2b4946a91ff9e"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "70f7049411c5155d7cf79c32d5ea6b0a570bd413d0e2cbe09a3d78404f7a3e98"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:дисрегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "дис",
+      "after": "яция",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:91b8ed36916dd2a6b78e",
+      "word": "дисрегуляция",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:дисрегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:92878ebe384524bfb035",
+    "word": "регуляция",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "f858df80f6e539c84ddd5e1181371b8120f5afa4be1a53473a9534daa193b814"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/53.json.gz",
+        "family_id": "surface:ru:reguljacij",
+        "record_sha256": "6567e7658710bb5126f9977cb5913eaba6931e10b719087649d32ba302503609"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "322f0df96e96aebe835e120d460ab1077c1fa44bd983bb1b68b199979a1d8c60"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "a395d488c0be58d2f07325642f7a4b514810b233ec5f6a03fe50147cbe294ed7"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "8e90820b7b7c47595893905a5902e5d2842d131a142b85f4f6f316a8bbb06b10"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "яция",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:92878ebe384524bfb035",
+      "word": "регуляция",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:9783bf98f587f0bd2127",
+    "word": "осморегуляция",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "0cf5dc490597b3a43ada59fd74b2abeb039155391c70ca3b46b6c2a26300c0e2"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/79.json.gz",
+        "family_id": "surface:ru:osmoreguljacij",
+        "record_sha256": "4d37a7661021efb071b24ef02f53d0540d795b543960665e7d5144d29c1b68b3"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "cee1464bb40bc722afddb4cda4333b19d205a4245f9aa3ce70141d533fdaa9cf"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:осморегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "осмо",
+      "after": "яция",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:9783bf98f587f0bd2127",
+      "word": "осморегуляция",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:осморегуляция: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:9ed9a70df631d50fd25c",
+    "word": "регуляционный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "722afac09bb8c4e5c5c68647761fddd178f2307e248134e0b33abdae17bbd03a"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/f8.json.gz",
+        "family_id": "surface:ru:reguljacionn",
+        "record_sha256": "d519cac76f514ca2367bb7eaf7b01a53fc5b360480225afd7a9e3e1858002271"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "c11ed92cae2585b3be47cee74cd7882f0187b5acc9b73dfccff895f38f23d870"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регуляционный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "яционный",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:9ed9a70df631d50fd25c",
+      "word": "регуляционный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регуляционный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:a42971daf82a7c5b63d6",
+    "word": "зарегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "15b097b1d2b240085d4e561e1a8c2969fcfc1922891c8c2a9126d145b9b7bdd9"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/b7.json.gz",
+        "family_id": "surface:ru:zaregulirovani",
+        "record_sha256": "549054845cfdb3aa552d4602d1cbf432f8d7dbeda3a37de94d5f0536f2a6397c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "cd3ba7641046e2742c68c8e8269b339871bc60353cefe9026f11a987c22aadc2"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:зарегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "за",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:a42971daf82a7c5b63d6",
+      "word": "зарегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:зарегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:af7e90f9342bf4c9f691",
+    "word": "ростехрегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "b5efc6bcfada07df8043287f8f36a4103a628123063f23c84f59829e153d374d"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/af.json.gz",
+        "family_id": "surface:ru:rostehregulirovani",
+        "record_sha256": "1734b3f5c70c1b4e6589c20c87a9b59f10cb7c4bdf66505a07479ce1ed2ebad7"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "b445c85f87754a33243e2739b11b35a782c65f1613ad048ffe0fe80cd2bc0b98"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:ростехрегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 6,
+      "end": 11,
+      "before": "ростех",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:af7e90f9342bf4c9f691",
+      "word": "ростехрегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:ростехрегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:af91964a3d9a3065c8ab",
+    "word": "регулировщик",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "59a2357d4e3802cd73abe3232de2ab27739bd1473f37769eb269af2b9351e0f2"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/4f.json.gz",
+        "family_id": "surface:ru:regulirovshchi",
+        "record_sha256": "037514c5678631909f615348d9f8bc277a50bf1462446bf84c9513d3816e77d9"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d3.json.gz",
+        "family_id": "surface:ru:shchik",
+        "record_sha256": "399c756a7a3dc213b93ff966c344dd47b53053b544aa4dd907c5941bbfd65161"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "42b7adfca5394893964b690e7afec978b014dcb4be1611899960e35bde2d6b29"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "77b6e3d59c8c7e252085fea3106dba8a271fe005a4977f953dd931660e8e586b"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "f53a39ac8ece91c87f4c06b668255bc394e248bd50d7f227d5d89df8ae79d50c"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулировщик: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ировщик",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:af91964a3d9a3065c8ab",
+      "word": "регулировщик",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулировщик: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:b30f4f8826d1ce6adff9",
+    "word": "разрегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/01.json.gz",
+        "family_id": "surface:ru:razre",
+        "record_sha256": "dc3627e96df0f2f6bce011a986a46ceda2d34233258b092326fe70a62dfd9e14"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "8bb4d350b2d27134a124db3055dce2ee773ae14939cb2975409a1b0ef1cbfda5"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/94.json.gz",
+        "family_id": "surface:ru:regulirov",
+        "record_sha256": "9b682d1650f4ae1be34b6a2abf10ef9ab73dd6e38f9a02939f1e7c5124c681ca"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "4b79d773d9825a7c9a976ae78baf3375cc497830a1c897a637f1a17682931cf3"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:разрегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "раз",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:b30f4f8826d1ce6adff9",
+      "word": "разрегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:разрегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:b5615806b87df49f55e3",
+    "word": "урегулировать",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/83.json.gz",
+        "family_id": "surface:ru:uregulirov",
+        "record_sha256": "bf950880718f058c716571ee6f4c4aeb2152d01d7e27d22f8b827e678da08d16"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "521127ead9e6265f2e176c98a6d899136ef0310acdfcb5ab9d05d78fef5d4481"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "b28ca25a45e3efefa73037a356b123db3671e13f0aeff27d74ce8ff4613de01f"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "3ee1a1f7728633b5586b44c3bbf3cabbab6a6be58417f50cc848933beca4217d"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:урегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:b5615806b87df49f55e3",
+      "word": "урегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:урегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "finite_addition",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:b61609533a301d6b2bb0",
+    "word": "регулироваться",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "8cadcd727277d0a3d87546293e6490db59b1a5017fc99da1192888ceaa252c19"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d4.json.gz",
+        "family_id": "surface:ru:regulirovatsj",
+        "record_sha256": "7491a6ae1fe507f865fbd2a7ac28fc848afb46dfe45151411f942a000811b976"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "00824fb0557dfc8d63e6930a8da2dfc160423bc62fce3c0dfff57de24bd4a2e9"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "f5dd229ec693e8e22247cf693aa0518656bafc2e42dc270c69b638d6f326940d"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "315e3faa51ee69b786826bd3b8f0e08cf5013e0e2d91e86352ef6e0506c4f6bb"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ироваться",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:b61609533a301d6b2bb0",
+      "word": "регулироваться",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулироваться: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:b62dd04f56ecc3a799b0",
+    "word": "саморегулирующийся",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "ef6e27320760a55190e0fc990ae615e32c491bbf2b1826aa5ec78dd1fd0b0829"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d7.json.gz",
+        "family_id": "surface:ru:samoregulirujushchijsj",
+        "record_sha256": "7f6575bb05eda982341d5e31c0179467a1ad0d2223d28a144a8658aff6301044"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "efcab1e30538e88ad49897427a0e1b768710bce7170e8862cbf263f360cb1ec0"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "1c9f12dd29aaa8bf53033d9a1b8c4048f98eb06381a04be2c9443d09a657054b"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "03608f7cda2f78097a9ab460d67214c2b948e9a666f0644222e8a1a8821913dc"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:саморегулирующийся: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "ирующийся",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:b62dd04f56ecc3a799b0",
+      "word": "саморегулирующийся",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:саморегулирующийся: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:b6e5fc2192eeaa9425e4",
+    "word": "терморегулирование",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "d1d268c5e1e100e53a15d0b60910f3233d40831461c72d459b85d4ef5cc8bbd2"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/c3.json.gz",
+        "family_id": "surface:ru:termoregulirovani",
+        "record_sha256": "0b8ee6c12c0c45cbd54e53d560d403e1f1dd993c1038de5b99508d66f2d87104"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "fc85d6cc28c5f4212ae7744c264995bf718c8116c49e2e36f4ce637962bc99f3"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:терморегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "термо",
+      "after": "ирование",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:b6e5fc2192eeaa9425e4",
+      "word": "терморегулирование",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:терморегулирование: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:bc648d20e85b34fe2de4",
+    "word": "пускорегулирующий",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "surface:ru:shchij",
+        "record_sha256": "c94c3d54b3f55dad0eab260802b9c3e25765c3b7770a0be94ac8ef547f18c8bf"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "85d13a4d15cb8dd035958182681320a4c8904169236a3e4e6c536eb1c42dc70d"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/41.json.gz",
+        "family_id": "surface:ru:puskoregulirujushch",
+        "record_sha256": "fa082323d91f2d4af2d1837006aeaf0fe8c1aebf9afdb395dbe3fc8e22815ad1"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "a35e84413b1bc04dcf2fd7eb21e7b496602025bb23cfc64ca4c19655e0b360e7"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:пускорегулирующий: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 5,
+      "end": 10,
+      "before": "пуско",
+      "after": "ирующий",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:bc648d20e85b34fe2de4",
+      "word": "пускорегулирующий",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:пускорегулирующий: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:c3e82629181f0b08da2c",
+    "word": "подрегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "1fcf49f25cd959b617a05aaf9c607d1acd80b2fe668f6a4118fc446a6b6f5617"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/5b.json.gz",
+        "family_id": "surface:ru:podregulirov",
+        "record_sha256": "a69afda5438568489ddd96aa7f1763e262d3954cb9e790afb82ad0b9c3368f5d"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "a191e47dd347be616886fb02cd939826838c801bc8637dea043ef7cc1e42b864"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "452b6f96476a214f3352135dceaab7d6a912385def5069d8e1e5dfdd697d45b3"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:подрегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "под",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:c3e82629181f0b08da2c",
+      "word": "подрегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:подрегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:cc028fe99edba57d7373",
+    "word": "подрегулировка",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "721c3fb34aee5cd9dc2c16e9c38c0ca865873902ecfc7b0375a2487d5af12a1f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/43.json.gz",
+        "family_id": "surface:ru:vka",
+        "record_sha256": "86ffd3334b1a77c2fd18e33d04456f91776058417d2f12c7401837f1ab068ad3"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/90.json.gz",
+        "family_id": "surface:ru:podregulirovk",
+        "record_sha256": "5635a59ec502ede6e6d3b6d0cb951cde52245d3d96a74406af074657205febc3"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "bbd85a79b50070121508cf9692057c2e357dc17870803b310345a5725d227cf9"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:подрегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "под",
+      "after": "ировка",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:cc028fe99edba57d7373",
+      "word": "подрегулировка",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:подрегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:ce2c2aad2072af54c944",
+    "word": "дерегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "c2e7c6dba335dededc8627f2486170ab2aa11e287f87fdf8d00525a0b82486c8"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/79.json.gz",
+        "family_id": "surface:ru:deregulirov",
+        "record_sha256": "1e11ad8f05997773159fc8960ca6749ad6727910813d721217ac748ae8dba5e5"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "fb288bed07baf8ad22ad6402a8c4967edfcc756e80c2128a1223b3ca02ffcef6"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:дерегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "де",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:ce2c2aad2072af54c944",
+      "word": "дерегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:дерегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:dd193da4eb8ca3966579",
+    "word": "нерегулируемый",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "790a2c6c819aeb4794f4d4c146827fd0054364dea14ceed2f3b7d51fbb1a9726"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e3.json.gz",
+        "family_id": "surface:ru:nereguliruem",
+        "record_sha256": "c5453882a0eb3718c1d48deaf846c14b59b769c3e633ca657174a19979342466"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "5b2af6c866035a40fd8499a8c38fac6e806d6f036f9c17d205d8059848f52655"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "6844c0f201c380e50b2022821b2292195a48aa625026861161b5968ea59c73ca"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "38b617dc69ecd652df3fa4056a720d5d61af7e7fc55b5cd7c64b821d4986a3ce"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:нерегулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "не",
+      "after": "ируемый",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:dd193da4eb8ca3966579",
+      "word": "нерегулируемый",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:нерегулируемый: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:df3c4b97872a0e042c3c",
+    "word": "отрегулированный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/34.json.gz",
+        "family_id": "surface:ru:otregulirovann",
+        "record_sha256": "2f5aac5962665a3b3e493ca30b3b34a8eeb3718b81d5ac62da23f0fc2b0e2093"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "0337e043739b41d0c7e71c554cea1455805ae55434ad1c951aa644e2ee983f30"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "6ea016b3f2e6f37e4b9a6baa92e32f5c68fb631eac6c39ced7690a347678acc5"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:отрегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "от",
+      "after": "ированный",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:df3c4b97872a0e042c3c",
+      "word": "отрегулированный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:отрегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:e34bf0f0f63ef1d8e758",
+    "word": "урегулированный",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/a2.json.gz",
+        "family_id": "surface:ru:uregulirovann",
+        "record_sha256": "b27a9151fdd02e51fd1a2264ae3f0b939ff7c2aa3c8eb7118ce2be2f0e40db39"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "8b2c8fd1ba9e31e952f64138c65236fb5114a68a18a0c4428dc53526c7af2562"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:урегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 1,
+      "end": 6,
+      "before": "у",
+      "after": "ированный",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e34bf0f0f63ef1d8e758",
+      "word": "урегулированный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:урегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "finite_addition",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:e5b7821977bf5138227e",
+    "word": "зарегулировать",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "19a99c978fa4f488ebc3c03951ffbe6be3f441af1d72f3afb037e7c552bb79bf"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/f7.json.gz",
+        "family_id": "surface:ru:zaregulirov",
+        "record_sha256": "248de3405b4e7d103f98dfabcc44b1274da9a185a7a2c7e95e6ea9742efd4e94"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "40c0552d42ce138c81ac9fa5796a167b1669212e03eb5457f7f853fa33effac3"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:зарегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "за",
+      "after": "ировать",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e5b7821977bf5138227e",
+      "word": "зарегулировать",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:зарегулировать: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:e7a67f1cc36b41cb9e04",
+    "word": "регулировочный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "d7374feb77980d9642a9f819195fd3caa0eab40594aeb755ebda6866145cd3ab"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/ec.json.gz",
+        "family_id": "surface:ru:regulirovochn",
+        "record_sha256": "15337cb01fca6dd016b4feb4ce58a334252b4e0a49c32183ebe9a60516c9bb7c"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "c1016382ecb74c8b27046fd7d2f0529e567faf2166674293189e5bd9bee6cef1"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "59eea0d9c78c2604a1526cd201c938eeb53b5a2213149681cbdc894507a18ab5"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "0586c64eddbb5bfc4f12edbd49d26b3743dbfd7bfd43352a4154b734d8721505"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулировочный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ировочный",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e7a67f1cc36b41cb9e04",
+      "word": "регулировочный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулировочный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:eaa5f3f4c692b4687a1d",
+    "word": "электрорегулировка",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "111196a9fa21fcfa0ed626d0178e57866df33d9a3131e150e183b79d28e7453c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/43.json.gz",
+        "family_id": "surface:ru:vka",
+        "record_sha256": "08095ba0fd9c88965b597d0274d1bde3ec7b76412611685ad836cb858cdfd85d"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/df.json.gz",
+        "family_id": "surface:ru:elektroregulirovk",
+        "record_sha256": "4046834d908192b6e3885cd668dfcb566d79b4f6ef64979ce238969544f40344"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "4661ecba4b14ff52b1f79a018f9b1dc726ff434f9ab932ef7dccac27f3dbf128"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:электрорегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 7,
+      "end": 12,
+      "before": "электро",
+      "after": "ировка",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:eaa5f3f4c692b4687a1d",
+      "word": "электрорегулировка",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:электрорегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:ec09f8fcb3db2adab268",
+    "word": "неотрегулированный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "4a1f0058c0983d071c2d488365ff7b3bad63e22118cacc8932c3bc5e811351e8"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e5.json.gz",
+        "family_id": "surface:ru:neotregulirovann",
+        "record_sha256": "51450e8af74c03eea3acbc0ab35a5f916d735e029212d55de4c61aba73ac5f7b"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "f7e8b838f1c29370c6b584ad856995edf38051efb40be3bc188d499b2db60a35"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:неотрегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "неот",
+      "after": "ированный",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:ec09f8fcb3db2adab268",
+      "word": "неотрегулированный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:неотрегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:f40292ff1fe4f2b114bb",
+    "word": "неурегулированный",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "751e0d2decf6d920825a9c3a4f9da2577bf8a009fdfa21b2a7287659f98d829f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/81.json.gz",
+        "family_id": "surface:ru:neuregulirovann",
+        "record_sha256": "3c9729b32176db1dfae09e79bac22c659b003d30ca3af856e53cc66e5a997d32"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "cc1ca0d447d9c163fbcf55992de9ba3d308dce4393d4d11718ee92f97208ab04"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "af5204c9819c4ae1efdc3e5bd339eb849513240111cb63a09402751e2a86bea3"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "900cd15e5920222d3c57b4f153b1a18ed27c791f39530f87041ffd165d3b4c5a"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:неурегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 3,
+      "end": 8,
+      "before": "неу",
+      "after": "ированный",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:f40292ff1fe4f2b114bb",
+      "word": "неурегулированный",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:неурегулированный: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:f889bdd85dcd9913c7c4",
+    "word": "регулировка",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "c2ab1e2e6d8901a302dbc9eba6125241d75c83cf58e63efc458dbe264d74f41e"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/43.json.gz",
+        "family_id": "surface:ru:vka",
+        "record_sha256": "b49b8b14b8d4ed26e6bdc4ba4799d8a52bdda1771dceacefa33ef1e6dff2605f"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/6d.json.gz",
+        "family_id": "surface:ru:regulirovk",
+        "record_sha256": "dd7860424879963413a442f016f2ccb51403033474564b76963cbdf0ac764a3b"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "6a105d851955428273fc499a96db0c3d9bd2cb1c1496044306238d46adad1141"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+        "record_sha256": "887a79f6a82417e5982dc9c84aa295df29914f263180a3464c459b557b582f77"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "e925cca12b1aca2f6e545da365a9589cb6b447081d82bd629e8ace0cd89ff6f1"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:регулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "ировка",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:f889bdd85dcd9913c7c4",
+      "word": "регулировка",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:регулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:fe6ba94fc19371d0f631",
+    "word": "саморегулировка",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "9efa5f5efcbcccbe3f93595bdff4d4d2e93fd3477b82f05bc1a2b9063b09ce7c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/43.json.gz",
+        "family_id": "surface:ru:vka",
+        "record_sha256": "322d15554f507af638609336a003e9589fa8c95dae5882afdce0bc3ab001d9f0"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/d9.json.gz",
+        "family_id": "surface:ru:samoregulirovk",
+        "record_sha256": "2f5d56d899891e7a61b0007e8374bac92d6fbcb6f33aa46cf2dbd85875b9efea"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "1dfe159094aa2308f9059e9023fe4a1fdd7f91db2283e4f43bc403063a949b93"
+      }
+    ],
+    "lexical_analysis": "Finite analysis of ru:саморегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "head": "регулировать",
+    "component": {
+      "form": "регул",
+      "start": 4,
+      "end": 9,
+      "before": "само",
+      "after": "ировка",
+      "head": "регулировать",
+      "boundary_status": "accepted"
+    },
+    "relation": "finite_lexical_continuity",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:fe6ba94fc19371d0f631",
+      "word": "саморегулировка",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "accepted",
+      "component": "регул",
+      "analyses": [
+        {
+          "history": "regula_regularis_regulare",
+          "verdict": "accepted",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": [
+            "регул"
+          ]
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "accepted",
+    "reason": "Finite analysis of ru:саморегулировка: retained lexical base in регулировать; prefixes, inflection, derivation or compound modifiers do not replace the complete bounded base. Acceptance applies only to this enumerated ID.",
+    "missing_fact": null,
+    "action": "retain",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "finite_form_review"
+  }
+]

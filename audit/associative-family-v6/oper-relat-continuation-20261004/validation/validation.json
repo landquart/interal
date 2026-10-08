@@ -1,0 +1,78 @@
+{
+  "schema_version": 6,
+  "verdict": "pass",
+  "baseline_sha": "2351a07722d88faa82dc05049144c567d43923c8",
+  "research_sha": "2c34554c90a813b78cb52afc3954374c5275aa3b",
+  "decision_sha": "8c9a289f2bbe066a32f29b640d8d8e645770d4d6",
+  "application_sha": "099f77d36565b501057cb264e77899b6ecaa7eb2",
+  "validated_engine_sha": "88da87bf19e5940930edfa37500bb0b3e526fbea",
+  "targeted_tests": 54,
+  "full_npm_test_files": 130,
+  "migration_replay_artifacts": 274,
+  "planning_replay_artifacts": 16,
+  "independent_v6_audit": "pass",
+  "independent_planning_audit": "pass",
+  "frozen_prompt03_and_prompt04_validators": "pass at exact published snapshots",
+  "source_corpus_enumeration": {
+    "verdict": "pass",
+    "source_ids": 4924980,
+    "zero_membership_records": 829,
+    "byte_identical": true
+  },
+  "memberships_added": 6,
+  "memberships_removed": 0,
+  "old_memberships_changed": 0,
+  "old_links_preserved": 21951,
+  "new_heads": 3,
+  "new_family_edges": 3,
+  "withheld_reassessed_proposals": 26,
+  "new_proven_grouping_reduction": 0,
+  "full_history_metrics": {
+    "operations": 1,
+    "new_heads": 0,
+    "new_head_family_decisions": 0,
+    "revisions": 1,
+    "new_finite_links": 1,
+    "review_incidences": 3,
+    "repeated_record_reviews": 2,
+    "unique_reviewed_records": 1988,
+    "unique_head_family_record_reviews": 1990,
+    "lifecycle_unique_records": 3,
+    "lifecycle_unique_resolved_records": 3,
+    "unique_resolved_head_family_records": 1987,
+    "unique_resolved_records": 1985
+  },
+  "production_enabled": false,
+  "full_dictionary_complete": false,
+  "initial_application_ci": {
+    "Tests": {
+      "run_id": 37217266261,
+      "conclusion": "success"
+    },
+    "Audit": {
+      "run_id": 37217266234,
+      "conclusion": "failure",
+      "reason": "Temporary workspace entry in input lock; corrected in validated_engine_sha"
+    }
+  },
+  "validation_notes": [
+    "The first parallel local v6 audit was stopped by memory pressure; final audit passed separately.",
+    "The input-lock refinement preserves membership/head/edge/link bytes exactly.",
+    "CI must be checked independently for the final published validation commit."
+  ],
+  "proof_sha256": {
+    "corpus-enumeration.log.gz": "7604326bdbd9b4673ec7532cbdb90047de54529622130d8ba643beda3cc3eca6",
+    "exact-differential.json": "ce35d044c4769b1974a253ef56cb4fc2dffa124004b4f3c2399cd7097e8ae641",
+    "frozen-stage-validation.log.gz": "efab0fb6267df8a7ff268df1549ca82f756bf9e18ba2e325c6059a07b11bb856",
+    "full-tests.log.gz": "b30a3a6e31b9ee7a9cc43c0be8a996e42ec71730870fc7160ccb7333e0801d10",
+    "planning-audit.log.gz": "0c3f80c7e09b771e4a0af4dd7c9c99604530db627432055cbdfc920a34c6ffc0",
+    "planning-build.log.gz": "14c8f9b277ac381818b766ce1c1098a037d195de3bf78d2ba8ce2b5060c5af43",
+    "planning-occurrence-differential.json.gz": "1698c7e1ed11b63867361ab2ea2a2291893be0f3c05a529ca219935392feba1c",
+    "planning-replay.log.gz": "14c8f9b277ac381818b766ce1c1098a037d195de3bf78d2ba8ce2b5060c5af43",
+    "targeted.log.gz": "1b5c1b468d5d80ab11f7224eb67110212b1d031266cca6ec0f49376567d2ee8d",
+    "v6-audit.log.gz": "9cb8da66988ca8b8ef6316b3d50b21b2475fafc3736e00a4eec775345c1f2df4",
+    "v6-build.log.gz": "6a6374fddafb98caf7ac2096e09048169a6f95b85c795fdc0917facbff29f452",
+    "v6-integrity.json": "4841000b6bdbefd00c8bfff66e051445896a6f6eaa6050bd6c17093b3b7c3570",
+    "v6-replay.log.gz": "843c6f4852e17cb2e67d16ff196c772d35fa9178b0ffe144781ba9b38bddecff"
+  }
+}

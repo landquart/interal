@@ -1,0 +1,2008 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "review_authorized": true,
+  "binding_authorized": false,
+  "baseline_correction_authorized": false,
+  "version": 1,
+  "rows": [
+    {
+      "root": "nat",
+      "language": "en",
+      "lemma_id": "lemma:3d2adb8cfcd5546ad4d9",
+      "word": "nation",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Latin natio/nation- continues the birth row with the complete modern nat component.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/nation",
+          "analysis": "Latin natio/nation- continues the birth row with the complete modern nat component.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:3d2adb8cfcd5546ad4d9",
+        "word": "nation",
+        "normalized": "nation",
+        "search_form": "nation",
+        "rank": 1249,
+        "frequency_score": 73.83879576857332,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              39.781081,
+              39.832295
+            ],
+            "category_ipm": 39.806688,
+            "category_score": 64.98640848860957
+          },
+          "normative": {
+            "ipm_values": [
+              91.99746
+            ],
+            "category_ipm": 91.99746,
+            "category_score": 79.41974082660846
+          },
+          "web": {
+            "ipm_values": [
+              80.513309
+            ],
+            "category_ipm": 80.513309,
+            "category_score": 77.1102379905019
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 91.99746
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 39.781081
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 39.832295
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 80.513309
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nation",
+            "canonical_candidate": "nation",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "manually_verified",
+                "path": [
+                  "nation",
+                  "nation",
+                  "nation"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:ad061950e13e"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "da94e54e39124bdce352e0c53a8d81883cb77a905355e2afd04c4895bb3b958a",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/en/3576",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "nat",
+      "language": "en",
+      "lemma_id": "lemma:99788532da39d99545b5",
+      "word": "natural",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Latin naturalis through natura retains nat in the nature lexical row.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/natural",
+          "analysis": "Latin naturalis through natura retains nat in the nature lexical row.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:99788532da39d99545b5",
+        "word": "natural",
+        "normalized": "natural",
+        "search_form": "natural",
+        "rank": 797,
+        "frequency_score": 81.64492486770348,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              48.1027,
+              48.699355
+            ],
+            "category_ipm": 48.4010275,
+            "category_score": 68.33530530611391
+          },
+          "normative": {
+            "ipm_values": [
+              148.889115
+            ],
+            "category_ipm": 148.889115,
+            "category_score": 87.78340622468555
+          },
+          "web": {
+            "ipm_values": [
+              157.988306
+            ],
+            "category_ipm": 157.988306,
+            "category_score": 88.81606307231097
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 148.889115
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 48.1027
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 48.699355
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 157.988306
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "natural",
+            "canonical_candidate": "natural",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "natural",
+                  "natural",
+                  "natural"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:cee44628e371",
+          "ety:cdae39bc7290"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "430ac0f2a00e9429ec9e114aea5850d993d1cc93d43bc43acb5930a9e3fb8249",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/en/3922",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "nat",
+      "language": "en",
+      "lemma_id": "lemma:0903de49c51862360a95",
+      "word": "naive",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "excluded",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Nativus ancestry is documented, but the modern naiv head has no approved nat realization; explicit boundary control.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/naive",
+          "analysis": "Nativus ancestry is documented, but the modern naiv head has no approved nat realization; explicit boundary control.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:0903de49c51862360a95",
+        "word": "naive",
+        "normalized": "naive",
+        "search_form": "naive",
+        "rank": 4302,
+        "frequency_score": 35.48506400898009,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              9.645598,
+              9.443144
+            ],
+            "category_ipm": 9.544371,
+            "category_score": 41.27469163472527
+          },
+          "normative": {
+            "ipm_values": [
+              7.912638
+            ],
+            "category_ipm": 7.912638,
+            "category_score": 38.328859405483406
+          },
+          "web": {
+            "ipm_values": [
+              3.629518
+            ],
+            "category_ipm": 3.629518,
+            "category_score": 26.85164098673156
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 7.912638
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 9.645598
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 9.443144
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 3.629518
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "naive",
+            "canonical_candidate": "naive",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "naive",
+                  "naive",
+                  "naive"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:2186d3b0fcb7"
+        ]
+      },
+      "source_record_sha256": "e987d08200bbc8d8961b4f0b18eb2115ed0328f5dc2169c3fc12063bdaa4b6f4",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/en/3219",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "nat",
+      "language": "es",
+      "lemma_id": "lemma:1fb0dcf5e8fb68857a74",
+      "word": "nacer",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Latin nascere ancestry does not approve nat to nac/naci as a general modern reflex.",
+      "evidence": [
+        {
+          "source": "https://dle.rae.es/nacer",
+          "analysis": "Latin nascere ancestry does not approve nat to nac/naci as a general modern reflex.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:1fb0dcf5e8fb68857a74",
+        "word": "nacer",
+        "normalized": "nacer",
+        "search_form": "nacer",
+        "rank": 676,
+        "frequency_score": 81.18698450614129,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              118.420536,
+              117.516577
+            ],
+            "category_ipm": 117.9685565,
+            "category_score": 83.73518305089532
+          },
+          "mixed": {
+            "ipm_values": [
+              65.496228
+            ],
+            "category_ipm": 65.496228,
+            "category_score": 73.54238887187924
+          }
+        },
+        "sources": [
+          {
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "category": "mixed",
+            "ipm": 65.496228
+          },
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 118.420536
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 117.516577
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nacer",
+            "canonical_candidate": "nacer",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "nacer",
+                  "nacer",
+                  "nacer"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:es:nacer"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "6afd74c5b0f0b37d76dd28c0fee647ead661aa6efa567bea812ee97acac7772b",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/es/2271",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "nat",
+      "language": "es",
+      "lemma_id": "lemma:fbbeddb86880ce67a97b",
+      "word": "nacimiento",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Nacer derivation is a lexical branch; national formal-realization approval is withheld.",
+      "evidence": [
+        {
+          "source": "https://dle.rae.es/nacimiento",
+          "analysis": "Nacer derivation is a lexical branch; national formal-realization approval is withheld.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:fbbeddb86880ce67a97b",
+        "word": "nacimiento",
+        "normalized": "nacimiento",
+        "search_form": "nacimiento",
+        "rank": 2392,
+        "frequency_score": 56.377724038829584,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              24.172954,
+              23.731383
+            ],
+            "category_ipm": 23.9521685,
+            "category_score": 56.36759380870221
+          },
+          "mixed": {
+            "ipm_values": [
+              24.009939
+            ],
+            "category_ipm": 24.009939,
+            "category_score": 56.408114729211704
+          }
+        },
+        "sources": [
+          {
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "category": "mixed",
+            "ipm": 24.009939
+          },
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 24.172954
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 23.731383
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nacimient",
+            "canonical_candidate": "nacimient",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "nacimiento",
+                  "nacimient",
+                  "nacimient"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:es:nacimient"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "ec16804f2366ffc0bee88426a7f6f40c93099179145e5fcb8d90a2c515ac24fc",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/es/2328",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "nat",
+      "language": "it",
+      "lemma_id": "lemma:6ee634e584aec4db3b44",
+      "word": "nascere",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Latin nasci ancestry does not approve nat to nasc as a general modern reflex.",
+      "evidence": [
+        {
+          "source": "https://www.treccani.it/vocabolario/nascere/",
+          "analysis": "Latin nasci ancestry does not approve nat to nasc as a general modern reflex.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:6ee634e584aec4db3b44",
+        "word": "nascere",
+        "normalized": "nascere",
+        "search_form": "nascere",
+        "rank": 405,
+        "frequency_score": 89.65429985026688,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              93.803008,
+              93.644859
+            ],
+            "category_ipm": 93.7239335,
+            "category_score": 79.74204959809325
+          },
+          "web": {
+            "ipm_values": [
+              292.645366
+            ],
+            "category_ipm": 292.645366,
+            "category_score": 99.5665501024405
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 93.803008
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 93.644859
+          },
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 292.645366
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "cere",
+            "canonical_candidate": "cere",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "nascere",
+                  "cere",
+                  "cere"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:364edc9af4c0"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "c5234444d5113616ac162a24cb6e78a1872bdce945cf241e77e759944dca041c",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/it/3150",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "loc",
+      "language": "en",
+      "lemma_id": "lemma:7e807b3b6bdef5b66619",
+      "word": "local",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Late Latin localis from locus; full loc component retained.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/local",
+          "analysis": "Late Latin localis from locus; full loc component retained.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:7e807b3b6bdef5b66619",
+        "word": "local",
+        "normalized": "local",
+        "search_form": "local",
+        "rank": 129,
+        "frequency_score": 90.55593880963468,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              57.86424,
+              59.634818
+            ],
+            "category_ipm": 58.749529,
+            "category_score": 71.66781642890402
+          },
+          "normative": {
+            "ipm_values": [
+              491.951016
+            ],
+            "category_ipm": 491.951016,
+            "category_score": 100
+          },
+          "web": {
+            "ipm_values": [
+              759.561786
+            ],
+            "category_ipm": 759.561786,
+            "category_score": 100
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 491.951016
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 57.86424
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 59.634818
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 759.561786
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "local",
+            "canonical_candidate": "local",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "local",
+                  "local",
+                  "local"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:2fce1c462c66"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "9a6b6445ae1bbf53c68c380ed1c2e4d49dce08cc155e7c8c667038f2e216c3d6",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/en/1248",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "loc",
+      "language": "en",
+      "lemma_id": "lemma:be63365c2b00a121b0fe",
+      "word": "location",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Locatio from locare/locus preserves the loc base.",
+      "evidence": [
+        {
+          "source": "https://www.etymonline.com/word/location",
+          "analysis": "Locatio from locare/locus preserves the loc base.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:be63365c2b00a121b0fe",
+        "word": "location",
+        "normalized": "location",
+        "search_form": "location",
+        "rank": 605,
+        "frequency_score": 76.30079414952446,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              36.127048,
+              37.43098
+            ],
+            "category_ipm": 36.779014000000004,
+            "category_score": 63.63559831146528
+          },
+          "normative": {
+            "ipm_values": [
+              57.131748
+            ],
+            "category_ipm": 57.131748,
+            "category_score": 71.18684874352054
+          },
+          "web": {
+            "ipm_values": [
+              213.700847
+            ],
+            "category_ipm": 213.700847,
+            "category_score": 94.07993539358753
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 57.131748
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 36.127048
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 37.43098
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 213.700847
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "location",
+            "canonical_candidate": "location",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "location",
+                  "location",
+                  "location"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:4b193c876dff",
+          "ety:d1c392f39beb"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "f8434f9a91decb8e68308c428c7fb371b0be01c2183158e3664e9248ea99e859",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/en/1350",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "loc",
+      "language": "en",
+      "lemma_id": "lemma:601c0444572fd335be71",
+      "word": "locomotive",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Loco in Latin loco motivus is the place component; do not confuse loqui.",
+      "evidence": [
+        {
+          "source": "https://www.etymonline.com/word/locomotive",
+          "analysis": "Loco in Latin loco motivus is the place component; do not confuse loqui.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:601c0444572fd335be71",
+        "word": "locomotive",
+        "normalized": "locomotive",
+        "search_form": "locomotive",
+        "rank": 5191,
+        "frequency_score": 35.838620662181974,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              1.430571,
+              1.388102
+            ],
+            "category_ipm": 1.4093365,
+            "category_score": 15.407997350702157
+          },
+          "normative": {
+            "ipm_values": [
+              12.526603
+            ],
+            "category_ipm": 12.526603,
+            "category_score": 45.63882977791034
+          },
+          "web": {
+            "ipm_values": [
+              13.182929
+            ],
+            "category_ipm": 13.182929,
+            "category_score": 46.46903485793341
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 12.526603
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.430571
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.388102
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 13.182929
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "locomotive",
+            "canonical_candidate": "locomotive",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "locomotive",
+                  "locomotive",
+                  "locomotive"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:7f1af11e04ab"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "fac2faae4e131a0085dd25c14fe2880e9de2486695436d8398b6e318236e8813",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/en/1692",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "loc",
+      "language": "en",
+      "lemma_id": "lemma:fe318715173fdc529562",
+      "word": "lieu",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "excluded",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "From locus through French lieu, but modern lieu is not an approved loc realization; explicit boundary control.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/lieu",
+          "analysis": "From locus through French lieu, but modern lieu is not an approved loc realization; explicit boundary control.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:fe318715173fdc529562",
+        "word": "lieu",
+        "normalized": "lieu",
+        "search_form": "lieu",
+        "rank": 12408,
+        "frequency_score": 19.004327263335796,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.957454,
+              0.933603
+            ],
+            "category_ipm": 0.9455285,
+            "category_score": 11.661482460509237
+          },
+          "normative": {
+            "ipm_values": [
+              2.139961
+            ],
+            "category_ipm": 2.139961,
+            "category_score": 20.048857063938478
+          },
+          "web": {
+            "ipm_values": [
+              3.237823
+            ],
+            "category_ipm": 3.237823,
+            "category_score": 25.302642265559673
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 2.139961
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.957454
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.933603
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 3.237823
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lieu",
+            "canonical_candidate": "lieu",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "lieu",
+                  "lieu",
+                  "lieu"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:13380f3b4cf1"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "9c1db891655e067646b065b61f28e4cb9ff8857f29629e116919d37d6acd5d28",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/en/1155",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "loc",
+      "language": "en",
+      "lemma_id": "lemma:109723e1a04e25f89587",
+      "word": "lieutenant",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "excluded",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "French lieu plus tenant is documented; it does not retain the complete approved loc realization.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/lieutenant",
+          "analysis": "French lieu plus tenant is documented; it does not retain the complete approved loc realization.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:109723e1a04e25f89587",
+        "word": "lieutenant",
+        "normalized": "lieutenant",
+        "search_form": "lieutenant",
+        "rank": 922,
+        "frequency_score": 55.06800735341008,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              81.873514,
+              79.787623
+            ],
+            "category_ipm": 80.8305685,
+            "category_score": 77.17830333594934
+          },
+          "normative": {
+            "ipm_values": [
+              13.706191
+            ],
+            "category_ipm": 13.706191,
+            "category_score": 47.10384830288669
+          },
+          "web": {
+            "ipm_values": [
+              9.334174
+            ],
+            "category_ipm": 9.334174,
+            "category_score": 40.92187042139418
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 13.706191
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 81.873514
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 79.787623
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 9.334174
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lieutenant",
+            "canonical_candidate": "lieutenant",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "lieutenant",
+                  "lieutenant",
+                  "lieutenant"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:en:lieutenant"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "06758fefeadb740c0965bde54fba3e949c0da515d995c11eee54ab21481867f6",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/en/1169",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "loc",
+      "language": "de",
+      "lemma_id": "lemma:3ecf163516817cc2f5b8",
+      "word": "lokal",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "loc_overlay_status": "accepted",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Retains complete independently approved German lok realization with local/place head evidence.",
+      "evidence": [
+        {
+          "source": "https://www.duden.de/rechtschreibung/lokal",
+          "analysis": "Retains complete independently approved German lok realization with local/place head evidence.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:3ecf163516817cc2f5b8",
+        "word": "lokal",
+        "normalized": "lokal",
+        "search_form": "lokal",
+        "rank": 1272,
+        "frequency_score": 64.38276040022109,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              12.404314
+            ],
+            "category_ipm": 12.404314,
+            "category_score": 45.47969944572161
+          },
+          "normative": {
+            "ipm_values": [
+              52.216627
+            ],
+            "category_ipm": 52.216627,
+            "category_score": 69.63893635734343
+          },
+          "web": {
+            "ipm_values": [
+              84.904645
+            ],
+            "category_ipm": 84.904645,
+            "category_score": 78.02964539759819
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 52.216627
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 12.404314
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 84.904645
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lokal",
+            "canonical_candidate": "lokal",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "lokal",
+                  "lokal",
+                  "lokal"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:fd159a989f44"
+        ]
+      },
+      "source_record_sha256": "a93e85dc5dbd0ede25a16bb84f2db3aca4b8a6be957a80efa44a47802c729e6d",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/de/1872",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "loc",
+      "language": "ru",
+      "lemma_id": "lemma:84cdd4753d11ed021e78",
+      "word": "локальный",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "loc_overlay_status": "accepted",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Retains complete independently approved Russian лок realization with local/place head evidence.",
+      "evidence": [
+        {
+          "source": "audit/associative-family-v5/loc-reflex-decisions-20261001.json",
+          "analysis": "Retains complete independently approved Russian лок realization with local/place head evidence.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:84cdd4753d11ed021e78",
+        "word": "локальный",
+        "normalized": "локальный",
+        "search_form": "lokalnyj",
+        "rank": 3804,
+        "frequency_score": 43.49424216116343,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              1.222664
+            ],
+            "category_ipm": 1.222664,
+            "category_score": 13.994936831570309
+          },
+          "normative": {
+            "ipm_values": [
+              23.69191
+            ],
+            "category_ipm": 23.69191,
+            "category_score": 56.18387434049106
+          },
+          "web": {
+            "ipm_values": [
+              30.237239
+            ],
+            "category_ipm": 30.237239,
+            "category_score": 60.30391531142891
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 23.69191
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 1.222664
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 30.237239
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lokaln",
+            "canonical_candidate": "lokaln",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "lokalnyj",
+                  "lokaln",
+                  "lokaln"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:ru:lokaln"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "666ce0aaaff3568ca74ed701f1918f91a289c0fb18091e0278f93a4b81c98fe0",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/ru/466",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "inter",
+      "language": "en",
+      "lemma_id": "lemma:dda21111e5537eb601fd",
+      "word": "international",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Inter plus national; prefix is a real independent component. Other nat link remains independent.",
+      "evidence": [
+        {
+          "source": "https://www.etymonline.com/word/international",
+          "analysis": "Inter plus national; prefix is a real independent component. Other nat link remains independent.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:dda21111e5537eb601fd",
+        "word": "international",
+        "normalized": "international",
+        "search_form": "international",
+        "rank": 290,
+        "frequency_score": 84.09213384523831,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              23.895203,
+              24.551597
+            ],
+            "category_ipm": 24.223399999999998,
+            "category_score": 56.557031235705914
+          },
+          "normative": {
+            "ipm_values": [
+              234.758979
+            ],
+            "category_ipm": 234.758979,
+            "category_score": 95.71937030000899
+          },
+          "web": {
+            "ipm_values": [
+              404.075276
+            ],
+            "category_ipm": 404.075276,
+            "category_score": 100
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 234.758979
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 23.895203
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 24.551597
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 404.075276
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "international",
+            "canonical_candidate": "inter",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "manual_override",
+                "source": "methodology_control_word",
+                "path": [
+                  "en",
+                  "international",
+                  "family:inter"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "family:inter"
+        ]
+      },
+      "source_record_sha256": "6cf9c9ea0bafb0de36362fa80ab12f603882089d5052400abc8047ff1080d33a",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/inter/en/1156",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "inter",
+      "language": "en",
+      "lemma_id": "lemma:501d3c10abf63df4683d",
+      "word": "interval",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Latin intervallum is inter plus vallum; full inter retained.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/interval",
+          "analysis": "Latin intervallum is inter plus vallum; full inter retained.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:501d3c10abf63df4683d",
+        "word": "interval",
+        "normalized": "interval",
+        "search_form": "interval",
+        "rank": 2815,
+        "frequency_score": 46.478959686789864,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              2.393634,
+              2.38105
+            ],
+            "category_ipm": 2.3873420000000003,
+            "category_score": 21.377640985622488
+          },
+          "normative": {
+            "ipm_values": [
+              31.441773
+            ],
+            "category_ipm": 31.441773,
+            "category_score": 60.96687677461624
+          },
+          "web": {
+            "ipm_values": [
+              25.005915
+            ],
+            "category_ipm": 25.005915,
+            "category_score": 57.09236130013083
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 31.441773
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 2.393634
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 2.38105
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 25.005915
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "val",
+            "canonical_candidate": "val",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "interval",
+                  "val",
+                  "val"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:88d0d6fc2226",
+          "family:inter"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "5d03a3d15f5104bfc038bb20521534378c0b08fc5db36af6012bb6346709e603",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/inter/en/1682",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "inter",
+      "language": "en",
+      "lemma_id": "lemma:0e0282ab64ec88330204",
+      "word": "internet",
+      "historical_status": "accepted",
+      "current_disposition": "accepted_preserved_or_reviewed",
+      "current_frame_contains_record": false,
+      "proof": "associativvordes/family-index-v6/generated/memberships.json.gz",
+      "new_review_status": "accepted",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Shortened internetwork, inter plus network; full inter component retained.",
+      "evidence": [
+        {
+          "source": "https://www.etymonline.com/word/internet",
+          "analysis": "Shortened internetwork, inter plus network; full inter component retained.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:0e0282ab64ec88330204",
+        "word": "internet",
+        "normalized": "internet",
+        "search_form": "internet",
+        "rank": 504,
+        "frequency_score": 55.94069739727644,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              25.79515,
+              27.207662
+            ],
+            "category_ipm": 26.501406,
+            "category_score": 58.07207109891247
+          },
+          "normative": {
+            "ipm_values": [
+              1.033445
+            ],
+            "category_ipm": 1.033445,
+            "category_score": 12.435915307608523
+          },
+          "web": {
+            "ipm_values": [
+              257.22294
+            ],
+            "category_ipm": 257.22294,
+            "category_score": 97.31410578530829
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 1.033445
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 25.79515
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 27.207662
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 257.22294
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "net",
+            "canonical_candidate": "net",
+            "confidence": 1,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "internet",
+                  "net",
+                  "net"
+                ],
+                "confidence": 1
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:b23a886af6e9",
+          "family:inter"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "353b245617ee2ccaf06e525a7b291c7a459624bcdfcd5db0300259e8c4094920",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/inter/en/1198",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "inter",
+      "language": "es",
+      "lemma_id": "lemma:3c4214587e24a5a03952",
+      "word": "entre",
+      "historical_status": "not_adjudicated",
+      "current_disposition": "unresolved_historical_without_current_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "RAE derives entre from Latin inter; ancestry is established but a new general inter to entre realization is not approved.",
+      "evidence": [
+        {
+          "source": "https://dle.rae.es/entre",
+          "analysis": "RAE derives entre from Latin inter; ancestry is established but a new general inter to entre realization is not approved.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:3c4214587e24a5a03952",
+        "word": "entre",
+        "normalized": "entre",
+        "search_form": "entre",
+        "rank": 32,
+        "frequency_score": 100,
+        "category_breakdown": {
+          "mixed": {
+            "ipm_values": [
+              2082.519217
+            ],
+            "category_ipm": 2082.519217,
+            "category_score": 100
+          }
+        },
+        "sources": [
+          {
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "category": "mixed",
+            "ipm": 2082.519217
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "entre",
+            "canonical_candidate": "entre",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "entre",
+                  "entre",
+                  "entre"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:dad41f51f465"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "e455f111ab3a122c98aab7845f39c300c354ccd476603cb40de6d89b0bffadc1",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/inter/es/183",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "inter",
+      "language": "en",
+      "lemma_id": "lemma:94c47a5d1bb50341e7f7",
+      "word": "winter",
+      "historical_status": "not_adjudicated",
+      "current_disposition": "unresolved_historical_without_current_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz",
+      "new_review_status": "excluded",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Germanic winter history is independent of Latin inter; the overlapping letters are not a component.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/winter",
+          "analysis": "Germanic winter history is independent of Latin inter; the overlapping letters are not a component.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:94c47a5d1bb50341e7f7",
+        "word": "winter",
+        "normalized": "winter",
+        "search_form": "winter",
+        "rank": 1368,
+        "frequency_score": 73.22019509996554,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              39.04055,
+              38.419586
+            ],
+            "category_ipm": 38.730068,
+            "category_score": 64.51791030079293
+          },
+          "normative": {
+            "ipm_values": [
+              82.518997
+            ],
+            "category_ipm": 82.518997,
+            "category_score": 77.53615945174514
+          },
+          "web": {
+            "ipm_values": [
+              82.855025
+            ],
+            "category_ipm": 82.855025,
+            "category_score": 77.60651554735853
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 82.518997
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 39.04055
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 38.419586
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 82.855025
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "winter",
+            "canonical_candidate": "winter",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "winter",
+                  "winter",
+                  "winter"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:7e68ececee53"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "399297e9dd2befc99bf180613d6cf9c77d97982d53ba8a6afae9c22b01bfc2e7",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/inter/en/2162",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    {
+      "root": "inter",
+      "language": "en",
+      "lemma_id": "lemma:4b0c0e8481a9e7236ae5",
+      "word": "printer",
+      "historical_status": "not_adjudicated",
+      "current_disposition": "unresolved_historical_without_current_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz",
+      "new_review_status": "excluded",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Agent/device derived from print; inter letters cross the print plus er boundary.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/printer",
+          "analysis": "Agent/device derived from print; inter letters cross the print plus er boundary.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:4b0c0e8481a9e7236ae5",
+        "word": "printer",
+        "normalized": "printer",
+        "search_form": "printer",
+        "rank": 2528,
+        "frequency_score": 50.10745988912532,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              3.747534,
+              3.896527
+            ],
+            "category_ipm": 3.8220305,
+            "category_score": 27.5655284712547
+          },
+          "normative": {
+            "ipm_values": [
+              26.629471
+            ],
+            "category_ipm": 26.629471,
+            "category_score": 58.153475908742145
+          },
+          "web": {
+            "ipm_values": [
+              38.924328
+            ],
+            "category_ipm": 38.924328,
+            "category_score": 64.6033752873791
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 26.629471
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 3.747534
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 3.896527
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 38.924328
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "printer",
+            "canonical_candidate": "printer",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "printer",
+                  "printer",
+                  "printer"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:en:printer"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "8311409cd3aa2e50f316695106d047ed17631e6cef699c0566842c525e7cb477",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/inter/en/1971",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    }
+  ],
+  "dictionary_only_controls": [
+    {
+      "root": "nat",
+      "word": "natalism",
+      "status": "positive_concept_without_corpus_binding",
+      "lemma_id": null,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json#/absent_positive_example"
+    }
+  ],
+  "full_frame_certified": false
+}

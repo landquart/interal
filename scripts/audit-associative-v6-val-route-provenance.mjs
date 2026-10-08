@@ -1,0 +1,27 @@
+#!/usr/bin/env node
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import {gunzipSync,gzipSync} from 'node:zlib';
+import {createHash} from 'node:crypto';
+const out=process.argv[2]||'audit/associative-family-v6/val-route-review-20261003',inputs={};
+const sha=b=>createHash('sha256').update(b).digest('hex');
+const read=async p=>{const b=await fs.readFile(p);inputs[p]=sha(b);return JSON.parse(p.endsWith('.gz')?gunzipSync(b):b);};
+const bucket=id=>{let h=0x811c9dc5;for(const c of id){h^=c.codePointAt(0);h=Math.imul(h,0x01000193);}return ((h>>>0)%256).toString(16).padStart(2,'0');};
+const base='associativvordes/family-index-v5',targetPath='associativvordes/family-index-v6/generated/val-candidates.json',targets=(await read(targetPath)).targets;
+assert.equal(targets.length,15);assert.equal(new Set(targets.map(r=>r.legacy_id)).size,15);
+const rows=[],reviews=[],french=[];
+for(const t of targets){
+ const id=t.legacy_id,b=bucket(id),fp=base+'/families/'+b+'.json.gz',f=(await read(fp))[id],keys=[],counts={},languageHashes={};
+ for(const language of ['en','de','fr','es','it','ru']){
+  const path=base+'/members/'+language+'/'+b+'.json.gz',members=(await read(path))[id]||[];counts[language]=members.length;
+  const ids=members.map(r=>language+'\0'+r.lemma_id);assert.equal(new Set(ids).size,members.length);keys.push(...ids);
+  languageHashes[language]=sha(Buffer.from(JSON.stringify(ids.sort())));
+  for(const r of members)rows.push({route_id:id,language,lemma_id:r.lemma_id,word:r.word,source:path,linguistic_membership_status:'unreviewed_evidence_route',component_proposals:(r.components||[]).map(c=>({surface:c.surface,canonical_candidate:c.canonical_candidate,evidence:(c.evidence||[]).map(e=>({type:e.type,source:e.source}))}))});
+  if(language==='fr'&&id.startsWith('ety:'))french.push({route_id:id,records:members.length,identity_set_sha256:languageHashes.fr,contains_cheval:members.some(r=>r.word==='cheval'),all_contain_val_component_proposal:members.every(r=>(r.components||[]).some(c=>c.surface==='val'))});
+ }
+ assert.equal(keys.length,t.members);assert.equal(sha(Buffer.from(JSON.stringify(keys.sort()))),t.member_set_sha256);
+ reviews.push({route_id:id,route_kind:t.kind,source_metadata:fp,etymon_keys:f.etymon_keys||[],source_term_evidence:[...new Set((f.relation_evidence||[]).map(e=>e.sourceLang+':'+e.term))].sort(),source_aliases:f.aliases,source_canonical_proposal:f.canonical,source_canonical_is_not_approved:true,language_record_counts:counts,language_identity_set_sha256:languageHashes,source_records:t.members,review_status:'investigated_alias_pool_contamination_requires_lexical_partition',family_id:null,canonical_decision:null,merge_authorized:false});
+}
+assert.equal(french.length,13);const sharedFrench=french.filter(r=>r.records>0);assert.equal(sharedFrench.length,11);assert(sharedFrench.every(r=>r.records===1126));assert.equal(new Set(sharedFrench.map(r=>r.identity_set_sha256)).size,1);assert(french.filter(r=>r.records===0).length===2);
+const report={schema_version:6,verdict:'pass',scope:'all_15_retained_val_routes_independently_preserved',script_sha256:sha(await fs.readFile(new URL(import.meta.url))),input_sha256:inputs,route_count:15,source_route_record_incidences:rows.length,unique_corpus_identities:new Set(rows.map(r=>r.language+'\0'+r.lemma_id)).size,routes:reviews,shared_french_pool:{routes:sharedFrench,ety_routes_without_french_records:french.filter(r=>r.records===0).map(r=>r.route_id),unique_records:1126,route_record_incidences:12386,can_establish_shared_lexical_identity:false,finding:'Eleven of 13 etymological routes repeat an identical French candidate identity set despite distinct source terms (validus, vallis, vallum, valor, Valerius and others). Treat overlap as an alias-pool contamination warning; neither duplicate similarity nor the source manually_verified component label authorizes family membership.'},independent_lexical_controls:[{head:'fr:val',origin:'Latin vallis',source:'https://www.cnrtl.fr/definition/val'},{head:'fr:cheval',origin:'Latin caballus',source:'https://www.cnrtl.fr/lexicographie/chev%C3%A2l',finding:'A final val spelling fragment does not establish the valley, validity or value element.'},{head:'fr:valeur',origin:'Latin valor / valorem',source:'https://www.cnrtl.fr/definition/academie9/ad%20valorem'}],branch_review_targets:['valid/validus','value/valor/valere','chemical_or_linguistic_valence','val/vale/valley/vallis','fortification_vallum','Valerius_personal_names','Valentia_geographic_names','Italian_surface_candidates','Russian_surface_candidates'],catalog_promotions:0,canonical_decisions_created:0,new_memberships:0,automatic_legacy_exclusions:0,production_enabled:false,limitations:['This checks route provenance and independent lexical controls, not all lemma senses.','Alias val remains navigation only; all 15 routes require finite lexical partition before promotion.','Shared member arrays cannot prove a shared associative root, especially when the same retrieval pool is reused.']};
+await fs.mkdir(out,{recursive:true});await fs.writeFile(out+'/records.json.gz',gzipSync(Buffer.from(JSON.stringify(rows)+'\n'),{level:9,mtime:0}));await fs.writeFile(out+'/report.json',JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({verdict:'pass',routes:15,shared_french_records:1126,source_route_record_incidences:rows.length,unique_corpus_identities:report.unique_corpus_identities}));

@@ -1,0 +1,1056 @@
+{
+  "schema_version": 6,
+  "baseline_sha": "39703c50459d4accfd032af8c3fb1f16cffb3e9a",
+  "production_enabled": false,
+  "synthetic_fixture": false,
+  "binding_authorized": false,
+  "accepted_membership_authorized": false,
+  "stage": "prompt08-research",
+  "source_facts": [
+    {
+      "language": "en",
+      "url": "https://www.merriam-webster.com/dictionary/atom",
+      "retrieval_ref": "turn10view0",
+      "accessed": "2026-10-05",
+      "finding": "English atom is a noun for the chemical element unit, the ancient indivisible particle and a figurative tiny amount. Its history goes through Middle English and Latin atomus to Greek atomos. The entry uses atoms as the plural. No particular frequency token, processor or product name is classified."
+    },
+    {
+      "language": "de",
+      "url": "https://www.duden.de/rechtschreibung/Atom",
+      "retrieval_ref": "turn11view0",
+      "accessed": "2026-10-05",
+      "finding": "German Atom has the chemical element sense and a tiny-particle figurative sense. Duden gives Latin atomus from Greek atomos, genitive Atoms and plural Atome. This is a borrowed lexical row, not a universal Latin ending deletion."
+    },
+    {
+      "language": "de",
+      "url": "https://www.duden.de/rechtschreibung/Atombombe",
+      "retrieval_ref": "turn11view1",
+      "accessed": "2026-10-05",
+      "finding": "Duden defines Atombombe as a nuclear explosive and displays the Atom|bom|be boundary. The finite atom component belongs to the independently established German Atom row; the whole compound retains its own identity."
+    },
+    {
+      "language": "ru",
+      "url": "https://gramota.ru/poisk?dicts%5B%5D=42&mode=slovari&query=%D0%B0%D1%82%D0%BE%D0%BC",
+      "retrieval_ref": "turn13view0",
+      "accessed": "2026-10-05",
+      "finding": "The editorial Russian dictionary identifies атом as a masculine noun from Greek atomos, with chemical-particle, figurative structural-unit and nuclear-energy senses. These are documented developments of the same borrowed row; the precise intermediate borrowing language is not settled by this entry."
+    },
+    {
+      "language": "it",
+      "url": "https://www.treccani.it/vocabolario/attimo/",
+      "retrieval_ref": "turn12view0",
+      "accessed": "2026-10-05",
+      "finding": "Treccani treats attimo as a popular variant of atomo and connects the instant meaning with a Late Latin expression modelled on Greek. Direct history alone does not establish recognizable atom in modern attimo; this branch is withheld from the atom frame, rather than rejecting its history."
+    },
+    {
+      "language": "en",
+      "url": "https://www.merriam-webster.com/dictionary/anatomy",
+      "retrieval_ref": "turn14view0",
+      "accessed": "2026-10-05",
+      "finding": "Anatomy is a separate lexical history and needs its own documented boundary. Shared ancient cutting vocabulary or an accidental atom spelling sequence cannot authorize atom membership."
+    },
+    {
+      "language": "en",
+      "url": "https://www.merriam-webster.com/dictionary/splinter",
+      "retrieval_ref": "turn14view2",
+      "accessed": "2026-10-05",
+      "finding": "The editorial entry supports splinter as a real noun and verb with Middle English/Middle Dutch history. Its absence from v5 memberships is a retrieval gap, not evidence of lexical invalidity or an inter family relation."
+    },
+    {
+      "language": "de",
+      "url": "https://www.duden.de/rechtschreibung/Tennis",
+      "retrieval_ref": "turn14view3",
+      "accessed": "2026-10-05",
+      "finding": "German Tennis is supported as the ball game, borrowed through English. The entry documents French tenez and Latin tenere as history; that is not authorization to merge tennis with a distant ten family."
+    },
+    {
+      "language": "de",
+      "url": "https://www.duden.de/rechtschreibung/Profi",
+      "retrieval_ref": "turn14view4",
+      "accessed": "2026-10-05",
+      "finding": "Profi is independently attested for a professional, including a professional athlete, and is a shortening of Professional. Tennis-profi is a promising finite component question in the zero-v5 frame, not a promoted whole row."
+    }
+  ],
+  "packet_snapshots": [
+    {
+      "packet": {
+        "candidate_cluster_id": "candidate-root:94c75d82c99af8f1e16f2166",
+        "status": "candidate_packet_requires_linguistic_review",
+        "canonical_decision": null,
+        "associative_family_id": null,
+        "proposed_bases": [
+          "atom",
+          "atome",
+          "att"
+        ],
+        "evidence_cluster_ids": [
+          "ety:609aedb538e2",
+          "ety:7336bba22d57"
+        ],
+        "evidence_clusters": [
+          {
+            "id": "ety:609aedb538e2",
+            "source": "associativvordes/family-index-v5/families/8b.json.gz",
+            "proposed_bases": [
+              "atom",
+              "atome",
+              "att"
+            ],
+            "source_etymon_keys": [
+              "la:atom"
+            ],
+            "declared_source_terms": [
+              "la:atomus"
+            ],
+            "source_lexical_word_candidates": [
+              "de:atom",
+              "en:atom",
+              "es:átomo",
+              "fr:atome",
+              "it:attimo"
+            ],
+            "languages": [
+              "de",
+              "en",
+              "es",
+              "fr",
+              "it"
+            ],
+            "source_member_support": 4603,
+            "source_canonical_is_not_approved": true
+          },
+          {
+            "id": "ety:7336bba22d57",
+            "source": "associativvordes/family-index-v5/families/a9.json.gz",
+            "proposed_bases": [
+              "atom",
+              "atome",
+              "att"
+            ],
+            "source_etymon_keys": [
+              "la:atomus"
+            ],
+            "declared_source_terms": [
+              "la:atomus"
+            ],
+            "source_lexical_word_candidates": [
+              "de:atom",
+              "en:atom",
+              "es:átomo",
+              "fr:atome",
+              "it:attimo"
+            ],
+            "languages": [
+              "de",
+              "en",
+              "es",
+              "fr",
+              "it"
+            ],
+            "source_member_support": 4603,
+            "source_canonical_is_not_approved": true
+          }
+        ],
+        "languages": [
+          "de",
+          "en",
+          "es",
+          "fr",
+          "it"
+        ],
+        "existing_evidenced_head_candidates": [],
+        "source_member_incidence_upper_bound": 9206,
+        "unique_corpus_members_not_yet_measured": true,
+        "grouping_signal_edges": [
+          {
+            "left": "ety:609aedb538e2",
+            "right": "ety:7336bba22d57",
+            "shared_proposed_bases": [
+              "atom",
+              "atome",
+              "att"
+            ],
+            "shared_declared_source_terms": [
+              "la:atomus"
+            ],
+            "source_terms_are_unverified_linguistic_evidence": true,
+            "exact_duplicate_member_set_sha256": "ff6afce53ef88681b482d047aa92b465beaa1e285adda7924a350f4f198e92a2",
+            "duplicate_action": "review_only_no_merge",
+            "candidate_grouping_authorized": true,
+            "linguistic_identity_established": false,
+            "family_merge_authorized": false
+          }
+        ],
+        "exact_duplicate_pair_count": 1,
+        "risk_reasons": [
+          "canonical_boundary_requires_review",
+          "source_terms_and_heads_require_independent_verification",
+          "short_base_or_alias",
+          "competing_proposed_bases",
+          "duplicate_arrays_can_hide_alias_pool_contamination"
+        ],
+        "promotion_priority": 95.16851543118764,
+        "priority_is_not_a_verdict": true,
+        "promotes_automatically": false,
+        "family_merge_authorized": false
+      },
+      "sha256": "357a5effcabd86e30f0dfeefac7737fe79eac08dc7b65f4e590b3b56f744e9ab"
+    },
+    {
+      "packet": {
+        "candidate_cluster_id": "candidate-root:974767da7b9be9ed2f585f70",
+        "status": "candidate_packet_requires_linguistic_review",
+        "canonical_decision": null,
+        "associative_family_id": null,
+        "proposed_bases": [
+          "atom",
+          "atome"
+        ],
+        "evidence_cluster_ids": [
+          "ety:aa2c1142de7a"
+        ],
+        "evidence_clusters": [
+          {
+            "id": "ety:aa2c1142de7a",
+            "source": "associativvordes/family-index-v5/families/31.json.gz",
+            "proposed_bases": [
+              "atom",
+              "atome"
+            ],
+            "source_etymon_keys": [
+              "grc:ατομος"
+            ],
+            "declared_source_terms": [
+              "grc:ἄτομος"
+            ],
+            "source_lexical_word_candidates": [
+              "de:atom",
+              "en:atom",
+              "es:átomo",
+              "fr:atome",
+              "ru:атом"
+            ],
+            "languages": [
+              "de",
+              "en",
+              "es",
+              "fr",
+              "ru"
+            ],
+            "source_member_support": 220,
+            "source_canonical_is_not_approved": true
+          }
+        ],
+        "languages": [
+          "de",
+          "en",
+          "es",
+          "fr",
+          "ru"
+        ],
+        "existing_evidenced_head_candidates": [],
+        "source_member_incidence_upper_bound": 220,
+        "unique_corpus_members_not_yet_measured": true,
+        "grouping_signal_edges": [],
+        "exact_duplicate_pair_count": 0,
+        "risk_reasons": [
+          "canonical_boundary_requires_review",
+          "source_terms_and_heads_require_independent_verification",
+          "competing_proposed_bases"
+        ],
+        "promotion_priority": 87.78790255939143,
+        "priority_is_not_a_verdict": true,
+        "promotes_automatically": false,
+        "family_merge_authorized": false
+      },
+      "sha256": "fe7e9d470262595a7b71d2e489843557c672078f9a4f9056026ea4025d9e4df9"
+    },
+    {
+      "packet": {
+        "candidate_cluster_id": "candidate-root:8a7606273202a05481a007ad",
+        "status": "candidate_packet_requires_linguistic_review",
+        "canonical_decision": null,
+        "associative_family_id": null,
+        "proposed_bases": [
+          "atom",
+          "atome"
+        ],
+        "evidence_cluster_ids": [
+          "ety:d5fa0ee5beef"
+        ],
+        "evidence_clusters": [
+          {
+            "id": "ety:d5fa0ee5beef",
+            "source": "associativvordes/family-index-v5/families/72.json.gz",
+            "proposed_bases": [
+              "atom",
+              "atome"
+            ],
+            "source_etymon_keys": [
+              "frm:athome"
+            ],
+            "declared_source_terms": [
+              "frm:athome"
+            ],
+            "source_lexical_word_candidates": [
+              "en:atom",
+              "fr:atome"
+            ],
+            "languages": [
+              "en",
+              "fr"
+            ],
+            "source_member_support": 51,
+            "source_canonical_is_not_approved": true
+          }
+        ],
+        "languages": [
+          "en",
+          "fr"
+        ],
+        "existing_evidenced_head_candidates": [],
+        "source_member_incidence_upper_bound": 51,
+        "unique_corpus_members_not_yet_measured": true,
+        "grouping_signal_edges": [],
+        "exact_duplicate_pair_count": 0,
+        "risk_reasons": [
+          "canonical_boundary_requires_review",
+          "source_terms_and_heads_require_independent_verification",
+          "competing_proposed_bases"
+        ],
+        "promotion_priority": 25.70043971814109,
+        "priority_is_not_a_verdict": true,
+        "promotes_automatically": false,
+        "family_merge_authorized": false
+      },
+      "sha256": "9aad0f94fb3a01072353a6401d1899abe814db5f0c86b6cd54da67e20428094b"
+    }
+  ],
+  "exact_records": [
+    {
+      "language": "en",
+      "word": "atom",
+      "lemma_id": "lemma:5218ba84f65daad15b89",
+      "source_record": {
+        "lemma_id": "lemma:5218ba84f65daad15b89",
+        "word": "atom",
+        "normalized": "atom",
+        "search_form": "atom",
+        "rank": 3724,
+        "frequency_score": 47.661040333407136,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              7.738171,
+              7.564358
+            ],
+            "category_ipm": 7.6512645,
+            "category_score": 37.807320958181066
+          },
+          "normative": {
+            "ipm_values": [
+              16.723015
+            ],
+            "category_ipm": 16.723015,
+            "category_score": 50.37337538732458
+          },
+          "web": {
+            "ipm_values": [
+              21.819942
+            ],
+            "category_ipm": 21.819942,
+            "category_score": 54.80242465471574
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 16.723015
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 7.738171
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 7.564358
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 21.819942
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atom",
+            "canonical_candidate": "atom",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atom",
+                  "atom",
+                  "atom"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "3edaa9bcd555331f4747ce9873da447c0127464c01c2206c96dd084ca8aab2fc"
+      }
+    },
+    {
+      "language": "de",
+      "word": "atom",
+      "lemma_id": "lemma:5f7009e449a8e2d3dea4",
+      "source_record": {
+        "lemma_id": "lemma:5f7009e449a8e2d3dea4",
+        "word": "atom",
+        "normalized": "atom",
+        "search_form": "atom",
+        "rank": 6829,
+        "frequency_score": 27.925877603322466,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              1.377542
+            ],
+            "category_ipm": 1.377542,
+            "category_score": 15.175231259258382
+          },
+          "normative": {
+            "ipm_values": [
+              3.108133
+            ],
+            "category_ipm": 3.108133,
+            "category_score": 24.75804044161735
+          },
+          "web": {
+            "ipm_values": [
+              11.209887
+            ],
+            "category_ipm": 11.209887,
+            "category_score": 43.84436110909165
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 3.108133
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.377542
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 11.209887
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atom",
+            "canonical_candidate": "atom",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atom",
+                  "atom",
+                  "atom"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "daf5612aa1e6b337de69c09dd67da45460b6be223ef3dbbf11e3a6e51045c9e2"
+      }
+    },
+    {
+      "language": "ru",
+      "word": "атом",
+      "lemma_id": "lemma:00daa383c16b08e70475",
+      "source_record": {
+        "lemma_id": "lemma:00daa383c16b08e70475",
+        "word": "атом",
+        "normalized": "атом",
+        "search_form": "atom",
+        "rank": 2830,
+        "frequency_score": 52.69351095634788,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              7.793681
+            ],
+            "category_ipm": 7.793681,
+            "category_score": 38.093418464266584
+          },
+          "normative": {
+            "ipm_values": [
+              43.476678
+            ],
+            "category_ipm": 43.476678,
+            "category_score": 66.4953853326055
+          },
+          "web": {
+            "ipm_values": [
+              20.175227
+            ],
+            "category_ipm": 20.175227,
+            "category_score": 53.49172907217152
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 43.476678
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 7.793681
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 20.175227
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atom",
+            "canonical_candidate": "atom",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atom",
+                  "atom",
+                  "atom"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/ru/31.json.gz",
+        "family_id": "ety:aa2c1142de7a",
+        "record_sha256": "82cfea6001617a3cbe31cbda8eb69484e090fef69cf8b947ef1de70fc304a371"
+      }
+    },
+    {
+      "language": "de",
+      "word": "atombombe",
+      "lemma_id": "lemma:29fc012011aa0ae2ff53",
+      "source_record": {
+        "lemma_id": "lemma:29fc012011aa0ae2ff53",
+        "word": "atombombe",
+        "normalized": "atombombe",
+        "search_form": "atombombe",
+        "rank": 9037,
+        "frequency_score": 28.642967837895156,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              3.984572
+            ],
+            "category_ipm": 3.984572,
+            "category_score": 28.146425557554807
+          },
+          "normative": {
+            "ipm_values": [
+              2.641913
+            ],
+            "category_ipm": 2.641913,
+            "category_score": 22.647347485642563
+          },
+          "web": {
+            "ipm_values": [
+              6.427584
+            ],
+            "category_ipm": 6.427584,
+            "category_score": 35.13513047048809
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 2.641913
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 3.984572
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 6.427584
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atombombe",
+            "canonical_candidate": "atombombe",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atombombe",
+                  "atombombe",
+                  "atombombe"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/4f.json.gz",
+        "family_id": "surface:de:atombombe",
+        "record_sha256": "201ce8b9167c9f11336d596df2972d7f055c9bca0df774bd11f013873c78ac1e"
+      }
+    },
+    {
+      "language": "en",
+      "word": "atoms",
+      "lemma_id": "lemma:bc82dd53d41aa09fb0f2",
+      "source_record": {
+        "lemma_id": "lemma:bc82dd53d41aa09fb0f2",
+        "word": "atoms",
+        "normalized": "atoms",
+        "search_form": "atoms",
+        "rank": 33731,
+        "frequency_score": 8.268675887658498,
+        "category_breakdown": {
+          "web": {
+            "ipm_values": [
+              0.603041
+            ],
+            "category_ipm": 0.603041,
+            "category_score": 8.268675887658498
+          }
+        },
+        "sources": [
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 0.603041
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atom",
+            "canonical_candidate": "atom",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atoms",
+                  "atom",
+                  "atom"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "82855472b2bfd4933b7ac4f61da174ecef5e9628986cad2d209129a67674d8fc"
+      }
+    },
+    {
+      "language": "it",
+      "word": "attimo",
+      "lemma_id": "lemma:b6a55365044117f93b84",
+      "source_record": {
+        "lemma_id": "lemma:b6a55365044117f93b84",
+        "word": "attimo",
+        "normalized": "attimo",
+        "search_form": "attimo",
+        "rank": 422,
+        "frequency_score": 78.35081183908036,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              223.191099,
+              222.378583
+            ],
+            "category_ipm": 222.784841,
+            "category_score": 94.8060368207616
+          },
+          "web": {
+            "ipm_values": [
+              33.207653
+            ],
+            "category_ipm": 33.207653,
+            "category_score": 61.89558685739911
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 223.191099
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 222.378583
+          },
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 33.207653
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "att",
+            "canonical_candidate": "att",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "attimo",
+                  "att",
+                  "att"
+                ],
+                "confidence": 0.97
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/it/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "5213a868f156cac629509901f0fb8af5911bc470e186919701aac71938c2f778"
+      }
+    },
+    {
+      "language": "ru",
+      "word": "частица",
+      "lemma_id": "lemma:a8757c2826cdef2a296a",
+      "source_record": {
+        "lemma_id": "lemma:a8757c2826cdef2a296a",
+        "word": "частица",
+        "normalized": "частица",
+        "search_form": "chastica",
+        "rank": 2152,
+        "frequency_score": 60.93712125266855,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              14.613151
+            ],
+            "category_ipm": 14.613151,
+            "category_score": 48.152452720504684
+          },
+          "normative": {
+            "ipm_values": [
+              59.556666
+            ],
+            "category_ipm": 59.556666,
+            "category_score": 71.90293098278062
+          },
+          "web": {
+            "ipm_values": [
+              34.929295
+            ],
+            "category_ipm": 34.929295,
+            "category_score": 62.75598005472032
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "category": "normative",
+            "ipm": 59.556666
+          },
+          {
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "category": "subtitles",
+            "ipm": 14.613151
+          },
+          {
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 34.929295
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "chastic",
+            "canonical_candidate": "chastic",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "chastica",
+                  "chastic",
+                  "chastic"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/ru/a8.json.gz",
+        "family_id": "surface:ru:chastic",
+        "record_sha256": "445c3f8bff209516a9c0ba70371bc6eab868780b5589f9e82d12f1ef9a982dd8"
+      }
+    }
+  ],
+  "zero_membership_prospective_rows": [
+    {
+      "language": "de",
+      "lemma_id": "lemma:2ac8812dc3bdf4b92988",
+      "word": "tennis-profi",
+      "normalized": "tennis-profi",
+      "search_form": "tennis-profi",
+      "associative_family_ids": [],
+      "frequency_source_records": [
+        {
+          "original": "tennis-profi",
+          "normalized": "tennis-profi",
+          "search_form": "tennis-profi",
+          "lemma": "tennis-profi",
+          "frequency_lookup_key": "tennis-profi",
+          "ipm": 0.93244,
+          "rank": 41143,
+          "source": "associativvordes/frequency lists/de/deu_lemma_rank_word_ipm_corrected.json"
+        },
+        {
+          "original": "tennis-profi",
+          "normalized": "tennis-profi",
+          "search_form": "tennis-profi",
+          "lemma": "tennis-profi",
+          "frequency_lookup_key": "tennis-profi",
+          "ipm": 0.395181,
+          "rank": 74677,
+          "source": "associativvordes/frequency lists/de/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json"
+        }
+      ]
+    },
+    {
+      "language": "en",
+      "lemma_id": "lemma:2ad13ee28b3bdaca3b7f",
+      "word": "splinter",
+      "normalized": "splinter",
+      "search_form": "splinter",
+      "associative_family_ids": [],
+      "frequency_source_records": [
+        {
+          "original": "splinter",
+          "normalized": "splinter",
+          "search_form": "splinter",
+          "lemma": "splinter",
+          "frequency_lookup_key": "splinter",
+          "ipm": 4.488699,
+          "rank": 9707,
+          "source": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json"
+        },
+        {
+          "original": "splinter",
+          "normalized": "splinter",
+          "search_form": "splinter",
+          "lemma": "splinter",
+          "frequency_lookup_key": "splinter",
+          "ipm": 4.532945,
+          "rank": 6898,
+          "source": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        },
+        {
+          "original": "splinter",
+          "normalized": "splinter",
+          "search_form": "splinter",
+          "lemma": "splinter",
+          "frequency_lookup_key": "splinter",
+          "ipm": 4.343789,
+          "rank": 7081,
+          "source": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        },
+        {
+          "original": "splinter",
+          "normalized": "splinter",
+          "search_form": "splinter",
+          "lemma": "splinter",
+          "frequency_lookup_key": "splinter",
+          "ipm": 2.114025,
+          "rank": 16176,
+          "source": "associativvordes/frequency lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json"
+        }
+      ]
+    }
+  ],
+  "canonical_proposal": {
+    "base": "atom",
+    "status": "standalone_research_only",
+    "reason": "Retain the complete recognizable modern atom base, explicitly attested in English/German and the Russian loan. Atomus is the historical complete noun with ending; ato/tom strip part of the recognizable atom row. Attimo cannot be licensed by history alone.",
+    "national_forms": [
+      "en:atom",
+      "de:Atom",
+      "ru:атом"
+    ],
+    "alternatives": [
+      "atomus",
+      "ato",
+      "tom"
+    ],
+    "international_continuity_is_not_a_general_reflex_rule": true
+  },
+  "finite_initial_frame": [
+    [
+      "en",
+      "atom"
+    ],
+    [
+      "de",
+      "atom"
+    ],
+    [
+      "ru",
+      "атом"
+    ],
+    [
+      "de",
+      "atombombe"
+    ]
+  ],
+  "planned_extension": [
+    [
+      "en",
+      "atoms"
+    ]
+  ],
+  "deferred_branches": [
+    {
+      "branch": "it:attimo",
+      "blocker": "Documented lexical development, but recognizable modern atom continuity has not been approved."
+    },
+    {
+      "branch": "fr:atome/es:átomo/it:atomo",
+      "blocker": "No independent national lexical decisions in this finite stage; no 6/6 shortcut."
+    },
+    {
+      "branch": "atomic/atomar/атомный",
+      "blocker": "Derivational rows need their own finite source boundaries and edge decisions."
+    }
+  ],
+  "names_and_frequency_policy": "Lexical row/proved component only. Aggregate frequencies and potential product/name readings are not token-sense frequencies or whole-record POS certification.",
+  "ranking_decision": {
+    "selected": "atom",
+    "basis": [
+      "Three independent modern dictionary heads and documented direct loan continuity.",
+      "Clear complete base and a dictionary-supported compound component missing from selected ety packets.",
+      "Finite real IDs and controls available; source duplication and attimo form risk are explicitly partitioned."
+    ],
+    "languages_are_support_not_identity": true,
+    "existing_anis_promotion_not_repeated": true,
+    "turr_does_not_block_another_packet": true
+  },
+  "input_sha256": {
+    "associativvordes/family-index-v5/members/en/8b.json.gz": "0aaf53179ac359c09ccfe23a8e52a94d9db04bd626199358092d33b2083fbaff",
+    "associativvordes/family-index-v5/members/de/8b.json.gz": "a467218fec03a125dbbdafe73d1d8d8ddb2b9bb5e1409bd48604a7c3caa2efa4",
+    "associativvordes/family-index-v5/members/ru/31.json.gz": "f2a3c3a7c97ff9325c704dacda11480119988c8e1da18378fb85625d491dc757",
+    "associativvordes/family-index-v5/members/de/4f.json.gz": "f5726af22f6336af62968683f5e0c53b4a0c8e62e8af4a03956f64990b928ad7",
+    "associativvordes/family-index-v5/members/it/8b.json.gz": "847a39b2adcf77ca3e4957d29458d93adc158a25b4298db89485cd9c6e49a982",
+    "associativvordes/family-index-v5/members/ru/a8.json.gz": "8c60ae8d4e1a2905d846e08572f798a254a0fc51aab886570dbabc54a701a9ae",
+    "audit/associative-family-v6/candidate-root-clusters-20261003/clusters.json.gz": "ae4acc253c8c6fda0d79fd9047476213de8e16e52b2e8194450387869b27c832",
+    "associativvordes/family-index-v5/families/8b.json.gz": "729e896cc446f33d1ce54f3e2567cba81bcd85f3afc9f3fc4f087554bacd36cd",
+    "associativvordes/family-index-v5/families/a9.json.gz": "c62a9d55831ddf000edf0c313f34ac375b8b4db0df2cc56097baa6061262b0f2",
+    "associativvordes/family-index-v5/families/31.json.gz": "33fc48467f3021deb5b3213232ab004428d5df6a5d446281b717c9b81bc7af6e",
+    "associativvordes/family-index-v5/families/72.json.gz": "6c8ead06000fcfe5b02a4fadffb4d31c4199c00a2973083c9ab0f63be6411502",
+    "audit/associative-family-v6/corpus-enumeration.json": "306bcb019fcd0acc3a81e283f90197ba4023f34941da2660ca8217e6826512a8"
+  }
+}

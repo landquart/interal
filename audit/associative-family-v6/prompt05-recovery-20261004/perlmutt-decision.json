@@ -1,0 +1,580 @@
+{
+  "schema_version": 6,
+  "production_enabled": false,
+  "binding_authorized": true,
+  "accepted_membership_authorized": false,
+  "stage": "perlmutt-prompt05-recovery-20261004",
+  "source_head": "26ed0861fad8768f70ed2a1831e4bc8e52dc0c78",
+  "source_backlog_sha256": "725881bcd9d1c4e1370021a67f9bcd4f6c86e1ac910008edeab9dd2034054013",
+  "groups": [
+    {
+      "language": "de",
+      "root": "mut",
+      "normalized_head": "perlmutt",
+      "sense": "mother_of_pearl_material_and_color_base",
+      "status": "excluded",
+      "forms": [
+        "perlmutt"
+      ],
+      "component_stems": [
+        "perlmutt"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Perlmutt",
+        "https://www.duden.de/rechtschreibung/Perlmutter",
+        "https://www.duden.de/rechtschreibung/Perlmuttgriff",
+        "https://www.duden.de/rechtschreibung/Perlmuttknopf",
+        "https://www.duden.de/rechtschreibung/perlmuttfarben"
+      ],
+      "reason": "Perlmutt/Perlmutter is the material/color base documented through mater perlarum; the lexical Mutter history is independent of mutare. Twenty finite material/colour components are excluded only from family:mut. Not corpus deletion, not an exclusion from unrelated edges; no verdict on ambiguous Perlmutter homonyms or malformed perlmutther.",
+      "records": [
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:06347ad85d932e189d8e",
+          "word": "perlmutteinlage",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmutteinlage; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmutteinlag",
+            "surface:de:einlage"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:06347ad85d932e189d8e:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "einlage",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:0802793443d0506d963c",
+          "word": "perlmuttflecken",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttflecken; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttflecke"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:0802793443d0506d963c:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "flecken",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:1704fab4c7f393103f32",
+          "word": "perlmuttwiege",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttwiege; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:wiege",
+            "surface:de:perlmuttwieg"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:1704fab4c7f393103f32:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "wiege",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:3cfb98f004d395a4adda",
+          "word": "perlmuttlackierung",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttlackierung; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttlackier",
+            "surface:de:lackierung"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:3cfb98f004d395a4adda:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "lackierung",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:644942a212bfe369eb53",
+          "word": "perlmuttknöpfen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttknöpfen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttknopfe",
+            "surface:de:pfen"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:644942a212bfe369eb53:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "knöpfen",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:749b01e770eea7c4e2dc",
+          "word": "perlmuttkästchen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttkästchen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttkastche",
+            "surface:de:kastchen"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:749b01e770eea7c4e2dc:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "kästchen",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:7997cb890b73c8564de1",
+          "word": "perlmutt-eigenschaften",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmutt-eigenschaften; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmutteigenschafte"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:7997cb890b73c8564de1:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "-eigenschaften",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:878b526c75d98bfe741e",
+          "word": "perlmuttgriff",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttgriff; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttgriff"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:878b526c75d98bfe741e:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "griff",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:880158868934e2970cc1",
+          "word": "perlmuttfurnier",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttfurnier; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:furnier",
+            "surface:de:perlmuttfurni"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:880158868934e2970cc1:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "furnier",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:905f703a55645f6186fe",
+          "word": "perlmuttbesetzte",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttbesetzte; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttbesetzte"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:905f703a55645f6186fe:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "besetzte",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:98f3f272477786a6f53d",
+          "word": "perlmuttgriffe",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttgriffe; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttgriffe"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:98f3f272477786a6f53d:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "griffe",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:b98adbccbbfc96f22486",
+          "word": "zweiton-perlmutt-konzentrate",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for zweiton-perlmutt-konzentrate; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:zweitonperlmuttkonzentrat",
+            "surface:de:entrate"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:b98adbccbbfc96f22486:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "zweiton-",
+            "component": "perlmutt",
+            "after": "-konzentrate",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:c41e6e5a8e7459a230e2",
+          "word": "perlmuttknopf",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttknopf; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttknopf"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:c41e6e5a8e7459a230e2:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "knopf",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:c9930a9acfec4f3628bd",
+          "word": "perlmuttbesetzten",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttbesetzten; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttbesetzte"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:c9930a9acfec4f3628bd:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "besetzten",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:c9b9d8f0fbad505de061",
+          "word": "perlmuttbeschichtet",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttbeschichtet; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:schich",
+            "surface:de:perlmutt",
+            "surface:de:beschi",
+            "surface:de:tet"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:c9b9d8f0fbad505de061:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "beschichtet",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:cd80bde5128ae35f2a16",
+          "word": "perlmuttgriffen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttgriffen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttgriffe",
+            "surface:de:fen"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:cd80bde5128ae35f2a16:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "griffen",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:ce4064060dc4ca87c37f",
+          "word": "perlmuttfarbenen",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttfarbenen; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:benen",
+            "surface:de:perlmuttfarbene"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:ce4064060dc4ca87c37f:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "farbenen",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:e8fc931d2fc40032bfaa",
+          "word": "perlmuttlack",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttlack; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttlack"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:e8fc931d2fc40032bfaa:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "lack",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:eb2508b443daaad148ee",
+          "word": "perlmutt",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmutt; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmutt"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:eb2508b443daaad148ee:mut",
+          "head_recognition": "requires_lexical_head_recognition"
+        },
+        {
+          "root": "mut",
+          "language": "de",
+          "lemma_id": "lemma:eeefcce273270051c1c5",
+          "word": "perlmuttknöpfe",
+          "status": "pending_review",
+          "reason": "Unconfirmed de lexical identity or grammar for perlmuttknöpfe; possible personal/place name, foreign quotation, spelling error or phrase fusion. No admission by short mut overlap; context/lexical evidence remains required.",
+          "source_family_ids": [
+            "surface:de:perlmuttknopfe"
+          ],
+          "historical_status": "uncertain",
+          "canonical_root": "mut",
+          "queue": "creat_mut",
+          "source": "audit/associative-family-v5/growth-fold-heads-review-20261002/pending-review.json.gz",
+          "review_unit": "unresolved:de:lemma:eeefcce273270051c1c5:mut",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "perlmutt",
+            "after": "knöpfe",
+            "head": "perlmutt",
+            "boundary_proof": "Individually reviewed material/color Perlmutt component and transparent finite German compound/inflection. Mater perlarum lineage, not mutare; remaining material modifier/inflection stays outside component.",
+            "source_references": [
+              "https://www.duden.de/rechtschreibung/Perlmutter"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "source_queue": "audit/associative-family-v6/prompt05-recovery-20261004/perlmutt-research.json.gz",
+  "source_queue_sha256": "55524c38ba2d4287aa28ee402b914f80a5a49d0579c3b1960b93a8f7921be868",
+  "predecessor_review_version": 18,
+  "withheld_lemma_ids": []
+}

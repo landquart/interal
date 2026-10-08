@@ -1,0 +1,1252 @@
+{
+  "schema_version": 6,
+  "stage": "act-fraktion-remaining-lexical-branches-20261003",
+  "source_head": "597794f2e22a413724a7363cc8ce645feeb45636",
+  "production_enabled": false,
+  "binding_authorized": true,
+  "accepted_membership_authorized": false,
+  "source_queue": "audit/associative-family-v6/fraktion-remaining-source-frame-20261003.json.gz",
+  "source_queue_sha256": "9345ed4ae94c2ae06683a559751ada9dce0cb1a927e1bccd5867d112b6c60553",
+  "groups": [
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "fraktion",
+      "sense": "chemical_or_material_fraction_product",
+      "head_scope": "finite_lexical_base_component",
+      "status": "excluded",
+      "forms": [
+        "fraktion",
+        "fraktionen"
+      ],
+      "component_stems": [
+        "fraktion",
+        "fraktionen"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Fraktion"
+      ],
+      "reason": "The separately researched material fraction component denotes a separated product or particle-size portion. Duden records the chemical product sense of Fraktion; its fractional Latin fractio/frangere base is independent of actum/agere. Parliamentary verdict is not reused. Exact material-compound base only.",
+      "records": [
+        {
+          "lemma_id": "lemma:0b68cce7ebfbb9e10aab",
+          "word": "betonfraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:92118e4b04fd",
+            "ety:c86224076e99",
+            "surface:de:betonfraktio"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:0b68cce7ebfbb9e10aab:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "beton",
+            "component": "fraktion",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary beton | fraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:d3e74c7ed088fd2cc229",
+          "word": "feinfraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:92118e4b04fd",
+            "ety:9a86a987fafc",
+            "ety:c86224076e99",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:feinfraktio"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:d3e74c7ed088fd2cc229:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "fein",
+            "component": "fraktion",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary fein | fraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:17658a743f6b15c661de",
+          "word": "grobfraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:grobfraktio",
+            "ety:92118e4b04fd",
+            "ety:9a86a987fafc",
+            "ety:c86224076e99",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:17658a743f6b15c661de:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "grob",
+            "component": "fraktion",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary grob | fraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:b42392521cc8cd052a43",
+          "word": "korngrößenfraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:92118e4b04fd",
+            "ety:c86224076e99",
+            "surface:de:korngrossenfraktio"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:b42392521cc8cd052a43:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "korngrößen",
+            "component": "fraktion",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary korngrößen | fraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:01d889f1c3fcc05610f6",
+          "word": "massenfraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:92118e4b04fd",
+            "ety:c86224076e99",
+            "surface:de:massenfraktio"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:01d889f1c3fcc05610f6:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "massen",
+            "component": "fraktion",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary massen | fraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:d26fb24b4421dbae930c",
+          "word": "mehrfraktionen-separator",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:tor",
+            "surface:de:ara",
+            "surface:de:fraktio",
+            "ety:e12a2fdca2c5"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:d26fb24b4421dbae930c:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "mehr",
+            "component": "fraktionen",
+            "after": "-separator",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary mehr | fraktionen | -separator; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:57aca712c8f20dc57b4b",
+          "word": "siebfraktionen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "surface:de:siebfraktione",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:57aca712c8f20dc57b4b:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "sieb",
+            "component": "fraktionen",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary sieb | fraktionen | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:54e2b6258a2ce1384fc2",
+          "word": "wasser-fraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:wasserfraktio",
+            "surface:de:tion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:54e2b6258a2ce1384fc2:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "wasser-",
+            "component": "fraktion",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary wasser- | fraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:3103eaaff000eca80579",
+          "word": "wasserfraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:92118e4b04fd",
+            "ety:9a86a987fafc",
+            "ety:c86224076e99",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:wasserfraktio"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:3103eaaff000eca80579:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "wasser",
+            "component": "fraktion",
+            "after": "",
+            "head": "fraktion",
+            "boundary_proof": "Individually inspected finite boundary wasser | fraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "refraktion",
+      "sense": "optical_refraction",
+      "head_scope": "finite_lexical_base_component",
+      "status": "excluded",
+      "forms": [
+        "refraktion"
+      ],
+      "component_stems": [
+        "refraktion",
+        "refraktions"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Refraktion"
+      ],
+      "reason": "Duden explicitly derives optical Refraktion from Latin refractum/refringere. It is an independent refraction head, not parliamentary Fraktion or actum. Nominal linking -s is finite.",
+      "records": [
+        {
+          "lemma_id": "lemma:a0c19c51775ad777de53",
+          "word": "refraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "surface:de:refraktio",
+            "ety:579f4e520ecd",
+            "ety:92118e4b04fd",
+            "ety:9a86a987fafc",
+            "ety:c86224076e99",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:a0c19c51775ad777de53:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "refraktion",
+            "after": "",
+            "head": "refraktion",
+            "boundary_proof": "Individually inspected finite boundary  | refraktion | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:1ee61144429d51352e9c",
+          "word": "refraktionsbestimmung",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "surface:de:refraktionsbestimm",
+            "ety:fb8a2c387e83",
+            "surface:de:bestimmung"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:1ee61144429d51352e9c:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "refraktions",
+            "after": "bestimmung",
+            "head": "refraktion",
+            "boundary_proof": "Individually inspected finite boundary  | refraktions | bestimmung; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:4bb82d2cf6043cc0c638",
+          "word": "refraktionsentwicklung",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:refraktionsentwickl",
+            "ety:9a86a987fafc",
+            "surface:de:entwicklung",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:4bb82d2cf6043cc0c638:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "refraktions",
+            "after": "entwicklung",
+            "head": "refraktion",
+            "boundary_proof": "Individually inspected finite boundary  | refraktions | entwicklung; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:36cac35a27355d1c6fb8",
+          "word": "refraktionstheorie",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:theorie",
+            "surface:de:refraktionstheori"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:36cac35a27355d1c6fb8:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "refraktions",
+            "after": "theorie",
+            "head": "refraktion",
+            "boundary_proof": "Individually inspected finite boundary  | refraktions | theorie; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:66d2299c046fdbca093d",
+          "word": "refraktionsänderungen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:refraktionsanderunge",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:66d2299c046fdbca093d:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "refraktions",
+            "after": "änderungen",
+            "head": "refraktion",
+            "boundary_proof": "Individually inspected finite boundary  | refraktions | änderungen; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "diffraktion",
+      "sense": "physical_wave_diffraction",
+      "head_scope": "finite_lexical_base_component",
+      "status": "excluded",
+      "forms": [
+        "diffraktion"
+      ],
+      "component_stems": [
+        "diffraktions"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Diffraktion",
+        "https://www.merriam-webster.com/dictionary/diffraction"
+      ],
+      "reason": "Duden establishes the physical wave-diffraction noun; Merriam-Webster derives the international diffraction noun through Latin diffringere/diffrangere from dis plus frangere, independent of actum. Exact Diffraktions- compound component only.",
+      "records": [
+        {
+          "lemma_id": "lemma:64089be590ccd4dcdd8c",
+          "word": "diffraktionsrelais",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:ais",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "surface:de:diffraktionsrelai",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:64089be590ccd4dcdd8c:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "diffraktions",
+            "after": "relais",
+            "head": "diffraktion",
+            "boundary_proof": "Individually inspected finite boundary  | diffraktions | relais; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "infraktion",
+      "sense": "incomplete_bone_fracture",
+      "head_scope": "whole_lexeme_and_finite_inflections",
+      "status": "excluded",
+      "forms": [
+        "infraktion"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Infraktion"
+      ],
+      "reason": "Duden establishes the medical incomplete-fracture noun and cites Latin in- plus fractio. Both the whole lexical identity and non-act relation are independently proved; no medical advice or cross-branch propagation.",
+      "records": [
+        {
+          "lemma_id": "lemma:03cfd696729b1c020902",
+          "word": "infraktion",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "surface:de:infraktio",
+            "surface:de:aktion"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:03cfd696729b1c020902:act",
+          "head_recognition": "requires_lexical_head_recognition"
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "fraktionieren",
+      "sense": "split_into_groups_or_fractions_common_derived_base",
+      "head_scope": "finite_lexical_base_component",
+      "status": "excluded",
+      "forms": [
+        "fraktionieren",
+        "fraktioniert",
+        "fraktionierten"
+      ],
+      "component_stems": [
+        "fraktionieren",
+        "fraktioniert"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/fraktionieren",
+        "https://www.duden.de/rechtschreibung/fraktioniert",
+        "https://www.duden.de/rechtschreibung/Fraktion"
+      ],
+      "reason": "Duden records splitting into groups and chemical fractions, with fraktioniert participle and independent medical adjectival use. The common fractionating lexical base is noun-derived from Fraktion, not act. Aggregate verb/adjective POS is preserved through the common proved base; un- and -es stay outside the finite component.",
+      "records": [
+        {
+          "lemma_id": "lemma:cec91273d2a33afd93a5",
+          "word": "fraktionieren",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:fraktioniere"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:cec91273d2a33afd93a5:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "fraktionieren",
+            "after": "",
+            "head": "fraktionieren",
+            "boundary_proof": "Individually inspected finite boundary  | fraktionieren | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:8c5ea4fc7425e5ac3d87",
+          "word": "fraktioniert",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:fraktioniert"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:8c5ea4fc7425e5ac3d87:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "fraktioniert",
+            "after": "",
+            "head": "fraktionieren",
+            "boundary_proof": "Individually inspected finite boundary  | fraktioniert | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:aa0c5becec09653ec2a5",
+          "word": "fraktionierten",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:fraktionierte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:aa0c5becec09653ec2a5:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "fraktioniert",
+            "after": "en",
+            "head": "fraktionieren",
+            "boundary_proof": "Individually inspected finite boundary  | fraktioniert | en; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:64c3103e86ddb6250110",
+          "word": "unfraktioniertes",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:unfraktionierte"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:64c3103e86ddb6250110:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "un",
+            "component": "fraktioniert",
+            "after": "es",
+            "head": "fraktionieren",
+            "boundary_proof": "Individually inspected finite boundary un | fraktioniert | es; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "fraktionierung",
+      "sense": "fractionating_process_noun",
+      "head_scope": "finite_lexical_base_component",
+      "status": "excluded",
+      "forms": [
+        "fraktionierung"
+      ],
+      "component_stems": [
+        "fraktionierung"
+      ],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/Fraktionierung",
+        "https://www.duden.de/rechtschreibung/fraktionieren",
+        "https://www.duden.de/rechtschreibung/Fraktion"
+      ],
+      "reason": "Duden defines the noun as the process of fraktionieren; its derivational history is the fraction/group base, independently excluding act. Exact noun and noun-component IDs only.",
+      "records": [
+        {
+          "lemma_id": "lemma:82b6759f00b31abb928a",
+          "word": "fraktionierung",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:erung",
+            "surface:de:fraktionier"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:82b6759f00b31abb928a:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "fraktionierung",
+            "after": "",
+            "head": "fraktionierung",
+            "boundary_proof": "Individually inspected finite boundary  | fraktionierung | ; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        },
+        {
+          "lemma_id": "lemma:496376ae8e78a225d4e9",
+          "word": "fraktionierungsmethode",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:fraktionierungsmethod",
+            "ety:e5c74235e06b",
+            "ety:518f8474fe36",
+            "ety:d768060c1cd8"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:496376ae8e78a225d4e9:act",
+          "head_recognition": "requires_lexical_head_recognition",
+          "component_segmentation": {
+            "before": "",
+            "component": "fraktionierung",
+            "after": "smethode",
+            "head": "fraktionierung",
+            "boundary_proof": "Individually inspected finite boundary  | fraktionierung | smethode; dictionary-supported lexical base and finite form. Modifier remains opaque; no whole-compound identity or unrestricted propagation."
+          }
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "fraktionell",
+      "sense": "pertaining_to_or_forming_a_fraction",
+      "head_scope": "whole_lexeme_and_finite_inflections",
+      "status": "excluded",
+      "forms": [
+        "fraktionell",
+        "fraktionellen"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/fraktionell",
+        "https://www.duden.de/rechtschreibung/Fraktion"
+      ],
+      "reason": "Duden establishes fraktionell as relating to or forming a Fraktion. The finite -en inflection preserves the unrelated fraction base.",
+      "records": [
+        {
+          "lemma_id": "lemma:f322f59480213c19a5f7",
+          "word": "fraktionellen",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "surface:de:fraktionelle",
+            "surface:de:ellen"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:f322f59480213c19a5f7:act",
+          "head_recognition": "requires_lexical_head_recognition"
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "root": "act",
+      "normalized_head": "interfraktionell",
+      "sense": "shared_between_factions",
+      "head_scope": "whole_lexeme_and_finite_inflections",
+      "status": "excluded",
+      "forms": [
+        "interfraktionell",
+        "interfraktionelle",
+        "interfraktioneller"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/interfraktionell",
+        "https://www.duden.de/rechtschreibung/Fraktion"
+      ],
+      "reason": "Duden independently establishes the between-factions adjective and its finite inflections. Its internal fraktion base is independent of act. No inter family edge is silently added.",
+      "records": [
+        {
+          "lemma_id": "lemma:af88a79edb6105e97928",
+          "word": "interfraktionell",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "family:inter"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:af88a79edb6105e97928:act",
+          "head_recognition": "requires_lexical_head_recognition"
+        },
+        {
+          "lemma_id": "lemma:f497b6ffc5d33d9d2d0b",
+          "word": "interfraktionelle",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "surface:de:fraktionelle",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:interfraktionell",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "family:inter"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:f497b6ffc5d33d9d2d0b:act",
+          "head_recognition": "requires_lexical_head_recognition"
+        },
+        {
+          "lemma_id": "lemma:b047acb7e2ee6f0a9e77",
+          "word": "interfraktioneller",
+          "status": "pending_review",
+          "branch": "unresolved",
+          "reason": "Saved source candidate has not yet received a specific lexical/token review in this continuation; withheld from runtime. Historical uncertain was a mixed pending queue.",
+          "source_family_ids": [
+            "ety:00ff06cbe8c8",
+            "ety:3b5769fa0463",
+            "ety:579f4e520ecd",
+            "surface:de:interfraktionell",
+            "ety:9a86a987fafc",
+            "ety:751cdacbf4a9",
+            "ety:5bed7c192e10",
+            "ety:fb8a2c387e83",
+            "family:inter",
+            "surface:de:eller"
+          ],
+          "previous_status": "uncertain",
+          "review_stage": "not_yet_adjudicated",
+          "language": "de",
+          "root": "act",
+          "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "canonical_root": "act",
+          "queue": "act",
+          "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+          "review_unit": "unresolved:de:lemma:b047acb7e2ee6f0a9e77:act",
+          "head_recognition": "requires_lexical_head_recognition"
+        }
+      ]
+    }
+  ],
+  "candidate_records": 64,
+  "finite_records_reviewed": 26,
+  "withheld_records": [
+    {
+      "lemma_id": "lemma:7c5310d4c757003cc486",
+      "word": "auswurffraktion",
+      "status": "pending",
+      "partition": "medical_ejection_fraction",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:5209b56aba25dc18ccd3",
+      "word": "bachblüten-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:e44dffc613f05c513e99",
+      "word": "brasilien-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:e1497e27af36957f77e0",
+      "word": "einhornfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:d2966e75c12701382a8d",
+      "word": "ejektionsfraktion",
+      "status": "pending",
+      "partition": "medical_ejection_fraction",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:213f26d288681011f3c4",
+      "word": "erzeugerfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:c2f0383baa2a14571cf5",
+      "word": "fdp-fraktionsvorstitzender",
+      "status": "pending",
+      "partition": "derivative_or_malformed_boundary",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:e5c05e1a5d7aa5a4fb4a",
+      "word": "fraktion",
+      "status": "pending",
+      "partition": "nominal_core_aggregate_sense",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:6af2477a75c332ac8d8e",
+      "word": "fraktionalen",
+      "status": "pending",
+      "partition": "derivative_or_malformed_boundary",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:641f49dc273d2f371781",
+      "word": "fraktionator",
+      "status": "pending",
+      "partition": "derivative_or_malformed_boundary",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:64e146f435d383e7788c",
+      "word": "fraktionen",
+      "status": "pending",
+      "partition": "nominal_core_aggregate_sense",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:cd5e77f8da869f516bbb",
+      "word": "fraktionsspitz",
+      "status": "pending",
+      "partition": "derivative_or_malformed_boundary",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:f84b9d407768ae631e53",
+      "word": "haargummifraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:ef8c9093161269ff1d28",
+      "word": "hexenfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:70397319f6adfc37e5d3",
+      "word": "honecker-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:3d10171cd687ab4c88aa",
+      "word": "jungunternehermerfraktion",
+      "status": "pending",
+      "partition": "derivative_or_malformed_boundary",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:081b4b2cffc35c7f3099",
+      "word": "kapitalfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:537d6cf59dc510ddd612",
+      "word": "koalitionfraktionen",
+      "status": "pending",
+      "partition": "derivative_or_malformed_boundary",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:f2fc563d7a937059f4dc",
+      "word": "kriegsfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:ebe3378cfcb21ff9d6a4",
+      "word": "latinofraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:40171fd8a706ddf6943f",
+      "word": "ldl-subfraktionen",
+      "status": "pending",
+      "partition": "medical_ejection_fraction",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:c3478b877c9c017371d5",
+      "word": "lebensmittel-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:4733c9e9adfe75dcea05",
+      "word": "metalfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:abb7486e973dd36e595a",
+      "word": "milchkaffee-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:55339094be411f4cb0f1",
+      "word": "motorradfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:206f3e65d376fb839bb3",
+      "word": "nerdfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:b944db55f35cae4e1ea1",
+      "word": "nikotin-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:069aa801411b195947b9",
+      "word": "nummernfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:a8f48a6569e7c3373c1c",
+      "word": "rohfresserfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:f93bd40b7869a3d8526b",
+      "word": "schrumpffraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:f4619db690440b4f0f92",
+      "word": "tabakfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:eed7fdc74c98cae051ec",
+      "word": "toskanafraktionist",
+      "status": "pending",
+      "partition": "derivative_or_malformed_boundary",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:9b40e8a8256441c65e06",
+      "word": "verbrecherfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:f1c7466424cfd8c11139",
+      "word": "verkaufsfraktionen",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:7d4be4222babca3066b7",
+      "word": "wachstumsfraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:74e758d1d1009c52a715",
+      "word": "webkit-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:89f2960e10b793434fc6",
+      "word": "zahlen-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    },
+    {
+      "lemma_id": "lemma:a35557be70f377c74cff",
+      "word": "zeit-ist-geld-fraktion",
+      "status": "pending",
+      "partition": "organizational_or_metaphorical_group_requires_versioned_scope_extension",
+      "reason": "Not authorized by these separately proved lexical branches; exact identity/sense/boundary or versioned reuse still requires adjudication."
+    }
+  ],
+  "remaining_records": 38,
+  "no_wildcard": true,
+  "no_prior_parliamentary_scope_repetition": true
+}

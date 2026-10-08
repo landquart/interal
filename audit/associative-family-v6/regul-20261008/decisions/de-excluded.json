@@ -1,0 +1,79 @@
+[
+  {
+    "language": "de",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:e2e45ecfba2f88bf3abe",
+    "word": "regulus",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/de/3b.json.gz",
+        "family_id": "surface:de:regulu",
+        "record_sha256": "e614f67bbc7986b19c99b5d97a0bb91cce3805eee923f641026f70902aa36a20"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/de/f3.json.gz",
+        "family_id": "surface:de:lus",
+        "record_sha256": "65c83625ab4ce6bdaedffcd666d0c2b707eda7e9102abba79e5fb4223c508a58"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/de/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "a11ea7174460d8391dd682eb0d7d970f34bc0b21aee57d83f06b8d2499aed314"
+      },
+      {
+        "path": "associativvordes/frequency lists/de/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "d65c6ebb7e04a776650e65699986729d84be9dc343ed5c6f2daad65f3dd2ff0c"
+      }
+    ],
+    "lexical_analysis": "Latin rex-derived name/term; no rule component is proved.",
+    "head": null,
+    "component": {
+      "form": "regul",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "us",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "de",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:e2e45ecfba2f88bf3abe",
+      "word": "regulus",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regulus"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regulus"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regulus",
+        "finding": "Star and metallurgical noun derive from diminutive of rex; reguline is attached to that metallurgical head.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Latin rex-derived name/term; no rule component is proved.",
+    "missing_fact": null,
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review"
+  }
+]

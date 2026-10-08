@@ -1,0 +1,98 @@
+{
+  "verdict": "pass",
+  "source_head": "4b1606a1833824cded48cae98ff999a98a0ba6b7",
+  "targeted_tests": 20,
+  "full_test_files": 126,
+  "v6_audit": "pass",
+  "deterministic_replay_artifacts": 272,
+  "accepted_memberships": 19978,
+  "loc_before": 842,
+  "loc_after": 827,
+  "records_resolved": 15,
+  "head_decisions": 6,
+  "accepted_additions": 8,
+  "excluded_from_family": 7,
+  "previously_pending": 0,
+  "previously_uncertain": 15,
+  "stage_review_factor": 2.5,
+  "global_metrics": {
+    "source_active_records": 25202,
+    "current_active_records": 25176,
+    "new_head_decisions": 12,
+    "new_records_resolved": 26,
+    "new_review_reduction_factor": 2.1666666666666665,
+    "newly_pending_records_resolved": 11,
+    "investigated_uncertainties_resolved": 15,
+    "pending_head_decisions": 6,
+    "pending_review_reduction_factor": 1.8333333333333333,
+    "current_status_counts": {
+      "pending": 24206,
+      "uncertain": 970
+    },
+    "stages": [
+      {
+        "stage": "prior_observ_inform",
+        "head_decisions": 3,
+        "records_resolved": 3,
+        "previously_pending": 3,
+        "previously_uncertain": 0,
+        "accepted": 3,
+        "excluded": 0,
+        "new_review_reduction_factor": 1
+      },
+      {
+        "stage": "relat-finite-lexical-evidence-20261003",
+        "head_decisions": 3,
+        "records_resolved": 8,
+        "previously_pending": 8,
+        "previously_uncertain": 0,
+        "accepted": 0,
+        "excluded": 8,
+        "new_review_reduction_factor": 2.6666666666666665
+      },
+      {
+        "stage": "loc-finite-lexical-evidence-20261003",
+        "head_decisions": 6,
+        "records_resolved": 15,
+        "previously_pending": 0,
+        "previously_uncertain": 15,
+        "accepted": 8,
+        "excluded": 7,
+        "new_review_reduction_factor": 2.5
+      }
+    ],
+    "strict_remaining_frame_reduction": 1,
+    "historical_component_bindings_represented": 872,
+    "historical_component_head_edges": 6,
+    "historical_representation_reuse_factor": 145.33333333333334,
+    "historical_boundary_reviews_are_not_newly_resolved_records": true
+  },
+  "v5_preservation_audit_byte_identical": true,
+  "production_enabled": false,
+  "logs": {
+    "build": {
+      "path": "audit/associative-family-v6/loc-validation-20261003/build.log.gz",
+      "sha256": "59f1d0825ff110daed87004680d548605934e9536219b50b0ff1af98ab36e273"
+    },
+    "targeted": {
+      "path": "audit/associative-family-v6/loc-validation-20261003/targeted.log.gz",
+      "sha256": "1e58f64072c68051c746122325f8ca5d0c7ce09ed4a80c562e0ffc9d8cbe3f1c"
+    },
+    "audit": {
+      "path": "audit/associative-family-v6/loc-validation-20261003/audit.log.gz",
+      "sha256": "fea1f3b8ad19b5fbc9f986c7b10da6bfddc8744547f09298e8166e5e4db18c7d"
+    },
+    "replay": {
+      "path": "audit/associative-family-v6/loc-validation-20261003/replay.log.gz",
+      "sha256": "38a84b22274c566f67f67a90290ffadbf14ea8c45d205e6dab5334ee87ab310d"
+    },
+    "v5-preservation": {
+      "path": "audit/associative-family-v6/loc-validation-20261003/v5-preservation.log.gz",
+      "sha256": "fdf8f7ae557973da6dd6ffb12a6a7ec2821ce950f4717031a8c1f278c226a564"
+    },
+    "full-tests": {
+      "path": "audit/associative-family-v6/loc-validation-20261003/full-tests.log.gz",
+      "sha256": "36ae1ac435673b816c71f8e50be1231fbcd4272c9d8e7e679b6b23bb43f35383"
+    }
+  }
+}

@@ -1,0 +1,1677 @@
+[
+  {
+    "annotation_unit": {
+      "language": "en",
+      "lemma_id": "lemma:3e2920ea8f3439ebd31e",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "en",
+      "lemma_id": "lemma:3e2920ea8f3439ebd31e",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:en:available",
+        "path": "associativvordes/family-index-v5/members/en/8c.json.gz",
+        "snapshot_sha256_python_compact": "024d21671865ed4e4f95691eae47fc09f144c339473efd88cfd93c5754ea8f28"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 282.474897,
+            "category_score": 98.94891303205941,
+            "ipm_values": [
+              282.474897
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 28.890120500000002,
+            "category_score": 59.53149405088397,
+            "ipm_values": [
+              28.329036,
+              29.451205
+            ]
+          },
+          "web": {
+            "category_ipm": 738.309942,
+            "category_score": 100,
+            "ipm_values": [
+              738.309942
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "available",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "available",
+                  "available",
+                  "available"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "available"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 86.16013569431448,
+        "lemma_id": "lemma:3e2920ea8f3439ebd31e",
+        "normalized": "available",
+        "rank": 136,
+        "search_form": "available",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "ipm": 282.474897
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 28.329036
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 29.451205
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 738.309942
+          }
+        ],
+        "word": "available"
+      },
+      "surface_only": true,
+      "word": "available"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "en",
+      "lemma_id": "lemma:64ff199e052a2c82a8d2",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "en",
+      "lemma_id": "lemma:64ff199e052a2c82a8d2",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:en:keep",
+        "path": "associativvordes/family-index-v5/members/en/d4.json.gz",
+        "snapshot_sha256_python_compact": "075b76f0743036e7573e75955e1bf7572a46670d14baddf8470117c19f49d6bd"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 523.392788,
+            "category_score": 100,
+            "ipm_values": [
+              523.392788
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 945.563157,
+            "category_score": 100,
+            "ipm_values": [
+              945.064804,
+              946.06151
+            ]
+          },
+          "web": {
+            "category_ipm": 447.631749,
+            "category_score": 100,
+            "ipm_values": [
+              447.631749
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "keep",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "keep",
+                  "keep",
+                  "keep"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "keep"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:64ff199e052a2c82a8d2",
+        "normalized": "keep",
+        "rank": 135,
+        "search_form": "keep",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "ipm": 523.392788
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 945.064804
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 946.06151
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 447.631749
+          }
+        ],
+        "word": "keep"
+      },
+      "surface_only": true,
+      "word": "keep"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "en",
+      "lemma_id": "lemma:b5d3b6bb43a48afbfef0",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "en",
+      "lemma_id": "lemma:b5d3b6bb43a48afbfef0",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:en:miss",
+        "path": "associativvordes/family-index-v5/members/en/ad.json.gz",
+        "snapshot_sha256_python_compact": "45743bb1d4492a97a3b50a430ebf773a552ca8b073b0e32afa1189764fab1a72"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 216.616281,
+            "category_score": 94.31626660873292,
+            "ipm_values": [
+              216.616281
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 609.4989125,
+            "category_score": 100,
+            "ipm_values": [
+              608.403875,
+              610.59395
+            ]
+          },
+          "web": {
+            "category_ipm": 143.9831,
+            "category_score": 87.20029845301644,
+            "ipm_values": [
+              143.9831
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "miss",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "miss",
+                  "miss",
+                  "miss"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "miss"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 93.83885502058313,
+        "lemma_id": "lemma:b5d3b6bb43a48afbfef0",
+        "normalized": "miss",
+        "rank": 195,
+        "search_form": "miss",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "ipm": 216.616281
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 608.403875
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 610.59395
+          },
+          {
+            "category": "web",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 143.9831
+          }
+        ],
+        "word": "miss"
+      },
+      "surface_only": true,
+      "word": "miss"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "de",
+      "lemma_id": "lemma:d3df19c7c71b079db2b9",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "de",
+      "lemma_id": "lemma:d3df19c7c71b079db2b9",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:de:hier",
+        "path": "associativvordes/family-index-v5/members/de/b5.json.gz",
+        "snapshot_sha256_python_compact": "59f79cae40859ab80e56758c4a8b60d9963707276bfb3b7fe98ffbe58a23be3c"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 2367.619972,
+            "category_score": 100,
+            "ipm_values": [
+              2367.619972
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 4855.146416,
+            "category_score": 100,
+            "ipm_values": [
+              4855.146416
+            ]
+          },
+          "web": {
+            "category_ipm": 1508.353564,
+            "category_score": 100,
+            "ipm_values": [
+              1508.353564
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "hier",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "hier",
+                  "hier",
+                  "hier"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "hier"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:d3df19c7c71b079db2b9",
+        "normalized": "hier",
+        "rank": 26,
+        "search_form": "hier",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "ipm": 2367.619972
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 4855.146416
+          },
+          {
+            "category": "web",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 1508.353564
+          }
+        ],
+        "word": "hier"
+      },
+      "surface_only": true,
+      "word": "hier"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "de",
+      "lemma_id": "lemma:80f61efad86871794cac",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "de",
+      "lemma_id": "lemma:80f61efad86871794cac",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:de:weiter",
+        "path": "associativvordes/family-index-v5/members/de/c3.json.gz",
+        "snapshot_sha256_python_compact": "6ec5c4312086402e2967643f026c14e000dff3e1e4cd1daf659660160f87b872"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 1251.644979,
+            "category_score": 100,
+            "ipm_values": [
+              1251.644979
+            ]
+          },
+          "web": {
+            "category_ipm": 194.440509,
+            "category_score": 92.43304906704964,
+            "ipm_values": [
+              194.440509
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "weiter",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "weiter",
+                  "weiter",
+                  "weiter"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "weiter"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 96.21652453352482,
+        "lemma_id": "lemma:80f61efad86871794cac",
+        "normalized": "weiter",
+        "rank": 72,
+        "search_form": "weiter",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "ipm": 1251.644979
+          },
+          {
+            "category": "web",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 194.440509
+          }
+        ],
+        "word": "weiter"
+      },
+      "surface_only": true,
+      "word": "weiter"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "de",
+      "lemma_id": "lemma:b0bbdd333cbb6eb474ae",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "de",
+      "lemma_id": "lemma:b0bbdd333cbb6eb474ae",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:de:kind",
+        "path": "associativvordes/family-index-v5/members/de/5b.json.gz",
+        "snapshot_sha256_python_compact": "03422b2913dbd8a7b8e54c51a56897cefe67abe974cac00ef7980531980b6298"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 587.126239,
+            "category_score": 100,
+            "ipm_values": [
+              587.126239
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 327.7906,
+            "category_score": 100,
+            "ipm_values": [
+              327.7906
+            ]
+          },
+          "web": {
+            "category_ipm": 1082.092588,
+            "category_score": 100,
+            "ipm_values": [
+              1082.092588
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "kind",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "kind",
+                  "kind",
+                  "kind"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "kind"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:b0bbdd333cbb6eb474ae",
+        "normalized": "kind",
+        "rank": 92,
+        "search_form": "kind",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "ipm": 587.126239
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 327.7906
+          },
+          {
+            "category": "web",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 1082.092588
+          }
+        ],
+        "word": "kind"
+      },
+      "surface_only": true,
+      "word": "kind"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "fr",
+      "lemma_id": "lemma:65fdb0fcd87aa4c0c89c",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "fr",
+      "lemma_id": "lemma:65fdb0fcd87aa4c0c89c",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:fr:combien",
+        "path": "associativvordes/family-index-v5/members/fr/4f.json.gz",
+        "snapshot_sha256_python_compact": "fd07d8da9b1d7d836359acdbebe7517615cec97c75b2f9d260efcd3bc15c9d2c"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 390.373233,
+            "category_score": 100,
+            "ipm_values": [
+              390.373233
+            ]
+          },
+          "web": {
+            "category_ipm": 59.336668,
+            "category_score": 71.83915890170705,
+            "ipm_values": [
+              59.336668
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "combien",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "combien",
+                  "combien",
+                  "combien"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "combien"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 85.91957945085352,
+        "lemma_id": "lemma:65fdb0fcd87aa4c0c89c",
+        "normalized": "combien",
+        "rank": 238,
+        "search_form": "combien",
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 390.373233
+          },
+          {
+            "category": "web",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 59.336668
+          }
+        ],
+        "word": "combien"
+      },
+      "surface_only": true,
+      "word": "combien"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "fr",
+      "lemma_id": "lemma:27e51643b02abc8aa151",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "fr",
+      "lemma_id": "lemma:27e51643b02abc8aa151",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:fr:tenir",
+        "path": "associativvordes/family-index-v5/members/fr/d0.json.gz",
+        "snapshot_sha256_python_compact": "4b673302e730e6a4668044d9c128be1837a2309349d75b2f0c81b61baa366105"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 329.472664,
+            "category_score": 100,
+            "ipm_values": [
+              329.472664
+            ]
+          },
+          "web": {
+            "category_ipm": 376.108411,
+            "category_score": 100,
+            "ipm_values": [
+              376.108411
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tenir",
+            "confidence": 0.8,
+            "evidence": [
+              {
+                "confidence": 0.8,
+                "path": [
+                  "tenir",
+                  "tenir",
+                  "tenir"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "tenir"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:27e51643b02abc8aa151",
+        "normalized": "tenir",
+        "rank": 256,
+        "search_form": "tenir",
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 329.472664
+          },
+          {
+            "category": "web",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 376.108411
+          }
+        ],
+        "word": "tenir"
+      },
+      "surface_only": true,
+      "word": "tenir"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "fr",
+      "lemma_id": "lemma:9ad2cf7a094276ebffd6",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "fr",
+      "lemma_id": "lemma:9ad2cf7a094276ebffd6",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:fr:novembr",
+        "path": "associativvordes/family-index-v5/members/fr/65.json.gz",
+        "snapshot_sha256_python_compact": "5712b5a04a325d3a0909866b94073d49c366696750061aeb3f2fd50ddb62fcdc"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 12.215972,
+            "category_score": 45.23175439726498,
+            "ipm_values": [
+              12.215972
+            ]
+          },
+          "web": {
+            "category_ipm": 439.438268,
+            "category_score": 100,
+            "ipm_values": [
+              439.438268
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "novembr",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "novembre",
+                  "novembr",
+                  "novembr"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "novembr"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 72.61587719863249,
+        "lemma_id": "lemma:9ad2cf7a094276ebffd6",
+        "normalized": "novembre",
+        "rank": 200,
+        "search_form": "novembre",
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 12.215972
+          },
+          {
+            "category": "web",
+            "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 439.438268
+          }
+        ],
+        "word": "novembre"
+      },
+      "surface_only": true,
+      "word": "novembre"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "es",
+      "lemma_id": "lemma:95351b4c3b1cf01d20ba",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "es",
+      "lemma_id": "lemma:95351b4c3b1cf01d20ba",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:es:doming",
+        "path": "associativvordes/family-index-v5/members/es/14.json.gz",
+        "snapshot_sha256_python_compact": "914f72f47328c2ad7868895a62c40a6e886588c7b1183152075bebc52ded306d"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "mixed": {
+            "category_ipm": 827.613699,
+            "category_score": 100,
+            "ipm_values": [
+              827.613699
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 48.8012655,
+            "category_score": 68.47669335378235,
+            "ipm_values": [
+              49.196199,
+              48.406332
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "doming",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "domingo",
+                  "doming",
+                  "doming"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "doming"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 76.35752001533675,
+        "lemma_id": "lemma:95351b4c3b1cf01d20ba",
+        "normalized": "domingo",
+        "rank": 101,
+        "search_form": "domingo",
+        "sources": [
+          {
+            "category": "mixed",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "ipm": 827.613699
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 49.196199
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 48.406332
+          }
+        ],
+        "word": "domingo"
+      },
+      "surface_only": true,
+      "word": "domingo"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "es",
+      "lemma_id": "lemma:2dfe619ca468a21da8e9",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "es",
+      "lemma_id": "lemma:2dfe619ca468a21da8e9",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:es:prens",
+        "path": "associativvordes/family-index-v5/members/es/8a.json.gz",
+        "snapshot_sha256_python_compact": "dd5ca2fc7c8c887fdf21e18d7c0d4db29bd9359719f9bc79e8b444860a5f0989"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "mixed": {
+            "category_ipm": 828.794616,
+            "category_score": 100,
+            "ipm_values": [
+              828.794616
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "prens",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "prensa",
+                  "prens",
+                  "prens"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "prens"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:2dfe619ca468a21da8e9",
+        "normalized": "prensa",
+        "rank": 100,
+        "search_form": "prensa",
+        "sources": [
+          {
+            "category": "mixed",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "ipm": 828.794616
+          }
+        ],
+        "word": "prensa"
+      },
+      "surface_only": true,
+      "word": "prensa"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "es",
+      "lemma_id": "lemma:cd9ebc0361a6fca4e266",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "es",
+      "lemma_id": "lemma:cd9ebc0361a6fca4e266",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:es:cado",
+        "path": "associativvordes/family-index-v5/members/es/39.json.gz",
+        "snapshot_sha256_python_compact": "7dff17cf5f48970093321500e7e2db82a86b39f3cdc31ab2c8c23d1fd2636c58"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "mixed": {
+            "category_ipm": 578.439019,
+            "category_score": 100,
+            "ipm_values": [
+              578.439019
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "cado",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "mercado",
+                  "cado",
+                  "cado"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "cado"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:cd9ebc0361a6fca4e266",
+        "normalized": "mercado",
+        "rank": 152,
+        "search_form": "mercado",
+        "sources": [
+          {
+            "category": "mixed",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "ipm": 578.439019
+          }
+        ],
+        "word": "mercado"
+      },
+      "surface_only": true,
+      "word": "mercado"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "it",
+      "lemma_id": "lemma:d08a9ea587b1f2e886de",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "it",
+      "lemma_id": "lemma:d08a9ea587b1f2e886de",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:it:particolar",
+        "path": "associativvordes/family-index-v5/members/it/2a.json.gz",
+        "snapshot_sha256_python_compact": "8d309de6bd6137a09c62275172f92a2c6a779bc4450fcf4d4f3995a9fd8ce3dd"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 58.4427175,
+            "category_score": 71.5776098276536,
+            "ipm_values": [
+              58.722907,
+              58.162528
+            ]
+          },
+          "web": {
+            "category_ipm": 610.28289,
+            "category_score": 100,
+            "ipm_values": [
+              610.28289
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "particolar",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "particolare",
+                  "particolar",
+                  "particolar"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "particolar"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 85.7888049138268,
+        "lemma_id": "lemma:d08a9ea587b1f2e886de",
+        "normalized": "particolare",
+        "rank": 141,
+        "search_form": "particolare",
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 58.722907
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 58.162528
+          },
+          {
+            "category": "web",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 610.28289
+          }
+        ],
+        "word": "particolare"
+      },
+      "surface_only": true,
+      "word": "particolare"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "it",
+      "lemma_id": "lemma:fb863abe0fd570325def",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "it",
+      "lemma_id": "lemma:fb863abe0fd570325def",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:it:adesso",
+        "path": "associativvordes/family-index-v5/members/it/bc.json.gz",
+        "snapshot_sha256_python_compact": "a7f715eb685f68807537f4f5fa4cd96edbf27eda1b5d49dc2e30d29aa81dead3"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 909.710844,
+            "category_score": 100,
+            "ipm_values": [
+              919.834631,
+              899.587057
+            ]
+          },
+          "web": {
+            "category_ipm": 149.672693,
+            "category_score": 87.87476771087964,
+            "ipm_values": [
+              149.672693
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "adesso",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "adesso",
+                  "adesso",
+                  "adesso"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "adesso"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 93.93738385543982,
+        "lemma_id": "lemma:fb863abe0fd570325def",
+        "normalized": "adesso",
+        "rank": 143,
+        "search_form": "adesso",
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 919.834631
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 899.587057
+          },
+          {
+            "category": "web",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 149.672693
+          }
+        ],
+        "word": "adesso"
+      },
+      "surface_only": true,
+      "word": "adesso"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "it",
+      "lemma_id": "lemma:d3e4cda51fd1a0b498d0",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "it",
+      "lemma_id": "lemma:d3e4cda51fd1a0b498d0",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:it:tire",
+        "path": "associativvordes/family-index-v5/members/it/61.json.gz",
+        "snapshot_sha256_python_compact": "7b7ec9f0c6e00daa3c8b725abd4d87ca1c75eb2ceb7bedda96c471c4e8b029ac"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 1922.054747,
+            "category_score": 100,
+            "ipm_values": [
+              1928.86297,
+              1915.246524
+            ]
+          },
+          "web": {
+            "category_ipm": 420.267059,
+            "category_score": 100,
+            "ipm_values": [
+              420.267059
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "tire",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "confidence": 0.89,
+                "path": [
+                  "sentire",
+                  "tire",
+                  "tire"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "tire"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:d3e4cda51fd1a0b498d0",
+        "normalized": "sentire",
+        "rank": 70,
+        "search_form": "sentire",
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 1928.86297
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 1915.246524
+          },
+          {
+            "category": "web",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "ipm": 420.267059
+          }
+        ],
+        "word": "sentire"
+      },
+      "surface_only": true,
+      "word": "sentire"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "ru",
+      "lemma_id": "lemma:133d129ec8412d2b88c4",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "ru",
+      "lemma_id": "lemma:133d129ec8412d2b88c4",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:ru:posle",
+        "path": "associativvordes/family-index-v5/members/ru/f4.json.gz",
+        "snapshot_sha256_python_compact": "37ec231e4dac9ff50e04fc440ef4c175451b25b35be0c0bfa00629158222fcc8"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 1150.707646,
+            "category_score": 100,
+            "ipm_values": [
+              1150.707646
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 712.860211,
+            "category_score": 100,
+            "ipm_values": [
+              712.860211
+            ]
+          },
+          "web": {
+            "category_ipm": 1234.733697,
+            "category_score": 100,
+            "ipm_values": [
+              1234.733697
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "posle",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "posle",
+                  "posle",
+                  "posle"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "posle"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:133d129ec8412d2b88c4",
+        "normalized": "после",
+        "rank": 75,
+        "search_form": "posle",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "ipm": 1150.707646
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "ipm": 712.860211
+          },
+          {
+            "category": "web",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "ipm": 1234.733697
+          }
+        ],
+        "word": "после"
+      },
+      "surface_only": true,
+      "word": "после"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "ru",
+      "lemma_id": "lemma:35e3d018d53cebe1c296",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "ru",
+      "lemma_id": "lemma:35e3d018d53cebe1c296",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:ru:ponim",
+        "path": "associativvordes/family-index-v5/members/ru/0a.json.gz",
+        "snapshot_sha256_python_compact": "df710e53c00c0ae490537862315d98669ae0b4a0f86791cf79a0846520de22a1"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 495.802243,
+            "category_score": 100,
+            "ipm_values": [
+              495.802243
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 1083.308478,
+            "category_score": 100,
+            "ipm_values": [
+              1083.308478
+            ]
+          },
+          "web": {
+            "category_ipm": 430.532495,
+            "category_score": 100,
+            "ipm_values": [
+              430.532495
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "ponim",
+            "confidence": 0.81,
+            "evidence": [
+              {
+                "confidence": 0.81,
+                "path": [
+                  "ponimat",
+                  "ponim",
+                  "ponim"
+                ],
+                "source": "candidate_index",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "ponim"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:35e3d018d53cebe1c296",
+        "normalized": "понимать",
+        "rank": 111,
+        "search_form": "ponimat",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "ipm": 495.802243
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "ipm": 1083.308478
+          },
+          {
+            "category": "web",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "ipm": 430.532495
+          }
+        ],
+        "word": "понимать"
+      },
+      "surface_only": true,
+      "word": "понимать"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  },
+  {
+    "annotation_unit": {
+      "language": "ru",
+      "lemma_id": "lemma:2b504d31ed37e712baab",
+      "scope": "source_word_no_gold_family_assignment"
+    },
+    "record": {
+      "ety_packet_covered": false,
+      "language": "ru",
+      "lemma_id": "lemma:2b504d31ed37e712baab",
+      "packet_id": null,
+      "source_locator": {
+        "family_id": "surface:ru:poka",
+        "path": "associativvordes/family-index-v5/members/ru/a2.json.gz",
+        "snapshot_sha256_python_compact": "eed797112b08f39afda6ea0e600a9b3025da995dc1a5a1d83d6b0efd909fdf47"
+      },
+      "source_record": {
+        "category_breakdown": {
+          "normative": {
+            "category_ipm": 604.688517,
+            "category_score": 100,
+            "ipm_values": [
+              604.688517
+            ]
+          },
+          "subtitles": {
+            "category_ipm": 1172.824651,
+            "category_score": 100,
+            "ipm_values": [
+              1172.824651
+            ]
+          },
+          "web": {
+            "category_ipm": 561.58306,
+            "category_score": 100,
+            "ipm_values": [
+              561.58306
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "poka",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "confidence": 0.92,
+                "path": [
+                  "poka",
+                  "poka",
+                  "poka"
+                ],
+                "source": "candidate_index",
+                "type": "morphological_parse"
+              }
+            ],
+            "surface": "poka"
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 100,
+        "lemma_id": "lemma:2b504d31ed37e712baab",
+        "normalized": "пока",
+        "rank": 105,
+        "search_form": "poka",
+        "sources": [
+          {
+            "category": "normative",
+            "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+            "ipm": 604.688517
+          },
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+            "ipm": 1172.824651
+          },
+          {
+            "category": "web",
+            "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+            "ipm": 561.58306
+          }
+        ],
+        "word": "пока"
+      },
+      "surface_only": true,
+      "word": "пока"
+    },
+    "frame_denominator": 100,
+    "selection": "first three SHA256-ranked IDs in saved 100-per-language rank frame",
+    "verdict": "uncertain",
+    "reason": "A surface-only route does not imply a true family membership. No independently proved target family for this diagnostic word; no false negative is assigned.",
+    "independent_sources": []
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "annotation_unit": {
+      "language": "en",
+      "family_id": "family:ped",
+      "lemma_id": "lemma:ff24e3c1fcada6770b48",
+      "head_id": "head:en:b39e135b2647f120ccb80aa1",
+      "edge_version": 1
+    },
+    "record": {
+      "language": "en",
+      "family_id": "family:ped",
+      "lemma_id": "lemma:ff24e3c1fcada6770b48",
+      "word": "pedal",
+      "head_id": "head:en:b39e135b2647f120ccb80aa1",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/en/2d.json.gz",
+            "family_id": "family:pede",
+            "record_sha256": "a1a00024a0984806171dce63966d7feca6e58a44a024672d9e991619bd6fe58c"
+          },
+          "lemma_id": "lemma:ff24e3c1fcada6770b48"
+        }
+      ]
+    },
+    "selection": "purposive short-root/national-form control, separate from hash sample",
+    "verdict": "accepted",
+    "reason": "Independently attested ped-/pes foot; noun, adjective and verb share the component. Ped remains ped, never pede.",
+    "independent_sources": [
+      {
+        "url": "https://www.merriam-webster.com/dictionary/pedal",
+        "retrieval_ref": "turn8view0",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Independently attested ped-/pes foot; noun, adjective and verb share the component. Ped remains ped, never pede."
+      }
+    ],
+    "frequency_scope": "aggregate only; token senses not established"
+  },
+  {
+    "annotation_unit": {
+      "language": "en",
+      "family_id": "family:nat",
+      "lemma_id": "lemma:3d2adb8cfcd5546ad4d9",
+      "head_id": "head:en:5b9bc23ec50858f4387ad988",
+      "edge_version": 1
+    },
+    "record": {
+      "language": "en",
+      "family_id": "family:nat",
+      "lemma_id": "lemma:3d2adb8cfcd5546ad4d9",
+      "word": "nation",
+      "head_id": "head:en:5b9bc23ec50858f4387ad988",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/en/48.json.gz",
+            "family_id": "family:nat",
+            "record_sha256": "772404cad43d5ce185ab9f6b5ac8868ae8aacbb9ef63877ef6db37a6f026a303"
+          },
+          "lemma_id": "lemma:3d2adb8cfcd5546ad4d9"
+        }
+      ]
+    },
+    "selection": "purposive short-root/national-form control, separate from hash sample",
+    "verdict": "accepted",
+    "reason": "Latin natio/nation- provides the recognizable complete nat base, unlike the withheld naive control.",
+    "independent_sources": [
+      {
+        "url": "https://www.merriam-webster.com/dictionary/nation",
+        "retrieval_ref": "turn8view1",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Latin natio/nation- provides the recognizable complete nat base, unlike the withheld naive control."
+      }
+    ],
+    "frequency_scope": "aggregate only; token senses not established"
+  },
+  {
+    "annotation_unit": {
+      "language": "it",
+      "family_id": "family:observ",
+      "lemma_id": "lemma:8ae839630bb3272b450b",
+      "head_id": "head:it:b08725b5165cb31d5adac9e3",
+      "edge_version": 1
+    },
+    "record": {
+      "language": "it",
+      "family_id": "family:observ",
+      "lemma_id": "lemma:8ae839630bb3272b450b",
+      "word": "osservazione",
+      "head_id": "head:it:b08725b5165cb31d5adac9e3",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/it/6c.json.gz",
+            "family_id": "family:observ",
+            "record_sha256": "68c7c4eec8304a4613aa0a8661bb86af0efa46b8cfe84ee0c57f7421b6eaf502"
+          },
+          "lemma_id": "lemma:8ae839630bb3272b450b"
+        }
+      ]
+    },
+    "selection": "purposive short-root/national-form control, separate from hash sample",
+    "verdict": "accepted",
+    "reason": "Italian osservazione derives from osservare; independently read osservare continues Latin observare. This is a finite national correspondence, not generic spelling substitution.",
+    "independent_sources": [
+      {
+        "url": "https://www.treccani.it/vocabolario/osservazione/",
+        "retrieval_ref": "turn8view2",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Italian osservazione derives from osservare; independently read osservare continues Latin observare. This is a finite national correspondence, not generic spelling substitution."
+      }
+    ],
+    "frequency_scope": "aggregate only; token senses not established"
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "stage": "promotion-source-path-guard-validation",
+  "test_files": 1,
+  "tests": 5,
+  "verdict": "pass",
+  "adversarial_case": "Fabricated audit path also carries a matching registered input hash. Path whitelist must reject independently of the pre-existing missing-hash check.",
+  "test_sha256": "f3e19987e2d7487b3e8599f4c896f4bb78cd998b296f50de7fae336f3e892a1e",
+  "log_sha256": "b2623c2d93ad56eea964c054f6f3a6931deaa7dbc95cbf4c2f3f9d4153a443c8",
+  "implementation_changed": false,
+  "generated_artifacts_changed": false
+}

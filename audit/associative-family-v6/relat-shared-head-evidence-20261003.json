@@ -1,0 +1,180 @@
+{
+  "schema_version": 6,
+  "source_head": "5a986fc9bed17de344d5df8127727f4ca7b6dd04",
+  "production_enabled": false,
+  "stage": "relat-finite-lexical-evidence-20261003",
+  "source_queue": "audit/associative-family-v5/relation-phrase-boundaries-20261002/pending-review.json.gz",
+  "source_queue_sha256": "41e9cce68682165527f2fa482d28ce8c354b4c763232eac6c0d08de0639e4668",
+  "groups": [
+    {
+      "language": "en",
+      "normalized_head": "relace",
+      "sense": "repeat_lacing",
+      "root": "relat",
+      "status": "excluded",
+      "reason": "Repeat lacing: re- + lace, not the relatus/referre branch. WordWeb and Merriam-Webster enumerate the exact forms.",
+      "sources": [
+        "https://www.wordwebonline.com/en/RELACE",
+        "https://scrabble.merriam.com/finder/relace"
+      ],
+      "forms": [
+        "relace",
+        "relaced",
+        "relacing"
+      ],
+      "records": [
+        {
+          "root": "relat",
+          "language": "en",
+          "lemma_id": "lemma:a7b863d7883de59472c9",
+          "word": "relace",
+          "status": "pending_review",
+          "reason": "Unconfirmed en lexical identity or grammar for relace: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "ety:a706e18d38ff",
+            "surface:en:relac",
+            "ety:f12f96fc9ccc",
+            "ety:1305516adb17",
+            "ety:f4118d31b1ec"
+          ],
+          "historical_status": "uncertain"
+        },
+        {
+          "root": "relat",
+          "language": "en",
+          "lemma_id": "lemma:2a77e545efc575c86ef7",
+          "word": "relaced",
+          "status": "pending_review",
+          "reason": "Unconfirmed en lexical identity or grammar for relaced: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "surface:en:relac",
+            "ety:94363a8deea3"
+          ],
+          "historical_status": "uncertain"
+        },
+        {
+          "root": "relat",
+          "language": "en",
+          "lemma_id": "lemma:6680f3648254f5e5a383",
+          "word": "relacing",
+          "status": "pending_review",
+          "reason": "Unconfirmed en lexical identity or grammar for relacing: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "surface:en:relac",
+            "surface:en:lacing"
+          ],
+          "historical_status": "uncertain"
+        }
+      ]
+    },
+    {
+      "language": "fr",
+      "normalized_head": "relacer",
+      "sense": "repeat_lacing",
+      "root": "relat",
+      "status": "excluded",
+      "reason": "Repeat lacing: re- + lacer; lacer derives from Latin laqueare. The conjugation lists these exact forms; they are not relater or relation.",
+      "sources": [
+        "https://fr.wiktionary.org/w/index.php?title=relacer&oldid=33266431",
+        "https://fr.wiktionary.org/w/index.php?title=Conjugaison:français/relacer&oldid=28867870",
+        "https://www.cnrtl.fr/etymologie/lacer"
+      ],
+      "forms": [
+        "relace",
+        "relaces",
+        "relacé"
+      ],
+      "records": [
+        {
+          "root": "relat",
+          "language": "fr",
+          "lemma_id": "lemma:c6b9ccbb0da9f6ce6d42",
+          "word": "relace",
+          "status": "pending_review",
+          "reason": "Unconfirmed fr lexical identity or grammar for relace: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "surface:fr:relace"
+          ],
+          "historical_status": "uncertain"
+        },
+        {
+          "root": "relat",
+          "language": "fr",
+          "lemma_id": "lemma:885f5abfe711d77f2e03",
+          "word": "relaces",
+          "status": "pending_review",
+          "reason": "Unconfirmed fr lexical identity or grammar for relaces: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "surface:fr:aces",
+            "surface:fr:relace"
+          ],
+          "historical_status": "uncertain"
+        },
+        {
+          "root": "relat",
+          "language": "fr",
+          "lemma_id": "lemma:ff6cbecfe5221bea9512",
+          "word": "relacé",
+          "status": "pending_review",
+          "reason": "Unconfirmed fr lexical identity or grammar for relacé: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "surface:fr:relace"
+          ],
+          "historical_status": "uncertain"
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "normalized_head": "querelare",
+      "sense": "querela_complaint",
+      "root": "relat",
+      "status": "excluded",
+      "reason": "Querelare derives from Late Latin querelari/querela, not relatus. Finite imperative enclitics: querela+ci and querelate+la. Neither the judicial nor literary complaint sense contains an associative relat base.",
+      "sources": [
+        "https://www.treccani.it/vocabolario/querelare/"
+      ],
+      "forms": [
+        "querelaci",
+        "querelatela"
+      ],
+      "records": [
+        {
+          "root": "relat",
+          "language": "it",
+          "lemma_id": "lemma:5edcf053ad8cc3d82beb",
+          "word": "querelaci",
+          "status": "pending_review",
+          "reason": "Unconfirmed it lexical identity or grammar for querelaci: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "surface:it:querelac",
+            "surface:it:laci"
+          ],
+          "historical_status": "uncertain"
+        },
+        {
+          "root": "relat",
+          "language": "it",
+          "lemma_id": "lemma:5822867d210e58f0bb28",
+          "word": "querelatela",
+          "status": "pending_review",
+          "reason": "Unconfirmed it lexical identity or grammar for querelatela: possible typo, phrase fusion, foreign quotation or proper name; withheld pending evidence rather than admitted by overlap.",
+          "source_family_ids": [
+            "ety:c33578977446",
+            "surface:it:querelatel"
+          ],
+          "historical_status": "uncertain"
+        }
+      ]
+    }
+  ],
+  "records_resolved": 8,
+  "expensive_head_decisions": 3,
+  "new_review_reduction_factor": 2.6666666666666665,
+  "limitations": [
+    "Eight finite pending records only; no wildcard propagation.",
+    "Foreign insertions, corrupt spellings and fused phrases remain pending.",
+    "A spelling-equivalent token without disambiguating context cannot be certified as every possible source sense."
+  ],
+  "evidence_review_date": "2026-10-03"
+}

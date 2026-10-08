@@ -1,0 +1,1426 @@
+{
+  "schema_version": 6,
+  "stage": "system-finite-promotion-20261003",
+  "source_head": "0718f4599378f9f5f58250071dfefd658d793eec",
+  "production_enabled": false,
+  "promotion_status": "accepted",
+  "binding_authorized": true,
+  "accepted_membership_authorized": true,
+  "decision_scope": "reviewed_finite_promotion_not_linguistic_completion",
+  "candidate_packets": [
+    "candidate-root:9ab8a851be71bb3227c0c162",
+    "candidate-root:58deec834e4b763605cc4313"
+  ],
+  "family": {
+    "id": "family:system",
+    "canonical": "system",
+    "legacy_ids": [],
+    "promotion_status": "accepted_finite_promotion",
+    "element_type": "root",
+    "aliases": [
+      "system",
+      "systeme",
+      "système",
+      "sistema",
+      "система",
+      "sistem",
+      "систем"
+    ],
+    "canonical_decision": {
+      "status": "accepted",
+      "reason": "Accept the compact complete modern international system base, supported by six independent national lexical rows and Greek/Latin continuity. systema is a longer whole historical noun; syst/sys cut the recognizable base. This is an individual decision, not generic -a stripping. systemat- stays a separate finite derivational stem.",
+      "evidence": [
+        "https://dle.rae.es/sistema",
+        "https://dle.rae.es/sistematizar",
+        "https://lexicography.online/etymology/vasmer/с/система",
+        "https://lexicography.online/explanatory/ozhegov/с/система",
+        "https://www.dictionnaire-academie.fr/article/A9S3967",
+        "https://www.duden.de/rechtschreibung/System",
+        "https://www.merriam-webster.com/dictionary/system",
+        "https://www.treccani.it/vocabolario/sistema/",
+        "https://www.treccani.it/vocabolario/sistemare/"
+      ],
+      "negative_under_stripping": [
+        "systema"
+      ],
+      "negative_over_stripping": [
+        "syst",
+        "sys"
+      ],
+      "possible_stems": [
+        "system",
+        "systema",
+        "syst",
+        "sys"
+      ],
+      "membership_certification": "Only explicitly enumerated source records; no source-container certification."
+    },
+    "realizations": {},
+    "reflexes": [
+      {
+        "family_id": "family:system",
+        "language": "es",
+        "realization": "sistemat",
+        "realization_type": "derivational_stem",
+        "morphology_boundary": "Latin oblique systemat- in RAE sistematizar; finite branch only.",
+        "supporting_heads": [
+          "sistematizar"
+        ],
+        "positive_controls": [
+          "sistematizar"
+        ],
+        "negative_controls": [
+          "состав"
+        ],
+        "status": "accepted",
+        "evidence": [
+          {
+            "source": "https://dle.rae.es/sistematizar"
+          }
+        ],
+        "head_scope": [
+          {
+            "language": "es",
+            "normalized_head": "sistematizar",
+            "sense": "organize_according_to_system",
+            "evidence": [
+              {
+                "source": "https://dle.rae.es/sistematizar"
+              }
+            ]
+          }
+        ],
+        "general_family_realization": false,
+        "establishes_membership": false
+      }
+    ],
+    "source_evidence_clusters": [
+      "ety:e5b5bac756da",
+      "ety:82f27619decc",
+      "ety:d23b06bd3000",
+      "ety:fe15b78c8368"
+    ]
+  },
+  "groups": [
+    {
+      "language": "en",
+      "normalized_head": "system",
+      "sense": "structured_assembly_or_scheme_noun",
+      "head_scope": "whole_lexeme_and_inflections",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "system",
+        "systems"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/system"
+      ],
+      "reason": "Merriam-Webster supports the noun and its Greek/Latin origin. systems is its regular plural; neither record proves a brand identity.",
+      "records": [
+        {
+          "language": "en",
+          "lemma_id": "lemma:dff0cfb88a2b04b1e528",
+          "word": "system",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/en/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "223f8481a883e7c12fcb575775df6a9635d8eaa60b8f972bf7ad1013cbef2f9b"
+          },
+          "source_record": {
+            "lemma_id": "lemma:dff0cfb88a2b04b1e528",
+            "word": "system",
+            "normalized": "system",
+            "search_form": "system",
+            "rank": 123,
+            "frequency_score": 94.89177036076168,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  124.366134,
+                  124.685982
+                ],
+                "category_ipm": 124.526058,
+                "category_score": 84.67531108228499
+              },
+              "normative": {
+                "ipm_values": [
+                  646.644123
+                ],
+                "category_ipm": 646.644123,
+                "category_score": 100
+              },
+              "web": {
+                "ipm_values": [
+                  787.152323
+                ],
+                "category_ipm": 787.152323,
+                "category_score": 100
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+                "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+                "category": "normative",
+                "ipm": 646.644123
+              },
+              {
+                "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 124.366134
+              },
+              {
+                "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 124.685982
+              },
+              {
+                "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 787.152323
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "system",
+                "canonical_candidate": "system",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "system",
+                      "system",
+                      "system"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        },
+        {
+          "language": "en",
+          "lemma_id": "lemma:199a094f069aa5bbaf21",
+          "word": "systems",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/en/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "2ba440fea663ea5863fd1fba1a6d10f84d7afc348b912dd6c4b4d501b185ca37"
+          },
+          "source_record": {
+            "lemma_id": "lemma:199a094f069aa5bbaf21",
+            "word": "systems",
+            "normalized": "systems",
+            "search_form": "systems",
+            "rank": 1878,
+            "frequency_score": 71.39235223689454,
+            "category_breakdown": {
+              "web": {
+                "ipm_values": [
+                  57.817549
+                ],
+                "category_ipm": 57.817549,
+                "category_score": 71.39235223689454
+              }
+            },
+            "sources": [
+              {
+                "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 57.817549
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "system",
+                "canonical_candidate": "system",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "systems",
+                      "system",
+                      "system"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "inflection",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        }
+      ]
+    },
+    {
+      "language": "de",
+      "normalized_head": "system",
+      "sense": "structured_assembly_or_scheme_noun",
+      "head_scope": "whole_lexeme_and_inflections",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "system",
+        "systems"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.duden.de/rechtschreibung/System"
+      ],
+      "reason": "Duden supports System, genitive Systems and plural Systeme. Only real records system and systems are in this finite frame; Systeme remains a corpus gap in this selected route.",
+      "records": [
+        {
+          "language": "de",
+          "lemma_id": "lemma:7ba15b6de9b10a155d63",
+          "word": "system",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/de/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "f446e8d89410b7eaeab64d08315bb7d1efa44f6032f9b738c12a426805c18775"
+          },
+          "source_record": {
+            "lemma_id": "lemma:7ba15b6de9b10a155d63",
+            "word": "system",
+            "normalized": "system",
+            "search_form": "system",
+            "rank": 395,
+            "frequency_score": 85.378736069567,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  42.793918
+                ],
+                "category_ipm": 42.793918,
+                "category_score": 66.22431973389409
+              },
+              "normative": {
+                "ipm_values": [
+                  203.271869
+                ],
+                "category_ipm": 203.271869,
+                "category_score": 93.2074473947467
+              },
+              "web": {
+                "ipm_values": [
+                  248.39278
+                ],
+                "category_ipm": 248.39278,
+                "category_score": 96.70444108006018
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+                "file": "deu_lemma_rank_word_ipm_corrected.json",
+                "category": "normative",
+                "ipm": 203.271869
+              },
+              {
+                "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 42.793918
+              },
+              {
+                "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 248.39278
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "system",
+                "canonical_candidate": "system",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "system",
+                      "system",
+                      "system"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        },
+        {
+          "language": "de",
+          "lemma_id": "lemma:d88dae85956546cdf8c1",
+          "word": "systems",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/de/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "e6386af2f7ea4e43c7382cd123ad351b5d405bb61e977439799fa973339c1ac4"
+          },
+          "source_record": {
+            "lemma_id": "lemma:d88dae85956546cdf8c1",
+            "word": "systems",
+            "normalized": "systems",
+            "search_form": "systems",
+            "rank": 9915,
+            "frequency_score": 26.235687079886187,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  3.469603
+                ],
+                "category_ipm": 3.469603,
+                "category_score": 26.235687079886187
+              }
+            },
+            "sources": [
+              {
+                "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 3.469603
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "system",
+                "canonical_candidate": "system",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "systems",
+                      "system",
+                      "system"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "inflection",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        }
+      ]
+    },
+    {
+      "language": "fr",
+      "normalized_head": "système",
+      "sense": "structured_assembly_or_scheme_noun",
+      "head_scope": "whole_lexeme_and_inflections",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "système",
+        "systèmes"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://www.dictionnaire-academie.fr/article/A9S3967"
+      ],
+      "reason": "Académie supports système and regular plural systèmes. Its Greek borrowing belongs to the same international lexical row; malformed accent variants are withheld.",
+      "records": [
+        {
+          "language": "fr",
+          "lemma_id": "lemma:182eb47cd06a3f918e8e",
+          "word": "système",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/fr/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "baf92b90c10fafd81e6bd20eef8a6a30c8ec44e960dd8717f347420f8aaa4b1d"
+          },
+          "source_record": {
+            "lemma_id": "lemma:182eb47cd06a3f918e8e",
+            "word": "système",
+            "normalized": "système",
+            "search_form": "systeme",
+            "rank": 152,
+            "frequency_score": 92.06556155307238,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  120.687461
+                ],
+                "category_ipm": 120.687461,
+                "category_score": 84.13112310614477
+              },
+              "web": {
+                "ipm_values": [
+                  515.180955
+                ],
+                "category_ipm": 515.180955,
+                "category_score": 100
+              }
+            },
+            "sources": [
+              {
+                "id": "subtitles/hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_fr_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 120.687461
+              },
+              {
+                "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 515.180955
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "systeme",
+                "canonical_candidate": "systeme",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "systeme",
+                      "systeme",
+                      "systeme"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        },
+        {
+          "language": "fr",
+          "lemma_id": "lemma:f053cdac3dc565364bf1",
+          "word": "systèmes",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/fr/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "c3fb70cb6e54846d645ac9613bd38dca8854bf8cbdca47d59b3b6a48d98d4eb6"
+          },
+          "source_record": {
+            "lemma_id": "lemma:f053cdac3dc565364bf1",
+            "word": "systèmes",
+            "normalized": "systèmes",
+            "search_form": "systemes",
+            "rank": 6525,
+            "frequency_score": 40.795353078207825,
+            "category_breakdown": {
+              "web": {
+                "ipm_values": [
+                  9.259825
+                ],
+                "category_ipm": 9.259825,
+                "category_score": 40.795353078207825
+              }
+            },
+            "sources": [
+              {
+                "id": "web/sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.fr.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 9.259825
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "systeme",
+                "canonical_candidate": "systeme",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "systemes",
+                      "systeme",
+                      "systeme"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "inflection",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "normalized_head": "sistema",
+      "sense": "structured_assembly_or_scheme_noun",
+      "head_scope": "whole_lexeme_and_inflections",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "sistema"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://dle.rae.es/sistema"
+      ],
+      "reason": "RAE supports masculine noun sistema from late Latin and Greek. No noun/verb ambiguity is asserted for this Spanish record.",
+      "records": [
+        {
+          "language": "es",
+          "lemma_id": "lemma:0334d76116cb3e9622ec",
+          "word": "sistema",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/es/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "d69746c4edb9fab521bdb8ecc79c180c3c1c69c13810cf9918bfe13f028fcca4"
+          },
+          "source_record": {
+            "lemma_id": "lemma:0334d76116cb3e9622ec",
+            "word": "sistema",
+            "normalized": "sistema",
+            "search_form": "sistema",
+            "rank": 356,
+            "frequency_score": 89.97025125198356,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  140.253085,
+                  138.379331
+                ],
+                "category_ipm": 139.31620800000002,
+                "category_score": 86.62700166931143
+              },
+              "mixed": {
+                "ipm_values": [
+                  310.052071
+                ],
+                "category_ipm": 310.052071,
+                "category_score": 100
+              }
+            },
+            "sources": [
+              {
+                "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+                "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+                "category": "mixed",
+                "ipm": 310.052071
+              },
+              {
+                "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 140.253085
+              },
+              {
+                "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 138.379331
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "sistema",
+                "canonical_candidate": "sistema",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "sistema",
+                      "sistema",
+                      "sistema"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        }
+      ]
+    },
+    {
+      "language": "it",
+      "normalized_head": "sistema",
+      "sense": "international_system_lexical_base",
+      "head_scope": "lexical_base_component",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "sistema"
+      ],
+      "component_stems": [
+        "sistem"
+      ],
+      "sources": [
+        "https://www.treccani.it/vocabolario/sistema/",
+        "https://www.treccani.it/vocabolario/sistemare/"
+      ],
+      "reason": "Treccani independently supports noun sistema and sistemare derived from that noun. The aggregate sistema can be a noun or a finite verb form. Bind only the common sistem lexical-base component present in either reading; do not claim whole-noun identity or corpus POS disambiguation.",
+      "records": [
+        {
+          "language": "it",
+          "lemma_id": "lemma:d4ba3823d8978737b19d",
+          "word": "sistema",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/it/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "012d4481e3661e1ba02ee5088822b9fe6d2f41d3813edc8090c3099c3493d0d6"
+          },
+          "source_record": {
+            "lemma_id": "lemma:d4ba3823d8978737b19d",
+            "word": "sistema",
+            "normalized": "sistema",
+            "search_form": "sistema",
+            "rank": 128,
+            "frequency_score": 100,
+            "category_breakdown": {
+              "web": {
+                "ipm_values": [
+                  683.605367
+                ],
+                "category_ipm": 683.605367,
+                "category_score": 100
+              }
+            },
+            "sources": [
+              {
+                "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 683.605367
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "sistema",
+                "canonical_candidate": "sistema",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "sistema",
+                      "sistema",
+                      "sistema"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "reviewed_lexical_base_component",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity",
+          "component_segmentation": {
+            "before": "",
+            "component": "sistem",
+            "after": "a",
+            "head": "sistema",
+            "boundary_proof": "Treccani independently supports noun sistema and sistemare derived from that noun. The aggregate sistema can be a noun or a finite verb form. Bind only the common sistem lexical-base component present in either reading; do not claim whole-noun identity or corpus POS disambiguation."
+          },
+          "corpus_pos_status": "ambiguous_noun_or_sistemare_form_preserved",
+          "whole_compound_identity_established": false
+        }
+      ]
+    },
+    {
+      "language": "ru",
+      "normalized_head": "система",
+      "sense": "structured_assembly_or_scheme_noun",
+      "head_scope": "whole_lexeme_and_inflections",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "система",
+        "систем",
+        "системы"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://lexicography.online/explanatory/ozhegov/с/система",
+        "https://lexicography.online/etymology/vasmer/с/система"
+      ],
+      "reason": "Ozhegov supports the noun and -ы inflection; систем is regular genitive plural. Vasmer supports French/Latin/Greek mediation. No proper-name row is imported.",
+      "records": [
+        {
+          "language": "ru",
+          "lemma_id": "lemma:f13af3cb2edc197e2860",
+          "word": "система",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/ru/de.json.gz",
+            "family_id": "surface:ru:sistem",
+            "record_sha256": "59c46a1b07b421d03f8c9f9a1ced7f6b0ab695f9f04501ab52b47bb9056e20ae"
+          },
+          "source_record": {
+            "lemma_id": "lemma:f13af3cb2edc197e2860",
+            "word": "система",
+            "normalized": "система",
+            "search_form": "sistema",
+            "rank": 109,
+            "frequency_score": 96.34519677244427,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  159.992747
+                ],
+                "category_ipm": 159.992747,
+                "category_score": 89.03559031733278
+              },
+              "normative": {
+                "ipm_values": [
+                  817.168521
+                ],
+                "category_ipm": 817.168521,
+                "category_score": 100
+              },
+              "web": {
+                "ipm_values": [
+                  804.08856
+                ],
+                "category_ipm": 804.08856,
+                "category_score": 100
+              }
+            },
+            "sources": [
+              {
+                "id": "normative/rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+                "file": "rnc-orig.out.lpos-clean2-biwt.cleaned_ipm6.json",
+                "category": "normative",
+                "ipm": 817.168521
+              },
+              {
+                "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+                "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+                "category": "subtitles",
+                "ipm": 159.992747
+              },
+              {
+                "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 804.08856
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "sistem",
+                "canonical_candidate": "sistem",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "sistema",
+                      "sistem",
+                      "sistem"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        },
+        {
+          "language": "ru",
+          "lemma_id": "lemma:d053aa613e6063994f8f",
+          "word": "систем",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/ru/de.json.gz",
+            "family_id": "surface:ru:sistem",
+            "record_sha256": "81233365ac5aba53ec584c01bc327f5ac6ec0e337f4ed70ca2028250a05b6994"
+          },
+          "source_record": {
+            "lemma_id": "lemma:d053aa613e6063994f8f",
+            "word": "систем",
+            "normalized": "систем",
+            "search_form": "sistem",
+            "rank": 87907,
+            "frequency_score": 3.27457550326606,
+            "category_breakdown": {
+              "web": {
+                "ipm_values": [
+                  0.205487
+                ],
+                "category_ipm": 0.205487,
+                "category_score": 3.27457550326606
+              }
+            },
+            "sources": [
+              {
+                "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 0.205487
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "sistem",
+                "canonical_candidate": "sistem",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "sistem",
+                      "sistem",
+                      "sistem"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "inflection",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        },
+        {
+          "language": "ru",
+          "lemma_id": "lemma:a2c6751527466bf1958f",
+          "word": "системы",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/ru/de.json.gz",
+            "family_id": "surface:ru:sistem",
+            "record_sha256": "03d07263ae0a4ba1524661f64a0961f976dff7408015c4c03d5804ad36f9bbf6"
+          },
+          "source_record": {
+            "lemma_id": "lemma:a2c6751527466bf1958f",
+            "word": "системы",
+            "normalized": "системы",
+            "search_form": "sistemy",
+            "rank": 117225,
+            "frequency_score": 2.009462369104248,
+            "category_breakdown": {
+              "web": {
+                "ipm_values": [
+                  0.121517
+                ],
+                "category_ipm": 0.121517,
+                "category_score": 2.009462369104248
+              }
+            },
+            "sources": [
+              {
+                "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+                "category": "web",
+                "ipm": 0.121517
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "sistem",
+                "canonical_candidate": "sistem",
+                "confidence": 0.92,
+                "evidence": [
+                  {
+                    "type": "morphological_parse",
+                    "source": "candidate_index",
+                    "path": [
+                      "sistemy",
+                      "sistem",
+                      "sistem"
+                    ],
+                    "confidence": 0.92
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "inflection",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        }
+      ]
+    },
+    {
+      "language": "es",
+      "normalized_head": "sistematizar",
+      "sense": "organize_according_to_system",
+      "head_scope": "derivational_branch",
+      "identity_status": "accepted",
+      "family_edge_status": "accepted",
+      "forms": [
+        "sistematizar"
+      ],
+      "component_stems": [],
+      "sources": [
+        "https://dle.rae.es/sistematizar"
+      ],
+      "reason": "RAE explicitly derives sistematizar from late Latin systema, -atis plus -izar. sistemat- is a derivational stem in this finite branch, not a second canonical root.",
+      "records": [
+        {
+          "language": "es",
+          "lemma_id": "lemma:0c05cc8944d073deeeda",
+          "word": "sistematizar",
+          "source_locator": {
+            "path": "associativvordes/family-index-v5/members/es/13.json.gz",
+            "family_id": "ety:e5b5bac756da",
+            "record_sha256": "2240421fb147799bfcdee4458c5aa3293db459afad319180e2caced8b5b3d553"
+          },
+          "source_record": {
+            "lemma_id": "lemma:0c05cc8944d073deeeda",
+            "word": "sistematizar",
+            "normalized": "sistematizar",
+            "search_form": "sistematizar",
+            "rank": 50949,
+            "frequency_score": 1.5124337545198911,
+            "category_breakdown": {
+              "subtitles": {
+                "ipm_values": [
+                  0.070156,
+                  0.064011
+                ],
+                "category_ipm": 0.06708349999999999,
+                "category_score": 1.137690057497458
+              },
+              "mixed": {
+                "ipm_values": [
+                  0.162389
+                ],
+                "category_ipm": 0.162389,
+                "category_score": 2.6366648455871915
+              }
+            },
+            "sources": [
+              {
+                "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+                "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+                "category": "mixed",
+                "ipm": 0.162389
+              },
+              {
+                "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.070156
+              },
+              {
+                "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+                "category": "subtitles",
+                "ipm": 0.064011
+              }
+            ],
+            "corpus_quality": {
+              "status": "accepted",
+              "reasons": []
+            },
+            "components": [
+              {
+                "surface": "sistema",
+                "canonical_candidate": "sistema",
+                "confidence": 0.81,
+                "evidence": [
+                  {
+                    "type": "compound_morphology",
+                    "source": "candidate_index",
+                    "path": [
+                      "sistematizar",
+                      "sistema",
+                      "sistema"
+                    ],
+                    "confidence": 0.81
+                  }
+                ]
+              }
+            ]
+          },
+          "link_role": "whole_lexeme",
+          "formal_continuity_status": "accepted",
+          "relation_kind": "lexical_continuity"
+        }
+      ]
+    }
+  ],
+  "input_sha256": {
+    "audit/associative-family-v6/system-promotion-research-20261003.json": "897270a11045072d6bb93eb43fdfb8e820b9c6a80b223a8f0959408dbb67a82e",
+    "associativvordes/family-index-v5/members/en/13.json.gz": "be90d77291358e420c095592d39e7c56ec2319680cdbd03a940ae67b3855fb5f",
+    "associativvordes/family-index-v5/members/de/13.json.gz": "f0b1369a35570c3fca30e327638ef44b4146f55ddee935a3111cdf8860f5209c",
+    "associativvordes/family-index-v5/members/fr/13.json.gz": "da8de1d929d7fe5edb48312e805f06abac5f95b8953492bce681860f0d701de7",
+    "associativvordes/family-index-v5/members/es/13.json.gz": "f4cd7d8aeedc941c013a224509f9ccaf40a683cfb2faedc61b720256f01a37e3",
+    "associativvordes/family-index-v5/members/it/13.json.gz": "6126be5c0444b0748d6fc6fc60a47765659d7e97956f9a024f18249076cc7f52",
+    "associativvordes/family-index-v5/members/ru/de.json.gz": "02c8bb229656b74110734a8e64559f41f28d2bdad0a2acbef4b21ca6a490abd0",
+    "associativvordes/family-index-v5/members/ru/13.json.gz": "a45aac31047bd8b312a53424f3d6a25cf846a71b2763d9df2ab19859f9c2a295"
+  },
+  "negative_controls": [
+    {
+      "language": "ru",
+      "word": "автор-составитель",
+      "lemma_id": "lemma:00cd73b410c8bff8264a",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "драмсостав",
+      "lemma_id": "lemma:4b4e61e6c6443ae31e6b",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "химсостав",
+      "lemma_id": "lemma:0ea39adce3b8f2c39297",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "иаснесоставить",
+      "lemma_id": "lemma:033233e22032dfe687aa",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "картосоставитель",
+      "lemma_id": "lemma:74a00ae6b07900f8aaf1",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "комсостав",
+      "lemma_id": "lemma:842c729285dceac1de8f",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "медиасостав",
+      "lemma_id": "lemma:fabd93e37f21a8a4c670",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "начсостав",
+      "lemma_id": "lemma:1055e6d982e8dd50d375",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "несоставить",
+      "lemma_id": "lemma:f0abd318a428c4d3595d",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "плавсостав",
+      "lemma_id": "lemma:54a7439c9f9536356f81",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "политсостав",
+      "lemma_id": "lemma:d06d8c0ec948aa22970b",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "полсостав",
+      "lemma_id": "lemma:31ce6c473f2ab8bab6f5",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "редактор-составитель",
+      "lemma_id": "lemma:63fee23dbd854bf3f880",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "состав",
+      "lemma_id": "lemma:f3b8792412171e5efce6",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "состава",
+      "lemma_id": "lemma:0edee9d8c41fc558b51e",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составить",
+      "lemma_id": "lemma:f59710107111c21de6d9",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составитель",
+      "lemma_id": "lemma:f4f38facb5ffc37dde8e",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составиттеб",
+      "lemma_id": "lemma:3d8343cb743f8f3cf72e",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составиттруд",
+      "lemma_id": "lemma:b8a5df60e26ab93bfb15",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составялть",
+      "lemma_id": "lemma:c846718a372d3cef940f",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составять",
+      "lemma_id": "lemma:a6a65688fcb9c577efb4",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составлть",
+      "lemma_id": "lemma:d862cda83e9a6f5bec9a",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "составмет",
+      "lemma_id": "lemma:2e8b7daa2eea09827eb0",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "спецсостав",
+      "lemma_id": "lemma:1227fde5588b5fee1e08",
+      "reason": "semantic_translation_pool_not_formal_system_continuity",
+      "relation_kind": "semantic_translation"
+    },
+    {
+      "language": "ru",
+      "word": "система-галс",
+      "reason": "proper_name_or_opaque_transmission_not_reviewed"
+    },
+    {
+      "language": "ru",
+      "word": "системболагет",
+      "reason": "proper_name_or_opaque_transmission_not_reviewed"
+    },
+    {
+      "language": "ru",
+      "word": "системикс",
+      "reason": "proper_name_or_opaque_transmission_not_reviewed"
+    }
+  ],
+  "positive_controls": [
+    {
+      "language": "en",
+      "word": "system",
+      "lemma_id": "lemma:dff0cfb88a2b04b1e528"
+    },
+    {
+      "language": "en",
+      "word": "systems",
+      "lemma_id": "lemma:199a094f069aa5bbaf21"
+    },
+    {
+      "language": "de",
+      "word": "system",
+      "lemma_id": "lemma:7ba15b6de9b10a155d63"
+    },
+    {
+      "language": "de",
+      "word": "systems",
+      "lemma_id": "lemma:d88dae85956546cdf8c1"
+    },
+    {
+      "language": "fr",
+      "word": "système",
+      "lemma_id": "lemma:182eb47cd06a3f918e8e"
+    },
+    {
+      "language": "fr",
+      "word": "systèmes",
+      "lemma_id": "lemma:f053cdac3dc565364bf1"
+    },
+    {
+      "language": "es",
+      "word": "sistema",
+      "lemma_id": "lemma:0334d76116cb3e9622ec"
+    },
+    {
+      "language": "it",
+      "word": "sistema",
+      "lemma_id": "lemma:d4ba3823d8978737b19d"
+    },
+    {
+      "language": "ru",
+      "word": "система",
+      "lemma_id": "lemma:f13af3cb2edc197e2860"
+    },
+    {
+      "language": "ru",
+      "word": "систем",
+      "lemma_id": "lemma:d053aa613e6063994f8f"
+    },
+    {
+      "language": "ru",
+      "word": "системы",
+      "lemma_id": "lemma:a2c6751527466bf1958f"
+    },
+    {
+      "language": "es",
+      "word": "sistematizar",
+      "lemma_id": "lemma:0c05cc8944d073deeeda"
+    }
+  ],
+  "national_form_decisions": [
+    {
+      "language": "en",
+      "lexical_form": "system",
+      "status": "proved_noun_head_form_not_general_reflex"
+    },
+    {
+      "language": "de",
+      "lexical_form": "system",
+      "status": "proved_noun_head_form_not_general_reflex"
+    },
+    {
+      "language": "fr",
+      "lexical_form": "système",
+      "status": "proved_noun_head_form_not_general_reflex"
+    },
+    {
+      "language": "es",
+      "lexical_form": "sistema",
+      "status": "proved_noun_head_form_not_general_reflex"
+    },
+    {
+      "language": "it",
+      "lexical_form": "sistema",
+      "status": "proved_noun_head_form_not_general_reflex"
+    },
+    {
+      "language": "ru",
+      "lexical_form": "система",
+      "status": "proved_noun_head_form_not_general_reflex"
+    }
+  ],
+  "systemat_branch_decision": {
+    "status": "accepted",
+    "canonical_root": "system",
+    "general_propagation": false,
+    "national_stem": "sistemat",
+    "head": "es:sistematizar",
+    "english_historical_stem": "systemat",
+    "english_source": "https://www.merriam-webster.com/dictionary/systematic"
+  },
+  "unreviewed_source_container_policy": "evidence_only_no_member_array_import",
+  "limitations": [
+    "Aggregate POS and frequency are unchanged; Italian sistema is bound at common lexical-base level, not falsely classified as a noun.",
+    "Only twelve existing corpus IDs are accepted; other compounds, accent defects, proper names and strings remain unreviewed.",
+    "The 24 Russian translation records are excluded from this family, not deleted from v5.",
+    "Noun inflections never become general national reflexes.",
+    "Promotion metrics remain separate from seed-queue resolution metrics."
+  ]
+}

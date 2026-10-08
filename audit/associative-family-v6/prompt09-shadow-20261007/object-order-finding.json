@@ -1,0 +1,158 @@
+{
+  "finding": "One shared accepted corpus ID has semantically identical measurement objects with a different serialized key order.",
+  "records": [
+    {
+      "membership": {
+        "language": "de",
+        "family_id": "family:act",
+        "lemma_id": "lemma:3b7890b5d782866cb765",
+        "word": "aktionärsinformationen",
+        "head_id": "head:legacy:de:3b7890b5d782866cb765",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/4f.json.gz",
+              "family_id": "family:act",
+              "record_sha256": "2e3847eac7eb927a14828c322b4f1970b25ebe69ceec8cb18067deab7e2f8777"
+            },
+            "lemma_id": "lemma:3b7890b5d782866cb765"
+          }
+        ]
+      },
+      "original_record": {
+        "category_breakdown": {
+          "subtitles": {
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369,
+            "ipm_values": [
+              0.006437
+            ]
+          }
+        },
+        "components": [
+          {
+            "canonical_candidate": "akt",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "confidence": 0.97,
+                "path": [
+                  "aktionarsinformationen",
+                  "akt",
+                  "akt"
+                ],
+                "source": "manually_verified",
+                "type": "compound_morphology"
+              }
+            ],
+            "surface": "akt"
+          },
+          {
+            "surface": "aktion",
+            "canonical_candidate": "act",
+            "confidence": 0.95,
+            "evidence": [
+              {
+                "type": "manual_override",
+                "source": "audit/associative-family-v5/action-positive-extension-20261002/materialization-ledger.json",
+                "relation_type": "compound_component",
+                "language_reflex": true,
+                "lexical_head": "Aktionär",
+                "analysis": "aktionärsinformationen: explicitly reviewed whole form with Aktionär lexical head. Its inflection, derivative or transparent compound preserves the aktion national realization; not ancestor-wide or suffix-only membership. Dictionary evidence establishes the head; compound segmentation is an explicitly stated morphological inference.",
+                "source_references": [
+                  "https://www.duden.de/rechtschreibung/Aktionaer"
+                ]
+              }
+            ]
+          }
+        ],
+        "corpus_quality": {
+          "reasons": [],
+          "status": "accepted"
+        },
+        "frequency_score": 0.11242766823252369,
+        "lemma_id": "lemma:3b7890b5d782866cb765",
+        "normalized": "aktionärsinformationen",
+        "rank": 398735,
+        "search_form": "aktionarsinformationen",
+        "sources": [
+          {
+            "category": "subtitles",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "ipm": 0.006437
+          }
+        ],
+        "word": "aktionärsinformationen"
+      }
+    },
+    {
+      "membership": {
+        "language": "de",
+        "family_id": "family:inform",
+        "lemma_id": "lemma:3b7890b5d782866cb765",
+        "word": "aktionärsinformationen",
+        "head_id": "head:de:9aca807571cc8ecd711ad7d4",
+        "edge_version": 1,
+        "source_proof": [
+          {
+            "source": {
+              "path": "associativvordes/family-index-v5/members/de/5c.json.gz",
+              "family_id": "family:inform",
+              "record_sha256": "568faa92b67f8750bd74b78c4a50d0646d21c1bdf4cabb6811e111146e958a9b"
+            },
+            "lemma_id": "lemma:3b7890b5d782866cb765"
+          }
+        ]
+      },
+      "original_record": {
+        "lemma_id": "lemma:3b7890b5d782866cb765",
+        "word": "aktionärsinformationen",
+        "normalized": "aktionärsinformationen",
+        "search_form": "aktionarsinformationen",
+        "rank": 398735,
+        "frequency_score": 0.11242766823252369,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              0.006437
+            ],
+            "category_ipm": 0.006437,
+            "category_score": 0.11242766823252369
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 0.006437
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "inform",
+            "canonical_candidate": "inform",
+            "confidence": 0.95,
+            "evidence": [
+              {
+                "type": "manual_override",
+                "source": "audit/associative-family-v5/reflex-families-20261001.json",
+                "relation_type": "compound_component",
+                "language_reflex": true,
+                "analysis": "Reviewed German lexical component analysis: aktionars[information]en; productive compound/inflection, not substring equivalence."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "decision": "Canonicalize object keys only for internal equality, preserving arrays and original returned source fields. Conflicting measurement values must still fail.",
+  "membership_authorization": false
+}

@@ -1,0 +1,1121 @@
+[
+  {
+    "annotation_unit": {
+      "language": "de",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:29fc012011aa0ae2ff53",
+      "scope": "finite_lexical_row_or_component"
+    },
+    "record": {
+      "language": "de",
+      "word": "atombombe",
+      "lemma_id": "lemma:29fc012011aa0ae2ff53",
+      "source_record": {
+        "lemma_id": "lemma:29fc012011aa0ae2ff53",
+        "word": "atombombe",
+        "normalized": "atombombe",
+        "search_form": "atombombe",
+        "rank": 9037,
+        "frequency_score": 28.642967837895156,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              3.984572
+            ],
+            "category_ipm": 3.984572,
+            "category_score": 28.146425557554807
+          },
+          "normative": {
+            "ipm_values": [
+              2.641913
+            ],
+            "category_ipm": 2.641913,
+            "category_score": 22.647347485642563
+          },
+          "web": {
+            "ipm_values": [
+              6.427584
+            ],
+            "category_ipm": 6.427584,
+            "category_score": 35.13513047048809
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/deu_lemma_rank_word_ipm_corrected.json",
+            "file": "deu_lemma_rank_word_ipm_corrected.json",
+            "category": "normative",
+            "ipm": 2.641913
+          },
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 3.984572
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 6.427584
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atombombe",
+            "canonical_candidate": "atombombe",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atombombe",
+                  "atombombe",
+                  "atombombe"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/4f.json.gz",
+        "family_id": "surface:de:atombombe",
+        "record_sha256": "201ce8b9167c9f11336d596df2972d7f055c9bca0df774bd11f013873c78ac1e"
+      }
+    },
+    "verdict": "accepted",
+    "reason": "Surface-only finite component positive survives.",
+    "independent_sources": [
+      {
+        "url": "https://www.duden.de/rechtschreibung/Atombombe",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Atombombe is the nuclear explosive noun; finite Atom+Bombe component analysis is explicit.",
+        "retrieval_ref": "turn0search7",
+        "kind": "independent_dictionary_or_scholarly_lexicography"
+      }
+    ],
+    "currently_accepted": true
+  },
+  {
+    "annotation_unit": {
+      "language": "it",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:b6a55365044117f93b84",
+      "scope": "finite_lexical_row_or_component"
+    },
+    "record": {
+      "language": "it",
+      "word": "attimo",
+      "lemma_id": "lemma:b6a55365044117f93b84",
+      "source_record": {
+        "lemma_id": "lemma:b6a55365044117f93b84",
+        "word": "attimo",
+        "normalized": "attimo",
+        "search_form": "attimo",
+        "rank": 422,
+        "frequency_score": 78.35081183908036,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              223.191099,
+              222.378583
+            ],
+            "category_ipm": 222.784841,
+            "category_score": 94.8060368207616
+          },
+          "web": {
+            "ipm_values": [
+              33.207653
+            ],
+            "category_ipm": 33.207653,
+            "category_score": 61.89558685739911
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 223.191099
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 222.378583
+          },
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 33.207653
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "att",
+            "canonical_candidate": "att",
+            "confidence": 0.97,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "manually_verified",
+                "path": [
+                  "attimo",
+                  "att",
+                  "att"
+                ],
+                "confidence": 0.97
+              }
+            ]
+          }
+        ]
+      },
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/it/8b.json.gz",
+        "family_id": "ety:609aedb538e2",
+        "record_sha256": "5213a868f156cac629509901f0fb8af5911bc470e186919701aac71938c2f778"
+      }
+    },
+    "verdict": "uncertain",
+    "reason": "Historical development is documented, but modern recognizable atom boundary remains uncertain.",
+    "independent_sources": [
+      {
+        "url": "https://www.treccani.it/vocabolario/attimo/",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Attimo is a popular variant of atomo; documented history alone does not approve recognizable modern atom in this form.",
+        "retrieval_ref": "turn6view1",
+        "kind": "independent_dictionary_or_scholarly_lexicography"
+      }
+    ],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "en",
+      "family_id": "family:nat",
+      "lemma_id": "lemma:0903de49c51862360a95",
+      "scope": "finite_lexical_row"
+    },
+    "record": {
+      "root": "nat",
+      "language": "en",
+      "lemma_id": "lemma:0903de49c51862360a95",
+      "word": "naive",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "excluded",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Nativus ancestry is documented, but the modern naiv head has no approved nat realization; explicit boundary control.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/naive",
+          "analysis": "Nativus ancestry is documented, but the modern naiv head has no approved nat realization; explicit boundary control.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:0903de49c51862360a95",
+        "word": "naive",
+        "normalized": "naive",
+        "search_form": "naive",
+        "rank": 4302,
+        "frequency_score": 35.48506400898009,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              9.645598,
+              9.443144
+            ],
+            "category_ipm": 9.544371,
+            "category_score": 41.27469163472527
+          },
+          "normative": {
+            "ipm_values": [
+              7.912638
+            ],
+            "category_ipm": 7.912638,
+            "category_score": 38.328859405483406
+          },
+          "web": {
+            "ipm_values": [
+              3.629518
+            ],
+            "category_ipm": 3.629518,
+            "category_score": 26.85164098673156
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 7.912638
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 9.645598
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 9.443144
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 3.629518
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "naive",
+            "canonical_candidate": "naive",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "naive",
+                  "naive",
+                  "naive"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:2186d3b0fcb7"
+        ]
+      },
+      "source_record_sha256": "e987d08200bbc8d8961b4f0b18eb2115ed0328f5dc2169c3fc12063bdaa4b6f4",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/en/3219",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    "verdict": "excluded",
+    "reason": "Distant lexical history does not retain required complete modern canonical component.",
+    "independent_sources": [
+      {
+        "url": "https://www.merriam-webster.com/dictionary/naive",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Naive has native/nativus ancestry but does not retain the complete recognizable nat component.",
+        "retrieval_ref": "turn6view3",
+        "kind": "independent_dictionary_or_scholarly_lexicography"
+      }
+    ],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "es",
+      "family_id": "family:nat",
+      "lemma_id": "lemma:1fb0dcf5e8fb68857a74",
+      "scope": "finite_lexical_row"
+    },
+    "record": {
+      "root": "nat",
+      "language": "es",
+      "lemma_id": "lemma:1fb0dcf5e8fb68857a74",
+      "word": "nacer",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Latin nascere ancestry does not approve nat to nac/naci as a general modern reflex.",
+      "evidence": [
+        {
+          "source": "https://dle.rae.es/nacer",
+          "analysis": "Latin nascere ancestry does not approve nat to nac/naci as a general modern reflex.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:1fb0dcf5e8fb68857a74",
+        "word": "nacer",
+        "normalized": "nacer",
+        "search_form": "nacer",
+        "rank": 676,
+        "frequency_score": 81.18698450614129,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              118.420536,
+              117.516577
+            ],
+            "category_ipm": 117.9685565,
+            "category_score": 83.73518305089532
+          },
+          "mixed": {
+            "ipm_values": [
+              65.496228
+            ],
+            "category_ipm": 65.496228,
+            "category_score": 73.54238887187924
+          }
+        },
+        "sources": [
+          {
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "category": "mixed",
+            "ipm": 65.496228
+          },
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 118.420536
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 117.516577
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nacer",
+            "canonical_candidate": "nacer",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "nacer",
+                  "nacer",
+                  "nacer"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:es:nacer"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "6afd74c5b0f0b37d76dd28c0fee647ead661aa6efa567bea812ee97acac7772b",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/es/2271",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    "verdict": "uncertain",
+    "reason": "National branch/formal recognizability needs independent source adjudication; no copy of historical label.",
+    "independent_sources": [],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "es",
+      "family_id": "family:nat",
+      "lemma_id": "lemma:fbbeddb86880ce67a97b",
+      "scope": "finite_lexical_row"
+    },
+    "record": {
+      "root": "nat",
+      "language": "es",
+      "lemma_id": "lemma:fbbeddb86880ce67a97b",
+      "word": "nacimiento",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Nacer derivation is a lexical branch; national formal-realization approval is withheld.",
+      "evidence": [
+        {
+          "source": "https://dle.rae.es/nacimiento",
+          "analysis": "Nacer derivation is a lexical branch; national formal-realization approval is withheld.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:fbbeddb86880ce67a97b",
+        "word": "nacimiento",
+        "normalized": "nacimiento",
+        "search_form": "nacimiento",
+        "rank": 2392,
+        "frequency_score": 56.377724038829584,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              24.172954,
+              23.731383
+            ],
+            "category_ipm": 23.9521685,
+            "category_score": 56.36759380870221
+          },
+          "mixed": {
+            "ipm_values": [
+              24.009939
+            ],
+            "category_ipm": 24.009939,
+            "category_score": 56.408114729211704
+          }
+        },
+        "sources": [
+          {
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "category": "mixed",
+            "ipm": 24.009939
+          },
+          {
+            "id": "subtitles/hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 24.172954
+          },
+          {
+            "id": "subtitles/hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_es_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 23.731383
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "nacimient",
+            "canonical_candidate": "nacimient",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "nacimiento",
+                  "nacimient",
+                  "nacimient"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:es:nacimient"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "ec16804f2366ffc0bee88426a7f6f40c93099179145e5fcb8d90a2c515ac24fc",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/es/2328",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    "verdict": "uncertain",
+    "reason": "National branch/formal recognizability needs independent source adjudication; no copy of historical label.",
+    "independent_sources": [],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "it",
+      "family_id": "family:nat",
+      "lemma_id": "lemma:6ee634e584aec4db3b44",
+      "scope": "finite_lexical_row"
+    },
+    "record": {
+      "root": "nat",
+      "language": "it",
+      "lemma_id": "lemma:6ee634e584aec4db3b44",
+      "word": "nascere",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "Latin nasci ancestry does not approve nat to nasc as a general modern reflex.",
+      "evidence": [
+        {
+          "source": "https://www.treccani.it/vocabolario/nascere/",
+          "analysis": "Latin nasci ancestry does not approve nat to nasc as a general modern reflex.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:6ee634e584aec4db3b44",
+        "word": "nascere",
+        "normalized": "nascere",
+        "search_form": "nascere",
+        "rank": 405,
+        "frequency_score": 89.65429985026688,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              93.803008,
+              93.644859
+            ],
+            "category_ipm": 93.7239335,
+            "category_score": 79.74204959809325
+          },
+          "web": {
+            "ipm_values": [
+              292.645366
+            ],
+            "category_ipm": 292.645366,
+            "category_score": 99.5665501024405
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 93.803008
+          },
+          {
+            "id": "subtitles/hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_it_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 93.644859
+          },
+          {
+            "id": "web/sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.it.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 292.645366
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "cere",
+            "canonical_candidate": "cere",
+            "confidence": 0.89,
+            "evidence": [
+              {
+                "type": "compound_morphology",
+                "source": "candidate_index",
+                "path": [
+                  "nascere",
+                  "cere",
+                  "cere"
+                ],
+                "confidence": 0.89
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:364edc9af4c0"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "c5234444d5113616ac162a24cb6e78a1872bdce945cf241e77e759944dca041c",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/nat/it/3150",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    "verdict": "uncertain",
+    "reason": "National branch/formal recognizability needs independent source adjudication; no copy of historical label.",
+    "independent_sources": [],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "en",
+      "family_id": "family:loc",
+      "lemma_id": "lemma:109723e1a04e25f89587",
+      "scope": "finite_lexical_row"
+    },
+    "record": {
+      "root": "loc",
+      "language": "en",
+      "lemma_id": "lemma:109723e1a04e25f89587",
+      "word": "lieutenant",
+      "historical_status": "etymological_only_excluded",
+      "current_disposition": "excluded_saved_historical_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/decisions.json",
+      "new_review_status": "excluded",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "French lieu plus tenant is documented; it does not retain the complete approved loc realization.",
+      "evidence": [
+        {
+          "source": "https://www.merriam-webster.com/dictionary/lieutenant",
+          "analysis": "French lieu plus tenant is documented; it does not retain the complete approved loc realization.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:109723e1a04e25f89587",
+        "word": "lieutenant",
+        "normalized": "lieutenant",
+        "search_form": "lieutenant",
+        "rank": 922,
+        "frequency_score": 55.06800735341008,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              81.873514,
+              79.787623
+            ],
+            "category_ipm": 80.8305685,
+            "category_score": 77.17830333594934
+          },
+          "normative": {
+            "ipm_values": [
+              13.706191
+            ],
+            "category_ipm": 13.706191,
+            "category_score": 47.10384830288669
+          },
+          "web": {
+            "ipm_values": [
+              9.334174
+            ],
+            "category_ipm": 9.334174,
+            "category_score": 40.92187042139418
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 13.706191
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 81.873514
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 79.787623
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 9.334174
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "lieutenant",
+            "canonical_candidate": "lieutenant",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "lieutenant",
+                  "lieutenant",
+                  "lieutenant"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "surface:en:lieutenant"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "06758fefeadb740c0965bde54fba3e949c0da515d995c11eee54ab21481867f6",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/loc/en/1169",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    "verdict": "excluded",
+    "reason": "Distant lexical history does not retain required complete modern canonical component.",
+    "independent_sources": [
+      {
+        "url": "https://www.merriam-webster.com/dictionary/lieutenant",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Lieutenant has the lieu/tenant history, but lacks the complete loc component required here.",
+        "retrieval_ref": "turn6view2",
+        "kind": "independent_dictionary_or_scholarly_lexicography"
+      }
+    ],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "es",
+      "family_id": "family:inter",
+      "lemma_id": "lemma:3c4214587e24a5a03952",
+      "scope": "finite_lexical_row"
+    },
+    "record": {
+      "root": "inter",
+      "language": "es",
+      "lemma_id": "lemma:3c4214587e24a5a03952",
+      "word": "entre",
+      "historical_status": "not_adjudicated",
+      "current_disposition": "unresolved_historical_without_current_decision",
+      "current_frame_contains_record": false,
+      "proof": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz",
+      "new_review_status": "uncertain",
+      "review_scope": "one_existing_corpus_row_or_component",
+      "reason": "RAE derives entre from Latin inter; ancestry is established but a new general inter to entre realization is not approved.",
+      "evidence": [
+        {
+          "source": "https://dle.rae.es/entre",
+          "analysis": "RAE derives entre from Latin inter; ancestry is established but a new general inter to entre realization is not approved.",
+          "accessed": "2026-10-05"
+        }
+      ],
+      "source_record": {
+        "lemma_id": "lemma:3c4214587e24a5a03952",
+        "word": "entre",
+        "normalized": "entre",
+        "search_form": "entre",
+        "rank": 32,
+        "frequency_score": 100,
+        "category_breakdown": {
+          "mixed": {
+            "ipm_values": [
+              2082.519217
+            ],
+            "category_ipm": 2082.519217,
+            "category_score": 100
+          }
+        },
+        "sources": [
+          {
+            "id": "mixed/es_wordlist.lemmatized_stanza_ipm6.json",
+            "file": "es_wordlist.lemmatized_stanza_ipm6.json",
+            "category": "mixed",
+            "ipm": 2082.519217
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "entre",
+            "canonical_candidate": "entre",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "entre",
+                  "entre",
+                  "entre"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ],
+        "family_ids": [
+          "ety:dad41f51f465"
+        ],
+        "retrieval_only": true
+      },
+      "source_record_sha256": "e455f111ab3a122c98aab7845f39c300c354ccd476603cb40de6d89b0bffadc1",
+      "source_locator": "audit/associative-family-v5/component-checkpoint-20261001/candidate-records.json.gz#/inter/es/183",
+      "creates_head_or_membership": false,
+      "token_senses_established": false
+    },
+    "verdict": "uncertain",
+    "reason": "National branch/formal recognizability needs independent source adjudication; no copy of historical label.",
+    "independent_sources": [],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "en",
+      "family_id": "family:act",
+      "lemma_id": "lemma:1df637f5e6969ea06aa8",
+      "scope": "protein_lexical_identity_not_ray_combining_form"
+    },
+    "record": {
+      "lemma_id": "lemma:1df637f5e6969ea06aa8",
+      "word": "actin",
+      "status": "uncertain",
+      "branch": "protein_actin",
+      "reason": "The saved source already identifies the protein_actin branch for these three exact records; dictionaries and biological research independently support that protein identity and the F-actin/actin-binding components. The family:act relation remains uncertain: ancestry is tentative or disputed, and modern act-element recognizability is unestablished. Preserve all three active uncertain records, group their proven protein identity for further head review, and grant no accepted membership. Greek-ray actin-/actino- and unknown actina remain distinct.",
+      "source_family_ids": [
+        "surface:en:actin"
+      ],
+      "previous_status": "uncertain",
+      "review_stage": "sense_and_recognizability_review",
+      "source_references": [
+        "https://www.merriam-webster.com/dictionary/actin"
+      ],
+      "language": "en",
+      "root": "act",
+      "decision_source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "canonical_root": "act",
+      "queue": "act",
+      "source": "audit/associative-family-v5/action-continuation-20261002/linguistic-decisions.json.gz",
+      "review_unit": "head:en:029edac9b2762a5d86854df8",
+      "head_recognition": "evidenced_finite_lexical_identity",
+      "source_membership_status": "uncertain",
+      "source_reason": "Protein actin has only probable activate ancestry; modern recognizability as the act lexical element is not established. Not equivalent to Greek ray actin-. Context/sense evidence is insufficient for admission.",
+      "head_family_relation_status": "uncertain"
+    },
+    "verdict": "uncertain",
+    "reason": "Independent dictionary labels ancestry probable; that does not prove act family recognizability.",
+    "independent_sources": [
+      {
+        "url": "https://www.merriam-webster.com/dictionary/actin",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Protein actin has probable act or activate ancestry; Greek ray actin- is a separate combining form.",
+        "retrieval_ref": "turn4view5",
+        "kind": "independent_dictionary_or_scholarly_lexicography"
+      }
+    ],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "en",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:97df563df64033609e43",
+      "scope": "exact_derivational_component"
+    },
+    "record": {
+      "language": "en",
+      "word": "atomic",
+      "lemma_id": "lemma:97df563df64033609e43",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/en/74.json.gz",
+        "family_id": "surface:en:atomic",
+        "file_sha256": "90542f03a49a0f37e668b31e7b4898404b6a29dfef6ebe3d345250360f63e30b"
+      },
+      "source_record": {
+        "lemma_id": "lemma:97df563df64033609e43",
+        "word": "atomic",
+        "normalized": "atomic",
+        "search_form": "atomic",
+        "rank": 5377,
+        "frequency_score": 40.842565896517655,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              5.636261,
+              5.830317
+            ],
+            "category_ipm": 5.733289,
+            "category_score": 33.41557536286488
+          },
+          "normative": {
+            "ipm_values": [
+              11.889834
+            ],
+            "category_ipm": 11.889834,
+            "category_score": 44.793929328094116
+          },
+          "web": {
+            "ipm_values": [
+              11.544573
+            ],
+            "category_ipm": 11.544573,
+            "category_score": 44.31819299859394
+          }
+        },
+        "sources": [
+          {
+            "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+            "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+            "category": "normative",
+            "ipm": 11.889834
+          },
+          {
+            "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 5.636261
+          },
+          {
+            "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 5.830317
+          },
+          {
+            "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 11.544573
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atomic",
+            "canonical_candidate": "atomic",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atomic",
+                  "atomic",
+                  "atomic"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "verdict": "accepted",
+    "reason": "Independently supported exact modern atom derivative absent from accepted snapshot; finite linguistic coverage omission, not source-word loss. Dossier/application approval remains separate.",
+    "independent_sources": [
+      {
+        "url": "https://www.merriam-webster.com/dictionary/atomic",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Atomic denotes relations to atoms, nuclear activity, atomism or minute size; the finite atom+ic component is supported.",
+        "retrieval_ref": "turn7view0",
+        "kind": "independent_dictionary_or_scholarly_lexicography"
+      }
+    ],
+    "currently_accepted": false
+  },
+  {
+    "annotation_unit": {
+      "language": "de",
+      "family_id": "family:atom",
+      "lemma_id": "lemma:d71ccaf503ddab530fd1",
+      "scope": "exact_derivational_component"
+    },
+    "record": {
+      "language": "de",
+      "word": "atomar",
+      "lemma_id": "lemma:d71ccaf503ddab530fd1",
+      "source_locator": {
+        "path": "associativvordes/family-index-v5/members/de/33.json.gz",
+        "family_id": "surface:de:atomar",
+        "file_sha256": "371b9b413111cea902f427462ed37ab8c432e80700472dbb413c983d204d85a8"
+      },
+      "source_record": {
+        "lemma_id": "lemma:d71ccaf503ddab530fd1",
+        "word": "atomar",
+        "normalized": "atomar",
+        "search_form": "atomar",
+        "rank": 8500,
+        "frequency_score": 26.55376919346063,
+        "category_breakdown": {
+          "subtitles": {
+            "ipm_values": [
+              1.197303
+            ],
+            "category_ipm": 1.197303,
+            "category_score": 13.793858234956769
+          },
+          "web": {
+            "ipm_values": [
+              8.427916
+            ],
+            "category_ipm": 8.427916,
+            "category_score": 39.3136801519645
+          }
+        },
+        "sources": [
+          {
+            "id": "subtitles/hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "file": "hermit_2018_de_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+            "category": "subtitles",
+            "ipm": 1.197303
+          },
+          {
+            "id": "web/sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "file": "sorted.de.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+            "category": "web",
+            "ipm": 8.427916
+          }
+        ],
+        "corpus_quality": {
+          "status": "accepted",
+          "reasons": []
+        },
+        "components": [
+          {
+            "surface": "atomar",
+            "canonical_candidate": "atomar",
+            "confidence": 0.92,
+            "evidence": [
+              {
+                "type": "morphological_parse",
+                "source": "candidate_index",
+                "path": [
+                  "atomar",
+                  "atomar",
+                  "atomar"
+                ],
+                "confidence": 0.92
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "verdict": "accepted",
+    "reason": "Independently supported exact modern atom derivative absent from accepted snapshot; finite linguistic coverage omission, not source-word loss. Dossier/application approval remains separate.",
+    "independent_sources": [
+      {
+        "url": "https://www.duden.de/rechtschreibung/atomar",
+        "accessed": "2026-10-07",
+        "finding_paraphrase": "Atomar describes atoms or nuclear matters, supporting the exact Atom+ar derivational component.",
+        "retrieval_ref": "turn7view1",
+        "kind": "independent_dictionary_or_scholarly_lexicography"
+      }
+    ],
+    "currently_accepted": false
+  }
+]

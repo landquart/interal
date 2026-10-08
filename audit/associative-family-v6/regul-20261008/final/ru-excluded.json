@@ -1,0 +1,332 @@
+[
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:1d16c42d8611a8f5c3fa",
+    "word": "перегулять",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/32.json.gz",
+        "family_id": "surface:ru:pereg",
+        "record_sha256": "025c45f54c14120df9ba98fe2915ec0fcc862cf6c68edaea4243edc9068b848e"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "c79d8cb8ac9cd16752787859aaff35a680895f028a03112da3c4c42c81fb463c"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/95.json.gz",
+        "family_id": "surface:ru:reguljat",
+        "record_sha256": "3ee0dc2ac417cab888763a58248a72daa84b5f7c0d49ab1c6a3f321de4076522"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "d62ab2f71853d026ebdf0d2b675134601004e0710819d197b7f452deac12cc62"
+      }
+    ],
+    "lexical_analysis": "Prefix пере- + гулять; apparent transliterated regul crosses the morphological boundary and does not realize regulation регул-.",
+    "head": null,
+    "component": {
+      "form": "регул",
+      "start": 2,
+      "end": 7,
+      "before": "пе",
+      "after": "ять",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:1d16c42d8611a8f5c3fa",
+      "word": "перегулять",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "ru-regulirovat"
+    ],
+    "evidence": [
+      {
+        "source": "https://gramota.ru/poisk?dicts%5B0%5D=42&mode=slovari&query=%D1%83%D1%80%D0%B5%D0%B3%D1%83%D0%BB%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C&simple=0",
+        "finding": "Entry explicitly traces регулировать to Latin regulare and lists регулирование, регулировка, регуляция and reflexive/finite perfective branches. Cyrillic регул is a scoped borrowed realization.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Prefix пере- + гулять; apparent transliterated regul crosses the morphological boundary and does not realize regulation регул-.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "removed_historical_excluded",
+    "current_membership": null,
+    "historical_membership": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:1d16c42d8611a8f5c3fa",
+      "word": "перегулять",
+      "head_id": "head:legacy:ru:1d16c42d8611a8f5c3fa",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/ru/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "c79d8cb8ac9cd16752787859aaff35a680895f028a03112da3c4c42c81fb463c"
+          },
+          "lemma_id": "lemma:1d16c42d8611a8f5c3fa"
+        }
+      ]
+    },
+    "original_source_record": {
+      "lemma_id": "lemma:1d16c42d8611a8f5c3fa",
+      "word": "перегулять",
+      "normalized": "перегулять",
+      "search_form": "pereguljat",
+      "rank": 399538,
+      "frequency_score": 0.11418598341100496,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.006538
+          ],
+          "category_ipm": 0.006538,
+          "category_score": 0.11418598341100496
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+          "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+          "category": "subtitles",
+          "ipm": 0.006538
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "pereg",
+          "canonical_candidate": "pereg",
+          "confidence": 0.81,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "candidate_index",
+              "path": [
+                "pereguljat",
+                "pereg",
+                "pereg"
+              ],
+              "confidence": 0.81
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "d62ab2f71853d026ebdf0d2b675134601004e0710819d197b7f452deac12cc62",
+        "record": {
+          "original": "перегулять",
+          "normalized": "перегулять",
+          "search_form": "pereguljat",
+          "lemma": "перегулять",
+          "frequency_lookup_key": "перегулять",
+          "ipm": 0.006538,
+          "rank": 399538,
+          "source": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json"
+        }
+      }
+    ]
+  },
+  {
+    "language": "ru",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:38b4be6adfeaf54ee2cb",
+    "word": "реголит",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/ru/2c.json.gz",
+        "family_id": "surface:ru:lit",
+        "record_sha256": "2b9f97e669190ac1360006fbdde1f9fe8f7fdc4506fcec094271c9b4e7225056"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/73.json.gz",
+        "family_id": "surface:ru:reg",
+        "record_sha256": "9bced3da3928f9ed421a83542222e7df09c53c43fe680223900fd536cb3d1678"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/ru/e1.json.gz",
+        "family_id": "ety:e9e503e868ce",
+        "record_sha256": "4314761e4e68374d7b9e99c0c1a1919178fd17c69f92e3fbc0acac07ea703605"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "1d214b7bb20e30caf41c7bd5b77b095a7e58d324be12af3cfafe275c1434c040"
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "ca37fd537d6b5dc12003860b57597e2d285f45d73b8af929991ce6285c490ef7"
+      }
+    ],
+    "lexical_analysis": "Russian geological borrowing реголит continues regolith, not regula. It is a negative retrieval control, not an old regul edge.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "ru",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:38b4be6adfeaf54ee2cb",
+      "word": "реголит",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.treccani.it/vocabolario/regolite/"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "it-regolite"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.treccani.it/vocabolario/regolite/",
+        "finding": "Greek rhegos plus -lite following English regolith; not a rule-family derivative.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Russian geological borrowing реголит continues regolith, not regula. It is a negative retrieval control, not an old regul edge.",
+    "missing_fact": null,
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "not_admitted_candidate",
+    "current_membership": null,
+    "historical_membership": null,
+    "original_source_record": {
+      "lemma_id": "lemma:38b4be6adfeaf54ee2cb",
+      "word": "реголит",
+      "normalized": "реголит",
+      "search_form": "regolit",
+      "rank": 52605,
+      "frequency_score": 2.3904252466034737,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.215764
+          ],
+          "category_ipm": 0.215764,
+          "category_score": 3.4233206771491678
+        },
+        "web": {
+          "ipm_values": [
+            0.080556
+          ],
+          "category_ipm": 0.080556,
+          "category_score": 1.3575298160577796
+        }
+      },
+      "sources": [
+        {
+          "id": "subtitles/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+          "file": "hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+          "category": "subtitles",
+          "ipm": 0.215764
+        },
+        {
+          "id": "web/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+          "file": "ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+          "category": "web",
+          "ipm": 0.080556
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "lit",
+          "canonical_candidate": "lit",
+          "confidence": 0.89,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "candidate_index",
+              "path": [
+                "regolit",
+                "lit",
+                "lit"
+              ],
+              "confidence": 0.89
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json",
+        "record_sha256": "1d214b7bb20e30caf41c7bd5b77b095a7e58d324be12af3cfafe275c1434c040",
+        "record": {
+          "original": "реголит",
+          "normalized": "реголит",
+          "search_form": "regolit",
+          "lemma": "реголит",
+          "frequency_lookup_key": "реголит",
+          "ipm": 0.215764,
+          "rank": 52605,
+          "source": "associativvordes/frequency lists/ru/hermit_2018_ru_full_lemmatized_pymorphy3_ipm6.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "ca37fd537d6b5dc12003860b57597e2d285f45d73b8af929991ce6285c490ef7",
+        "record": {
+          "original": "реголит",
+          "normalized": "реголит",
+          "search_form": "regolit",
+          "lemma": "реголит",
+          "frequency_lookup_key": "реголит",
+          "ipm": 0.080556,
+          "rank": 147555,
+          "source": "associativvordes/frequency lists/ru/ruwac.out.gz.lpos-clean2-biwt.cleaned_recommended_min100_ipm6.json"
+        }
+      }
+    ]
+  }
+]

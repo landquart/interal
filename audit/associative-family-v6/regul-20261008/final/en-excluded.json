@@ -1,0 +1,444 @@
+[
+  {
+    "language": "en",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:3cfe7b0eff3651ada585",
+    "word": "regulus",
+    "prior_state": "not_accepted_regul",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/en/84.json.gz",
+        "family_id": "surface:en:ulus",
+        "record_sha256": "6859e8a3c42c06654572fcee1514ddd2fa179e088387dbe6aa7096976dfeebe6"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/en/d7.json.gz",
+        "family_id": "surface:en:regulu",
+        "record_sha256": "5fdd4edcb8b63f1a341a6932e1402a70c0c8f16898136d1e24d2f96bcb156295"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json",
+        "record_sha256": "138636147b94cfa2ea12d3e83411b3702d5ca1168411905b20a0bb5e9f4a0ea8"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "fd9f4a07902531d5489417ec9659e0dcdc74d6cc0e2a2688358f46c6f8c2f1ed"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "588af9d3d9711148cb5d70218828362ecd7260c4d23d32faf5ed60825afe2aa3"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "8afe6eff6569ebebddd3a0798d6620d1fc3b7c86bbaa6c36f0433488eafa8345"
+      }
+    ],
+    "lexical_analysis": "Star/metallurgical rex-derived regulus; unrelated rule component.",
+    "head": null,
+    "component": {
+      "form": "regul",
+      "start": 0,
+      "end": 5,
+      "before": "",
+      "after": "us",
+      "head": null,
+      "boundary_status": "not_accepted"
+    },
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "en",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:3cfe7b0eff3651ada585",
+      "word": "regulus",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regulus"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regulus"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regulus",
+        "finding": "Star and metallurgical noun derive from diminutive of rex; reguline is attached to that metallurgical head.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Star/metallurgical rex-derived regulus; unrelated rule component.",
+    "missing_fact": null,
+    "action": "withhold_candidate",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "not_admitted_candidate",
+    "current_membership": null,
+    "historical_membership": null,
+    "original_source_record": {
+      "lemma_id": "lemma:3cfe7b0eff3651ada585",
+      "word": "regulus",
+      "normalized": "regulus",
+      "search_form": "regulus",
+      "rank": 43493,
+      "frequency_score": 3.0057099376565866,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.072931,
+            0.072372
+          ],
+          "category_ipm": 0.07265150000000001,
+          "category_score": 1.228881471213406
+        },
+        "normative": {
+          "ipm_values": [
+            0.125266
+          ],
+          "category_ipm": 0.125266,
+          "category_score": 2.067937128904214
+        },
+        "web": {
+          "ipm_values": [
+            0.386059
+          ],
+          "category_ipm": 0.386059,
+          "category_score": 5.720311212852139
+        }
+      },
+      "sources": [
+        {
+          "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+          "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+          "category": "normative",
+          "ipm": 0.125266
+        },
+        {
+          "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.072931
+        },
+        {
+          "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.072372
+        },
+        {
+          "id": "web/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+          "file": "sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+          "category": "web",
+          "ipm": 0.386059
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "ulus",
+          "canonical_candidate": "ulus",
+          "confidence": 0.89,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "candidate_index",
+              "path": [
+                "regulus",
+                "ulus",
+                "ulus"
+              ],
+              "confidence": 0.89
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json",
+        "record_sha256": "138636147b94cfa2ea12d3e83411b3702d5ca1168411905b20a0bb5e9f4a0ea8",
+        "record": {
+          "original": "regulus",
+          "normalized": "regulus",
+          "search_form": "regulus",
+          "lemma": "regulus",
+          "frequency_lookup_key": "regulus",
+          "ipm": 0.125266,
+          "rank": 57349,
+          "source": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "fd9f4a07902531d5489417ec9659e0dcdc74d6cc0e2a2688358f46c6f8c2f1ed",
+        "record": {
+          "original": "regulus",
+          "normalized": "regulus",
+          "search_form": "regulus",
+          "lemma": "regulus",
+          "frequency_lookup_key": "regulus",
+          "ipm": 0.072931,
+          "rank": 66557,
+          "source": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "588af9d3d9711148cb5d70218828362ecd7260c4d23d32faf5ed60825afe2aa3",
+        "record": {
+          "original": "regulus",
+          "normalized": "regulus",
+          "search_form": "regulus",
+          "lemma": "regulus",
+          "frequency_lookup_key": "regulus",
+          "ipm": 0.072372,
+          "rank": 65870,
+          "source": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json",
+        "record_sha256": "8afe6eff6569ebebddd3a0798d6620d1fc3b7c86bbaa6c36f0433488eafa8345",
+        "record": {
+          "original": "regulus",
+          "normalized": "regulus",
+          "search_form": "regulus",
+          "lemma": "regulus",
+          "frequency_lookup_key": "regulus",
+          "ipm": 0.386059,
+          "rank": 43493,
+          "source": "associativvordes/frequency lists/en/sorted.uk.lemma.unigrams.cleaned_recommended_min100_ipm6.json"
+        }
+      }
+    ]
+  },
+  {
+    "language": "en",
+    "family_id": "family:regul",
+    "lemma_id": "lemma:979d41d903836a31490a",
+    "word": "regolith",
+    "prior_state": "legacy_accepted",
+    "source_locators": [
+      {
+        "path": "associativvordes/family-index-v5/members/en/40.json.gz",
+        "family_id": "family:regul",
+        "record_sha256": "d4526e1f050714439229806153e89fdb4ecf8bf02efcbdca8c1c8d4d948f6cc2"
+      },
+      {
+        "path": "associativvordes/family-index-v5/members/en/87.json.gz",
+        "family_id": "ety:4381d443ac0a",
+        "record_sha256": "d56572aeaa4272bd8f5b2578cbdcf0e3b589bc7af27532be095ee8acd54f0969"
+      }
+    ],
+    "frequency_source_locators": [
+      {
+        "path": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json",
+        "record_sha256": "b150926bb2538e5492bdefc1dfbed08b779a9b823ab44355e30e5c4ac58fc157"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "c13212d3e29cd1d637800499141ff64ff59af1e49f78dddbad9688bb2e332e27"
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "d9161264880c89a5d10e65726beff9ade574a74dd0c934ea41e277274081b5e7"
+      }
+    ],
+    "lexical_analysis": "Greek rhegos + lith, not regula.",
+    "head": null,
+    "component": null,
+    "relation": "independent_negative_or_boundary_proof",
+    "senses_decision": {
+      "language": "en",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:979d41d903836a31490a",
+      "word": "regolith",
+      "membership_object": "lexical_row_or_component",
+      "formal_continuity": "uncertain",
+      "component": null,
+      "analyses": [
+        {
+          "history": "independent_non_regula_history",
+          "verdict": "excluded",
+          "evidence": [
+            "https://www.ahdictionary.com/word/search.html?q=regolith"
+          ],
+          "proved_components": []
+        }
+      ]
+    },
+    "evidence_ids": [
+      "regolith"
+    ],
+    "evidence": [
+      {
+        "source": "https://www.ahdictionary.com/word/search.html?q=regolith",
+        "finding": "Geological compound uses Greek rhegos and -lith; its regol substring is not the Italian national rule base.",
+        "access_status": "article_read"
+      }
+    ],
+    "decision": "excluded",
+    "reason": "Greek rhegos + lith, not regula.",
+    "missing_fact": null,
+    "action": "baseline_correction",
+    "frequency_status": "aggregate_only_not_sense_frequency",
+    "version": 1,
+    "research_status": "negative_history_review",
+    "applied_state": "removed_historical_excluded",
+    "current_membership": null,
+    "historical_membership": {
+      "language": "en",
+      "family_id": "family:regul",
+      "lemma_id": "lemma:979d41d903836a31490a",
+      "word": "regolith",
+      "head_id": "head:legacy:en:979d41d903836a31490a",
+      "edge_version": 1,
+      "source_proof": [
+        {
+          "source": {
+            "path": "associativvordes/family-index-v5/members/en/40.json.gz",
+            "family_id": "family:regul",
+            "record_sha256": "d4526e1f050714439229806153e89fdb4ecf8bf02efcbdca8c1c8d4d948f6cc2"
+          },
+          "lemma_id": "lemma:979d41d903836a31490a"
+        }
+      ]
+    },
+    "original_source_record": {
+      "lemma_id": "lemma:979d41d903836a31490a",
+      "word": "regolith",
+      "normalized": "regolith",
+      "search_form": "regolith",
+      "rank": 44996,
+      "frequency_score": 2.068874339695196,
+      "category_breakdown": {
+        "subtitles": {
+          "ipm_values": [
+            0.063581,
+            0.146192
+          ],
+          "category_ipm": 0.1048865,
+          "category_score": 1.747690339507371
+        },
+        "normative": {
+          "ipm_values": [
+            0.146144
+          ],
+          "category_ipm": 0.146144,
+          "category_score": 2.390058339883021
+        }
+      },
+      "sources": [
+        {
+          "id": "normative/bnc-clean2.lemmatized_spacy_ipm6.json",
+          "file": "bnc-clean2.lemmatized_spacy_ipm6.json",
+          "category": "normative",
+          "ipm": 0.146144
+        },
+        {
+          "id": "subtitles/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.063581
+        },
+        {
+          "id": "subtitles/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "file": "hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+          "category": "subtitles",
+          "ipm": 0.146192
+        }
+      ],
+      "corpus_quality": {
+        "status": "accepted",
+        "reasons": []
+      },
+      "components": [
+        {
+          "surface": "regol",
+          "canonical_candidate": "regol",
+          "confidence": 0.81,
+          "evidence": [
+            {
+              "type": "compound_morphology",
+              "source": "candidate_index",
+              "path": [
+                "regolith",
+                "regol",
+                "regol"
+              ],
+              "confidence": 0.81
+            },
+            {
+              "type": "verified_seed_alias",
+              "source": "methodology_control_seed",
+              "path": [
+                "en",
+                "regol",
+                "family:regul"
+              ],
+              "confidence": 1
+            }
+          ]
+        }
+      ]
+    },
+    "frequency_source_records": [
+      {
+        "path": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json",
+        "record_sha256": "b150926bb2538e5492bdefc1dfbed08b779a9b823ab44355e30e5c4ac58fc157",
+        "record": {
+          "original": "regolith",
+          "normalized": "regolith",
+          "search_form": "regolith",
+          "lemma": "regolith",
+          "frequency_lookup_key": "regolith",
+          "ipm": 0.146144,
+          "rank": 54079,
+          "source": "associativvordes/frequency lists/en/bnc-clean2.lemmatized_spacy_ipm6.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "c13212d3e29cd1d637800499141ff64ff59af1e49f78dddbad9688bb2e332e27",
+        "record": {
+          "original": "regolith",
+          "normalized": "regolith",
+          "search_form": "regolith",
+          "lemma": "regolith",
+          "frequency_lookup_key": "regolith",
+          "ipm": 0.063581,
+          "rank": 71910,
+          "source": "associativvordes/frequency lists/en/hermit_2016_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      },
+      {
+        "path": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json",
+        "record_sha256": "d9161264880c89a5d10e65726beff9ade574a74dd0c934ea41e277274081b5e7",
+        "record": {
+          "original": "regolith",
+          "normalized": "regolith",
+          "search_form": "regolith",
+          "lemma": "regolith",
+          "frequency_lookup_key": "regolith",
+          "ipm": 0.146192,
+          "rank": 44996,
+          "source": "associativvordes/frequency lists/en/hermit_2018_en_full_lemmatized_ipm6_spacy_lookup_cleaned_v8.json"
+        }
+      }
+    ]
+  }
+]
