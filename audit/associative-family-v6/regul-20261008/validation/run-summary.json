@@ -1,0 +1,65 @@
+{
+  "status": "pass",
+  "tested_code_commit": "34501adbf7caf6a088b3610ea2417670a1585911",
+  "publication_status": "local_only_previous_auto_review_denial",
+  "production_enabled": false,
+  "full_linguistic_certification": false,
+  "accepted_regul": 557,
+  "uncertain_regul_questions": 2089,
+  "strict_independent_assertions": {
+    "pass": 50,
+    "fail": 0
+  },
+  "npm_tests": {
+    "status": "pass",
+    "total_files": 135,
+    "initial_passed_files": 125,
+    "resumed_passed_files": 10,
+    "interruption": "missing @supabase/supabase-js; resolved by npm ci --ignore-scripts",
+    "logs": [
+      "full-tests-prefix.log.gz",
+      "full-tests-resume.log.gz"
+    ]
+  },
+  "post_cache_guard_tests": "pass",
+  "v6_integrity": "pass",
+  "regul_conservation": "pass",
+  "queue_conservation": "pass",
+  "history_certification": "pass",
+  "migration_replay": {
+    "artifacts": 277,
+    "all_final_artifacts_equal": true,
+    "data_changes": 0,
+    "code_lock_rebind": [
+      "source-lock.json",
+      "manifest.json"
+    ]
+  },
+  "resource_recovery": "bounded immutable source cache to eight shards; serial build and integrity with 4096 MB Node heap",
+  "report_sha256": {
+    "planning.log.gz": "3365b769cade9ea5b663907522cd90df880f671a17ebbf77f14cdd61f12171e1",
+    "guard-tests.log.gz": "6e8e1258da458884860233eebee7a42d3466c14d0b74d6a887a09bf702e2986d",
+    "integrity-oom.log.gz": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+    "full-tests-prefix.log.gz": "1ff56f62e448a393a305048b6aed9a75b6e779c80e7738c619706e6ead7056e1",
+    "integrity.json": "55951efae9fd0dbbe50ff339b82db9e00e7ddc8babd718a4d6bce11e2d5714a6",
+    "replay-final.log.gz": "9c8259013461b552aec3dd90c8406c127349e8dee2ec47c32585a745999265be",
+    "membership-diff.json": "c400915dba85001ba5c2b3a8eced39b8d03546547a7b5d3a69d2f76031aad899",
+    "history-audit-final.log.gz": "1dfaab3d29223958e52e4c08083221c6aa8cb2983ff48df48ad1d3e15f99d08e",
+    "integrity-final.log.gz": "bf57ece33bfcd9743db9aee6d08b0cd0186c45d0aecba0c93ebf1f3417bb9e28",
+    "full-tests-resume.log.gz": "af5a74be253e7dd89700e8d51d8cde62bfa23ff743a07e08ed2abbc76f3770f4",
+    "planning-audit.log.gz": "c17e387e33080704ef61520776dda67730d4685af00e6679b1c81df58fec99b0",
+    "dependencies.log.gz": "d94599868d4e6cac97f68eb4a653164447b312cbddd632dafefcc3d819d90511",
+    "regul-conservation.json": "934941dc7604f2fb45479ef143cf7abff1e50279dc0cfbbbc364a545a671c2e6",
+    "conservation-final.log.gz": "1a6c6ecdc089febf88334a4fe1172da79f1eb0229c1888ff5e22383d41e5b0d1",
+    "history-audit.log.gz": "1dfaab3d29223958e52e4c08083221c6aa8cb2983ff48df48ad1d3e15f99d08e",
+    "conservation.log.gz": "1a6c6ecdc089febf88334a4fe1172da79f1eb0229c1888ff5e22383d41e5b0d1",
+    "replay-oom.log.gz": "603dc72419565b4a4ebc1d1761e08c034837d096cc2851ee3f77b2bf7a142281",
+    "independent.log.gz": "7bcf97b9db4c03bd19a444316e03bf72eb6530df129fe3b5d56799aa62da144c",
+    "independent.json": "8f055b156c3b99b233999b23bc26ae80ba25954b9c76b0d7a25c931769a0910a",
+    "history-exact-differential.json": "095e3a675402e2e197bfa329f4083bcb8808dbe46183cc310cfda05775027a38",
+    "full-tests-initial.log.gz": "795da824f7cb290727e7c4fbb1c09b279d3d3a7cc45a3efd8acfe159808873b4",
+    "planning-audit-final.log.gz": "c17e387e33080704ef61520776dda67730d4685af00e6679b1c81df58fec99b0",
+    "replay.json": "b6814cacd08bb4042f777be3cdaac7d832d8e34d3424d21edf6b3cf194a0a38c",
+    "planning-final.log.gz": "3365b769cade9ea5b663907522cd90df880f671a17ebbf77f14cdd61f12171e1"
+  }
+}

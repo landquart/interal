@@ -4,7 +4,7 @@
 
 2658 вопросов = 764 прежних связи + 1894 кандидата. 557 accepted /12 excluded /2089 uncertain. Применение +59/−266/498 изменённых представлений: 498 прежних связей подтверждены, 7 исключены, 259 удержаны как uncertain. Остальные 20802 членства и все рёбра других семей неизменны. Общий accepted v6: 21359. Полные списки и измерения — regul-20261008/final/.
 
-Strict independent: 50/50 pass. Регул conservation, queue organization и history certification pass; protected v5/frequencies/history сохранены. Общие npm, integrity и byte replay: итог смотреть в regul-20261008/validation/run-summary.json; не предполагать успешность до проверки этого файла.
+Strict independent: 50/50 pass. Регул conservation, queue organization и history certification pass; protected v5/frequencies/history сохранены. Общие npm: 135 файлов pass (125 + 10 после установки отсутствующей зависимости); post-cache guards pass; integrity pass; финальные 277 артефактов replay совпадают. Code-hash rebind затрагивает только source-lock/manifest; данные неизменны. Итоги и хеши журналов — regul-20261008/validation/run-summary.json.
 
 Семья НЕ сертифицирована полностью: 2089 неопределённых точных записей требуют дальнейшей лингвистической проверки. Сначала обычные деривации и национальные реализации; затем finite compound scopes и омонимические агрегаты. Не переносить неопределённость в accepted ради покрытия. Отчёт — regul-20261008/WORK-REPORT.md.
 
