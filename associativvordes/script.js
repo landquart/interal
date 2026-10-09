@@ -535,7 +535,8 @@ const TEXT_I18N = {
           frequency_score: analysis.frequency.frequency_score,
           association_score: analysis.association.association_score,
           final_score: analysis.final_score,
-          selected: analysis.final_score != null && Number.isFinite(Number(analysis.final_score))
+          selected: analysis.final_score != null && Number.isFinite(Number(analysis.final_score)),
+          analysisStatus: 'completed'
         };
       } catch (error) {
         if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) {
@@ -544,7 +545,7 @@ const TEXT_I18N = {
         }
         if (error.code === QWEN_ERROR_CODES.ABORTED) incrementDiagnostic('abortedRequestCount');
         else incrementDiagnostic('qwenFailedRequestCount');
-        return failedAnalysis(langCode, item, error);
+        return { ...failedAnalysis(langCode, item, error), analysisStatus: 'error' };
       }
     }
 
@@ -584,7 +585,7 @@ const TEXT_I18N = {
     async function getLanguageCandidates(langCode, root, { signal } = {}) {
       const beforeIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || {};
       const indexStartedAt = nowMs();
-      const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal });
+      const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal, elementType: state.elementType });
       registerLexicalRootsFromEntries(langCode, entries, { prefix: state.elementType === 'preposition' ? root : '', config: getLanguageConfig(langCode) });
       addDuration('candidate_index', indexStartedAt);
       const afterIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || beforeIndex;
@@ -683,7 +684,8 @@ const TEXT_I18N = {
           .filter(item => item.selected && Number.isFinite(wordWeight(item)))
           .sort(compareFinalModelCandidates)
           .slice(0, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
-        return { ...calculateLanguageScore(selected, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight }), foundCount: candidates.length, selectedCount: candidates.filter(item => item.selected).length };
+        const missingScores = candidates.filter(item => item.selected && !Number.isFinite(wordWeight(item)));
+        return { ...calculateLanguageScore([...selected, ...missingScores], { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight }), foundCount: candidates.length, selectedCount: candidates.filter(item => item.selected).length };
       };
       const result = await runAssociativeCalculation({
         input: { root, meaning: targetMeaning, targetMeaning, elementType, maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE },
@@ -798,7 +800,7 @@ const TEXT_I18N = {
             calculate: current => {
               const languageResults = LANGUAGES.map(language => {
                 const allCandidates = current.languages[language.code] || [];
-                const candidates = allCandidates.filter(item => item.selected && Number.isFinite(wordWeight(item)));
+                const candidates = allCandidates.filter(item => item.selected);
                 const score = calculateLanguageScore(candidates, { maxModels: current.maxModels, scoreGetter: wordWeight });
                 const semanticConfirmed = Number.isFinite(Number(score.normalized)) && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
                 return { ...score, semanticConfirmed, foundCount: allCandidates.length, selectedCount: allCandidates.filter(item => item.selected).length };
@@ -826,10 +828,11 @@ const TEXT_I18N = {
     }
 
     function scoringCandidates(langCode) {
-      return (state.languages[langCode] || [])
-        .filter(item => item.selected && Number.isFinite(wordWeight(item)))
+      const selected = (state.languages[langCode] || []).filter(item => item.selected);
+      const scored = selected.filter(item => Number.isFinite(wordWeight(item)))
         .sort(compareFinalModelCandidates)
         .slice(0, state.maxModels || MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
+      return [...scored, ...selected.filter(item => !Number.isFinite(wordWeight(item)))];
     }
 
     function calculateLanguage(langCode) {
@@ -1127,7 +1130,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function updateItem(lang, idx, key, value) {
-      if (key === 'word') manualTasks.cancel(state.languages[lang]?.[idx]);
+      if (key === 'word' || (key === 'selected' && value === false)) {
+        manualTasks.cancel(state.languages[lang]?.[idx]);
+        if (key === 'selected' && state.languages[lang]?.[idx] && ['analyzing', 'reviewing'].includes(state.languages[lang][idx].analysisStatus)) state.languages[lang][idx].analysisStatus = 'pending';
+      }
       updateCandidate(state, lang, idx, key, value, { inferModel, normalizeText });
       invalidateFinalCalculation();
       renderAll();
