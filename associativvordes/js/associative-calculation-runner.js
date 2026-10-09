@@ -1,3 +1,4 @@
+import { finiteNumberOrNull } from '../../shared/finite-number.mjs';
 import { calculateLanguageScore, calculateFinalAssociation, deriveGlobalStatusFromLanguageStatuses } from './association-analyzer.js';
 import { finalizeCandidateOrdering, selectBestFinalModels, isAbortError, normalizeAbortError } from './qwen-client.js';
 import {
@@ -41,8 +42,7 @@ function clone(value) {
 }
 
 function scoreOf(item) {
-  const value = Number(item?.final_score ?? item?.analysis?.final_score ?? item?.P);
-  return Number.isFinite(value) ? value : null;
+  return finiteNumberOrNull(item?.final_score ?? item?.analysis?.final_score ?? item?.P);
 }
 
 function candidateIdentity(candidate) {
@@ -212,7 +212,7 @@ export async function runAssociativeCalculation({
     warnings: migrateAssociativeWarnings(currentState, { languages })
   });
   currentState.languageScores = {};
-  const setState = event => onStateChange?.(clone(currentState), { event, runId: effectiveRunId });
+  const setState = event => { ensureActive(event); onStateChange?.(clone(currentState), { event, runId: effectiveRunId }); };
   const button = dependencies.buttonStatusController;
   const labels = {
     start: dependencies.buttonTexts?.start || 'Calculating...',
@@ -222,6 +222,7 @@ export async function runAssociativeCalculation({
   };
   let buttonToken;
   const progress = text => {
+    ensureActive('progress');
     onProgress?.(text);
     button?.progress?.(buttonToken, text);
   };
@@ -260,6 +261,7 @@ export async function runAssociativeCalculation({
         }
       } catch (error) {
         if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'candidate_index', runId: effectiveRunId });
+        ensureActive('candidate_index_error');
         candidatePools[language.code] = [];
         addLanguageWarning(currentState, language.code, 'language_index_unavailable', error?.message);
         currentState.languageStatuses[language.code] = status('index_error', { errorCode: error?.code || error?.name || 'INDEX_ERROR' });
@@ -280,6 +282,7 @@ export async function runAssociativeCalculation({
         translations,
         input
       }, { signal, runId: effectiveRunId, onProgress: progress });
+      ensureActive('candidate_audit_response');
       audited = normalizeAuditResult(response, candidatePools);
       for (const warning of audited.warnings) {
         const code = String(warning?.code || warning || '').split(':')[0] || 'qwen_candidate_audit_unavailable';
@@ -289,6 +292,7 @@ export async function runAssociativeCalculation({
       currentState.candidateAuditDiagnostics = audited.diagnostics || null;
     } catch (error) {
       if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'candidate_audit', runId: effectiveRunId });
+      ensureActive('candidate_audit_error');
       addRunWarning(currentState, 'qwen_candidate_audit_unavailable', error?.message);
       audited = { candidatesByLanguage: candidatePools, warnings: [], diagnostics: null };
     }
@@ -330,11 +334,17 @@ export async function runAssociativeCalculation({
           translation: translations?.[language.code] || '',
           onProgress: progress,
           onReviewStart: () => {
+            ensureActive('review_start');
             currentState.languageStatuses[language.code] = status('reviewing', { candidateCount: pool.length, analyzedCount: analyzed.length });
             setState('status:reviewing');
             emit('review:start');
           },
-          onReviewEnd: () => emit('review:end')
+          onReviewEnd: () => {
+            ensureActive('review_end');
+            currentState.languageStatuses[language.code] = status('analyzing', { candidateCount: pool.length, analyzedCount: analyzed.length });
+            setState('status:analyzing');
+            emit('review:end');
+          }
         });
         ensureActive(`primary:${language.code}:after`);
         emit('primary:end');
@@ -385,6 +395,7 @@ export async function runAssociativeCalculation({
         currentState.finalCandidateValidationDiagnostics = validated.diagnostics || null;
       } catch (error) {
         if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'final_candidate_validation', runId: effectiveRunId });
+        ensureActive('final_validation_error');
         addRunWarning(currentState, 'qwen_final_candidate_validation_unavailable', error?.message);
       }
       emit('final_validation:end');
@@ -458,8 +469,10 @@ export async function runAssociativeCalculation({
     return { ok: true, state: currentState, events, selectedModels };
   } catch (error) {
     if (isAbortError(error, signal) || (typeof dependencies.isCurrentRun === 'function' && !dependencies.isCurrentRun(effectiveRunId))) {
-      currentState.globalStatus = 'aborted';
-      button?.abort?.(buttonToken);
+      if (typeof dependencies.isCurrentRun !== 'function' || dependencies.isCurrentRun(effectiveRunId)) {
+        currentState.globalStatus = 'aborted';
+        button?.abort?.(buttonToken);
+      }
       emit('run:aborted');
       throw normalizeAbortError(error, { stage: error?.stage || 'run', runId: effectiveRunId });
     }

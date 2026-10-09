@@ -300,7 +300,7 @@ function throwIfAborted(signal, stage) {
   if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage });
 }
 
-export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, onReviewEvent, reviewBudget, signal, runId } = {}) {
+export async function analyzeAssociativeWord({ language, targetMeaning, localizedTargetMeaning, word, frequencyProfile, onProgress, onReviewRequest, onReviewEnd, onReviewEvent, reviewBudget, signal, runId } = {}) {
   throwIfAborted(signal, 'analysis_start');
   const warnings = [];
   const budget = reviewBudget || createReviewBudget({ enabled: QWEN_RUNTIME_CONFIG.enableReviewModel === true, maxRequests: QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch });
@@ -384,6 +384,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   if (frequency.frequency_score == null) warnings.push('Frequency score unavailable');
 
   let review = null;
+  let reviewErrorCode = null;
+  let reviewStarted = false;
   let finalEvaluation = { ...primary, combination_method: 'primary_only' };
   if (shouldReviewPrimaryScore(primary.final_score)) {
     noteReview('reviewEligibleCount');
@@ -401,6 +403,7 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
           warnings.push('review_budget_exhausted');
           finalEvaluation = { ...primary, combination_method: 'primary_only_review_budget_exhausted' };
         } else {
+          reviewStarted = true;
           noteReview('reviewStartedCount');
           onReviewRequest?.();
           onProgress?.(`Qwen3-235B: ${language} — ${word}`);
@@ -413,10 +416,13 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
         }
       } catch (error) {
         if (isAbortError(error, signal)) { noteReview('reviewAbortedCount'); budget.releaseOnAbort?.(); throw normalizeAbortError(error, { stage: 'review_qwen', runId }); }
+        reviewErrorCode = error.code || 'QWEN_REVIEW_FAILED';
         noteReview('reviewFailedCount');
         warnings.push('review_failed');
         warnings.push(`review_failed: ${error.message || error}`);
         finalEvaluation = { ...primary, combination_method: 'primary_fallback_after_review_error' };
+      } finally {
+        if (reviewStarted) onReviewEnd?.();
       }
     }
   }
@@ -437,6 +443,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
   return {
     methodology_version: METHODOLOGY_VERSION,
     review_required: shouldReviewPrimaryScore(primary.final_score) && !review,
+    review_status: review ? 'confirmed' : reviewErrorCode ? 'error' : reviewDiagnostics.reviewSkippedDisabledCount ? 'disabled' : reviewDiagnostics.reviewSkippedBudgetCount ? 'budget_exhausted' : 'not_required',
+    review_error_code: reviewErrorCode,
     association_interval: { min:Math.min(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0),max:Math.max(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0) },
     score_interval: { min: Math.min(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0), max: Math.max(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0) },
     language,

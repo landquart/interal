@@ -1,0 +1,343 @@
+Associative production pipeline integration tests passed.
+✔ tests/associative-atomic-pipeline.test.mjs (112.048622ms)
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (1.361869ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (1.342791ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.676252ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (3.937654ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (1.520168ms)
+Associative search runtime patch tests passed.
+✔ tests/associative-search-runtime-patch.test.mjs (128.853626ms)
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 1,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes qwen review tests passed
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 0
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+✔ tests/associativvordes-qwen-review.test.mjs (84.70928ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.697981

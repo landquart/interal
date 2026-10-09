@@ -49,3 +49,9 @@ AC-001/AC-012: общий gzip/JSON transport установлен именно 
 Справочное N доступно всем строкам; исключённый вклад остаётся null. Добавлены первичная A, причины незавершённой проверки и раздельные счётчики покрытия. Допуск в FAᵥ и формулы сохранены. Сохранение не превращает отсутствие в ноль; старые неоднозначные нули требуют пересчёта, текущий формат version=2 совместим с additive numeric_schema_version=1. Исправлены русские подписи max-P и A представителя.
 
 Проверка: `node --test tests/associative-calculation-numeric.test.mjs tests/associativvordes-persistence.test.mjs tests/associativvordes-language-statuses.test.mjs` — 8/8, 0 ошибок. Следующий блок: жизненный цикл и внешние запросы.
+
+## Исправление: блок 3 — AC-004, AC-006, AC-007
+
+Review callbacks теперь ограничивают реальный запрос проверки, статус возвращается к analyzing. Сохраняется review_status/error_code; числовая оценка и подтверждение раздельны. Ручные задачи имеют AbortSignal и проверку исходного state/run/candidate/word перед записью. Редактирование, удаление, reset и новый запуск отменяют задачи. Старый runner не меняет статус/кнопку нового запуска; поздние audit/error/review callbacks защищены. Семейный cache хранит только успешно завершённые данные и разделяет pending по сигналам.
+
+`node --test tests/associative-calculation-lifecycle.test.mjs tests/associative-atomic-pipeline.test.mjs tests/associative-search-runtime-patch.test.mjs tests/associativvordes-qwen-review.test.mjs` — 8/8, 0 ошибок. Изменена только устаревшая source-string проверка кнопки, поскольку теперь она блокируется также во время reviewing. Следующий блок: дедлайны полного ответа и валидация backend semantic scores.

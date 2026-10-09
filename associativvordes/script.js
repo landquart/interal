@@ -1,3 +1,4 @@
+import { createCandidateTaskRegistry } from './js/candidate-task-registry.js';
 import { finiteNumberOrNull as finiteOrNull } from '../shared/finite-number.mjs';
 import { getFrequencyProfile } from './js/frequency-loader.js';
 import { analyzeAssociativeWord, finalAssociationPassesThreshold, averageAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
@@ -169,8 +170,9 @@ const TEXT_I18N = {
     let activeRunId = 0;
     let activeRunAbortController = null;
     let activeReviewBudget = null;
-    function nextRunId() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'new_run', runId: activeRunId })); activeRunId += 1; activeRunAbortController = new AbortController(); return activeRunId; }
-    function invalidateActiveRuns() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'reset', runId: activeRunId })); activeRunId += 1; activeRunAbortController = null; activeReviewBudget = null; }
+    const manualTasks = createCandidateTaskRegistry();
+    function nextRunId() { manualTasks.cancelAll(); activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'new_run', runId: activeRunId })); activeRunId += 1; activeRunAbortController = new AbortController(); return activeRunId; }
+    function invalidateActiveRuns() { manualTasks.cancelAll(); activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'reset', runId: activeRunId })); activeRunId += 1; activeRunAbortController = null; activeReviewBudget = null; }
     function isCurrentRun(runId) { return runId === activeRunId; }
     function currentRunSignal() { return activeRunAbortController?.signal; }
     function throwIfStaleRun(runId, stage, signal = currentRunSignal()) {
@@ -505,7 +507,7 @@ const TEXT_I18N = {
       return true;
     }
 
-    async function analyzeCandidateItem(langCode, item, onProgress, runId, localizedTargetMeaning) {
+    async function analyzeCandidateItem(langCode, item, onProgress, runId, localizedTargetMeaning, context = {}) {
       throwIfStaleRun(runId, 'candidate_analysis_start');
       try {
         const languageName = textGroup('languages')[langCode] || langCode;
@@ -523,8 +525,9 @@ const TEXT_I18N = {
           onReviewRequest: () => {
             throwIfStaleRun(runId, 'review_request');
             incrementDiagnostic('qwenReviewRequestCount');
-            state.languageStatuses[langCode] = createLanguageStatus('reviewing', state.languageStatuses[langCode]);
+            context.onReviewStart?.();
           },
+          onReviewEnd: () => { if (isCurrentRun(runId)) context.onReviewEnd?.(); },
           signal: currentRunSignal(),
           runId
         });
@@ -641,7 +644,7 @@ const TEXT_I18N = {
     }
 
 
-    async function getRunTargetTranslations(targetMeaning, runId, onProgress) {
+    async function getRunTargetTranslations(targetMeaning, runId, onProgress, signal = currentRunSignal()) {
       if (!targetMeaning) return {};
       onProgress?.(currentLang() === 'en' ? 'Translating target meaning...' : 'Перевод значения...');
       incrementDiagnostic('targetTranslationRequestCount');
@@ -650,13 +653,13 @@ const TEXT_I18N = {
           targetMeaning,
           sourceLanguage: 'ru',
           targetLanguages: TARGET_TRANSLATION_LANGUAGES,
-          signal: currentRunSignal(),
+          signal,
           runId
         });
-        throwIfStaleRun(runId, 'target_translation_after_await');
+        throwIfStaleRun(runId, 'target_translation_after_await', signal);
         return result.translations || {};
       } catch (error) {
-        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) { incrementDiagnostic('abortedRequestCount'); throw normalizeAbortError(error, { stage: 'target_translation', runId }); }
+        if (isAbortError(error, signal) || !isCurrentRun(runId)) { incrementDiagnostic('abortedRequestCount'); throw normalizeAbortError(error, { stage: 'target_translation', runId }); }
         console.warn('Target meaning translation unavailable; SWOW will be skipped for untranslated languages.', error);
         return {};
       }
@@ -686,7 +689,7 @@ const TEXT_I18N = {
           .filter(item => item.selected && Number.isFinite(wordWeight(item)))
           .sort(compareFinalModelCandidates)
           .slice(0, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
-        return calculateLanguageScore(selected, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight });
+        return calculateLanguageScore(candidates, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight });
       };
       const result = await runAssociativeCalculation({
         input: { root, meaning: targetMeaning, targetMeaning, elementType, maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE },
@@ -780,12 +783,7 @@ const TEXT_I18N = {
           },
           candidateAnalyzer: {
             analyze: async (language, candidate, context) => {
-              const analyzed = await analyzeCandidateItem(language.code, candidate, context.onProgress, runId, context.translation);
-              if (analyzed.analysis?.review) {
-                context.onReviewStart?.();
-                context.onReviewEnd?.();
-              }
-              return analyzed;
+              return analyzeCandidateItem(language.code, candidate, context.onProgress, runId, context.translation, context);
             }
           },
           candidatePostValidator: {
@@ -803,7 +801,7 @@ const TEXT_I18N = {
           finalScore: {
             calculate: current => {
               const languageResults = LANGUAGES.map(language => {
-                const candidates = (current.languages[language.code] || []).filter(item => item.selected && Number.isFinite(wordWeight(item)));
+                const candidates = current.languages[language.code] || [];
                 const score = calculateLanguageScore(candidates, { maxModels: current.maxModels, scoreGetter: wordWeight });
                 const semanticConfirmed = Number.isFinite(Number(score.normalized)) && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
                 return { ...score, semanticConfirmed };
@@ -838,12 +836,12 @@ const TEXT_I18N = {
     }
 
     function calculateLanguage(langCode) {
-      return calculateLanguageScore(scoringCandidates(langCode), { maxModels: state.maxModels, scoreGetter: wordWeight });
+      return calculateLanguageScore(state.languages[langCode] || [], { maxModels: state.maxModels, scoreGetter: wordWeight });
     }
 
     function calculateFinal() {
       const languageResults = LANGUAGES.map(l => {
-        const candidates = scoringCandidates(l.code);
+        const candidates = state.languages[l.code] || [];
         const score = calculateLanguageScore(candidates, { maxModels: state.maxModels, scoreGetter: wordWeight });
         const semanticConfirmed = Number.isFinite(Number(score.normalized))
           && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
@@ -937,9 +935,11 @@ const TEXT_I18N = {
         accepted_after_review: 'принято после проверки',
         rejected_after_review: 'отклонено после проверки',
         unavailable: 'нет данных',
+        reviewing: 'проверяется...',
         analyzing: 'анализируется...',
         error: 'ошибка'
       } : {
+        reviewing: 'reviewing...',
         analyzing: 'analyzing...',
         error: 'error'
       };
@@ -953,14 +953,14 @@ const TEXT_I18N = {
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
       const pendingLabel = currentLang() === 'en' ? 'not analyzed' : 'не анализировалось';
-      const displayStatus = item.analysisStatus === 'analyzing'
-        ? statusLabel('analyzing')
+      const displayStatus = ['analyzing', 'reviewing'].includes(item.analysisStatus)
+        ? statusLabel(item.analysisStatus)
         : item.analysisStatus === 'pending'
           ? pendingLabel
           : item.analysisStatus === 'error'
             ? statusLabel('error')
             : `${thresholdStatusLabel(thresholdStatusForResult({ final_score: analysis.final_score ?? item.final_score }), currentLang())}${assoc.semantic_confirmed === false ? `<br><span class="muted">${semanticWarningLabel(currentLang())}</span>` : ''}`;
-      const analysisButton = item.analysisStatus === 'analyzing'
+      const analysisButton = ['analyzing', 'reviewing'].includes(item.analysisStatus)
         ? `<button class="tool-btn interal-btn interal-btn--secondary fit short" disabled>${statusLabel('analyzing')}</button>`
         : (!analysis.association || item.analysisStatus === 'pending' || item.analysisStatus === 'error')
           ? `<button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="analyzeItem('${lang}', ${idx})">${labels.analyze}</button>`
@@ -1130,6 +1130,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function updateItem(lang, idx, key, value) {
+      if (key === 'word') manualTasks.cancel(state.languages[lang]?.[idx]);
       updateCandidate(state, lang, idx, key, value, { inferModel, normalizeText });
       invalidateFinalCalculation();
       renderAll();
@@ -1139,33 +1140,45 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     async function analyzeItem(lang, idx) {
       const item = state.languages[lang][idx];
       if (!item || !normalizeText(item.word)) return;
+      const originalState = state;
+      const runId = activeRunId;
+      const word = item.word;
+      const targetMeaning = state.targetMeaning;
+      const task = manualTasks.begin(item, () => state === originalState && isCurrentRun(runId) && state.languages[lang]?.includes(item) && item.word === word && state.targetMeaning === targetMeaning);
       Object.assign(item, withModelIdentity(item, state.root, lang));
       item.analysisStatus = 'analyzing';
       renderAll();
       try {
-        const targetTranslations = await getRunTargetTranslations(state.targetMeaning, activeRunId, null);
+        const targetTranslations = await getRunTargetTranslations(targetMeaning, runId, null, task.signal);
+        if (!task.isCurrent()) return;
         incrementDiagnostic('qwenPrimaryRequestCount');
-        item.analysis = await analyzeAssociativeWord({
+        const analysis = await analyzeAssociativeWord({
           language: lang,
-          targetMeaning: state.targetMeaning,
+          targetMeaning,
           localizedTargetMeaning: targetTranslations[lang] || '',
-          word: item.word,
+          word,
           frequencyProfile: item.frequencyProfile,
           reviewBudget: createReviewBudget({ enabled: QWEN_RUNTIME_CONFIG.enableReviewModel === true, maxRequests: QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch }),
           onReviewEvent: key => incrementDiagnostic(key),
-          onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount')
+          onReviewRequest: () => { if (task.isCurrent()) { incrementDiagnostic('qwenReviewRequestCount'); item.analysisStatus = 'reviewing'; renderAll(); } },
+          signal: task.signal, runId
         });
+        if (!task.isCurrent()) return;
+        item.analysis = analysis;
         recordQwenUsedModels(item.analysis);
         if (item.analysis.warnings?.some?.(warning => String(warning).startsWith('review_failed'))) incrementDiagnostic('qwenFailedRequestCount');
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
         item.final_score = item.analysis.final_score;
-        item.selected = Number.isFinite(Number(item.analysis.final_score));
+        item.selected = finiteOrNull(item.analysis.final_score) !== null;
         item.analysisStatus = null;
       } catch (error) {
+        if (!task.isCurrent() || isAbortError(error, task.signal)) return;
         const failed = failedAnalysis(lang, item, error);
         Object.assign(item, failed, { analysisStatus: 'error' });
       }
+      if (!task.isCurrent()) return;
+      task.finish();
       state.languages[lang] = reconcileModelRepresentatives(state.languages[lang], state.root, lang);
       const languageItems = state.languages[lang] || [];
       const analyzedItems = languageItems.filter(candidate => candidate.analysis);
@@ -1180,6 +1193,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function deleteItem(lang, idx) {
+      manualTasks.cancel(state.languages[lang]?.[idx]);
       deleteCandidate(state, lang, idx);
       invalidateFinalCalculation();
       renderAll();

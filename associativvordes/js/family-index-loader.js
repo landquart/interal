@@ -30,17 +30,23 @@ export function createFamilyIndexFetch(fetchImpl = globalThis.fetch?.bind(global
 
 export class FamilyIndexLoader {
   constructor({ baseUrl = '/associativvordes/family-index-v5', fetchJson = createFamilyIndexFetch() } = {}) {
-    this.baseUrl = baseUrl.replace(/\/$/, ''); this.fetchJson = fetchJson; this.cache = new Map();
+    this.baseUrl = baseUrl.replace(/\/$/, ''); this.fetchJson = fetchJson; this.cache = new Map(); this.pending = new Map();
   }
   load(path, { signal } = {}) {
     if (signal?.aborted) return Promise.reject(signal.reason || new DOMException('Aborted', 'AbortError'));
-    if (!this.cache.has(path)) {
-      const separator = this.baseUrl.includes('?') ? '' : '/';
-      const request = Promise.resolve(this.fetchJson(`${this.baseUrl}${separator}${path}`, signal ? { signal } : {}));
-      this.cache.set(path, request);
-      request.catch(() => { if (this.cache.get(path) === request) this.cache.delete(path); });
-    }
-    return this.cache.get(path);
+    if (this.cache.has(path)) return Promise.resolve(this.cache.get(path));
+    const previous = this.pending.get(path);
+    if (previous && previous.signal === signal) return previous.promise;
+    const separator = this.baseUrl.includes('?') ? '' : '/';
+    const record = { signal };
+    record.promise = Promise.resolve().then(() => this.fetchJson(`${this.baseUrl}${separator}${path}`, signal ? { signal } : {}))
+      .then(value => {
+        if (signal?.aborted) throw signal.reason || new DOMException('Aborted', 'AbortError');
+        this.cache.set(path, value);
+        return value;
+      }).finally(() => { if (this.pending.get(path) === record) this.pending.delete(path); });
+    this.pending.set(path, record);
+    return record.promise;
   }
   async manifest(options) { const value = await this.load('manifest.json', options); if (!SUPPORTED_FAMILY_INDEX_VERSIONS.has(value.version)) throw new Error(`Unsupported family index version: ${value.version}`); return value; }
   async resolveAlias(query, options) { const manifest = await this.manifest(options); const alias = normalizeAlias(query); if (!alias) return []; const path = manifest.sharding.alias_template.replace('{bucket}', familyBucket(alias)); return (await this.load(path, options))[alias] || []; }
