@@ -477,7 +477,7 @@ export async function runAssociativeCalculation({
         }
         currentState.globalStatus = 'aborted';
         onStateChange?.(clone(currentState), { event: 'run:aborted', runId: effectiveRunId });
-        try { await dependencies.renderer?.renderFinal?.(currentState, { runId: effectiveRunId, signal, aborted: true }); } catch { /* Preserve the original abort. */ }
+        try { await dependencies.renderer?.renderAbort?.(currentState, { runId: effectiveRunId, signal }); } catch { /* Preserve the original abort. */ }
         button?.abort?.(buttonToken);
       }
       emit('run:aborted');
