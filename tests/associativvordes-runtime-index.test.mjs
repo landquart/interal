@@ -7,7 +7,7 @@ const script = await readFile('associativvordes/script.js', 'utf8');
 const html = await readFile('associativvordes/index.html', 'utf8');
 
 assert.match(script, /createCandidateIndexLoader\(\)/, 'runtime creates one candidate-index loader');
-assert.match(script, /candidateIndexLoader\.loadCandidateEntries\(langCode, root, \{ signal \}\)/, 'getLanguageCandidates uses loader with AbortSignal');
+assert.match(script, /candidateIndexLoader\.loadCandidateEntries\(langCode, root, \{ signal, elementType: state\.elementType \}\)/, 'getLanguageCandidates forwards AbortSignal and element type');
 assert.match(script, /findCandidatesForRoot\(\{[\s\S]*maxCandidates: Infinity,[\s\S]*groupModels: false/, 'all validated matches survive until fresh frequency comparison');
 assert.match(script, /findCandidatesForRoot\(\{[\s\S]*elementType: state\.elementType[\s\S]*maxCandidates:/, 'runtime passes the selected root/preposition type into initial model grouping');
 assert.match(script, /morpheme_analysis: candidate\.morpheme_analysis/, 'runtime preserves independent morpheme evidence for candidate validation');
