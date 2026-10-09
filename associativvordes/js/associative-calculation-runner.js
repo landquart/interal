@@ -470,6 +470,11 @@ export async function runAssociativeCalculation({
   } catch (error) {
     if (isAbortError(error, signal) || (typeof dependencies.isCurrentRun === 'function' && !dependencies.isCurrentRun(effectiveRunId))) {
       if (typeof dependencies.isCurrentRun !== 'function' || dependencies.isCurrentRun(effectiveRunId)) {
+        for (const [languageCode, languageStatus] of Object.entries(currentState.languageStatuses || {})) {
+          if (['idle', 'loading_index', 'grouping_candidates', 'candidate_audit', 'analyzing', 'reviewing'].includes(languageStatus?.status)) {
+            currentState.languageStatuses[languageCode] = status('aborted', { ...languageStatus, errorCode: 'RUN_ABORTED' });
+          }
+        }
         currentState.globalStatus = 'aborted';
         button?.abort?.(buttonToken);
       }
