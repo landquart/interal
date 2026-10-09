@@ -1,0 +1,570 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node scripts/run-tests.mjs
+
+Discovered 85 test files; running 85.
+
+> node tests/altervordes-multilingual-conclusion.test.mjs
+Alter vordes multilingual conclusion tests passed.
+
+> node tests/altervordes-prompts.test.mjs
+Alter vordes binary derivational potential tests passed.
+
+> node tests/association-demographic-weighting.test.mjs
+association demographic weighting tests passed
+
+> node tests/associative-affix-boundary.test.mjs
+Associative affix boundary tests passed.
+
+> node tests/associative-atomic-pipeline.test.mjs
+Associative production pipeline integration tests passed.
+
+> node tests/associative-calculation-lifecycle.test.mjs
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (0.934604ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (0.922435ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.257909ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (2.453836ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (1.357329ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.193931
+
+> node tests/associative-calculation-numeric.test.mjs
+✔ AC-003: maximum P and same representative A; missing A and required review remain distinct (1.635637ms)
+✔ AC-002/003/010 regul fixed fixture: five derivatives per language, positive P and pending review (13.201613ms)
+✔ AC-002/010: complete regul fixture uses unchanged direct demographic formulas (0.603887ms)
+✔ AC-003/010: partial languages and exact acceptance boundaries (0.601104ms)
+✔ AC-002: supported empty rows have N; unknown represented language throws (0.630718ms)
+✔ AC-005: numeric persistence keeps absence, zero and review diagnostics (1.498772ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24.699457
+
+> node tests/associative-calculation-services.test.mjs
+✔ AC-008: deadline includes an unresponsive response body and cancellation wins late results (12.204685ms)
+✔ AC-009: backend rejects incomplete scores, preserves true zero and upstream 403 (3.959238ms)
+✔ AC-008: backend timeout also covers upstream body (5.664701ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26.142023
+
+> node tests/associative-calculation-transport.test.mjs
+AC-001/AC-012 page transport regressions passed
+
+> node tests/associative-candidate-finder.test.mjs
+associative candidate finder family tests passed
+
+> node tests/associative-candidate-index-loader-missing-shards.test.mjs
+associative candidate-index missing shard tests passed
+
+> node tests/associative-candidate-index-loader.test.mjs
+ok - manifest loads once and repeated calls share cache
+ok - concurrent manifest calls use one promise
+ok - loads only needed shard for root and not the whole language
+ok - repeat shard request uses cache
+ok - different languages have different shard cache keys
+ok - missing language returns LANGUAGE_NOT_INDEXED
+ok - missing shard returns SHARD_NOT_LISTED
+ok - manifest HTTP error returns MANIFEST_FETCH_FAILED
+ok - damaged manifest is rejected
+ok - incompatible version is rejected
+ok - incompatible normalizer_version is rejected
+ok - shard HTTP error returns SHARD_FETCH_FAILED
+ok - damaged shard is rejected and not returned as empty array
+ok - normalizes legacy fixture source metadata without deriving category from id
+ok - source category is required even when legacy id contains one
+ok - entry without sources is rejected
+ok - non-finite frequency_score is rejected
+ok - AbortSignal stops operation without poisoning cache
+ok - passes AbortSignal to fetch options
+ok - abort cancels the mock shard request and returns ABORTED
+ok - aborted shard is not cached and retry performs a new fetch
+ok - completed shard cache survives an aborted consumer
+ok - completed manifest cache is shared after successful load
+ok - diagnostics count fetches and cache hits
+ok - special roots add _other only when needed and skip if not listed
+ok - production base URL is relative and overridable
+
+> node tests/associative-candidate-integrity.test.mjs
+Associative deterministic candidate-integrity tests passed.
+
+> node tests/associative-family-annotation-scoring.test.mjs
+✔ Wilson interval is finite and contains the observed precision (1.323679ms)
+✔ agreement statistics preserve uncertain as its own category (0.251448ms)
+✔ weighted precision reports resolved, conservative and optimistic estimates (0.188724ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6.402313
+
+> node tests/associative-family-corrective-v5.test.mjs
+✔ corrective build accepts an immutable input-lock artifact (1.000073ms)
+✔ structured expansion never pairs lang and term from adjacent nodes (7.293643ms)
+✔ malformed and unknown expansion data are review-only (0.610498ms)
+✔ etymon ancestry is typed, depth-aware, and cannot merge (0.279731ms)
+✔ direct templates use an explicit typed policy (0.470407ms)
+✔ etymologyPairs preserves uncertain evidence instead of inventing equivalence (0.303927ms)
+✔ exact seed claims do not absorb an automatic family transitively (3.522334ms)
+✔ short accidental prefix cannot anchor valkyrie and walkure equivalence (0.240662ms)
+✔ automatic canonical scoring rejects a two-letter accidental anchor (0.421244ms)
+✔ known audit noise and generic markup are rejected deterministically (1.83642ms)
+✔ etymon-key distribution is deterministic and exposes the long tail (5.26247ms)
+✔ wide etymon keys are review-only and never create automatic families (0.380853ms)
+✔ exact language-aware controls replace stale automatic memberships before materialization (0.282355ms)
+✔ verified control families cover every runtime language (0.307993ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27.555451
+
+> node tests/associative-family-manual-cases.test.mjs
+✔ individually rejected etymologies are absent from repository-backed runtime (2071.402817ms)
+✔ sense-ambiguous enm:net is quarantined without deleting its member data (85.983799ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2294.817543
+
+> node tests/associative-family-production.test.mjs
+✔ discovers every compound component (10.102519ms)
+✔ surface fallback preserves complete coverage (2.099404ms)
+✔ compound containment never merges families (0.827463ms)
+✔ proto relation never merges families (0.145879ms)
+✔ equivalence requires linguistic evidence (0.371187ms)
+✔ lemma IDs are stable and language scoped (0.37982ms)
+✔ lexical aliases cannot collide with JavaScript object prototypes (0.449886ms)
+✔ runtime resolves alias to materialized family members (2.52255ms)
+✔ candidate loader prefers the exhaustive family index over literal static search (0.593121ms)
+✔ family runtime fails closed before fetching an excessive alias fan-out (0.738299ms)
+✔ manual override is language-aware and never exposes stale non-manual members (0.753012ms)
+✔ blocked, rejected, and split-required families never reach runtime candidates (0.489716ms)
+✔ v5 runtime excludes rejected corpus members while remaining v4-compatible (0.751079ms)
+✔ manual family with no language-specific overrides fails closed (0.568575ms)
+✔ authoritative empty family result never falls back to the static index (0.342554ms)
+✔ curated nitidus aliases return only reviewed members and never use broad fallback (2045.342107ms)
+✔ Russian curated short aliases preserve complete ordinary results in other languages (10908.294439ms)
+✔ empty, rejected or malformed curated members never suppress ordinary language results (1.073944ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12983.324961
+
+> node tests/associative-family-routing-repairs.test.mjs
+✔ val routing retains member arrays, alternate roots, exact full results and no fallback (9063.013573ms)
+✔ Russian short batch has only reviewed members, without cross-language suppression or fallback (10135.432249ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19206.02238
+
+> node tests/associative-family-runtime-benchmark.test.mjs
+✔ runtime benchmark percentiles are deterministic nearest-rank values (0.647003ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5.189404
+
+> node tests/associative-family-semantic-sampling.test.mjs
+✔ semantic sample locks its input and requested size (0.749917ms)
+✔ stratified selection is deterministic and visits distinct strata first (6.586474ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11.925022
+
+> node tests/associative-frequency-top-five.test.mjs
+Associative match-quality-first top-five tests passed.
+
+> node tests/associative-index-builder.test.mjs
+
+> node tests/associative-index-core.test.mjs
+
+> node tests/associative-index-empty-search-form.test.mjs
+associative index empty search_form tests passed
+
+> node tests/associative-index-large-range.test.mjs
+associative index large numeric range tests passed
+
+> node tests/associative-index-memory-audit.test.mjs
+associative index memory audit tests passed
+
+> node tests/associative-index-merge.test.mjs
+ok - six valid artifacts merge into one separated candidate-index manifest
+ok - rejects five artifacts when ru is missing
+ok - rejects incompatible version
+ok - rejects incompatible normalizer_version
+ok - rejects missing shard
+ok - rejects incorrect entries metadata
+ok - rejects candidate without sources
+ok - rejects damaged non-finite number value
+ok - rejects language mismatch between directory and manifest
+ok - error keeps existing output and removes temp directory
+ok - rerun is deterministic, does not duplicate, and removes stale shards
+ok - input directory order does not change manifest
+ok - one artifact cannot silently overwrite another language
+ok - rejects incompatible global_config_hash
+
+> node tests/associative-index-russian-normalization.test.mjs
+
+> node tests/associative-index-validator.test.mjs
+
+> node tests/associative-index-workflow.test.mjs
+
+> node tests/associative-model-family.test.mjs
+Associative lexical model family tests passed.
+
+> node tests/associative-model-selection-policy.test.mjs
+Associative model-selection and threshold policy tests passed.
+
+> node tests/associative-morpheme-model-parser-v2.test.mjs
+Associative morpheme model parser v2 tests passed. 1000 words: 6.78ms, avg 0.0068ms, cache 71
+
+> node tests/associative-morpheme-model-parser.test.mjs
+Associative morpheme model parser tests passed.
+
+> node tests/associative-paint-wait.test.mjs
+Associative paint wait tests passed.
+
+> node tests/associative-persistence-loader.test.mjs
+associative persistence loader tests passed
+
+> node tests/associative-production-hardening.test.mjs
+Associative hardening regression tests passed.
+
+> node tests/associative-qwen-backend-model-routing.test.mjs
+associative qwen backend model routing tests passed
+
+> node tests/associative-qwen-candidate-generation.test.mjs
+Associative Qwen top-five refinement tests passed.
+
+> node tests/associative-qwen-local-index.test.mjs
+Associative Qwen local-index verification tests passed.
+
+> node tests/associative-qwen-runtime-finalization.test.mjs
+Associative Qwen runtime finalization tests passed.
+
+> node tests/associative-repository-materialization.test.mjs
+✔ recount observes last-membership loss and multi-family to single-family transitions (8.766075ms)
+✔ provenance excludes itself, survives root relocation and detects content changes (8.986928ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21.828523
+
+> node tests/associative-russian-model-family.test.mjs
+Russian associative model-family deduplication tests passed
+
+> node tests/associative-search-runtime-patch.test.mjs
+Associative search runtime patch tests passed.
+
+> node tests/associative-static-index-load-control.test.mjs
+Associative static index load-control tests passed.
+
+> node tests/associative-static-search-index.test.mjs
+Static associative family search tests passed.
+
+> node tests/associative-tab-width-restore.test.mjs
+Associative restored tab-width tests passed
+
+> node tests/associative-target-translation-backend.test.mjs
+
+> node tests/associativvordes-card-compat.test.mjs
+associativvordes browser card compatibility tests passed
+
+> node tests/associativvordes-card-metadata.test.mjs
+associativvordes card metadata tests passed
+
+> node tests/associativvordes-card-normalization.test.mjs
+associativvordes card normalization tests passed
+
+> node tests/associativvordes-error-handling.test.mjs
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Qwen timeout uses AbortController
+    at file:///workspace/scratch/27d7adcfbebe/interal/tests/associativvordes-error-handling.test.mjs:28:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: "import { finiteNumberOrNull } from '../../shared/finite-number.mjs';\n" +
+    "import { withRequestDeadline } from '../../shared/request-deadline.mjs';\n" +
+    "import { API_CONFIG } from './swow-client.js';\n" +
+    "import { buildSearchForm } from './search-normalizer.js';\n" +
+    "import { lexicalModelDescriptor, compareFrequencyRepresentatives, compareRootMatchThenFrequency } from './candidate-model-family.js';\n" +
+    "import { MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE } from './associative-state.js';\n" +
+    '\n' +
+    'export const ASSOCIATION_SCORE_WEIGHTS = {\n' +
+    '  directness: 0.45,\n' +
+    '  field_relatedness: 0.35,\n' +
+    '  inverse_domain_shift: 0.20\n' +
+    '};\n' +
+    '\n' +
+    'export const FINAL_SCORE_WEIGHTS = {\n' +
+    '  frequency_score: 0.35,\n' +
+    '  association_score: 0.65\n' +
+    '};\n' +
+    '\n' +
+    'export const QWEN_RUNTIME_CONFIG = {\n' +
+    '  enableCandidateGeneration: true,\n' +
+    '  enableReviewModel: true,\n' +
+    '  maxCandidatesPerLanguage: 120,\n' +
+    '  autoAnalyzeCandidatesPerLanguage: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE,\n' +
+    '  maxGeneratedCandidatesPerLanguage: 2,\n' +
+    '  maxKnownCandidateWordsPerLanguage: 120,\n' +
+    '  maxConcurrentQwenRequests: 1,\n' +
+    '  maxReviewRequestsPerSearch: Infinity,\n' +
+    '  requestTimeoutMs: 15000,\n' +
+    '  candidateRequestTimeoutMs: 70000,\n' +
+    '  supplementalAnalysisTimeoutMs: 30000\n' +
+    '};\n' +
+    '\n' +
+    'export function createReviewBudget({ enabled = true, maxRequests = Infinity } = {}) {\n' +
+    '  const finiteMax = Number(maxRequests);\n' +
+    '  const limit = maxRequests === Infinity ? Infinity : Math.max(0, Number.isFinite(finiteMax) ? Math.floor(finiteMax) : 0);\n' +
+    '  const state = { used: 0 };\n' +
+    '  return {\n' +
+    '    enabled: enabled === true && limit !== 0,\n' +
+    '    limit,\n' +
+    '    canRequest() { return this.enabled && (limit === Infinity || state.used < limit); },\n' +
+    '    reserve() { if (!this.canRequest()) return false; state.used += 1; return true; },\n' +
+    '    releaseOnAbort() {},\n' +
+    '    get used() { return state.used; },\n' +
+    '    get remaining() { return limit === Infinity ? Infinity : Math.max(0, limit - state.used); }\n' +
+    '  };\n' +
+    '}\n' +
+    '\n' +
+    'export const QWEN_ERROR_CODES = Object.freeze({\n' +
+    "  HTTP_ERROR: 'QWEN_HTTP_ERROR',\n" +
+    "  TIMEOUT: 'QWEN_TIMEOUT',\n" +
+    "  INVALID_RESPONSE: 'QWEN_INVALID_RESPONSE',\n" +
+    "  SEMANTIC_SCORES_INVALID: 'QWEN_SEMANTIC_SCORES_INVALID',\n" +
+    "  ABORTED: 'QWEN_ABORTED',\n" +
+    "  BACKEND_ERROR: 'QWEN_BACKEND_ERROR',\n" +
+    "  REVIEW_FAILED: 'QWEN_REVIEW_FAILED',\n" +
+    "  CANDIDATE_GENERATION_FAILED: 'QWEN_CANDIDATE_GENERATION_FAILED'\n" +
+    '});\n' +
+    '\n' +
+    '\n' +
+    'export function isAbortError(error, signal) {\n' +
+    '  return Boolean(\n' +
+    '    signal?.aborted\n' +
+    "    || error?.name === 'AbortError'\n" +
+    '    || error?.code === QWEN_ERROR_CODES.ABORTED\n' +
+    "    || error?.code === 'ABORTED'\n" +
+    "    || error?.code === 'TARGET_TRANSLATION_ABORTED'\n" +
+    "    || error?.code === 'CANDIDATE_INDEX_ABORTED'\n" +
+    "    || error instanceof DOMException && error.name === 'AbortError'\n" +
+    "    || error?.cause?.name === 'AbortError'\n" +
+    '    || error?.cause?.code === QWEN_ERROR_CODES.ABORTED\n' +
+    "    || error?.cause?.code === 'ABORTED'\n" +
+    '  );\n' +
+    '}\n' +
+    '\n' +
+    'export function normalizeAbortError(error, { stage, runId } = {}) {\n' +
+    "  const abort = new Error(error?.message || 'Operation aborted.');\n" +
+    "  abort.name = 'AbortError';\n" +
+    "  abort.code = 'ABORTED';\n" +
+    '  if (stage != null) abort.stage = stage;\n' +
+    '  if (runId != null) abort.runId = runId;\n' +
+    '  if (error != null) abort.cause = error;\n' +
+    '  return abort;\n' +
+    '}\n' +
+    '\n' +
+    'export function throwIfAbortError(error, { signal, stage, runId } = {}) {\n' +
+    '  if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage, runId });\n' +
+    '}\n' +
+    '\n' +
+    'export class QwenClientError extends Error {\n' +
+    '  constructor(code, message, { status, details, cause } = {}) {\n' +
+    '    super(message);\n' +
+    "    this.name = 'QwenClientError';\n" +
+    '    this.code = code;\n' +
+    '    if (status != null) this.status = status;\n' +
+    '    if (details != null) this.details = details;\n' +
+    '    if (cause != null) this.cause = cause;\n' +
+    '  }\n' +
+    '}\n' +
+    '\n' +
+    'function qwenError(code, message, options) {\n' +
+    '  return new QwenClientError(code, message, options);\n' +
+    '}\n' +
+    '\n' +
+    'export function qwenFallback() {\n' +
+    '  return {\n' +
+    '    directness: null,\n' +
+    '    field_relatedness: null,\n' +
+    '    domain_shift: null,\n' +
+    "    short_explanation: 'Qwen evaluation unavailable'\n" +
+    '  };\n' +
+    '}\n' +
+    '\n' +
+    'export function getInterfaceLanguage() {\n' +
+    "  return document.documentElement.lang?.startsWith('en') ? 'en' : 'ru';\n" +
+    '}\n' +
+    '\n' +
+    'export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow, primary, review = false }) {\n' +
+    '  return {\n' +
+    '    input: { language, targetMeaning, word, swow, primary, review },\n' +
+    "    system: 'You are a lexical association evaluator for an international auxiliary language project. Evaluate semantic association between target meaning and associative word. Do not generate candidate words. Do not evaluate the constructed Interal candidate form. Return only valid JSON. Use 0–100 integer scores. directness = how directly the word points to the target meaning. field_relatedness = how strongly the word belongs to the same semantic field as the target meaning. domain_shift = how strongly the word\\'s modern meaning belongs to a different competing domain.',\n" +
+    '    user: `Language: ${language}\\nTarget meaning: ${targetMeaning}\\nAssociative word: ${word}\\nSWOW evidence: ${JSON.stringify(swow || {})}\\nReview mode: ${review ? \'true\' : \'false\'}\\nPrimary evaluation: ${JSON.stringify(primary || null)}\\n\\nReturn JSON:\\n{\\n  "word": "...",\\n  "target_meaning": "...",\\n  "directness": 0-100,\\n  "field_relatedness": 0-100,\\n  "domain_shift": 0-100,\\n  "responseLanguage": "...",\\n  "short_explanation": "..."\\n}`\n' +
+    '  };\n' +
+    '}\n' +
+    '\n' +
+    'function clampIntegerOrNull(value) {\n' +
+    '  const number = finiteNumberOrNull(value);\n' +
+    '  if (number === null) return null;\n' +
+    '  return Math.max(0, Math.min(100, Math.round(number)));\n' +
+    '}\n' +
+    '\n' +
+    'function extractJsonText(raw) {\n' +
+    "  if (typeof raw !== 'string') return raw;\n" +
+    '  const fenced = raw.match(/```(?:json)?\\s*([\\s\\S]*?)\\s*```/i);\n' +
+    '  if (fenced) return fenced[1].trim();\n' +
+    "  const start = raw.indexOf('{');\n" +
+    "  const end = raw.lastIndexOf('}');\n" +
+    '  if (start !== -1 && end > start) return raw.slice(start, end + 1);\n' +
+    '  return raw.trim();\n' +
+    '}\n' +
+    '\n' +
+    'function parseQwenPayload(payload) {\n' +
+    '  const raw = payload?.analysis ?? payload?.choices?.[0]?.message?.content ?? payload?.content ?? payload?.text ?? payload;\n' +
+    '  let object;\n' +
+    '  try {\n' +
+    "    object = typeof raw === 'string' ? JSON.parse(extractJsonText(raw)) : raw;\n" +
+    '  } catch (_error) {\n' +
+    "    throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen returned invalid JSON.', { details: String(raw).slice(0, 500), cause: _error });\n" +
+    '  }\n' +
+    "  if (!object || typeof object !== 'object') throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen response is not an object.');\n" +
+    '  const parsed = {\n' +
+    '    generation: payload?.generation,\n' +
+    '    prompt: payload?.prompt,\n' +
+    '    word: object.word,\n' +
+    '    target_meaning: object.target_meaning,\n' +
+    '    directness: clampIntegerOrNull(object.directness),\n' +
+    '    field_relatedness: clampIntegerOrNull(object.field_relatedness),\n' +
+    '    domain_shift: clampIntegerOrNull(object.domain_shift),\n' +
+    "    responseLanguage: object.responseLanguage || '',\n" +
+    "    short_explanation: object.short_explanation || object.explanation || '',\n" +
+    "    model: payload?.model || payload?.kind || ''\n" +
+    '  };\n' +
+    '  if (parsed.directness == null || parsed.field_relatedness == null || parsed.domain_shift == null) {\n' +
+    "    throw qwenError(QWEN_ERROR_CODES.SEMANTIC_SCORES_INVALID, 'Qwen semantic scores are invalid.', { details: object });\n" +
+    '  }\n' +
+    '  return parsed;\n' +
+    '}\n' +
+    '\n' +
+    'async function callQwen(prompt, { review = false, signal } = {}) {\n' +
+    "  const stage = review ? 'review_qwen' : 'primary_qwen';\n" +
+    '  try {\n' +
+    '    return await withRequestDeadline(async requestSignal => {\n' +
+    '      const res = await fetch(API_CONFIG.qwenAssociationUrl, {\n' +
+    "        method: 'POST', headers: { 'Content-Type': 'application/json' },\n" +
+    "        body: JSON.stringify({ task: 'associative_word_score', interfaceLanguage: getInterfaceLanguage(), payload: {\n" +
+    '          language: prompt.input?.language, targetMeaning: prompt.input?.targetMeaning,\n' +
+    '          word: prompt.input?.word, swow: prompt.input?.swow, review, primary: prompt.input?.primary || null\n' +
+    '        } }), signal: requestSignal\n' +
+    '      });\n' +
+    "      const payload = await res.json().catch(error => { throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen returned invalid JSON.', { cause: error }); });\n" +
+    '      if (!res.ok || payload?.ok === false || payload?.errorCode) {\n' +
+    "        throw qwenError(payload?.errorCode || (res.ok ? QWEN_ERROR_CODES.BACKEND_ERROR : QWEN_ERROR_CODES.HTTP_ERROR), 'Qwen backend error.', { status: res.status, details: payload });\n" +
+    '      }\n' +
+    '      return payload;\n' +
+    '    }, { signal, timeoutMs: QWEN_RUNTIME_CONFIG.requestTimeoutMs });\n' +
+    '  } catch (error) {\n' +
+    "    if (error.code === 'REQUEST_TIMEOUT') throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen request timed out.', { cause: error });\n" +
+    '    if (signal?.aborted || isAbortError(error)) throw normalizeAbortError(error, { stage });\n' +
+    '    if (error instanceof QwenClientError) throw error;\n' +
+    "    throw qwenError(QWEN_ERROR_CODES.HTTP_ERROR, 'Qwen request failed.', { cause: error });\n" +
+    '  }\n' +
+    '}\n' +
+    '\n' +
+    'export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false, primary = null, signal } = {}) {\n' +
+    '  const prompt = buildQwenAssociationPrompt({ language, targetMeaning, word, swow, primary, review });\n' +
+    '  const fallbackModel = review ? API_CONFIG.qwenReviewModel : API_CONFIG.qwenPrimaryModel;\n' +
+    '  const parsed = parseQwenPayload(await callQwen(prompt, {\n' +
+    '    review,\n' +
+    '    signal\n' +
+    '  }));\n' +
+    '  return { ...parsed, model: parsed.model || fallbackModel };\n' +
+    '}\n' +
+    '\n' +
+    "const CONTROL_LANGUAGE_CODES = Object.freeze(['en', 'de', 'fr', 'es', 'it', 'ru']);\n" +
+    "const QWEN_CANDIDATE_DECISIONS = new Set(['keep', 'remove_duplicate', 'remove_irrelevant', 'remove_wrong_language']);\n" +
+    'const QWEN_CANDIDATE_CHECKS = Object.freeze([\n' +
+    "  'language_match',\n" +
+    "  'dictionary_lemma',\n" +
+    "  'root_relation',\n" +
+    "  'semantic_relevance',\n" +
+    "  'distinct_model'\n" +
+    ']);\n' +
+    'const REQUIRED_QWEN_CANDIDATE_CHECKS = Object.freeze([\n' +
+    "  'language_match',\n" +
+    "  'dictionary_lemma',\n" +
+    "  'root_relation',\n" +
+    "  'distinct_model'\n" +
+    ']);\n' +
+    '\n' +
+    'function normalizeCandidateWord(value, maxLength = 80) {\n' +
+    "  const word = typeof value === 'string' ? value.trim().normalize('NFC') : '';\n" +
+    "  return word && word.length <= maxLength && !/[\\r\\n]/.test(word) ? word : '';\n" +
+    '}\n' +
+    '\n' +
+    'function normalizeCandidateChecks(value) {\n' +
+    "  if (!value || typeof value !== 'object' || Array.isArray(value)) return null;\n" +
+    '  const checks = {};\n' +
+    '  for (const key of QWEN'... 38504 more characters,
+  expected: /AbortController/,
+  operator: 'match',
+  diff: 'simple'
+}
+
+Node.js v24.19.0
+Test failed: tests/associativvordes-error-handling.test.mjs exited with code 1
