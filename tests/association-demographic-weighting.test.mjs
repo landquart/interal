@@ -47,7 +47,9 @@ assert.equal(result.speakersTotal, enN + deN, 'denominator contains only represe
 assert.equal(result.weightedScoreTotal, enN * 40 + deN * 80);
 assert.equal(result.finalAssociation, (enN * 40 + deN * 80) / (enN + deN));
 assert.ok(result.finalAssociation < 60, 'the language with the larger N has the stronger influence');
-assert.equal(result.languageScores[2].speakers, undefined, 'a language without selected derivatives is not represented');
+assert.equal(result.languageScores[2].speakers, CONTROL_LANGUAGE_DEMOGRAPHICS.fr.speakers, 'AC-002: reference N remains available outside represented');
+assert.equal(result.languageScores[2].includedInFinal, false);
+assert.equal(result.languageScores[2].weightedScore, null);
 assert.deepEqual(result.languageAverageP, { en: 40, de: 80 });
 
 const withAssociationThreshold = calculateFinalAssociation({

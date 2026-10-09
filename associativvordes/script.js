@@ -380,7 +380,7 @@ const TEXT_I18N = {
     }
 
     function formatFixed(value, digits) {
-      if (value == null || value === '' || !Number.isFinite(Number(value))) return '—';
+      if (finiteOrNull(value) === null) return '—';
       value = Number(value);
       return new Intl.NumberFormat(currentLocale(), {
         minimumFractionDigits: digits,
@@ -389,7 +389,7 @@ const TEXT_I18N = {
     }
 
     function formatPercent(value, digits = 0) {
-      if (value == null || value === '' || !Number.isFinite(Number(value))) return '—';
+      if (finiteOrNull(value) === null) return '—';
       return `${formatFixed(value, digits)}%`;
     }
 
@@ -443,13 +443,7 @@ const TEXT_I18N = {
     }
 
     function wordWeight(item) {
-      const final = Number(item.final_score);
-      if (item.final_score != null && Number.isFinite(final)) return final;
-
-      const analysisFinal = Number(item.analysis?.final_score);
-      if (item.analysis?.final_score != null && Number.isFinite(analysisFinal)) return analysisFinal;
-
-      return null;
+      return finiteOrNull(item.final_score) ?? finiteOrNull(item.analysis?.final_score);
     }
 
     function groupByBestModel(items, maxModels = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, langCode = 'en') {
@@ -703,6 +697,7 @@ const TEXT_I18N = {
           buttonTexts: {
             start: currentLang() === 'en' ? 'Calculating...' : 'Расчёт...',
             done: currentLang() === 'en' ? 'Done' : 'Готово',
+            review: currentLang() === 'en' ? 'Mandatory review pending' : 'Ожидается обязательная проверка',
             warnings: textGroup('errors').completedWithWarnings,
             error: currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта'
           },
@@ -1017,8 +1012,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       resultBox.innerHTML = `
         <div class="metric is-updated"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
         <div class="metric"><strong>${formatPercent(result.averageAssociation, 1)}</strong><span>${labels.averageAssociation}</span></div>
-        <div class="metric"><strong>${formatFixed(result.coverage * 100, 2)}%</strong><span>${currentLang() === 'en' ? 'Weighted coverage' : 'Взвешенный охват'}</span></div><div class="metric"><strong>${numberFormat.format(result.weightedScoreTotal)}</strong><span>${labels.totalAssociation}</span></div>
-        <div class="metric"><strong>${numberFormat.format(result.speakersTotal)}</strong><span>${labels.speakersTotal}</span></div>
+        <div class="metric"><strong>${formatFixed(result.coverage * 100, 2)}%</strong><span>${currentLang() === 'en' ? 'Weighted coverage' : 'Взвешенный охват'}</span></div><div class="metric"><strong>${formatCount(result.weightedScoreTotal, currentLang())}</strong><span>${labels.totalAssociation}</span></div>
+        <div class="metric"><strong>${formatCount(result.speakersTotal, currentLang())}</strong><span>${labels.speakersTotal}</span></div>
         <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
         <p class="muted">${currentLang() === 'en' ? 'Languages: found / selected / scored P / verified A / included' : 'Языки: найдены / выбраны / рассчитан P / подтверждена A / включены'}: ${result.counts.foundLanguages} / ${result.counts.selectedLanguages} / ${result.counts.scoredPLanguages} / ${result.counts.verifiedALanguages} / ${result.counts.includedLanguages}</p>

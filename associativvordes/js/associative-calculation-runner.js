@@ -463,7 +463,7 @@ export async function runAssociativeCalculation({
       emit('render:save_warning');
     }
     currentState.globalStatus = finalGlobalStatus(currentState);
-    button?.success?.(buttonToken, currentState.globalStatus === 'completed_with_warnings' ? labels.warnings : labels.done);
+    button?.success?.(buttonToken, finalResult?.reviewRequired ? (dependencies.buttonTexts?.review || 'Review required') : currentState.globalStatus === 'completed_with_warnings' ? labels.warnings : labels.done);
     emit('button:done');
     emit('run:end');
     return { ok: true, state: currentState, events, selectedModels };

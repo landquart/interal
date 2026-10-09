@@ -1,3 +1,4 @@
+import { withRequestDeadline } from '../../shared/request-deadline.mjs';
 import { buildSearchForm, findRootMatch } from './root-matcher.js';
 import { acceptAffixBoundaryMatch, STATIC_MANIFEST_VERSION } from './affix-boundary-index.js';
 import { loadStaticCandidateEntries, validateStaticManifest } from './candidate-static-search.js';
@@ -90,12 +91,17 @@ function normalizeBaseUrl(baseUrl) { const value = String(baseUrl || ''); return
 function joinUrl(baseUrl, path) { return `${normalizeBaseUrl(baseUrl)}${path}`; }
 
 async function fetchJson(fetchImpl, url, signal, code, language, shard) {
-  let response;
-  try { response = await fetchImpl(url, signal ? { signal } : {}); }
-  catch (error) { if (isAbortError(error)) throw abortError(error); throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: error }); }
-  if (!response?.ok) throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: response });
-  try { return await response.json(); }
-  catch (error) { throw makeError(code, `Candidate index JSON parse failed: ${url}`, { language, shard, cause: error }); }
+  try {
+    return await withRequestDeadline(async requestSignal => {
+      const response = await fetchImpl(url, { signal: requestSignal });
+      if (!response?.ok) throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: response });
+      return response.json();
+    }, { signal });
+  } catch (error) {
+    if (signal?.aborted || isAbortError(error)) throw abortError(error);
+    if (error instanceof CandidateIndexError) throw error;
+    throw makeError(error.code === 'REQUEST_TIMEOUT' ? 'INDEX_REQUEST_TIMEOUT' : code, `Candidate index request failed: ${url}`, { language, shard, cause: error });
+  }
 }
 
 function isPlainObject(value) { return value && typeof value === 'object' && !Array.isArray(value); }

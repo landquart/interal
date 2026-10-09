@@ -1,3 +1,4 @@
+import { withRequestDeadline } from '../../shared/request-deadline.mjs';
 import { buildSearchForm } from './search-normalizer.js';
 
 export const FAMILY_INDEX_VERSION = '5';
@@ -16,8 +17,8 @@ const isRuntimeCorpusMember = member => member?.corpus_quality?.status !== 'reje
 // A .gz asset may be raw gzip or already decoded by HTTP Content-Encoding.
 // Keep this transport shared by the direct loader and the page's injected fetch.
 export function createFamilyIndexFetch(fetchImpl = globalThis.fetch?.bind(globalThis)) {
-  return async (url, options) => {
-    const response = await fetchImpl(url, options);
+  return async (url, options = {}) => withRequestDeadline(async signal => {
+    const response = await fetchImpl(url, { ...options, signal });
     if (!response.ok) throw new Error(`Family index request failed: ${response.status}`);
     if (!url.endsWith('.gz') || !response.body) return response.json();
     const bytes = new Uint8Array(await response.arrayBuffer());
@@ -25,7 +26,7 @@ export function createFamilyIndexFetch(fetchImpl = globalThis.fetch?.bind(global
     if (typeof DecompressionStream !== 'function') throw new Error('Gzip decompression is unavailable');
     const stream = new Response(bytes).body.pipeThrough(new DecompressionStream('gzip'));
     return JSON.parse(await new Response(stream).text());
-  };
+  }, { signal: options.signal });
 }
 
 export class FamilyIndexLoader {

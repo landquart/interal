@@ -1,3 +1,4 @@
+import { withRequestDeadline } from '../../shared/request-deadline.mjs';
 import { METHODOLOGY_VERSION } from '../../shared/methodology-calculation.mjs';
 import { BASE_CATEGORY_WEIGHTS, CATEGORY_ORDER, FREQUENCY_LIST_BASE_PATH, LANGUAGE_SOURCES } from './config-frequency-sources.js';
 import { normalizeLanguageSource } from './language-source-descriptor.js';
@@ -66,16 +67,17 @@ async function loadFrequencyFile(language, fileName, { signal, basePath = FREQUE
   const key = `${basePath}/${language}/${fileName}`;
   throwIfAborted(signal, 'frequency_fetch');
   if (frequencyCache.has(key)) return frequencyCache.get(key);
-  let response;
+  let payload;
   try {
-    response = await fetch(sourceUrl(language, fileName, basePath), { cache: 'force-cache', signal });
+    payload = await withRequestDeadline(async requestSignal => {
+      const response = await fetch(sourceUrl(language, fileName, basePath), { cache: 'force-cache', signal: requestSignal });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.json();
+    }, { signal });
   } catch (error) {
     if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'frequency_fetch' });
     throw error;
   }
-  throwIfAborted(signal, 'frequency_fetch');
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const payload = await response.json();
   throwIfAborted(signal, 'frequency_parse');
   const normalized = normalizeFrequencyData(payload);
   frequencyCache.set(key, normalized);

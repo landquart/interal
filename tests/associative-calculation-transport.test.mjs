@@ -27,6 +27,6 @@ for(const bytes of [gzipSync(JSON.stringify({ok:1})),new TextEncoder().encode(JS
 const bad=createFamilyIndexFetch(async()=>new Response('bad',{status:503}));
 await assert.rejects(()=>bad('/manifest.json'),/503/);
 const abort=new AbortController();abort.abort();
-const cancellation=createFamilyIndexFetch(async(_url,options)=>{assert.equal(options.signal,abort.signal);throw new DOMException('aborted','AbortError');});
+const cancellation=createFamilyIndexFetch(async(_url,options)=>{assert.ok(options.signal instanceof AbortSignal);throw new DOMException('aborted','AbortError');});
 await assert.rejects(()=>cancellation('/manifest.json',{signal:abort.signal}),e=>e.name==='AbortError');
 console.log('AC-001/AC-012 page transport regressions passed');

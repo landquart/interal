@@ -1,3 +1,5 @@
+import { finiteNumberOrNull } from '../../shared/finite-number.mjs';
+import { withRequestDeadline } from '../../shared/request-deadline.mjs';
 import { API_CONFIG } from './swow-client.js';
 import { buildSearchForm } from './search-normalizer.js';
 import { lexicalModelDescriptor, compareFrequencyRepresentatives, compareRootMatchThenFrequency } from './candidate-model-family.js';
@@ -121,9 +123,8 @@ export function buildQwenAssociationPrompt({ language, targetMeaning, word, swow
 }
 
 function clampIntegerOrNull(value) {
-  if (value == null || value === '') return null;
-  const number = Number(value);
-  if (!Number.isFinite(number)) return null;
+  const number = finiteNumberOrNull(value);
+  if (number === null) return null;
   return Math.max(0, Math.min(100, Math.round(number)));
 }
 
@@ -165,53 +166,28 @@ function parseQwenPayload(payload) {
 }
 
 async function callQwen(prompt, { review = false, signal } = {}) {
-  if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: review ? 'review_qwen' : 'primary_qwen' });
-  const timeoutController = new AbortController();
-  const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen request timeout')), QWEN_RUNTIME_CONFIG.requestTimeoutMs);
-  const abortController = new AbortController();
-  const abort = () => abortController.abort(signal?.reason);
-  if (signal) signal.addEventListener('abort', abort, { once: true });
-  const timeoutAbort = () => abortController.abort(timeoutController.signal.reason);
-  timeoutController.signal.addEventListener('abort', timeoutAbort, { once: true });
-  let res;
+  const stage = review ? 'review_qwen' : 'primary_qwen';
   try {
-    res = await fetch(API_CONFIG.qwenAssociationUrl, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        task: 'associative_word_score',
-        interfaceLanguage: getInterfaceLanguage(),
-        payload: {
-          language: prompt.input?.language,
-          targetMeaning: prompt.input?.targetMeaning,
-          word: prompt.input?.word,
-          swow: prompt.input?.swow,
-          review,
-          primary: prompt.input?.primary || null
-        }
-      }),
-      signal: abortController.signal
-    });
+    return await withRequestDeadline(async requestSignal => {
+      const res = await fetch(API_CONFIG.qwenAssociationUrl, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task: 'associative_word_score', interfaceLanguage: getInterfaceLanguage(), payload: {
+          language: prompt.input?.language, targetMeaning: prompt.input?.targetMeaning,
+          word: prompt.input?.word, swow: prompt.input?.swow, review, primary: prompt.input?.primary || null
+        } }), signal: requestSignal
+      });
+      const payload = await res.json().catch(error => { throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen returned invalid JSON.', { cause: error }); });
+      if (!res.ok || payload?.ok === false || payload?.errorCode) {
+        throw qwenError(payload?.errorCode || (res.ok ? QWEN_ERROR_CODES.BACKEND_ERROR : QWEN_ERROR_CODES.HTTP_ERROR), 'Qwen backend error.', { status: res.status, details: payload });
+      }
+      return payload;
+    }, { signal, timeoutMs: QWEN_RUNTIME_CONFIG.requestTimeoutMs });
   } catch (error) {
-    if (timeoutController.signal.aborted) throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen request timed out.', { cause: error });
-    if (signal?.aborted || isAbortError(error)) throw normalizeAbortError(error, { stage: review ? 'review_qwen' : 'primary_qwen' });
+    if (error.code === 'REQUEST_TIMEOUT') throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen request timed out.', { cause: error });
+    if (signal?.aborted || isAbortError(error)) throw normalizeAbortError(error, { stage });
+    if (error instanceof QwenClientError) throw error;
     throw qwenError(QWEN_ERROR_CODES.HTTP_ERROR, 'Qwen request failed.', { cause: error });
-  } finally {
-    clearTimeout(timeoutId);
-    signal?.removeEventListener?.('abort', abort);
-    timeoutController.signal.removeEventListener('abort', timeoutAbort);
   }
-  if (!res.ok) {
-    let details = '';
-    try {
-      const errorPayload = await res.json();
-      details = errorPayload.details || errorPayload.error || JSON.stringify(errorPayload);
-    } catch {}
-    throw qwenError(QWEN_ERROR_CODES.HTTP_ERROR, 'Qwen HTTP error.', { status: res.status, details });
-  }
-  const payload = await res.json().catch(error => { throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen returned invalid JSON.', { cause: error }); });
-  if (payload?.ok === false || payload?.errorCode) throw qwenError(payload.errorCode || QWEN_ERROR_CODES.BACKEND_ERROR, 'Qwen backend error.', { details: payload });
-  return payload;
 }
 
 export async function getQwenAssociationScores({ language, targetMeaning, word, swow, review = false, primary = null, signal } = {}) {
@@ -377,35 +353,22 @@ function qwenCandidateGenerationUrl() {
 
 export async function getQwenCandidateSuggestions({ root, targetMeaning, currentTopModels = {}, knownCandidates = {}, knownModelKeys = {}, validationStage = 'initial', signal } = {}) {
   if (signal?.aborted) throw normalizeAbortError(signal.reason, { stage: 'candidate_audit' });
-  const timeoutController = new AbortController();
-  const timeoutId = setTimeout(() => timeoutController.abort(new Error('Qwen candidate request timeout')), QWEN_RUNTIME_CONFIG.candidateRequestTimeoutMs);
-  const abortController = new AbortController();
-  const forwardAbort = () => abortController.abort(signal?.reason);
-  const timeoutAbort = () => abortController.abort(timeoutController.signal.reason);
-  if (signal) signal.addEventListener('abort', forwardAbort, { once: true });
-  timeoutController.signal.addEventListener('abort', timeoutAbort, { once: true });
-  let response;
+  let response, payload;
   try {
-    response = await fetch(qwenCandidateGenerationUrl(), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ root, targetMeaning, currentTopModels, knownCandidates, knownModelKeys, validationStage, interfaceLanguage: getInterfaceLanguage() }),
-      signal: abortController.signal
-    });
+    ({ response, payload } = await withRequestDeadline(async requestSignal => {
+      const response = await fetch(qwenCandidateGenerationUrl(), {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ root, targetMeaning, currentTopModels, knownCandidates, knownModelKeys, validationStage, interfaceLanguage: getInterfaceLanguage() }),
+        signal: requestSignal
+      });
+      const payload = await response.json().catch(error => { throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen candidate generation returned invalid JSON.', { cause: error }); });
+      return { response, payload };
+    }, { signal, timeoutMs: QWEN_RUNTIME_CONFIG.candidateRequestTimeoutMs }));
   } catch (error) {
-    if (timeoutController.signal.aborted) throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen candidate generation timed out.', { cause: error });
+    if (error.code === 'REQUEST_TIMEOUT') throw qwenError(QWEN_ERROR_CODES.TIMEOUT, 'Qwen candidate generation timed out.', { cause: error });
     if (signal?.aborted || isAbortError(error)) throw normalizeAbortError(error, { stage: 'candidate_audit' });
+    if (error instanceof QwenClientError) throw error;
     throw qwenError(QWEN_ERROR_CODES.CANDIDATE_GENERATION_FAILED, 'Qwen candidate generation failed.', { cause: error });
-  } finally {
-    clearTimeout(timeoutId);
-    signal?.removeEventListener?.('abort', forwardAbort);
-    timeoutController.signal.removeEventListener('abort', timeoutAbort);
-  }
-  let payload;
-  try {
-    payload = await response.json();
-  } catch (error) {
-    throw qwenError(QWEN_ERROR_CODES.INVALID_RESPONSE, 'Qwen candidate generation returned invalid JSON.', { cause: error });
   }
   if (!response.ok || payload?.ok === false) throw qwenError(payload?.errorCode || QWEN_ERROR_CODES.CANDIDATE_GENERATION_FAILED, 'Qwen candidate generation backend error.', { status: response.status, details: payload });
   const audit = payload.audit || {
@@ -425,7 +388,7 @@ export async function getQwenCandidateSuggestions({ root, targetMeaning, current
 }
 
 function hasFiniteScore(value) {
-  return value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value));
+  return finiteNumberOrNull(value) !== null;
 }
 
 function candidateFinalScore(candidate) {

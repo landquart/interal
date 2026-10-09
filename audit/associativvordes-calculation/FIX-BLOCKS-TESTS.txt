@@ -1,0 +1,55 @@
+Associative production pipeline integration tests passed.
+✔ tests/associative-atomic-pipeline.test.mjs (122.868803ms)
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (1.093466ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (1.151773ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.688941ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (3.513477ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (1.879979ms)
+✔ AC-003: maximum P and same representative A; missing A and required review remain distinct (2.878091ms)
+✔ AC-002/003/010 regul fixed fixture: five derivatives per language, positive P and pending review (18.134396ms)
+✔ AC-002/010: complete regul fixture uses unchanged direct demographic formulas (0.651761ms)
+✔ AC-003/010: partial languages and exact acceptance boundaries (1.208073ms)
+✔ AC-002: supported empty rows have N; unknown represented language throws (0.819954ms)
+✔ AC-005: numeric persistence keeps absence, zero and review diagnostics (1.51521ms)
+✔ AC-008: deadline includes an unresponsive response body and cancellation wins late results (13.120948ms)
+✔ AC-009: backend rejects incomplete scores, preserves true zero and upstream 403 (4.81887ms)
+✔ AC-008: backend timeout also covers upstream body (4.969498ms)
+AC-001/AC-012 page transport regressions passed
+✔ tests/associative-calculation-transport.test.mjs (572.235372ms)
+ok - manifest loads once and repeated calls share cache
+ok - concurrent manifest calls use one promise
+ok - loads only needed shard for root and not the whole language
+ok - repeat shard request uses cache
+ok - different languages have different shard cache keys
+ok - missing language returns LANGUAGE_NOT_INDEXED
+ok - missing shard returns SHARD_NOT_LISTED
+ok - manifest HTTP error returns MANIFEST_FETCH_FAILED
+ok - damaged manifest is rejected
+ok - incompatible version is rejected
+ok - incompatible normalizer_version is rejected
+ok - shard HTTP error returns SHARD_FETCH_FAILED
+ok - damaged shard is rejected and not returned as empty array
+ok - normalizes legacy fixture source metadata without deriving category from id
+ok - source category is required even when legacy id contains one
+ok - entry without sources is rejected
+ok - non-finite frequency_score is rejected
+ok - AbortSignal stops operation without poisoning cache
+ok - passes AbortSignal to fetch options
+ok - abort cancels the mock shard request and returns ABORTED
+ok - aborted shard is not cached and retry performs a new fetch
+ok - completed shard cache survives an aborted consumer
+ok - completed manifest cache is shared after successful load
+ok - diagnostics count fetches and cache hits
+ok - special roots add _other only when needed and skip if not listed
+ok - production base URL is relative and overridable
+✔ tests/associative-candidate-index-loader.test.mjs (162.214965ms)
+associativvordes persistence tests passed
+✔ tests/associativvordes-persistence.test.mjs (113.131948ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 588.191441
