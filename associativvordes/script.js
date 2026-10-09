@@ -683,7 +683,7 @@ const TEXT_I18N = {
           .filter(item => item.selected && Number.isFinite(wordWeight(item)))
           .sort(compareFinalModelCandidates)
           .slice(0, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
-        return calculateLanguageScore(candidates, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight });
+        return { ...calculateLanguageScore(selected, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight }), foundCount: candidates.length, selectedCount: candidates.filter(item => item.selected).length };
       };
       const result = await runAssociativeCalculation({
         input: { root, meaning: targetMeaning, targetMeaning, elementType, maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE },
@@ -796,10 +796,11 @@ const TEXT_I18N = {
           finalScore: {
             calculate: current => {
               const languageResults = LANGUAGES.map(language => {
-                const candidates = current.languages[language.code] || [];
+                const allCandidates = current.languages[language.code] || [];
+                const candidates = allCandidates.filter(item => item.selected && Number.isFinite(wordWeight(item)));
                 const score = calculateLanguageScore(candidates, { maxModels: current.maxModels, scoreGetter: wordWeight });
                 const semanticConfirmed = Number.isFinite(Number(score.normalized)) && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
-                return { ...score, semanticConfirmed };
+                return { ...score, semanticConfirmed, foundCount: allCandidates.length, selectedCount: allCandidates.filter(item => item.selected).length };
               });
               return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: current.languageStatuses });
             }
@@ -831,16 +832,16 @@ const TEXT_I18N = {
     }
 
     function calculateLanguage(langCode) {
-      return calculateLanguageScore(state.languages[langCode] || [], { maxModels: state.maxModels, scoreGetter: wordWeight });
+      return calculateLanguageScore(scoringCandidates(langCode), { maxModels: state.maxModels, scoreGetter: wordWeight });
     }
 
     function calculateFinal() {
       const languageResults = LANGUAGES.map(l => {
-        const candidates = state.languages[l.code] || [];
+        const candidates = scoringCandidates(l.code);
         const score = calculateLanguageScore(candidates, { maxModels: state.maxModels, scoreGetter: wordWeight });
         const semanticConfirmed = Number.isFinite(Number(score.normalized))
           && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
-        return { ...score, semanticConfirmed };
+        return { ...score, semanticConfirmed, foundCount: (state.languages[l.code] || []).length, selectedCount: (state.languages[l.code] || []).filter(item => item.selected).length };
       });
       return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: state.languageStatuses });
     }

@@ -77,3 +77,13 @@ test('AC-005: numeric persistence keeps absence, zero and review diagnostics', (
   assert.equal(legacy.languages.en[1].final_score, null); assert.equal(legacy.languages.en[1].selected, false);
   assert.ok(legacy.languages.en[1].warnings.includes('legacy_numeric_recalculation_required'));
 });
+
+test('AC-010/015: actual page adapter counts all found rows without changing five-model scoring', async () => {
+  const { readFile }=await import('node:fs/promises'); const vm=await import('node:vm');
+  const source=await readFile('associativvordes/script.js','utf8');
+  const start=source.indexOf('    function calculateFinal()'); const end=source.indexOf('    function renderTabs()',start);
+  const all=Array.from({length:7},(_,i)=>item(70-i,85,false,`regul-${i}`)); all[6].selected=false;
+  const context={LANGUAGES:[CONTROL_LANGUAGES[0]],state:{languages:{en:all},languageStatuses:{en:{status:'completed'}},maxModels:5},scoringCandidates:()=>all.filter(x=>x.selected).slice(0,5),calculateLanguageScore,calculateFinalAssociation,wordWeight:x=>x.final_score};
+  vm.createContext(context); vm.runInContext(source.slice(start,end),context);
+  const result=context.calculateFinal(); assert.equal(result.languageScores[0].foundCount,7); assert.equal(result.languageScores[0].selectedCount,6); assert.equal(result.languageScores[0].count,5); assert.equal(result.languageScores[0].normalized,70);
+});

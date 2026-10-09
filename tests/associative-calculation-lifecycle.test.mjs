@@ -47,3 +47,16 @@ test('AC-004: index failure, all Qwen failures and no candidates remain distinct
   const result=await runAssociativeCalculation({input:{root:'regul'},dependencies:{languages:[{code:'en'},{code:'de'},{code:'fr'}],waitForPaint:async()=>{},candidateIndexLoader:{load:async lang=>{if(lang.code==='en')throw new Error('offline');return lang.code==='de'?[{word:'regulieren',frequency_score:50}]:[];}},candidateAnalyzer:{analyze:async(_l,item)=>({...item,final_score:null,analysisStatus:'error',analysis:{status:'error'}})}}});
   assert.equal(result.state.languageStatuses.en.status,'index_error'); assert.equal(result.state.languageStatuses.de.status,'qwen_error'); assert.equal(result.state.languageStatuses.fr.status,'no_candidates');
 });
+
+test('AC-006: actual page analyzeItem discards a late response after candidate edit', async () => {
+  const { readFile } = await import('node:fs/promises'); const vm = await import('node:vm');
+  const source=await readFile('associativvordes/script.js','utf8');
+  const start=source.indexOf('    async function analyzeItem('); const end=source.indexOf('    function deleteItem(',start);
+  const pending=deferred(), entered=deferred(); const item={word:'regulation',selected:false}; const state={root:'regul',targetMeaning:'rule',languages:{en:[item]},languageStatuses:{}};
+  let renders=0, saves=0;
+  const context={state,activeRunId:1,manualTasks:createCandidateTaskRegistry(),normalizeText:x=>x,withModelIdentity:()=>({}),isCurrentRun:id=>id===1,renderAll:()=>renders++,getRunTargetTranslations:async()=>({}),incrementDiagnostic:()=>{},analyzeAssociativeWord:()=>{entered.resolve();return pending.promise;},createReviewBudget:()=>({}),QWEN_RUNTIME_CONFIG:{},isAbortError:()=>false,recordQwenUsedModels:()=>{},finiteOrNull:x=>x,window:{InteralFormDraft:{save:()=>saves++}}};
+  vm.createContext(context); vm.runInContext(source.slice(start,end),context);
+  const work=context.analyzeItem('en',0); await entered.promise; item.word='regular';
+  pending.resolve({frequency:{frequency_score:70},association:{association_score:80},final_score:75}); await work;
+  assert.equal(item.analysis,undefined); assert.equal(item.selected,false); assert.equal(renders,1); assert.equal(saves,0);
+});
