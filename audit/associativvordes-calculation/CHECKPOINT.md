@@ -1,3 +1,21 @@
+# Актуальная контрольная точка — этап 03
+
+Дата: 09.10.2026 UTC. Вердикт **FAIL**. Основной отчёт: [VERIFICATION.md](VERIFICATION.md). Исторический этап02 ниже сохранён; его утверждение об исправлении всех технических IDs заменено независимой матрицей VERIFICATION §3.
+
+- Проверенный canonical HEAD исправлений: `aac1ef8da3baf06e3e00ca2bffb18cccd40d8c73`; полный tree `bf21fea4d69c1021f0d7a8416396de9547e2456b`; последний code SHA `e08a573e829329e042b5cadef70dd18a2bb857b3`.
+- Baseline/production: `b266c92f00d111c1df53da05221fefac0db1dc3a`. Исправления draft PR #659, audit PR #658. Production/main не изменялись.
+- Ветка верификации `verify/associativvordes-calculation-20261009`; документы/диагностические материалы отдельным commit поверх aac1ef8. SHA этого отчётного коммита получать через `git rev-parse HEAD`, не записывать самоссылку внутрь него.
+- AC001/002/005/007/008: подтверждено; AC003/004/006/009/010/012: частично; AC011/013/014/015: открыты. Полная доказательная матрица и строки кода в VERIFICATION.
+- Independent Decimal A=73, P=69.71445715060489, complete regul FA=64.03319270647122 совпали. Baseline fixed regul воспроизведён с N «не число»; fixed complete и mandatory-review cases разделены.
+- Target tests20/20, provenance18/18, top-level84/85; npm test и GitHub CI красные AC014, baseline ошибка подтверждена. Browser CLI без Chromium; реальный cloud Chrome preview успешно проверен.
+- Live regul/правило: 2 curated слова каждого языка, N корректны; primary P/A en/it/ru есть, review QWEN_UPSTREAM_HTTP_ERROR; de/fr/es primary failure. Нет успешного final FA. Production bug не объявлен исправленным.
+- V001 missing_P/primaryA теряются page prefilter; V002 late manual response снимает пользовательский deselect; V003 aborted оставляет intermediate языки; V004 реальные рассчитанные строки pending; V005 предлог идёт root route. V006 exact-family proof/полнота не подтверждены.
+- Методология, demographics, v5/v6 snapshots и функциональный код этапом03 не редактировались. Все изменения ограничены audit/associativvordes-calculation/.
+
+Следующий этап: исправить V001–005 отдельными блоками/tests, решить upstream review и AC014, отдельно подтвердить V006/методологические AC011/013/015. Повторить independent scripts и настоящий browser, не выдавать успешные mocks за live acceptance. Merge и production promotion запрещены текущим этапом.
+
+---
+
 # Актуальная контрольная точка — этап 02
 
 Дата: 09.10.2026 UTC. Ветка: `fix/associativvordes-calculation-20261009`. Основной отчёт: [FIX-REPORT.md](FIX-REPORT.md), статусы [ISSUES.md](ISSUES.md). Разделы исходного аудита ниже являются историческими снимками этапа 01 и промежуточных блоков.

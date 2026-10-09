@@ -1,0 +1,25 @@
+FILE modal-motion-runtime.test.mjs
+Modal motion runtime tests passed
+
+FILE modal-motion.test.mjs
+Modal motion tests passed
+
+FILE persistence-helper.test.mjs
+persistence-helper tests passed
+ Saved page state is invalid: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at Object.restoreDraft [as restore] (evalmachine.<anonymous>:931:22)
+    at file:///workspace/scratch/27d7adcfbebe/interal/tests/persistence-helper.test.mjs:50:44
+
+FILE registry-altervordes-ui.test.mjs
+Alter vordes registry UI test passed.
+
+FILE target-meaning-translator.test.mjs
+
+FILE ui-motion-components.test.mjs
+UI motion components tests passed
+
+FILE vercel-associative-index-gate.test.mjs
+Vercel associative index deployment gate tests passed
+
+REMAINING {"pass":7,"fail":0}
