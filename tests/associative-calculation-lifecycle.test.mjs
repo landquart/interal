@@ -96,7 +96,7 @@ test('V-002: actual page deselection cancels late manual analysis', async () => 
   const context = {
     state, activeRunId: 1, manualTasks: createCandidateTaskRegistry(),
     normalizeText: x => x, withModelIdentity: () => ({}), isCurrentRun: id => id === 1,
-    renderAll: () => {}, invalidateFinalCalculation: () => {},
+    renderAll: () => {}, invalidateFinalCalculation: () => {}, inferModel: () => '',
     updateCandidate: (s, language, index, key, value) => { s.languages[language][index][key] = value; },
     getRunTargetTranslations: async () => ({}), incrementDiagnostic: () => {},
     analyzeAssociativeWord: () => { entered.resolve(); return pending.promise; },
