@@ -1,6 +1,7 @@
 import { classifyScore, normalizeLanguageStatus } from './association-analyzer.js';
+import { finiteNumberOrNull } from '../../shared/finite-number.mjs';
 export function formatMetric(value, digits = 1) {
-  if (value == null || !Number.isFinite(Number(value))) return '—';
+  if (finiteNumberOrNull(value) === null) return '—';
   return Number(value).toFixed(digits);
 }
 
@@ -71,7 +72,7 @@ export function summarizeCandidateSources(sources = []) {
 }
 
 export function formatSimilarity(value, digits = 1) {
-  if (value == null || !Number.isFinite(Number(value))) return '—';
+  if (finiteNumberOrNull(value) === null) return '—';
   return `${(Number(value) * 100).toFixed(digits)}%`;
 }
 
@@ -131,4 +132,24 @@ export function languageStatusLabel(statusEntry, lang = 'ru', { short = false } 
 export function swowLabel(swow) { return swow?.target_to_word?.found || swow?.word_to_target?.found ? 'SWOW direct' : 'no direct SWOW'; }
 export function resultRowClasses(result) {
   return [Number(result.final_score) >= 70 ? 'is-high-final' : '', Number(result.association?.domain_shift) >= 65 ? 'is-high-domain-shift' : '', result.association?.directness == null ? 'is-qwen-missing' : '', (!result.swow?.target_to_word?.found && !result.swow?.word_to_target?.found) ? 'is-swow-missing' : ''].filter(Boolean).join(' ');
+}
+
+export function formatCount(value, lang = 'ru') {
+  const number = finiteNumberOrNull(value);
+  return number === null ? '—' : new Intl.NumberFormat(lang, { maximumFractionDigits: 2 }).format(number);
+}
+
+export function renderLanguageCalculationRows(rows = [], names = {}, lang = 'ru') {
+  const reasons = lang === 'en' ? {
+    review_required: 'Mandatory review pending', missing_A: 'A is missing', missing_P: 'P is missing'
+  } : {
+    review_required: 'Ожидается обязательная проверка', missing_A: 'Отсутствует A', missing_P: 'Отсутствует P'
+  };
+  return rows.map(item => {
+    const reasonText = [...new Set((item.incompleteReasons || []).map(r => reasons[r.code] || r.code))].map(escapeHtml).join('; ');
+    const included = lang === 'en' ? 'Included in FAᵥ' : 'Включён в FAᵥ';
+    const excluded = lang === 'en' ? 'Excluded from FAᵥ' : 'Не включён в FAᵥ';
+    const preliminary = lang === 'en' ? 'Primary A' : 'Первичная A';
+    return `<tr><th>${escapeHtml(names[item.lang?.code] || item.lang?.name || item.lang?.code)}</th><td>${formatCount(item.speakers, lang)}</td><td>${formatCount(item.selectedCount ?? item.count, lang)}</td><td>${formatMetric(item.normalized, 2)}</td><td>${formatMetric(item.associationNormalized, 2)}</td><td>${formatCount(item.weightedScore, lang)}</td><td>${reasonText || (item.includedInFinal ? included : excluded)}${item.incomplete && finiteNumberOrNull(item.associationPreliminary) !== null ? `<br>${preliminary}: ${formatMetric(item.associationPreliminary, 2)}` : ''}</td></tr>`;
+  }).join('');
 }

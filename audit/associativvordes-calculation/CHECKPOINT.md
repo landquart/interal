@@ -43,3 +43,9 @@ Merge, изменение существующих PR, пересборка да
 Ветка fix/associativvordes-calculation-20261009 от опубликованного аудита bb2ccdbe203f8472b67b8610cd73f3be421c6d00; main/production по-прежнему b266c92. Последующих исправлений в main и новых относящихся к аудиту PR не найдено; исторический #542 не реализует новый gzip transport.
 AC-001/AC-012: общий gzip/JSON transport установлен именно в createCandidateIndexLoader. Новый тест проверяет шесть настоящих локальных v5 regul списков, raw/HTTP-decoded body, ошибку и отмену; старые family guards сохранены. FIX-TRANSPORT-TESTS.txt: 20 assertions/subtests, всё прошло. Данные v5 не изменены.
 Следующее: numeric/persistence contract, причины pending review и renderer, затем lifecycle/backend. Открытые методологические AC-011/013/015 и независимый PH baseline AC-014 не менять.
+
+## Исправление: блок 2 — AC-002, AC-003, AC-005, AC-010
+
+Справочное N доступно всем строкам; исключённый вклад остаётся null. Добавлены первичная A, причины незавершённой проверки и раздельные счётчики покрытия. Допуск в FAᵥ и формулы сохранены. Сохранение не превращает отсутствие в ноль; старые неоднозначные нули требуют пересчёта, текущий формат version=2 совместим с additive numeric_schema_version=1. Исправлены русские подписи max-P и A представителя.
+
+Проверка: `node --test tests/associative-calculation-numeric.test.mjs tests/associativvordes-persistence.test.mjs tests/associativvordes-language-statuses.test.mjs` — 8/8, 0 ошибок. Следующий блок: жизненный цикл и внешние запросы.

@@ -1,7 +1,8 @@
+import { finiteNumberOrNull as finiteOrNull } from '../shared/finite-number.mjs';
 import { getFrequencyProfile } from './js/frequency-loader.js';
 import { analyzeAssociativeWord, finalAssociationPassesThreshold, averageAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, validateFinalCandidatesWithQwen, selectBestFinalModels, compareFinalModelCandidates, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
-import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
+import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel, renderLanguageCalculationRows, formatCount } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, findRootMatch, specialRootMatch } from './js/root-matcher.js';
 import { acceptAffixBoundaryMatch } from './js/affix-boundary-index.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
@@ -51,7 +52,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'SWOW-связь', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', averageAssociation: 'Ā — средняя ассоциация', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Средний P̄<sub>l</sub>', languageAverageA: 'Средний Ā<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', criterionAssociationThreshold: 'Взвешенное среднее A ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', associationBelowThreshold: 'Взвешенное среднее A ниже 35% или рассчитано не для всех выбранных производных.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', averageAssociation: 'Ā — средняя ассоциация', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Максимальный P̄<sub>l</sub>', languageAverageA: 'Ā представителя<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', criterionAssociationThreshold: 'Взвешенное среднее A ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', associationBelowThreshold: 'Взвешенное среднее A ниже 35% или рассчитано не для всех выбранных производных.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
         },
         alerts: {
           rootRequired: 'Введите кандидатный корень или предлог.',
@@ -194,7 +195,7 @@ const TEXT_I18N = {
     }
 
     function createLanguageStatus(status = 'idle', extra = {}) {
-      return normalizeLanguageStatus({ status, ...extra });
+      return normalizeLanguageStatus({ ...extra, status });
     }
 
     function deriveGlobalStatus(statusSummary = summarizeLanguageStatuses(state.languageStatuses)) {
@@ -1011,7 +1012,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       const resultBox = document.getElementById('resultBox');
       resultBox.classList.remove('is-updated');
       void resultBox.offsetWidth;
-      const representedRows = result.languageScores.filter(item => Number(item.count) > 0 && Number.isFinite(Number(item.normalized)));
       const numberFormat = new Intl.NumberFormat(currentLang() === 'en' ? 'en' : 'ru', { maximumFractionDigits: 2 });
       const criterion = (label, passed) => `<li><strong>${label}:</strong> ${passed ? labels.met : labels.notMet}</li>`;
       resultBox.innerHTML = `
@@ -1021,7 +1021,8 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         <div class="metric"><strong>${numberFormat.format(result.speakersTotal)}</strong><span>${labels.speakersTotal}</span></div>
         <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
-        <details open class="language-table-wrap"><summary>${labels.calculationDetails}</summary><div class="result-table-scroll"><table><thead><tr><th>${labels.language}</th><th>${labels.speakers}</th><th>${labels.selectedDerivatives}</th><th>${labels.languageAverageP}</th><th>${labels.languageAverageA}</th><th>${labels.weightedLanguageP}</th></tr></thead><tbody>${representedRows.map(item => `<tr><th>${escapeHtml(textGroup('languages')[item.lang.code] || item.lang.name)}</th><td>${numberFormat.format(item.speakers)}</td><td>${item.count}</td><td>${formatMetric(item.normalized, 2)}</td><td>${formatMetric(item.associationNormalized, 2)}</td><td>${numberFormat.format(item.weightedScore)}</td></tr>`).join('')}</tbody></table></div></details>
+        <p class="muted">${currentLang() === 'en' ? 'Languages: found / selected / scored P / verified A / included' : 'Языки: найдены / выбраны / рассчитан P / подтверждена A / включены'}: ${result.counts.foundLanguages} / ${result.counts.selectedLanguages} / ${result.counts.scoredPLanguages} / ${result.counts.verifiedALanguages} / ${result.counts.includedLanguages}</p>
+        <details open class="language-table-wrap"><summary>${labels.calculationDetails}</summary><div class="result-table-scroll"><table><thead><tr><th>${labels.language}</th><th>${labels.speakers}</th><th>${labels.selectedDerivatives}</th><th>${labels.languageAverageP}</th><th>${labels.languageAverageA}</th><th>${labels.weightedLanguageP}</th><th>${currentLang() === 'en' ? 'Status / primary A' : 'Статус / первичная A'}</th></tr></thead><tbody>${renderLanguageCalculationRows(result.languageScores, textGroup('languages'), currentLang())}</tbody></table></div></details>
         <details open class="acceptance-criteria"><summary>${labels.acceptanceCriteria}</summary><ul>${criterion(labels.criterionLanguages, result.representedLangs >= 3)}${criterion(labels.criterionGroups, result.groups >= 2)}${criterion(labels.criterionThreshold, finalAssociationPassesThreshold(result.finalAssociation))}${criterion(labels.criterionAssociationThreshold, averageAssociationPassesThreshold(result.averageAssociation))}</ul></details>
       `;
       resultBox.classList.add('is-updated');
@@ -1039,7 +1040,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         some_languages_no_candidates: labels.noCandidates,
         some_languages_index_error: labels.indexUnavailable,
         some_languages_qwen_error: labels.qwenUnavailable,
-        calculation_incomplete: labels.calculationIncomplete
+        calculation_incomplete: result.decisionDiagnostics.pendingReview ? (currentLang() === 'en' ? 'Mandatory review is pending.' : 'Обязательная проверка не завершена.') : result.decisionDiagnostics.missingScores ? (currentLang() === 'en' ? 'A or P is missing.' : 'Отсутствует оценка A или P.') : labels.calculationIncomplete
       };
       const { critical, warnings } = buildDecisionReasons(result);
       const criticalText = critical.map(reason => reasonLabels[reason]).filter(Boolean);
@@ -1195,10 +1196,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     const CREATED_AT_ENDPOINT = "/api/created_at";
 
-    function finiteOrNull(value) {
-      const number = Number(value);
-      return Number.isFinite(number) ? number : null;
-    }
 
     const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
 
