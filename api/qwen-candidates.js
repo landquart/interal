@@ -5,7 +5,7 @@ export const maxDuration = 60;
 
 const MAX_BODY_BYTES = 100_000;
 const YANDEX_CHAT_COMPLETIONS_URL = 'https://ai.api.cloud.yandex.net/v1/chat/completions';
-const QWEN_MODEL = 'qwen3-235b-a22b-fp8/latest';
+const QWEN_MODEL = 'qwen3.6-35b-a3b/latest';
 const CONTROL_LANGUAGES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const MAX_MODELS_PER_LANGUAGE = 5;
 const MAX_CANDIDATES_PER_LANGUAGE = 2;

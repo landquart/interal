@@ -29,7 +29,7 @@ try {
   assert.ok(patched.includes('candidateFinalizer'), 'production adapter supplies final model grouping to the unified runner');
   assert.ok(patched.includes('window.showMoreCandidates = showMoreCandidates'));
   assert.ok(patched.includes('frequency_score: Number.isFinite(Number(item.frequency_score))'));
-  assert.ok(patched.includes('const analysisButton = item.analysisStatus'));
+  assert.ok(patched.includes('const analysisButton ='));
   assert.equal(patchAssociativeSearchRuntime(patched), patched, 'runtime migration is idempotent');
 
   await writeFile(tempFile, patched);

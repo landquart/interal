@@ -1,7 +1,9 @@
+import { createCandidateTaskRegistry } from './js/candidate-task-registry.js';
+import { finiteNumberOrNull as finiteOrNull } from '../shared/finite-number.mjs';
 import { getFrequencyProfile } from './js/frequency-loader.js';
 import { analyzeAssociativeWord, finalAssociationPassesThreshold, averageAssociationPassesThreshold, calculateLanguageScore, calculateFinalAssociation, buildDecisionReasons, decisionStatusForResult, canCreateAssociativeJsonCard, normalizeLanguageStatus, summarizeLanguageStatuses, deriveGlobalStatusFromLanguageStatuses } from './js/association-analyzer.js';
 import { QWEN_RUNTIME_CONFIG, QWEN_ERROR_CODES, createReviewBudget, refineCandidatesWithQwenAudit, validateFinalCandidatesWithQwen, selectBestFinalModels, compareFinalModelCandidates, finalizeCandidateOrdering, isAbortError, normalizeAbortError } from './js/qwen-client.js';
-import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel } from './js/render-results.js';
+import { escapeHtml, formatMetric, renderCandidateEvidenceDetails, resultRowClasses, swowLabel, thresholdStatusLabel, thresholdStatusForResult, semanticWarningLabel, languageStatusLabel, renderLanguageCalculationRows, formatCount } from './js/render-results.js';
 import { normalizeText, stripDiacritics, includesRoot, fuzzyIncludesRoot, findRootMatch, specialRootMatch } from './js/root-matcher.js';
 import { acceptAffixBoundaryMatch } from './js/affix-boundary-index.js';
 import { createCandidateIndexLoader } from './js/candidate-index-loader.js';
@@ -51,7 +53,7 @@ const TEXT_I18N = {
           group: 'Группа', languageScore: 'Балл языка', weightSum: 'сумма весов', addWord: 'Добавить слово', use: 'Учитывать', word: 'Слово', model: 'Модель', frequencyPercent: 'F — частотность', directness: 'Di — прямота связи', fieldRelatedness: 'Pr — близость поля', domainShift: 'Sh — сдвиг области', swowBonus: 'SWOW-связь', associationPercent: 'A — ассоциация', finalPercent: 'P — вес деривата', status: 'Статус', explanation: 'Объяснение', warnings: 'Предупреждения', details: 'Детали', analyze: 'Анализировать', delete: 'Удалить', association: 'Ассоциация', rank: 'Ранг', frequency: 'Частота', weightP: 'Вес P'
         },
         results: {
-          finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', averageAssociation: 'Ā — средняя ассоциация', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Средний P̄<sub>l</sub>', languageAverageA: 'Средний Ā<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', criterionAssociationThreshold: 'Взвешенное среднее A ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', associationBelowThreshold: 'Взвешенное среднее A ниже 35% или рассчитано не для всех выбранных производных.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
+          finalAssociation: 'FA<sub>v</sub> — конечная ассоциация слова', averageAssociation: 'Ā — средняя ассоциация', totalAssociation: 'Σ(N<sub>l</sub> × P̄<sub>l</sub>)', speakersTotal: 'ΣN представленных языков', languagesRepresented: 'языков представлено', languageGroups: 'языковых групп', language: 'Язык', speakers: 'Число говорящих N', selectedDerivatives: 'Выбрано дериватов', languageAverageP: 'Максимальный P̄<sub>l</sub>', languageAverageA: 'Ā представителя<sub>l</sub>', weightedLanguageP: 'N<sub>l</sub> × P̄<sub>l</sub>', calculationDetails: 'Детализация FA<sub>v</sub>', acceptanceCriteria: 'Критерии принятия', criterionLanguages: 'Минимум 3 языка', criterionGroups: 'Минимум 2 языковые группы', criterionThreshold: 'FA<sub>v</sub> ≥ 35 %', criterionAssociationThreshold: 'Взвешенное среднее A ≥ 35 %', met: 'выполнено', notMet: 'не выполнено', accept: 'ПРИНЯТЬ', reject: 'НЕ ПРИНИМАТЬ', insufficientData: 'Недостаточно данных', noCalculatedData: 'Нет рассчитанных данных.', noCandidates: 'Кандидаты не найдены.', indexUnavailable: 'Индекс языка недоступен.', qwenUnavailable: 'Анализ Qwen недоступен.', calculationAborted: 'Расчёт был прерван.', calculationIncomplete: 'Расчёт не завершён.', partialErrors: 'Часть языков рассчитана с ошибками.', fewerLanguages: 'Представлено меньше 3 языков.', fewerGroups: 'Представлено меньше 2 языковых групп.', belowThreshold: 'FAᵥ ниже 35%.', associationBelowThreshold: 'Взвешенное среднее A ниже 35% или рассчитано не для всех выбранных производных.', semanticUnconfirmed: 'Семантическое соответствие не подтверждено.', reasons: 'Причины', warnings: 'Предупреждения', allMet: 'Все условия выполнены.'
         },
         alerts: {
           rootRequired: 'Введите кандидатный корень или предлог.',
@@ -168,8 +170,9 @@ const TEXT_I18N = {
     let activeRunId = 0;
     let activeRunAbortController = null;
     let activeReviewBudget = null;
-    function nextRunId() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'new_run', runId: activeRunId })); activeRunId += 1; activeRunAbortController = new AbortController(); return activeRunId; }
-    function invalidateActiveRuns() { activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'reset', runId: activeRunId })); activeRunId += 1; activeRunAbortController = null; activeReviewBudget = null; }
+    const manualTasks = createCandidateTaskRegistry();
+    function nextRunId() { manualTasks.cancelAll(); activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'new_run', runId: activeRunId })); activeRunId += 1; activeRunAbortController = new AbortController(); return activeRunId; }
+    function invalidateActiveRuns() { manualTasks.cancelAll(); activeRunAbortController?.abort?.(normalizeAbortError(null, { stage: 'reset', runId: activeRunId })); activeRunId += 1; activeRunAbortController = null; activeReviewBudget = null; }
     function isCurrentRun(runId) { return runId === activeRunId; }
     function currentRunSignal() { return activeRunAbortController?.signal; }
     function throwIfStaleRun(runId, stage, signal = currentRunSignal()) {
@@ -194,7 +197,7 @@ const TEXT_I18N = {
     }
 
     function createLanguageStatus(status = 'idle', extra = {}) {
-      return normalizeLanguageStatus({ status, ...extra });
+      return normalizeLanguageStatus({ ...extra, status });
     }
 
     function deriveGlobalStatus(statusSummary = summarizeLanguageStatuses(state.languageStatuses)) {
@@ -377,7 +380,7 @@ const TEXT_I18N = {
     }
 
     function formatFixed(value, digits) {
-      if (value == null || value === '' || !Number.isFinite(Number(value))) return '—';
+      if (finiteOrNull(value) === null) return '—';
       value = Number(value);
       return new Intl.NumberFormat(currentLocale(), {
         minimumFractionDigits: digits,
@@ -386,7 +389,7 @@ const TEXT_I18N = {
     }
 
     function formatPercent(value, digits = 0) {
-      if (value == null || value === '' || !Number.isFinite(Number(value))) return '—';
+      if (finiteOrNull(value) === null) return '—';
       return `${formatFixed(value, digits)}%`;
     }
 
@@ -440,13 +443,7 @@ const TEXT_I18N = {
     }
 
     function wordWeight(item) {
-      const final = Number(item.final_score);
-      if (item.final_score != null && Number.isFinite(final)) return final;
-
-      const analysisFinal = Number(item.analysis?.final_score);
-      if (item.analysis?.final_score != null && Number.isFinite(analysisFinal)) return analysisFinal;
-
-      return null;
+      return finiteOrNull(item.final_score) ?? finiteOrNull(item.analysis?.final_score);
     }
 
     function groupByBestModel(items, maxModels = MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, langCode = 'en') {
@@ -504,7 +501,7 @@ const TEXT_I18N = {
       return true;
     }
 
-    async function analyzeCandidateItem(langCode, item, onProgress, runId, localizedTargetMeaning) {
+    async function analyzeCandidateItem(langCode, item, onProgress, runId, localizedTargetMeaning, context = {}) {
       throwIfStaleRun(runId, 'candidate_analysis_start');
       try {
         const languageName = textGroup('languages')[langCode] || langCode;
@@ -522,8 +519,9 @@ const TEXT_I18N = {
           onReviewRequest: () => {
             throwIfStaleRun(runId, 'review_request');
             incrementDiagnostic('qwenReviewRequestCount');
-            state.languageStatuses[langCode] = createLanguageStatus('reviewing', state.languageStatuses[langCode]);
+            context.onReviewStart?.();
           },
+          onReviewEnd: () => { if (isCurrentRun(runId)) context.onReviewEnd?.(); },
           signal: currentRunSignal(),
           runId
         });
@@ -537,7 +535,8 @@ const TEXT_I18N = {
           frequency_score: analysis.frequency.frequency_score,
           association_score: analysis.association.association_score,
           final_score: analysis.final_score,
-          selected: analysis.final_score != null && Number.isFinite(Number(analysis.final_score))
+          selected: analysis.final_score != null && Number.isFinite(Number(analysis.final_score)),
+          analysisStatus: 'completed'
         };
       } catch (error) {
         if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) {
@@ -546,7 +545,7 @@ const TEXT_I18N = {
         }
         if (error.code === QWEN_ERROR_CODES.ABORTED) incrementDiagnostic('abortedRequestCount');
         else incrementDiagnostic('qwenFailedRequestCount');
-        return failedAnalysis(langCode, item, error);
+        return { ...failedAnalysis(langCode, item, error), analysisStatus: 'error' };
       }
     }
 
@@ -586,7 +585,7 @@ const TEXT_I18N = {
     async function getLanguageCandidates(langCode, root, { signal } = {}) {
       const beforeIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || {};
       const indexStartedAt = nowMs();
-      const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal });
+      const entries = await candidateIndexLoader.loadCandidateEntries(langCode, root, { signal, elementType: state.elementType });
       registerLexicalRootsFromEntries(langCode, entries, { prefix: state.elementType === 'preposition' ? root : '', config: getLanguageConfig(langCode) });
       addDuration('candidate_index', indexStartedAt);
       const afterIndex = candidateIndexLoader.getCandidateIndexDiagnostics?.() || beforeIndex;
@@ -640,7 +639,7 @@ const TEXT_I18N = {
     }
 
 
-    async function getRunTargetTranslations(targetMeaning, runId, onProgress) {
+    async function getRunTargetTranslations(targetMeaning, runId, onProgress, signal = currentRunSignal()) {
       if (!targetMeaning) return {};
       onProgress?.(currentLang() === 'en' ? 'Translating target meaning...' : 'Перевод значения...');
       incrementDiagnostic('targetTranslationRequestCount');
@@ -649,13 +648,13 @@ const TEXT_I18N = {
           targetMeaning,
           sourceLanguage: 'ru',
           targetLanguages: TARGET_TRANSLATION_LANGUAGES,
-          signal: currentRunSignal(),
+          signal,
           runId
         });
-        throwIfStaleRun(runId, 'target_translation_after_await');
+        throwIfStaleRun(runId, 'target_translation_after_await', signal);
         return result.translations || {};
       } catch (error) {
-        if (isAbortError(error, currentRunSignal()) || !isCurrentRun(runId)) { incrementDiagnostic('abortedRequestCount'); throw normalizeAbortError(error, { stage: 'target_translation', runId }); }
+        if (isAbortError(error, signal) || !isCurrentRun(runId)) { incrementDiagnostic('abortedRequestCount'); throw normalizeAbortError(error, { stage: 'target_translation', runId }); }
         console.warn('Target meaning translation unavailable; SWOW will be skipped for untranslated languages.', error);
         return {};
       }
@@ -685,7 +684,8 @@ const TEXT_I18N = {
           .filter(item => item.selected && Number.isFinite(wordWeight(item)))
           .sort(compareFinalModelCandidates)
           .slice(0, MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
-        return calculateLanguageScore(selected, { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight });
+        const missingScores = candidates.filter(item => item.selected && !Number.isFinite(wordWeight(item)));
+        return { ...calculateLanguageScore([...selected, ...missingScores], { maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE, scoreGetter: wordWeight }), foundCount: candidates.length, selectedCount: candidates.filter(item => item.selected).length };
       };
       const result = await runAssociativeCalculation({
         input: { root, meaning: targetMeaning, targetMeaning, elementType, maxModels: MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE },
@@ -699,6 +699,8 @@ const TEXT_I18N = {
           buttonTexts: {
             start: currentLang() === 'en' ? 'Calculating...' : 'Расчёт...',
             done: currentLang() === 'en' ? 'Done' : 'Готово',
+            review: currentLang() === 'en' ? 'Mandatory review pending' : 'Ожидается обязательная проверка',
+            verification: currentLang() === 'en' ? 'Result requires verification' : 'Результат требует проверки',
             warnings: textGroup('errors').completedWithWarnings,
             error: currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта'
           },
@@ -779,12 +781,7 @@ const TEXT_I18N = {
           },
           candidateAnalyzer: {
             analyze: async (language, candidate, context) => {
-              const analyzed = await analyzeCandidateItem(language.code, candidate, context.onProgress, runId, context.translation);
-              if (analyzed.analysis?.review) {
-                context.onReviewStart?.();
-                context.onReviewEnd?.();
-              }
-              return analyzed;
+              return analyzeCandidateItem(language.code, candidate, context.onProgress, runId, context.translation, context);
             }
           },
           candidatePostValidator: {
@@ -802,15 +799,16 @@ const TEXT_I18N = {
           finalScore: {
             calculate: current => {
               const languageResults = LANGUAGES.map(language => {
-                const candidates = (current.languages[language.code] || []).filter(item => item.selected && Number.isFinite(wordWeight(item)));
+                const allCandidates = current.languages[language.code] || [];
+                const candidates = allCandidates.filter(item => item.selected);
                 const score = calculateLanguageScore(candidates, { maxModels: current.maxModels, scoreGetter: wordWeight });
                 const semanticConfirmed = Number.isFinite(Number(score.normalized)) && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
-                return { ...score, semanticConfirmed };
+                return { ...score, semanticConfirmed, foundCount: allCandidates.length, selectedCount: allCandidates.filter(item => item.selected).length };
               });
               return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: current.languageStatuses });
             }
           },
-          renderer: { renderFinal: async () => renderAll() },
+          renderer: { renderFinal: async () => renderAll(), renderAbort: async () => renderAll() },
           stateStorage: { save: async () => Promise.resolve(window.InteralFormDraft?.save?.()) }
         }
       });
@@ -830,10 +828,11 @@ const TEXT_I18N = {
     }
 
     function scoringCandidates(langCode) {
-      return (state.languages[langCode] || [])
-        .filter(item => item.selected && Number.isFinite(wordWeight(item)))
+      const selected = (state.languages[langCode] || []).filter(item => item.selected);
+      const scored = selected.filter(item => Number.isFinite(wordWeight(item)))
         .sort(compareFinalModelCandidates)
         .slice(0, state.maxModels || MAX_ASSOCIATIVE_MODELS_PER_LANGUAGE);
+      return [...scored, ...selected.filter(item => !Number.isFinite(wordWeight(item)))];
     }
 
     function calculateLanguage(langCode) {
@@ -846,7 +845,7 @@ const TEXT_I18N = {
         const score = calculateLanguageScore(candidates, { maxModels: state.maxModels, scoreGetter: wordWeight });
         const semanticConfirmed = Number.isFinite(Number(score.normalized))
           && candidates.some(item => item.analysis?.association?.semantic_confirmed === true);
-        return { ...score, semanticConfirmed };
+        return { ...score, semanticConfirmed, foundCount: (state.languages[l.code] || []).length, selectedCount: (state.languages[l.code] || []).filter(item => item.selected).length };
       });
       return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: state.languageStatuses });
     }
@@ -936,9 +935,11 @@ const TEXT_I18N = {
         accepted_after_review: 'принято после проверки',
         rejected_after_review: 'отклонено после проверки',
         unavailable: 'нет данных',
+        reviewing: 'проверяется...',
         analyzing: 'анализируется...',
         error: 'ошибка'
       } : {
+        reviewing: 'reviewing...',
         analyzing: 'analyzing...',
         error: 'error'
       };
@@ -952,14 +953,14 @@ const TEXT_I18N = {
       const warningList = analysis.warnings || [];
       const warnings = warningList.join('; ');
       const pendingLabel = currentLang() === 'en' ? 'not analyzed' : 'не анализировалось';
-      const displayStatus = item.analysisStatus === 'analyzing'
-        ? statusLabel('analyzing')
+      const displayStatus = ['analyzing', 'reviewing'].includes(item.analysisStatus)
+        ? statusLabel(item.analysisStatus)
         : item.analysisStatus === 'pending'
           ? pendingLabel
           : item.analysisStatus === 'error'
             ? statusLabel('error')
             : `${thresholdStatusLabel(thresholdStatusForResult({ final_score: analysis.final_score ?? item.final_score }), currentLang())}${assoc.semantic_confirmed === false ? `<br><span class="muted">${semanticWarningLabel(currentLang())}</span>` : ''}`;
-      const analysisButton = item.analysisStatus === 'analyzing'
+      const analysisButton = ['analyzing', 'reviewing'].includes(item.analysisStatus)
         ? `<button class="tool-btn interal-btn interal-btn--secondary fit short" disabled>${statusLabel('analyzing')}</button>`
         : (!analysis.association || item.analysisStatus === 'pending' || item.analysisStatus === 'error')
           ? `<button class="tool-btn interal-btn interal-btn--secondary fit short" onclick="analyzeItem('${lang}', ${idx})">${labels.analyze}</button>`
@@ -1011,17 +1012,17 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
       const resultBox = document.getElementById('resultBox');
       resultBox.classList.remove('is-updated');
       void resultBox.offsetWidth;
-      const representedRows = result.languageScores.filter(item => Number(item.count) > 0 && Number.isFinite(Number(item.normalized)));
       const numberFormat = new Intl.NumberFormat(currentLang() === 'en' ? 'en' : 'ru', { maximumFractionDigits: 2 });
       const criterion = (label, passed) => `<li><strong>${label}:</strong> ${passed ? labels.met : labels.notMet}</li>`;
       resultBox.innerHTML = `
         <div class="metric is-updated"><strong>${formatPercent(result.finalAssociation, 1)}</strong><span>${labels.finalAssociation}</span></div>
         <div class="metric"><strong>${formatPercent(result.averageAssociation, 1)}</strong><span>${labels.averageAssociation}</span></div>
-        <div class="metric"><strong>${formatFixed(result.coverage * 100, 2)}%</strong><span>${currentLang() === 'en' ? 'Weighted coverage' : 'Взвешенный охват'}</span></div><div class="metric"><strong>${numberFormat.format(result.weightedScoreTotal)}</strong><span>${labels.totalAssociation}</span></div>
-        <div class="metric"><strong>${numberFormat.format(result.speakersTotal)}</strong><span>${labels.speakersTotal}</span></div>
+        <div class="metric"><strong>${formatFixed(result.coverage * 100, 2)}%</strong><span>${currentLang() === 'en' ? 'Weighted coverage' : 'Взвешенный охват'}</span></div><div class="metric"><strong>${formatCount(result.weightedScoreTotal, currentLang())}</strong><span>${labels.totalAssociation}</span></div>
+        <div class="metric"><strong>${formatCount(result.speakersTotal, currentLang())}</strong><span>${labels.speakersTotal}</span></div>
         <div class="metric"><strong>${result.representedLangs}/${LANGUAGES.length}</strong><span>${labels.languagesRepresented}</span></div>
         <div class="metric"><strong>${result.groups}/${new Set(LANGUAGES.map(l => l.group)).size}</strong><span>${labels.languageGroups}</span></div>
-        <details open class="language-table-wrap"><summary>${labels.calculationDetails}</summary><div class="result-table-scroll"><table><thead><tr><th>${labels.language}</th><th>${labels.speakers}</th><th>${labels.selectedDerivatives}</th><th>${labels.languageAverageP}</th><th>${labels.languageAverageA}</th><th>${labels.weightedLanguageP}</th></tr></thead><tbody>${representedRows.map(item => `<tr><th>${escapeHtml(textGroup('languages')[item.lang.code] || item.lang.name)}</th><td>${numberFormat.format(item.speakers)}</td><td>${item.count}</td><td>${formatMetric(item.normalized, 2)}</td><td>${formatMetric(item.associationNormalized, 2)}</td><td>${numberFormat.format(item.weightedScore)}</td></tr>`).join('')}</tbody></table></div></details>
+        <p class="muted">${currentLang() === 'en' ? 'Languages: found / selected / scored P / verified A / included' : 'Языки: найдены / выбраны / рассчитан P / подтверждена A / включены'}: ${result.counts.foundLanguages} / ${result.counts.selectedLanguages} / ${result.counts.scoredPLanguages} / ${result.counts.verifiedALanguages} / ${result.counts.includedLanguages}</p>
+        <details open class="language-table-wrap"><summary>${labels.calculationDetails}</summary><div class="result-table-scroll"><table><thead><tr><th>${labels.language}</th><th>${labels.speakers}</th><th>${labels.selectedDerivatives}</th><th>${labels.languageAverageP}</th><th>${labels.languageAverageA}</th><th>${labels.weightedLanguageP}</th><th>${currentLang() === 'en' ? 'Status / primary A' : 'Статус / первичная A'}</th></tr></thead><tbody>${renderLanguageCalculationRows(result.languageScores, textGroup('languages'), currentLang())}</tbody></table></div></details>
         <details open class="acceptance-criteria"><summary>${labels.acceptanceCriteria}</summary><ul>${criterion(labels.criterionLanguages, result.representedLangs >= 3)}${criterion(labels.criterionGroups, result.groups >= 2)}${criterion(labels.criterionThreshold, finalAssociationPassesThreshold(result.finalAssociation))}${criterion(labels.criterionAssociationThreshold, averageAssociationPassesThreshold(result.averageAssociation))}</ul></details>
       `;
       resultBox.classList.add('is-updated');
@@ -1039,7 +1040,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
         some_languages_no_candidates: labels.noCandidates,
         some_languages_index_error: labels.indexUnavailable,
         some_languages_qwen_error: labels.qwenUnavailable,
-        calculation_incomplete: labels.calculationIncomplete
+        calculation_incomplete: result.decisionDiagnostics.pendingReview ? (currentLang() === 'en' ? 'Mandatory review is pending.' : 'Обязательная проверка не завершена.') : result.decisionDiagnostics.missingScores ? (currentLang() === 'en' ? 'A or P is missing.' : 'Отсутствует оценка A или P.') : labels.calculationIncomplete
       };
       const { critical, warnings } = buildDecisionReasons(result);
       const criticalText = critical.map(reason => reasonLabels[reason]).filter(Boolean);
@@ -1129,6 +1130,10 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function updateItem(lang, idx, key, value) {
+      if (key === 'word' || (key === 'selected' && value === false)) {
+        manualTasks.cancel(state.languages[lang]?.[idx]);
+        if (key === 'selected' && state.languages[lang]?.[idx] && ['analyzing', 'reviewing'].includes(state.languages[lang][idx].analysisStatus)) state.languages[lang][idx].analysisStatus = 'pending';
+      }
       updateCandidate(state, lang, idx, key, value, { inferModel, normalizeText });
       invalidateFinalCalculation();
       renderAll();
@@ -1138,33 +1143,45 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     async function analyzeItem(lang, idx) {
       const item = state.languages[lang][idx];
       if (!item || !normalizeText(item.word)) return;
+      const originalState = state;
+      const runId = activeRunId;
+      const word = item.word;
+      const targetMeaning = state.targetMeaning;
+      const task = manualTasks.begin(item, () => state === originalState && isCurrentRun(runId) && state.languages[lang]?.includes(item) && item.word === word && state.targetMeaning === targetMeaning);
       Object.assign(item, withModelIdentity(item, state.root, lang));
       item.analysisStatus = 'analyzing';
       renderAll();
       try {
-        const targetTranslations = await getRunTargetTranslations(state.targetMeaning, activeRunId, null);
+        const targetTranslations = await getRunTargetTranslations(targetMeaning, runId, null, task.signal);
+        if (!task.isCurrent()) return;
         incrementDiagnostic('qwenPrimaryRequestCount');
-        item.analysis = await analyzeAssociativeWord({
+        const analysis = await analyzeAssociativeWord({
           language: lang,
-          targetMeaning: state.targetMeaning,
+          targetMeaning,
           localizedTargetMeaning: targetTranslations[lang] || '',
-          word: item.word,
+          word,
           frequencyProfile: item.frequencyProfile,
           reviewBudget: createReviewBudget({ enabled: QWEN_RUNTIME_CONFIG.enableReviewModel === true, maxRequests: QWEN_RUNTIME_CONFIG.maxReviewRequestsPerSearch }),
           onReviewEvent: key => incrementDiagnostic(key),
-          onReviewRequest: () => incrementDiagnostic('qwenReviewRequestCount')
+          onReviewRequest: () => { if (task.isCurrent()) { incrementDiagnostic('qwenReviewRequestCount'); item.analysisStatus = 'reviewing'; renderAll(); } },
+          signal: task.signal, runId
         });
+        if (!task.isCurrent()) return;
+        item.analysis = analysis;
         recordQwenUsedModels(item.analysis);
         if (item.analysis.warnings?.some?.(warning => String(warning).startsWith('review_failed'))) incrementDiagnostic('qwenFailedRequestCount');
         item.frequency_score = item.analysis.frequency.frequency_score;
         item.association_score = item.analysis.association.association_score;
         item.final_score = item.analysis.final_score;
-        item.selected = Number.isFinite(Number(item.analysis.final_score));
+        item.selected = finiteOrNull(item.analysis.final_score) !== null;
         item.analysisStatus = null;
       } catch (error) {
+        if (!task.isCurrent() || isAbortError(error, task.signal)) return;
         const failed = failedAnalysis(lang, item, error);
         Object.assign(item, failed, { analysisStatus: 'error' });
       }
+      if (!task.isCurrent()) return;
+      task.finish();
       state.languages[lang] = reconcileModelRepresentatives(state.languages[lang], state.root, lang);
       const languageItems = state.languages[lang] || [];
       const analyzedItems = languageItems.filter(candidate => candidate.analysis);
@@ -1179,6 +1196,7 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
     }
 
     function deleteItem(lang, idx) {
+      manualTasks.cancel(state.languages[lang]?.[idx]);
       deleteCandidate(state, lang, idx);
       invalidateFinalCalculation();
       renderAll();
@@ -1195,10 +1213,6 @@ ${renderCandidateEvidenceDetails(item, labels, currentLang(), { developerDiagnos
 
     const CREATED_AT_ENDPOINT = "/api/created_at";
 
-    function finiteOrNull(value) {
-      const number = Number(value);
-      return Number.isFinite(number) ? number : null;
-    }
 
     const CARDS_API_ENDPOINT = location.hostname === 'landquart.github.io' ? 'https://interal.vercel.app/api/cards' : '/api/cards';
 

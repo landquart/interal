@@ -1,3 +1,4 @@
+import { withRequestDeadline } from '../../shared/request-deadline.mjs';
 import { normalizeWord } from './frequency-loader.js';
 import { normalizeAbortError, isAbortError } from './qwen-client.js';
 import './qwen-checkbox-hook.js';
@@ -6,7 +7,7 @@ export const API_CONFIG = {
   swowBasePath: './swow_association_strength',
   qwenAssociationUrl: '/api/qwen-analyze',
   qwenPrimaryModel: 'qwen3.6-35b-a3b/latest',
-  qwenReviewModel: 'qwen3-235b-a22b-fp8/latest'
+  qwenReviewModel: 'deepseek-v4.1-flash'
 };
 
 const SWOW_LANGUAGE_FILES = {
@@ -78,16 +79,17 @@ function parseStrengthCsv(text, strengthKey) {
 async function loadStrengthFile(langConfig, fileName, strengthKey, { signal } = {}) {
   throwIfAborted(signal, 'swow_fetch');
   const url = swowUrl(langConfig, fileName);
-  let response;
+  let text;
   try {
-    response = await fetch(url, { cache: 'force-cache', signal });
+    text = await withRequestDeadline(async requestSignal => {
+      const response = await fetch(url, { cache: 'force-cache', signal: requestSignal });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      return response.text();
+    }, { signal });
   } catch (error) {
     if (isAbortError(error, signal)) throw normalizeAbortError(error, { stage: 'swow_fetch' });
     throw error;
   }
-  throwIfAborted(signal, 'swow_fetch');
-  if (!response.ok) throw new Error(`HTTP ${response.status}`);
-  const text = await response.text();
   throwIfAborted(signal, 'swow_parse');
   return { url, data: parseStrengthCsv(text, strengthKey) };
 }

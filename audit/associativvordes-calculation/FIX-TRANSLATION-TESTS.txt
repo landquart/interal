@@ -1,0 +1,19 @@
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 0,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes target translation batch tests passed

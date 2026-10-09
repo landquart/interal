@@ -230,7 +230,7 @@ test('passes AbortSignal to fetch options', async () => {
   const loader = createCandidateIndexLoader({ fetch });
   const controller = new AbortController();
   await loader.loadManifest({ signal: controller.signal });
-  assert.equal(fetch.options[0].signal, controller.signal);
+  assert.ok(fetch.options[0].signal instanceof AbortSignal, 'deadline combines cancellation with its own signal');
 });
 
 test('abort cancels the mock shard request and returns ABORTED', async () => {
@@ -242,7 +242,7 @@ test('abort cancels the mock shard request and returns ABORTED', async () => {
   fetch.requests.find(request => request.url.endsWith('manifest.json')).resolveRoute();
   await flushMicrotasks();
   const shardRequest = fetch.requests.find(request => request.url.endsWith('/en/a.json'));
-  assert.equal(shardRequest.options.signal, controller.signal);
+  assert.ok(shardRequest.options.signal instanceof AbortSignal, 'deadline combines cancellation with its own signal');
   controller.abort();
   assert.equal(shardRequest.aborted, true);
   await rejectsCode(() => pending, CANDIDATE_INDEX_ERROR_CODES.ABORTED);

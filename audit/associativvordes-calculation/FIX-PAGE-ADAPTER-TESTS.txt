@@ -1,0 +1,23 @@
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (1.041054ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (0.917088ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.216388ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (2.850894ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (2.52876ms)
+✔ AC-006: actual page analyzeItem discards a late response after candidate edit (8.588546ms)
+✔ AC-003: maximum P and same representative A; missing A and required review remain distinct (2.165063ms)
+✔ AC-002/003/010 regul fixed fixture: five derivatives per language, positive P and pending review (13.533927ms)
+✔ AC-002/010: complete regul fixture uses unchanged direct demographic formulas (0.836527ms)
+✔ AC-003/010: partial languages and exact acceptance boundaries (0.647834ms)
+✔ AC-002: supported empty rows have N; unknown represented language throws (0.680322ms)
+✔ AC-005: numeric persistence keeps absence, zero and review diagnostics (1.416529ms)
+✔ AC-010/015: actual page adapter counts all found rows without changing five-model scoring (8.700574ms)
+Associative model-selection and threshold policy tests passed.
+✔ tests/associative-model-selection-policy.test.mjs (127.689454ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 141.167457

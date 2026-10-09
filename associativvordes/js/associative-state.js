@@ -1,3 +1,4 @@
+import { finiteNumberOrNull as finiteOrNull } from '../../shared/finite-number.mjs';
 const DEFAULT_LANGUAGE_CODES = ['en', 'de', 'fr', 'es', 'it', 'ru'];
 const PAGE_STATE_VERSION = 2;
 const PAGE_STATE_NAME = 'associativvordes';
@@ -19,10 +20,6 @@ function cloneJson(value) {
   return value == null ? value : JSON.parse(JSON.stringify(value));
 }
 
-function finiteOrNull(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : null;
-}
 
 function truncateStateText(value, limit) {
   const text = String(value || '');
@@ -263,7 +260,7 @@ function compactAssociativeLanguages(languages, languageList = DEFAULT_LANGUAGE_
           model: String(item.model || ''), model_label: String(item.model_label || item.model || ''), model_key: String(item.model_key || item.model_family_key || ''), parser_version: String(item.parser_version || item.morpheme_analysis?.parser_version || ''), morpheme_analysis: item.morpheme_analysis && typeof item.morpheme_analysis === 'object' ? {
              parser_version: String(item.morpheme_analysis.parser_version || item.parser_version || ''), language: String(item.morpheme_analysis.language || ''), element_type: String(item.morpheme_analysis.element_type || ''), canonical_root: String(item.morpheme_analysis.canonical_root || ''), matched_root_variant: String(item.morpheme_analysis.matched_root_variant || ''), prefix_chain: Array.isArray(item.morpheme_analysis.prefix_chain) ? item.morpheme_analysis.prefix_chain.map(String) : [], first_meaningful_derivational_element: String(item.morpheme_analysis.first_meaningful_derivational_element || ''), first_lexical_root_after_preposition: String(item.morpheme_analysis.first_lexical_root_after_preposition || ''), model_key: String(item.morpheme_analysis.model_key || item.model_key || ''), model_label: String(item.morpheme_analysis.model_label || item.model_label || item.model || ''), analysis_confidence: String(item.morpheme_analysis.analysis_confidence || ''), diagnostic_reason: String(item.morpheme_analysis.diagnostic_reason || ''), warnings: Array.isArray(item.morpheme_analysis.warnings) ? item.morpheme_analysis.warnings.slice(0, 8).map(String) : []
            } : null, selected: Boolean(item.selected), association_score: finiteOrNull(item.association_score), final_score: finiteOrNull(item.final_score), analysisStatus: item.analysisStatus || null,
-          analysis: item.analysis ? { methodology_version:item.analysis.methodology_version, review_required:item.analysis.review_required, score_interval:item.analysis.score_interval, association_interval:item.analysis.association_interval, primary:item.analysis.primary, review:item.analysis.review, final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { ...item.analysis.frequency, frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? compactStateSwowEvidence(item.analysis.swow) : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: item.analysis.association.semantic_confirmed === true, explanation: truncateStateText(item.analysis.association.explanation, MAX_STATE_EXPLANATION_LENGTH) } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [] } : null
+          analysis: item.analysis ? { methodology_version:item.analysis.methodology_version, review_required:item.analysis.review_required, review_status:item.analysis.review_status, review_error_code:item.analysis.review_error_code, diagnostics:item.analysis.diagnostics?.review ? { review:item.analysis.diagnostics.review } : undefined, score_interval:item.analysis.score_interval, association_interval:item.analysis.association_interval, primary:item.analysis.primary, review:item.analysis.review, final_score: finiteOrNull(item.analysis.final_score), frequency: item.analysis.frequency ? { ...item.analysis.frequency, frequency_score: finiteOrNull(item.analysis.frequency.frequency_score) } : null, swow: item.analysis.swow ? compactStateSwowEvidence(item.analysis.swow) : null, association: item.analysis.association ? { association_score: finiteOrNull(item.analysis.association.association_score), directness: finiteOrNull(item.analysis.association.directness), field_relatedness: finiteOrNull(item.analysis.association.field_relatedness), domain_shift: finiteOrNull(item.analysis.association.domain_shift), semantic_confirmed: item.analysis.association.semantic_confirmed === true, explanation: truncateStateText(item.analysis.association.explanation, MAX_STATE_EXPLANATION_LENGTH) } : null, warnings: Array.isArray(item.analysis.warnings) ? item.analysis.warnings.slice(0, 8).map(w => truncateStateText(w, MAX_STATE_WARNING_LENGTH)) : [] } : null
         };
       });
   }
@@ -277,6 +274,7 @@ export function compactAssociativeState(state, { languages = DEFAULT_LANGUAGE_CO
     version: PAGE_STATE_VERSION,
     page: PAGE_STATE_NAME,
     state: {
+      numeric_schema_version: 1,
       root: state.root || '',
       targetMeaning: state.targetMeaning || '',
       translationWord: state.translationWord || '',
@@ -341,6 +339,19 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
   for(const items of Object.values(restored.languages))for(const item of items){
     if(item.analysis && item.analysis.methodology_version!=='2026-09-09'){
       legacy=true;item.analysis=null;item.final_score=null;item.association_score=null;item.frequency_score=null;item.selected=false;item.analysisStatus='pending';
+    }
+  }
+  // Old snapshots may have converted absent scores to zero. Keep the row but
+  // require recalculation unless a primary response proves that zero was measured.
+  if (fields.numeric_schema_version !== 1) {
+    for (const items of Object.values(restored.languages)) for (const item of items) {
+      if ((item.final_score === 0 && item.analysis?.primary?.final_score !== 0) ||
+          (item.association_score === 0 && (item.analysis?.primary?.association_score ?? item.analysis?.primary?.association?.association_score) !== 0)) {
+        item.final_score = null; item.association_score = null; item.analysis = null;
+        item.selected = false; item.analysisStatus = 'pending';
+        item.warnings = [...new Set([...(item.warnings || []), 'legacy_numeric_recalculation_required'])];
+        legacy = true;
+      }
     }
   }
   if(legacy){restored.checked=false;restored.result=null;restored.globalStatus='idle';}

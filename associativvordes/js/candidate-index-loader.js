@@ -1,9 +1,10 @@
+import { withRequestDeadline } from '../../shared/request-deadline.mjs';
 import { buildSearchForm, findRootMatch } from './root-matcher.js';
 import { acceptAffixBoundaryMatch, STATIC_MANIFEST_VERSION } from './affix-boundary-index.js';
 import { loadStaticCandidateEntries, validateStaticManifest } from './candidate-static-search.js';
 import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
 import { resolveAssociativeFamily } from './associative-family-registry.js';
-import { FamilyIndexLoader } from './family-index-loader.js';
+import { FamilyIndexLoader, createFamilyIndexFetch } from './family-index-loader.js';
 import { QWEN_RUNTIME_CONFIG } from './qwen-client.js';
 
 // Candidate generation must not create words outside the selected exact family.
@@ -90,12 +91,17 @@ function normalizeBaseUrl(baseUrl) { const value = String(baseUrl || ''); return
 function joinUrl(baseUrl, path) { return `${normalizeBaseUrl(baseUrl)}${path}`; }
 
 async function fetchJson(fetchImpl, url, signal, code, language, shard) {
-  let response;
-  try { response = await fetchImpl(url, signal ? { signal } : {}); }
-  catch (error) { if (isAbortError(error)) throw abortError(error); throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: error }); }
-  if (!response?.ok) throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: response });
-  try { return await response.json(); }
-  catch (error) { throw makeError(code, `Candidate index JSON parse failed: ${url}`, { language, shard, cause: error }); }
+  try {
+    return await withRequestDeadline(async requestSignal => {
+      const response = await fetchImpl(url, { signal: requestSignal });
+      if (!response?.ok) throw makeError(code, `Candidate index fetch failed: ${url}`, { language, shard, cause: response });
+      return response.json();
+    }, { signal });
+  } catch (error) {
+    if (signal?.aborted || isAbortError(error)) throw abortError(error);
+    if (error instanceof CandidateIndexError) throw error;
+    throw makeError(error.code === 'REQUEST_TIMEOUT' ? 'INDEX_REQUEST_TIMEOUT' : code, `Candidate index request failed: ${url}`, { language, shard, cause: error });
+  }
 }
 
 function isPlainObject(value) { return value && typeof value === 'object' && !Array.isArray(value); }
@@ -196,11 +202,7 @@ export function createCandidateIndexLoader(options = {}) {
   const fetchImpl = options.fetch ?? globalThis.fetch?.bind(globalThis);
   if (typeof fetchImpl !== 'function') throw new TypeError('createCandidateIndexLoader requires fetch support.');
   const maxCachedResources = Number.isInteger(options.maxCachedResources) && options.maxCachedResources >= 0 ? options.maxCachedResources : DEFAULT_MAX_CACHED_RESOURCES;
-  const familyIndexLoader = options.familyIndexLoader || new FamilyIndexLoader({ baseUrl: options.familyBaseUrl || '/associativvordes/family-index-v5', fetchJson: async (url, init) => {
-    const response = await fetchImpl(url, init);
-    if (!response?.ok) throw new Error(`Family index request failed: ${response?.status ?? 'network'}`);
-    return response.json();
-  } });
+  const familyIndexLoader = options.familyIndexLoader || new FamilyIndexLoader({ baseUrl: options.familyBaseUrl || '/associativvordes/family-index-v5', fetchJson: createFamilyIndexFetch(fetchImpl) });
 
   const diagnostics = createDiagnostics();
   let manifestRecord;
