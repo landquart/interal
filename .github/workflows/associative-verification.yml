@@ -1,0 +1,43 @@
+name: Associative Verification
+
+on:
+  pull_request:
+    paths:
+      - 'associativvordes/**'
+      - 'api/qwen-analyze.js'
+      - 'api/qwen-candidates.js'
+      - 'tests/associative-*.test.mjs'
+      - 'tests/associativvordes-*.test.mjs'
+      - '.github/workflows/associative-verification.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  associative-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          show-progress: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - name: Check associative runtime syntax
+        run: |
+          node --check associativvordes/script.js
+          node --check associativvordes/js/associative-calculation-runner.js
+          node --check api/qwen-analyze.js
+          node --check api/qwen-candidates.js
+      - name: Run independent associative regressions
+        run: |
+          node --test tests/associative-calculation-*.test.mjs tests/associative-postverification.test.mjs tests/associative-atomic-pipeline.test.mjs tests/associativvordes-error-handling.test.mjs tests/associativvordes-target-translation-batch.test.mjs
+          node tests/associative-qwen-backend-model-routing.test.mjs
+          node tests/associativvordes-runtime-index.test.mjs
+      - name: Install Chromium for browser check
+        run: npx playwright install --with-deps chromium
+      - name: Run browser regression
+        run: npm run test:browser

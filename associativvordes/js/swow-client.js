@@ -7,7 +7,7 @@ export const API_CONFIG = {
   swowBasePath: './swow_association_strength',
   qwenAssociationUrl: '/api/qwen-analyze',
   qwenPrimaryModel: 'qwen3.6-35b-a3b/latest',
-  qwenReviewModel: 'qwen3-235b-a22b-fp8/latest'
+  qwenReviewModel: 'deepseek-v4.1-flash'
 };
 
 const SWOW_LANGUAGE_FILES = {

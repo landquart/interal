@@ -60,3 +60,57 @@ test('AC-006: actual page analyzeItem discards a late response after candidate e
   pending.resolve({frequency:{frequency_score:70},association:{association_score:80},final_score:75}); await work;
   assert.equal(item.analysis,undefined); assert.equal(item.selected,false); assert.equal(renders,1); assert.equal(saves,0);
 });
+
+
+test('V-003: abort during index loading terminalizes language status', async () => {
+  const controller = new AbortController();
+  const entered = deferred(), index = deferred();
+  const state = createEmptyAssociativeState({ languages: ['en'] });
+  const task = runAssociativeCalculation({
+    input: { root: 'regul' }, state, runId: 921, signal: controller.signal,
+    dependencies: {
+      languages: [{ code: 'en', group: 'Germanic' }],
+      waitForPaint: async () => {},
+      candidateIndexLoader: { load: () => { entered.resolve(); return index.promise; } }
+    }
+  });
+  await entered.promise;
+  assert.equal(state.languageStatuses.en.status, 'loading_index');
+  controller.abort();
+  index.resolve([]);
+  await assert.rejects(task, { name: 'AbortError' });
+  assert.equal(state.globalStatus, 'aborted');
+  assert.equal(state.languageStatuses.en.status, 'aborted');
+});
+
+test('V-002: actual page deselection cancels late manual analysis', async () => {
+  const { readFile } = await import('node:fs/promises');
+  const vm = await import('node:vm');
+  const source = await readFile('associativvordes/script.js', 'utf8');
+  const start = source.indexOf('    function updateItem(');
+  const end = source.indexOf('    function deleteItem(', start);
+  assert.ok(start > 0 && end > start);
+  const pending = deferred(), entered = deferred();
+  const item = { word: 'regulation', selected: true };
+  const state = { root: 'regul', targetMeaning: 'rule', languages: { en: [item] }, languageStatuses: {} };
+  const context = {
+    state, activeRunId: 1, manualTasks: createCandidateTaskRegistry(),
+    normalizeText: x => x, withModelIdentity: () => ({}), isCurrentRun: id => id === 1,
+    renderAll: () => {}, invalidateFinalCalculation: () => {}, inferModel: () => '',
+    updateCandidate: (s, language, index, key, value) => { s.languages[language][index][key] = value; },
+    getRunTargetTranslations: async () => ({}), incrementDiagnostic: () => {},
+    analyzeAssociativeWord: () => { entered.resolve(); return pending.promise; },
+    createReviewBudget: () => ({}), QWEN_RUNTIME_CONFIG: {}, isAbortError: () => false,
+    recordQwenUsedModels: () => {}, finiteOrNull: x => x,
+    window: { InteralFormDraft: { save: () => {} } }
+  };
+  vm.createContext(context);
+  vm.runInContext(source.slice(start, end), context);
+  const work = context.analyzeItem('en', 0);
+  await entered.promise;
+  context.updateItem('en', 0, 'selected', false);
+  pending.resolve({ frequency: { frequency_score: 70 }, association: { association_score: 80 }, final_score: 75 });
+  await work;
+  assert.equal(item.selected, false);
+  assert.equal(item.analysis, undefined);
+});

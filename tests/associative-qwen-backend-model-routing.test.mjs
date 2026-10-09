@@ -30,7 +30,7 @@ assert.equal(response.body.modelRole, 'primary');
 
 response = await call({ language: 'en', targetMeaning: 't', word: 'w', review: true, primary: { final_score: 30 }, model: 'attacker/latest' });
 assert.equal(response.status, 200);
-assert.match(yandexBodies.at(-1).model, /qwen3-235b-a22b-fp8\/latest$/, 'backend chooses Qwen3-235B for review');
+assert.match(yandexBodies.at(-1).model, /deepseek-v4\.1-flash$/, 'backend chooses active independent DeepSeek for review');
 assert.doesNotMatch(yandexBodies.at(-1).model, /attacker/, 'backend ignores arbitrary client model for review');
 assert.equal(response.body.modelRole, 'review');
 
