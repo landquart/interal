@@ -145,8 +145,9 @@ export function renderLanguageCalculationRows(rows = [], names = {}, lang = 'ru'
   } : {
     review_required: 'Ожидается обязательная проверка', missing_A: 'Отсутствует A', missing_P: 'Отсутствует P'
   };
+  const reviewLabels = lang === 'en' ? { pending: 'Mandatory review pending', error: 'Mandatory review failed', disabled: 'Mandatory review disabled', budget_exhausted: 'Review budget exhausted' } : { pending: 'Ожидается обязательная проверка', error: 'Ошибка обязательной проверки', disabled: 'Обязательная проверка отключена', budget_exhausted: 'Исчерпан бюджет проверки' };
   return rows.map(item => {
-    const reasonText = [...new Set((item.incompleteReasons || []).map(r => reasons[r.code] || r.code))].map(escapeHtml).join('; ');
+    const reasonText = [...new Set((item.incompleteReasons || []).map(r => r.code === 'review_required' ? `${reviewLabels[r.reviewStatus] || reasons[r.code]}${r.errorCode ? ` (${r.errorCode})` : ''}` : reasons[r.code] || r.code))].map(escapeHtml).join('; ');
     const included = lang === 'en' ? 'Included in FAᵥ' : 'Включён в FAᵥ';
     const excluded = lang === 'en' ? 'Excluded from FAᵥ' : 'Не включён в FAᵥ';
     const preliminary = lang === 'en' ? 'Primary A' : 'Первичная A';

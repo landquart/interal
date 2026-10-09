@@ -25,7 +25,8 @@ assert.match(runner, /currentState\.languages\[language\.code\] = pool\.map/, 'e
 assert.match(analyzer, /let finalEvaluation = \{ \.\.\.primary, combination_method: 'primary_only' \}/, 'primary-only remains the default evaluation path');
 assert.match(analyzer, /shouldReviewPrimaryScore\(primary\.final_score\)/, 'only disputed primary derivative scores trigger review');
 assert.match(qwen, /requestTimeoutMs: 15000/, 'single Qwen request has bounded timeout');
-assert.match(qwen, /AbortController/, 'Qwen timeout uses AbortController');
+assert.match(qwen, /withRequestDeadline/, 'AC-008: Qwen timeout delegates the full request to the shared deadline');
+assert.match(await readFile('shared/request-deadline.mjs', 'utf8'), /AbortController/, 'shared request deadline forwards abort');
 assert.match(qwen, /qwen_suggestion_verified_in_local_index/, 'generated candidates must be verified in the local index before analysis');
 assert.match(script, /buttonTexts:[\s\S]*done: currentLang\(\) === 'en' \? 'Done' : 'Готово'/, 'production supplies localized completion text to the unified runner');
 assert.match(runner, /try \{[\s\S]*buttonToken = button\?\.start[\s\S]*await \(dependencies\.waitForPaint \|\| waitForNextPaint\)\(\)[\s\S]*emit\('translation:start'\)/, 'button start, paint wait, and translation are protected by the same try/catch');

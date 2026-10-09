@@ -346,7 +346,7 @@ export function restoreAssociativeState(saved = {}, { languages = DEFAULT_LANGUA
   if (fields.numeric_schema_version !== 1) {
     for (const items of Object.values(restored.languages)) for (const item of items) {
       if ((item.final_score === 0 && item.analysis?.primary?.final_score !== 0) ||
-          (item.association_score === 0 && item.analysis?.primary?.association?.association_score !== 0)) {
+          (item.association_score === 0 && (item.analysis?.primary?.association_score ?? item.analysis?.primary?.association?.association_score) !== 0)) {
         item.final_score = null; item.association_score = null; item.analysis = null;
         item.selected = false; item.analysisStatus = 'pending';
         item.warnings = [...new Set([...(item.warnings || []), 'legacy_numeric_recalculation_required'])];

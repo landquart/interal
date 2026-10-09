@@ -127,7 +127,7 @@ export function calculateLanguageScore(items = [], {
   const best=selected[0];
   const selectedItems = (Array.isArray(items) ? items : []).filter(item => item?.selected);
   const incompleteReasons = selectedItems.flatMap(item => [
-    item.analysis?.review_required ? { word: item.word, code: 'review_required', errorCode: item.analysis?.review_error_code || null } : null,
+    item.analysis?.review_required ? { word: item.word, code: 'review_required', reviewStatus: item.analysis?.review_status || 'pending', errorCode: item.analysis?.review_error_code || null } : null,
     !isFiniteScore(scoreGetter(item)) ? { word: item.word, code: 'missing_P' } : null,
     !isFiniteScore(associationScoreGetter(item)) ? { word: item.word, code: 'missing_A' } : null
   ].filter(Boolean));
@@ -445,8 +445,8 @@ export async function analyzeAssociativeWord({ language, targetMeaning, localize
     review_required: shouldReviewPrimaryScore(primary.final_score) && !review,
     review_status: review ? 'confirmed' : reviewErrorCode ? 'error' : reviewDiagnostics.reviewSkippedDisabledCount ? 'disabled' : reviewDiagnostics.reviewSkippedBudgetCount ? 'budget_exhausted' : 'not_required',
     review_error_code: reviewErrorCode,
-    association_interval: { min:Math.min(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0),max:Math.max(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0) },
-    score_interval: { min: Math.min(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0), max: Math.max(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0) },
+    association_interval: isFiniteScore(primary.association_score) ? { min:Math.min(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0),max:Math.max(primary.association_score ?? 0,review?.association_score ?? primary.association_score ?? 0) } : null,
+    score_interval: isFiniteScore(primary.final_score) ? { min: Math.min(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0), max: Math.max(primary.final_score ?? 0, review?.final_score ?? primary.final_score ?? 0) } : null,
     language,
     target_meaning: targetMeaning,
     swow_target_meaning: swowTargetMeaning,

@@ -76,6 +76,8 @@ test('AC-005: numeric persistence keeps absence, zero and review diagnostics', (
   const legacy = restoreAssociativeState(saved, { languages: ['en'] }).state;
   assert.equal(legacy.languages.en[1].final_score, null); assert.equal(legacy.languages.en[1].selected, false);
   assert.ok(legacy.languages.en[1].warnings.includes('legacy_numeric_recalculation_required'));
+  saved.state.languages.en[1].analysis.primary = { final_score: 0, association_score: 0 };
+  assert.equal(restoreAssociativeState(saved, { languages: ['en'] }).state.languages.en[1].association_score, 0, 'proven primary zero survives legacy import');
 });
 
 test('AC-010/015: actual page adapter counts all found rows without changing five-model scoring', async () => {

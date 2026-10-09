@@ -67,3 +67,9 @@ Review callbacks теперь ограничивают реальный запр
 Счётчики найденных и выбранных строк отделены от прежнего набора максимум пяти scoringCandidates. Сфера проверки полноты не расширяется на произвольные дополнительные строки: AC-015 остаётся методологическим вопросом. VM-проверки исполняют реальные функции calculateFinal/analyzeItem из страницы (не browser E2E): подтверждают полные счётчики при неизменном max-five scoring и игнорирование late manual response после редактирования слова.
 
 `node --test tests/associative-calculation-numeric.test.mjs tests/associative-calculation-lifecycle.test.mjs tests/associative-model-selection-policy.test.mjs` — 14/14, 0 ошибок. Browser E2E пока заблокирован отсутствующим Chromium; попытка установки завершилась ошибкой повреждённого архива CDN. Полный npm test ещё проверяется.
+
+## Исправление: блок 6 — диагностика review и нулевых доказательств
+
+В таблице различаются review pending/error/disabled/budget, сохраняется error code. Upstream HTTP error на backend отделён от ошибки пользовательского запроса. Отсутствующий P не превращается в интервал [0,0]. Legacy true zero сохраняется при наличии primary.association_score=0; без доказательства требуется пересчёт.
+
+`node --test tests/associative-calculation-numeric.test.mjs tests/associative-calculation-services.test.mjs tests/associativvordes-qwen-review.test.mjs` — 11/11, 0 ошибок. Source-only проверка AbortController переведена на общий deadline helper, фактические тесты timeout/abort сохранены. Общая верификация продолжается после уже успешно проверенных файлов; отдельный PH baseline AC-014 не исправляется здесь.
