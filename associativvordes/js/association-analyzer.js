@@ -138,7 +138,7 @@ export function calculateLanguageScore(items = [], {
   const interval=intervals.length?{min:lower,max:Math.max(...intervals.map(x=>x.upper))}:null;
   const associationInterval=possible.length&&possible.every(x=>isFiniteScore(x.aLower)&&isFiniteScore(x.aUpper))?{min:Math.min(...possible.map(x=>Number(x.aLower))),max:Math.max(...possible.map(x=>Number(x.aUpper)))}:null;
   const representativeUncertain=possible.length>1 && possible.some(x=>x.lower!==x.upper);
-  return { incomplete, incompleteReasons, foundCount: items.length, selectedCount: selectedItems.length, associationPreliminary: best && isFiniteScore(associationScoreGetter(best)) ? Number(associationScoreGetter(best)) : null, scoreInterval:interval, associationInterval, representativeUncertain, sum:best?selected.reduce((s,x)=>s+Number(scoreGetter(x)),0):null,normalized:best?Number(scoreGetter(best)):null,count:selected.length,associationNormalized:best&&!incomplete&&isFiniteScore(associationScoreGetter(best))?Number(associationScoreGetter(best)):null,associationSum:best&&!incomplete?selected.reduce((s,x)=>s+Number(associationScoreGetter(x)),0):null,associationCount:selected.filter(x=>isFiniteScore(associationScoreGetter(x))).length,representative:best?.word||null,methodology_version:METHODOLOGY_VERSION};
+  return { incomplete, incompleteReasons, foundCount: items.length, selectedCount: selectedItems.length, primaryAssociationCount: selectedItems.filter(item => isFiniteScore(associationScoreGetter(item))).length, associationPreliminary: best && isFiniteScore(associationScoreGetter(best)) ? Number(associationScoreGetter(best)) : null, scoreInterval:interval, associationInterval, representativeUncertain, sum:best?selected.reduce((s,x)=>s+Number(scoreGetter(x)),0):null,normalized:best?Number(scoreGetter(best)):null,count:selected.length,associationNormalized:best&&!incomplete&&isFiniteScore(associationScoreGetter(best))?Number(associationScoreGetter(best)):null,associationSum:best&&!incomplete?selected.reduce((s,x)=>s+Number(associationScoreGetter(x)),0):null,associationCount:selected.filter(x=>isFiniteScore(associationScoreGetter(x))).length,representative:best?.word||null,methodology_version:METHODOLOGY_VERSION};
 }
 
 export function unavailableReasonsFromStatuses(languageStatuses = {}) {
@@ -194,7 +194,7 @@ export function calculateFinalAssociation({ languages = [], languageResults = []
     foundLanguages: languageScores.filter(x => Number(x.foundCount) > 0).length,
     selectedLanguages: languageScores.filter(x => Number(x.selectedCount ?? x.count) > 0).length,
     scoredPLanguages: languageScores.filter(x => isFiniteScore(x.normalized)).length,
-    primaryALanguages: languageScores.filter(x => isFiniteScore(x.associationPreliminary ?? x.associationNormalized)).length,
+    primaryALanguages: languageScores.filter(x => Number(x.primaryAssociationCount) > 0 || isFiniteScore(x.associationPreliminary ?? x.associationNormalized)).length,
     verifiedALanguages: languageScores.filter(x => isFiniteScore(x.associationNormalized)).length,
     completedLanguages: Object.values(statusSummary.statuses).filter(x => SUCCESS_TERMINAL_LANGUAGE_STATUSES.includes(x.status)).length,
     includedLanguages: representedLangs,

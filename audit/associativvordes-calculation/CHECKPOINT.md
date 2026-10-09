@@ -73,3 +73,9 @@ Review callbacks теперь ограничивают реальный запр
 В таблице различаются review pending/error/disabled/budget, сохраняется error code. Upstream HTTP error на backend отделён от ошибки пользовательского запроса. Отсутствующий P не превращается в интервал [0,0]. Legacy true zero сохраняется при наличии primary.association_score=0; без доказательства требуется пересчёт.
 
 `node --test tests/associative-calculation-numeric.test.mjs tests/associative-calculation-services.test.mjs tests/associativvordes-qwen-review.test.mjs` — 11/11, 0 ошибок. Source-only проверка AbortController переведена на общий deadline helper, фактические тесты timeout/abort сохранены. Общая верификация продолжается после уже успешно проверенных файлов; отдельный PH baseline AC-014 не исправляется здесь.
+
+## Исправление: блок 7 — окончательная семантика счётчиков/кнопки
+
+Первичная A учитывается независимо от наличия P, допуск в FAᵥ не меняется. Кнопка различает pending mandatory review, неопределённое решение и терминальные ошибки запуска; index/qwen error больше не получает сообщение о pending mandatory review. Новый source-assertion target translation учитывает передачу review context; проверка оригинального meaning и пропуска SWOW сохранена.
+
+Последний целевой прогон `node --test tests/associative-calculation-*.test.mjs tests/associative-atomic-pipeline.test.mjs tests/associativvordes-error-handling.test.mjs tests/associativvordes-target-translation-batch.test.mjs`: 20/20, 0 ошибок (из них 17 новых регрессионных проверок).

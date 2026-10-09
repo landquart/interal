@@ -12,6 +12,8 @@ const final = rows => calculateFinalAssociation({ languages: CONTROL_LANGUAGES, 
 test('AC-003: maximum P and same representative A; missing A and required review remain distinct', () => {
   const complete = calculateLanguageScore([item(40, 90, false, 'first'), item(70, 60, false, 'best')]);
   assert.equal(complete.normalized, 70); assert.equal(complete.associationNormalized, 60);
+  const onlyA = final([calculateLanguageScore([item(null, 85)])]);
+  assert.equal(onlyA.counts.primaryALanguages, 1); assert.equal(onlyA.counts.scoredPLanguages, 0);
   assert.equal(complete.selectedCount, 2); assert.equal(complete.representative, 'best');
   const missing = calculateLanguageScore([item(70, null)]);
   assert.equal(missing.normalized, 70); assert.equal(missing.associationNormalized, null);

@@ -698,6 +698,7 @@ const TEXT_I18N = {
             start: currentLang() === 'en' ? 'Calculating...' : 'Расчёт...',
             done: currentLang() === 'en' ? 'Done' : 'Готово',
             review: currentLang() === 'en' ? 'Mandatory review pending' : 'Ожидается обязательная проверка',
+            verification: currentLang() === 'en' ? 'Result requires verification' : 'Результат требует проверки',
             warnings: textGroup('errors').completedWithWarnings,
             error: currentLang() === 'en' ? 'Calculation error' : 'Ошибка расчёта'
           },
