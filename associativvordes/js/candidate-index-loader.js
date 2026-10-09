@@ -3,7 +3,7 @@ import { acceptAffixBoundaryMatch, STATIC_MANIFEST_VERSION } from './affix-bound
 import { loadStaticCandidateEntries, validateStaticManifest } from './candidate-static-search.js';
 import { SEARCH_NORMALIZER_VERSION } from './search-normalizer.js';
 import { resolveAssociativeFamily } from './associative-family-registry.js';
-import { FamilyIndexLoader } from './family-index-loader.js';
+import { FamilyIndexLoader, createFamilyIndexFetch } from './family-index-loader.js';
 import { QWEN_RUNTIME_CONFIG } from './qwen-client.js';
 
 // Candidate generation must not create words outside the selected exact family.
@@ -196,11 +196,7 @@ export function createCandidateIndexLoader(options = {}) {
   const fetchImpl = options.fetch ?? globalThis.fetch?.bind(globalThis);
   if (typeof fetchImpl !== 'function') throw new TypeError('createCandidateIndexLoader requires fetch support.');
   const maxCachedResources = Number.isInteger(options.maxCachedResources) && options.maxCachedResources >= 0 ? options.maxCachedResources : DEFAULT_MAX_CACHED_RESOURCES;
-  const familyIndexLoader = options.familyIndexLoader || new FamilyIndexLoader({ baseUrl: options.familyBaseUrl || '/associativvordes/family-index-v5', fetchJson: async (url, init) => {
-    const response = await fetchImpl(url, init);
-    if (!response?.ok) throw new Error(`Family index request failed: ${response?.status ?? 'network'}`);
-    return response.json();
-  } });
+  const familyIndexLoader = options.familyIndexLoader || new FamilyIndexLoader({ baseUrl: options.familyBaseUrl || '/associativvordes/family-index-v5', fetchJson: createFamilyIndexFetch(fetchImpl) });
 
   const diagnostics = createDiagnostics();
   let manifestRecord;

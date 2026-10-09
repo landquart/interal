@@ -13,8 +13,23 @@ const BLOCKED_RUNTIME_STATUSES = new Set(['blocked_from_runtime', 'rejected', 's
 const hasManualEvidence = member => member?.components?.some(component => component.evidence?.some(evidence => evidence.type === 'manual_override'));
 const isRuntimeCorpusMember = member => member?.corpus_quality?.status !== 'rejected';
 
+// A .gz asset may be raw gzip or already decoded by HTTP Content-Encoding.
+// Keep this transport shared by the direct loader and the page's injected fetch.
+export function createFamilyIndexFetch(fetchImpl = globalThis.fetch?.bind(globalThis)) {
+  return async (url, options) => {
+    const response = await fetchImpl(url, options);
+    if (!response.ok) throw new Error(`Family index request failed: ${response.status}`);
+    if (!url.endsWith('.gz') || !response.body) return response.json();
+    const bytes = new Uint8Array(await response.arrayBuffer());
+    if (bytes[0] !== 0x1f || bytes[1] !== 0x8b) return JSON.parse(new TextDecoder().decode(bytes));
+    if (typeof DecompressionStream !== 'function') throw new Error('Gzip decompression is unavailable');
+    const stream = new Response(bytes).body.pipeThrough(new DecompressionStream('gzip'));
+    return JSON.parse(await new Response(stream).text());
+  };
+}
+
 export class FamilyIndexLoader {
-  constructor({ baseUrl = '/associativvordes/family-index-v5', fetchJson = async (url, options) => { const response = await fetch(url, options); if (!response.ok) throw new Error(`Family index request failed: ${response.status}`); if (!url.endsWith('.gz')) return response.json(); if (typeof DecompressionStream !== 'function') throw new Error('Gzip decompression is unavailable'); const stream = response.body.pipeThrough(new DecompressionStream('gzip')); return JSON.parse(await new Response(stream).text()); } } = {}) {
+  constructor({ baseUrl = '/associativvordes/family-index-v5', fetchJson = createFamilyIndexFetch() } = {}) {
     this.baseUrl = baseUrl.replace(/\/$/, ''); this.fetchJson = fetchJson; this.cache = new Map();
   }
   load(path, { signal } = {}) {

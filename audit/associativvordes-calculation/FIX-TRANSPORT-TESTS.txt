@@ -1,0 +1,55 @@
+AC-001/AC-012 page transport regressions passed
+✔ tests/associative-calculation-transport.test.mjs (593.266378ms)
+ok - manifest loads once and repeated calls share cache
+ok - concurrent manifest calls use one promise
+ok - loads only needed shard for root and not the whole language
+ok - repeat shard request uses cache
+ok - different languages have different shard cache keys
+ok - missing language returns LANGUAGE_NOT_INDEXED
+ok - missing shard returns SHARD_NOT_LISTED
+ok - manifest HTTP error returns MANIFEST_FETCH_FAILED
+ok - damaged manifest is rejected
+ok - incompatible version is rejected
+ok - incompatible normalizer_version is rejected
+ok - shard HTTP error returns SHARD_FETCH_FAILED
+ok - damaged shard is rejected and not returned as empty array
+ok - normalizes legacy fixture source metadata without deriving category from id
+ok - source category is required even when legacy id contains one
+ok - entry without sources is rejected
+ok - non-finite frequency_score is rejected
+ok - AbortSignal stops operation without poisoning cache
+ok - passes AbortSignal to fetch options
+ok - abort cancels the mock shard request and returns ABORTED
+ok - aborted shard is not cached and retry performs a new fetch
+ok - completed shard cache survives an aborted consumer
+ok - completed manifest cache is shared after successful load
+ok - diagnostics count fetches and cache hits
+ok - special roots add _other only when needed and skip if not listed
+ok - production base URL is relative and overridable
+✔ tests/associative-candidate-index-loader.test.mjs (103.292338ms)
+✔ discovers every compound component (13.346382ms)
+✔ surface fallback preserves complete coverage (1.687308ms)
+✔ compound containment never merges families (0.813623ms)
+✔ proto relation never merges families (0.191738ms)
+✔ equivalence requires linguistic evidence (0.318048ms)
+✔ lemma IDs are stable and language scoped (0.24625ms)
+✔ lexical aliases cannot collide with JavaScript object prototypes (0.162675ms)
+✔ runtime resolves alias to materialized family members (2.683275ms)
+✔ candidate loader prefers the exhaustive family index over literal static search (0.592051ms)
+✔ family runtime fails closed before fetching an excessive alias fan-out (1.11012ms)
+✔ manual override is language-aware and never exposes stale non-manual members (0.713814ms)
+✔ blocked, rejected, and split-required families never reach runtime candidates (0.489726ms)
+✔ v5 runtime excludes rejected corpus members while remaining v4-compatible (0.509776ms)
+✔ manual family with no language-specific overrides fails closed (0.246992ms)
+✔ authoritative empty family result never falls back to the static index (0.147732ms)
+✔ curated nitidus aliases return only reviewed members and never use broad fallback (2190.690703ms)
+✔ Russian curated short aliases preserve complete ordinary results in other languages (10509.212601ms)
+✔ empty, rejected or malformed curated members never suppress ordinary language results (1.268919ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12868.872087

@@ -37,3 +37,9 @@ REMOTE-SNAPSHOT.md; REMOTE-BRANCHES.txt; LIVE-ASSETS.txt; LIVE-QWEN.txt; LIVE-SE
 6. AC-014 не исправлять автоматически заменой expected PH числа; требуется самостоятельная диагностика.
 
 Merge, изменение существующих PR, пересборка данных и переключение production v5→v6 не выполнялись. Этот аудит не содержит функциональных исправлений.
+
+## Исправление: блок 1
+
+Ветка fix/associativvordes-calculation-20261009 от опубликованного аудита bb2ccdbe203f8472b67b8610cd73f3be421c6d00; main/production по-прежнему b266c92. Последующих исправлений в main и новых относящихся к аудиту PR не найдено; исторический #542 не реализует новый gzip transport.
+AC-001/AC-012: общий gzip/JSON transport установлен именно в createCandidateIndexLoader. Новый тест проверяет шесть настоящих локальных v5 regul списков, raw/HTTP-decoded body, ошибку и отмену; старые family guards сохранены. FIX-TRANSPORT-TESTS.txt: 20 assertions/subtests, всё прошло. Данные v5 не изменены.
+Следующее: numeric/persistence contract, причины pending review и renderer, затем lifecycle/backend. Открытые методологические AC-011/013/015 и независимый PH baseline AC-014 не менять.
