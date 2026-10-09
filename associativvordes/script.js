@@ -808,7 +808,7 @@ const TEXT_I18N = {
               return calculateFinalAssociation({ languages: LANGUAGES, languageResults, languageStatuses: current.languageStatuses });
             }
           },
-          renderer: { renderFinal: async () => renderAll() },
+          renderer: { renderFinal: async () => renderAll(), renderAbort: async () => renderAll() },
           stateStorage: { save: async () => Promise.resolve(window.InteralFormDraft?.save?.()) }
         }
       });
