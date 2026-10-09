@@ -1,0 +1,26 @@
+✔ discovers every compound component (10.034219ms)
+✔ surface fallback preserves complete coverage (0.494965ms)
+✔ compound containment never merges families (0.685892ms)
+✔ proto relation never merges families (0.149815ms)
+✔ equivalence requires linguistic evidence (0.320783ms)
+✔ lemma IDs are stable and language scoped (0.254483ms)
+✔ lexical aliases cannot collide with JavaScript object prototypes (0.19942ms)
+✔ runtime resolves alias to materialized family members (2.271616ms)
+✔ candidate loader prefers the exhaustive family index over literal static search (0.500112ms)
+✔ family runtime fails closed before fetching an excessive alias fan-out (0.670718ms)
+✔ manual override is language-aware and never exposes stale non-manual members (0.677349ms)
+✔ blocked, rejected, and split-required families never reach runtime candidates (0.435505ms)
+✔ v5 runtime excludes rejected corpus members while remaining v4-compatible (0.644709ms)
+✔ manual family with no language-specific overrides fails closed (0.429636ms)
+✔ authoritative empty family result never falls back to the static index (0.211178ms)
+✔ curated nitidus aliases return only reviewed members and never use broad fallback (1862.178686ms)
+✔ Russian curated short aliases preserve complete ordinary results in other languages (10223.011222ms)
+✔ empty, rejected or malformed curated members never suppress ordinary language results (1.285724ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12226.843026
