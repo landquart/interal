@@ -45,7 +45,7 @@ test('V-004: actual page candidate analysis returns terminal states for success 
   const body = extract(source,'    async function analyzeCandidateItem(', '    async function mapWithConcurrency(');
   const candidate = { word:'regulation', selected:true, analysisStatus:'pending', frequencyProfile:{} };
   const context = {
-    state:{targetMeaning:'rule'}, currentRunSignal:()=>null, isCurrentRun:()=>true,
+    state:{targetMeaning:'rule'}, activeReviewBudget:null, currentRunSignal:()=>null, isCurrentRun:()=>true,
     throwIfStaleRun:()=>{},textGroup:()=>({en:'English'}),incrementDiagnostic:()=>{},
     recordQwenUsedModels:()=>{},addCandidateWarning:()=>{},candidateWarningId:()=>1,
     warningCode:x=>x, QWEN_ERROR_CODES:{ABORTED:'ABORTED'},
