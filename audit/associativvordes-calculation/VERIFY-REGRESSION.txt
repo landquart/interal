@@ -1,0 +1,50 @@
+Associative production pipeline integration tests passed.
+✔ tests/associative-atomic-pipeline.test.mjs (91.911184ms)
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (1.267557ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (1.10328ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.380417ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (4.195522ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (1.1561ms)
+✔ AC-006: actual page analyzeItem discards a late response after candidate edit (10.978857ms)
+✔ AC-003: maximum P and same representative A; missing A and required review remain distinct (2.83079ms)
+✔ AC-002/003/010 regul fixed fixture: five derivatives per language, positive P and pending review (14.21114ms)
+✔ AC-002/010: complete regul fixture uses unchanged direct demographic formulas (1.398413ms)
+✔ AC-003/010: partial languages and exact acceptance boundaries (0.8373ms)
+✔ AC-002: supported empty rows have N; unknown represented language throws (0.589467ms)
+✔ AC-005: numeric persistence keeps absence, zero and review diagnostics (1.529731ms)
+✔ AC-010/015: actual page adapter counts all found rows without changing five-model scoring (11.981456ms)
+✔ AC-008: deadline includes an unresponsive response body and cancellation wins late results (13.05392ms)
+✔ AC-009: backend rejects incomplete scores, preserves true zero and upstream 403 (7.247624ms)
+✔ AC-008: backend timeout also covers upstream body (5.196579ms)
+AC-001/AC-012 page transport regressions passed
+✔ tests/associative-calculation-transport.test.mjs (507.161525ms)
+associativvordes error-handling tests passed
+✔ tests/associativvordes-error-handling.test.mjs (100.01712ms)
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 0,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes target translation batch tests passed
+✔ tests/associativvordes-target-translation-batch.test.mjs (100.086695ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 20
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 524.541302

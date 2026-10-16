@@ -1,0 +1,20 @@
+ORACLE {"A":73,"P":69.71445715060489,"regulFA":64.03319270647123,"N":2797000000,"pending":{"foundLanguages":6,"selectedLanguages":6,"scoredPLanguages":6,"primaryALanguages":6,"verifiedALanguages":0,"completedLanguages":6,"includedLanguages":0,"includedGroups":0}}
+BOUNDARY 35 true 0.7007508044333214 2
+BOUNDARY 34.999 false 0.7007508044333214 2
+BOUNDARY 0 false 0 0
+V-001 PAGE_MISSING_P {"direct":{"incomplete":true,"incompleteReasons":[{"word":"word","code":"missing_P"}],"foundCount":1,"selectedCount":1,"primaryAssociationCount":1,"associationPreliminary":null,"scoreInterval":null,"associationInterval":null,"representativeUncertain":false,"sum":null,"normalized":null,"count":0,"associationNormalized":null,"associationSum":null,"associationCount":0,"representative":null,"methodology_version":"2026-09-09"},"page":{"lang":{"code":"en","name":"English","group":"Germanic","speakers":1493000000},"incomplete":false,"incompleteReasons":[],"foundCount":1,"selectedCount":1,"primaryAssociationCount":0,"associationPreliminary":null,"scoreInterval":null,"associationInterval":null,"representativeUncertain":false,"sum":null,"normalized":null,"count":0,"associationNormalized":null,"associationSum":null,"associationCount":0,"representative":null,"methodology_version":"2026-09-09","semanticConfirmed":false,"speakers":1493000000,"weightedScore":null,"includedInFinal":false},"diagnostics":{"pendingReview":false,"missingScores":false,"representativeUncertain":false,"thresholdUncertain":false,"incompleteRun":false},"counts":{"foundLanguages":1,"selectedLanguages":1,"scoredPLanguages":0,"primaryALanguages":0,"verifiedALanguages":0,"completedLanguages":1,"includedLanguages":0,"includedGroups":0}}
+V-002 USER_DESELECT_OVERWRITTEN true
+V-003 ABORT {"global":"aborted","language":{"status":"loading_index","errorCode":null,"diagnostics":[],"candidateCount":0,"analyzedCount":0,"successfulCount":0,"failedCount":0},"derived":"loading"}
+Independent diagnostics completed (three defects reproduced; no functional edits).
+V-005 PREPOSITION_LOADER_OPTIONS [ 'signal' ]
+CASE missingA [{"word":"word","code":"missing_A"}] 60 null
+CASE missingP [{"word":"word","code":"missing_P"}] null null
+CASE review [{"word":"word","code":"review_required","reviewStatus":"pending","errorCode":null}] 60 null
+CASE zero [] 0 0
+UNCERTAINTY { min: 32.38265306122449, max: 47.61734693877551 } false
+V-001 MIXED_ACCEPTANCE {
+  pageAccepted: true,
+  directAccepted: false,
+  pageMissing: false,
+  directMissing: true
+}
