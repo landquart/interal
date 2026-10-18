@@ -45,3 +45,5 @@ node --test tests/associative-external-import.test.mjs
 [PROTECTED-PATHS.json](import-validation/PROTECTED-PATHS.json) подтверждает неизменность исходных деревьев семей v5, частот, JS/shared/API/scripts и конфигурации. Формулы, v5/v6, production и проверенные семьи не изменялись. Автоматического promotion, массовой очистки и merge нет. Работа представлена в draft PR #663 поверх архитектурного PR #662.
 
 См. [источники](SOURCE-MANIFEST.md), [совместимость](SOURCE-COMPATIBILITY.md), [проверки](IMPORT-TEST-RESULTS.md).
+
+Полный повторный запуск rebuild.py завершён с кодом 0; 13 аудитов прошли, каталог совпал побайтово по закреплённым хешам. [REIMPORT-AUDITS.json](import-validation/REIMPORT-AUDITS.json).
