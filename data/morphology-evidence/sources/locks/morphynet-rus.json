@@ -1,0 +1,34 @@
+{
+  "artifacts": [
+    {
+      "bytes": 5389104,
+      "format": "morphynet_derivation",
+      "id": "MorphyNet:rus.derivational.v1",
+      "language": "rus",
+      "license": "CC-BY-SA-3.0",
+      "path": "MorphyNet/rus/rus.derivational.v1.tsv",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "ad3c778df01ee168cb5fbebc25ef9d02195ce2337feb29e8b70405af4a6419a0",
+      "source": "MorphyNet",
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/rus/rus.derivational.v1.tsv"
+    },
+    {
+      "bytes": 10279691,
+      "format": "morphynet_inflection",
+      "id": "MorphyNet:rus.inflectional.v1",
+      "language": "rus",
+      "license": "CC-BY-SA-3.0",
+      "member": "rus.inflectional.v1.tsv",
+      "member_bytes": 137083813,
+      "member_sha256": "bac6b791e9999ef030fa4e63ed468332c08b3254714ea8d114c63b26a14ada1d",
+      "path": "MorphyNet/rus/rus.inflectional.v1.zip",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "80b2c608f220a25049d632340377a5c06282c4de1db39e35277591951445f9d9",
+      "source": "MorphyNet",
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/rus/rus.inflectional.v1.zip"
+    }
+  ],
+  "schema_version": "morphology-source-lock/1"
+}

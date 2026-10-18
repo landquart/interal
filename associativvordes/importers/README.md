@@ -15,8 +15,14 @@ python associativvordes/importers/morphology_import.py \
 python -m unittest discover -s associativvordes/importers -p 'test_*.py' -v
 ```
 
+Fetch pinned bytes first (the raw directory must also be outside Git):
+
+```sh
+python associativvordes/importers/fetch_sources.py --lock data/morphology-evidence/sources/source-lock.json --raw-root /absolute/path/to/raw-parent
+```
+
 The raw parent must contain the relative paths in the lock. Download only the
-pinned artifact URLs, preserving original bytes. Missing files, wrong bytes,
+pinned artifact URLs, preserving original bytes. MorphyNet/GLeMM may end with a complete final row without LF; it is preserved and accepted. DeriNet2 requires LF by its format specification. Missing files, wrong bytes,
 invalid headers and decompression failures abort before publication. No network
 access occurs during import. ZIP members have their own size/hash locks.
 
@@ -74,3 +80,27 @@ acyclicity, linguistic annotation, exhaustive homonymy or sense identity.
 See the four Prompt 03 reports under `audit/associative-external-preparation/`
 for actual source availability and tested coverage. Full snapshots stay outside
 Git; only locks, reports and small attributed test excerpts are tracked.
+
+Every-line validation, without invoking the adapter parser:
+
+```sh
+python associativvordes/importers/audit_import.py --lock PATH_TO_EXACT_GROUP_LOCK --raw-root RAW --snapshot BUILD_DIRECTORY
+```
+
+## Published partition replay
+
+The full validated plan is `data/morphology-evidence/sources/BUILD-PARTITIONS.json`:
+one UDer partition and six language partitions each for MorphyNet and GLeMM.
+Use Python 3.12.3 / SQLite 3.45.1 / Unicode 15.0.0 / zlib 1.3 to match its build IDs.
+
+```sh
+/usr/bin/python3 associativvordes/importers/rebuild.py --raw-root /absolute/external/raw --output-root /absolute/external/builds --workers 2
+```
+
+This verifies/reuses or creates each partition, independently audits every line,
+and builds the global normalized claim catalog. The catalog retains all evidence
+occurrences and flags differing analysis types for review without asserting a
+contradiction or lexical identity. Mutable SQLite work uses the native system
+temporary directory; only finished immutable snapshots are copied/renamed to the
+external output root. The published plan fails if the importer/runtime produces
+a different build identity. Change the plan deliberately for a new version.

@@ -1,0 +1,41 @@
+{
+  "accepted": 568110,
+  "artifacts": [
+    "UDer:ru-EtymWordNetRU",
+    "MorphyNet:spa.derivational.v1",
+    "MorphyNet:fra.inflectional.v1",
+    "GLeMM:esp:pairs.tsv.bz2",
+    "GLeMM:ita:defs.tsv.bz2"
+  ],
+  "build_id": "e1a08684e2323419d03664a805c0748aca61b82646af6fa2fdf111931fbe52fc",
+  "byte_identical_manifest_and_all_outputs": true,
+  "formats": [
+    "derinet2",
+    "glemm_defs",
+    "glemm_pairs",
+    "morphynet_derivation",
+    "morphynet_inflection"
+  ],
+  "fresh_builds": 2,
+  "outputs": {
+    "conflicts.ndjson": "0ccf43f7b6460316cf74dc5312e59dc193e3b9db98897c7ee65b2d7137105ace",
+    "normalized-relations.ndjson": "18cfd8dffed2030ee85a7cc51daa873b844a1a1333b272883a7cdbc54d7f3e76",
+    "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "records.ndjson.gz": "6b33947b56cffa9b817a6f4c243a4dd74fe8db47b4fa3ff2e012efb41278e9fd",
+    "relation-evidence.ndjson": "6736e3898a46e52c326df8ce296ef41a20ef876a63746c31c1d77b02ae659237"
+  },
+  "policy": {
+    "code_sha256": "2c85307565b595dd2e3d48d76a91d3252403a2cb81d5af11af8a2c6968fbbc3d",
+    "gzip_level": 1,
+    "importer": "isolated-morphology-import/1.0.2",
+    "normalization": "NFC+lookup-casefold/1",
+    "python_version": "3.12.3",
+    "schema": "morphology-import-record/1",
+    "sqlite_version": "3.45.1",
+    "unicode_version": "15.0.0",
+    "zlib_version": "1.3"
+  },
+  "read": 568110,
+  "rejected": 0,
+  "status": "PASS"
+}

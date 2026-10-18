@@ -1,0 +1,18 @@
+test_actual_excerpts_and_fresh_replay (test_morphology_import.ImportTests.test_actual_excerpts_and_fresh_replay) ... ok
+test_bad_graph_duplicate_native_id_no_partial_commit (test_morphology_import.ImportTests.test_bad_graph_duplicate_native_id_no_partial_commit) ... ok
+test_catalog_preserves_evidence_and_refuses_overlapping_partitions (test_morphology_import.ImportTests.test_catalog_preserves_evidence_and_refuses_overlapping_partitions) ... ok
+test_conflicting_types_and_truncated_row (test_morphology_import.ImportTests.test_conflicting_types_and_truncated_row) ... ok
+test_derinet_graph_slots_annotations_and_missing_refs (test_morphology_import.ImportTests.test_derinet_graph_slots_annotations_and_missing_refs) ... ok
+test_header_failure_aborts_atomic_publication (test_morphology_import.ImportTests.test_header_failure_aborts_atomic_publication) ... ok
+test_inflection_is_not_derivation_and_zip_hash (test_morphology_import.ImportTests.test_inflection_is_not_derivation_and_zip_hash) ... ok
+test_keyword_alternatives_preserved_and_duplicate_keys_rejected (test_morphology_import.ImportTests.test_keyword_alternatives_preserved_and_duplicate_keys_rejected) ... ok
+test_locked_acquisition_offline_and_cache_mismatch (test_morphology_import.ImportTests.test_locked_acquisition_offline_and_cache_mismatch) ... ok
+test_missing_checksum_and_corrupted_reuse_fail (test_morphology_import.ImportTests.test_missing_checksum_and_corrupted_reuse_fail) ... ok
+test_multisource_unknowns_and_diacritics (test_morphology_import.ImportTests.test_multisource_unknowns_and_diacritics) ... ok
+test_no_repository_output (test_morphology_import.ImportTests.test_no_repository_output) ... ok
+test_quarantine_is_lossless_and_counts_conserve (test_morphology_import.ImportTests.test_quarantine_is_lossless_and_counts_conserve) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 1.136s
+
+OK

@@ -10,6 +10,9 @@ import unittest
 import zipfile
 
 from morphology_import import run, parse, digest, hash_file, kw
+from audit_import import audit
+from fetch_sources import fetch
+from build_catalog import make_catalog
 
 HERE = Path(__file__).parent
 
@@ -48,6 +51,7 @@ class ImportTests(unittest.TestCase):
         self.assertEqual(first,reused)
         self.assertEqual((first/'manifest.json').read_bytes(),(second/'manifest.json').read_bytes())
         summary=json.loads((first/'manifest.json').read_text())
+        self.assertEqual(audit(fixture/'source-lock.json',fixture,first)['status'],'PASS')
         self.assertEqual(len(summary['reports']),len(lock['artifacts']))
         self.assertTrue(all(r['accepted']>0 and r['rejected']==0 for r in summary['reports']))
         for line in gzip.open(first/'records.ndjson.gz','rt').read().splitlines():
@@ -167,6 +171,41 @@ class ImportTests(unittest.TestCase):
     def test_keyword_alternatives_preserved_and_duplicate_keys_rejected(self):
         self.assertEqual(kw('Type=Variant&Source=0.0|Type=Derivation&Source=0.1')[1]['Source'],'0.1')
         with self.assertRaises(ValueError):kw('Type=x&Type=y')
+
+    def test_locked_acquisition_offline_and_cache_mismatch(self):
+        data=b'slow\tslowly\tJ\tR\tly\tsuffix\n'
+        a=self.artifact(data)
+        a['url']=(self.raw/a['path']).as_uri()
+        lock=self.root/'fetch-lock.json'
+        lock.write_text(json.dumps({'schema_version':'morphology-source-lock/1','artifacts':[a]}))
+        target=self.root/'downloaded'
+        fetch(lock,target)
+        self.assertEqual((target/a['path']).read_bytes(),data)
+        fetch(lock,target)
+        (target/a['path']).write_bytes(b'wrong')
+        with self.assertRaisesRegex(ValueError,'checksum mismatch'):
+            fetch(lock,target)
+        self.assertEqual((target/a['path']).read_bytes(),b'wrong')
+
+    def test_catalog_preserves_evidence_and_refuses_overlapping_partitions(self):
+        fixture=HERE/'fixtures'
+        lock=self.root/'catalog-registry.json'
+        lock.write_bytes((fixture/'source-lock.json').read_bytes())
+        with contextlib.redirect_stdout(io.StringIO()):
+            snapshot=run(lock,fixture,self.root/'source')
+        plan=self.root/'partition-plan.json'
+        part={'name':'source','lock':lock.name,'build_id':snapshot.name}
+        plan.write_text(json.dumps({'partitions':[part]}))
+        catalog=make_catalog(lock,plan,self.root,self.root/'catalog')
+        c=json.loads((catalog/'CATALOG.json').read_text())
+        m=json.loads((snapshot/'manifest.json').read_text())
+        self.assertEqual(c['unique_normalized_views'],m['normalized_relation_views'])
+        self.assertEqual(c['evidence_occurrences'],sum(r['claims'] for r in m['reports']))
+        self.assertFalse(c['establishes_membership'])
+        self.assertEqual(make_catalog(lock,plan,self.root,self.root/'catalog'),catalog)
+        plan.write_text(json.dumps({'partitions':[part,part]}))
+        with self.assertRaisesRegex(ValueError,'duplicate artifact'):
+            make_catalog(lock,plan,self.root,self.root/'bad-catalog')
 
 
 if __name__=='__main__':unittest.main()

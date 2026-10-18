@@ -1,0 +1,41 @@
+{
+  "artifacts": [
+    {
+      "bytes": 7094764,
+      "format": "glemm_defs",
+      "id": "GLeMM:eng:defs.tsv.bz2",
+      "language": "eng",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM/eng/defs.tsv.bz2",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "8dc73d48dfe8f687c3686230371d0e3218719852f9e3f924cbe9bb6f8ba6a09e",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/defs.tsv.bz2"
+    },
+    {
+      "bytes": 5578736,
+      "format": "glemm_pairs",
+      "id": "GLeMM:eng:pairs.tsv.bz2",
+      "language": "eng",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM/eng/pairs.tsv.bz2",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "67073ab267768413b9e407080743d4e4e2aa36fed932600fc18fcd80f35b15db",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/pairs.tsv.bz2"
+    }
+  ],
+  "schema_version": "morphology-source-lock/1"
+}

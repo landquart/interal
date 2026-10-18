@@ -326,6 +326,58 @@
       "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/deu/pairs.tsv.bz2"
     },
     {
+      "bytes": 959,
+      "extraction": {
+        "lines": [
+          1,
+          9
+        ],
+        "policy": "first-physical-lines/1",
+        "source_sha256": "8dc73d48dfe8f687c3686230371d0e3218719852f9e3f924cbe9bb6f8ba6a09e"
+      },
+      "format": "glemm_defs",
+      "id": "GLeMM:eng:defs.tsv.bz2:excerpt",
+      "language": "eng",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM_eng_defs.tsv",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "fffe81e8c2b99cbd361f20215bbbd1ad40358d336b4fb5d1600115fa8f622a55",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/defs.tsv.bz2"
+    },
+    {
+      "bytes": 374,
+      "extraction": {
+        "lines": [
+          1,
+          9
+        ],
+        "policy": "first-physical-lines/1",
+        "source_sha256": "67073ab267768413b9e407080743d4e4e2aa36fed932600fc18fcd80f35b15db"
+      },
+      "format": "glemm_pairs",
+      "id": "GLeMM:eng:pairs.tsv.bz2:excerpt",
+      "language": "eng",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM_eng_pairs.tsv",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "9e53ff219eb3bbe98040ec73077c219399f626b153f7f1cc87d8a62897fd6128",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/pairs.tsv.bz2"
+    },
+    {
       "bytes": 1320,
       "extraction": {
         "lines": [
@@ -376,6 +428,32 @@
       "sha256": "763a1e5638c1dc7cba96e3052bcd131b34808c3d5fe422559109885b20198e4f",
       "source": "GLeMM",
       "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/esp/pairs.tsv.bz2"
+    },
+    {
+      "bytes": 1399,
+      "extraction": {
+        "lines": [
+          1,
+          9
+        ],
+        "policy": "first-physical-lines/1",
+        "source_sha256": "d18c771f78332d03c8e2717a7a140ed541462f57de3d1262e616e7c69d00a6b4"
+      },
+      "format": "glemm_defs",
+      "id": "GLeMM:fra:defs.tsv.bz2:excerpt",
+      "language": "fra",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM_fra_defs.tsv",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "e0f1da989036158f0e79c90942929cdd1b0fdf43dc1acac83c78aed8a295694d",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/fra/defs.tsv.bz2"
     },
     {
       "bytes": 419,
@@ -456,11 +534,63 @@
       "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/ita/pairs.tsv.bz2"
     },
     {
+      "bytes": 2831,
+      "extraction": {
+        "lines": [
+          1,
+          9
+        ],
+        "policy": "first-physical-lines/1",
+        "source_sha256": "45faa636451ec9021e96e3c281aafdb24eb0e03cf4d7051fbe69dc9b04da58e4"
+      },
+      "format": "glemm_defs",
+      "id": "GLeMM:rus:defs.tsv.bz2:excerpt",
+      "language": "rus",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM_rus_defs.tsv",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "a67dfd04c0f68506970d457bfd3cc3ee65791993f78eebe696a9ce6b92038e72",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/rus/defs.tsv.bz2"
+    },
+    {
+      "bytes": 689,
+      "extraction": {
+        "lines": [
+          1,
+          9
+        ],
+        "policy": "first-physical-lines/1",
+        "source_sha256": "ceb1e57f137c808ba677dbe70115b36570a15109e8ba8e19b2b6e7a034f69f92"
+      },
+      "format": "glemm_pairs",
+      "id": "GLeMM:rus:pairs.tsv.bz2:excerpt",
+      "language": "rus",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM_rus_pairs.tsv",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "d1014be4de636315f684012504dd6325b67ffee869b1dc9980f0fa1f9fed512e",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/rus/pairs.tsv.bz2"
+    },
+    {
       "bytes": 329,
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "b541cc6a120dcc0741cbb3ca638a778753d682c61a77d129f07caea0507871f6"
@@ -481,7 +611,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "48a2a1c4a6e5123a811ff6d968ff4308703b566a19bfd3714cb4191143a1e344"
@@ -502,7 +632,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "5f8d01d65bb2bdde94a60a05d52e245bdaf4ba5a28d63923296430d99d42c5be"
@@ -523,7 +653,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "cf68c43f6c52f490c4a517d394a7197ff99e429f34e5a6edb58f890da45ab7d4"
@@ -544,7 +674,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "1271bef98f1d1fc37546471d6d950d78e3e77cf612d56073b9f265c1e0f47cee"
@@ -565,7 +695,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "055badea929d67c76e8011d7b3e0444db325a865d87443fd0c376413e39e2d1c"
@@ -586,7 +716,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "5c769d95a2e49caa7f50f75fdacb1db1f1d2a23aa06a9d3de0364b03ca92ac55"
@@ -607,7 +737,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "960c5f5ca0af8410223722ec9a34007d59c7ab3caf34c2cfbdbc3efadbbb7bed"
@@ -628,7 +758,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "c3f5bd75ed34a9f92150aca1c164b60ee626c23b74df4296129231af62f4418b"
@@ -649,7 +779,7 @@
       "extraction": {
         "lines": [
           1,
-          8
+          9
         ],
         "policy": "first-physical-lines/1",
         "source_sha256": "004965acd2a4b7f2405a30af9ec6d4be2140dfae6b5e0f3673b67f1f2ca24782"

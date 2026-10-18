@@ -15,6 +15,7 @@ import io
 import zlib
 import json
 import os
+import platform
 from pathlib import Path
 import re
 import shutil
@@ -23,7 +24,7 @@ import tempfile
 import unicodedata
 import zipfile
 
-VERSION = 'isolated-morphology-import/1.0.1'
+VERSION = 'isolated-morphology-import/1.0.2'
 SCHEMA = 'morphology-import-record/1'
 LANGUAGES = {'en':'en','eng':'en','de':'de','deu':'de','fr':'fr','fra':'fr','esp':'es',
              'es':'es','spa':'es','it':'it','ita':'it','ru':'ru','rus':'ru'}
@@ -264,6 +265,7 @@ def run(lock_path, raw_root, output_root):
         raise ValueError('build output must be outside repository')
     validate_lock(lock, root)  # Fail before writing any snapshot.
     policy = {'importer':VERSION,'schema':SCHEMA,'code_sha256':hash_file(__file__),
+              'python_version':platform.python_version(),'sqlite_version':sqlite3.sqlite_version,
               'unicode_version':unicodedata.unidata_version,'zlib_version':zlib.ZLIB_VERSION,'gzip_level':1,'normalization':'NFC+lookup-casefold/1'}
     build = digest({'lock':lock,'policy':policy})
     out.mkdir(parents=True,exist_ok=True)
@@ -274,7 +276,9 @@ def run(lock_path, raw_root, output_root):
             if hash_file(final/name) != checksum:
                 raise ValueError('existing output corrupted: '+name)
         return final
-    tmp = Path(tempfile.mkdtemp(prefix='.ingest-', dir=out))
+    # Keep mutable SQLite/journals away from synced artifact directories. Only
+    # a completed immutable snapshot is moved into the output namespace.
+    tmp = Path(tempfile.mkdtemp(prefix='morphology-ingest-'))
     db = sqlite3.connect(tmp/'working.sqlite')
     db.executescript('''PRAGMA cache_size=-8192; PRAGMA temp_store=FILE;
       CREATE TABLE occurrences(artifact TEXT,line INTEGER,raw_hash TEXT,PRIMARY KEY(artifact,line));
@@ -389,7 +393,19 @@ def run(lock_path, raw_root, output_root):
         (tmp/'manifest.json').write_text(dumps(manifest)+'\n',encoding='utf-8')
         # No mutable latest pointer. Atomic directory rename; concurrent identical builds reuse only after verification.
         try:
-            os.rename(tmp,final)
+            try:
+                os.rename(tmp,final)
+            except OSError as exc:
+                import errno
+                if exc.errno != errno.EXDEV:
+                    raise
+                publication = Path(tempfile.mkdtemp(prefix='.publish-',dir=out))
+                try:
+                    shutil.copytree(tmp,publication,dirs_exist_ok=True)
+                    os.rename(publication,final)
+                    shutil.rmtree(tmp)
+                finally:
+                    shutil.rmtree(publication,ignore_errors=True)
         except OSError:
             if not final.exists():
                 raise

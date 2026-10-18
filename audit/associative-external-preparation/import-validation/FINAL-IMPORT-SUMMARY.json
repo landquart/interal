@@ -1,0 +1,119 @@
+{
+  "artifacts": 35,
+  "input_bytes": 260992004,
+  "languages": {
+    "de": {
+      "accepted": 979173,
+      "claims": 251434,
+      "duplicates": 8804,
+      "inflections": 490331,
+      "read": 979173,
+      "rejected": 0,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    "en": {
+      "accepted": 2021878,
+      "claims": 1308280,
+      "duplicates": 369,
+      "inflections": 649593,
+      "read": 2021878,
+      "rejected": 0,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    "es": {
+      "accepted": 1561329,
+      "claims": 163681,
+      "duplicates": 4468,
+      "inflections": 1289300,
+      "read": 1561353,
+      "rejected": 24,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    "fr": {
+      "accepted": 906109,
+      "claims": 444629,
+      "duplicates": 5331,
+      "inflections": 453228,
+      "read": 906109,
+      "rejected": 0,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    "it": {
+      "accepted": 910105,
+      "claims": 191600,
+      "duplicates": 2204,
+      "inflections": 712021,
+      "read": 910105,
+      "rejected": 0,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    "ru": {
+      "accepted": 3025450,
+      "claims": 1391000,
+      "duplicates": 22554,
+      "inflections": 1321024,
+      "read": 3025450,
+      "rejected": 0,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    }
+  },
+  "policy": {
+    "code_sha256": "2c85307565b595dd2e3d48d76a91d3252403a2cb81d5af11af8a2c6968fbbc3d",
+    "gzip_level": 1,
+    "importer": "isolated-morphology-import/1.0.2",
+    "normalization": "NFC+lookup-casefold/1",
+    "python_version": "3.12.3",
+    "schema": "morphology-import-record/1",
+    "sqlite_version": "3.45.1",
+    "unicode_version": "15.0.0",
+    "zlib_version": "1.3"
+  },
+  "sources": {
+    "GLeMM": {
+      "accepted": 2802615,
+      "claims": 2802615,
+      "duplicates": 0,
+      "inflections": 0,
+      "read": 2802615,
+      "rejected": 0,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    "MorphyNet": {
+      "accepted": 5425625,
+      "claims": 510128,
+      "duplicates": 43730,
+      "inflections": 4915497,
+      "read": 5425649,
+      "rejected": 24,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    "UDer": {
+      "accepted": 1175804,
+      "claims": 437881,
+      "duplicates": 0,
+      "inflections": 0,
+      "read": 1175804,
+      "rejected": 0,
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    }
+  },
+  "totals": {
+    "accepted": 9404044,
+    "claims": 3750624,
+    "duplicates": 43730,
+    "inflections": 4915497,
+    "read": 9404068,
+    "rejected": 24,
+    "unresolved_references": 0,
+    "unresolved_secondary": 0
+  }
+}
