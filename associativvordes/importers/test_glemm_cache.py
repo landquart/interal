@@ -4,7 +4,7 @@ import shutil
 import tempfile
 import unittest
 import zipfile
-from glemm_cache import pack,restore
+from glemm_cache import pack,restore,import_upstream
 from morphology_import import validate_lock
 
 FIXTURES=Path(__file__).with_name('fixtures')
@@ -51,5 +51,20 @@ class CacheTests(unittest.TestCase):
             bad=raw/lock['artifacts'][0]['path'];bad.write_bytes(b'bad')
             with self.assertRaises(ValueError):restore(root/'good.zip',raw,path)
             self.assertEqual(bad.read_bytes(),b'bad')
+
+    def test_upstream_directory_zip_selects_only_real_pinned_excerpts(self):
+        with tempfile.TemporaryDirectory() as d:
+            root,raw,path,lock=self.setup_cache(d)
+            with zipfile.ZipFile(root/'upstream.zip','w') as z:
+                z.writestr('upstream/unrelated',b'not an import input')
+                for a in lock['artifacts']:
+                    name='upstream/GLeMM_2.0/output/'+a['path'].removeprefix('GLeMM/')
+                    z.writestr(name,(raw/a['path']).read_bytes())
+            import_upstream(root/'upstream.zip',root/'out',path);validate_lock(lock,root/'out')
+            with zipfile.ZipFile(root/'upstream.zip','a') as z:
+                a=lock['artifacts'][0]
+                z.writestr('second/GLeMM_2.0/output/'+a['path'].removeprefix('GLeMM/'),(raw/a['path']).read_bytes())
+            with self.assertRaises(ValueError):import_upstream(root/'upstream.zip',root/'other',path)
+            self.assertFalse((root/'other/GLeMM').exists())
 
 if __name__=='__main__':unittest.main()

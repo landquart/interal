@@ -138,3 +138,12 @@ overwritten. Use a new external raw directory to recover from an incomplete cach
 No membership, independent-source count or linguistic verdict is implied.
 GLeMM's possible MorphyNet/Wiktionary dependency and upstream licensing obligations
 continue to apply. The cache is an unmodified backup, not a new independent dataset.
+
+An official GitLab ZIP of `GLeMM_2.0/output` at the pinned commit can be imported
+with `glemm_cache.py import-upstream --archive UPSTREAM.zip --raw-root NEW_RAW`.
+Only the twelve locked files are read; each must occur exactly once and match
+the checked-in size/SHA. Extra languages and repository files are not imported.
+Then use `pack` to produce the portable attributed cache. Alternatively,
+`fetch_glemm_git.py --raw-root RAW` exports the same pinned commit/blobs through
+official Git and verifies every file's SHA-256. This transport can still fail
+when the upstream closes connections; it never switches revision or mirror.

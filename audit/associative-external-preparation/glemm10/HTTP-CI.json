@@ -1,0 +1,60 @@
+{
+  "run_id": 39301452970,
+  "status": "BLOCKED",
+  "partitions": [
+    {
+      "id": 118227414296,
+      "name": "sources (glemm-eng-v1.0.2)",
+      "conclusion": "failure",
+      "error_lines": [
+        "2026-10-19T18:23:40.9040193Z     raise OSError('pinned source unavailable: '+'; '.join(errors))",
+        "2026-10-19T18:23:40.9046554Z OSError: pinned source unavailable: https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/defs.tsv.bz2: Remote end closed connection without response; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Feng%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: Remote end closed connection without response; https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/defs.tsv.bz2: curl: curl: (52) Empty reply from server; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Feng%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: curl: curl: (52) Empty reply from server"
+      ]
+    },
+    {
+      "id": 118227414373,
+      "name": "sources (glemm-rus-v1.0.2)",
+      "conclusion": "failure",
+      "error_lines": [
+        "2026-10-19T18:24:24.6590639Z     raise OSError('pinned source unavailable: '+'; '.join(errors))",
+        "2026-10-19T18:24:24.6593988Z OSError: pinned source unavailable: https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/rus/defs.tsv.bz2: Remote end closed connection without response; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Frus%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: Remote end closed connection without response; https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/rus/defs.tsv.bz2: curl: curl: (52) Empty reply from server; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Frus%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: curl: curl: (52) Empty reply from server"
+      ]
+    },
+    {
+      "id": 118227414381,
+      "name": "sources (glemm-esp-v1.0.2)",
+      "conclusion": "failure",
+      "error_lines": [
+        "2026-10-19T18:23:51.4444471Z     raise OSError('pinned source unavailable: '+'; '.join(errors))",
+        "2026-10-19T18:23:51.4450766Z OSError: pinned source unavailable: https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/esp/defs.tsv.bz2: Remote end closed connection without response; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Fesp%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: Remote end closed connection without response; https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/esp/defs.tsv.bz2: curl: curl: (52) Empty reply from server; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Fesp%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: curl: curl: (52) Empty reply from server"
+      ]
+    },
+    {
+      "id": 118227414393,
+      "name": "sources (glemm-deu-v1.0.2)",
+      "conclusion": "failure",
+      "error_lines": [
+        "2026-10-19T18:23:29.2580698Z     raise OSError('pinned source unavailable: '+'; '.join(errors))",
+        "2026-10-19T18:23:29.2583263Z OSError: pinned source unavailable: https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/deu/defs.tsv.bz2: Remote end closed connection without response; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Fdeu%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: Remote end closed connection without response; https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/deu/defs.tsv.bz2: curl: curl: (52) Empty reply from server; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Fdeu%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: curl: curl: (52) Empty reply from server"
+      ]
+    },
+    {
+      "id": 118227414437,
+      "name": "sources (glemm-ita-v1.0.2)",
+      "conclusion": "failure",
+      "error_lines": [
+        "2026-10-19T18:24:12.9129216Z     raise OSError('pinned source unavailable: '+'; '.join(errors))",
+        "2026-10-19T18:24:12.9133924Z OSError: pinned source unavailable: https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/ita/defs.tsv.bz2: Remote end closed connection without response; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Fita%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: Remote end closed connection without response; https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/ita/defs.tsv.bz2: curl: curl: (52) Empty reply from server; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Fita%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: curl: curl: (52) Empty reply from server"
+      ]
+    },
+    {
+      "id": 118227414569,
+      "name": "sources (glemm-fra-v1.0.2)",
+      "conclusion": "failure",
+      "error_lines": [
+        "2026-10-19T18:24:00.9307957Z     raise OSError('pinned source unavailable: '+'; '.join(errors))",
+        "2026-10-19T18:24:00.9311020Z OSError: pinned source unavailable: https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/fra/defs.tsv.bz2: Remote end closed connection without response; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Ffra%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: Remote end closed connection without response; https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/fra/defs.tsv.bz2: curl: curl: (52) Empty reply from server; https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/GLeMM_2.0%2Foutput%2Ffra%2Fdefs.tsv.bz2/raw?ref=395020177a96a81177582fb59664509ff015f934: curl: curl: (52) Empty reply from server"
+      ]
+    }
+  ]
+}

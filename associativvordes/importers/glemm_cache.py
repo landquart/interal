@@ -81,9 +81,32 @@ def restore(archive,raw,lock_path=LOCK):
     return {'status':'verified_cache','artifacts':len(lock['artifacts']),
             'source_lock_sha256':hash_file(lock_path)}
 
+def import_upstream(archive,raw,lock_path=LOCK):
+    """Read only the locked files from a downloaded upstream GitLab directory ZIP."""
+    archive,raw=external(archive),external(raw);lock,_=contract(lock_path)
+    raw.mkdir(parents=True,exist_ok=True)
+    with zipfile.ZipFile(archive) as z,tempfile.TemporaryDirectory(prefix='.glemm-upstream-',dir=raw) as d:
+        staged=Path(d)
+        for a in lock['artifacts']:
+            wanted='GLeMM_2.0/output/'+a['path'].removeprefix('GLeMM/')
+            matches=[i for i in z.infolist() if i.filename==wanted or i.filename.endswith('/'+wanted)]
+            if len(matches)!=1:raise ValueError('missing/ambiguous upstream entry: '+wanted)
+            i=matches[0]
+            if i.file_size!=a['bytes'] or stat.S_IFMT(i.external_attr>>16) not in (0,stat.S_IFREG):
+                raise ValueError('unsafe upstream entry/size: '+wanted)
+            p=checked_path(staged,a['path']);p.parent.mkdir(parents=True,exist_ok=True)
+            with z.open(i) as src,p.open('wb') as dest:shutil.copyfileobj(src,dest,length=1024*1024)
+        validate_lock(lock,staged)
+        if (raw/'GLeMM').exists():validate_lock(lock,raw)
+        else:os.replace(staged/'GLeMM',raw/'GLeMM')
+    return {'status':'verified_upstream_archive','artifacts':len(lock['artifacts']),
+            'source_lock_sha256':hash_file(lock_path)}
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['pack','restore'])
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('action',choices=['pack','restore','import-upstream'])
     p.add_argument('--raw-root',required=True,type=Path);p.add_argument('--archive',required=True,type=Path)
     p.add_argument('--lock',type=Path,default=LOCK);a=p.parse_args()
-    result=pack(a.raw_root,a.archive,a.lock) if a.action=='pack' else restore(a.archive,a.raw_root,a.lock)
+    action={'pack':lambda:pack(a.raw_root,a.archive,a.lock),'restore':lambda:restore(a.archive,a.raw_root,a.lock),
+            'import-upstream':lambda:import_upstream(a.archive,a.raw_root,a.lock)}
+    result=action[a.action]()
     print(json.dumps(result,sort_keys=True))

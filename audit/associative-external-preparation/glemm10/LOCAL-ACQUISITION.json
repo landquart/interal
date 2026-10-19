@@ -1,0 +1,14 @@
+{
+  "status": "BLOCKED",
+  "full_files_verified": 0,
+  "expected_files": 12,
+  "single_file_attempt": {
+    "id": "GLeMM:ita:defs.tsv.bz2",
+    "expected_bytes": 315630,
+    "received_bytes": 202965,
+    "elapsed_seconds": 300.002071,
+    "curl_exit": 28,
+    "sha256_verified": false
+  },
+  "partial_bytes_are_not_imported": true
+}
