@@ -1,0 +1,10 @@
+{
+  "run_id": 39304007341,
+  "job_id": 118236226684,
+  "runner": "ubuntu-24.04-arm",
+  "head": "0d2ecf41815e9c2cc475bdbaa13ac95b31f84caa",
+  "status": "BLOCKED",
+  "error_lines": [
+    "2026-10-19T18:37:21.8178677Z RuntimeError: official Git fetch failed: fatal: unable to access 'https://src.koda.cnrs.fr/nabil.hathout.1/glemm.git/': Empty reply from server"
+  ]
+}

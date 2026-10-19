@@ -61,4 +61,6 @@ done
 
 Формулы, подтверждённые семьи, lexical heads, ручные решения и production не изменены; merge не выполнялся. Полные GLeMM свежие bytes/outputs и окончательная научная оценка не сертифицированы.
 
-Последняя одиночная локальная проба: 202 965 / 315 630 bytes за 300.002071 s, curl exit 28; полного проверенного файла нет (`glemm10/LOCAL-ACQUISITION.json`). Проверка официального Git повторяется на стандартном `ubuntu-24.04-arm`; checkpoint не объявляет её результат заранее.
+Последняя одиночная локальная проба: 202 965 / 315 630 bytes за 300.002071 s, curl exit 28; полного проверенного файла нет (`glemm10/LOCAL-ACQUISITION.json`). Стандартный `ubuntu-24.04-arm` также вернул Empty reply from server: [run 39304007341](https://github.com/landquart/interal/actions/runs/39304007341), `glemm10/ARM-CI.json`. Автономный кеш с полным корпусом не создан. Для завершения нужен официальный upstream ZIP либо доступ к тем же 12 исходным файлам.
+
+Официальный ZIP каталога закреплённой версии: https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/archive.zip?sha=395020177a96a81177582fb59664509ff015f934&path=GLeMM_2.0%2Foutput . HEAD endpoint вернул HTTP 200/application/zip; это проверка адреса, не скачанных байтов.
