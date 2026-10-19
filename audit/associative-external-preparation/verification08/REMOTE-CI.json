@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-19",
+  "observations": [
+    {
+      "url": "https://api.github.com/repos/landquart/interal/actions/runs?head_sha=39d8a47d2588b55c4c750cdd9985b5d6ba26ec73&per_page=20",
+      "runs": [
+        {
+          "id": 37994612402,
+          "name": "Audit production associative family v5",
+          "conclusion": "failure",
+          "head": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73"
+        },
+        {
+          "id": 37994612439,
+          "name": "Audit repository associative family v5",
+          "conclusion": "success",
+          "head": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73"
+        },
+        {
+          "id": 37994612465,
+          "name": "Tests",
+          "conclusion": "failure",
+          "head": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73"
+        },
+        {
+          "id": 37994610410,
+          "name": "pages build and deployment",
+          "conclusion": "success",
+          "head": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73"
+        }
+      ]
+    },
+    {
+      "url": "https://api.github.com/repos/landquart/interal/pulls/662",
+      "pr": 662,
+      "head": "0a6ad505e422983b2a05fa0edb1e03e12bdf7bee",
+      "base": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73",
+      "merged": false,
+      "state": "open"
+    },
+    {
+      "url": "https://api.github.com/repos/landquart/interal/pulls/663",
+      "pr": 663,
+      "head": "d6780ebc693837cc4560a40672eb7ee39e8fa6f7",
+      "base": "0a6ad505e422983b2a05fa0edb1e03e12bdf7bee",
+      "merged": false,
+      "state": "open"
+    },
+    {
+      "url": "https://api.github.com/repos/landquart/interal/pulls/664",
+      "pr": 664,
+      "head": "dbc180b391dc199cdfd82f3c0a45f803996468db",
+      "base": "d6780ebc693837cc4560a40672eb7ee39e8fa6f7",
+      "merged": false,
+      "state": "open"
+    },
+    {
+      "url": "https://api.github.com/repos/landquart/interal/pulls/665",
+      "pr": 665,
+      "head": "156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49",
+      "base": "dbc180b391dc199cdfd82f3c0a45f803996468db",
+      "merged": false,
+      "state": "open"
+    },
+    {
+      "url": "https://api.github.com/repos/landquart/interal/pulls/666",
+      "pr": 666,
+      "head": "216e56b4d19ad94a8a881b0ee978212a30691d3b",
+      "base": "156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49",
+      "merged": false,
+      "state": "open"
+    },
+    {
+      "url": "https://api.github.com/repos/landquart/interal/pulls/667",
+      "pr": 667,
+      "head": "cb2d009bebe29147cdecc62f228f5ffe70451fcb",
+      "base": "216e56b4d19ad94a8a881b0ee978212a30691d3b",
+      "merged": false,
+      "state": "open"
+    }
+  ]
+}

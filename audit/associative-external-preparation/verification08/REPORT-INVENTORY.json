@@ -1,0 +1,361 @@
+[
+  {
+    "headings": [
+      "# Аудит готовности к внешним морфологическим ресурсам",
+      "## 1. Решение",
+      "## 2. Зафиксированные снимки и инструкции",
+      "## 3. PR и фактически объединённые изменения",
+      "## 4. CI: подтверждённые результаты и ограничения",
+      "## 5. Реальные данные и статус v5/v6",
+      "## 6. Актуальность прежних отчётов",
+      "## 7. Новые малые диагностические проверки",
+      "## 8. Внешние источники: установленное и неизвестное",
+      "## 9. Границы результата"
+    ],
+    "path": "audit/associative-external-preparation/01-BASELINE-AUDIT.md",
+    "sha256": "6344f6f8dfe851ae9f91d1e00e07013e74cef8c365f266e73e08e75d8735c93a"
+  },
+  {
+    "headings": [
+      "# Единая модель морфологических свидетельств — архитектурное решение",
+      "## 1. Основания и проверенный код",
+      "## 2. Выбранная архитектура",
+      "## 3. Границы понятий",
+      "## 4. Минимальные новые инфраструктурные записи",
+      "## 5. Инварианты",
+      "## 6. Хранилища и воспроизводимая индексация",
+      "## 7. Совместимость и режимы",
+      "## 8. Варианты и выбор"
+    ],
+    "path": "audit/associative-external-preparation/02-DATA-ARCHITECTURE.md",
+    "sha256": "647745b379919d8c4190804dfbbdea19d1cc899ed803a776ca07e6731023ed68"
+  },
+  {
+    "headings": [
+      "# 03 — Безопасный импорт внешней морфологии",
+      "## Реализация",
+      "## Потери и ограничения",
+      "## Воспроизведение",
+      "## Сохранность Интераля"
+    ],
+    "path": "audit/associative-external-preparation/03-IMPORT-REPORT.md",
+    "sha256": "0db1ab7b0080abe72ac6ef6230b63aabbcbd5424d57c07f1e87491f6bf8ab4c8"
+  },
+  {
+    "headings": [
+      "# 04 — Граф морфологических свидетельств",
+      "## Реальные закреплённые входы",
+      "## Модель",
+      "## Семь контрольных основ",
+      "## Воспроизводимость и сохранность"
+    ],
+    "path": "audit/associative-external-preparation/04-EVIDENCE-GRAPH-REPORT.md",
+    "sha256": "233c070650c33ee1dcd7aea3350db25316658ac4f495062d14094f23592f6f57"
+  },
+  {
+    "headings": [
+      "# 05 — Поиск кандидатов и очередь проверки",
+      "## Закреплённые входы",
+      "## Ограниченный поиск",
+      "## Реальные примеры",
+      "## Ограничения и воспроизведение"
+    ],
+    "path": "audit/associative-external-preparation/05-CANDIDATE-SEARCH-REPORT.md",
+    "sha256": "065a37aa4d6b0df42ea0b55963866ab23dfd5f90ab2b9ebad32fd96c6896dae6"
+  },
+  {
+    "headings": [
+      "# 06 — Дизайн пилотного эксперимента",
+      "## Семьи и закреплённое состояние",
+      "## Выборка",
+      "## Входы и границы эксперимента",
+      "## Конфигурации",
+      "## Предварительный технический запуск"
+    ],
+    "path": "audit/associative-external-preparation/06-PILOT-DESIGN.md",
+    "sha256": "5b6d1bda91688fcf31c72313426f17b38cba7ad260c124816ae2210e12b8527c"
+  },
+  {
+    "headings": [
+      "# 07. Flexor: практическая применимость",
+      "## Что изучалось",
+      "## Данные и происхождение разметки",
+      "## Что означают опубликованные результаты",
+      "## Существенные ограничения",
+      "## Исполнимость и стоимость",
+      "## Что подготовлено"
+    ],
+    "path": "audit/associative-external-preparation/07-FLEXOR-RESEARCH.md",
+    "sha256": "b9636857be210e55fb16db4b5ebbcb06ae061568f13f723fd398384fa55eff79"
+  },
+  {
+    "headings": [
+      "# Инструкция разметчикам",
+      "## Задача и независимость",
+      "## Последовательность проверки",
+      "## Проверка прежних решений",
+      "## Повторная проверка и арбитраж"
+    ],
+    "path": "audit/associative-external-preparation/ANNOTATION-GUIDELINES.md",
+    "sha256": "d1737c37d687351708efdf6fa018df8172e85cb0336626b55b96da4f91142597"
+  },
+  {
+    "headings": [
+      "# Препятствия и риски интеграции",
+      "## 1. Основные препятствия",
+      "## 2. Сохранение обязательных ограничений",
+      "## 3. Незавершённые вопросы прежнего аудита расчётов",
+      "## 4. Что из старых v6 blockers уже снято",
+      "## 5. Лицензии и зависимость доказательств",
+      "## 6. Производительность и диагностика"
+    ],
+    "path": "audit/associative-external-preparation/BLOCKERS.md",
+    "sha256": "1156b9e409aadadb0972af713ac2eebce6bd1d0470839ad81b993ce6a56fef1a"
+  },
+  {
+    "headings": [
+      "# Проверки этапа 05",
+      "## Воспроизводимость и реальные данные",
+      "## Стоимость",
+      "## Границы проверки"
+    ],
+    "path": "audit/associative-external-preparation/CANDIDATE-SEARCH-TESTS.md",
+    "sha256": "0a93abdc59cc9b157b9ad44e1e379a90121c0e37fef58f097e155e635303d8c5"
+  },
+  {
+    "headings": [
+      "# Конфликты и отрицательные решения",
+      "## Реальные расхождения",
+      "## Приоритеты и защита"
+    ],
+    "path": "audit/associative-external-preparation/CONFLICT-HANDLING.md",
+    "sha256": "774670f54f51eaf1dd0be7263bc60bc371becd01918588b73089951da43ff8cb"
+  },
+  {
+    "headings": [
+      "# Текущая архитектура associativvordes",
+      "## 1. Два отдельных контура",
+      "### Действующий M/v5",
+      "### Параллельный V/v6",
+      "## 2. Девять сущностей и фактическое разделение",
+      "## 3. Многозначность, омонимы и конкурирующие анализы",
+      "## 4. Отрицательные решения и ручной приоритет",
+      "## 5. Подстроки, приблизительный поиск и объединение",
+      "## 6. Что фактически участвует в ассоциативности",
+      "## 7. Точки разрыва для external data"
+    ],
+    "path": "audit/associative-external-preparation/CURRENT-ARCHITECTURE.md",
+    "sha256": "709baf81e8c7031225e882997bc9f08233ef80f591297aade9bd6b5b2b08cd9d"
+  },
+  {
+    "headings": [
+      "# Сущности и идентификаторы",
+      "## 1. Общие правила сериализации и ссылок",
+      "### Новые версионированные записи",
+      "### Форматы новых IDs",
+      "## 2. Lexeme — NEW",
+      "## 3. LexemeSense — NEW",
+      "## 4. LexicalHead — REUSE V",
+      "## 5. Allomorph — REUSE typed realizations + VIEW",
+      "## 6. Family — REUSE V catalog / M baseline",
+      "## 7. Relation — NEW, не v6 head-family edge",
+      "## 8. Evidence — NEW source assertions",
+      "## 9. Verdict — NEW журнал; reuse V decisions через точные адаптеры",
+      "## 10. Membership — REUSE finite V projection",
+      "## 11. Инфраструктура",
+      "## 12. Ссылки на analyses и отсутствие хеш-циклов",
+      "## 13. Правила миграции"
+    ],
+    "path": "audit/associative-external-preparation/ENTITY-SCHEMA.md",
+    "sha256": "9053f6afaccef3c2f1ec5eb7d2d5d5aeb93bd8873b812b6fc78c9e2675cdefb7"
+  },
+  {
+    "headings": [
+      "# Метрики и допустимая интерпретация",
+      "## Диагностика расчётов"
+    ],
+    "path": "audit/associative-external-preparation/EVALUATION-METRICS.md",
+    "sha256": "a4c5015dca6ed148160298739da9d33457ac1739e08dffd1fedbe3c3554bd4a9"
+  },
+  {
+    "headings": [
+      "# Свидетельства, происхождение, решения и membership",
+      "## 1. Три независимых статуса",
+      "## 2. Семантика пяти состояний",
+      "## 3. Source lineage",
+      "### GLeMM ↔ MorphyNet",
+      "## 4. Приоритеты и conflicts",
+      "## 5. Совместимость старых статусов",
+      "## 6. Формальная процедура нового membership",
+      "### Сохранение существующих принятых записей",
+      "## 7. OCUL — гипотетический положительный finite пример",
+      "## 8. REGUL — зависимые источники и неопределённость",
+      "## 9. INTER — формальное совпадение и ручной запрет",
+      "## 10. Независимая проверка"
+    ],
+    "path": "audit/associative-external-preparation/EVIDENCE-AND-VERDICTS.md",
+    "sha256": "205d4224b3438bd88f696f29d55f9e4425b6a39dd690a0528ca17727fcfa88f9"
+  },
+  {
+    "headings": [
+      "# Доступность Flexor",
+      "## Проверенные каналы",
+      "## Получение у автора",
+      "## Отдельно: HanTa"
+    ],
+    "path": "audit/associative-external-preparation/FLEXOR-AVAILABILITY.md",
+    "sha256": "16ddd5460de9ab0fdc119f71ceb7e491a0e0b4e76407416990a96f3e68e82e08"
+  },
+  {
+    "headings": [
+      "# Flexor: ограниченное испытание и отдельная проба HanTa",
+      "## Реальная ограниченная выборка",
+      "## Состояние измерений Flexor",
+      "## Протокол будущего сравнения",
+      "## Отдельно выполнено: HanTa 1.2.0",
+      "## Проверки подготовки"
+    ],
+    "path": "audit/associative-external-preparation/FLEXOR-BENCHMARK.md",
+    "sha256": "ad0971b08a954f17734378cb70f28c65bb771fc9430a186842186bacf55109ed"
+  },
+  {
+    "headings": [
+      "# Решение о Flexor",
+      "## Технические требования к возможной будущей интеграции",
+      "## Порог практической целесообразности"
+    ],
+    "path": "audit/associative-external-preparation/FLEXOR-RECOMMENDATION.md",
+    "sha256": "69625e782516b1b5160c6dcf29bee072783c6eae435c674d6d2f0bbf19532c38"
+  },
+  {
+    "headings": [
+      "# Схема данных эталона — версия 1"
+    ],
+    "path": "audit/associative-external-preparation/GOLD-DATA-SCHEMA.md",
+    "sha256": "a74cae707cc8cafcc8321b8d5d52f2f48551de8035de668236b706bd6e1e0ca0"
+  },
+  {
+    "headings": [
+      "# Проверки графа",
+      "## Полная ограниченная проба"
+    ],
+    "path": "audit/associative-external-preparation/GRAPH-TEST-RESULTS.md",
+    "sha256": "256ba0e5062f90760de14387d3a55504361c5c3d85c05d4379b5dc16070a6977"
+  },
+  {
+    "headings": [
+      "# План последующей реализации архитектуры",
+      "## 1. Решения, принятые проектированием",
+      "## 2. Порядок будущих этапов",
+      "## 3. Что переиспользовать, а что расширять",
+      "## 4. Проверяемые gates будущей реализации",
+      "### Identity и taxonomy",
+      "### Lineage и решения",
+      "### Изоляция и расчёты",
+      "### Масштаб",
+      "## 5. Совместимость без изменения production",
+      "## 6. Definition of done design-этапа"
+    ],
+    "path": "audit/associative-external-preparation/IMPLEMENTATION-PLAN.md",
+    "sha256": "1edc50a22b1dffb9afa476503cedb5685508fc463f077a9cab28158f3e5a83c7"
+  },
+  {
+    "headings": [
+      "# Результаты проверок импорта"
+    ],
+    "path": "audit/associative-external-preparation/IMPORT-TEST-RESULTS.md",
+    "sha256": "f1d2b625afd63c328df1d28682b6b0fd710458cdb336a3bbb933fb37d65313eb"
+  },
+  {
+    "headings": [
+      "# Готовность пилота",
+      "## До окончательной оценки"
+    ],
+    "path": "audit/associative-external-preparation/PILOT-READINESS.md",
+    "sha256": "54f7fee1f58974795b2d33a1fedd3bc6946a56cfef20fce00c6b8217003e7daf"
+  },
+  {
+    "headings": [
+      "# Контрольная точка подготовки внешних ресурсов",
+      "## 1. Итог по пяти вопросам",
+      "## 2. Матрица готовности",
+      "## 3. Обязательные решения для следующего design-этапа",
+      "## 4. Что не требуется делать перед design",
+      "## 5. Аудиторская воспроизводимость",
+      "## 6. Документы этапа и сохранность"
+    ],
+    "path": "audit/associative-external-preparation/PREPARATION-CHECKPOINT.md",
+    "sha256": "bdd53235bc53296465c690b558be2337a71408390ff1fbf10f85927282493de9"
+  },
+  {
+    "headings": [
+      "# Экспериментальный приоритет проверки"
+    ],
+    "path": "audit/associative-external-preparation/PRIORITIZATION.md",
+    "sha256": "58aa3d1ea12d02a4534d236cab6f10d82d82471e59a78196ec06d401abc62d15"
+  },
+  {
+    "headings": [
+      "# Регрессионные случаи"
+    ],
+    "path": "audit/associative-external-preparation/REGRESSION-CASES.md",
+    "sha256": "e9eb2668b82475798afbb702db6dd137376b76306c453c6ee2366b7dc1ae867f"
+  },
+  {
+    "headings": [
+      "# Строгая типизация морфологических отношений",
+      "## 1. Направление и участники",
+      "## 2. Основные типы",
+      "## 3. Дополнительные типы и незавершённая классификация",
+      "## 4. Разные типы одной пары не схлопываются",
+      "## 5. Source-specific mapping",
+      "## 6. Paths и запреты вывода",
+      "## 7. Минимальные контрпримеры будущей проверки"
+    ],
+    "path": "audit/associative-external-preparation/RELATION-TAXONOMY.md",
+    "sha256": "4ae75aacc9b0455bda02b10015291d14a07b6b3847aea6b052dc9838b9082941"
+  },
+  {
+    "headings": [
+      "# Валидация отношений",
+      "## Структура и identity",
+      "## Конечные пути"
+    ],
+    "path": "audit/associative-external-preparation/RELATION-VALIDATION.md",
+    "sha256": "061d769b1144aca3e3837442f038a6b3ff9eaade6171a25723f48ae4c2b2d684"
+  },
+  {
+    "headings": [
+      "# Повторно используемые компоненты",
+      "## 1. Карта повторного использования",
+      "## 2. Чего таблица не означает",
+      "## 3. Минимальное соответствие будущих адаптеров",
+      "## 4. Необходимый набор будущих контрактных тестов"
+    ],
+    "path": "audit/associative-external-preparation/REUSABLE-COMPONENTS.md",
+    "sha256": "e9fc54bfb958af37c0ec4301225de40504d9ba017b1c0ceb69945ca5aae0e921"
+  },
+  {
+    "headings": [
+      "# Очередь ручной проверки — схема 1"
+    ],
+    "path": "audit/associative-external-preparation/REVIEW-QUEUE-SCHEMA.md",
+    "sha256": "baa9c442975abd32117a1e0bccb3f38715f03cf116f873dbf62aac0dd65805c2"
+  },
+  {
+    "headings": [
+      "# Совместимость источников",
+      "## Нормализация",
+      "## Особенности языков"
+    ],
+    "path": "audit/associative-external-preparation/SOURCE-COMPATIBILITY.md",
+    "sha256": "b60dc22a16dcff624c18792130eaa5620427b7922bd679ba26ae43f98720eb1a"
+  },
+  {
+    "headings": [
+      "# Закрепление источников"
+    ],
+    "path": "audit/associative-external-preparation/SOURCE-MANIFEST.md",
+    "sha256": "2c7b03dbb0974b5b1bf88975496bcf6dbc47e6265437b435096f875eb7f8181a"
+  }
+]
