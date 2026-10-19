@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-19",
+  "status": "BLOCKED",
+  "functional_commit": "c02a253d3764ed7982f12f514c69af09cd0d44cb",
+  "source_revision": "395020177a96a81177582fb59664509ff015f934",
+  "source_files_verified": 0,
+  "macos_ci": {
+    "run_id": 39305913110,
+    "job_id": 118242820681,
+    "error_lines": [
+      "2026-10-19T18:51:15.2287050Z RuntimeError: official Git fetch failed: fatal: unable to access 'https://src.koda.cnrs.fr/nabil.hathout.1/glemm.git/': Empty reply from server"
+    ]
+  },
+  "code_ci": [
+    {
+      "run_id": 39305919789,
+      "name": "Tests",
+      "status": "success"
+    },
+    {
+      "run_id": 39305919709,
+      "name": "Associative Verification",
+      "status": "success"
+    }
+  ],
+  "official_author_other_repository": {
+    "project": 5209,
+    "commit_lookup_status": 404,
+    "used": false
+  },
+  "third_party_proxy": {
+    "host": "api.allorigins.win",
+    "status": "AUTOMATIC_REVIEW_REJECTED",
+    "used_for_import": false,
+    "reason": "Требование использовать официальные источники; сторонний прокси не разрешён."
+  },
+  "membership_writes": 0,
+  "production_writes": 0
+}

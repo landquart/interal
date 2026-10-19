@@ -1,0 +1,75 @@
+{
+  "build_id": "57d3f0c59e35b07f049b5844a6d5edc395c76a4fa2ee80fc1d4fcec9a76a9241",
+  "establishes_membership": false,
+  "mode": "ingest_shadow",
+  "normalized_relation_views": 30777,
+  "outputs": {
+    "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "normalized-relations.ndjson": "44db2f50a81a0bb50051535d3622ef0b9532988008c4c5ac13e3d6db8a3aaa6f",
+    "quarantine.ndjson": "1f3535caf0967cb4eeac49c1e43826794e6b7e4bd6e2dd4933a16c4557942099",
+    "records.ndjson.gz": "2c8dc5450bc50e4afd0d12661726b8c851d315c3b56935a84ae7ff6566b9c0da",
+    "relation-evidence.ndjson": "12ad81aefdac931c61cd32be4297e21a9630b9045ea45d8ed3cf001b308fbe92"
+  },
+  "policy": {
+    "code_sha256": "2c85307565b595dd2e3d48d76a91d3252403a2cb81d5af11af8a2c6968fbbc3d",
+    "gzip_level": 1,
+    "importer": "isolated-morphology-import/1.0.2",
+    "normalization": "NFC+lookup-casefold/1",
+    "python_version": "3.12.3",
+    "schema": "morphology-import-record/1",
+    "sqlite_version": "3.45.1",
+    "unicode_version": "15.0.0",
+    "zlib_version": "1.3"
+  },
+  "reports": [
+    {
+      "accepted": 30777,
+      "artifact": "MorphyNet:spa.derivational.v1",
+      "blank": 0,
+      "claims": 30777,
+      "comments": 0,
+      "duplicates": 0,
+      "headers": 0,
+      "inflections": 0,
+      "language": "es",
+      "read": 30777,
+      "rejected": 0,
+      "source": "MorphyNet",
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    {
+      "accepted": 749983,
+      "artifact": "MorphyNet:spa.inflectional.v1.part1",
+      "blank": 0,
+      "claims": 0,
+      "comments": 0,
+      "duplicates": 3344,
+      "headers": 0,
+      "inflections": 749983,
+      "language": "es",
+      "read": 750000,
+      "rejected": 17,
+      "source": "MorphyNet",
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    {
+      "accepted": 539317,
+      "artifact": "MorphyNet:spa.inflectional.v1.part2",
+      "blank": 0,
+      "claims": 0,
+      "comments": 0,
+      "duplicates": 1124,
+      "headers": 0,
+      "inflections": 539317,
+      "language": "es",
+      "read": 539324,
+      "rejected": 7,
+      "source": "MorphyNet",
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    }
+  ],
+  "source_lock_sha256": "9d825114bbf22fea5a3d0717c54ea8218972f6a0ae5c34ce11cd768997e584a9"
+}

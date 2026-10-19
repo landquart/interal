@@ -1,0 +1,151 @@
+# Isolated morphology import (Prompt 03)
+
+Full GLeMM 2.0 replay (six complete languages, two independent builds and all-row audits) is verified: [completion report](../../audit/associative-external-preparation/13-GLEMM-COMPLETION.md). The attributed offline cache can be restored with `glemm_cache.py restore`; raw corpora remain outside Git.
+
+Run with Python 3.11+; standard library only. This directory is never imported by
+browser or family builders. It produces **unreviewed ImportRecords**, not the
+reviewed Lexeme/Relation/Verdict registry described by Prompt 02. Source lexical
+keys and claims are embedded in these staging records; the later evidence-graph
+stage must explicitly translate them into the versioned entity envelopes. No
+frequency, model confidence, accepted head or membership is generated here.
+
+```sh
+python associativvordes/importers/morphology_import.py \
+  --lock data/morphology-evidence/sources/source-lock.json \
+  --raw-root /absolute/path/to/raw-parent \
+  --output-root /absolute/path/outside/repository
+python -m unittest discover -s associativvordes/importers -p 'test_*.py' -v
+```
+
+Fetch pinned bytes first (the raw directory must also be outside Git):
+
+```sh
+python associativvordes/importers/fetch_sources.py --lock data/morphology-evidence/sources/source-lock.json --raw-root /absolute/path/to/raw-parent
+```
+
+The raw parent must contain the relative paths in the lock. Download only the
+pinned artifact URLs, preserving original bytes. MorphyNet/GLeMM may end with a complete final row without LF; it is preserved and accepted. DeriNet2 requires LF by its format specification. Missing files, wrong bytes,
+invalid headers and decompression failures abort before publication. No network
+access occurs during import. ZIP members have their own size/hash locks.
+
+## Products
+
+* `records.ndjson.gz`: deterministic gzip (level 1, mtime 0, no filename), artifact-ID/physical-line order, lossless raw
+  fields and original bytes, native IDs/POS, normalized claims, provenance.
+* `quarantine.ndjson`: physical line, original bytes and diagnostic; failed
+  records never partly contribute graph nodes/claims.
+* `normalized-relations.ndjson`: sorted lookup representations. Equal keys
+  mean equal normalized *claims*, never equal lexemes, senses or truth.
+* `relation-evidence.ndjson`: all occurrences, including duplicates, with exact
+  source artifact/revision/line/hash. No independent-vote count is inferred.
+* `conflicts.ndjson`: potential incompatible relation types on the same endpoint
+  representation; these are review tasks, not automatic rejections.
+* `manifest.json`: code/policy/input locks, counts, data output SHA-256s.
+
+SQLite is a bounded 8 MiB-cache disk work index, removed after deterministic
+logical export. Physical SQLite layout is not an output contract. A fresh
+snapshot is built in a private temporary directory and renamed atomically.
+An existing build is reused only after all output hashes are verified. Rebuild
+in a second output root to test independent replay, not merely the reuse path.
+Granularity is the lock: use a lock containing one source artifact to reuse
+unchanged partitions in an orchestration layer. No mutable `latest` is read or
+written. No automatic corpus cleanup or promotion exists.
+
+## Normalization and identities
+
+UTF-8 is strict. Lemma/form NFC is separate from original Unicode. Diacritics,
+case, spaces and Cyrillic are preserved; casefold is lookup only. No
+transliteration or automatic allomorph inference. POS mapping is deliberately
+small (`N,V,A/J,R/D` and UPOS); unknown tags remain native with null UPOS.
+ISO aliases are explicit, including GLeMM `esp`. A word form is not made into
+a derivational lexical node. Inflection features/segment slots are retained
+exactly; `-` means absent segmentation, not an empty productive pattern.
+MorphyNet derivation supplies no full morpheme segmentation: null is retained.
+
+DeriNet numerical IDs are release-local; even LEMID can collide for homonyms.
+UDer lexical IDs therefore include subresource/release/native ID. Resources
+without reliable entry/sense IDs use conservative release/record/role keys.
+Equal spellings across rows are **not** silently identified. This may retain
+multiple unresolved lexical identities and is intentional until alignment.
+GLeMM stem/exponents remain source patterns, without root or direction claims.
+All GLeMM rows have possible dataset-level MorphyNet dependence; exact row
+lineage is unknown unless a later source-specific matcher proves it.
+
+DeriNet primary `Sources` is an ordered multi-parent slot list with its primary
+parent preserved separately. All OTHERRELS dictionaries survive. Explicit
+secondary IDs become references; unrecognized endpoint encodings remain
+unresolved annotations and are counted, never discarded or guessed. The
+adapter accepts a graph rather than requiring topological row order; it reports
+missing endpoints after the complete resource. It does not certify graph
+acyclicity, linguistic annotation, exhaustive homonymy or sense identity.
+
+See the four Prompt 03 reports under `audit/associative-external-preparation/`
+for actual source availability and tested coverage. Full snapshots stay outside
+Git; only locks, reports and small attributed test excerpts are tracked.
+
+Every-line validation, without invoking the adapter parser:
+
+```sh
+python associativvordes/importers/audit_import.py --lock PATH_TO_EXACT_GROUP_LOCK --raw-root RAW --snapshot BUILD_DIRECTORY
+```
+
+## Published partition replay
+
+The full validated plan is `data/morphology-evidence/sources/BUILD-PARTITIONS.json`:
+one UDer partition and six language partitions each for MorphyNet and GLeMM.
+Use Python 3.12.3 / SQLite 3.45.1 / Unicode 15.0.0 / zlib 1.3 to match its build IDs.
+
+```sh
+/usr/bin/python3 associativvordes/importers/rebuild.py --raw-root /absolute/external/raw --output-root /absolute/external/builds --workers 2
+```
+
+This verifies/reuses or creates each partition, independently audits every line,
+and builds the global normalized claim catalog. The catalog retains all evidence
+occurrences and flags differing analysis types for review without asserting a
+contradiction or lexical identity. Mutable SQLite work uses the native system
+temporary directory; only finished immutable snapshots are copied/renamed to the
+external output root. The published plan fails if the importer/runtime produces
+a different build identity. Change the plan deliberately for a new version.
+
+## Full source gate (read-only)
+
+`validate_sources.py --fetch --raw-root RAW --output-root BUILDS --receipts NEW_DIR`
+independently audits every row and compares reports/logical products to the pinned
+published manifests. All directories must be outside the checkout. An optional
+`--partition NAME` isolates one of the 13 exact pinned partitions; its PASS is not
+a full-corpus certificate. Receipts are saved as work completes and on failure.
+The branch-scoped `verify-morphology-sources.yml` uploads receipts only, never raw
+corpora. Runtime-dependent IDs do not overwrite the original source plan.
+
+Acquisition remains checksum/size locked. GLeMM may use its official GitLab API
+for the same commit/file when the raw endpoint closes a connection. An installed
+curl can optionally negotiate HTTP/2 after Python transport failure; no TLS checks
+or hashes are bypassed. Failed or partial downloads never publish as valid files.
+
+## GLeMM offline cache
+
+After acquisition, preserve the twelve original GLeMM files with the exact lock,
+upstream attribution, README and license. The deterministic ZIP stays outside Git:
+
+```sh
+python associativvordes/importers/glemm_cache.py pack --raw-root RAW --archive /external/GLeMM-2.0-39502017.zip
+python associativvordes/importers/glemm_cache.py restore --raw-root NEW_RAW --archive /external/GLeMM-2.0-39502017.zip
+```
+
+Restore checks the archive against the **trusted checked-in lock**, not hashes
+provided by the archive itself. Unknown/duplicate entries, modified metadata,
+unsafe paths, wrong sizes and hashes abort before publishing `NEW_RAW/GLeMM`.
+Existing complete caches are verified; incomplete/corrupt targets are never
+overwritten. Use a new external raw directory to recover from an incomplete cache.
+No membership, independent-source count or linguistic verdict is implied.
+GLeMM's possible MorphyNet/Wiktionary dependency and upstream licensing obligations
+continue to apply. The cache is an unmodified backup, not a new independent dataset.
+
+An official GitLab ZIP of `GLeMM_2.0/output` at the pinned commit can be imported
+with `glemm_cache.py import-upstream --archive UPSTREAM.zip --raw-root NEW_RAW`.
+Only the twelve locked files are read; each must occur exactly once and match
+the checked-in size/SHA. Extra languages and repository files are not imported.
+Then use `pack` to produce the portable attributed cache. Alternatively,
+`fetch_glemm_git.py --raw-root RAW` exports the same pinned commit/blobs through
+official Git and verifies every file's SHA-256. This transport can still fail
+when the upstream closes connections; it never switches revision or mirror.

@@ -1,0 +1,18 @@
+{
+  "source_revision": "395020177a96a81177582fb59664509ff015f934",
+  "expected_bytes": 315630,
+  "source_artifact": "GLeMM:ita:defs.tsv.bz2",
+  "raw_attempt": {
+    "exit_code": 28,
+    "received_bytes": 246206,
+    "elapsed_seconds": 600.000706,
+    "sha256_verified": false
+  },
+  "api_raw_http11_attempt": {
+    "status": "cancelled_after_stalled_transfer",
+    "partial_bytes": 94208,
+    "sha256_verified": false
+  },
+  "complete_files": 0,
+  "imported_records": 0
+}

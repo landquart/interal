@@ -1,0 +1,9 @@
+lemma1	cat1	lemma2	cat2	stem	exponent1	exponent2
+'adsorbimento	N	adsorbimento	N	adsorbimento	^'(.+)$	^(.+)$
+'d	N	d	N	d	^'(.+)$	^(.+)$
+'peste	N	peste	N	peste	^'(.+)$	^(.+)$
+'sorbo	N	sorbo	N	sorbo	^'(.+)$	^(.+)$
+abachista	N	abaco	N	abac	^(.+)hista$	^(.+)o$
+abacista	N	abaco	N	abac	^(.+)ista$	^(.+)o$
+abaco	N	abachista	N	abac	^(.+)o$	^(.+)hista$
+abaco	N	abacista	N	abac	^(.+)o$	^(.+)ista$

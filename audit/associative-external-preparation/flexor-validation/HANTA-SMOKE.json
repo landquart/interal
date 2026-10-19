@@ -1,0 +1,790 @@
+{
+  "manual_gold_cases": 0,
+  "plan_sha256": "1ec1d67359005c36b93cb257824f324a815cfdbfd0fdb033446a8337c53ad7b0",
+  "platform": "linux",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "quality_metrics": null,
+  "results": [
+    {
+      "analyses": [
+        {
+          "analysis": {
+            "lemma": "biregularity",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "biregular",
+                "AJ"
+              ],
+              [
+                "ity",
+                "SUF_AJN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "biregularity"
+          },
+          "case_id": "pilot-case:1e2c4bf57549c42989cc80746b4ed7225b4e5c8bbe24b4d5f44906f8bcb754c6",
+          "error": null,
+          "lemma_original": "biregularity"
+        },
+        {
+          "analysis": {
+            "lemma": "createdness",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "createdness",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "createdness"
+          },
+          "case_id": "pilot-case:3203f693ad27d21e72f6af6fc236760429f6cc088bf12f075e28ab081a875190",
+          "error": null,
+          "lemma_original": "createdness"
+        },
+        {
+          "analysis": {
+            "lemma": "ocularist",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "ocularist",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "ocularist"
+          },
+          "case_id": "pilot-case:42b97c9a560a3c2aae8239982db4714860d59c1d521136f850d3c9844f513067",
+          "error": null,
+          "lemma_original": "ocularist"
+        },
+        {
+          "analysis": {
+            "lemma": "creatress",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "creatress",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "creatress"
+          },
+          "case_id": "pilot-case:d2a34b1b7deacd91bdeef54c2794eb12556712d8d895b7a0374c000bba206b14",
+          "error": null,
+          "lemma_original": "creatress"
+        },
+        {
+          "analysis": {
+            "lemma": "operation",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "operat",
+                "VV_VAR"
+              ],
+              [
+                "ion",
+                "SUF_VN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "operation"
+          },
+          "case_id": "pilot-case:b05c621ada00131d105da7ee44db4e928330951b6c47eb9f201baf2ae85e837b",
+          "error": null,
+          "lemma_original": "operation"
+        },
+        {
+          "analysis": {
+            "lemma": "regulation",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "regulat",
+                "VV_VAR"
+              ],
+              [
+                "ion",
+                "SUF_VN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "regulation"
+          },
+          "case_id": "pilot-case:cd892a22dd79bb9c61c942367482a863023bc446b7cc43555444d4226760e016",
+          "error": null,
+          "lemma_original": "regulation"
+        },
+        {
+          "analysis": {
+            "lemma": "naturalize",
+            "lemma_pos_native": "VVI",
+            "morphemes": [
+              [
+                "naturalize",
+                "VV"
+              ]
+            ],
+            "pos_native": "VVI",
+            "stem": "naturalize"
+          },
+          "case_id": "pilot-case:75b00a5aea902130dc0950b328ad95b4a79336a52674ecaa4da25829a1845159",
+          "error": null,
+          "lemma_original": "naturalize"
+        },
+        {
+          "analysis": {
+            "lemma": "libertarianism",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "libertarianism",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "libertarianism"
+          },
+          "case_id": "pilot-case:423b3e5a84b92ec6ad4e5198af21b1400e2b16f59e5101f7546c56e7947cdada",
+          "error": null,
+          "lemma_original": "libertarianism"
+        },
+        {
+          "analysis": {
+            "lemma": "visuomanual",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "visuomanual",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "visuomanual"
+          },
+          "case_id": "pilot-case:29739e15197985d9f6e50a72ed16b6a543edb973f7050a616ff41e664d64368c",
+          "error": null,
+          "lemma_original": "visuomanual"
+        },
+        {
+          "analysis": {
+            "lemma": "liberticide",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "liberticide",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "liberticide"
+          },
+          "case_id": "pilot-case:2960a84acc7aa289c6c193a681b49379feb160af0238d2f73f7411fcb804d9ec",
+          "error": null,
+          "lemma_original": "liberticide"
+        },
+        {
+          "analysis": {
+            "lemma": "quadripedal",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "quadripedal",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "quadripedal"
+          },
+          "case_id": "pilot-case:11916b8c2d6256a8619cadd589e6fb7d8360ac18a5d7b2ac54bfc5d352600e76",
+          "error": null,
+          "lemma_original": "quadripedal"
+        },
+        {
+          "analysis": {
+            "lemma": "intercorrelate",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "intercorrelate",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "intercorrelate"
+          },
+          "case_id": "pilot-case:63f48267a35593ee70d600d568d3b3d0f171eecc0824b1b057a8d8e4fb1f9c15",
+          "error": null,
+          "lemma_original": "intercorrelate"
+        },
+        {
+          "analysis": {
+            "lemma": "internment",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "internment",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "internment"
+          },
+          "case_id": "pilot-case:af7d3d2c116b5cb8298b83bd9275b477218a9e143565fffb50947380dd626bf3",
+          "error": null,
+          "lemma_original": "internment"
+        },
+        {
+          "analysis": {
+            "lemma": "internship",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "intern",
+                "NN"
+              ],
+              [
+                "ship",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "internship"
+          },
+          "case_id": "pilot-case:c1dcc9098aafe43e44dafcc0b233c9cfb7bd8fa61ec1a2b3accf8bfab002fe21",
+          "error": null,
+          "lemma_original": "internship"
+        },
+        {
+          "analysis": {
+            "lemma": "permute",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "permute",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "permute"
+          },
+          "case_id": "pilot-case:b96683a985f9f3e401554a645f59d818c3b4fa829cbee3fa24da72f44104b061",
+          "error": null,
+          "lemma_original": "permute"
+        },
+        {
+          "analysis": {
+            "lemma": "irregular",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "irregular",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "irregular"
+          },
+          "case_id": "pilot-case:3bced6af2ecb70f05e0ad6632492e723f396f0ed36ce423877e13989839dd42b",
+          "error": null,
+          "lemma_original": "irregular"
+        },
+        {
+          "analysis": {
+            "lemma": "inalterable",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "inalterable",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "inalterable"
+          },
+          "case_id": "pilot-case:a676d6494db7e755b7d784404bc6ff33bddd2489178bd5887fbdad63ec1ad6d5",
+          "error": null,
+          "lemma_original": "inalterable"
+        },
+        {
+          "analysis": {
+            "lemma": "semimanual",
+            "lemma_pos_native": "NN1",
+            "morphemes": [
+              [
+                "semi",
+                "NN"
+              ],
+              [
+                "manual",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN1",
+            "stem": "semimanual"
+          },
+          "case_id": "pilot-case:577dc966178ec4bb9eeea1ee79a05ce8e5f4a67b422a6614c6d93cd085f21779",
+          "error": null,
+          "lemma_original": "semimanual"
+        },
+        {
+          "analysis": {
+            "lemma": "nonirregular",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "non",
+                "PREF_NEG"
+              ],
+              [
+                "irregular",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "nonirregular"
+          },
+          "case_id": "pilot-case:cf676fd6dfbc0fb64e1827d694a63502215964784342a9ae18cbcaa479f0fd3e",
+          "error": null,
+          "lemma_original": "nonirregular"
+        },
+        {
+          "analysis": {
+            "lemma": "reoperable",
+            "lemma_pos_native": "AJ0",
+            "morphemes": [
+              [
+                "reoperable",
+                "AJ"
+              ]
+            ],
+            "pos_native": "AJ0",
+            "stem": "reoperable"
+          },
+          "case_id": "pilot-case:54776b016c0b619848fac5eb937f31adfcf74705559bf78417873c5bd00e2619",
+          "error": null,
+          "lemma_original": "reoperable"
+        }
+      ],
+      "analysis_seconds": 0.009660306999649038,
+      "cases": 20,
+      "input_mode": "isolated_lemma_no_sentence_context",
+      "language": "en",
+      "model_load_seconds": 0.11701100899972516,
+      "model_sha256": "99ddc9b14b3fe604b245e2d7a3aef59ab1bdd06b1bae4f4ce74738902e2a0265",
+      "numpy_version": "2.3.5",
+      "peak_process_rss_bytes_linux": 61341696
+    },
+    {
+      "analyses": [
+        {
+          "analysis": {
+            "lemma": "Naturhaftigkeit",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "naturhaftigkeit",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "naturhaftigkeit"
+          },
+          "case_id": "pilot-case:c739e3282e61a1a533f42932753ff7aebe0d74dc492d14559053c76128288cbf",
+          "error": null,
+          "lemma_original": "Naturhaftigkeit"
+        },
+        {
+          "analysis": {
+            "lemma": "bimanuell",
+            "lemma_pos_native": "ADJ(D)",
+            "morphemes": [
+              [
+                "bimanuell",
+                "ADJ"
+              ]
+            ],
+            "pos_native": "ADJ(D)",
+            "stem": "bimanuell"
+          },
+          "case_id": "pilot-case:19b1146abdabad23148c54155d022983c295e296fbaa92273b1e86053c513976",
+          "error": null,
+          "lemma_original": "bimanuell"
+        },
+        {
+          "analysis": {
+            "lemma": "überaltern",
+            "lemma_pos_native": "VV(INF)",
+            "morphemes": [
+              [
+                "über",
+                "PTKVZ_DUBIUM"
+              ],
+              [
+                "alter",
+                "VV"
+              ],
+              [
+                "n",
+                "SUF_INF"
+              ]
+            ],
+            "pos_native": "VV(INF)",
+            "stem": "überalter"
+          },
+          "case_id": "pilot-case:75b92c63858ecf85a3d5608ee2740ce29af64618d882dc0b7c72387a6f5a9ea5",
+          "error": null,
+          "lemma_original": "überaltern"
+        },
+        {
+          "analysis": {
+            "lemma": "regulierbar",
+            "lemma_pos_native": "ADJ(D)",
+            "morphemes": [
+              [
+                "regulier",
+                "VVnp"
+              ],
+              [
+                "bar",
+                "SUF_DERIV_VV_ADJ"
+              ]
+            ],
+            "pos_native": "ADJ(D)",
+            "stem": "regulierbar"
+          },
+          "case_id": "pilot-case:10f2f638af0ce68cdf3a7cc324a34f7c752baa8fb4dfe644304e4b8893d55716",
+          "error": null,
+          "lemma_original": "regulierbar"
+        },
+        {
+          "analysis": {
+            "lemma": "Regulation",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "regulation",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "regulation"
+          },
+          "case_id": "pilot-case:b3aa1f86f47ea42a25605b758c17204782e42a68fff7600aab52b4c9a691860f",
+          "error": null,
+          "lemma_original": "Regulation"
+        },
+        {
+          "analysis": {
+            "lemma": "Nationalismus",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "nationalismus",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "nationalismus"
+          },
+          "case_id": "pilot-case:2e9355bf72fc0d4e216b6fc7d527f72dde623e817084e360438cc602c0f63fc1",
+          "error": null,
+          "lemma_original": "Nationalismus"
+        },
+        {
+          "analysis": {
+            "lemma": "korrelativ",
+            "lemma_pos_native": "ADJ(D)",
+            "morphemes": [
+              [
+                "korrelativ",
+                "ADJ"
+              ]
+            ],
+            "pos_native": "ADJ(D)",
+            "stem": "korrelativ"
+          },
+          "case_id": "pilot-case:1dca4c877d771e0d1a99380eb205810cfa4147cf6570e1f6fdb7eb09d874e5e1",
+          "error": null,
+          "lemma_original": "korrelativ"
+        },
+        {
+          "analysis": {
+            "lemma": "Kreationismus",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "kreationismus",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "kreationismus"
+          },
+          "case_id": "pilot-case:94b6a1bb0b059997ced71e03d7d2dcb3aef7127430fd9ec1ffb2e5a4cf947d67",
+          "error": null,
+          "lemma_original": "kreationismus"
+        },
+        {
+          "analysis": {
+            "lemma": "Internetseite",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "internet",
+                "NN"
+              ],
+              [
+                "seite",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "internetseite"
+          },
+          "case_id": "pilot-case:4a6f835292e1e4e05a839afd38504efc4cf935d681d3d3a45bd3111160ce46b5",
+          "error": null,
+          "lemma_original": "internetseite"
+        },
+        {
+          "analysis": {
+            "lemma": "Internetzeitung",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "internet",
+                "NN"
+              ],
+              [
+                "zeitung",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "internetzeitung"
+          },
+          "case_id": "pilot-case:f6a41ad5cb84d0de8d8fc10d98626bcb55461bd87185afa6a0f7399aa5fbd3f1",
+          "error": null,
+          "lemma_original": "internetzeitung"
+        },
+        {
+          "analysis": {
+            "lemma": "Opernhaus",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "oper",
+                "NN"
+              ],
+              [
+                "n",
+                "FUGE"
+              ],
+              [
+                "haus",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "opernhaus"
+          },
+          "case_id": "pilot-case:fa711c7098bf27ec9f7e824d3c24de218233abea7ee0351028c46e7abc70895c",
+          "error": null,
+          "lemma_original": "opernhaus"
+        },
+        {
+          "analysis": {
+            "lemma": "Altersjahr",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "alter",
+                "NN"
+              ],
+              [
+                "s",
+                "FUGE"
+              ],
+              [
+                "jahr",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "altersjahr"
+          },
+          "case_id": "pilot-case:666a1b2fec3912c63f76181609a04366d8e6463c9233456fca3d52ec6f7dbaa6",
+          "error": null,
+          "lemma_original": "altersjahr"
+        },
+        {
+          "analysis": {
+            "lemma": "Operette",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "operette",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "operette"
+          },
+          "case_id": "pilot-case:56bedf56ed9be5d0817765a662a69f74bbacce0715f84333874c8a8cf5db1a41",
+          "error": null,
+          "lemma_original": "operette"
+        },
+        {
+          "analysis": {
+            "lemma": "Naturell",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "naturell",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "naturell"
+          },
+          "case_id": "pilot-case:c5b1828c41c42d488d6c5774741c687ff4fcee4826895d13945187cf6b6e9a54",
+          "error": null,
+          "lemma_original": "naturell"
+        },
+        {
+          "analysis": {
+            "lemma": "alt",
+            "lemma_pos_native": "ADJ(A)",
+            "morphemes": [
+              [
+                "alt",
+                "ADJ"
+              ],
+              [
+                "er",
+                "SUF_ADJ"
+              ]
+            ],
+            "pos_native": "ADJ(A)",
+            "stem": "alt"
+          },
+          "case_id": "pilot-case:0531e2f5109490b84f9323b7f3b7b79753d7b031dac3f4be3dd2c0597936f278",
+          "error": null,
+          "lemma_original": "alter"
+        },
+        {
+          "analysis": {
+            "lemma": "neoliberal",
+            "lemma_pos_native": "ADJ(D)",
+            "morphemes": [
+              [
+                "neoliberal",
+                "ADJ"
+              ]
+            ],
+            "pos_native": "ADJ(D)",
+            "stem": "neoliberal"
+          },
+          "case_id": "pilot-case:5a99e3b75e2f9f5c8cabf13bf8040d04a75404830523a22a509d34a5758a1226",
+          "error": null,
+          "lemma_original": "neoliberal"
+        },
+        {
+          "analysis": {
+            "lemma": "Deregulierung",
+            "lemma_pos_native": "NN",
+            "morphemes": [
+              [
+                "deregulierung",
+                "NN"
+              ]
+            ],
+            "pos_native": "NN",
+            "stem": "deregulierung"
+          },
+          "case_id": "pilot-case:fbf20a1ebe7368bdc71ce0c58575d10dbfd1d9c028ce640a2f97bb1ba37b720d",
+          "error": null,
+          "lemma_original": "Deregulierung"
+        },
+        {
+          "analysis": {
+            "lemma": "liberalisieren",
+            "lemma_pos_native": "VV(INF)",
+            "morphemes": [
+              [
+                "liberalisier",
+                "VVnp"
+              ],
+              [
+                "en",
+                "SUF_INF"
+              ]
+            ],
+            "pos_native": "VV(INF)",
+            "stem": "liberalisier"
+          },
+          "case_id": "pilot-case:9076df545559a0018269496a149d33b9d14857db1309af9dff23ae59c3c060e5",
+          "error": null,
+          "lemma_original": "liberalisieren"
+        },
+        {
+          "analysis": {
+            "lemma": "übernational",
+            "lemma_pos_native": "ADJ(D)",
+            "morphemes": [
+              [
+                "übernational",
+                "ADJ"
+              ]
+            ],
+            "pos_native": "ADJ(D)",
+            "stem": "übernational"
+          },
+          "case_id": "pilot-case:9417fd3c8a9cc52933dbc119868019cd522e42b255396af262a300277851fc33",
+          "error": null,
+          "lemma_original": "übernational"
+        },
+        {
+          "analysis": {
+            "lemma": "unkreativ",
+            "lemma_pos_native": "ADJ(D)",
+            "morphemes": [
+              [
+                "un",
+                "PREF_NEG"
+              ],
+              [
+                "kreativ",
+                "ADJ"
+              ]
+            ],
+            "pos_native": "ADJ(D)",
+            "stem": "unkreativ"
+          },
+          "case_id": "pilot-case:1ace217cd88c687ca4117465ea6d580a10f4bb024742253d8d1e19757c517fbe",
+          "error": null,
+          "lemma_original": "unkreativ"
+        }
+      ],
+      "analysis_seconds": 0.02036377700005687,
+      "cases": 20,
+      "input_mode": "isolated_lemma_no_sentence_context",
+      "language": "de",
+      "model_load_seconds": 0.13398917500035168,
+      "model_sha256": "d0a23caa212663fe7715e18e937074287f80b9e3bab64ccebc12a81e0094db23",
+      "numpy_version": "2.3.5",
+      "peak_process_rss_bytes_linux": 61341696
+    }
+  ],
+  "schema": "hanta-smoke-probe/1",
+  "tool": "HanTa",
+  "version": "1.2.0",
+  "warning": "Not Flexor; isolated lemmas, no quality or family-membership claims.",
+  "wheel_sha256": "aad4fdd1eff50522f2b4c2d5c87752beb5bd266c53161bffdda9dc7ca269a476"
+}

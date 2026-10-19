@@ -1,0 +1,47 @@
+{
+  "absence_scope": "Only the listed public URLs and exact-name searches; private or differently named artifacts not excluded.",
+  "author_public_repositories": [
+    "HanTa",
+    "SentEx",
+    "SentGraph",
+    "German-NLP",
+    "jlcl-style",
+    "ClassificationExamples"
+  ],
+  "checked_date": "2026-10-19",
+  "receipts": [
+    {
+      "bytes": 30974,
+      "name": "author-repos",
+      "sha256": "7429be4ebb874237874f72458de8ecbcbb35f6213275ca95b8b2e6ef3f54de57",
+      "status": 200,
+      "url": "https://api.github.com/users/wartaal/repos?per_page=100"
+    },
+    {
+      "bytes": 2,
+      "name": "hf-models",
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "status": 200,
+      "url": "https://huggingface.co/api/models?search=flexor&limit=100"
+    },
+    {
+      "error": "HTTP Error 404: Not Found",
+      "name": "pypi-flexor",
+      "url": "https://pypi.org/pypi/flexor/json"
+    },
+    {
+      "bytes": 273639,
+      "name": "paper",
+      "sha256": "338e8aa8788a54d728b6a80949f7e5e7cd7a92704ccde3ee97c51500deba6a8a",
+      "status": 200,
+      "url": "https://aclanthology.org/2026.icnlsp-1.25.pdf"
+    },
+    {
+      "bytes": 14213743,
+      "name": "HanTa-1.2.0-wheel",
+      "purpose": "separate HanTa smoke probe, not Flexor",
+      "sha256": "aad4fdd1eff50522f2b4c2d5c87752beb5bd266c53161bffdda9dc7ca269a476",
+      "url": "https://files.pythonhosted.org/packages/a2/b3/70a1b4e24cb15b42b58ed73737306afb8ff1ebfc7fe88d194d51ffcb9463/hanta-1.2.0-py3-none-any.whl"
+    }
+  ]
+}

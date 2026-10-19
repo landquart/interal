@@ -1,0 +1,31 @@
+{
+  "artifacts": [
+    {
+      "bytes": 8169109,
+      "format": "morphynet_derivation",
+      "id": "MorphyNet:eng.derivational.v1",
+      "language": "eng",
+      "license": "CC-BY-SA-3.0",
+      "path": "MorphyNet/eng/eng.derivational.v1.tsv",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "5920edacc1888b14464fc5cd96beea0a721221d56d1dc0e49de22f4c7c537c50",
+      "source": "MorphyNet",
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/eng/eng.derivational.v1.tsv"
+    },
+    {
+      "bytes": 21455254,
+      "format": "morphynet_inflection",
+      "id": "MorphyNet:eng.inflectional.v1",
+      "language": "eng",
+      "license": "CC-BY-SA-3.0",
+      "path": "MorphyNet/eng/eng.inflectional.v1.tsv",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "6295cd9a0e72e260298d8d80dc1e512e5d37ea44617dd2df6fbeef02f50bcc3f",
+      "source": "MorphyNet",
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/eng/eng.inflectional.v1.tsv"
+    }
+  ],
+  "schema_version": "morphology-source-lock/1"
+}

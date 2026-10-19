@@ -1,0 +1,87 @@
+{
+  "artifacts": [
+    {
+      "bytes": 537465,
+      "format": "glemm_pairs",
+      "id": "GLeMM:esp:pairs.tsv.bz2",
+      "language": "esp",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM/esp/pairs.tsv.bz2",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "033a3e8679e49d0788f39c10e7e1bc641250290a6fbae8877df0653f10b81754",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/esp/pairs.tsv.bz2"
+    },
+    {
+      "bytes": 315630,
+      "format": "glemm_defs",
+      "id": "GLeMM:ita:defs.tsv.bz2",
+      "language": "ita",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      },
+      "path": "GLeMM/ita/defs.tsv.bz2",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "be2fac7b7be3147ce004be6cf5f8a26524983c6744e669f293b36f6007e85491",
+      "source": "GLeMM",
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/ita/defs.tsv.bz2"
+    },
+    {
+      "bytes": 22293532,
+      "format": "morphynet_inflection",
+      "id": "MorphyNet:fra.inflectional.v1",
+      "language": "fra",
+      "license": "CC-BY-SA-3.0",
+      "path": "MorphyNet/fra/fra.inflectional.v1.tsv",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "191f644875cd64cb0de7d5bf020dc1e4fa6fb7d4fb820c9c06bb8a24810b99b8",
+      "source": "MorphyNet",
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/fra/fra.inflectional.v1.tsv"
+    },
+    {
+      "bytes": 1097625,
+      "format": "morphynet_derivation",
+      "id": "MorphyNet:spa.derivational.v1",
+      "language": "spa",
+      "license": "CC-BY-SA-3.0",
+      "path": "MorphyNet/spa/spa.derivational.v1.tsv",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "1f1d98ec6ffa7ba1ef55dcae1db3d98931f749db5390c810887c71f80a20d519",
+      "source": "MorphyNet",
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/spa/spa.derivational.v1.tsv"
+    },
+    {
+      "bytes": 43588,
+      "container": {
+        "bytes": 68432626,
+        "filename": "UDer-1.1.tgz",
+        "md5": "bf05839a5324cce1f1665667247c9eb7",
+        "member": "UDer-1.1/ru-EtymWordNetRU/UDer-1.1-ru-EtymWordNetRU.tsv.gz",
+        "sha256": "980ec9f8fb1b707d6681b3406e8f7527d2c3174ac7c3d4e4852b8193e450316a"
+      },
+      "format": "derinet2",
+      "id": "UDer:ru-EtymWordNetRU",
+      "language": "ru",
+      "license": "CC-BY-SA-3.0",
+      "path": "UDer/ru-EtymWordNetRU/UDer-1.1-ru-EtymWordNetRU.tsv.gz",
+      "resource": "ru-EtymWordNetRU",
+      "revision": "1.1",
+      "sha256": "c3f5bd75ed34a9f92150aca1c164b60ee626c23b74df4296129231af62f4418b",
+      "source": "UDer",
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content"
+    }
+  ],
+  "schema_version": "morphology-source-lock/1"
+}

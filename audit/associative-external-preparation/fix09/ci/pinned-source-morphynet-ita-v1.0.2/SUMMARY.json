@@ -1,0 +1,53 @@
+{
+  "accepted": 770869,
+  "artifacts": 2,
+  "elapsed_seconds": 99.735813435,
+  "full_corpus_certified": false,
+  "input_lock_sha256": "9bc24302abb3a7a7723bce35b958afa9afb2e5450c968d8d10f4cb338c88a3ad",
+  "membership_writes": 0,
+  "partitions": [
+    {
+      "all_original_bytes_and_fields_preserved": true,
+      "build_id": "4e6851f67f586c5a4a4a469e155161af3ed6ed9d5e34c0ce4804de51fbb98112",
+      "counts": {
+        "accepted": 770869,
+        "read": 770869
+      },
+      "elapsed_seconds": 11.404,
+      "exact_published_build": true,
+      "manifest_sha256": "e13215fd2d3f5fd53c0e511e5c8881c3840cdff04bebd38d39ee06226c3980f7",
+      "matches_published_reports": true,
+      "max_rss_kib": 37952,
+      "name": "morphynet-ita-v1.0.2",
+      "outputs": {
+        "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "normalized-relations.ndjson": "0f426c8c19802177cd49d196a459eb98909f15cb79d060c307379dae9c37772c",
+        "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "records.ndjson.gz": "3c46f9a025346b4874ff56b3b871f4ffcf8cdabe666d7ed30988a47cb5f9ad8d",
+        "relation-evidence.ndjson": "c864af3ea6057284a7f57af8fc4c73711c70d02738e3ea7e2efc1966cbdb140a"
+      },
+      "source_lock_sha256": "9bc24302abb3a7a7723bce35b958afa9afb2e5450c968d8d10f4cb338c88a3ad",
+      "status": "PASS"
+    }
+  ],
+  "production_writes": 0,
+  "read": 770869,
+  "rejected": 0,
+  "runtime": {
+    "python": "3.12.3",
+    "sqlite": "3.45.1",
+    "unicode": "15.0.0",
+    "zlib": "1.3"
+  },
+  "schema": "full-morphology-validation/1",
+  "scope": "morphynet-ita-v1.0.2",
+  "source_lock_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad",
+  "status": "PASS",
+  "verifier_code_sha256": {
+    "audit_import.py": "6ec5a358c350b686cf3de6c2319212f94cb226911cfbee8f09a64bef86370f94",
+    "build_catalog.py": "04be2b6009c3a961ee79530b87fd12c072a445bbdc611d542246b3a08279dcf4",
+    "fetch_sources.py": "e91e954fc7e6c0ac95d9d7dacc1f4f35179c653305ce5a9ee0aa85cddcbe5e81",
+    "morphology_import.py": "2c85307565b595dd2e3d48d76a91d3252403a2cb81d5af11af8a2c6968fbbc3d",
+    "validate_sources.py": "baf192293fdb69202bd77244afc604f7d3ebe0d5d0c2238897d9b73944a2a7b7"
+  }
+}

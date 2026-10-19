@@ -1,0 +1,348 @@
+{
+  "C": {
+    "examples": [
+      {
+        "case_id": "pilot-case:00054711925453cee522a6f26db73a4808b5aa364d2c3b4140489113db0d384d",
+        "family": "family:oper",
+        "language": "ru",
+        "path_targets": [
+          {
+            "id": "lexeme:043f02910893cb798534db53fe39fa2a7774341d2ce76ab05845678f1c5720b8",
+            "pos_if_also_sampled": null
+          },
+          {
+            "id": "lexeme:b412da7497f445efbb5d5023c37b76bbfecf4266d8e639d1748113938df91eb4",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "операция",
+          "lexeme_id": "lexeme:3c872a97b89a41a8f746ad688a26dbb7d372e90f7e86732935c2d790898dc75e",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:04e90d274d9b14583f7a6c5db467819813f5a2f364e5adb75e70caa741962d6c",
+        "family": "family:mut",
+        "language": "fr",
+        "path_targets": [
+          {
+            "id": "lexeme:417e3dad8c300520d884b321f0071c8e2bf7fe38657110a35a2084465a58bd72",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "commutable",
+          "lexeme_id": "lexeme:e3ea1295065e9f17f6fca4397528efa46280914a36321cdf72a23e4f6e751d91",
+          "pos_observed": "ADJ",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:0531e2f5109490b84f9323b7f3b7b79753d7b031dac3f4be3dd2c0597936f278",
+        "family": "family:alter",
+        "language": "de",
+        "path_targets": [
+          {
+            "id": "lexeme:d7ee96868d0a3a0432354a6ba2a4be14a9e523d90df2e8b2e44fd55835c687e6",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "alter",
+          "lexeme_id": "lexeme:0aa9a16e939dbd38fc5506c459f5e422371f9f982f9d0adc73a6a66974c4dc94",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:06f9e344f6b3c21da95c30349cd73f983c9ebf7dbbd197f387cf8c9152bc6876",
+        "family": "family:oper",
+        "language": "it",
+        "path_targets": [
+          {
+            "id": "lexeme:009099664fe08bc4ec72b07e9df5bd633acd9b33d9b31d7170b5df0cf5daa795",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "operare",
+          "lexeme_id": "lexeme:e00f169257828aa932c40833b7ff69e0ec4a549a2373928ed0346f7680b66958",
+          "pos_observed": "VERB",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:085719852bbf0d9fcaa589dd8186e3cf7a19d99d1ef97c3c313d91aaf239c672",
+        "family": "family:inter",
+        "language": "en",
+        "path_targets": [
+          {
+            "id": "lexeme:b864b58184da8b5c0837732357aa4f273a071ddde59fff1b7490ef01236fbf8b",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "intervally",
+          "lexeme_id": "lexeme:0bc52143e649036074aff10387ce1f5c847cefada60077f12d59b51fb82ba601",
+          "pos_observed": "ADV",
+          "sense_scope": "unresolved"
+        }
+      }
+    ],
+    "positive_cases_without_exact_target_path": 99,
+    "sampled_pos_conflict_examples": [
+      {
+        "case_id": "pilot-case:910ab3f402b7c88a9c8c75714f30b116dbb67ca694c42a7bac0b5b1e2694ef65",
+        "family": "family:alter",
+        "language": "it",
+        "path_targets": [
+          {
+            "id": "lexeme:52161087cb0e0308b43442604eabc005abdfa9a35b7ff05da78bae3446eccd6f",
+            "pos_if_also_sampled": "ADJ"
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "subalterno",
+          "lexeme_id": "lexeme:48dd4b5b8327835175c07ab814a1e757f0b21ded8dfd7b0115dbfc39d2ddee72",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      }
+    ]
+  },
+  "D": {
+    "examples": [
+      {
+        "case_id": "pilot-case:00054711925453cee522a6f26db73a4808b5aa364d2c3b4140489113db0d384d",
+        "family": "family:oper",
+        "language": "ru",
+        "path_targets": [
+          {
+            "id": "lexeme:87655495508cd1b98da74ed7ce05c0b55ac06e28f664bfe2773ed4d469d6d997",
+            "pos_if_also_sampled": null
+          },
+          {
+            "id": "lexeme:b412da7497f445efbb5d5023c37b76bbfecf4266d8e639d1748113938df91eb4",
+            "pos_if_also_sampled": null
+          },
+          {
+            "id": "lexeme:c774cb38f4e45754b0d660e64dd6867d4887ffd7c8905e9f0f5eef37847189dc",
+            "pos_if_also_sampled": null
+          },
+          {
+            "id": "lexeme:cc5a67f11274c17a67bcef4d9e222bd35115bf9e3a67b245098a9522cbafe5f8",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "операция",
+          "lexeme_id": "lexeme:3c872a97b89a41a8f746ad688a26dbb7d372e90f7e86732935c2d790898dc75e",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:032cff03f2f77a3c515723c7f91bf2e32b4b11ce2e6be15a8968b6a85c4e3809",
+        "family": "family:manu",
+        "language": "fr",
+        "path_targets": [
+          {
+            "id": "lexeme:6c1879b963228137f3b9f86f2ca87303e9fcf5f3a8c26635024aa92ef70873fd",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "manualité",
+          "lexeme_id": "lexeme:dafadd7fbeb2a1b547a769de4fd9175a6fa32fa81f8d19d6a1856f9516deb7a7",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:03a1a092994df401807ce7990f004da7fdb66e323a21414cbbacd8919892b16b",
+        "family": "family:relat",
+        "language": "de",
+        "path_targets": [
+          {
+            "id": "lexeme:fd4bdbae237a60db86af5dac73ae3a0188d789cdf490ebe9ebc2341f31d6f7f7",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "korrelat",
+          "lexeme_id": "lexeme:c4fa13beb0282785c838b8e45ba6ea2875b0f27bc00a58c3459844aa00ac33e6",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:0531e2f5109490b84f9323b7f3b7b79753d7b031dac3f4be3dd2c0597936f278",
+        "family": "family:alter",
+        "language": "de",
+        "path_targets": [
+          {
+            "id": "lexeme:e884593f1b69166142a5027da5b91de5346532c32fc9935422a10902169e452a",
+            "pos_if_also_sampled": null
+          },
+          {
+            "id": "lexeme:ff56d49c0e53e09f49fa8b87eb5c099bd277451d9ace584d739ff9d1d45afc12",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "alter",
+          "lexeme_id": "lexeme:0aa9a16e939dbd38fc5506c459f5e422371f9f982f9d0adc73a6a66974c4dc94",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:054b71539609abc1b6634895207730a241a5ee16c613fbbf6a0feb40f80e5db8",
+        "family": "family:manu",
+        "language": "fr",
+        "path_targets": [
+          {
+            "id": "lexeme:649befacb579383122e221fda566e54e672685f02e79b61d77d4cd7276fd5d8c",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "manuelle",
+          "lexeme_id": "lexeme:34153ccc5b830f7bc9bde6f38bf1c15d81cd26230170afa9cc63e14caeee1381",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      }
+    ],
+    "positive_cases_without_exact_target_path": 115,
+    "sampled_pos_conflict_examples": [
+      {
+        "case_id": "pilot-case:910ab3f402b7c88a9c8c75714f30b116dbb67ca694c42a7bac0b5b1e2694ef65",
+        "family": "family:alter",
+        "language": "it",
+        "path_targets": [
+          {
+            "id": "lexeme:52161087cb0e0308b43442604eabc005abdfa9a35b7ff05da78bae3446eccd6f",
+            "pos_if_also_sampled": "ADJ"
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "subalterno",
+          "lexeme_id": "lexeme:48dd4b5b8327835175c07ab814a1e757f0b21ded8dfd7b0115dbfc39d2ddee72",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      }
+    ]
+  },
+  "U": {
+    "examples": [
+      {
+        "case_id": "pilot-case:00054711925453cee522a6f26db73a4808b5aa364d2c3b4140489113db0d384d",
+        "family": "family:oper",
+        "language": "ru",
+        "path_targets": [
+          {
+            "id": "lexeme:b412da7497f445efbb5d5023c37b76bbfecf4266d8e639d1748113938df91eb4",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "операция",
+          "lexeme_id": "lexeme:3c872a97b89a41a8f746ad688a26dbb7d372e90f7e86732935c2d790898dc75e",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:01eea9a570dfb6dcf860b2e7357ad3f041da9cb82ada543f64e93f16d742e5f0",
+        "family": "family:nat",
+        "language": "en",
+        "path_targets": [
+          {
+            "id": "lexeme:877c82c9f767c914bc53629b1c14bd79fae3a0d72e123424d224b676c9fa76d0",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "naturalise",
+          "lexeme_id": "lexeme:3de8039e1e41b729dadb94d5c239417944e544617e594145b457dae3fa172526",
+          "pos_observed": "VERB",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:0531e2f5109490b84f9323b7f3b7b79753d7b031dac3f4be3dd2c0597936f278",
+        "family": "family:alter",
+        "language": "de",
+        "path_targets": [
+          {
+            "id": "lexeme:d7ee96868d0a3a0432354a6ba2a4be14a9e523d90df2e8b2e44fd55835c687e6",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "alter",
+          "lexeme_id": "lexeme:0aa9a16e939dbd38fc5506c459f5e422371f9f982f9d0adc73a6a66974c4dc94",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:0591b3add37be333a212551bccc36514d1cb046dd9a7b5547b35ca4f4d40b170",
+        "family": "family:inter",
+        "language": "ru",
+        "path_targets": [
+          {
+            "id": "lexeme:4f9dff76d46a1ed61266b1c49e1e67abf3b6a381e71a6b866db1a6e3125a68e2",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "интерес",
+          "lexeme_id": "lexeme:7f6c1290faf21fbeb49db3f747547172f9afca4ed129bf389aea8b217a9de1a6",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      },
+      {
+        "case_id": "pilot-case:05a0c556ff07849aedb844dc869c47596d7edd5ea1ecdb7e43b5cba5d4ced497",
+        "family": "family:mut",
+        "language": "ru",
+        "path_targets": [
+          {
+            "id": "lexeme:f414e7dee65973071c9a34ce420e79ac9a82aeaa36c2eb59651e54013fc5ea40",
+            "pos_if_also_sampled": null
+          }
+        ],
+        "target": {
+          "head_id": null,
+          "lemma": "мутант",
+          "lexeme_id": "lexeme:bbe3d547a6643cdf6f5368c4cd2ad87c5e49edc610e8ac14604e97eb94d99fde",
+          "pos_observed": "NOUN",
+          "sense_scope": "unresolved"
+        }
+      }
+    ],
+    "positive_cases_without_exact_target_path": 78,
+    "sampled_pos_conflict_examples": []
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "schema": "readiness-fixes-status/1",
+  "date": "2026-10-19",
+  "functional_commit": "791e727ce8a40665879a834780f91ae0edcd258b",
+  "functional_tree": "be0246f97a85229d4f03d42f38ca89e0b9a57636",
+  "independent_checks": {
+    "PASS": 35,
+    "FAIL": 0
+  },
+  "ci": [
+    {
+      "run": 39298959063,
+      "name": "Tests",
+      "conclusion": "success"
+    },
+    {
+      "run": 39298959170,
+      "name": "Associative Verification",
+      "conclusion": "success"
+    }
+  ],
+  "source_run": 39298947197,
+  "source_jobs": [
+    {
+      "id": 118218726213,
+      "name": "sources (morphynet-rus-v1.0.2)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118218726577,
+      "name": "sources (glemm-rus-v1.0.2)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 118218726687,
+      "name": "sources (glemm-esp-v1.0.2)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 118218726706,
+      "name": "sources (morphynet-fra-v1.0.2)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118218726715,
+      "name": "sources (morphynet-deu-v1.0.2)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118218726784,
+      "name": "sources (morphynet-eng-v1.0.2)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118218726818,
+      "name": "sources (glemm-deu-v1.0.2)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 118218726831,
+      "name": "sources (morphynet-spa-v1.0.2)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118218726844,
+      "name": "sources (glemm-fra-v1.0.2)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 118218726858,
+      "name": "sources (morphynet-ita-v1.0.2)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118218726881,
+      "name": "sources (uder-v1.0.2)",
+      "conclusion": "success"
+    },
+    {
+      "id": 118218726953,
+      "name": "sources (glemm-ita-v1.0.2)",
+      "conclusion": "failure"
+    },
+    {
+      "id": 118218726978,
+      "name": "sources (glemm-eng-v1.0.2)",
+      "conclusion": "failure"
+    }
+  ],
+  "source_artifacts": [
+    {
+      "id": 12212335248,
+      "name": "pinned-source-morphynet-ita-v1.0.2",
+      "digest": "sha256:b2c32a69ff6445d55a791705337c124903f9757ecef51f0982412e1de0cfcb69"
+    },
+    {
+      "id": 12212075225,
+      "name": "pinned-source-uder-v1.0.2",
+      "digest": "sha256:321cd7f43b0fd125c5bd98f5202f94d31b2789f3cc18054c58d52898fb2838b9"
+    },
+    {
+      "id": 12211495791,
+      "name": "pinned-source-glemm-esp-v1.0.2",
+      "digest": "sha256:5ad10c022edfe1ab57eda2fa9afa969653b365b84ad77d61cf8551d0db629b6f"
+    },
+    {
+      "id": 12211180124,
+      "name": "pinned-source-morphynet-deu-v1.0.2",
+      "digest": "sha256:21f2ea15e1bbb7b66d42ebdde3dd0f70fc5a03fb5f0bd4d1ee47410d8aa0e6c9"
+    },
+    {
+      "id": 12210935837,
+      "name": "pinned-source-glemm-deu-v1.0.2",
+      "digest": "sha256:d9ca2d64d03d4ece95bd7bf5c23c3bf798f677da9616187bd24458be5a9cf891"
+    },
+    {
+      "id": 12210725626,
+      "name": "pinned-source-glemm-eng-v1.0.2",
+      "digest": "sha256:e3c9b34feab3aa197f1ad6395c7e558a6ee00a39da862842aac63c1a33893bf5"
+    },
+    {
+      "id": 12210660729,
+      "name": "pinned-source-glemm-rus-v1.0.2",
+      "digest": "sha256:ba1c624657ea90923c484d397e20050c3d7289de93a9cf9bf17e06c306397c1a"
+    },
+    {
+      "id": 12210590494,
+      "name": "pinned-source-morphynet-fra-v1.0.2",
+      "digest": "sha256:6f516afba85764289d0bc8c7ca81a0484e531eadacff8470ae05b1b5ead81fb7"
+    },
+    {
+      "id": 12210585994,
+      "name": "pinned-source-glemm-fra-v1.0.2",
+      "digest": "sha256:09536eae95b266897d3def7481d4c4b30f738af00ecaae1a8b18c149cec04962"
+    },
+    {
+      "id": 12209554612,
+      "name": "pinned-source-morphynet-spa-v1.0.2",
+      "digest": "sha256:1c9f418fba06b9f2c481af93debaadbedcb403184930920b052f7af9e1178574"
+    },
+    {
+      "id": 12209364982,
+      "name": "pinned-source-morphynet-rus-v1.0.2",
+      "digest": "sha256:90738474b43e833b23ab9c0f067b7c78a74e51ba074a3305e521aed914a268d6"
+    },
+    {
+      "id": 12209094750,
+      "name": "pinned-source-glemm-ita-v1.0.2",
+      "digest": "sha256:37223a89a266bd80d0633817d652c9e6bec3e785946208943b6497d4784457f3"
+    },
+    {
+      "id": 12209054581,
+      "name": "pinned-source-morphynet-eng-v1.0.2",
+      "digest": "sha256:f64c491a752409a532dab6c57a78ee9f41a46a2c9b03d77f7922d282075a3467"
+    }
+  ],
+  "source_scope": {
+    "passing_partitions": 7,
+    "blocked_partitions": 6,
+    "read": 6601453,
+    "accepted": 6601429,
+    "rejected": 24,
+    "full_corpus_certified": false,
+    "global_catalog_rebuilt": false
+  },
+  "decision": {
+    "isolated_manual_pilot": "GO with reviewed identity alignment and no automatic membership",
+    "full_source_comparison": "BLOCKED by GLeMM acquisition and missing human gold/captures",
+    "mass_annotation": "NO-GO",
+    "production": "unchanged"
+  },
+  "membership_writes": 0,
+  "formula_changes": 0
+}

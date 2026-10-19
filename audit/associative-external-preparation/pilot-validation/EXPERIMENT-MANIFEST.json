@@ -1,0 +1,29 @@
+{
+  "all_configs_same_case_set": true,
+  "baseline_capture_sha256": null,
+  "baseline_commit": "156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49",
+  "case_set_sha256": "3f809f5f36ea367e03c1b0bf29d4f95244f81db2df15a33c94b39e7c8c2d38a1",
+  "code_sha256": {
+    "evaluate.py": "5a622eb304eef9fe77953082155ab2cbbe7aba2f2ac86798a3dca69cd2dc1ceb",
+    "gold.py": "5b4a9e42902848e428e79dd65e496f38938a97374f7674de49cf864b08ee3d5b",
+    "run.py": "09e2aeef657113d2e4bccf96d0747ea0929897251d5634c167e3d38aab00622b"
+  },
+  "gold_sha256": "a66a0bb2e7e216b5cd4ee5b53cc03e83bfa05eb23787904a84cf5df8d6350395",
+  "graph_manifest_sha256": "3c0ad71cfe6bcfe8def32b33a746109dbe304239ccb8b3f68049a155436c58a5",
+  "outputs": {
+    "ANNOTATION-RECEIPT.json": "53da76c9d48aeb2bd0b8cc79063d55abd4f4b6c97a474bbcaf234d7f2646b318",
+    "EVALUATION.json": "aea673d024216fdf54fce7c25cfe05393eb8a9bbedd505c4e811cbeea83b5f69",
+    "GOLD.json": "1e7ed17ab3b03716e54e7f3292b057bf31c5ca0dfde0f18097bec78226204dff",
+    "RUNS.json": "2e7156e0e95a6c6bd345680cbcfa676be1895ded2c14b8725d2aa99eb9ad05a3"
+  },
+  "policy": {
+    "accepted_membership": false,
+    "cross_source_string_bridge": false,
+    "depth": 2,
+    "id": "bounded-source-proposals/1",
+    "max_expansions": 300,
+    "max_paths": 20,
+    "starts_per_family_language": 8
+  },
+  "policy_sha256": "ff46df30b27d9fa77fc30ab4e7d40c6e165176b29cfc82d52fd2d78b4209f95b"
+}

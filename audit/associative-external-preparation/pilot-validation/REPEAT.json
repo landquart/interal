@@ -1,0 +1,66 @@
+{
+  "automatic_human_labels": 0,
+  "checks": {
+    "cases/SAMPLING-MANIFEST.json": {
+      "identical": true,
+      "repeat_sha256": "a07ee925cb275d001c8657f722ae488d7af4604838ae097b1fbe63820dc54555",
+      "sha256": "a07ee925cb275d001c8657f722ae488d7af4604838ae097b1fbe63820dc54555"
+    },
+    "cases/annotation-tasks.ndjson": {
+      "identical": true,
+      "repeat_sha256": "6730cf9c9aed1228b1cba008c391f6372275d116fd11db4460ad80ac4687f3fa",
+      "sha256": "6730cf9c9aed1228b1cba008c391f6372275d116fd11db4460ad80ac4687f3fa"
+    },
+    "cases/cases.ndjson": {
+      "identical": true,
+      "repeat_sha256": "99c256a3332865667e39d3ecc6bded8fe4edd44dc9c12c5fbe4e6b328eddc4ad",
+      "sha256": "99c256a3332865667e39d3ecc6bded8fe4edd44dc9c12c5fbe4e6b328eddc4ad"
+    },
+    "experiment/GOLD.json": {
+      "identical": true,
+      "repeat_sha256": "1e7ed17ab3b03716e54e7f3292b057bf31c5ca0dfde0f18097bec78226204dff",
+      "sha256": "1e7ed17ab3b03716e54e7f3292b057bf31c5ca0dfde0f18097bec78226204dff"
+    },
+    "graph_build": {
+      "id": "e82956999981bb5d2bbc780dfc6daa1d28adb44e666f95d0d276d4211f8d2135",
+      "identical": true
+    },
+    "inputs/seeds.json": {
+      "identical": true,
+      "repeat_sha256": "34547076e96361e2273166d568645ac50a640a7116cd892cd221c31a87b211e9",
+      "sha256": "34547076e96361e2273166d568645ac50a640a7116cd892cd221c31a87b211e9"
+    },
+    "inputs/v6-lock.json": {
+      "identical": true,
+      "repeat_sha256": "110329ead4e5c7ea600e909c682dff1a783a1410daae38d02e2606a752c78df9",
+      "sha256": "110329ead4e5c7ea600e909c682dff1a783a1410daae38d02e2606a752c78df9"
+    },
+    "inputs/v6.json": {
+      "identical": true,
+      "repeat_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93",
+      "sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+    },
+    "predictions:A": {
+      "identical_excluding_runtime": true
+    },
+    "predictions:B": {
+      "identical_excluding_runtime": true
+    },
+    "predictions:C": {
+      "identical_excluding_runtime": true
+    },
+    "predictions:D": {
+      "identical_excluding_runtime": true
+    },
+    "predictions:E": {
+      "identical_excluding_runtime": true
+    },
+    "predictions:U": {
+      "identical_excluding_runtime": true
+    }
+  },
+  "volatile_fields": [
+    "runtime_seconds",
+    "total_seconds"
+  ]
+}

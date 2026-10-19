@@ -1,0 +1,9 @@
+lemma1	cat1	lemma2	cat2	stem	exponent1	exponent2
+a	N	able	N	a	^(.+)$	^(.+)ble$
+a	N	alife	N	a	^(.+)$	^(.+)life$
+aah	N	aahing	N	aah	^(.+)$	^(.+)ing$
+aahing	N	aah	N	aah	^(.+)ing$	^(.+)$
+aamchur	N	amchur	N	amchur	^a(.+)$	^(.+)$
+aardvark	N	aardvarklike	A	aardvark	^(.+)$	^(.+)like$
+aardvarklike	A	aardvark	N	aardvark	^(.+)like$	^(.+)$
+aatheist	N	atheist	N	atheist	^a(.+)$	^(.+)$

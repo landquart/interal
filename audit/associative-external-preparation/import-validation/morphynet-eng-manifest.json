@@ -1,0 +1,59 @@
+{
+  "build_id": "7f07e67adc09da3cd3837e8194225a10862ab0243a6fa36babd576dad3770d96",
+  "establishes_membership": false,
+  "mode": "ingest_shadow",
+  "normalized_relation_views": 225131,
+  "outputs": {
+    "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "normalized-relations.ndjson": "7598e14ffe83b4eb274c76c7a95afaea0f008ab372e1f5ec30713bc468d48d82",
+    "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "records.ndjson.gz": "2d7776ef087dbcbda4698dd645800dbc208f3c1d98c40ba1f584c8749ec2a4e8",
+    "relation-evidence.ndjson": "4d43e0d7143a9b1e327081cf304dccb6dfbee45f86ce7ba5161f95228d58b4c5"
+  },
+  "policy": {
+    "code_sha256": "2c85307565b595dd2e3d48d76a91d3252403a2cb81d5af11af8a2c6968fbbc3d",
+    "gzip_level": 1,
+    "importer": "isolated-morphology-import/1.0.2",
+    "normalization": "NFC+lookup-casefold/1",
+    "python_version": "3.12.3",
+    "schema": "morphology-import-record/1",
+    "sqlite_version": "3.45.1",
+    "unicode_version": "15.0.0",
+    "zlib_version": "1.3"
+  },
+  "reports": [
+    {
+      "accepted": 225131,
+      "artifact": "MorphyNet:eng.derivational.v1",
+      "blank": 0,
+      "claims": 225131,
+      "comments": 0,
+      "duplicates": 0,
+      "headers": 0,
+      "inflections": 0,
+      "language": "en",
+      "read": 225131,
+      "rejected": 0,
+      "source": "MorphyNet",
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    },
+    {
+      "accepted": 649593,
+      "artifact": "MorphyNet:eng.inflectional.v1",
+      "blank": 0,
+      "claims": 0,
+      "comments": 0,
+      "duplicates": 369,
+      "headers": 0,
+      "inflections": 649593,
+      "language": "en",
+      "read": 649593,
+      "rejected": 0,
+      "source": "MorphyNet",
+      "unresolved_references": 0,
+      "unresolved_secondary": 0
+    }
+  ],
+  "source_lock_sha256": "9d9051075d57bbf345cf0961d43df66338182525dddc7271dc9fad8da7965398"
+}

@@ -1,0 +1,213 @@
+{
+  "accepted": 9404044,
+  "method": "existing immutable snapshots revalidated and every physical input line independently audited",
+  "partitions": [
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "d2e236b4b996d3108d5fb78bffee8e5df905f32910e32753eb996fa23ce49054",
+        "counts": {
+          "accepted": 519712,
+          "read": 519712
+        },
+        "elapsed_seconds": 73.692,
+        "max_rss_kib": 22824,
+        "source_lock_sha256": "872a1dda91affd74d43b7e7455e8812165348dfdecf3c956ebdc9a1266e5b461",
+        "status": "PASS"
+      },
+      "partition": "morphynet-deu-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "6a5db3924bd8f8ce68858bc326c8938305e86f4845e7bdb6ce20c4c13910fff0",
+        "counts": {
+          "accepted": 526180,
+          "read": 526180
+        },
+        "elapsed_seconds": 77.769,
+        "max_rss_kib": 25000,
+        "source_lock_sha256": "15bd12a5697d966f7a3558ba3723062840fa05feb4cff669949f70d717235d76",
+        "status": "PASS"
+      },
+      "partition": "morphynet-fra-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "7f07e67adc09da3cd3837e8194225a10862ab0243a6fa36babd576dad3770d96",
+        "counts": {
+          "accepted": 874724,
+          "read": 874724
+        },
+        "elapsed_seconds": 134.975,
+        "max_rss_kib": 30972,
+        "source_lock_sha256": "9d9051075d57bbf345cf0961d43df66338182525dddc7271dc9fad8da7965398",
+        "status": "PASS"
+      },
+      "partition": "morphynet-eng-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "4e6851f67f586c5a4a4a469e155161af3ed6ed9d5e34c0ce4804de51fbb98112",
+        "counts": {
+          "accepted": 770869,
+          "read": 770869
+        },
+        "elapsed_seconds": 118.867,
+        "max_rss_kib": 31612,
+        "source_lock_sha256": "9bc24302abb3a7a7723bce35b958afa9afb2e5450c968d8d10f4cb338c88a3ad",
+        "status": "PASS"
+      },
+      "partition": "morphynet-ita-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "90ab3455a49654f6611c0928590e895b8c9d13441f85694ce524ece95a195102",
+        "counts": {
+          "accepted": 1175804,
+          "blank": 737913,
+          "read": 1175804
+        },
+        "elapsed_seconds": 225.918,
+        "max_rss_kib": 35452,
+        "source_lock_sha256": "dd8d650f932e5234467142108d86654d01d312ac716d9e265c7640208a6c43a6",
+        "status": "PASS"
+      },
+      "partition": "uder-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "6ca2e12e57aa87c696a8d8541dc63554d5162ebde3306c7b86385cbeb8b8424c",
+        "counts": {
+          "accepted": 178686,
+          "headers": 2,
+          "read": 178686
+        },
+        "elapsed_seconds": 67.863,
+        "max_rss_kib": 37076,
+        "source_lock_sha256": "c7f0c404c454acb9605c6eb697d60a80c583e51bb74f48c50132e15736a47602",
+        "status": "PASS"
+      },
+      "partition": "glemm-deu-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "4bdfe1a1d8d8f600de3c447400754caf8957220a47f417b6e1d896c42ab906d1",
+        "counts": {
+          "accepted": 1414063,
+          "blank": 1,
+          "read": 1414063
+        },
+        "elapsed_seconds": 439.445,
+        "max_rss_kib": 37204,
+        "source_lock_sha256": "0fe745d7d15a8dfe9d4b006eeaa8850c66df5326f34f273625811ee669f5f9cd",
+        "status": "PASS"
+      },
+      "partition": "morphynet-rus-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "57d3f0c59e35b07f049b5844a6d5edc395c76a4fa2ee80fc1d4fcec9a76a9241",
+        "counts": {
+          "accepted": 1320077,
+          "read": 1320101,
+          "rejected": 24
+        },
+        "elapsed_seconds": 392.335,
+        "max_rss_kib": 40276,
+        "source_lock_sha256": "9d825114bbf22fea5a3d0717c54ea8218972f6a0ae5c34ce11cd768997e584a9",
+        "status": "PASS"
+      },
+      "partition": "morphynet-spa-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "980beb954fe9d2ba772d376a097aaaa8db8fa784666829106468379bfe8beda3",
+        "counts": {
+          "accepted": 357869,
+          "headers": 2,
+          "read": 357869
+        },
+        "elapsed_seconds": 267.59,
+        "max_rss_kib": 40276,
+        "source_lock_sha256": "86e3b5776aed677b10782ab8921a5d081df7e4f245e7620ca6b6a9339b8f735a",
+        "status": "PASS"
+      },
+      "partition": "glemm-fra-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "c11b76c40e4047fb855d1f2e969e5e4c961e3760b2ba4c307864eb326ec3a8ee",
+        "counts": {
+          "accepted": 130969,
+          "headers": 2,
+          "read": 130969
+        },
+        "elapsed_seconds": 61.372,
+        "max_rss_kib": 42068,
+        "source_lock_sha256": "9218221a985a9ec14adf396b62fc8df8c2d6e1e37538c2187efaf9a858463e25",
+        "status": "PASS"
+      },
+      "partition": "glemm-ita-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "1032ece3cb2b6d4939983f38d72a54edd03b8f64fb2c137dea8634cc8ea7bfde",
+        "counts": {
+          "accepted": 90079,
+          "headers": 2,
+          "read": 90079
+        },
+        "elapsed_seconds": 52.869,
+        "max_rss_kib": 42068,
+        "source_lock_sha256": "2995ce3dfee557d0b48a021bf5585ba8cd59cc2fcb22356806ff0baedad7114c",
+        "status": "PASS"
+      },
+      "partition": "glemm-esp-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "b7a21909c697df01d51277c78045788ba7e8d015b5912af8606ac5f16b61ea0c",
+        "counts": {
+          "accepted": 1050666,
+          "headers": 2,
+          "read": 1050666
+        },
+        "elapsed_seconds": 383.769,
+        "max_rss_kib": 44244,
+        "source_lock_sha256": "84bfa61edd771f06f942a35709418fd5540e4454eac0354d3915006ec7189ac5",
+        "status": "PASS"
+      },
+      "partition": "glemm-eng-v1.0.2"
+    },
+    {
+      "audit": {
+        "all_original_bytes_and_fields_preserved": true,
+        "build_id": "ddd758305e0d665bb5ed27c8f15fa0177efba0e8bebf722cbfae760d3f605616",
+        "counts": {
+          "accepted": 994346,
+          "headers": 2,
+          "read": 994346
+        },
+        "elapsed_seconds": 147.646,
+        "max_rss_kib": 44244,
+        "source_lock_sha256": "1b8ae578af103b169dbd95fc9dddc6ed36f8ccf585c7e3eef83ad97e67733959",
+        "status": "PASS"
+      },
+      "partition": "glemm-rus-v1.0.2"
+    }
+  ],
+  "read": 9404068,
+  "rejected": 24,
+  "status": "PASS"
+}

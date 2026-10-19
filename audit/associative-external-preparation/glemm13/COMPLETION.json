@@ -1,0 +1,126 @@
+{
+  "all_outputs_and_manifests_identical": true,
+  "all_published_stage03_builds_reproduced": true,
+  "counts_per_run": {
+    "accepted": 2802615,
+    "defs": 691290,
+    "duplicates": 0,
+    "normalized_relation_views": 2111325,
+    "pairs": 2111325,
+    "read": 2802615,
+    "rejected": 0
+  },
+  "date_utc": "2026-10-19",
+  "formula_changes": 0,
+  "full_import_runs": 2,
+  "git_transport_ci": "BLOCKED: upstream Empty reply from server",
+  "global_multi_source_catalog_certified": false,
+  "human_gold_quality_evaluation": "BLOCKED: no reliable human gold",
+  "independent_all_row_audits_per_partition": 2,
+  "measurements": [
+    {
+      "audit_seconds": 4.759,
+      "full_import_and_audit_seconds": 34.49284934899998,
+      "language": "deu",
+      "output_bytes": 163452111,
+      "process_peak_rss_kib": 30184,
+      "release": "first"
+    },
+    {
+      "audit_seconds": 4.429,
+      "full_import_and_audit_seconds": 32.79042355099995,
+      "language": "deu",
+      "output_bytes": 163452111,
+      "process_peak_rss_kib": 30440,
+      "release": "replay"
+    },
+    {
+      "audit_seconds": 25.021,
+      "full_import_and_audit_seconds": 232.617185892,
+      "language": "eng",
+      "output_bytes": 1416974625,
+      "process_peak_rss_kib": 30824,
+      "release": "first"
+    },
+    {
+      "audit_seconds": 25.986,
+      "full_import_and_audit_seconds": 230.16382639699998,
+      "language": "eng",
+      "output_bytes": 1416974625,
+      "process_peak_rss_kib": 30824,
+      "release": "replay"
+    },
+    {
+      "audit_seconds": 2.009,
+      "full_import_and_audit_seconds": 16.04919574799999,
+      "language": "esp",
+      "output_bytes": 74131005,
+      "process_peak_rss_kib": 30156,
+      "release": "first"
+    },
+    {
+      "audit_seconds": 2.38,
+      "full_import_and_audit_seconds": 16.82697305099998,
+      "language": "esp",
+      "output_bytes": 74131005,
+      "process_peak_rss_kib": 30412,
+      "release": "replay"
+    },
+    {
+      "audit_seconds": 9.802,
+      "full_import_and_audit_seconds": 72.03318760499997,
+      "language": "fra",
+      "output_bytes": 342297188,
+      "process_peak_rss_kib": 30796,
+      "release": "first"
+    },
+    {
+      "audit_seconds": 9.36,
+      "full_import_and_audit_seconds": 73.67113764599998,
+      "language": "fra",
+      "output_bytes": 342297188,
+      "process_peak_rss_kib": 30796,
+      "release": "replay"
+    },
+    {
+      "audit_seconds": 3.045,
+      "full_import_and_audit_seconds": 23.49947942299997,
+      "language": "ita",
+      "output_bytes": 111576450,
+      "process_peak_rss_kib": 30440,
+      "release": "first"
+    },
+    {
+      "audit_seconds": 3.048,
+      "full_import_and_audit_seconds": 23.59040575099999,
+      "language": "ita",
+      "output_bytes": 111576450,
+      "process_peak_rss_kib": 30440,
+      "release": "replay"
+    },
+    {
+      "audit_seconds": 31.255,
+      "full_import_and_audit_seconds": 240.24832257399993,
+      "language": "rus",
+      "output_bytes": 1250129026,
+      "process_peak_rss_kib": 31308,
+      "release": "first"
+    },
+    {
+      "audit_seconds": 28.728,
+      "full_import_and_audit_seconds": 231.3684946379999,
+      "language": "rus",
+      "output_bytes": 1250129026,
+      "process_peak_rss_kib": 31308,
+      "release": "replay"
+    }
+  ],
+  "membership_writes": 0,
+  "production_writes": 0,
+  "schema": "glemm-completion/1",
+  "scope": "six complete pinned GLeMM partitions",
+  "source_bytes": 32292210,
+  "source_files_verified": 12,
+  "source_revision": "395020177a96a81177582fb59664509ff015f934",
+  "status": "PASS"
+}

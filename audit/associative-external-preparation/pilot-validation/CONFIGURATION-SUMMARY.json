@@ -1,0 +1,78 @@
+{
+  "A": {
+    "abstentions": null,
+    "budget": null,
+    "positive_hypotheses": null,
+    "quality_status": "unavailable",
+    "reason": "actual_algorithm_capture_missing",
+    "runtime_seconds": 0.22893145000034565,
+    "status": "unavailable"
+  },
+  "B": {
+    "abstentions": null,
+    "budget": null,
+    "positive_hypotheses": null,
+    "quality_status": "unavailable",
+    "reason": "actual_algorithm_capture_missing",
+    "runtime_seconds": 0.22392354400017211,
+    "status": "unavailable"
+  },
+  "C": {
+    "abstentions": 1169,
+    "budget": {
+      "expanded": 822,
+      "queries": 552,
+      "truncated": 1
+    },
+    "positive_hypotheses": 237,
+    "quality_status": "awaiting_human_gold",
+    "reason": null,
+    "runtime_seconds": 1.746225604000756,
+    "status": "completed"
+  },
+  "C→D": {
+    "additional_hypotheses": 86,
+    "correctness": null,
+    "lost_hypotheses": 84
+  },
+  "D": {
+    "abstentions": 1167,
+    "budget": {
+      "expanded": 1040,
+      "queries": 559,
+      "truncated": 0
+    },
+    "positive_hypotheses": 239,
+    "quality_status": "awaiting_human_gold",
+    "reason": null,
+    "runtime_seconds": 1.5585539700005029,
+    "status": "completed"
+  },
+  "E": {
+    "abstentions": null,
+    "budget": null,
+    "positive_hypotheses": null,
+    "quality_status": "unavailable",
+    "reason": "flexor_identity_version_license_and_independent_validation_not_established",
+    "runtime_seconds": 0.21678424199944857,
+    "status": "unavailable"
+  },
+  "U": {
+    "abstentions": 1213,
+    "budget": {
+      "expanded": 801,
+      "queries": 340,
+      "truncated": 1
+    },
+    "positive_hypotheses": 193,
+    "quality_status": "awaiting_human_gold",
+    "reason": null,
+    "runtime_seconds": 1.4742094920002273,
+    "status": "completed"
+  },
+  "U→C": {
+    "additional_hypotheses": 76,
+    "correctness": null,
+    "lost_hypotheses": 32
+  }
+}

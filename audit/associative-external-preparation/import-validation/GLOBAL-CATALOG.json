@@ -1,0 +1,104 @@
+{
+  "analysis_difference_rows": 692075,
+  "artifacts": 35,
+  "build_id": "5e5ba7e4ae2dd0fb598f4f241fc2ba5a09bc7a1bdf33acbb447a673af2c92c2d",
+  "duplicate_view_occurrences": 0,
+  "establishes_membership": false,
+  "evidence_occurrences": 3750624,
+  "identity": {
+    "builds": [
+      "1032ece3cb2b6d4939983f38d72a54edd03b8f64fb2c137dea8634cc8ea7bfde",
+      "4bdfe1a1d8d8f600de3c447400754caf8957220a47f417b6e1d896c42ab906d1",
+      "4e6851f67f586c5a4a4a469e155161af3ed6ed9d5e34c0ce4804de51fbb98112",
+      "57d3f0c59e35b07f049b5844a6d5edc395c76a4fa2ee80fc1d4fcec9a76a9241",
+      "6a5db3924bd8f8ce68858bc326c8938305e86f4845e7bdb6ce20c4c13910fff0",
+      "6ca2e12e57aa87c696a8d8541dc63554d5162ebde3306c7b86385cbeb8b8424c",
+      "7f07e67adc09da3cd3837e8194225a10862ab0243a6fa36babd576dad3770d96",
+      "90ab3455a49654f6611c0928590e895b8c9d13441f85694ce524ece95a195102",
+      "980beb954fe9d2ba772d376a097aaaa8db8fa784666829106468379bfe8beda3",
+      "b7a21909c697df01d51277c78045788ba7e8d015b5912af8606ac5f16b61ea0c",
+      "c11b76c40e4047fb855d1f2e969e5e4c961e3760b2ba4c307864eb326ec3a8ee",
+      "d2e236b4b996d3108d5fb78bffee8e5df905f32910e32753eb996fa23ce49054",
+      "ddd758305e0d665bb5ed27c8f15fa0177efba0e8bebf722cbfae760d3f605616"
+    ],
+    "catalog_version": "normalized-claim-catalog/1",
+    "code_sha256": "04be2b6009c3a961ee79530b87fd12c072a445bbdc611d542246b3a08279dcf4",
+    "plan_sha256": "85e9d83374055a586fbdbbfad5e94771c32869758d5b9d082ec3dc8f5e7496a0",
+    "registry_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad"
+  },
+  "inputs": [
+    {
+      "build_id": "6ca2e12e57aa87c696a8d8541dc63554d5162ebde3306c7b86385cbeb8b8424c",
+      "manifest_sha256": "768ad19d8741a114e1ddcabeb9dcefd5e8757e2eed8639541a50f084690ce815",
+      "partition": "glemm-deu-v1.0.2"
+    },
+    {
+      "build_id": "b7a21909c697df01d51277c78045788ba7e8d015b5912af8606ac5f16b61ea0c",
+      "manifest_sha256": "c4c2de8d41bcb8f5a84bebe94efe2606dcedcbeda1a3523dec0c74d835ec2fc9",
+      "partition": "glemm-eng-v1.0.2"
+    },
+    {
+      "build_id": "1032ece3cb2b6d4939983f38d72a54edd03b8f64fb2c137dea8634cc8ea7bfde",
+      "manifest_sha256": "efbf088ccd0c02b7c5d84b7540e592ee745d00a2e417ba8552a6348bc7a8873c",
+      "partition": "glemm-esp-v1.0.2"
+    },
+    {
+      "build_id": "980beb954fe9d2ba772d376a097aaaa8db8fa784666829106468379bfe8beda3",
+      "manifest_sha256": "1898ad1c5287a8e3ea75db14fbf63a9649933ad3c26e49ceb0c281a7e376253b",
+      "partition": "glemm-fra-v1.0.2"
+    },
+    {
+      "build_id": "c11b76c40e4047fb855d1f2e969e5e4c961e3760b2ba4c307864eb326ec3a8ee",
+      "manifest_sha256": "ff3a832c2fda7af56e5130b708df3c4acb8d4af7dc575acbf2b06e3fa7febcbf",
+      "partition": "glemm-ita-v1.0.2"
+    },
+    {
+      "build_id": "ddd758305e0d665bb5ed27c8f15fa0177efba0e8bebf722cbfae760d3f605616",
+      "manifest_sha256": "1c8a78dcba11e8195bfa56634e00d5ec3019ed6cc9cfbe68973d61b6703a8351",
+      "partition": "glemm-rus-v1.0.2"
+    },
+    {
+      "build_id": "d2e236b4b996d3108d5fb78bffee8e5df905f32910e32753eb996fa23ce49054",
+      "manifest_sha256": "5818df0030e4513bf77d6f2a6daacded322f3d4e8580fd7206c829fd3f487144",
+      "partition": "morphynet-deu-v1.0.2"
+    },
+    {
+      "build_id": "7f07e67adc09da3cd3837e8194225a10862ab0243a6fa36babd576dad3770d96",
+      "manifest_sha256": "27855dfdd0e9b0913e424e5b8739d26aad94e6a946fbb73bc90113eac7765daf",
+      "partition": "morphynet-eng-v1.0.2"
+    },
+    {
+      "build_id": "6a5db3924bd8f8ce68858bc326c8938305e86f4845e7bdb6ce20c4c13910fff0",
+      "manifest_sha256": "6e549da558c1d17ca802ad1da2c00dd80533bca95c81bfab39365aabc0ffe026",
+      "partition": "morphynet-fra-v1.0.2"
+    },
+    {
+      "build_id": "4e6851f67f586c5a4a4a469e155161af3ed6ed9d5e34c0ce4804de51fbb98112",
+      "manifest_sha256": "e13215fd2d3f5fd53c0e511e5c8881c3840cdff04bebd38d39ee06226c3980f7",
+      "partition": "morphynet-ita-v1.0.2"
+    },
+    {
+      "build_id": "4bdfe1a1d8d8f600de3c447400754caf8957220a47f417b6e1d896c42ab906d1",
+      "manifest_sha256": "4e3b4e66a37d6ded7b92274f6d9cda0b8c9cb04ff7dabc53d476a9722072d880",
+      "partition": "morphynet-rus-v1.0.2"
+    },
+    {
+      "build_id": "57d3f0c59e35b07f049b5844a6d5edc395c76a4fa2ee80fc1d4fcec9a76a9241",
+      "manifest_sha256": "9b17d6aa8637807834d07ffb4a8412ea057405a39198bc2ef137f791940bb42f",
+      "partition": "morphynet-spa-v1.0.2"
+    },
+    {
+      "build_id": "90ab3455a49654f6611c0928590e895b8c9d13441f85694ce524ece95a195102",
+      "manifest_sha256": "d1f719d29ddebda9c345664007cf28b5010c5306754bae0167da67641e1d65a9",
+      "partition": "uder-v1.0.2"
+    }
+  ],
+  "mode": "ingest_shadow",
+  "outputs": {
+    "analysis-differences.ndjson": "6197edfce27b4599d2a878b4acb346f22d2e4c80cd6eb3cfba83f22ca9f62ef1",
+    "normalized-relations.ndjson": "e7d90a71f8975f8fb8d238ed21942c3171d9e076f3f606e8d6396b8853cc0a23",
+    "relation-evidence.ndjson": "5aa71f1a8864b037b699e9d0c0493204ea98c92fc688fc9f1253e85557822924"
+  },
+  "partitions": 13,
+  "unique_normalized_views": 3047035
+}
