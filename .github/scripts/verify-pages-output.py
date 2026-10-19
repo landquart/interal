@@ -8,7 +8,11 @@ import subprocess
 
 
 def sha(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    digest = hashlib.sha256()
+    with path.open('rb') as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b''):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def verify(source, destination):
@@ -19,6 +23,9 @@ def verify(source, destination):
     html = sorted(p for p in tracked if p)
     if 'index.html' not in html or 'associativvordes/index.html' not in html:
         raise ValueError('incomplete source checkout')
+    documents = sorted(p for p in subprocess.check_output(
+        ['git', '-C', str(source), 'ls-files', '-z', '--', '*.pdf', '*.docx', '*.epub']
+    ).decode().split('\0') if p)
     assets = [
         'associativvordes/script.js',
         'associativvordes/js/root-matcher.js',
@@ -31,7 +38,7 @@ def verify(source, destination):
         'robots.txt',
     ]
     hashes = {}
-    for name in html + assets:
+    for name in html + documents + assets:
         original, published = source / name, destination / name
         if not published.is_file():
             raise ValueError('missing public page/asset: ' + name)
@@ -44,6 +51,7 @@ def verify(source, destination):
     return {
         'status': 'PASS',
         'tracked_html_pages_preserved': len(html),
+        'downloadable_documents_preserved': len(documents),
         'runtime_assets_preserved': len(assets),
         'original_sources_excluded_from_rendering': True,
         'public_file_sha256': hashes,

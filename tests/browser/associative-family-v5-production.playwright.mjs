@@ -1,16 +1,27 @@
 import assert from 'node:assert/strict';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { dirname, resolve } from 'node:path';
 import { chromium } from 'playwright';
 
 const productionUrl = (process.argv[2] || 'https://interal.vercel.app').replace(/\/$/, '');
 const outputPath = resolve(process.argv[3] || '.tmp/family-v5-production-regression.json');
+const expectedIntegrity = JSON.parse(await readFile(new URL('../../audit/associative-family-v5/repository-static-integrity.json', import.meta.url), 'utf8'));
+assert.equal(expectedIntegrity.verdict, 'pass');
+assert.equal(expectedIntegrity.source_run_id, 35647932153);
+const expectedMetadata = Object.fromEntries(await Promise.all(
+  ['manifest.json', 'report.json', 'repository-provenance.json'].map(async name => [
+    name, createHash('sha256').update(await readFile(new URL(`../../associativvordes/family-index-v5/${name}`, import.meta.url))).digest('hex')
+  ])
+));
 const browser = await chromium.launch({ headless: true });
 const report = {
   schema_version: 1,
   generated_at: new Date().toISOString(),
   production_url: productionUrl,
   expected_source_run_id: 35647932153,
+  expected_metadata_sha256: expectedMetadata,
+  expected_materialization_counts: expectedIntegrity.counts,
   scenarios: [],
   transport: {},
   console_errors: [],
@@ -38,7 +49,13 @@ async function runViewport(name, viewport) {
     const reportResponse = await fetch(`${baseUrl}/report.json`);
     const provenanceResponse = await fetch(`${baseUrl}/repository-provenance.json`);
     if (!manifestResponse.ok || !reportResponse.ok || !provenanceResponse.ok) throw new Error('Production metadata request failed');
-    const [manifest, buildReport, provenance] = await Promise.all([manifestResponse.json(), reportResponse.json(), provenanceResponse.json()]);
+    const bodies = await Promise.all([manifestResponse, reportResponse, provenanceResponse].map(response => response.arrayBuffer()));
+    const [manifest, buildReport, provenance] = bodies.map(body => JSON.parse(new TextDecoder().decode(body)));
+    const metadataSha256 = Object.fromEntries(await Promise.all(
+      ['manifest.json', 'report.json', 'repository-provenance.json'].map(async (name, i) => [
+        name, Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', bodies[i])), byte => byte.toString(16).padStart(2, '0')).join('')
+      ])
+    ));
 
     const controls = [];
     const aliases = ['manu', 'pede', 'ocul', 'alter', 'regul', 'liber', 'libert', 'inter'];
@@ -100,6 +117,7 @@ async function runViewport(name, viewport) {
       .map(item => ({ name: item.name.replace(location.origin, ''), duration_ms: item.duration, encoded_bytes: item.encodedBodySize || 0, decoded_bytes: item.decodedBodySize || 0 }));
 
     return {
+      metadata_sha256: metadataSha256,
       manifest: { version: manifest.version, source_run_id: manifest.repository_storage?.immutable_source_run_id, encoding: manifest.repository_storage?.encoding },
       build_report: { source_run_id: buildReport.provenance?.workflow_run_id, controls_ok: buildReport.controls_ok, liber_ok: buildReport.controls?.['family:liber']?.ok, has_libert: Object.hasOwn(buildReport.controls || {}, 'family:libert'), invariants: buildReport.invariants },
       provenance,
@@ -127,8 +145,15 @@ async function runViewport(name, viewport) {
   for (const [key, value] of Object.entries(result.build_report.invariants || {})) {
     if (typeof value === 'boolean') assert.equal(value, true, `structural invariant ${key} failed`);
   }
-  assert.equal(result.build_report.invariants.source_lemmas, result.build_report.invariants.classified_unique_lemmas);
-  for (const key of ['lemmas_with_zero_family', 'families_with_zero_members', 'members_without_evidence', 'fuzzy_memberships', 'levenshtein_memberships', 'untyped_family_edges', 'untyped_or_illegal_equivalence_edges', 'compound_edges_used_as_equivalence', 'unreviewed_high_risk_families']) assert.equal(result.build_report.invariants[key], 0, `structural invariant ${key} failed`);
+  // Match the repository audit/materialization contract: reviewed removals can
+  // leave source lemmas unassigned. Pin the exact census and all metadata bytes;
+  // accepting an arbitrary nonzero count or changing production data is unsafe.
+  assert.deepEqual(result.metadata_sha256, expectedMetadata, 'production metadata differs from checked-out repository');
+  assert.equal(result.build_report.invariants.source_lemmas, expectedIntegrity.counts.lemmas);
+  assert.equal(result.build_report.invariants.classified_unique_lemmas, expectedIntegrity.counts.materialized_unique_lemmas);
+  assert.equal(result.build_report.invariants.lemmas_with_zero_family, expectedIntegrity.counts.lemmas_without_materialized_family);
+  assert.equal(result.build_report.invariants.source_lemmas, result.build_report.invariants.classified_unique_lemmas + result.build_report.invariants.lemmas_with_zero_family);
+  for (const key of ['families_with_zero_members', 'members_without_evidence', 'fuzzy_memberships', 'levenshtein_memberships', 'untyped_family_edges', 'untyped_or_illegal_equivalence_edges', 'compound_edges_used_as_equivalence', 'unreviewed_high_risk_families']) assert.equal(result.build_report.invariants[key], 0, `structural invariant ${key} failed`);
   assert.equal(result.provenance.source_run_id, 35647932153);
   assert.equal(result.provenance.storage, 'git_repository_static_files');
   assert.equal(result.repeat_added_resources, 0);

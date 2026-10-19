@@ -1,6 +1,10 @@
 name: Audit production associative family v5
 
 on:
+  pull_request:
+    paths:
+      - 'tests/browser/associative-family-v5-production.playwright.mjs'
+      - '.github/workflows/audit-production-associative-family-v5.yml'
   push:
     branches:
       - main

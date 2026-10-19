@@ -12,7 +12,11 @@ GitHub Pages run `39338729838`, job `118354697909`: Jekyll 3.10.0 / github-pages
 
 Новый `_config.yml` исключает `data/morphology-evidence/sources` из Jekyll rendering/copying. Оригиналы, лицензии, README, source locks и контрольные суммы остаются в Git без изменений и используются офлайн-импортёрами. Публичный runtime к этой директории не обращается. `node_modules` также исключён из публикации.
 
-Добавлена независимая PR/push-проверка Pages validation: официальный закреплённый Jekyll action собирает весь сайт без deployment. Затем проверяются наличие и точные байты всех tracked HTML-страниц, runtime JS, manifests v5/search-index, shared assets, sitemap и robots; исходные корпуса не должны попасть в Pages output.
+Добавлена независимая PR/push-проверка Pages validation: официальный закреплённый Jekyll action собирает весь сайт без deployment. Затем проверяются наличие и точные байты всех tracked HTML-страниц, скачиваемых PDF/DOCX/EPUB, runtime JS, manifests v5/search-index, shared assets, sitemap и robots; исходные корпуса не должны попасть в Pages output.
+
+## Дополнительная неисправность production-аудита
+
+Старый live-тест ошибочно требует `source_lemmas == classified_unique_lemmas` и нулевого `lemmas_with_zero_family`. Действующий repository materialization и независимый repository audit используют `source = materialized + unassigned`: 4 924 980 = 4 924 281 + 699. Исправляется только контракт browser-аудита, не данные: точные counters берутся из committed repository-integrity receipt, все нулевые structural-error проверки сохраняются. Добавлена более строгая сверка SHA-256 всего production manifest/report/provenance с Git checkout; произвольный новый ненулевой unassigned count не допускается. Запущен свежий исчерпывающий read-only repository audit с неизменённым скриптом и сравнением результата с committed receipt. Новый live browser audit запускается в PR отдельно; до завершения оба результата не объявляются PASS.
 
 ## Новые регрессионные результаты
 
@@ -21,12 +25,12 @@ GitHub Pages run `39338729838`, job `118354697909`: Jekyll 3.10.0 / github-pages
 - Importers: 23 PASS; graph: 18 PASS; candidate search: 16 PASS; pilot: 15 PASS; Flexor/HanTa preparation: 8 PASS.
 - Независимый verifier этапа 08: 35 PASS / 0 FAIL. IV-001 exact lexical identity, IV-002 scoped reverse decisions, IV-003 cross-language paths, IV-004 mixed-chain classification остаются исправленными.
 - Реальные Vercel build gates проходят без изменения их условий.
-- Local browser: исходная попытка заблокирована отсутствующим Chromium; установка и повторная проверка продолжаются. CI browser regression будет проверен отдельно.
-- Настоящая Jekyll-сборка исправленной ветки ещё ожидает CI. Локально Ruby/Jekyll отсутствуют; их отсутствие не выдаётся за успешную сборку.
+- Local browser BLOCKED: Chromium отсутствует, официальный download несколько раз возвращает повреждённый ZIP. Исходная локальная ошибка и download logs сохраняются; браузерная проверка в GitHub CI проверяется отдельно.
+- Первая настоящая Jekyll-сборка исправленной ветки прошла в CI `39340350276`: все 13 HTML-страниц и 9 runtime assets совпали по SHA-256. Новый guard дополнен проверкой скачиваемых документов; его новая CI-проверка ещё ожидается. Локально Ruby/Jekyll отсутствуют.
 
 ## Сохранность данных
 
-Tracked data и associativvordes не отличаются от проверяемого main; исправление не меняет научные формулы, manual/rejected/split решения, частоты, membership, lexical heads или переключение v5/v6. Полные корпусы не добавляются в PR. Дополнительные Git-object и input-checksum receipts будут опубликованы после завершения проверок.
+Tracked data и associativvordes не отличаются от проверяемого main; исправление не меняет научные формулы, manual/rejected/split решения, частоты, membership, lexical heads или переключение v5/v6. Полные корпусы не добавляются в PR. Независимо сверены 14 protected Git objects и фактические байты 52 source/provenance файлов против main Git blobs; исходники полностью совпали. Повторно проверены размеры/SHA-256 всех 12 реальных raw файлов GLeMM; все pins совпали. Квитанции сохраняются отдельно.
 
 ## Ограничения перед массовой разметкой
 
