@@ -1,0 +1,39 @@
+name: Verify pinned morphology sources
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/morphology-readiness-20261019]
+    paths:
+      - '.github/workflows/verify-morphology-sources.yml'
+      - 'associativvordes/importers/validate_sources.py'
+permissions:
+  contents: read
+concurrency:
+  group: morphology-sources-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  sources:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            associativvordes/importers
+            data/morphology-evidence/sources
+            audit/associative-external-preparation/import-validation
+      - name: Verify all pinned bytes, import partitions and audit every row
+        run: >-
+          /usr/bin/python3 associativvordes/importers/validate_sources.py
+          --fetch --raw-root "$RUNNER_TEMP/morphology-raw"
+          --output-root "$RUNNER_TEMP/morphology-builds"
+          --receipts "$RUNNER_TEMP/morphology-receipts"
+      - name: Save verification receipts only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pinned-source-verification
+          path: ${{ runner.temp }}/morphology-receipts
+          if-no-files-found: error
+          retention-days: 30
