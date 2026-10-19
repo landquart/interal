@@ -64,3 +64,5 @@ done
 Последняя одиночная локальная проба: 202 965 / 315 630 bytes за 300.002071 s, curl exit 28; полного проверенного файла нет (`glemm10/LOCAL-ACQUISITION.json`). Стандартный `ubuntu-24.04-arm` также вернул Empty reply from server: [run 39304007341](https://github.com/landquart/interal/actions/runs/39304007341), `glemm10/ARM-CI.json`. Автономный кеш с полным корпусом не создан. Для завершения нужен официальный upstream ZIP либо доступ к тем же 12 исходным файлам.
 
 Официальный ZIP каталога закреплённой версии: https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/archive.zip?sha=395020177a96a81177582fb59664509ff015f934&path=GLeMM_2.0%2Foutput . HEAD endpoint вернул HTTP 200/application/zip; это проверка адреса, не скачанных байтов.
+
+Финальный functional commit `0d2ecf41815e9c2cc475bdbaa13ac95b31f84caa`: полный Tests [39304038559](https://github.com/landquart/interal/actions/runs/39304038559) и Associative Verification [39304038437](https://github.com/landquart/interal/actions/runs/39304038437) завершились success. Квитанция `glemm10/FINAL-CI.json`. Это подтверждение кода, не полного корпуса GLeMM.
