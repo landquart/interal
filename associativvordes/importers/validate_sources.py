@@ -8,6 +8,7 @@ import argparse
 import json
 from pathlib import Path
 import platform
+import shutil
 import sqlite3
 import time
 import unicodedata
@@ -59,7 +60,10 @@ def validate(raw,output,receipts,acquire=False):
         # Keep a new runtime-specific plan in isolated output; never replace pins.
         local_sources=output/'catalog-inputs';local_sources.mkdir(parents=True,exist_ok=True)
         local_plan=local_sources/'PLAN.json'
-        write(local_plan,dict(plan,partitions=[dict(p,lock=str((sources/p['lock']).resolve())) for p in rebuilt]))
+        for part in rebuilt:
+            dest=local_sources/part['lock'];dest.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(sources/part['lock'],dest)
+        write(local_plan,dict(plan,partitions=rebuilt))
         catalog=make_catalog(sources/'source-lock.json',local_plan,output,output/'catalog')
         write(receipts/'CATALOG.json',json.loads((catalog/'CATALOG.json').read_text()))
         receipt.update(status='PASS',artifacts=35,read=sum(p['counts'].get('read',0) for p in receipt['partitions']),

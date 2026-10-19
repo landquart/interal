@@ -2,32 +2,53 @@
 """Fetch only checksum-locked artifacts into an external raw directory."""
 import argparse
 import hashlib
+import http.client
 import json
 import os
 from pathlib import Path
 import shutil
 import tarfile
 import tempfile
-from urllib.request import urlopen
+from urllib.request import Request, urlopen
+from urllib.parse import urlsplit, quote
 from morphology_import import checked_path, hash_file, validate_lock
+
+
+def acquisition_urls(url):
+    """Only the same pinned GLeMM file through its official GitLab API."""
+    yield url
+    parsed=urlsplit(url);prefix='/nabil.hathout.1/glemm/-/raw/'
+    if parsed.scheme=='http':
+        yield 'https://'+url[len('http://'):]
+    if parsed.scheme=='https' and parsed.netloc=='src.koda.cnrs.fr' and parsed.path.startswith(prefix):
+        revision,sep,path=parsed.path[len(prefix):].partition('/')
+        if sep and len(revision)==40 and all(c in '0123456789abcdef' for c in revision):
+            yield 'https://src.koda.cnrs.fr/api/v4/projects/nabil.hathout.1%2Fglemm/repository/files/'+quote(path,safe='')+'/raw?ref='+revision
 
 
 def download(url,dest,expected_hash,expected_bytes):
     if dest.exists():
         if dest.stat().st_size==expected_bytes and hash_file(dest)==expected_hash:
-            return
+            return {'status':'verified_cache','requested_url':url,'used_url':None}
         raise ValueError('existing raw cache checksum mismatch: '+str(dest))
-    dest.parent.mkdir(parents=True,exist_ok=True)
-    fd,name=tempfile.mkstemp(prefix='.download-',dir=dest.parent)
-    try:
-        with os.fdopen(fd,'wb') as out,urlopen(url,timeout=90) as response:
-            shutil.copyfileobj(response,out,length=1024*1024)
-        tmp=Path(name)
-        if tmp.stat().st_size!=expected_bytes or hash_file(tmp)!=expected_hash:
-            raise ValueError('download checksum/size mismatch: '+url)
-        os.replace(tmp,dest)
-    finally:
-        Path(name).unlink(missing_ok=True)
+    dest.parent.mkdir(parents=True,exist_ok=True);errors=[]
+    for candidate in acquisition_urls(url):
+        fd,name=tempfile.mkstemp(prefix='.download-',dir=dest.parent)
+        try:
+            request=Request(candidate,headers={'User-Agent':'Interal-morphology-source-verification/1.0'})
+            with os.fdopen(fd,'wb') as out,urlopen(request,timeout=90) as response:
+                shutil.copyfileobj(response,out,length=1024*1024)
+            tmp=Path(name)
+            if tmp.stat().st_size!=expected_bytes or hash_file(tmp)!=expected_hash:
+                raise ValueError('download checksum/size mismatch: '+candidate)
+            os.replace(tmp,dest)
+            result={'status':'verified_download','requested_url':url,'used_url':candidate}
+            print(json.dumps(result,sort_keys=True),flush=True);return result
+        except (OSError,http.client.HTTPException) as exc:
+            errors.append(candidate+': '+str(exc))
+        finally:
+            Path(name).unlink(missing_ok=True)
+    raise OSError('pinned source unavailable: '+'; '.join(errors))
 
 
 def fetch(lock_path,raw_root):
