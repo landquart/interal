@@ -1,0 +1,23 @@
+test_actual_correction_survives_every_retrieval_channel (__main__.GraphTests.test_actual_correction_survives_every_retrieval_channel) ... ok
+test_canonical_unicode_subset_and_unknown_type (__main__.GraphTests.test_canonical_unicode_subset_and_unknown_type) ... ok
+test_competing_reviews_create_hold_not_latest_wins (__main__.GraphTests.test_competing_reviews_create_hold_not_latest_wins) ... ok
+test_finite_chain_keeps_intermediates_direction_sources (__main__.GraphTests.test_finite_chain_keeps_intermediates_direction_sources) ... ok
+test_fresh_build_replay_cached_checks_and_snapshot_query (__main__.GraphTests.test_fresh_build_replay_cached_checks_and_snapshot_query) ... ok
+test_homonymous_spelling_does_not_bridge (__main__.GraphTests.test_homonymous_spelling_does_not_bridge) ... ok
+test_indirect_acceptance_requires_complete_reviewed_direct_chain (__main__.GraphTests.test_indirect_acceptance_requires_complete_reviewed_direct_chain) ... ok
+test_inflection_is_a_form_not_a_lexical_bridge (__main__.GraphTests.test_inflection_is_a_form_not_a_lexical_bridge) ... ok
+test_input_lock_mismatch_and_missing_input (__main__.GraphTests.test_input_lock_mismatch_and_missing_input) ... ok
+test_manual_negative_dominates_permission_and_alternative_paths (__main__.GraphTests.test_manual_negative_dominates_permission_and_alternative_paths) ... ok
+test_modified_raw_or_normalized_fields_fail_closed (__main__.GraphTests.test_modified_raw_or_normalized_fields_fail_closed) ... ok
+test_negative_states_and_untrusted_manual_claim (__main__.GraphTests.test_negative_states_and_untrusted_manual_claim) ... ok
+test_pos_mismatch_is_not_a_reviewed_alignment (__main__.GraphTests.test_pos_mismatch_is_not_a_reviewed_alignment) ... ok
+test_real_records_have_exact_evidence_and_no_accepted_verdicts (__main__.GraphTests.test_real_records_have_exact_evidence_and_no_accepted_verdicts) ... ok
+test_review_requires_grant_exact_senses_and_correct_domain (__main__.GraphTests.test_review_requires_grant_exact_senses_and_correct_domain) ... ok
+test_revision_conflicts_preserve_both_payloads (__main__.GraphTests.test_revision_conflicts_preserve_both_payloads) ... ok
+test_typed_alternatives_and_formal_similarity (__main__.GraphTests.test_typed_alternatives_and_formal_similarity) ... ok
+test_unknown_direction_requires_explicit_hypothesis_query (__main__.GraphTests.test_unknown_direction_requires_explicit_hypothesis_query) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 2.354s
+
+OK

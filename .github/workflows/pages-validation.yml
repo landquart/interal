@@ -1,0 +1,38 @@
+name: Pages validation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: read
+
+jobs:
+  pages-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          show-progress: false
+      - name: Build using the official GitHub Pages Jekyll image
+        uses: actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697
+        with:
+          source: ./
+          destination: ./_site
+          verbose: false
+      - name: Verify public pages and runtime assets remain intact
+        run: >-
+          python3 .github/scripts/verify-pages-output.py
+          --destination _site --receipt "$RUNNER_TEMP/pages-receipt.json"
+      - name: Save build verification receipt
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: pages-validation-receipt
+          path: ${{ runner.temp }}/pages-receipt.json
+          if-no-files-found: warn

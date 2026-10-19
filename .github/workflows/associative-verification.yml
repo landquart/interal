@@ -3,6 +3,7 @@ name: Associative Verification
 on:
   pull_request:
     paths:
+      - '_config.yml'
       - 'associativvordes/**'
       - 'api/qwen-analyze.js'
       - 'api/qwen-candidates.js'

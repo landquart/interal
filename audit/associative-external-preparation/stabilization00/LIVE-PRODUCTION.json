@@ -1,0 +1,138 @@
+{
+  "verdict": "PASS",
+  "source_run_id": 35647932153,
+  "scenarios": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 1000,
+      "controls": 54,
+      "production_metadata_matches_checkout": true,
+      "net_alias_targets": [
+        "ety:94c776d13c76",
+        "surface:de:net",
+        "surface:it:net"
+      ],
+      "test_only_overflow_error": "Family alias fan-out 26 exceeds runtime limit 25",
+      "test_only_overflow_family_fetches": 0,
+      "latency": {
+        "samples": 54,
+        "p50_ms": 212.70000000001164,
+        "p95_ms": 736.7999999999884,
+        "p99_ms": 905.7999999999884,
+        "max_ms": 905.7999999999884
+      }
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "controls": 54,
+      "production_metadata_matches_checkout": true,
+      "net_alias_targets": [
+        "ety:94c776d13c76",
+        "surface:de:net",
+        "surface:it:net"
+      ],
+      "test_only_overflow_error": "Family alias fan-out 26 exceeds runtime limit 25",
+      "test_only_overflow_family_fetches": 0,
+      "latency": {
+        "samples": 54,
+        "p50_ms": 66.10000000000582,
+        "p95_ms": 311.30000000001746,
+        "p99_ms": 724.3999999999942,
+        "max_ms": 724.3999999999942
+      }
+    }
+  ],
+  "transport": {
+    "offline": {
+      "first": {
+        "name": "TypeError",
+        "message": "Failed to fetch"
+      },
+      "second": {
+        "name": "TypeError",
+        "message": "Failed to fetch"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    },
+    "timeout": {
+      "first": {
+        "name": "TimeoutError",
+        "message": "Timed out"
+      },
+      "second": {
+        "name": "TimeoutError",
+        "message": "Timed out"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    },
+    "corrupt": {
+      "first": {
+        "name": "SyntaxError",
+        "message": "Unexpected token"
+      },
+      "second": {
+        "name": "SyntaxError",
+        "message": "Unexpected token"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    },
+    "not_found": {
+      "first": {
+        "name": "Error",
+        "message": "Family index request failed: 404"
+      },
+      "second": {
+        "name": "Error",
+        "message": "Family index request failed: 404"
+      },
+      "calls": 2,
+      "cache_evicted": true
+    }
+  },
+  "expected_metadata_sha256": {
+    "manifest.json": "d259400f98939bfa518e688b3bf5c8218404aaffa3091c6ecb0fa96ed1bf9c5c",
+    "report.json": "2ed317f98483f64d114f16b5b4dd4611ec279cf075b80a7df6f191ce90bcfdd7",
+    "repository-provenance.json": "d12de988f95fb50ecc174a93b1275f5771940bbe3b45f6dd34a4b6e71e0d855a"
+  },
+  "expected_materialization_counts": {
+    "families": 2456543,
+    "aliases": 1934050,
+    "lemmas": 4924980,
+    "components": 9349982,
+    "memberships": 10078319,
+    "materialized_unique_lemmas": 4924281,
+    "multi_family_lemmas": 3332240,
+    "lemmas_without_materialized_family": 699,
+    "unique_lemmas_by_language": {
+      "en": 1130945,
+      "de": 1113447,
+      "fr": 558904,
+      "es": 941521,
+      "it": 610087,
+      "ru": 569377
+    },
+    "memberships_by_language": {
+      "en": 2619261,
+      "de": 2205038,
+      "fr": 1143061,
+      "es": 1796516,
+      "it": 1187709,
+      "ru": 1126734
+    },
+    "materialized_families": 2456543
+  },
+  "console_errors": [],
+  "page_errors": [],
+  "full_receipt_sha256": "5034c1f92f95f9b4004694155d04c43a5eed55da7cf790ad35dc3849cf6d7592",
+  "github_artifact": {
+    "id": 12229067104,
+    "digest": "sha256:c6f4e8c8b47d43c8c2540d7d4c0c0283dc3cb58c2e208586c16b18471e6b08a3",
+    "run_id": 39341432263
+  }
+}

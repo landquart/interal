@@ -1,0 +1,5 @@
+# Corpus originals and their provenance are offline research inputs, not Pages
+# documents. Keep them byte-for-byte in Git; do not parse bibliography as Liquid.
+exclude:
+  - data/morphology-evidence/sources
+  - node_modules
