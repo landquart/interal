@@ -14,6 +14,8 @@ const expectedMetadata = Object.fromEntries(await Promise.all(
     name, createHash('sha256').update(await readFile(new URL(`../../associativvordes/family-index-v5/${name}`, import.meta.url))).digest('hex')
   ])
 ));
+const expectedNetDecision = JSON.parse(await readFile(new URL('../../audit/associative-family-v5/nitidus-family-decisions.json', import.meta.url), 'utf8'));
+const expectedNetRouting = JSON.parse(await readFile(new URL('../../audit/associative-family-v5/net-alias-routing-decision.json', import.meta.url), 'utf8'));
 const browser = await chromium.launch({ headless: true });
 const report = {
   schema_version: 1,
@@ -58,7 +60,7 @@ async function runViewport(name, viewport) {
     ));
 
     const controls = [];
-    const aliases = ['manu', 'pede', 'ocul', 'alter', 'regul', 'liber', 'libert', 'inter'];
+    const aliases = ['manu', 'pede', 'ocul', 'alter', 'regul', 'liber', 'libert', 'inter', 'net'];
     const languages = ['en', 'de', 'fr', 'es', 'it', 'ru'];
     const durations = [];
     for (const alias of aliases) for (const language of languages) {
@@ -104,7 +106,16 @@ async function runViewport(name, viewport) {
     catch (error) { abortError = error.name || error.message; }
 
     let overflowError = null;
-    try { await new FamilyIndexLoader({ baseUrl }).candidateEntries('net', 'en'); }
+    let overflowFamilyFetches = 0;
+    // Explicitly test-only transport input, never a proposed lexeme or corpus.
+    // The real net alias was reviewed and now has three legitimate targets.
+    const overflowLoader = new FamilyIndexLoader({ baseUrl, fetchJson: async url => {
+      if (url.endsWith('/manifest.json')) return manifest;
+      if (url.includes('/aliases/')) return { overflowtest: Array.from({ length: 26 }, (_, i) => `family:test-only-${i}`) };
+      overflowFamilyFetches += 1;
+      throw new Error('Unexpected family/member request in test-only overflow control');
+    } });
+    try { await overflowLoader.candidateEntries('overflowtest', 'en'); }
     catch (error) { overflowError = error.message; }
 
     const raced = await Promise.all([
@@ -126,6 +137,9 @@ async function runViewport(name, viewport) {
       repeat_added_resources: afterRepeat - beforeRepeat,
       abort_error: abortError,
       overflow_error: overflowError,
+      overflow_family_fetches: overflowFamilyFetches,
+      overflow_control_test_only: true,
+      net_alias_targets: await loader.resolveAlias('net'),
       race_family_ids: raced.map(entries => [...new Set(entries.map(item => item.family_id))].sort()),
       resources
     };
@@ -158,7 +172,17 @@ async function runViewport(name, viewport) {
   assert.equal(result.provenance.storage, 'git_repository_static_files');
   assert.equal(result.repeat_added_resources, 0);
   assert.ok(String(result.abort_error).includes('Abort'));
-  assert.ok(String(result.overflow_error).includes('fan-out 28 exceeds runtime limit 25'));
+  assert.ok(String(result.overflow_error).includes('fan-out 26 exceeds runtime limit 25'));
+  assert.equal(result.overflow_family_fetches, 0, 'fan-out guard must fail before fetching family/member data');
+  assert.deepEqual([...result.net_alias_targets].sort(), [...expectedNetRouting.retained_targets].sort());
+  const net = result.controls.filter(item => item.alias === 'net');
+  assert.equal(net.length, 6);
+  for (const control of net) {
+    const expectedWords = [...expectedNetDecision.retained, ...expectedNetDecision.added]
+      .filter(item => item.language === control.language).map(item => item.word).sort();
+    assert.deepEqual([...control.all_words].sort(), expectedWords, `reviewed net members changed for ${control.language}`);
+    assert.ok(control.family_ids.every(id => id === expectedNetDecision.canonical_family_id), 'net leaked a competing lexical head');
+  }
   assert.deepEqual(result.race_family_ids, [['family:alter'], ['family:ocul']]);
   const libert = result.controls.filter(item => item.alias === 'libert');
   assert.equal(libert.length, 6);
