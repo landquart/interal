@@ -119,3 +119,22 @@ Acquisition remains checksum/size locked. GLeMM may use its official GitLab API
 for the same commit/file when the raw endpoint closes a connection. An installed
 curl can optionally negotiate HTTP/2 after Python transport failure; no TLS checks
 or hashes are bypassed. Failed or partial downloads never publish as valid files.
+
+## GLeMM offline cache
+
+After acquisition, preserve the twelve original GLeMM files with the exact lock,
+upstream attribution, README and license. The deterministic ZIP stays outside Git:
+
+```sh
+python associativvordes/importers/glemm_cache.py pack --raw-root RAW --archive /external/GLeMM-2.0-39502017.zip
+python associativvordes/importers/glemm_cache.py restore --raw-root NEW_RAW --archive /external/GLeMM-2.0-39502017.zip
+```
+
+Restore checks the archive against the **trusted checked-in lock**, not hashes
+provided by the archive itself. Unknown/duplicate entries, modified metadata,
+unsafe paths, wrong sizes and hashes abort before publishing `NEW_RAW/GLeMM`.
+Existing complete caches are verified; incomplete/corrupt targets are never
+overwritten. Use a new external raw directory to recover from an incomplete cache.
+No membership, independent-source count or linguistic verdict is implied.
+GLeMM's possible MorphyNet/Wiktionary dependency and upstream licensing obligations
+continue to apply. The cache is an unmodified backup, not a new independent dataset.
