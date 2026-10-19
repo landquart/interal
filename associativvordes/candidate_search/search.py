@@ -5,6 +5,7 @@ import math
 from pathlib import Path
 import sqlite3
 import sys
+import tempfile
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'evidence_graph'))
 from graph import Graph, canonical, sha, lookup, ref, file_hash
 
@@ -23,7 +24,7 @@ class Queue:
         CREATE TABLE IF NOT EXISTS questions(id TEXT PRIMARY KEY,body TEXT,fingerprint TEXT,state TEXT,changed INTEGER);
         CREATE TABLE IF NOT EXISTS history(candidate TEXT,sequence INTEGER,state TEXT,reason TEXT,actor TEXT,basis TEXT,PRIMARY KEY(candidate,sequence));
         CREATE TABLE IF NOT EXISTS scopes(scope TEXT,candidate TEXT,PRIMARY KEY(scope,candidate));
-        CREATE TABLE IF NOT EXISTS runs(scope TEXT PRIMARY KEY,fingerprint TEXT);
+        CREATE INDEX IF NOT EXISTS question_scope ON questions(json_extract(body,'$.family'),json_extract(body,'$.language'),state);
         ''')
     def upsert(self,body,scope):
         # A review question groups spelling alternatives, NOT lexeme identities.
@@ -33,7 +34,16 @@ class Queue:
         if old and old[0]==fp:changed=old[2]
         else:changed=int(bool(old))
         state=old[1] if old else 'open'
+        inherited=[]
+        if not old:
+            for sibling,payload,sibling_state,basis in self.db.execute("SELECT id,body,state,fingerprint FROM questions WHERE json_extract(body,'$.family')=? AND json_extract(body,'$.language')=? AND state IN ('rejected','split_required')",(body['family'],body['language'])):
+                other=json.loads(payload)
+                if other['family']==body['family'] and other['language']==body['language'] and lookup(other['lemma'])==lookup(body['lemma']):
+                    inherited.append((sibling,sibling_state,basis))
+            if inherited:state='rejected' if any(x[1]=='rejected' for x in inherited) else 'split_required' 
         self.db.execute('INSERT OR REPLACE INTO questions VALUES(?,?,?,?,?)',(cid,canonical(body),fp,state,changed))
+        for i,(sibling,sibling_state,basis) in enumerate(inherited,1):
+            self.db.execute('INSERT INTO history VALUES(?,?,?,?,?,?)',(cid,i,sibling_state,'Conservative prior spelling/POS scope: '+sibling,'inherited_queue_prohibition',basis))
         self.db.execute('INSERT OR IGNORE INTO scopes VALUES(?,?)',(scope,cid))
         return cid,not old or old[0]!=fp
     def decide(self,cid,state,reason,actor):
@@ -58,6 +68,8 @@ class Queue:
 def frequency_index(records):
     result={}
     for x in records:
+        
+        if sha(x['record_json'])!=x['record_sha256'] or not x['locators']:raise ValueError('frequency integrity')
         row=json.loads(x['record_json']); k=(x['language'],lookup(row['word']))
         result.setdefault(k,[]).append(x)
     return result
@@ -71,7 +83,14 @@ def collect(g,family,max_starts=12,max_depth=2):
     for lang,word,head in g.db.execute('SELECT language,word,head FROM known WHERE family=? ORDER BY language,word,head',(family,)):
         for lid, in g.db.execute('SELECT id FROM lexemes WHERE language=? AND search=? ORDER BY id',(lang,word)):
             stats['seed_matches']+=1;starts.setdefault(lid,[]).append({'head':head,'language':lang,'word':word})
-    ordered=sorted(starts,key=lambda x:(not bool(g.db.execute('SELECT 1 FROM arcs WHERE src=? LIMIT 1',(x,)).fetchone()),x))
+    eligible={r[0] for r in g.db.execute("SELECT DISTINCT a.src FROM arcs a JOIN relations r ON r.id=a.relation WHERE r.direction='directed' AND r.type IN ('derivation_direct','derivation_indirect','shared_base','compounding')")}
+    buckets={}
+    for lid in starts:buckets.setdefault(g.get(lid)['body']['language'],[]).append(lid)
+    for values in buckets.values():values.sort(key=lambda lid:(lid not in eligible,lid))
+    ordered=[]
+    for i in range(max(map(len,buckets.values()),default=0)):
+        for language in sorted(buckets):
+            if i<len(buckets[language]):ordered.append(buckets[language][i])
     stats['available_starts']=len(ordered);stats['selected_starts']=min(len(ordered),max_starts)
     groups={}
     for lid in ordered[:max_starts]:
@@ -89,12 +108,16 @@ def collect(g,family,max_starts=12,max_depth=2):
             item['bases'][lid]={'lexeme_ref':ref(g.get(lid)),'project_correspondences':starts[lid]}
     return groups,stats
 
-def build(g,queue,families,frequencies,weights=None,max_starts=12,max_depth=2):
+def _build(g,queue,families,frequencies,weights=None,max_starts=12,max_depth=2):
     if not 1<=len(families)<=7 or len(set(families))!=len(families):raise ValueError('explicit pilot scope: 1..7 distinct families')
     freq=frequency_index(frequencies);summary={};all_groups={}
     for family in families:
         groups,stats=collect(g,family,max_starts,max_depth);summary[family]=stats
         for k,x in groups.items():all_groups[(x['family'],*k)]=x
+    task_index={}
+    for payload, in g.db.execute("SELECT payload FROM entities WHERE kind='ReviewTask' ORDER BY id"):
+        task=json.loads(payload)
+        for target in task['body'].get('trigger_refs',[]):task_index.setdefault(target['id'],[]).append(ref(task))
     claims={}
     for fam,lang,word,pos in all_groups:claims.setdefault((lang,word,pos),set()).add(fam)
     for family in families:
@@ -102,34 +125,59 @@ def build(g,queue,families,frequencies,weights=None,max_starts=12,max_depth=2):
         # Scope-local reconcile; history/questions are never deleted.
         queue.db.execute('DELETE FROM scopes WHERE scope=?',(scope,))
         changed=0;count=0
-        for (fam,lang,word,pos),x in sorted(all_groups.items()):
+        for (fam,lang,word,pos),x in sorted(all_groups.items(),key=lambda item:canonical(list(item[0]))):
             if fam!=resolved:continue
             paths=[x['paths'][k] for k in sorted(x['paths'])];sources=set();lineages=[]
             for p in paths:
                 for step in p['steps']:
                     for s in step['sources']:
-                        sources.add(s['source_revision_ref']['id']);lineages.append(s['source_lineage'])
+                        sources.add(g.resolve(s['source_revision_ref'])['body']['source_id']);lineages.append(s['source_lineage'])
             # Correlation is conservative: GLeMM/MorphyNet never counted independently here.
             independent=min(2,len({('uder' if 'uder' in s.lower() else 'glemm_morphynet') for s in sources}))
             f=freq.get((lang,word),[]);ranks=[json.loads(v['record_json']).get('rank') for v in f];ranks=[v for v in ranks if isinstance(v,int) and v>0]
             freq_band=max(0,6-int(math.log10(min(ranks)))) if ranks else 0
             competing=sorted(claims[(lang,word,pos)]-{fam})
-            features={'frequency':freq_band,'uncertainty':2,'merge_risk':2+int(bool(competing)),'independent_evidence':independent,'model_impact':0,'calculation_impact':0}
+            task_refs={canonical(t) for p in paths for s in p['steps'] for t in task_index.get(s['relation_ref']['id'],[])}
+            conflict_refs=[json.loads(t) for t in sorted(task_refs)]
+            features={'frequency':freq_band,'uncertainty':2+int(bool(conflict_refs)),'merge_risk':2+int(bool(competing)),'independent_evidence':independent,'model_impact':0,'calculation_impact':0}
             body={'family':fam,'language':lang,'lemma':x['lemma'],'pos':pos,'lexeme_alternatives':list(x['lexemes'].values()),'proposed_bases':[x['bases'][k] for k in sorted(x['bases'])],
-              'discovery_paths':paths,'evidence_refs':sorted({canonical(e) for p in paths for s in p['steps'] for e in s['evidence_refs']}),
+              'discovery_paths':paths,'evidence_refs':[json.loads(e) for e in sorted({canonical(e) for p in paths for s in p['steps'] for e in s['evidence_refs']})],
               'sense_description':None,'sense_status':'unresolved','frequency_observations':f,'frequency_identity_status':'same_language_spelling_lookup_only',
               'match_kind':'exact_project_seed_then_morphological_path','allomorph_status':'no_new_allomorph_authorized',
               'uncertainty_reasons':['source_claim_not_reviewed','sense_identity_unresolved','project_pos_unavailable'],
-              'conflicts':competing,'source_lineages':sorted({canonical(v) for v in lineages}),
+              'conflicts':{'other_proposed_families':competing,'graph_review_tasks':conflict_refs},'source_lineages':sorted({canonical(v) for v in lineages}),
               'priority':priority(features,weights),'impact_status':'not_measured_no_calculation_simulation',
               'group_key':sha([fam,lang,pos,sorted({s['type'] for p in paths for s in p['steps']})]),'question_groups_spelling_not_identity':True}
             _,c=queue.upsert(body,scope);changed+=c;count+=1
         summary[family].update(candidates=count,changed=changed)
-    queue.db.commit();return summary
+    return summary
+
+def build(g,queue,families,frequencies,weights=None,max_starts=12,max_depth=2):
+    with queue.db:
+        return _build(g,queue,families,frequencies,weights,max_starts,max_depth)
+
+def match_real_lexeme(g,lexeme_id,family,language,base,lemma_id=None,proposed=False):
+    """Classify lookup hypothesis using finite approved allomorph scopes."""
+    import difflib
+    b=g.get(lexeme_id)['body']
+    if b['language']!=language:return {'kind':'no_match','establishes_membership':False}
+    guard=g.guard(family,language,b['lemma'],lemma_id)
+    if guard['status'] in {'blocked','hold'}:return {'kind':'blocked','guard':guard,'establishes_membership':False}
+    if lookup(b['lemma'])==lookup(base):kind='exact'
+    else:
+        kind='no_match'
+        for proof,body in g.db.execute("SELECT e.proof,e.body FROM context_links c JOIN existing e ON c.dst=e.id WHERE c.type='scoped_allomorph' AND c.src=?",(guard['family_id'],)):
+            rule=json.loads(body)
+            if rule.get('status')=='accepted' and rule.get('language')==language and lemma_id and g.db.execute('SELECT 1 FROM known WHERE family=? AND language=? AND word=? AND lemma=?',(guard['family_id'],language,lookup(b['lemma']),lemma_id)).fetchone() and lemma_id in rule.get('finite_scope_lemma_ids',[]) and lookup(base)==lookup(rule.get('realization','')):
+                return {'kind':'allowed_allomorph','rule_ref':json.loads(proof),'finite_lemma_id':lemma_id,'establishes_membership':False}
+        if kind=='no_match' and difflib.SequenceMatcher(None,lookup(base),lookup(b['lemma'])).ratio()>=0.65:
+            kind='proposed_new_allomorph' if proposed else 'formal_similarity'
+    return {'kind':kind,'hypothesis_only':kind in {'formal_similarity','proposed_new_allomorph'},'establishes_membership':False}
 
 def reverse(g,frequencies,limit=20):
     """Real corpus records -> native lexemes -> finite incoming morphological bases."""
     if not 1<=limit<=100:raise ValueError('bounded reverse limit')
+    frequency_index(frequencies)
     result=[]
     for observation in frequencies:
         row=json.loads(observation['record_json']);lang=observation['language']
@@ -144,13 +192,22 @@ def reverse(g,frequencies,limit=20):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
-    for name in ['snapshot','queue','frequencies','output']:p.add_argument('--'+name,required=True)
-    p.add_argument('--families',nargs='+',required=True);a=p.parse_args()
-    out=Path(a.output);out.mkdir(parents=True,exist_ok=True)
+    for name in ['snapshot','queue','frequencies','frequency-lock','output']:p.add_argument('--'+name,required=True)
+    p.add_argument('--families',nargs='+',required=True);p.add_argument('--weights');a=p.parse_args()
+    out=Path(a.output)
+    if out.resolve().is_relative_to(Path(__file__).resolve().parents[2]):raise ValueError('outputs must be outside repository')
+    out.mkdir(parents=True,exist_ok=True)
     if Path(a.queue).resolve().is_relative_to(Path(__file__).resolve().parents[2]):raise ValueError('queue must be outside repository')
-    g=Graph.open_snapshot(a.snapshot,out/'graph.sqlite');q=Queue(a.queue)
+    tmp=tempfile.TemporaryDirectory(prefix='candidate-index-');g=Graph.open_snapshot(a.snapshot,Path(tmp.name)/'graph.sqlite');q=Queue(a.queue)
     try:
-        f=json.loads(Path(a.frequencies).read_text());summary=build(g,q,a.families,f)
+        lock=json.loads(Path(a.frequency_lock).read_text())
+        if file_hash(a.frequencies)!=lock['frequencies_sha256']:raise ValueError('frequency selection checksum')
+        f=json.loads(Path(a.frequencies).read_text());summary=build(g,q,a.families,f,json.loads(Path(a.weights).read_text()) if a.weights else None)
         q.export(out/'queue.ndjson');(out/'summary.json').write_text(canonical(summary)+'\n')
         (out/'reverse.json').write_text(canonical(reverse(g,f))+'\n')
-    finally:q.close();g.close()
+        manifest={'schema':'candidate-review-run/1','graph_manifest_sha256':file_hash(Path(a.snapshot)/'GRAPH-MANIFEST.json'),
+          'frequencies_sha256':file_hash(a.frequencies),'frequency_lock_sha256':file_hash(a.frequency_lock),
+          'families':a.families,'weights':json.loads(Path(a.weights).read_text()) if a.weights else DEFAULT_WEIGHTS,
+          'code_sha256':file_hash(__file__),'outputs':{n:file_hash(out/n) for n in ['queue.ndjson','summary.json','reverse.json']},'establishes_membership':False}
+        (out/'RUN-MANIFEST.json').write_text(canonical(manifest)+'\n')
+    finally:q.close();g.close();tmp.cleanup()
