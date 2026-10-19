@@ -14,6 +14,15 @@ LABELS={'derivation_direct':'Подтверждаемая прямая дери�
  'shared_base':'Общая основа','compounding':'Словосложение','inflection':'Словоизменение',
  'orthographic_variant':'Орфографическое соответствие','surface_similarity':'Только формальное сходство',
  'insufficient_evidence':'Недостаточно доказательств','existing_decision_conflict':'Противоречие существующему решению'}
+REQUIRED={
+ 'SourceRevision':{'source_id','release_label','canonical_url','artifacts','native_key_policy','license_records','lineage_declarations','availability_status','registration_status','acquisition_receipt_ref'},
+ 'Lexeme':{'source_id','source_revision_ref','native_lexeme_key','native_key_policy','language','lemma','pos','identity_resolution','origin_evidence_refs'},
+ 'LexemeSense':{'lexeme_ref','source_revision_ref','native_sense_key','definition','definition_language','resolution','origin_evidence_refs'},
+ 'Relation':{'type_id','participants','direction','semantic_parameters','analysis_scope','proposition_only'},
+ 'Evidence':{'source_revision_ref','raw_locator','raw_record_sha256','evidence_kind','related_lexeme_refs','interpretations','source_lineage','extraction','initial_status','rationale'},
+ 'CorpusAlignment':{'source_lexeme_ref','sense_scope','corpus_ref','proposed_head_ref','component_slot','link_role','segmentation','evidence_refs','initial_status'},
+ 'Verdict':{'subject','scope','status','authority','rationale','reason_codes','basis_refs','dependency_lock','policy_ref','reviewed_at','revokes_verdict_refs'},
+ 'ReviewTask':{'subject','scope','question_type','trigger_refs','blockers','queue_state','priority_components','input_manifest_ref'}}
 
 def canonical(x):
     """JCS-compatible safe subset; native numeric observations stay raw JSON strings."""
@@ -36,6 +45,9 @@ def file_hash(path):
     with open(path,'rb') as f:
         for chunk in iter(lambda:f.read(1048576),b''):h.update(chunk)
     return h.hexdigest()
+def json_rows(path):
+    with open(path,encoding='utf-8') as f:
+        for line in f:yield json.loads(line)
 def envelope(kind,id,body,revision=1,supersedes=None):
     x={'entity':kind,'id':id,'body':body,'revision':revision,'supersedes':supersedes}
     return {'schema_version':SCHEMA,**x,'content_sha256':sha(x)}
@@ -73,9 +85,10 @@ class Graph:
     def put(self,r):
         if r!=envelope(r['entity'],r['id'],r['body'],r['revision'],r['supersedes']):raise IntegrityConflict('invalid envelope')
         kind=r['entity'];b=r['body'];payload=canonical(r)
-        if kind not in {'SourceRevision','Lexeme','LexemeSense','Relation','Evidence','Verdict','CorpusAlignment','ReviewTask'}:raise ValueError('unknown entity')
+        if kind not in REQUIRED or not REQUIRED[kind]<=b.keys():raise ValueError('unknown or incomplete entity')
         if kind in {'Evidence','CorpusAlignment'} and b.get('initial_status')!='needs_review':raise ValueError('import cannot accept')
         if kind=='Lexeme' and (not b['lemma'].strip() or not b['language'] or unicodedata.normalize('NFC',b['lemma'])!=b['lemma']):raise ValueError('invalid lexical identity')
+        if kind=='Lexeme' and b['pos'] is None and b['identity_resolution']!='unresolved':raise ValueError('unknown POS requires unresolved identity')
         if kind=='Evidence' and not b.get('interpretations'):raise ValueError('empty evidence interpretations')
         if kind=='Relation' and r['id']!=key('relation',[b['type_id'],b['participants'],b['direction'],b['semantic_parameters'],b['analysis_scope']]):raise IntegrityConflict('relation identity mismatch')
         old=self.db.execute('SELECT payload FROM entities WHERE id=? AND revision=?',(r['id'],r['revision'])).fetchone()
@@ -258,12 +271,12 @@ class Graph:
             if p.parent!=directory.resolve() or file_hash(p)!=h:raise IntegrityConflict('output checksum')
         g=cls(db_path)
         try:
-            for line in open(directory/'entities.ndjson',encoding='utf-8'):g.put(json.loads(line))
-            for line in open(directory/'existing.ndjson',encoding='utf-8'):
-                x=json.loads(line);r=x['ref']
+            for x in json_rows(directory/'entities.ndjson'):g.put(x)
+            for x in json_rows(directory/'existing.ndjson'):
+                r=x['ref']
                 if g.existing(r['entity'],r['id'],x['body'],r['snapshot_sha256'])!=r:raise IntegrityConflict('existing ref mismatch')
             for table,(_,cols) in TABLES.items():
-                for line in open(directory/(table+'.ndjson'),encoding='utf-8'):g.db.execute('INSERT INTO '+table+' VALUES('+','.join('?' for _ in cols)+')',json.loads(line))
+                for x in json_rows(directory/(table+'.ndjson')):g.db.execute('INSERT INTO '+table+' VALUES('+','.join('?' for _ in cols)+')',x)
             for payload, in g.db.execute("SELECT payload FROM entities WHERE kind='Relation'"):
                 r=json.loads(payload);b=r['body'];g.db.execute('INSERT INTO relations VALUES(?,?,?,?)',(r['id'],b['type_id'],b['direction']['state'],canonical(b)))
             g.commit();return g

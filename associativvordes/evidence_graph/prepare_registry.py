@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 import subprocess
 import urllib.request
-from graph import canonical,file_hash
+from graph import canonical,file_hash,json_rows
 
 COMMIT='9fff76431a86a06df6db69b64d7f2ca4c871f1b7'
 BASE='d6780ebc693837cc4560a40672eb7ee39e8fa6f7'
@@ -86,7 +86,7 @@ def prepare(repo,cache,output,records=None,acquire=False):
     snapshot={'schema_version':'v6-readonly-snapshot/1','commit':COMMIT,'files':locked,'catalog':c,'heads':heads,'edges':edges,'links':links,'memberships':members,'corrections':corrections,'realizations':realizations,'manual_decisions':manual,'family_controls':controls}
     snapshot['input_inventory']={k:len(snapshot[k]) for k in ['heads','edges','links','memberships','corrections']}
     if records:
-        words={(l['language'],l['lemma'].casefold()) for line in open(records,encoding='utf-8') for l in json.loads(line)['body']['normalized']['lexemes']}
+        words={(l['language'],l['lemma'].casefold()) for r in json_rows(records) for l in r['body']['normalized']['lexemes']}
         keep={l['head_id'] for l in links if (l['language'],l['word'].casefold()) in words}|{h['id'] for h in heads if h['identity_kind']!='legacy_exact_record'}
         for field in ['heads','edges','links','memberships']:snapshot[field]=[x for x in snapshot[field] if x['id' if field=='heads' else 'head_id'] in keep]
     out.mkdir(parents=True,exist_ok=True);(out/'seeds.json').write_text(canonical(seeds)+'\n',encoding='utf-8');(out/'v6.json').write_text(canonical(snapshot)+'\n',encoding='utf-8')
