@@ -41,6 +41,7 @@ def compile_gold(cases,judgments,roster,adjudications=()):
     for a in adjudications:
         if a['case_id'] in adjs:raise ValueError('duplicate adjudication')
         adjs[a['case_id']]=a
+    if set(adjs)-set(index):raise ValueError('unknown adjudication case')
     for j in judgments:
         if j.get('case_id') not in index:raise ValueError('unknown judgment case')
         validate_judgment(j,index[j['case_id']],roster)

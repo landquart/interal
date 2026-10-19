@@ -7,25 +7,32 @@ CONFIGS={'A':[],'B':['uder'],'C':['uder','morphynet'],'D':['uder','morphynet','g
 def ratio(a,b):return a/b if b else None
 
 def counts(rows):
-    d=Counter();known=[];boundary_compared=boundary_errors=merge_compared=merge_errors=0
+    d=Counter();known=[];independent=set();boundary_compared=boundary_errors=merge_compared=merge_errors=0
     for c,g,p in rows:
         d['cases']+=1
-        if g['state'] in {'disagreement','single_review'}:d['disputed_or_incomplete']+=1
+        if g['state']!='unannotated':d['human_judged']+=1
+        if p['requires_manual_review']:d['manual_review_requested']+=1
+        if g['state']=='disagreement':d['disputed']+=1
+        if g['state']=='single_review':d['incomplete_double_review']+=1
         if not g['label']:d['no_gold']+=1;continue
         if g['label']['decision']=='uncertain':d['gold_uncertain']+=1;continue
         d['labeled']+=1;truth=g['label']['decision']=='yes';guess=p['decision'];yes=guess=='yes'
         d['tp']+=truth and yes;d['fp']+=not truth and yes;d['fn']+=truth and not yes;d['tn']+=not truth and guess=='no';d['abstain']+=guess=='abstain'
         d['manual_review']+=p['requires_manual_review'];d['membership_errors']+=guess!='abstain' and (yes!=truth)
-        if truth and yes:known.append(c['id'])
+        if truth and yes:
+            known.append(c['id'])
+            if g['label'].get('independent_model_id'):independent.add(g['label']['independent_model_id'])
         if guess=='yes' and g['label'].get('boundaries') is not None and p.get('boundaries') is not None:
             boundary_compared+=1;boundary_errors+=p['boundaries']!=g['label']['boundaries']
-        if guess=='yes' and g['label'].get('correct_families') is not None:
-            merge_compared+=1;merge_errors+=bool(set(p.get('families',[c['family']]))-set(g['label']['correct_families']))
+        if guess=='yes' and g['label'].get('correct_families') is not None and p.get('merged_families') is not None:
+            merge_compared+=1;merge_errors+=len(set(p['merged_families']))>1 and bool(set(p['merged_families'])-set(g['label']['correct_families']))
     return {'counts':dict(d),'precision':ratio(d['tp'],d['tp']+d['fp']),'recall_labeled_scope':ratio(d['tp'],d['tp']+d['fn']),
       'membership_error_rate':ratio(d['membership_errors'],d['labeled']),'false_family_merges':merge_errors if merge_compared else None,'merge_evaluable':merge_compared,
       'boundary_errors':boundary_errors if boundary_compared else None,'boundary_evaluable':boundary_compared,
-      'disputed_fraction':ratio(d['disputed_or_incomplete']+d['gold_uncertain'],d['cases']),
-      'manual_review_fraction_labeled':ratio(d['manual_review'],d['labeled']),'unique_correct_case_ids':sorted(set(known))}
+      'disputed_fraction':ratio(d['disputed']+d['gold_uncertain'],d['human_judged']),
+      'incomplete_double_review_fraction':ratio(d['incomplete_double_review'],d['human_judged']),
+      'manual_review_requested_fraction':ratio(d['manual_review_requested'],d['cases']),
+      'manual_review_fraction_labeled':ratio(d['manual_review'],d['labeled']),'unique_correct_case_ids':sorted(set(known)),'unique_correct_independent_models':len(independent) if independent else None}
 
 def validate_predictions(cases,predictions):
     index=validate_cases(cases);by={}
@@ -58,7 +65,7 @@ def evaluate(cases,gold,run):
 
 def compare(evaluations):
     contributions={}
-    for a,b in [('A','B'),('B','C'),('C','D'),('D','E')]:
+    for a,b in [('A','B'),('U','C'),('B','C'),('C','D'),('D','E')]:
         if a not in evaluations or b not in evaluations or not evaluations[a].get('overall') or not evaluations[b].get('overall'):contributions[a+'→'+b]=None;continue
         x=evaluations[a]['overall'];y=evaluations[b]['overall'];xx=set(x['unique_correct_case_ids']);yy=set(y['unique_correct_case_ids'])
         contributions[a+'→'+b]={'additional_correct':sorted(yy-xx),'lost_correct':sorted(xx-yy),'delta_fp':y['counts'].get('fp',0)-x['counts'].get('fp',0),
