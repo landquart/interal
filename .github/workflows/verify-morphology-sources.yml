@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/verify-morphology-sources.yml'
       - 'associativvordes/importers/validate_sources.py'
+      - 'associativvordes/importers/fetch_sources.py'
 permissions:
   contents: read
 concurrency:

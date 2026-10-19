@@ -57,8 +57,8 @@ def download(url,dest,expected_hash,expected_bytes):
             fd,name=tempfile.mkstemp(prefix='.download-',dir=dest.parent);os.close(fd)
             try:
                 r=subprocess.run([curl,'--fail','--location','--silent','--show-error',
-                    '--connect-timeout','20','--max-time','180','--user-agent',
-                    'Interal-morphology-source-verification/1.0','--output',name,'--url',candidate],
+                    '--connect-timeout','20','--max-time','180',
+                    '--output',name,'--url',candidate],
                     capture_output=True,text=True,timeout=190)
                 if r.returncode:
                     errors.append(candidate+': curl: '+r.stderr.strip());continue
