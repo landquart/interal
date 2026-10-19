@@ -25,8 +25,10 @@ def capture(cases,recordings,operator):
         if search:
             matches=[r for r in search['candidates'] if lookup(r['word'])==lookup(c['target']['lemma'])]
         decision='yes' if matches else ('no' if search and search['complete'] and not search['truncated'] else 'abstain')
+        boundaries=None
+        if matches and all(m.get('boundary_offsets') is not None for m in matches) and all(m['boundary_offsets']==matches[0]['boundary_offsets'] for m in matches):boundaries=matches[0]['boundary_offsets']
         predictions.append({'case_id':c['id'],'case_content_sha256':c['content_sha256'],'decision':decision,'requires_manual_review':True,
-          'sense_identity_established':False,'captured_candidates':matches,'boundaries':None,'merged_families':[],
+          'sense_identity_established':False,'captured_candidates':matches,'boundaries':boundaries,'merged_families':search.get('merged_families') if search else None,
           'reason':'recorded_word_lookup_only_not_lexeme_identity' if matches else 'recorded_complete_absence' if decision=='no' else 'runtime_not_captured_or_incomplete'})
     return {'schema':'pilot-baseline-capture/1','capture_kind':'actual_runtime','algorithm_commit':BASELINE_COMMIT,'case_set_sha256':sha(cases),
       'runtime_code_hashes':BASELINE_HASHES,'capture_operator':operator,'methodology_modified':False,'artifact_receipts':proofs,

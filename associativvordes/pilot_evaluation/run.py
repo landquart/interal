@@ -1,12 +1,13 @@
 """Frozen source ablations over one identical case set; baseline is an explicit capture."""
 import argparse
+from gold import new_release_directory
 from collections import defaultdict
 import json
 from pathlib import Path
 import tempfile
 import time
 from gold import canonical,sha,file_hash,json_rows,compile_gold,validate_cases
-from evaluate import evaluate,compare,validate_predictions,CONFIGS
+from evaluate import evaluate,compare,validate_predictions,CONFIGS,agreement
 from graph import Graph,lookup,ref
 
 BASELINE_COMMIT='156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49'
@@ -57,7 +58,8 @@ def capture_baseline(path,cases):
     validate_predictions(cases,x['predictions']);return x,None
 
 def run(cases,graph,output,baseline=None,judgments=(),roster=None,adjudications=()):
-    validate_cases(cases);output=Path(output);output.mkdir(parents=True,exist_ok=True);gold=compile_gold(cases,judgments,roster or {},adjudications)
+    judgments=list(judgments);adjudications=list(adjudications)
+    validate_cases(cases);output=new_release_directory(output);gold=compile_gold(cases,judgments,roster or {},adjudications)
     captured,reason=capture_baseline(baseline,cases);runs={};evals={};manifest={'case_set_sha256':sha(cases),'graph_manifest_sha256':file_hash(Path(graph)/'GRAPH-MANIFEST.json'),
       'baseline_commit':BASELINE_COMMIT,'baseline_capture_sha256':file_hash(baseline) if baseline else None,'policy':POLICY,'policy_sha256':sha(POLICY),
       'code_sha256':{n:file_hash(Path(__file__).with_name(n)) for n in ['run.py','gold.py','evaluate.py']},'all_configs_same_case_set':True,'gold_sha256':gold['content_sha256']}
@@ -82,8 +84,8 @@ def run(cases,graph,output,baseline=None,judgments=(),roster=None,adjudications=
                 item['runtime_seconds']=time.perf_counter()-start;runs[name]=item;evals[name]=evaluate(cases,gold,item)
         finally:g.close()
     def write(name,x):(output/name).write_text(json.dumps(x,ensure_ascii=False,sort_keys=True,indent=2,allow_nan=False)+'\n')
-    write('GOLD.json',gold);write('RUNS.json',runs);write('EVALUATION.json',{'configurations':evals,**compare(evals)})
-    manifest['outputs']={n:file_hash(output/n) for n in ['GOLD.json','RUNS.json','EVALUATION.json']};write('EXPERIMENT-MANIFEST.json',manifest)
+    write('ANNOTATION-RECEIPT.json',{'judgments':judgments,'raters':roster or {},'adjudications':adjudications});write('GOLD.json',gold);write('RUNS.json',runs);write('EVALUATION.json',{'configurations':evals,'annotation_quality':agreement(gold),**compare(evals)})
+    manifest['outputs']={n:file_hash(output/n) for n in ['GOLD.json','RUNS.json','EVALUATION.json','ANNOTATION-RECEIPT.json']};write('EXPERIMENT-MANIFEST.json',manifest)
     return manifest
 
 if __name__=='__main__':

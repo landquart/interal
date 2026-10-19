@@ -1,5 +1,6 @@
 """Verified read-only 12-family registry projection. No labels inferred from status."""
 import argparse
+from gold import new_release_directory
 from collections import Counter
 import gzip
 import hashlib
@@ -21,7 +22,7 @@ DIFFICULTIES={'ocul':['allomorph','compound'],'ped':['homonym','substring_only']
 def read(path):return json.loads(gzip.decompress(path.read_bytes()) if path.suffix=='.gz' else path.read_bytes())
 
 def prepare(cache,prior_snapshot,output):
-    cache=Path(cache);output=Path(output);output.mkdir(parents=True,exist_ok=True);prior=read(Path(prior_snapshot));locked={}
+    cache=Path(cache);output=new_release_directory(output);prior=read(Path(prior_snapshot));locked={}
     for n,blob in FILES.items():
         name='associativvordes/family-index-v6/'+n;p=cache/name;data=p.read_bytes()
         if hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()!=blob:raise ValueError('pinned registry blob mismatch: '+name)

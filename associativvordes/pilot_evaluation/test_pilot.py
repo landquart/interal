@@ -4,11 +4,12 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from gold import sha,canonical,compile_gold,case_hash,assignments,validate_cases
+from gold import sha,canonical,compile_gold,case_hash,assignments,validate_cases,new_release_directory
 from sample import make_case
-from evaluate import evaluate,counts,compare
+from evaluate import evaluate,counts,compare,agreement
 from run import predictions_from_sources,capture_baseline,BASELINE_COMMIT,BASELINE_HASHES
 from impact import diagnose
+from capture import capture
 from graph import Graph,lookup
 from records import read_json
 from build_graph import load_registry,ingest
@@ -24,7 +25,7 @@ def make_cases():
     return cases
 
 def judgment(c,actor='a',decision='yes',relation='direct',**extra):
-    return {'case_id':c['id'],'case_content_sha256':c['content_sha256'],'annotator_id':actor,'mode':'human','decision':decision,'relation':relation,
+    return {'case_id':c['id'],'case_content_sha256':c['content_sha256'],'annotator_id':actor,'mode':'human','blind_to_test_predictions':True,'independent_review':True,'decision':decision,'relation':relation,
       'sense':'TEST-ONLY label; no actual linguistic claim','pos':'NOUN','boundaries':None,'correct_families':[c['family']] if decision=='yes' else [],
       'reason':'TEST-ONLY simulated judgment','reviewed_at':'2026-10-19T00:00:00Z','evidence':[{'kind':'independent_manual_document','locator':'test-only:fixture','finding':'TEST-ONLY'}],**extra}
 
@@ -85,6 +86,22 @@ class PilotTests(unittest.TestCase):
         self.assertEqual(g.resolve_family('regule'),['family:regul']);self.assertTrue(g.db.execute("SELECT 1 FROM lexemes WHERE language='fr' AND search='régulier'").fetchone())
         for c in s['corrections'][:5]:self.assertIn(g.guard(c['family_id'],c['language'],c['word'],c['lemma_id'])['status'],{'blocked','hold'})
         g.close()
+    def test_frozen_release_cannot_erase_existing_annotations(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'release';new_release_directory(path);(path/'judgments.ndjson').write_text('TEST-ONLY existing manual work')
+            with self.assertRaises(FileExistsError):new_release_directory(path)
+            self.assertEqual((path/'judgments.ndjson').read_text(),'TEST-ONLY existing manual work')
+    def test_agreement_and_unknown_disputes_without_judgments(self):
+        c=self.cases[0];gold=compile_gold(self.cases,[],{})
+        e=evaluate(self.cases,gold,run_for(self.cases,[prediction(c) for c in self.cases]));self.assertIsNone(e['overall']['disputed_fraction']);self.assertTrue(agreement(gold)['no_independent_double_labels'])
+        gold=compile_gold([c],[judgment(c,'a'),judgment(c,'b')],ROSTER);self.assertEqual(agreement(gold)['pairs'][0]['decision_agreement'],1)
+    def test_actual_capture_adapter_uses_complete_absence_not_missing_search(self):
+        c=self.cases[0];recording={'capture_kind':'actual_runtime','algorithm_commit':BASELINE_COMMIT,'runtime_code_hashes':BASELINE_HASHES,'methodology_modified':False,
+          'case_set_sha256':sha(self.cases),'artifact_sha256':'TEST-ONLY','recorded_at':'TEST-ONLY','searches':[{'family':c['family'],'language':c['language'],'complete':True,'truncated':False,'candidates':[]}]}
+        out=capture(self.cases,[recording],'TEST-ONLY operator');self.assertEqual(out['predictions'][0]['decision'],'no')
+        recording['searches'][0]['truncated']=True;self.assertEqual(capture(self.cases,[recording],'TEST-ONLY')['predictions'][0]['decision'],'abstain')
+        recording['runtime_code_hashes']={'fake':'TEST-ONLY'}
+        with self.assertRaises(ValueError):capture(self.cases,[recording],'TEST-ONLY')
     def captures(self):
         cs={l:{'represented':False,'status':'complete','models':[],'selected_top_five':[]} for l in ['en','de','fr','es','it','ru']}
         x={'capture_kind':'actual_runtime','algorithm_commit':BASELINE_COMMIT,'methodology_modified':False,'methodology_version':'TEST-ONLY','calculation_code_hashes':BASELINE_HASHES.copy(),'case_set_sha256':'TEST-ONLY','languages':cs,'internationality':None}

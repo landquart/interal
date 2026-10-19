@@ -1,5 +1,6 @@
 """Freeze real, unannotated membership questions before evaluating predictions."""
 import argparse
+from gold import new_release_directory
 from collections import Counter,defaultdict
 import json
 import tempfile
@@ -20,7 +21,7 @@ def make_case(family,language,lemma,lexeme_id,origin,record,head=None,pos=None,t
 
 def sample(snapshot,graph,output,per_cell=20):
     if not 14<=per_cell<=27:raise ValueError('pilot size 1008..1944 target slots')
-    output=Path(output);output.mkdir(parents=True,exist_ok=True);s=json.loads(Path(snapshot).read_text());work=tempfile.TemporaryDirectory(prefix="pilot-sampling-");g=Graph.open_snapshot(graph,Path(work.name)/"graph.sqlite");snapshot_hash=file_hash(snapshot);graph_hash=file_hash(Path(graph)/'GRAPH-MANIFEST.json')
+    output=new_release_directory(output);s=json.loads(Path(snapshot).read_text());work=tempfile.TemporaryDirectory(prefix="pilot-sampling-");g=Graph.open_snapshot(graph,Path(work.name)/"graph.sqlite");snapshot_hash=file_hash(snapshot);graph_hash=file_hash(Path(graph)/'GRAPH-MANIFEST.json')
     pool={};members={};bylookup=defaultdict(list)
     def add(c):
         if c['id'] in pool:
@@ -90,7 +91,7 @@ def sample(snapshot,graph,output,per_cell=20):
         for c in assignments(chosen):f.write(canonical(c)+'\n')
     (output/'raters.json').write_text('{}\n');(output/'judgments.ndjson').write_text('');(output/'adjudications.ndjson').write_text('')
     manifest={'schema':'pilot-sampling/1','seed':SEED,'target':12*6*per_cell,'actual':len(chosen),'case_set_sha256':sha(chosen),'cases_file_sha256':file_hash(output/'cases.ndjson'),
-      'registry_sha256':snapshot_hash,'graph_manifest_sha256':graph_hash,'code_sha256':file_hash(__file__),
+      'registry_sha256':snapshot_hash,'graph_manifest_sha256':graph_hash,'code_sha256':file_hash(__file__),'annotation_contract_sha256':file_hash(Path(__file__).with_name('gold.py')),
       'coverage':coverage,'origins':dict(Counter(c['origin'] for c in chosen)),'splits':dict(Counter(c['split'] for c in chosen)),
       'double_review_cases':sum(c['double_review'] for c in chosen),'external_pool_path_observations':dict(external_counts),'verified_human_labels':0,'automatic_labels_are_gold':False}
     (output/'SAMPLING-MANIFEST.json').write_text(canonical(manifest)+'\n')

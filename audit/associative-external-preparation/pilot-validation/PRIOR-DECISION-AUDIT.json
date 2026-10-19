@@ -1,0 +1,2821 @@
+{
+  "audit": [
+    {
+      "case_id": "pilot-case:03e421d3893074521cac4b58868f67bfa1f78a7111442549e2969ff2954ab63e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "07ec9c843013f6b11b7eab8a7fcaaf4752e4b69d616516cb3daa7be243e88ffe",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:043f63b8468afb80643f2248edc33167cd393155cb2ae17f25124ff32c2c5c2a",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "e654d85e198813676ed2b37064277139e22b7012ca951350ac9bba317c779230",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:04774d2716f4985343f72c59d7c00186f797cbd86eb1c96db91b3eacfe9c78fe",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "0c1b9cb62a925f9ab9f1df7a0aa89b6781ce76b173932f7d38ab0e5549f8b93b",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:048ab3d3b6d338ee79ebd8b2c53e1309fdd50b9dfbffdb383fd022c783bcb734",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "0fea89af236388230917f542913fe4f6f7c6383167b5f30e96d7fd538562c13e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:065816cca744a7cfe2eae96c732335bdce40de1e482fb5995bb2d91e810f6a90",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "34178394b7e8b618a39aa89642d4f93c19e11653ff6daa2b59f0ddfd4c22fd3c",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:079785374b68b4e57373cf78567b550458c5cea855112fbcc9cf45c834e39953",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "73a04337b0cf8e2309f4f8c03df7cad0ffef48c7b9cec3310456dfeb352748c0",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:088f79a484b1154c6aff416e4d4a6cda096bcc70f535e06fb4932ca1b384c5f2",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "eaa3d28b38e127d1c2a2a1a73e9f6732db284e2909a2eb68d9afd2509c47228b",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:092080bcb379232fea989e07aaedec67285f0df9e6ad3482e106ea709968b2a3",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "4725438ccc33a28a63b9aa365040d1976fcedcc8a998aea6754dc5df377ad65c",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:0ab2b9307829c7f618446f6226ecf5c12c1a5ff54ca07e8574293a133af39cbf",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "4d407c39331b798f5782f3799eeb1120eeedc7dbf854ddcbbc3e05bce47053a7",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:0e2c18e552838f053e01430110b2c36f2d0566b0c6cb0dd81299d52afc0b7802",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "d0ceb1bd7ccfa0e404b87dd7a7a3d2adbe63cf82404e3c294fdb3131b9daa2b2",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:0f6873d896f81ed420a2341dbcf708a7267ab822bb63550f60ff0b31c2dd45d0",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "b5069d72cc599b2598fc76bda4390590725ce103fda71a86307dce71c5dd0bc8",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:0ff94efd4e2169aae91cecc4dcf12e1b5e587efd76aaea9f3b5a90d7a62d8e36",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "c911aabc62200ec49350e96040207a0902c7edff8167e9ff07c7d1b2572ca6a6",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:11ccf415088289315b254001d386cb7dd132911179a3f8b17f5cf357e81c06ff",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "72ead17bb4e773259fd42bf332f28534ebb46251beb7868c5f8b0605ff6f98c0",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:158af6f688817c8ffd5f95f7b77b33ab8f76dc2c05e9265be288b79eb7375c53",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "a787f22e7e4119191f8a4adbff522dc99eb173c2b67b55a8259d856164b963e4",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:16aa534bb552f0b0a39826e3b73f70306ac7ae071deae17fc915c8fd7c0f65cc",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "a48ebe372dcff6d2aa19f198d160caefa7c041165a73b17dc639fc0c14c971c7",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:17d0132805054e00c1673bb6c0cfb352f6c7c44af81a53f27a7fd9fb1913b0dd",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "e64a1031d09d806f0b6f500ed0284ac37e410ee21f3953260fa9ae72332900d4",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:1bc6033a8802b7f52616f85f9690d9f73d4b9ded68fdbd39bf1610dbacd4143b",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "65ee74b3ab5082281f4dcceef2dc93383409632ce3be8448dc8084cf9184bcf8",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:1c8f093ac5f68d6c952fa4f76f96b281daac634c49d9b31c38eeb1d5b95841f7",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "47e9bcf53e1f16c1aed31a7bc1e1ac2d3d53fb0c187ff16afb47c6d3fdf70916",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:1cbfa1270d38cae5a3b0fabc911c175f34ba53a1b2eb6475b772b90b093e135d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "70f26171a4a141ffe53e509303ab89f567e5858cedd173a188266c7d49e4ad8f",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:1f2cbf4a8d3b9d49d2db7f49e6ab66fab1b8990be3bc11a89fc1a834aa06fba3",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "bac0be0174a2f3ba78ab6585afce118753a1b2ed0df07a9e115756a0371d1d78",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:1f621f158b547e62b5949bbec024f05e4af3a7aa04d7833f998376e479d08d97",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "4dd8e9da22e4496432d85d4871b01325509d094128569fa0bc14094651325f07",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:1f950bf5384e4fec2c81dd3f10d0edc300f9e2e217ca18951cf82737a56a4d5f",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "148dd7125ac622e81359584d1b638ac5c4619342e2324a333f1811de90ea64a5",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:2108ab1ac6ca4f419926e14fd7556806f095533f75f9b8e1bfed6db844c736b3",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "0db66b91b518eea89fa5bde945e24d353918815fef873a35172547a68f484f79",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:2318832e4ab59588d1a2d46816a4862572798b3f616fe6a702b7d73b6d1b4ba6",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "eeaae8888eafc8566fea1566f2e1902237000c9e1d66d8479c454ba87c5c49b9",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:23320c3a50d131a7232b2c148b79e91fc6975e4fefa67a529e0a344658740e11",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "84348bf87d88b34d8930abc3b6cc8207da53cf631d20a0bfea86b17f0706574b",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:2565cf8a04becf7d20fba2eb0f5d9390c26a4364332e42a6e43ffb104ac114c9",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "8765f244a562c8bda705a8ed84502a8667e9e7ee9a49ce21b37f3d8a5f1c6b5a",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:2660d1139ed7237ac2209533a5f83d2848f9fc60b170781294f09b7867cb9164",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "39f047128ba312fd44adcd61e4f0284ac40280f5862813414502c7172cf4ca6d",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:27f8d4479473abfc52cb2da262de52acc28e72454bc78bfc573877f4cb906faa",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "a4c1aec30d149475224c0f66b0fcfdba3cfd382f51e3342bbb85e8c311b09b37",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:2d81b5ef16d24b5135270cc81f8368d216dc0258f35226a3b8f8fa4575e17dbb",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "368bb97e29b8d8dec1ef05a4a34f4b1d140ea57f8411a7706d18fdc4bff06639",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:30f881aa0291b2b466786c4293d92844b9a61daa865141b6a69fbdd2f2fb459d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "678b69a364bf3979094ec2c40c0f8f50ef1b99fc92db8e8241f8cbec278cebc6",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:358b35866d2067d4eabc6a416ccb3a0f8e2bc36e610b1d82ec2087fef352f754",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "b4218a1f4cb55280664ddae882892f7de1c35476622ef9e320acdd705d109564",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:35de58a37d4f49649940ae590e0ea50e2a42dba4f6a0ed58cebb12f34534b4a3",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "92f7e76f1eb3bfb7b4bab3498701c78737d2de8a33d9001c46619cd51a9f48e2",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:36f4702b711b374c0855568703608fb3f298503c8451b7a1c3ad6d9d8593a82c",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "1aa693ea078beeea86c218a09050c5a12c6332832d12e3040e0e670baa27e682",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:46a1d59bd3d7024733bc700b1cc5779626c3d53b4b6a86a3ceff62775695ee90",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "afe899000b2ff7cfa299b75f6df49a6af3198c58ff2f51199aae43f6ff46d665",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:46acfd4cdb57f54d79cee2cc7db3ac3fc355d8db66b0ad7258057f04aa8d405a",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "11c7c0dc358ade1f73f4aa64d301e922755628047ba8a3b46861abfa2bba5459",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:479059a80ef8f7ccdc7d985777f0ac7f1183254e4450a8b07e8a4d5d2eb8882f",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "b79952384334221c2d1d1d4b95b1ed4ef9eb779d85d368bbaa086d927e4a3b61",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:48cd12a35613f9487218584b3b26c5d2f69944c8b81e2be820ee01a83dc7edc9",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "5b8cd886046bbb37de8f71eb2b3b29b46ae391d3c52c8b4eb5e70bd0cae25c3e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:49bd8b82662253e0b869968d850375a7f71a35c63cd6ab6b48eab0028aecfb74",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "16e184de6b82ca3c82a8932793e47a1a23ddca5d92a1eb10cdfc180a19e50199",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:4a41c770f43d11a847899f76eed1e35aaa82d72cfb9cf43dfc9352d40bd7d4a7",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "ec775338b217ec929fb9954beef5dfa9eafdec474382accf324c2de61cde4947",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:4b44012566f70c16ac908e27cafc11b4f0ffc66e54f8fa1a66c6c8eae46d55d8",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "d39a594c89d135bc919c7ef561d1ebeeced5066e05a3d90c89108c02e9c663fc",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:4bac5796e26e34cdf6e23857d4d80d86a9dbb737e9f264fb49eece20bf49ef44",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "01747233261868c38af3661dfabd7ca511d4a6404f4d04a6e75a9c357bcc70a9",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:4d8f57068c3ee26231ba1e47cb546b4cccb4bb7613c6cc7d2d1fbc23c4362224",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "4d3b97ceb9a6ce482e22213cfbd3d77562e746a60dbfd530d92aa7d23c04b4be",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:4eae69a1544b280a443673362e15a4fd27a6dff14c5e388a393a11b01d9618a4",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "13a7b58757fce4bd898c7896e88f5c8db4b81f44e7c2b5f470a7a1e660e59308",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:4fb0cc7b10b5cb2a8e849f334e069c7e03ef293e7754da7c6a4d9560e51cf17b",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "d22b8752fd37464a27ea3466a4f6063a3cc1ccca223c82057bab0476d365d9ea",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:50737446f7596ea5466013efd120e0e22411937c7647689e835988e8fc597adf",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "a45c70de0f3e461d0287044dc8945cab84c6d8adb4c392783c3e4d1807a9af78",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:50cedd80748a90ee6226180cb9842cdc8b025fb1547c84601a06b11522a8a36a",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "30c46f9fd2f6a2940f50148a83fa6cd0c6122ee73e30e399faca194ca4277afe",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:516ca9b642ab24bdd184753ffcc0380d2fbceaf87687b7b781b3a61d8819a46d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "0d8d0e6c7801dcee012e9650512fc1c6fd3338beebdf82577d78f1361b953bb6",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:524d4b39b2d060c8137f0e3bca7fc031ae84613f0046f281e6458692e3c5e9ec",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "5a7835a484ae86b867e1173ae830832b4c2baf0de55a40c519609b5c5b08984c",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:540d6f350d738e90fedadf28635a864e420aea52748c3573e6b89b1e71413517",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "da1f21f409310772e237736f226c8ca3e15891ae5b4f7afe18db98dfd9a5484c",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:61c9540a755ba9870e7be88bd9ed488fc4d2d27b082aa1b0113efb379fa78cd9",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "bed95dc9110989eebd067e07515fab3d6c885c26e9ee24ccb153781d1fc6fad1",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:6227449df326039f09b4c35b36b899e65e761c72785eef88ef9d3f8c1d57ae49",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "7116539f500cf1618174c04e8af9be80b9e775801080c090114fb2c5abcb591e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:63362f6a37c7451609f6cc47e9aafe14f83c80c9d5cc18ee5409bdbafee73a51",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "edd142f4abf10386e17dcd6ba65b403523c83b5ba81417676793f5522794a64b",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:642329353dcbdc85c3c4afe390649155e1420bec4d107419175e35835f69fd90",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "62eea6a1941c1f75a8934047f0db2c7397bedb9803b330ba2955271605870664",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:6517e696f4ca8065d45132161969f82d02c694b1cbfa516f9c18859be3f77c98",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "578b9a20cf8b222e613b3de564788fcf8625ae87d40afef9e461974b905824ad",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:661d5d0553fc6b8a193ce83c6adb3d8780f0322fad5ae2eaf87dc1b2dc38fb98",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "09d64e50c267f0e1910f73a86662fec57276f201e6c64ad2a3ab5e6eccbe4ddd",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:69b4c8f4dc64779cf42d458b0c2a6d771a50644cefb574fd330d0952596daa8e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "6f35332e3a052827884fbf8bda5e957e2dc7021cef8628a541413c88580c891f",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:6df14abb1708faba269182840cd7166e5af5b2c89e0eeac93420ded3b9446a7b",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "2d6d9eb397d26ea398ec5a92bd317b36737906176645540525ab98187b79882e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:719211a102d703e7a093bd0795412f1231ca2d93531caed91f279a8205714ec7",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "7c1b7ac2374504ccdcbb3f3f24f078f296e09e75f428bb4146d17726aadfcc27",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:72073312a4a1f328cf9d33a8f53ce78c26117dc6a11014a5d6c0f15144eb1e63",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "b7fcf8f7a9e566886ba66f274105857e4a842d8c1bfe064969e895213a5488c6",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:72daaecf805db3f780f91063c8398ce54b3b711b89b1575b3f661ea550e8097a",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "d4c9c71e715e70febfc9916c2f99080a4c62f86101f9901c669a28d3c447862e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:744061eb536875d7fa9a2fe8906dc4dd9643004fd0f3710cef0d8da4c13b0120",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "829b827045f71eb58181aab46c3b09f3308b508349cea33f0257a638b78f4c28",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:74677047f78d3237b1015021a33b1fe73fda5d25ecaa53223d75a3b752da4db8",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "98e93f338bea50294259356b6d83655065d5dcfbae4b568a9b21fa9a28a2a2ae",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:763bd93e2f6b62ff3b357cd0e971091d0f9c80511907b8c8c3c6a2d6e3e4f744",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "b1a1cbc8be01c6fe5f9b8627603298b4674d13f38aa3e129f8653d74768006cc",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:7912fcac8ad3c76ae164e74825dfe00e3fd54bd9de2e1bfdf014d603542b1c21",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "34b440efbec59b6b5026c0da26b8e6c50a105b42c24a750f05cef8b01386479e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:793f42ca9d7c2667a5c67111dbe27d9ed7da23bbb7caa81fd7b9c3819bdbc5cd",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "74e37da5a5538c291ee723e13a61157b9e8b31350fe0a6d9e9dd1db7c21d8320",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:79dce095a8ccd2bb0c9420fca833c9a6cdf83c1777ec498c92751b624c7df83b",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "75ad1d44d44e9094526a94a58c9beb1605c7d159a709ea3f57a4a2ffa3f65f54",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:7a67dc34784d346edd04cf312af2f27045b943dbcd97deb17eb21884a60a0171",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "c5589b8aa5b90a2b3c50c416e08e52e73670b6a981cbc9429f9a8003844ed59f",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:7ab67f3b5a1572c2fc4a98a160e4536128a518e4fc515335563a8247cd129911",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "f1d8262fda8ed8bc197431058f102392a5f8987dd8134429846cfbcc76c43cf3",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:7eecd65be9296c6a92464471b8454c3ed0ec06e4e10700745b2055e5c4578fea",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "a3f418070863b0ab6b046f48cbd99dacaa7ceffc208791d138bf070bbaaa999d",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:8197a5d669aed675970a7857b087196ac7a65cb3d41547292cf05cec5e52e12e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "5e5ffae76a4ee8f93bbc9e06421da13023457eff979b1b974be46e895a70efd3",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:849e9b5a24d7e181d960172be3b625dee3051adbb807ddb0a9e59cf07b517462",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "3b05a9f0f5e92ab312c71dc17f2add287898d439753026d0c7a998bd41a57806",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:856dab5a286eec9119559882269887c69107455af2f937757d581774cf12932d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "ef45d4b80a96fc0d2a531364b2a45427420ed61e110ee309f2937082127748f8",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:85e825419d11a7f36afd0718911ba914dea317235f4d2d6a919c60a528e6788a",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "abad898dadabbfe79746ff7013d1ee131f3a704c0d133cf9978f334e185f12bb",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:86378d6e28336db41a6f4bd26d9d2ad24608e926c829e3dde25a5f714cfb4213",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "29f8c0cbb53dfbbbd5ca1fbb47c2c017d606d4568f33c618b42889f85d6cccf7",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:88039f736bdb49b8eb5dcf2808783aacc8062ef0bee4223e9d0a078f72e74299",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "87bfa8fd9053dfca9bf7ce4be852ab27488a70fef5e048645c5e5723dd56c323",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:89877ec6121250dfbe7efb3f0ff61a96209d3beb786c6a481148c6b3977e8490",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "32878c28fe39b7197b299acdc6eac82e93ee398e4f7d37713f8147ff6292a471",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:8bd4c946ab95a43c1dea0997e05c211f58b413868c8de26255b5bd300def863e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "a85c11978b93d8594ba9df96321632d0ec039368b8b14cdd7aedcb9baf846fc8",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:8db94839153b3293f89671d7ad115b87089a275a7625c79168656b7dd2eccb5a",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "8cf84ca5621d504b88ccd7211a95b1de54c471cecf278d88588ed86cb3ecf6a1",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:8dd64cb11c000a9d8dc435075e1568315962b388af80de53942232e6ccb9ecbb",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "8283e1c4dff9ff0117a20f334212fb09a989c3230fa9daab4426f7010114b272",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:8e2732e0b001d172c7b1c31c0d02e5fe4de558c03c23eabe544d2aed9875d2da",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "fde4cc35253084c0866b7325267d6f7cd6b4bb372af2828591b054cc4ba1508f",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:8f9985166097b515ce262cd2bbb269cbc3cc07e9968ef37d17eb1eaa6b9ff76f",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "379fcf1ede9ed9202f4ed5c1e9d32d55fd828a4828c9e71da3b911d48b995a97",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:920cde296e3d945b707c77604bdda13968c4e78314ed1f41ed39649a212b60b5",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "41d1806df5f0bbaf40640f11605917c178510eb5b1b5c61ce316f833bd382551",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9272ff51a11de260687afb9eee89e4ffa12e7a110deade54d594959c01c6df14",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "cb6e1fa9f19a210455005192f83d4cd6fcf98719fe9aeed3640e49857d3942c2",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:97a2e9acf09538a430f0706a48a8cd03a82f310892109ca92297fada82c45e9d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "50879ba99704496e140bf24050b914f495dd1d856a2819237c18f993523f6be1",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:97a4f3731ec8bc4271cc0e638a1706e651a675b8c043bc9ddf50bd980e61b202",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "3afe80cc819d9dc059ea491a5f18e312e648c96a03f0d8b820a66510088d7aad",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9b7d00e0a7f5af6fdce00b41dc18be27bb6f0607e2c0a6b53f636ce6f8ce9643",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "ae872888c6691852ea905e905529f7d0965b19000d017345b41862ed97d5194d",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9c741209359a4e17b8585c6a8ab32aa48d2517bc5822e3017bb62423db3c58bb",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "74ff3846b3c8a92fcfca5ea9ff8f5f245bec82027967e7100283abe7b03f4077",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9c7550d03406d878a0d52cea15895150a74ffe7c8e62557f4e699708d8b1808c",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "912cdc490254ad5dc6a5d38a55bdca974f89413fa76c22ecb8df46c1b03c6f9e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9d083b4f6ea1b2a633657df13aa4401c479b95e575146dd4c75db2a4f7a5208d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "3a29a258ebff3e75297a0596d97720a09e562eaad93c31b79cb6bd4a0f137453",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9d6478b3b775af9a4eaa5d575719c2825e7342add7f61ca453e0df98a7684d43",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "ef67c7c8adadb15cb8dfd29354d9537c82c9dc25879faa2ef210d0df9b7f4961",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9ecb66d956bf0ab9c8330db93e81bc6e7e04af7d278ecf57f535d448f10d413f",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "21309a76e0aac6a263f57af1349fdc38060f414d86d3976cad68be0e70114ce5",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:9f1c02948e45e374c06f0e256ec985fe4923c7cb94407e97c14b2b0cfa72344f",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "fc792ef43d99f9e670fb2a2288f187c14552e39430e8eb7ff060cc7f3f5446b3",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:a1bee9e836d8ffaaa518d42ba57de8864ea322fc7b734a185e7dc97b96dcfcab",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "06e1fdaf74fdaac8b874c16a18b06b43e5726d923f18f9d76019ce44d9aea87b",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:a2331413889955664169c109b785adecd8c6b36dac3b6460d0681bd0f2cc9dfa",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "c9c295da44fd35f71fd383d1594bb775714b03e5e66b3e321100a4852f2e56f0",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:a2862c8098e97ab51ddf4626a8e981ff9553a112568d25a2cdf2362d424f444f",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "6699a1319dbbec369418ed6c882206aa6d40e5d492387aa823812cf754d306cf",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:a56722adb4a261909927f26dce5384e9a88362a3a38a26d2040f8a39c74e2ab6",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "892a363a6d3c5b8397f549b2489a731f96b4fc44af391e7b99e8b964214d86fc",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:a6dc3b707a5e44ac24d70d1b4e1445cb009c6d53d6c454dd744d1f6313e02845",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "ebab0f628877e7398fe73e737c4bc5d5fcb78467f60bea6a1ce1293c397b7a76",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:a888409cbfbd7e7c2ff6b4b562a82d321cbab48e130678d08bc440e524197b7e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "c828b120500dda24fdd44eea61416dda1cec170234a3c8e63d83742e0af74ca3",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:a967ba64105bddc2dfeafa67c95b283ebb7ecfc16e88ad215b58bd72b120b862",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "1e609e555ea83fece09395fec7751a84bf6da9dedab5f782f16ba5bb28292dea",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:aa43f03d3cfd4154880c1ce279178e9fbcbb9cc23d57605a085fa6ab81f09832",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "5602de37fdc28dc1e02b47d016396c23937ac70f26ac8830ef6dab34d41c06ba",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:ac623c184a361425d7a1b60cefa1e166a1dc8d07f65698bd0580994f9fcabaa5",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "ff7d0f8b9d563ab2f5db28ffa003c7fad0668bda121a67c1d97d55bbcdc6eb01",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:ae2c39f2b5242d84e1824bfb1b55e4bb7955f0dbea2ea09ed5e717c7c1a3bc66",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "beebf21cd02c76742940a049d92ba13951bbeaa61cd315582d5852bb514486aa",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:aedf93b38c4aa1941e711e847ff0debafb28eebb4a8f6d3a61a6d6dc0679ef00",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "41a28e9a18ba203ddec70bccc36af6da39ad86b8f2875c0c0162d5b0cc38a076",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:aef4bfc52b4e8d44520639ba66695dc097f0bb44dfb2778902abf9b33670bb64",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "15889b84fd39e75513d1da768f9f0b796581fdaf99bc1a42633bd2dbb6fdaab0",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:b50b1890834f71edaf7d6b7c5c801b2da45c574e6a995769a051865af8e9bee1",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "d353bedea534ce4a5f8359809fb8db8e4fc9e00fde16491b0fb641753b60ae81",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:b50fe840a9fb3130f0f1b636c324f065416b40915cfeca4e1ddf5645f59cd61e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "148facb836c086b0162548ff03a395549d11a94f62627ee0428bc5255aacc82d",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:b56b42eef5ef890e0b95178d8be302504ddcedcf682dc16e844f9d7bd2585c15",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "c9518d637b6647c10c50d5306054752e629193478446b1bc4d1729c940d9bde4",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:b698f230d3280fc4f581aedccf50c962d3daf5989df16140598f3ed03d5acae9",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "32888e1b02bd5569ad13c42957284c45ffc60d8ad1cedbb2ddbfc8dc9e64bec0",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:b8833d1e4e6cf8b57a681af1765d98414555575a1163b1dccf6ca862d04189ee",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "0b7082def563d0762348fe7bb08f0ae98b8a93afdc05052aad7296ac1cc9c30c",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:ba53a64755bef03bc5157818e80ed7fa4d3a3977ff61f902a3c54bcdacc0f122",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "164e280a9f7104140f5b7458cde8edfb8277d1056cecc0eac1e14b8051693edd",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:bdd9010f41cc138b85fbb847ff54078da12bbc5086390f9de33e4af8692b40a9",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "3a42984d15bf1c388344efab6881fb5f78dbeb6a5905652091771dcb9bb5d31d",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:be6889e84ca5c9daaab2b7724861539c0ad1b3c2605898fffeea44bbcfb3ced9",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "006d95a8becc7d7e0a2996d0909de842aab255068530b644dcc37b1c2ea41b0c",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:c31435c4383ef0586b5be4c3ed8fc689654308369e87832ebf0405f87264f0d5",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "7da3957c96f9ea26b8d42eb9664c125edbc568b4933873760af2ce77f7689fb8",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:c6199368f293eea9a2f595fa0802f68259f2b387ff5a99ea6ed1eb04721eeb0e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "5f90537e0a548ba2d25aa257519498446101485e2a5074134d4ec61fd782cce7",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:c6319c864feda751de99e53a3a8f1f7e3aedf64db4dcc1ab2c4154a6a65c3805",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "56bf08233bc05c489688b9c172866db3d9c31dd6c70d5d09849cb4d0ae041095",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:c80475b5b041e2b8ea8a45d7aeb838d288ba550c4d6bd7fb1c18f7a0c7387442",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "9a6411a0843c89571e567e0a5f1fd13e2923eee17a3035b09fc7599db4923753",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:c8238fe65715e0e207b3bcb99e7ac64b98782ebdb578ffa50c0fbf1ffb4c6f59",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "c46856c50eb96d5bbcb6f78db4661cb2faf78ae9305586335e6c1176921bf9df",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:c92099a0f635b90c7a4c47edb6f9df3e81ac022bdcc8e944330a4b73d973de29",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "d605e52884f84185dc4e5acc443121b3bf1bcdce9251590779373ee6dc7dcc94",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:caa9ff381898b4e85b8f8f82427e251b0a4754ae3d317ee87a9992fdef0419cc",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "fef007e5bfdf4f23fb2785f9da6b1b0fb7d98d9cf1f7224f68de04fe1d70b280",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:cd14306610055cc46ffd42101bcd7167250f2dc7755de23262a45c5fc88c073a",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "feafda5e35db046d9e4c2671a96753c134a63229ca90845244e0b77df1e74061",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:ce907f3d345f797f556cc0f7d3a580c54830c50c66f6428c9e5dc7165349b449",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "ffd00ee6ee649b52295f4b5162c41e5290599ef23b31424f711ab7db39662c74",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:ceffa3d228b52bdfee0e8bade1edd87db8c441a48c9bac97c8cdeb42805dd398",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "bffccf3031a28123f3849a2d0debd67ba27d611f14dcfb2c48b85e41c3f2c297",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:d0d60c5083187664a206be9204cb48b14477a528ba65ab6a36e32861df9dec9e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "e648b8a934b5bcd6a0365ec3aac949bb4ca11c5fa52324278a90387bd05c5d62",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:d317995dcedddc6291bd4ba746f093c6a961eceece8795affbf32ab31b554c1f",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "9530bec812fd1557b7bfcd0de59a86d38e4b8b6de875183770acbd7942ea9f65",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:d927666e255f96502ab884cac79be56feeba671097d79937e54c66acf307eb24",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "235a7d649dcbea04e4e717fffc46784431fc3bb62a79a3c0a6870ac0f1a8707e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:d95152eae748191e8994dc3a8be9feff3c4da04738ebfa2c09bdefaae003ef90",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "a86c9a9a38a629ad3f97a13b10f0ef49c9dba3a67a2d7b79199b26ca1058186e",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:d99d9fa1014c05402b647610b2696087f7e5e2acd925c153ae47ceccd3ebfa05",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "0af6a9c07d7b5a046918e670c74e8c77d5f00c717943690d201cf7fb27b864d1",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:db82d8fd772419e4274456e5a7bdce3aa4e4d438cc889ab87c7641cc2f5af365",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "e220bb13f14765cce9d9ed300022c231153b1cf294336b39ed36162e7e37a8df",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:dc11a7a6978eda950aa2497267a3e5b780be0afaf44fb45e0d0b40ab34744033",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "f6340a385169ee8acffe27dfa0c106f6daa6ac361447d3f0263acffd43c5504b",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:dcb770ba7abcdd3102d062deaaf88d675e38ffd82e70f6675b1f6fe925332628",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "2ae4f5a62790f8cc72597d7942714585edab37c5f04777fb6f5e83ab34115026",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:dd0adbc8d9f4535333bd4ba4228158a881030c685b93656dcbb1f2f85da74b12",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "681a96f3259abbbd91c4b304d244386d84cc246f3d01abd7096f8b9eec7344c6",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:e29d94f78caa0659573a5e6577e7b024c05c540a8a1cec7a5a1b3b06ca2d122b",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "7a1249dc04f7e091c50f32eb63f656505f9d107ae324182f64a2e1b15b314a91",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:e34e3f6a2bb8dd8b867f26a979f117374af15f641c892e6d54d500ca545ee5b4",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "150335108c82082b24c8bb7129734f24134e07c400398bdee3b3276353199f07",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:e4f1259808df172ed8af555919aeb564291252513ca1c5da55073b91d5a05c4e",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:oper",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "f4b34792ad91d89a617cc79d66fa593537cf3b7668aa21371e4a01c4d35044b8",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:eb697b5039578e7fcecb34e16aa0796212f5acd29dbe972f1f8bb08f14252734",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "8bca572236b28c0546bc2420515fdddae228ee0aed7fbe7c3ff321f8a2cca4e6",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:eed95ca57cfb3ae6f655d066f7a575fce573ee28f25ffebdfccb7033e5b1d326",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "en",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "e3e41e690a25ee27bc10f71e7fbbdc5d932b8ecaf96412bb180455cbb88325c8",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:eeecf92dceec21ff6220562b15a50e1c201653396134da01bb491f9037d5336c",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "74aa81cec01c073b2b757d08173e2a6b9df493184eeffd2ea96005487b29df51",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:f29d89c74e136aa41ade9c060ff164414f46d1999ccb6ce55a31fc3735ccf5aa",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "a8122caecde9520586a2fc52cd33e6eba70a2c292d92138d9b5aee03443a1d4a",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:f56ae805c7b1906d95f92d05459dcf7d71b735ecd88fb0e0bcee1d2cfc02d1c2",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "it",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "f1e26ee568dc4f641095ee0304fb0913f6caf1d403ad8dc5912dc1622e0fb249",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:f610efe7950de86d3d5dd66ce22437d4272dd71248469e9d04947942165723a8",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "b67d3509e49b8141c873035849f45a03b3c0106cbeb7a7a36fe05716c5356c07",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:f97dabf356b775e4f7d4c1c497ecac2756b0034afa118a7a1b2f83e3add59867",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "8d6412ca1bb230c5eab1faaa3818acbf58968c48432d05832aad8e3dd56de4ba",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:fae1235e6c1bb5f2128f886cb6ee5feee3fd3d3f527ed36378775b9a32f3307d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "ru",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "be664dcf8f110d9592103d26942372fd45b892a54d21fec68d40a0bb1dd92aa3",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:fb0291cca612ddb47fcc6dcb89a539eb71d8fd97cbf351aa30775f86d3247e1d",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "f997f3637936eed99063708acd3b6a1fdfc4581b3fba2fbc2e8c4b2bd940201a",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:fbe2504af922b77bfd13729245fbc88e2a4d8dbd8f52d7a019e7b43c154483c9",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "05874e92ed9dcc62236fd96a39f4168abcbd950e6ea523c0648692caa8504236",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:fea24b767c7b51e6984ee9dc978c7877332c001047e3edf6cf99ce17cf477dd1",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:creat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "78c0a37d6fe7f38193282702af8969671bce51511364fbcba0f11718af04423f",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:fea81243ebb1034f4460fa3934ea7317f86c8fe80bd3f9a0b9f68e3b3f2d366b",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:regul",
+      "gold_promotion": false,
+      "language": "fr",
+      "prior_labels": [
+        "uncertain"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "current_correction_not_gold",
+          "object_sha256": "cd61a70b0820aea47824f851f0d287e6bb6d8f0d2beea22072a9f414c78038ff",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:ffea4013ab5734270a1fbf7fa6f66e297739e7c37b381f41caad3201f91f63f7",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:mut",
+      "gold_promotion": false,
+      "language": "de",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "60600c890321d5b0ba74565e80992f55a8520f44ed099c82f9dc714b5fda2b2c",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    },
+    {
+      "case_id": "pilot-case:fff810eb873ee8a5fbcae42b901e4f36a0c458c946c069d8339d61d33e1893f0",
+      "explicit_reviewer_field_present": false,
+      "external_citation_present": true,
+      "family": "family:relat",
+      "gold_promotion": false,
+      "language": "es",
+      "prior_labels": [
+        "excluded"
+      ],
+      "provenance_refs": [
+        {
+          "kind": "historical_evidence_not_gold",
+          "object_sha256": "3e77b54c4185591675c50f1f40fadba40d3d33ff1aae0e42c13ca97001c7bf7d",
+          "snapshot_sha256": "c67601edefda2543f0ab3c519678aa548b08abd2eb8051813c806e251500da93"
+        }
+      ],
+      "rationale_present": true
+    }
+  ],
+  "cases": 148,
+  "citation_present": 148,
+  "explicit_reviewer_field_present": 0,
+  "linguistic_recertification": false,
+  "reason_present": 148
+}
