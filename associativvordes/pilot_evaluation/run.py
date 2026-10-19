@@ -12,11 +12,13 @@ from graph import Graph,lookup,ref
 
 BASELINE_COMMIT='156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49'
 BASELINE_HASHES={k:v['sha256'] for k,v in json.loads(Path(__file__).with_name('BASELINE-CODE-LOCK.json').read_text())['files'].items()}
-POLICY={'id':'bounded-source-proposals/1','starts_per_family_language':8,'depth':2,'max_paths':20,'max_expansions':300,'cross_source_string_bridge':False,'accepted_membership':False}
+POLICY={'id':'bounded-source-proposals/2','starts_per_family_language':8,'depth':2,'max_paths':20,'max_expansions':300,'cross_source_string_bridge':False,'exact_target_identity':True,'accepted_membership':False}
 
 def predictions_from_sources(g,cases,allowed):
     allowed={'source:'+x for x in allowed};bytarget=defaultdict(list)
-    for c in cases:bytarget[(c['family'],c['language'],lookup(c['target']['lemma']))].append(c['id'])
+    # Spelling is discovery, never permission to transfer a path to a homonym.
+    # Project-only corpus IDs abstain until a reviewed identity bridge exists.
+    for c in cases:bytarget[(c['family'],c['language'],c['target']['lexeme_id'])].append(c)
     hits=defaultdict(dict);seeds=defaultdict(set);budget={'queries':0,'expanded':0,'truncated':0}
     # Remove disallowed arcs BEFORE bounded traversal: no excluded-source bridge or budget leakage.
     g.db.execute('SAVEPOINT source_ablation')
@@ -37,8 +39,11 @@ def predictions_from_sources(g,cases,allowed):
                 q=g.paths(start,max_depth=POLICY['depth'],max_paths=POLICY['max_paths'],max_expansions=POLICY['max_expansions'],include_uncertain='source:glemm' in allowed,family=family)
                 budget['queries']+=1;budget['expanded']+=q['expanded'];budget['truncated']+=q['truncated']
                 for path in q['paths']:
-                    target=g.resolve(path['nodes'][-1]);b=target['body'];k=(family,b['language'],lookup(b['lemma']))
-                    for cid in bytarget.get(k,[]):hits[cid][sha(path)]=path
+                    target=g.resolve(path['nodes'][-1]);b=target['body'];k=(family,b['language'],target['id'])
+                    for c in bytarget.get(k,[]):
+                        if lookup(c['target']['lemma'])!=lookup(b['lemma']):continue
+                        if c['target'].get('pos_observed') and c['target']['pos_observed']!=b['pos']:continue
+                        hits[c['id']][sha(path)]=path
         result=[]
         for c in cases:
             paths=[hits[c['id']][k] for k in sorted(hits[c['id']])];guard=g.guard(c['family'],c['language'],c['target']['lemma'],c['target']['lexeme_id'])

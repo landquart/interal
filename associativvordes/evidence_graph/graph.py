@@ -153,6 +153,8 @@ class Graph:
         return rr
     def add_support(self,r,e):
         self.resolve(r);self.resolve(e);self.db.execute('INSERT OR IGNORE INTO supports VALUES(?,?)',(r['id'],e['id']))
+    def relation_languages(self,body):
+        return {self.resolve(p['ref'])['body']['language'] for p in body['participants'] if p['kind']=='lexeme'}
     def add_decision(self,family,language,word,status,proof,lemma=None,head=None,authority='prior_confirmed',reason=''):
         row=self.db.execute('SELECT proof FROM existing WHERE id=?',(proof.get('id'),)).fetchone()
         if proof.get('snapshot_sha256') not in self.trusted_snapshots or not row or json.loads(row[0])!=proof:raise ValueError('decision outside pinned registry')
@@ -187,6 +189,8 @@ class Graph:
         for basis in b['basis_refs']:
             if 'revision' in basis:self.resolve(basis)
         if b['status']=='accepted':
+            if rb['type_id'] in {'derivation_direct','derivation_indirect','shared_base','compounding'} and len(self.relation_languages(rb))>1:
+                raise ValueError('cross-language morphology requires a separate borrowing/alignment analysis')
             scope=b['scope']['sense_scope']
             if scope['mode']!='exact' or not scope.get('sense_refs'):raise ValueError('exact reviewed sense identities required')
             senses=[self.resolve(s) for s in scope['sense_refs']]
@@ -235,13 +239,20 @@ class Graph:
             if family:
                 b=self.get(current)['body'];guard=self.guard(family,b['language'],b['lemma'],channel='path')
                 if guard['status'] in {'blocked','hold'}:blocked.append({'node':current,'guard':guard});continue
-            if steps and (target is None or current==target):found.append({'nodes':[ref(self.get(n)) for n in nodes],'steps':steps,'validation_status':'reviewed_relations_only' if all(s['confirmed'] for s in steps) else 'hypothesis_only','proposed_category':'derivation_indirect' if len(steps)>1 else steps[0]['type'],'establishes_membership':False})
+            if steps and (target is None or current==target):
+                pure=all(s['type']=='derivation_direct' and s['direction']['state']=='directed' for s in steps)
+                category=steps[0]['type'] if len(steps)==1 else 'derivation_indirect' if pure else 'mixed_morphological_path'
+                found.append({'nodes':[ref(self.get(n)) for n in nodes],'steps':steps,'validation_status':'reviewed_relations_only' if all(s['confirmed'] for s in steps) else 'hypothesis_only','proposed_category':category,'establishes_membership':False})
             if len(steps)>=max_depth or current==target:continue
             for rid,dst in self.db.execute('SELECT relation,dst FROM arcs WHERE src=? ORDER BY relation,dst',(current,)):
                 expanded+=1
                 if expanded>max_expansions:break
                 if dst in nodes:continue
                 r=self.get(rid);b=r['body'];kind=b['type_id'];state=b['direction']['state']
+                # Also applies when reopening snapshots built by older code.
+                if len(self.relation_languages(b))>1:
+                    blocked.append({'node':dst,'relation_ref':ref(r),'reason':'cross_language_relation_requires_separate_analysis'})
+                    continue
                 if kind in {'inflection','surface_similarity','orthographic_variant','allomorphy','etymological_relation','borrowing'}:continue
                 if (state!='directed' or kind=='ext:core:morphological_relatedness@1') and not include_uncertain:continue
                 review=self.db.execute('SELECT status FROM reviews WHERE relation=?',(rid,)).fetchone()

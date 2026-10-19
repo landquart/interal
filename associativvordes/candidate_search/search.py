@@ -7,7 +7,7 @@ import sqlite3
 import sys
 import tempfile
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'evidence_graph'))
-from graph import Graph, canonical, sha, lookup, ref, file_hash
+from graph import Graph, canonical, sha, lookup, ref, file_hash, BLOCKING
 
 DEFAULT_WEIGHTS={'frequency':2,'uncertainty':3,'merge_risk':4,'independent_evidence':2,'model_impact':1,'calculation_impact':1}
 STATES={'open','rejected','reviewed','split_required','deferred'}
@@ -57,6 +57,14 @@ class Queue:
         self.db.execute('INSERT INTO history VALUES(?,?,?,?,?,?)',(cid,n,state,reason,actor,row[0]))
         self.db.execute('UPDATE questions SET state=?,changed=0 WHERE id=?',(state,cid))
         self.db.commit()
+    def scoped_context(self,cid,decisions):
+        if not decisions:return
+        basis='scoped-context:'+sha(decisions);reason='Prior scoped registry prohibition requires identity/family review'
+        if not self.db.execute('SELECT 1 FROM history WHERE candidate=? AND actor=? AND basis=?',(cid,'scoped_registry_context',basis)).fetchone():
+            n=self.db.execute('SELECT COUNT(*) FROM history WHERE candidate=?',(cid,)).fetchone()[0]+1
+            self.db.execute('INSERT INTO history VALUES(?,?,?,?,?,?)',(cid,n,'deferred',reason,'scoped_registry_context',basis))
+        # A scoped prohibition is context, not a rejection in every possible family.
+        self.db.execute("UPDATE questions SET state='deferred' WHERE id=? AND state='open'",(cid,))
     def rows(self):
         for cid,body,fp,state,changed in self.db.execute('SELECT * FROM questions ORDER BY id'):
             scopes=[x[0] for x in self.db.execute('SELECT scope FROM scopes WHERE candidate=? ORDER BY scope',(cid,))]
@@ -209,16 +217,24 @@ def enqueue_reverse(g,queue,frequencies,limit=20,weights=None):
             h=items[0];lex={canonical(i['lexeme_ref']) for i in items};bases={canonical(i['proposed_base']) for i in items};relations={i['relation_ref']['id']:i['relation_ref'] for i in items}
             evidence={canonical(ref(g.get(e))) for rid in relations for e, in g.db.execute('SELECT evidence FROM supports WHERE relation=? ORDER BY evidence',(rid,))}
             ranks=[json.loads(i['frequency']['record_json']).get('rank') for i in items];ranks=[r for r in ranks if type(r)==int and r>0]
+            prior=[]
+            for family,lemma,head,status,authority,proof,reason in g.db.execute('SELECT family,lemma,head,status,authority,proof,reason FROM decisions WHERE language=? AND word=? ORDER BY family,id',(h['language'],lookup(h['lemma']))):
+                if status in BLOCKING:
+                    prior.append({'family':family,'lemma_id':lemma,'head_id':head,'status':status,'authority':authority,'ref':json.loads(proof),'reason':reason,'identity_overlap':'same_language_spelling_lookup_only'})
+            known_families={x[0] for x in g.db.execute('SELECT DISTINCT family FROM known WHERE language=? AND word=?',(h['language'],lookup(h['lemma'])))}|{x['family'] for x in prior}
+            for family in sorted(known_families):
+                control=g.db.execute('SELECT status,proof FROM family_controls WHERE family=?',(family,)).fetchone()
+                if control and control[0] in BLOCKING:prior.append({'family':family,'status':control[0],'ref':json.loads(control[1]),'scope':'family_control'})
             body={'family':'unassigned','language':h['language'],'lemma':h['lemma'],'pos':h['pos'],
               'lexeme_alternatives':[json.loads(x) for x in sorted(lex)],'proposed_bases':[json.loads(x) for x in sorted(bases)],
               'evidence_refs':[json.loads(x) for x in sorted(evidence)],'discovery_paths':[{k:i[k] for k in ['lexeme_ref','proposed_base','relation_ref','relation_type','direction']} for i in items],
               'frequency_observations':[json.loads(x) for x in sorted({canonical(i['frequency']) for i in items})],
               'sense_description':None,'sense_status':'unresolved','match_kind':'real_project_word_incoming_relation',
-              'uncertainty_reasons':['new_base_not_reviewed','sense_identity_unresolved'],'conflicts':{'family_assignment':'unassigned'},
+              'uncertainty_reasons':['new_base_not_reviewed','sense_identity_unresolved'],'conflicts':{'family_assignment':'unassigned','prior_scoped_decisions':prior},
               'priority':priority({'frequency':max(0,6-int(math.log10(min(ranks)))) if ranks else 0,'uncertainty':2,'merge_risk':2,'independent_evidence':0,'model_impact':0,'calculation_impact':0},weights),
               'priority_status':'experimental_reverse_source_independence_not_measured','group_key':sha(['reverse',h['language'],h['pos']]),
               'creates_canonical_root':False,'allomorph_status':'no_new_allomorph_authorized'}
-            queue.upsert(body,'reverse:new_base')
+            cid,_=queue.upsert(body,'reverse:new_base');queue.scoped_context(cid,prior)
     return hits
 
 if __name__=='__main__':
