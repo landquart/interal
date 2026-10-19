@@ -1,0 +1,64 @@
+{
+  "base_main": "0b3faf2215d2008be5abc0ac7fe66f7eb03e0891",
+  "functional_commit": "412ffed0e18e1da77f6440e9aaabec0c9492c5e8",
+  "functional_checks": [
+    {
+      "id": 39341432159,
+      "name": "Pages validation",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "412ffed0e18e1da77f6440e9aaabec0c9492c5e8",
+      "url": "https://github.com/landquart/interal/actions/runs/39341432159"
+    },
+    {
+      "id": 39341432263,
+      "name": "Audit production associative family v5",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "412ffed0e18e1da77f6440e9aaabec0c9492c5e8",
+      "url": "https://github.com/landquart/interal/actions/runs/39341432263"
+    },
+    {
+      "id": 39341432206,
+      "name": "Associative Verification",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "412ffed0e18e1da77f6440e9aaabec0c9492c5e8",
+      "url": "https://github.com/landquart/interal/actions/runs/39341432206"
+    },
+    {
+      "id": 39341432242,
+      "name": "Tests",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "412ffed0e18e1da77f6440e9aaabec0c9492c5e8",
+      "url": "https://github.com/landquart/interal/actions/runs/39341432242"
+    }
+  ],
+  "historical_failures": [
+    {
+      "run_id": 39338729838,
+      "reason": "Liquid parsed original UDer bibliography"
+    },
+    {
+      "run_id": 37994612402,
+      "reason": "old source==classified and unassigned==0 production assertion"
+    },
+    {
+      "run_id": 39341026526,
+      "reason": "obsolete expectation that reviewed net alias still overflows"
+    }
+  ],
+  "functional_file_sha256": {
+    "_config.yml": "f22ea966f68e50237cc791edd586feee0dce1f68a99ee02ace525b671d98d922",
+    ".github/scripts/verify-pages-output.py": "41835583b3ba46dda27d167b2161ee98af7799d2451091cc847f3a292231aa79",
+    ".github/workflows/pages-validation.yml": "02d8973cf02b2806c52a8fb76637f226f7b1da124bf18b3cacda42996dab4abb",
+    ".github/workflows/associative-verification.yml": "6a9a356b1ec072648960f4df303041730c6ff637246c870ecc1c425f2c32f5a3",
+    ".github/workflows/audit-production-associative-family-v5.yml": "ae5ce405c04cd9b0817364f7bd1b274d8ba6360b114a67bdc8c85cb8bc26b72c",
+    "tests/browser/associative-family-v5-production.playwright.mjs": "0b16c33e272ff3564febbae1a7add7c9ea6c47b5df3fc2a01f54ff20d55f745a"
+  },
+  "unchanged_verifier_sha256": {
+    "scripts/audit-repository-associative-family-v5.mjs": "e5b334dbfcb84bf5a99727bbf6b0bd7b36cab9312859cd494c652a4fa3b93db2",
+    "audit/associative-external-preparation/verification08/verify.py": "9f6bb04a1191218ba89e4baae97fe8df9e355c5eac7871eb1b097679657d029e"
+  }
+}

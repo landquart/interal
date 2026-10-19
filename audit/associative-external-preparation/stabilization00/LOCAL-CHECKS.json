@@ -1,0 +1,120 @@
+{
+  "base_main": "0b3faf2215d2008be5abc0ac7fe66f7eb03e0891",
+  "runtime": {
+    "node": "v24.19.0",
+    "python": "3.12.3",
+    "sqlite": "3.45.1"
+  },
+  "python_checks": [
+    {
+      "name": "importers",
+      "command": [
+        "/usr/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "associativvordes/importers",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.022,
+      "tests": 23,
+      "log_sha256": "e94a850516554c4767044bde7dfb2ed873e6a60000ed8d65e7ba67e590ec5fec"
+    },
+    {
+      "name": "graph",
+      "command": [
+        "/usr/bin/python3",
+        "associativvordes/evidence_graph/test_graph.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.428,
+      "tests": 18,
+      "log_sha256": "b443a8247bdd9bec3c251a89992a97a5e537e4bfb174bcf02c9be80500708769"
+    },
+    {
+      "name": "candidates",
+      "command": [
+        "/usr/bin/python3",
+        "associativvordes/candidate_search/test_search.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.809,
+      "tests": 16,
+      "log_sha256": "73662b57638df62acb9746f1de49ce6aabf22843a5e15ff2ccf99f3f1912ee10"
+    },
+    {
+      "name": "pilot",
+      "command": [
+        "/usr/bin/python3",
+        "associativvordes/pilot_evaluation/test_pilot.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.526,
+      "tests": 15,
+      "log_sha256": "f9956c6faf6e7c67b55666b07927fa83fb8d5634d27e09e6e1ad4cf65f51de6c"
+    },
+    {
+      "name": "hanta-preparation",
+      "command": [
+        "/usr/bin/python3",
+        "associativvordes/flexor_research/test_prepare.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 0.185,
+      "tests": 8,
+      "log_sha256": "87444a5f48a44ea1272318acbab35415a744e1c7ad76f340b0f658a2f04b0da6"
+    },
+    {
+      "name": "readiness",
+      "command": [
+        "/usr/bin/python3",
+        "audit/associative-external-preparation/verification08/verify.py",
+        "--out",
+        "/workspace/scratch/24f09e56f256/stabilization00/READINESS.json"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 2.37,
+      "tests": null,
+      "log_sha256": "263d8c5e28c806dc199bdf703b261946fecfe50c8ec1d615c78e9736c324fd73"
+    }
+  ],
+  "other_checks": [
+    {
+      "name": "npm test",
+      "test_files": 93,
+      "exit_code": 0,
+      "log_sha256": "e5c74c94f05abda7469a6765ee519bd6d923f1c730ab135cfd61a180383b5c13"
+    },
+    {
+      "name": "Associative Verification node regression subset",
+      "tests": 25,
+      "exit_code": 0,
+      "log_sha256": "d9b5c7935d5baa7ddae5d7063e9b4b0cec1d430a022629db0f0be140e5c0ef40"
+    },
+    {
+      "name": "Vercel build gates",
+      "exit_code": 0,
+      "log_sha256": "fa7e6bacf2a33f3e453d3372ba07a3902a0b17f935093dbc56e801d98ea6aa51"
+    },
+    {
+      "name": "full existing repository index audit and cmp",
+      "exit_code": 0,
+      "receipt_sha256": "56d4940d49e83a94ba97560cd7649145f132b08ff66d8fce2aef812d026884ca",
+      "matches_committed_receipt": true
+    },
+    {
+      "name": "local browser",
+      "status": "BLOCKED_ENVIRONMENT",
+      "exit_code": 1,
+      "reason": "Chromium unavailable; official browser download returned truncated/invalid ZIP; separate GitHub browser checks required"
+    }
+  ]
+}

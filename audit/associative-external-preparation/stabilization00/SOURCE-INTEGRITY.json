@@ -1,0 +1,381 @@
+{
+  "base": "0b3faf2215d2008be5abc0ac7fe66f7eb03e0891",
+  "source_originals": [
+    {
+      "path": "data/morphology-evidence/sources/.gitattributes",
+      "git_blob": "ce8986626fbe458945f220f77940f3afd91c6a8c",
+      "sha256": "ab5d13f1ddb3428b88e3a9dc8bed7c757904f23835c875b0a2bcf8b30d740fd9",
+      "bytes": 237
+    },
+    {
+      "path": "data/morphology-evidence/sources/ATTRIBUTION-CHECKS.json",
+      "git_blob": "7eba6592849e027c50d3d2d4f1f134074117d903",
+      "sha256": "3758c5604819656dcda06e44fa4b74c49c9b155ddce0aee5256c57b2063592fc",
+      "bytes": 760
+    },
+    {
+      "path": "data/morphology-evidence/sources/BUILD-PARTITIONS.json",
+      "git_blob": "89b59f6e3bdd0c0c4cf4c07dc8079b977f2ee160",
+      "sha256": "85e9d83374055a586fbdbbfad5e94771c32869758d5b9d082ec3dc8f5e7496a0",
+      "bytes": 2326
+    },
+    {
+      "path": "data/morphology-evidence/sources/GLeMM-LICENSE.txt",
+      "git_blob": "da6ab6cc8f333d7e89a99812866df8f24374d47c",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "bytes": 18657
+    },
+    {
+      "path": "data/morphology-evidence/sources/GLeMM-Readme.md",
+      "git_blob": "b5c4ec117b22b6cb2595e0604d4a467c9a89da46",
+      "sha256": "8bd2b5d06a612adad1bdea978fd8767754cec94af417b38ae32c31f839eac54f",
+      "bytes": 1505
+    },
+    {
+      "path": "data/morphology-evidence/sources/GLeMM-branch-observation.json",
+      "git_blob": "86c7c10a369686b334c713a649532b978a393f02",
+      "sha256": "7769fbc89194c3baeea91ee1cc67979a5ba0e058d83adb04c5f2aa331746d72a",
+      "bytes": 828
+    },
+    {
+      "path": "data/morphology-evidence/sources/GLeMM-output-Readme.md",
+      "git_blob": "b6321034a8263e7f629c2dd45dddbc7e2dc2d03c",
+      "sha256": "db40c2115dfaf8cfa5f579182a151ef5cbc0b275802433d7354b52efe7fb1583",
+      "bytes": 570
+    },
+    {
+      "path": "data/morphology-evidence/sources/MorphyNet-README.md",
+      "git_blob": "26bee76e9950c80ec64d85cb407aed77cd012e61",
+      "sha256": "7287329f87a75140cfcd829a0cf13509243388a997621184dffccee1c40640fa",
+      "bytes": 3957
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer-handle-observation.json",
+      "git_blob": "7d43b1b2eb3aef4bddbed05b4756460c03823aaf",
+      "sha256": "d16956fe1ecb94c3325ec77629ab8a569618c14f1db82d1ef7c957594207114b",
+      "bytes": 963
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/de-DErivBase/LICENSE",
+      "git_blob": "18fb8e601813190b01bf096ca06938d12cdc5ac5",
+      "sha256": "657994b615cd2f5abfa348cfcc371d95a5e5fbadabedc693929cfed13063a5a0",
+      "bytes": 20050
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/de-DErivBase/README.md",
+      "git_blob": "28c884aca7bb7cb73abf46409f380f06354dde87",
+      "sha256": "e64ebe7ac13ee007690ce4b21ade5b8d79b48d30a0977c61dd579be040cf99d4",
+      "bytes": 3921
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/de-GCelex/LICENSE",
+      "git_blob": "e2a980552b21f74b8c21d1d328bba9b0ee9c4bfb",
+      "sha256": "53a903a441849f4930d3faebfc31353c5b802ea3f0efa38f167337f69e402e2f",
+      "bytes": 32650
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/de-GCelex/Makefile",
+      "git_blob": "2a555ea6fb78ba70cb93929266ddc30cff262058",
+      "sha256": "ffef82cb7ac77474cc82140e9d33b0d163d15acf688e2b7784ca18c840594f64",
+      "bytes": 1428
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/de-GCelex/README.md",
+      "git_blob": "3024a1f24ee5ecbed8a9295f1eb6561cec703f6b",
+      "sha256": "e23855111cfba67b4ed739ea2e931ab7c2769debec78c921210d03e267537c1e",
+      "bytes": 2964
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/en-CatVar/LICENSE",
+      "git_blob": "4633f3518a35d1d76c6ed1e9be5172825ac9d910",
+      "sha256": "52611670514a7cc0478199c6b3a03146ce7bda8cbdd81e081c592ce4548d198b",
+      "bytes": 10081
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/en-CatVar/README.md",
+      "git_blob": "a5b54e32514e70fdca8e0196a3bb456188c05bf8",
+      "sha256": "7d6ca71b3ca46540de51cfbe60f9bf8e8d7d06f216a656f65158ea7a026c883c",
+      "bytes": 2642
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/en-ECelex/LICENSE",
+      "git_blob": "e2a980552b21f74b8c21d1d328bba9b0ee9c4bfb",
+      "sha256": "53a903a441849f4930d3faebfc31353c5b802ea3f0efa38f167337f69e402e2f",
+      "bytes": 32650
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/en-ECelex/Makefile",
+      "git_blob": "cbe87c08d2bcc203113387685a0b091e04ea4e13",
+      "sha256": "270376eac5b8e59b5eabd23e137beac1d22d5a9ed6deadcecb56ea46421682e9",
+      "bytes": 1356
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/en-ECelex/README.md",
+      "git_blob": "45af48da92a268347cca7b7d95cf82474d5e4f9b",
+      "sha256": "579c2ae249323d43b9847eb7313e28b230b9d10b3102ab083801e0353bea02af",
+      "bytes": 2937
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/en-WordNet/LICENSE",
+      "git_blob": "0269128a6d44a21e4513902403e1102067922a84",
+      "sha256": "066c01cbfb2f5d9d48bc33f250dd069729e18509f6f33153526fe07e4b8801aa",
+      "bytes": 21896
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/en-WordNet/README.md",
+      "git_blob": "2f0479043eb423c2974064e784259fbde90bc7d0",
+      "sha256": "f679779335c6879041e6cb32dd15dd978bc5854c573af12dc2832e1481851142",
+      "bytes": 3466
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/es-DeriNetES/LICENSE",
+      "git_blob": "337d19ab02c92ffb8ba29e973f82af40d193f137",
+      "sha256": "b8ed1ce7c01f92a632a6e7a692331ae8d5e2c947a49ef4c4429a7cd2ae95c7de",
+      "bytes": 20110
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/es-DeriNetES/README.md",
+      "git_blob": "3f41dda8115c60a3b95695474b0d1a321038aa39",
+      "sha256": "f9c9b01c63cc8e5d53fc9c755eb86febf3d97bd0369a6514e7ce106dc0eb91a7",
+      "bytes": 2516
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/fr-Demonette/LICENSE",
+      "git_blob": "337d19ab02c92ffb8ba29e973f82af40d193f137",
+      "sha256": "b8ed1ce7c01f92a632a6e7a692331ae8d5e2c947a49ef4c4429a7cd2ae95c7de",
+      "bytes": 20110
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/fr-Demonette/README.md",
+      "git_blob": "c4b2b2a922dffad1388c2152ac4276a82f81b51c",
+      "sha256": "c498ec19e8a9086e1c81b07205012b4228677ab13c0ac46ba45d6dde5858f549",
+      "bytes": 3106
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/it-DerIvaTario/LICENSE",
+      "git_blob": "5146c335e68a835a111f75b0fc589f17fc599cc4",
+      "sha256": "98068ed492ad759145aa2e45aeec78a80ac5e5f0a35a046d03ffccc8f34aa11c",
+      "bytes": 15001
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/it-DerIvaTario/README.md",
+      "git_blob": "157a063a210dd31b0f330e96fac5347c684eb70b",
+      "sha256": "1c2f2e50a9d1a490aac6e4e97b6a7b3f34d03c26b81e8ceabc6c17931bd5461d",
+      "bytes": 2675
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-DeriNetRU/LICENSE",
+      "git_blob": "9a55aa4f3df023b7ed08668d029ceae1821b55ea",
+      "sha256": "44c1e084724ac24713dcd7f660bbe5a2f660d6f373c13f9bada4838ae19977d0",
+      "bytes": 15569
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-DeriNetRU/README.md",
+      "git_blob": "03186e9464c237f092c3361a4d9fecfa79cd373c",
+      "sha256": "5a7942fa0d7870a42a012a3f0562dcb431853f23e8fbfdbdc4e1c165ffb9e7bb",
+      "bytes": 2821
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-DerivBaseRU/LICENSE",
+      "git_blob": "52922e41de648872dda6ee496d3821c050d55619",
+      "sha256": "df315f481523b8c620a38dba5b44eef01305d1624464f8eb9e9ab9f4e37b2474",
+      "bytes": 10691
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-DerivBaseRU/README.md",
+      "git_blob": "a148adef9c1f56e4a76d8dc620b2d3842a1c6ead",
+      "sha256": "87b49f11aad61e15949bf6bd2795841dcc73614c15c5d92ca94b02753cbcf40d",
+      "bytes": 2593
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-EtymWordNetRU/LICENSE",
+      "git_blob": "18fb8e601813190b01bf096ca06938d12cdc5ac5",
+      "sha256": "657994b615cd2f5abfa348cfcc371d95a5e5fbadabedc693929cfed13063a5a0",
+      "bytes": 20050
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-EtymWordNetRU/README.md",
+      "git_blob": "c80cb2ccd5722c7d21ccc4664f4da61623dcb8a5",
+      "sha256": "61452fb4e85d4d4b84269ea0d44aff6784ba40b76556755baba5b579aea121c1",
+      "bytes": 4161
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-GoldenCompoundAnalyses/LICENSE",
+      "git_blob": "541ecb95c0bf1b716f50db09b8bc96f028c09c3c",
+      "sha256": "cecae696fed6d8e49ef322892b996b655deb9a3d44f33ce5a9cdfaf045cb09cf",
+      "bytes": 14287
+    },
+    {
+      "path": "data/morphology-evidence/sources/UDer/ru-GoldenCompoundAnalyses/README.md",
+      "git_blob": "2d979044ce1f07d323c3bfeb1912c9ba1e3a0663",
+      "sha256": "f6f47baa73903150ce7c2997d9bf7517cae328d3cfe710108aa4ce61bd5fdc93",
+      "bytes": 3053
+    },
+    {
+      "path": "data/morphology-evidence/sources/UPSTREAM-FILE-CHECKS.json",
+      "git_blob": "9cee8353b6d7398e1019caee5639d10f3a2c0c77",
+      "sha256": "1db1a65cd350b9b88aff7e44ca3df42ede5d24b4513d8dc3d342078afbb16b3d",
+      "bytes": 5587
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/glemm-deu.json",
+      "git_blob": "ae2aeb8a07f435c1cf8819f2737ff3efc0385f98",
+      "sha256": "c7f0c404c454acb9605c6eb697d60a80c583e51bb74f48c50132e15736a47602",
+      "bytes": 1448
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/glemm-eng.json",
+      "git_blob": "5618f9cd47ee56955792f8d3e37cb7cfbc6fda90",
+      "sha256": "84bfa61edd771f06f942a35709418fd5540e4454eac0354d3915006ec7189ac5",
+      "bytes": 1448
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/glemm-esp.json",
+      "git_blob": "c0509c5995bdacb7638718a3247e1efcda1213e9",
+      "sha256": "2995ce3dfee557d0b48a021bf5585ba8cd59cc2fcb22356806ff0baedad7114c",
+      "bytes": 1446
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/glemm-fra.json",
+      "git_blob": "c555f4194805ed461ae71605dfdea7ed1e834b8b",
+      "sha256": "86e3b5776aed677b10782ab8921a5d081df7e4f245e7620ca6b6a9339b8f735a",
+      "bytes": 1448
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/glemm-ita.json",
+      "git_blob": "315d8e58a1a77b07b80d6a2b77508bb5fd095c23",
+      "sha256": "9218221a985a9ec14adf396b62fc8df8c2d6e1e37538c2187efaf9a858463e25",
+      "bytes": 1446
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/glemm-rus.json",
+      "git_blob": "c62f80fbd5ba9e838cc3e6bfce0e746297af158a",
+      "sha256": "1b8ae578af103b169dbd95fc9dddc6ed36f8ccf585c7e3eef83ad97e67733959",
+      "bytes": 1448
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/glemm.json",
+      "git_blob": "ed60a981b1cb307851a0eea8c9a6b38e39c96104",
+      "sha256": "15ee77232e59f29f8722ab4aa88133ff03fb31a34b37f409b5c55d448dd3f335",
+      "bytes": 8324
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/morphynet-deu.json",
+      "git_blob": "d961f4ae67d3dcfbbff7b26de2da78be5f55ab08",
+      "sha256": "872a1dda91affd74d43b7e7455e8812165348dfdecf3c956ebdc9a1266e5b461",
+      "bytes": 1233
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/morphynet-eng.json",
+      "git_blob": "4b46ebbbeb168f821435429ad8a8273c86f89d56",
+      "sha256": "9d9051075d57bbf345cf0961d43df66338182525dddc7271dc9fad8da7965398",
+      "bytes": 1233
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/morphynet-fra.json",
+      "git_blob": "95eb587c97466daad223396756dbf22565c92956",
+      "sha256": "15bd12a5697d966f7a3558ba3723062840fa05feb4cff669949f70d717235d76",
+      "bytes": 1233
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/morphynet-ita.json",
+      "git_blob": "c6f8a128cc83d50db99dc01fc722a6dc8de901f1",
+      "sha256": "9bc24302abb3a7a7723bce35b958afa9afb2e5450c968d8d10f4cb338c88a3ad",
+      "bytes": 1233
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/morphynet-rus.json",
+      "git_blob": "edb977af24f205b3b9ab71ad32a37764b180164d",
+      "sha256": "0fe745d7d15a8dfe9d4b006eeaa8850c66df5326f34f273625811ee669f5f9cd",
+      "bytes": 1400
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/morphynet-spa.json",
+      "git_blob": "f704bd7cd19e401b982e911fd08e6676f85c3540",
+      "sha256": "9d825114bbf22fea5a3d0717c54ea8218972f6a0ae5c34ce11cd768997e584a9",
+      "bytes": 1850
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/morphynet.json",
+      "git_blob": "c373123f12c23558728443a5e5f69294d3389676",
+      "sha256": "b3b52eca535fe17521ba42f24808e76dfdfea7e30a447104f2a87dc4b3a81f05",
+      "bytes": 7822
+    },
+    {
+      "path": "data/morphology-evidence/sources/locks/uder.json",
+      "git_blob": "d5fd83dee9dfb6c0cd5d880e8cacc4223a6ec8c4",
+      "sha256": "dd8d650f932e5234467142108d86654d01d312ac716d9e265c7640208a6c43a6",
+      "bytes": 8275
+    },
+    {
+      "path": "data/morphology-evidence/sources/source-lock.json",
+      "git_blob": "1686e39064507876468f88112b89a7c3786bb22f",
+      "sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad",
+      "bytes": 24277
+    }
+  ],
+  "glemm_actual_raw_files": [
+    {
+      "id": "GLeMM:deu:defs.tsv.bz2",
+      "bytes": 1636674,
+      "sha256": "c22cb69cfdf677d78e25d806079f0768b65382e5d34ce9cce26e41811fc92f54"
+    },
+    {
+      "id": "GLeMM:deu:pairs.tsv.bz2",
+      "bytes": 1067083,
+      "sha256": "2463ba12123fabb48542327ea241ca4bdb26a5acb1d6c864cac4e828eb7d8d40"
+    },
+    {
+      "id": "GLeMM:eng:defs.tsv.bz2",
+      "bytes": 7094764,
+      "sha256": "8dc73d48dfe8f687c3686230371d0e3218719852f9e3f924cbe9bb6f8ba6a09e"
+    },
+    {
+      "id": "GLeMM:eng:pairs.tsv.bz2",
+      "bytes": 5578736,
+      "sha256": "67073ab267768413b9e407080743d4e4e2aa36fed932600fc18fcd80f35b15db"
+    },
+    {
+      "id": "GLeMM:esp:defs.tsv.bz2",
+      "bytes": 666727,
+      "sha256": "388e44640608d0b7ca31bf08f6f1ec30fa5517864182e75efabdeabfc5d18266"
+    },
+    {
+      "id": "GLeMM:esp:pairs.tsv.bz2",
+      "bytes": 537465,
+      "sha256": "033a3e8679e49d0788f39c10e7e1bc641250290a6fbae8877df0653f10b81754"
+    },
+    {
+      "id": "GLeMM:fra:defs.tsv.bz2",
+      "bytes": 2653817,
+      "sha256": "d18c771f78332d03c8e2717a7a140ed541462f57de3d1262e616e7c69d00a6b4"
+    },
+    {
+      "id": "GLeMM:fra:pairs.tsv.bz2",
+      "bytes": 1960093,
+      "sha256": "d88e7d532994f6b03f09e6dc2913c7a2ae92b91749e476c54b75074a69dfc8b2"
+    },
+    {
+      "id": "GLeMM:ita:defs.tsv.bz2",
+      "bytes": 315630,
+      "sha256": "be2fac7b7be3147ce004be6cf5f8a26524983c6744e669f293b36f6007e85491"
+    },
+    {
+      "id": "GLeMM:ita:pairs.tsv.bz2",
+      "bytes": 903092,
+      "sha256": "d536c3d310f95d367ac7446f5e7fb6a16c9e49c5d14f95bbc4094cdc8abf38cc"
+    },
+    {
+      "id": "GLeMM:rus:defs.tsv.bz2",
+      "bytes": 5082025,
+      "sha256": "45faa636451ec9021e96e3c281aafdb24eb0e03cf4d7051fbe69dc9b04da58e4"
+    },
+    {
+      "id": "GLeMM:rus:pairs.tsv.bz2",
+      "bytes": 4796104,
+      "sha256": "ceb1e57f137c808ba677dbe70115b36570a15109e8ba8e19b2b6e7a034f69f92"
+    }
+  ],
+  "all_original_git_blobs_match": true,
+  "all_glemm_raw_pins_match": true
+}

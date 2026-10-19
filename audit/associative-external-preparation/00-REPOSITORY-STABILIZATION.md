@@ -1,39 +1,72 @@
-# 00. Стабилизация после merge PR #670
+# 00. Стабилизация репозитория после PR #670
 
-Проверяемый main: `0b3faf2215d2008be5abc0ac7fe66f7eb03e0891`. Проверка выполняется заново на отдельной ветке; массовая разметка и изменение решений по семьям не запускаются.
+Дата проверки: 20 октября 2026, Europe/Moscow. **PASS для исправлений публикации и обязательных инженерных проверок в PR #671.** Массовая разметка не запускалась.
 
-## Обнаруженные неисправности
+## Актуальный commit и проверенный объём
 
-GitHub Pages run `39338729838`, job `118354697909`: Jekyll 3.10.0 / github-pages 232 интерпретирует оригинальную библиографию UDer как Liquid. Подтверждён Liquid::SyntaxError в `data/morphology-evidence/sources/UDer/fr-Demonette/README.md:27`; предупреждения есть и в других README. Deploy пропущен. Live Pages отвечает 200, но сохраняет прежнюю публикацию от 9 октября; HTTP 200 сам по себе не подтверждает успешный post-merge build.
+Актуальный main при начале и заключительной проверке: `0b3faf2215d2008be5abc0ac7fe66f7eb03e0891`. Отдельная ветка: `fix/pages-morphology-stabilization-20261020`; проверенный функциональный commit исправления: `412ffed0e18e1da77f6440e9aaabec0c9492c5e8`. Последующие изменения отчёта/квитанций не меняют функциональные файлы.
 
-Основной Tests run `39338731659` на merge commit прошёл. Vercel production `dpl_8mEBS7kvbigGCkkoDSsjFP61tXKM` имеет READY и exact Git SHA merge commit; домен `interal.vercel.app` отвечает 200. Исторический production-audit `37994612402` завершился failure ещё на дообъединительном main `39d8a47...`; он не объявляется новой регрессией или успешным аудитом всего корпуса.
+Заново прочитаны PR #662–670, текущие реализации и входные схемы; состояния/commits записаны в `stabilization00/PR-HISTORY.json`. #663–669 закрыты как включённые в сводный merge #670, а не как отдельные main merge commits. Предыдущие отчёты не использованы вместо запуска проверок.
 
-## Исправление
+## Обнаруженные и исправленные неисправности
 
-Новый `_config.yml` исключает `data/morphology-evidence/sources` из Jekyll rendering/copying. Оригиналы, лицензии, README, source locks и контрольные суммы остаются в Git без изменений и используются офлайн-импортёрами. Публичный runtime к этой директории не обращается. `node_modules` также исключён из публикации.
+### Pages: библиография ошибочно обрабатывается как Liquid
 
-Добавлена независимая PR/push-проверка Pages validation: официальный закреплённый Jekyll action собирает весь сайт без deployment. Затем проверяются наличие и точные байты всех tracked HTML-страниц, скачиваемых PDF/DOCX/EPUB, runtime JS, manifests v5/search-index, shared assets, sitemap и robots; исходные корпуса не должны попасть в Pages output.
+Run [39338729838](https://github.com/landquart/interal/actions/runs/39338729838), build job `118354697909`, завершается Liquid::SyntaxError в `data/morphology-evidence/sources/UDer/fr-Demonette/README.md:27`. В других оригинальных README UDer также есть Liquid warnings. Deploy этого run пропущен.
 
-## Дополнительная неисправность production-аудита
+`_config.yml` исключает только offline source/provenance directory и node_modules из Jekyll. Оригинальные README, лицензии, source-lock и hashes не изменены и остаются доступны в Git. Runtime HTML/JS не обращаются к исключённой директории. Jekyll и его проверки не отключены; не используется обход через редактирование оригиналов или отключение integrity checks.
 
-Старый live-тест ошибочно требует `source_lemmas == classified_unique_lemmas` и нулевого `lemmas_with_zero_family`. Действующий repository materialization и независимый repository audit используют `source = materialized + unassigned`: 4 924 980 = 4 924 281 + 699. Исправляется только контракт browser-аудита, не данные: точные counters берутся из committed repository-integrity receipt, все нулевые structural-error проверки сохраняются. Добавлена более строгая сверка SHA-256 всего production manifest/report/provenance с Git checkout; произвольный новый ненулевой unassigned count не допускается. Запущен свежий исчерпывающий read-only repository audit с неизменённым скриптом и сравнением результата с committed receipt. Новый live browser audit запускается в PR отдельно; полный repository audit завершился PASS и побайтно совпал с committed receipt. Первый новый live browser audit выявил ещё одно устаревшее ожидание: `net` уже исправлен вручную до трёх разрешённых targets, поэтому не обязан давать старую ошибку fan-out 28. Новый контроль отдельно проверяет настоящие net members/routing по существующим decision ledgers и fan-out 26 > 25 на явно test-only transport input с нулём family/member fetches. Корпус и runtime не изменяются; повторный live CI ожидается.
+Новый `.github/workflows/pages-validation.yml` выполняет реальную сборку официальным закреплённым Jekyll action. `.github/scripts/verify-pages-output.py` затем проверяет все **13 tracked HTML**, **1 скачиваемый PDF** и **9 runtime assets/manifests**, sitemap/robots: SHA-256 совпадают с checkout. Источники и node_modules отсутствуют в output. Чек не выполняет deployment. Все необходимые существующие HTML и проверяемые скачиваемые материалы сохранены.
 
-## Новые регрессионные результаты
+### Production-аудит: два устаревших ожидания
 
-- `npm test`: все 93 существующих test files PASS.
-- Associative Verification: 25 Node tests PASS; model routing и runtime index проверки PASS.
-- Importers: 23 PASS; graph: 18 PASS; candidate search: 16 PASS; pilot: 15 PASS; Flexor/HanTa preparation: 8 PASS.
-- Независимый verifier этапа 08: 35 PASS / 0 FAIL. IV-001 exact lexical identity, IV-002 scoped reverse decisions, IV-003 cross-language paths, IV-004 mixed-chain classification остаются исправленными.
-- Реальные Vercel build gates проходят без изменения их условий.
-- Local browser BLOCKED: Chromium отсутствует, официальный download несколько раз возвращает повреждённый ZIP. Исходная локальная ошибка и download logs сохраняются; браузерная проверка в GitHub CI проверяется отдельно.
-- Первая настоящая Jekyll-сборка исправленной ветки прошла в CI `39340350276`: все 13 HTML-страниц и 9 runtime assets совпали по SHA-256. Новый guard дополнен проверкой скачиваемых документов; его новая CI-проверка ещё ожидается. Локально Ruby/Jekyll отсутствуют.
+Исторический live audit [37994612402](https://github.com/landquart/interal/actions/runs/37994612402) падал ещё до #670: он требует `source_lemmas == classified_unique_lemmas` и нулевой unassigned count. Это не соответствует текущему materialization-контракту `source = materialized + unassigned`: **4 924 980 = 4 924 281 + 699**. Контракт независимо задан в `scripts/lib/associative-repository-materialization.mjs` и `scripts/audit-repository-associative-family-v5.mjs`.
 
-## Сохранность данных
+Неизменённый полный repository audit запущен заново в read-only режиме. Он проверил 2 456 543 семей, 1 934 050 aliases и 10 078 319 memberships. Результат **PASS** и побайтно совпадает с committed `audit/associative-family-v5/repository-static-integrity.json`. Проверены decision ledgers и materialization census; значения не подобраны для прохождения теста и не переписаны в данных.
 
-Tracked data и associativvordes не отличаются от проверяемого main; исправление не меняет научные формулы, manual/rejected/split решения, частоты, membership, lexical heads или переключение v5/v6. Полные корпусы не добавляются в PR. Независимо сверены 14 protected Git objects и фактические байты 52 source/provenance файлов против main Git blobs; исходники полностью совпали. Повторно проверены размеры/SHA-256 всех 12 реальных raw файлов GLeMM; все pins совпали. Квитанции сохраняются отдельно.
+Browser audit теперь проверяет exact census из этого integrity receipt и баланс source/materialized/unassigned. Дополнительно SHA-256 **всего** production manifest/report/provenance сравнивается с Git checkout. Все настоящие structural-error zero checks сохранены; произвольное увеличение unassigned count не допускается.
 
-## Ограничения перед массовой разметкой
+Повторный live audit [39341026526](https://github.com/landquart/interal/actions/runs/39341026526) обнаружил второе старое ожидание: `net` использовался как пример fan-out 28. После прежних ручных исправлений у net уже три разрешённых targets. Настоящие net members/routing теперь проверяются по неизменённым decision ledgers, а лимит **26 > 25** отдельно проверяется на явно test-only transport input, с нулём family/member fetches. Тестовые IDs не становятся лексемами, корпусом или membership. Семейства и runtime loader не менялись. После этого live audit прошёл.
 
-Существующие реализации изучаются вместе с новыми тестами, а не только с прежними отчётами. Импорт сохраняет unreviewed observations; граф не принимает membership; очередь хранит решения; пилот не создаёт gold из автоматических меток. Ручной gold, actual baseline/calculator captures, новая совместная сертификация global source catalog и измерение большого графа/очереди остаются отдельными задачами. Успешный импорт и merge не доказывают морфологическую или семантическую корректность разметки.
+## Состояние CI, сборки и публикаций
 
-Это промежуточная контрольная точка: окончательный вердикт Pages и browser CI будет добавлен после выполнения проверок. Merge этого исправления пока не выполняется.
+| Проверка функционального commit | Run | Результат |
+|---|---|---|
+| Tests, включая browser regression | [39341432242](https://github.com/landquart/interal/actions/runs/39341432242) | PASS |
+| Associative Verification, включая browser regression | [39341432206](https://github.com/landquart/interal/actions/runs/39341432206) | PASS |
+| Настоящая Pages/Jekyll build + проверка output | [39341432159](https://github.com/landquart/interal/actions/runs/39341432159) | PASS |
+| Живой production v5 browser/runtime/transport audit | [39341432263](https://github.com/landquart/interal/actions/runs/39341432263) | PASS |
+
+Полные ID/SHA/status и hashes проверяемых файлов — `stabilization00/CI.json`. Первые промежуточные сбои сохраняются как история и не объявляются успешными. Pages guard receipt — `PAGES-BUILD.json`; live runtime receipt — `LIVE-PRODUCTION.json`: desktop/mobile, по 54 controls, 4 transport failure modes, 0 page/console errors.
+
+Vercel production `dpl_8mEBS7kvbigGCkkoDSsjFP61tXKM`: **READY**, exact main merge SHA. Vercel build gates проходят без изменения их условий. GitHub Pages live отвечает 200 и обслуживает прежний успешный выпуск от 9 октября; новая production Pages-публикация пока **ожидает merge/apply PR #671**. Успешная PR-сборка не выдаётся за выполненный deployment. Новый workflow имеет read-only permissions и ничего не переключает.
+
+16 новых live probes страниц и основных ресурсов Vercel/Pages: HTTP 200, все проверенные SHA-256 совпали с main (`LIVE-ROUTES.json`). Local Chromium отсутствует; официальный download возвращает повреждённый ZIP. Поэтому local browser — BLOCKED_ENVIRONMENT, а обязательные browser проверки фактически выполнены и прошли в GitHub CI. Ruby/Jekyll локально также отсутствуют; реальная сборка проверена официальным CI action.
+
+## Фактическое состояние подсистем и регрессии
+
+| Подсистема | Текущая реализация и новая проверка | Статус |
+|---|---|---|
+| Импорт | `associativvordes/importers/`: оригинальные строки/provenance, разные derivation/inflection, isolated unreviewed output; 23 tests | PASS |
+| Граф | `associativvordes/evidence_graph/`: native lexical identities, альтернативы, типы/направления, finite paths и prohibitions; 18 tests | PASS |
+| Кандидаты | `associativvordes/candidate_search/`: scoped decisions/history, реальные carrier words, ограниченные paths, экспериментальный priority; 16 tests | PASS |
+| Пилот | `associativvordes/pilot_evaluation/`: exact family/language/source-lexeme/POS, human-gold contract и abstain; 15 tests | PASS / качество требует human gold |
+| Flexor/HanTa preparation | `associativvordes/flexor_research/`: 8 preparation tests; не новая интеграция модели | PASS в пределах подготовки |
+| Независимые readiness controls | Неизменённый `verification08/verify.py`: 35 PASS / 0 FAIL; automatic gold 0 | PASS |
+
+Локально `npm test` заново выполнил **93/93 test files**, отдельные Associative regressions — **25 tests**, Python packages — **80 tests**. Команды, exit codes, runtime и SHA логов: `LOCAL-CHECKS.json`; прямые package logs приложены. Все четыре IV-регрессии остаются исправленными: IV-001 не копирует prediction на омоним/POS, IV-002 сохраняет scoped reverse prohibitions/history, IV-003 не допускает неподтверждённый межъязыковой path, IV-004 не называет смешанный compound/path косвенной деривацией. Полные новые adversarial результаты — `READINESS.json`.
+
+## Сохранность существующих семей и исходников
+
+- **21 protected Git object** совпадает с main, включая v5, runtime JS, data, shared/api/scripts, частоты, manual-decision ledgers, пять исследовательских пакетов и methodology test. Изменены публикационная конфигурация/CI и browser-аудит, а не производственные формулы или семейные данные.
+- Фактические байты **52 source/provenance файлов** сверены с main Git blobs, без исправления оригинальных README.
+- Все **12 реальных raw GLeMM** повторно совпали по size/SHA-256 с доверенным lock. Новая полная сертификация UDer/MorphyNet raw и общего global catalog в этот этап не входит.
+- Полный существующий repository audit и `cmp` PASS. Семейства, manual/rejected/split decisions, lexical heads, частоты, v5/v6 selection и input pins не изменены. Accepted membership writes, corpus cleanup и массовая разметка: **0**.
+
+Подробности: `PROTECTED.json`, `SOURCE-INTEGRITY.json`, `REPOSITORY-INTEGRITY.json`. Целостность байтов/структуры не является утверждением о лингвистической правильности всех прежних семей.
+
+## Оставшиеся ограничения перед массовой разметкой
+
+Исправления готовы в отдельном [PR #671](https://github.com/landquart/interal/pull/671), merge и переключение production в рамках проверки не выполнялись. До применения PR live Pages остаётся на старом выпуске.
+
+Инженерные проверки не заменяют ручной gold, actual baseline/calculator captures и измерение качества на размеченной области. Совместный свежий global source catalog, большие graph/queue workloads и независимость GLeMM/MorphyNet требуют отдельного подтверждения. Импорт, наличие пути и зелёный CI не дают права автоматически принимать membership. Массовая разметка на этом этапе не разрешалась и не запускалась.
