@@ -1,0 +1,39 @@
+{
+  "accepted_external_verdicts": 0,
+  "build_id": "5527705c4a33d1b7f892cd0bc43337be5f6d34d8cca8ba4a4587bd6cfbf59a5a",
+  "counts": {
+    "alignments": 8297,
+    "blocked_alignments": 22,
+    "claims": 4628,
+    "entities": 32916,
+    "evidence": 6781,
+    "inflections": 2153,
+    "records": 6940,
+    "relations": 6775,
+    "unresolved_claims": 7
+  },
+  "entity_counts": {
+    "CorpusAlignment": 8297,
+    "Evidence": 6781,
+    "Lexeme": 11018,
+    "Relation": 6775,
+    "ReviewTask": 10,
+    "SourceRevision": 35
+  },
+  "new_canonical_roots": 0,
+  "new_memberships": 0,
+  "selected_by_language": {
+    "de": 481,
+    "en": 2552,
+    "es": 1178,
+    "fr": 1003,
+    "it": 591,
+    "ru": 1135
+  },
+  "selected_by_source": {
+    "GLeMM": 3385,
+    "MorphyNet": 2860,
+    "UDer": 695
+  },
+  "source_disagreements": 10
+}
