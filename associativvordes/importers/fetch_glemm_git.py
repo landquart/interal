@@ -5,7 +5,6 @@ import json
 import os
 from pathlib import Path
 import re
-import shutil
 import subprocess
 import tempfile
 from glemm_cache import contract,external,LOCK
@@ -29,8 +28,11 @@ def export(lock_path,raw,repository=OFFICIAL):
     with tempfile.TemporaryDirectory(prefix='.glemm-git-',dir=raw) as d:
         work=Path(d);repo=work/'repo';repo.mkdir()
         def git(*args,input=None):
-            return subprocess.run(['git','-C',str(repo),'-c','protocol.version=2',*args],
-                input=input,text=True,capture_output=True,check=True,timeout=900).stdout.strip()
+            try:
+                return subprocess.run(['git','-C',str(repo),'-c','protocol.version=2',*args],
+                    input=input,text=True,capture_output=True,check=True,timeout=900).stdout.strip()
+            except subprocess.CalledProcessError as e:
+                raise RuntimeError('official Git '+args[0]+' failed: '+e.stderr.strip()) from e
         git('init','-q');git('remote','add','origin',repository)
         git('fetch','--depth=1','--filter=blob:none','origin',revision)
         if git('rev-parse','FETCH_HEAD')!=revision:raise ValueError('upstream commit mismatch')
@@ -57,5 +59,14 @@ def export(lock_path,raw,repository=OFFICIAL):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--lock',type=Path,default=LOCK)
-    p.add_argument('--raw-root',type=Path,required=True);a=p.parse_args()
-    print(json.dumps(export(a.lock,a.raw_root),sort_keys=True))
+    p.add_argument('--raw-root',type=Path,required=True);p.add_argument('--receipt',type=Path);a=p.parse_args()
+    receipt=external(a.receipt) if a.receipt else None
+    result={'status':'FAIL','repository':OFFICIAL,'source_lock_sha256':hash_file(a.lock)}
+    try:
+        result=export(a.lock,a.raw_root);print(json.dumps(result,sort_keys=True))
+    except Exception as e:
+        result['error']=type(e).__name__+': '+str(e);raise
+    finally:
+        if receipt:
+            receipt.parent.mkdir(parents=True,exist_ok=True)
+            receipt.write_text(json.dumps(result,sort_keys=True,indent=2)+'\n')

@@ -24,6 +24,7 @@ jobs:
         run: >-
           /usr/bin/python3 associativvordes/importers/fetch_glemm_git.py
           --raw-root "$RUNNER_TEMP/raw"
+          --receipt "$RUNNER_TEMP/receipts/ACQUISITION.json"
       - name: Independently rebuild and audit six complete language partitions
         shell: bash
         run: |
