@@ -7,6 +7,7 @@ import json
 import os
 from pathlib import Path
 import shutil
+import subprocess
 import tarfile
 import tempfile
 from urllib.request import Request, urlopen
@@ -48,6 +49,27 @@ def download(url,dest,expected_hash,expected_bytes):
             errors.append(candidate+': '+str(exc))
         finally:
             Path(name).unlink(missing_ok=True)
+    # Some upstream endpoints close Python's HTTP/1 connection. An available
+    # curl client can negotiate HTTP/2; it uses the same URLs, identity and pins.
+    curl=shutil.which('curl')
+    if curl:
+        for candidate in acquisition_urls(url):
+            fd,name=tempfile.mkstemp(prefix='.download-',dir=dest.parent);os.close(fd)
+            try:
+                r=subprocess.run([curl,'--fail','--location','--silent','--show-error',
+                    '--connect-timeout','20','--max-time','180','--user-agent',
+                    'Interal-morphology-source-verification/1.0','--output',name,'--url',candidate],
+                    capture_output=True,text=True,timeout=190)
+                if r.returncode:
+                    errors.append(candidate+': curl: '+r.stderr.strip());continue
+                tmp=Path(name)
+                if tmp.stat().st_size!=expected_bytes or hash_file(tmp)!=expected_hash:
+                    raise ValueError('download checksum/size mismatch: '+candidate)
+                os.replace(tmp,dest)
+                result={'status':'verified_download','requested_url':url,'used_url':candidate,'transport':'curl'}
+                print(json.dumps(result,sort_keys=True),flush=True);return result
+            except (OSError,subprocess.TimeoutExpired) as exc:errors.append(candidate+': '+str(exc))
+            finally:Path(name).unlink(missing_ok=True)
     raise OSError('pinned source unavailable: '+'; '.join(errors))
 
 

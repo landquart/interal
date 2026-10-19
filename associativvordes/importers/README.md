@@ -104,3 +104,18 @@ contradiction or lexical identity. Mutable SQLite work uses the native system
 temporary directory; only finished immutable snapshots are copied/renamed to the
 external output root. The published plan fails if the importer/runtime produces
 a different build identity. Change the plan deliberately for a new version.
+
+## Full source gate (read-only)
+
+`validate_sources.py --fetch --raw-root RAW --output-root BUILDS --receipts NEW_DIR`
+independently audits every row and compares reports/logical products to the pinned
+published manifests. All directories must be outside the checkout. An optional
+`--partition NAME` isolates one of the 13 exact pinned partitions; its PASS is not
+a full-corpus certificate. Receipts are saved as work completes and on failure.
+The branch-scoped `verify-morphology-sources.yml` uploads receipts only, never raw
+corpora. Runtime-dependent IDs do not overwrite the original source plan.
+
+Acquisition remains checksum/size locked. GLeMM may use its official GitLab API
+for the same commit/file when the raw endpoint closes a connection. An installed
+curl can optionally negotiate HTTP/2 after Python transport failure; no TLS checks
+or hashes are bypassed. Failed or partial downloads never publish as valid files.

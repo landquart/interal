@@ -4,6 +4,7 @@ import io
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
 from unittest.mock import patch
 from fetch_sources import acquisition_urls,download
 
@@ -23,5 +24,17 @@ class AcquisitionTests(unittest.TestCase):
             p=Path(d)/'raw'
             with self.assertRaises(ValueError):download('https://example.invalid/pinned',p,'0'*64,3)
             self.assertFalse(p.exists());self.assertEqual(list(Path(d).iterdir()),[])
+    def test_optional_http2_client_still_requires_the_same_hash(self):
+        data=b'fixture payload'
+        def curl(args,**kwargs):
+            Path(args[args.index('--output')+1]).write_bytes(data)
+            return SimpleNamespace(returncode=0,stderr='')
+        with tempfile.TemporaryDirectory() as d,patch('fetch_sources.urlopen',side_effect=http.client.RemoteDisconnected('closed')),patch('fetch_sources.shutil.which',return_value='/usr/bin/curl'),patch('fetch_sources.subprocess.run',side_effect=curl):
+            p=Path(d)/'raw'
+            r=download('https://example.invalid/pinned',p,hashlib.sha256(data).hexdigest(),len(data))
+            self.assertEqual(r['transport'],'curl');self.assertEqual(p.read_bytes(),data)
+            p.unlink()
+            with self.assertRaises(ValueError):download('https://example.invalid/pinned',p,'0'*64,len(data))
+            self.assertFalse(p.exists())
 
 if __name__=='__main__':unittest.main()
