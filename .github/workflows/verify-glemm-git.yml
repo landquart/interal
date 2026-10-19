@@ -1,0 +1,55 @@
+name: Verify GLeMM through official Git
+on:
+  workflow_dispatch:
+  push:
+    branches: [fix/morphology-readiness-20261019]
+    paths:
+      - '.github/workflows/verify-glemm-git.yml'
+      - 'associativvordes/importers/fetch_glemm_git.py'
+permissions:
+  contents: read
+jobs:
+  glemm:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            associativvordes/importers
+            data/morphology-evidence/sources
+            audit/associative-external-preparation/import-validation
+      - name: Export all twelve exact pinned GLeMM files
+        run: >-
+          /usr/bin/python3 associativvordes/importers/fetch_glemm_git.py
+          --raw-root "$RUNNER_TEMP/raw"
+      - name: Independently rebuild and audit six complete language partitions
+        shell: bash
+        run: |
+          set -euo pipefail
+          for lang in deu eng esp fra ita rus; do
+            /usr/bin/python3 associativvordes/importers/validate_sources.py \
+              --partition "glemm-$lang-v1.0.2" --raw-root "$RUNNER_TEMP/raw" \
+              --output-root "$RUNNER_TEMP/builds" --receipts "$RUNNER_TEMP/receipts/$lang"
+          done
+      - name: Preserve verified offline cache with upstream attribution
+        run: >-
+          /usr/bin/python3 associativvordes/importers/glemm_cache.py pack
+          --raw-root "$RUNNER_TEMP/raw" --archive "$RUNNER_TEMP/GLeMM-2.0-39502017.zip"
+      - name: Save receipts
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: glemm-git-receipts
+          path: ${{ runner.temp }}/receipts
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Save verified attributed cache outside Git
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: glemm-pinned-offline-cache
+          path: ${{ runner.temp }}/GLeMM-2.0-39502017.zip
+          compression-level: 0
+          if-no-files-found: error
+          retention-days: 30
