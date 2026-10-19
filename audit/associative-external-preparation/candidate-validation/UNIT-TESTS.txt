@@ -1,0 +1,21 @@
+test_actual_finite_allomorph_rule_does_not_generalize (__main__.SearchTests.test_actual_finite_allomorph_rule_does_not_generalize) ... ok
+test_existing_pos_alternative_inherits_later_negative (__main__.SearchTests.test_existing_pos_alternative_inherits_later_negative) ... ok
+test_failed_build_rolls_back_scope_and_queue (__main__.SearchTests.test_failed_build_rolls_back_scope_and_queue) ... ok
+test_finite_matching_no_language_or_new_allomorph_grant (__main__.SearchTests.test_finite_matching_no_language_or_new_allomorph_grant) ... ok
+test_no_accepted_review_state (__main__.SearchTests.test_no_accepted_review_state) ... ok
+test_no_known_or_prohibited_spelling_in_new_queue (__main__.SearchTests.test_no_known_or_prohibited_spelling_in_new_queue) ... ok
+test_pos_change_cannot_hide_rejection (__main__.SearchTests.test_pos_change_cannot_hide_rejection) ... ok
+test_priority_is_configurable_separate_and_missing_impact_explicit (__main__.SearchTests.test_priority_is_configurable_separate_and_missing_impact_explicit) ... ok
+test_real_frequency_is_preserved_and_tamper_rejected (__main__.SearchTests.test_real_frequency_is_preserved_and_tamper_rejected) ... ok
+test_real_parsing_provenance_and_bounded_paths (__main__.SearchTests.test_real_parsing_provenance_and_bounded_paths) ... ok
+test_rejected_state_survives_reopen_and_evidence_change (__main__.SearchTests.test_rejected_state_survives_reopen_and_evidence_change) ... ok
+test_repeat_import_does_not_change_output_or_review (__main__.SearchTests.test_repeat_import_does_not_change_output_or_review) ... ok
+test_reverse_queue_preserves_negative_history (__main__.SearchTests.test_reverse_queue_preserves_negative_history) ... ok
+test_reverse_uses_real_observed_lexemes_only (__main__.SearchTests.test_reverse_uses_real_observed_lexemes_only) ... ok
+test_reviewed_preserved_and_unrelated_question_unchanged (__main__.SearchTests.test_reviewed_preserved_and_unrelated_question_unchanged) ... ok
+test_scope_rebuild_retains_inactive_history (__main__.SearchTests.test_scope_rebuild_retains_inactive_history) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.753s
+
+OK

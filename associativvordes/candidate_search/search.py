@@ -35,15 +35,18 @@ class Queue:
         else:changed=int(bool(old))
         state=old[1] if old else 'open'
         inherited=[]
-        if not old:
-            for sibling,payload,sibling_state,basis in self.db.execute("SELECT id,body,state,fingerprint FROM questions WHERE json_extract(body,'$.family')=? AND json_extract(body,'$.language')=? AND state IN ('rejected','split_required')",(body['family'],body['language'])):
-                other=json.loads(payload)
-                if other['family']==body['family'] and other['language']==body['language'] and lookup(other['lemma'])==lookup(body['lemma']):
-                    inherited.append((sibling,sibling_state,basis))
-            if inherited:state='rejected' if any(x[1]=='rejected' for x in inherited) else 'split_required' 
+        for sibling,payload,sibling_state,basis in self.db.execute("SELECT id,body,state,fingerprint FROM questions WHERE json_extract(body,'$.family')=? AND json_extract(body,'$.language')=? AND state IN ('rejected','split_required') ORDER BY id",(body['family'],body['language'])):
+            other=json.loads(payload)
+            if sibling!=cid and lookup(other['lemma'])==lookup(body['lemma']):
+                inherited.append((sibling,sibling_state,basis))
+        if inherited:
+            state='rejected' if state=='rejected' or any(x[1]=='rejected' for x in inherited) else 'split_required'
         self.db.execute('INSERT OR REPLACE INTO questions VALUES(?,?,?,?,?)',(cid,canonical(body),fp,state,changed))
-        for i,(sibling,sibling_state,basis) in enumerate(inherited,1):
-            self.db.execute('INSERT INTO history VALUES(?,?,?,?,?,?)',(cid,i,sibling_state,'Conservative prior spelling/POS scope: '+sibling,'inherited_queue_prohibition',basis))
+        for sibling,sibling_state,basis in inherited:
+            reason='Conservative prior spelling/POS scope: '+sibling
+            if not self.db.execute('SELECT 1 FROM history WHERE candidate=? AND reason=? AND basis=?',(cid,reason,basis)).fetchone():
+                n=self.db.execute('SELECT COUNT(*) FROM history WHERE candidate=?',(cid,)).fetchone()[0]+1
+                self.db.execute('INSERT INTO history VALUES(?,?,?,?,?,?)',(cid,n,sibling_state,reason,'inherited_queue_prohibition',basis))
         self.db.execute('INSERT OR IGNORE INTO scopes VALUES(?,?)',(scope,cid))
         return cid,not old or old[0]!=fp
     def decide(self,cid,state,reason,actor):
@@ -68,7 +71,6 @@ class Queue:
 def frequency_index(records):
     result={}
     for x in records:
-        
         if sha(x['record_json'])!=x['record_sha256'] or not x['locators']:raise ValueError('frequency integrity')
         row=json.loads(x['record_json']); k=(x['language'],lookup(row['word']))
         result.setdefault(k,[]).append(x)
@@ -83,10 +85,11 @@ def collect(g,family,max_starts=12,max_depth=2):
     for lang,word,head in g.db.execute('SELECT language,word,head FROM known WHERE family=? ORDER BY language,word,head',(family,)):
         for lid, in g.db.execute('SELECT id FROM lexemes WHERE language=? AND search=? ORDER BY id',(lang,word)):
             stats['seed_matches']+=1;starts.setdefault(lid,[]).append({'head':head,'language':lang,'word':word})
-    eligible={r[0] for r in g.db.execute("SELECT DISTINCT a.src FROM arcs a JOIN relations r ON r.id=a.relation WHERE r.direction='directed' AND r.type IN ('derivation_direct','derivation_indirect','shared_base','compounding')")}
+    def productive(lid):
+        return bool(g.db.execute("SELECT 1 FROM arcs a JOIN relations r ON r.id=a.relation WHERE a.src=? AND r.direction='directed' AND r.type IN ('derivation_direct','derivation_indirect','shared_base','compounding') LIMIT 1",(lid,)).fetchone())
     buckets={}
     for lid in starts:buckets.setdefault(g.get(lid)['body']['language'],[]).append(lid)
-    for values in buckets.values():values.sort(key=lambda lid:(lid not in eligible,lid))
+    for values in buckets.values():values.sort(key=lambda lid:(not productive(lid),lid))
     ordered=[]
     for i in range(max(map(len,buckets.values()),default=0)):
         for language in sorted(buckets):
@@ -115,9 +118,11 @@ def _build(g,queue,families,frequencies,weights=None,max_starts=12,max_depth=2):
         groups,stats=collect(g,family,max_starts,max_depth);summary[family]=stats
         for k,x in groups.items():all_groups[(x['family'],*k)]=x
     task_index={}
+    relevant={s['relation_ref']['id'] for x in all_groups.values() for p in x['paths'].values() for s in p['steps']}
     for payload, in g.db.execute("SELECT payload FROM entities WHERE kind='ReviewTask' ORDER BY id"):
         task=json.loads(payload)
-        for target in task['body'].get('trigger_refs',[]):task_index.setdefault(target['id'],[]).append(ref(task))
+        for target in task['body'].get('trigger_refs',[]):
+            if target['id'] in relevant:task_index.setdefault(target['id'],[]).append(ref(task))
     claims={}
     for fam,lang,word,pos in all_groups:claims.setdefault((lang,word,pos),set()).add(fam)
     for family in families:
@@ -185,10 +190,36 @@ def reverse(g,frequencies,limit=20):
             for rid,src in g.db.execute('SELECT relation,src FROM arcs WHERE dst=? ORDER BY relation,src',(lid,)):
                 relation=g.get(rid)['body']
                 if relation['type_id'] not in {'derivation_direct','shared_base','compounding'} or relation['direction']['state']!='directed':continue
+                review=g.db.execute('SELECT status FROM reviews WHERE relation=?',(rid,)).fetchone()
+                if review and review[0]=='rejected':continue
                 result.append({'language':lang,'lemma':row['word'],'pos':g.get(lid)['body']['pos'],'sense_description':None,'lexeme_ref':ref(g.get(lid)),
-                  'proposed_base':ref(g.get(src)),'relation_ref':ref(g.get(rid)),'frequency':observation,'status':'hypothesis_only','creates_canonical_root':False,'establishes_membership':False})
+                  'proposed_base':ref(g.get(src)),'relation_ref':ref(g.get(rid)),'relation_type':relation['type_id'],'direction':relation['direction'],'frequency':observation,'status':'hypothesis_only','creates_canonical_root':False,'establishes_membership':False})
                 if len(result)>=limit:return result
     return result
+
+def enqueue_reverse(g,queue,frequencies,limit=20,weights=None):
+    """Persistent new-base questions; unassigned is a workflow label, never a root."""
+    hits=reverse(g,frequencies,limit);groups={}
+    for h in hits:
+        k=(h['language'],lookup(h['lemma']),h['pos'])
+        groups.setdefault(k,[]).append(h)
+    with queue.db:
+        queue.db.execute("DELETE FROM scopes WHERE scope='reverse:new_base'")
+        for k,items in sorted(groups.items(),key=lambda x:canonical(list(x[0]))):
+            h=items[0];lex={canonical(i['lexeme_ref']) for i in items};bases={canonical(i['proposed_base']) for i in items};relations={i['relation_ref']['id']:i['relation_ref'] for i in items}
+            evidence={canonical(ref(g.get(e))) for rid in relations for e, in g.db.execute('SELECT evidence FROM supports WHERE relation=? ORDER BY evidence',(rid,))}
+            ranks=[json.loads(i['frequency']['record_json']).get('rank') for i in items];ranks=[r for r in ranks if type(r)==int and r>0]
+            body={'family':'unassigned','language':h['language'],'lemma':h['lemma'],'pos':h['pos'],
+              'lexeme_alternatives':[json.loads(x) for x in sorted(lex)],'proposed_bases':[json.loads(x) for x in sorted(bases)],
+              'evidence_refs':[json.loads(x) for x in sorted(evidence)],'discovery_paths':[{k:i[k] for k in ['lexeme_ref','proposed_base','relation_ref','relation_type','direction']} for i in items],
+              'frequency_observations':[json.loads(x) for x in sorted({canonical(i['frequency']) for i in items})],
+              'sense_description':None,'sense_status':'unresolved','match_kind':'real_project_word_incoming_relation',
+              'uncertainty_reasons':['new_base_not_reviewed','sense_identity_unresolved'],'conflicts':{'family_assignment':'unassigned'},
+              'priority':priority({'frequency':max(0,6-int(math.log10(min(ranks)))) if ranks else 0,'uncertainty':2,'merge_risk':2,'independent_evidence':0,'model_impact':0,'calculation_impact':0},weights),
+              'priority_status':'experimental_reverse_source_independence_not_measured','group_key':sha(['reverse',h['language'],h['pos']]),
+              'creates_canonical_root':False,'allomorph_status':'no_new_allomorph_authorized'}
+            queue.upsert(body,'reverse:new_base')
+    return hits
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
@@ -204,10 +235,14 @@ if __name__=='__main__':
         if file_hash(a.frequencies)!=lock['frequencies_sha256']:raise ValueError('frequency selection checksum')
         f=json.loads(Path(a.frequencies).read_text());summary=build(g,q,a.families,f,json.loads(Path(a.weights).read_text()) if a.weights else None)
         q.export(out/'queue.ndjson');(out/'summary.json').write_text(canonical(summary)+'\n')
-        (out/'reverse.json').write_text(canonical(reverse(g,f))+'\n')
+        rq=Queue(str(a.queue)+'.reverse')
+        try:
+            hits=enqueue_reverse(g,rq,f,weights=json.loads(Path(a.weights).read_text()) if a.weights else None);rq.export(out/'reverse-queue.ndjson')
+            (out/'reverse.json').write_text(canonical(hits)+'\n')
+        finally:rq.close()
         manifest={'schema':'candidate-review-run/1','graph_manifest_sha256':file_hash(Path(a.snapshot)/'GRAPH-MANIFEST.json'),
           'frequencies_sha256':file_hash(a.frequencies),'frequency_lock_sha256':file_hash(a.frequency_lock),
           'families':a.families,'weights':json.loads(Path(a.weights).read_text()) if a.weights else DEFAULT_WEIGHTS,
-          'code_sha256':file_hash(__file__),'outputs':{n:file_hash(out/n) for n in ['queue.ndjson','summary.json','reverse.json']},'establishes_membership':False}
+          'code_sha256':file_hash(__file__),'outputs':{n:file_hash(out/n) for n in ['queue.ndjson','summary.json','reverse.json','reverse-queue.ndjson']},'establishes_membership':False}
         (out/'RUN-MANIFEST.json').write_text(canonical(manifest)+'\n')
     finally:q.close();g.close();tmp.cleanup()

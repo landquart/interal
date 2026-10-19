@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
-from search import Graph,Queue,build,collect,reverse,priority,DEFAULT_WEIGHTS,match_real_lexeme,lookup,canonical,sha,frequency_index
+from search import Graph,Queue,build,collect,reverse,priority,DEFAULT_WEIGHTS,match_real_lexeme,lookup,canonical,sha,frequency_index,enqueue_reverse
 from records import read_json
 from build_graph import load_registry,ingest
 
@@ -78,6 +78,25 @@ class SearchTests(unittest.TestCase):
         self.assertEqual(match_real_lexeme(self.g,lid,x['family'],'zz',x['lemma'])['kind'],'no_match')
         self.assertFalse(match_real_lexeme(self.g,lid,x['family'],x['language'],x['lemma']+'x',proposed=True)['establishes_membership'])
         self.assertNotEqual(lookup('ока'),lookup('oka'));self.assertEqual(lookup('e\u0301'),lookup('é'));self.assertNotEqual(lookup('é'),lookup('e'))
+    def test_actual_finite_allomorph_rule_does_not_generalize(self):
+        lid=self.g.db.execute("SELECT id FROM lexemes WHERE language='fr' AND search='régulier' ORDER BY id LIMIT 1").fetchone()[0]
+        result=match_real_lexeme(self.g,lid,'REGUL','fr','régul','lemma:c8d358461e538d46315e')
+        self.assertEqual(result['kind'],'allowed_allomorph');self.assertFalse(result['establishes_membership'])
+        self.assertNotEqual(match_real_lexeme(self.g,lid,'REGUL','fr','régul','lemma:test-only-wrong-scope')['kind'],'allowed_allomorph')
+    def test_reverse_queue_preserves_negative_history(self):
+        hits=enqueue_reverse(self.g,self.q,self.f);self.assertTrue(hits);rows=list(self.q.rows());self.assertTrue(rows)
+        cid=rows[0]['id'];self.q.decide(cid,'rejected','test reverse-base refusal','test reviewer')
+        enqueue_reverse(self.g,self.q,self.f)
+        self.assertEqual(next(x for x in self.q.rows() if x['id']==cid)['review_state'],'rejected')
+        self.assertTrue(all(x['family']=='unassigned' and not x['creates_canonical_root'] for x in self.q.rows()))
+    def test_no_accepted_review_state(self):
+        rows,_=self.seed()
+        with self.assertRaises(ValueError):self.q.decide(rows[0]['id'],'accepted','test','test')
+    def test_existing_pos_alternative_inherits_later_negative(self):
+        rows,_=self.seed();r=rows[0]
+        body=json.loads(self.q.db.execute('SELECT body FROM questions WHERE id=?',(r['id'],)).fetchone()[0]);body['pos']='test-other-pos';other,_=self.q.upsert(body,r['family'])
+        self.q.decide(r['id'],'rejected','test explicit refusal','test reviewer');self.q.upsert(body,r['family'])
+        self.assertEqual(next(x for x in self.q.rows() if x['id']==other)['review_state'],'rejected')
     def test_failed_build_rolls_back_scope_and_queue(self):
         self.seed();before=list(self.q.rows())
         with self.assertRaises(ValueError):build(self.g,self.q,self.families,self.f,{'bad':1})
