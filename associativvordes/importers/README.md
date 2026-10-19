@@ -1,5 +1,7 @@
 # Isolated morphology import (Prompt 03)
 
+Full GLeMM 2.0 replay (six complete languages, two independent builds and all-row audits) is verified: [completion report](../../audit/associative-external-preparation/13-GLEMM-COMPLETION.md). The attributed offline cache can be restored with `glemm_cache.py restore`; raw corpora remain outside Git.
+
 Run with Python 3.11+; standard library only. This directory is never imported by
 browser or family builders. It produces **unreviewed ImportRecords**, not the
 reviewed Lexeme/Relation/Verdict registry described by Prompt 02. Source lexical

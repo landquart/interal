@@ -1,0 +1,126 @@
+{
+  "all_six_pass": true,
+  "completed": 6,
+  "partitions": [
+    {
+      "all_original_bytes_and_fields_preserved": true,
+      "build_id": "6ca2e12e57aa87c696a8d8541dc63554d5162ebde3306c7b86385cbeb8b8424c",
+      "counts": {
+        "accepted": 178686,
+        "headers": 2,
+        "read": 178686
+      },
+      "independent_replay_identical": true,
+      "manifest_identical": true,
+      "outputs": {
+        "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "normalized-relations.ndjson": "8a0cd6a2aea0e882c69d6c58d27f6fc626ea084f3a65542a49d8b3a150fd2722",
+        "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "records.ndjson.gz": "93d9f2b1e4ee5e2cb6f4f06ea20a1b643d80be6c1bd3e1f98c21b367686960ce",
+        "relation-evidence.ndjson": "259f5f16f7fdaf4a1d0cdde55a2f2d34c86d132008fdfcd2dde586d1e5783757"
+      },
+      "partition": "glemm-deu-v1.0.2",
+      "status": "PASS"
+    },
+    {
+      "all_original_bytes_and_fields_preserved": true,
+      "build_id": "b7a21909c697df01d51277c78045788ba7e8d015b5912af8606ac5f16b61ea0c",
+      "counts": {
+        "accepted": 1050666,
+        "headers": 2,
+        "read": 1050666
+      },
+      "independent_replay_identical": true,
+      "manifest_identical": true,
+      "outputs": {
+        "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "normalized-relations.ndjson": "c68adb675f49972c625c6997b402de5bf3ac8755b58d2877ada2742e29796ce0",
+        "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "records.ndjson.gz": "7a23910aec478fec36bb933ca5ea4596398807e03e2b12a0b15ccf573cf5e6b6",
+        "relation-evidence.ndjson": "2eb8c2e4d03fbf2635ceee4c7369081cf89d957ffdd5216c6dfcd6f4fc3dd654"
+      },
+      "partition": "glemm-eng-v1.0.2",
+      "status": "PASS"
+    },
+    {
+      "all_original_bytes_and_fields_preserved": true,
+      "build_id": "1032ece3cb2b6d4939983f38d72a54edd03b8f64fb2c137dea8634cc8ea7bfde",
+      "counts": {
+        "accepted": 90079,
+        "headers": 2,
+        "read": 90079
+      },
+      "independent_replay_identical": true,
+      "manifest_identical": true,
+      "outputs": {
+        "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "normalized-relations.ndjson": "ff6c9a7ba8e5e8e05e33f7bbef2098655e64ad544f5491fb47ed386f5d19984a",
+        "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "records.ndjson.gz": "ec78aa4b35e1e4f5b970eefeb7648259a2187bc3009837a8bcf63e93276fce1d",
+        "relation-evidence.ndjson": "8beead65b4a554d93f1d735fbe36967af6a7188dc35b41b0c9ab88d0e3a0a845"
+      },
+      "partition": "glemm-esp-v1.0.2",
+      "status": "PASS"
+    },
+    {
+      "all_original_bytes_and_fields_preserved": true,
+      "build_id": "980beb954fe9d2ba772d376a097aaaa8db8fa784666829106468379bfe8beda3",
+      "counts": {
+        "accepted": 357869,
+        "headers": 2,
+        "read": 357869
+      },
+      "independent_replay_identical": true,
+      "manifest_identical": true,
+      "outputs": {
+        "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "normalized-relations.ndjson": "a7a4b982a6f8f07096e333696040691ea27c7f2390ebc7abbd4aeb3767ee2d56",
+        "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "records.ndjson.gz": "c556235fe77d50668316be7950670be056baba26fe2335328cea3f8645e9582c",
+        "relation-evidence.ndjson": "9740957b74d208219160732164d218561a124d15e6ac58733a8334065a5969fa"
+      },
+      "partition": "glemm-fra-v1.0.2",
+      "status": "PASS"
+    },
+    {
+      "all_original_bytes_and_fields_preserved": true,
+      "build_id": "c11b76c40e4047fb855d1f2e969e5e4c961e3760b2ba4c307864eb326ec3a8ee",
+      "counts": {
+        "accepted": 130969,
+        "headers": 2,
+        "read": 130969
+      },
+      "independent_replay_identical": true,
+      "manifest_identical": true,
+      "outputs": {
+        "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "normalized-relations.ndjson": "a0d591d13b816128bf2927d50742fdd4e5e2bcc92287e8a9afe6ddcb0ec0d75d",
+        "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "records.ndjson.gz": "e32fb469f95ff9f69587f7ac97ebf5ac852845eb123d7014696b7409dd73f98c",
+        "relation-evidence.ndjson": "b19d0e32c6df5e53e3c774ffaa4241e2b4e754f833eb18f9a74b72995f4d31e6"
+      },
+      "partition": "glemm-ita-v1.0.2",
+      "status": "PASS"
+    },
+    {
+      "all_original_bytes_and_fields_preserved": true,
+      "build_id": "ddd758305e0d665bb5ed27c8f15fa0177efba0e8bebf722cbfae760d3f605616",
+      "counts": {
+        "accepted": 994346,
+        "headers": 2,
+        "read": 994346
+      },
+      "independent_replay_identical": true,
+      "manifest_identical": true,
+      "outputs": {
+        "conflicts.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "normalized-relations.ndjson": "d87adf8a29645156021d20efe5ad7bd2f7e1cace972a31693c769afbd5fadd13",
+        "quarantine.ndjson": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "records.ndjson.gz": "fe839c62f9637ecb1d6b476ab99a56e385bebfc84bf59646b3ff3b9c6053a80d",
+        "relation-evidence.ndjson": "3f146d50c444d4149d304121980672f8ca46158fc59f0de84c769017fdafd1de"
+      },
+      "partition": "glemm-rus-v1.0.2",
+      "status": "PASS"
+    }
+  ]
+}
