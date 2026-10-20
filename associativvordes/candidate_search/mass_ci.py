@@ -77,6 +77,18 @@ def build(work):
     running=[];streams=[]
     try:
         for name,args in programs:
+            if name == 'index':
+                # The source index follows a checkpoint written by certification.
+                # Do not start it before that first atomic publication exists.
+                deadline=time.monotonic()+120
+                certification=next(p for n,p in running if n=='certify')
+                while not (work/'release/CHECKPOINT.json').exists():
+                    status=certification.poll()
+                    if status is not None:
+                        raise RuntimeError('certify exited before publishing a checkpoint: '+str(status))
+                    if time.monotonic()>=deadline:
+                        raise TimeoutError('certification checkpoint not published within 120 seconds')
+                    time.sleep(0.1)
             stream=(work/'logs'/(name+'.log')).open('w');streams.append(stream)
             running.append((name,subprocess.Popen([sys.executable,*map(str,args)],cwd=REPO,stdout=stream,stderr=subprocess.STDOUT)))
         while running:
