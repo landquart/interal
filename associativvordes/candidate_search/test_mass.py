@@ -3,12 +3,14 @@ import gzip
 import json
 from pathlib import Path
 import sqlite3
+import shutil
 import tempfile
 import unittest
+from unittest.mock import patch
 import zlib
 from mass_discovery import Discovery, path_kind
 from mass_registry import Graph, LANGUAGES, canonical, sha, local_content
-from mass_source import owner_key, checked
+from mass_source import owner_key, checked, prepare as prepare_auxiliary
 from mass_run import run, parser, dependency
 from mass_store import Store
 from mass_recover import rollback
@@ -193,6 +195,23 @@ class MassTests(unittest.TestCase):
         with self.inputs.aux.open('ab') as f:f.write(b'corruption')
         with self.assertRaisesRegex(ValueError,'integrity'):run(self.inputs.args(self.root/'run'))
 
+    def test_auxiliary_native_checkpoint_resumes_without_duplicate_arcs(self):
+        release=self.root/'release';snapshot=release/'snapshots/real/test-only-excerpts'
+        shutil.copytree(self.root/'snapshot',snapshot)
+        atomic_json(release/'CHECKPOINT.json',dict(status='PASS',catalog=dict(build_id='TEST-EXCERPTS-NOT-FULL-CORPUS'),
+            partitions=dict(real=dict(build_id='test-only-excerpts'))))
+        destination=self.root/'built-aux'
+        with patch('mass_source.verified',side_effect=RuntimeError('injected interruption after native transaction')):
+            with self.assertRaises(RuntimeError):
+                prepare_auxiliary(self.inputs.source,release,self.inputs.registry,LOCK,destination)
+        db=sqlite3.connect(destination/'aux.sqlite')
+        self.assertEqual(db.execute("SELECT COUNT(*) FROM progress WHERE name='native'").fetchone()[0],1)
+        initial=db.execute('SELECT COUNT(*) FROM incoming').fetchone()[0];db.close()
+        result=prepare_auxiliary(self.inputs.source,release,self.inputs.registry,LOCK,destination)
+        self.assertEqual(result['counts']['incoming'],initial)
+        again=prepare_auxiliary(self.inputs.source,release,self.inputs.registry,LOCK,destination)
+        self.assertTrue(again['reused']);self.assertEqual(result['database_sha256'],again['database_sha256'])
+
     def test_incremental_own_and_competing_family_dependencies(self):
         db=sqlite3.connect(self.inputs.registry)
         a=dependency(db,'family:ocul','en',['ocular']);b=dependency(db,'family:ped','en',[])
@@ -256,6 +275,7 @@ class MassTests(unittest.TestCase):
         self.assertEqual(path_kind([s('compounding')]),'compound')
         self.assertEqual(path_kind([s('direct_derivation'),s('compounding')]),'mixed path')
         self.assertEqual(path_kind([s('orthographic_variant','unknown')]),'orthographic variant')
+        self.assertEqual(path_kind([s('orthographic_variant')]),'orthographic variant')
         self.assertEqual(path_kind([s('direct_derivation'),s('conversion')]),'indirect derivation')
 
 

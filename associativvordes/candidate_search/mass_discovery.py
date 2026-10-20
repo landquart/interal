@@ -14,8 +14,9 @@ LANES = dict(direct=('direct_derivation', 'conversion'), compound=('compounding'
 
 def path_kind(steps):
     kinds = [s['type'] for s in steps]
+    if kinds == ['orthographic_variant']:return 'orthographic variant'
     if not steps or any(s['direction'] != 'directed' for s in steps):
-        return 'orthographic variant' if len(kinds) == 1 and kinds[0] == 'orthographic_variant' else 'unresolved'
+        return 'unresolved'
     if all(k in {'direct_derivation', 'conversion'} for k in kinds):
         return 'direct derivation' if len(kinds) == 1 else 'indirect derivation'
     if 'compounding' in kinds: return 'compound' if len(kinds) == 1 else 'mixed path'
@@ -64,10 +65,10 @@ class Discovery:
         def log(reason, **values):
             events.append(dict(reason=reason, **values)); counters[reason] += values.get('count', 1)
         def add(identifier, steps, anchor, reverse=False):
-            counters['candidate_observations'] += 1
             lex = self.source.lexeme(identifier)
             if lex['language'] != language:
                 log('cross_language_excluded', id=lex['id']); return False
+            counters['candidate_observations'] += 1
             word = lookup(lex['lemma']); key = (word, lex['pos'])
             guard = self.g.guard(family, language, word)
             item = groups.setdefault(key, dict(lemma=lex['lemma'], pos=lex['pos'], lexemes={}, paths={}, anchors={}, bases={}, guard=guard))
