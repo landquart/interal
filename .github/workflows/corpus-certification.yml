@@ -1,0 +1,30 @@
+name: Corpus certification regressions
+on:
+  pull_request:
+    paths:
+      - 'associativvordes/importers/**'
+      - 'associativvordes/candidate_search/**'
+      - '.github/workflows/corpus-certification.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'associativvordes/importers/**'
+      - 'associativvordes/candidate_search/**'
+      - '.github/workflows/corpus-certification.yml'
+permissions:
+  contents: read
+jobs:
+  regressions:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Real source excerpts, recovery, graph, queue and pilot controls
+        run: |
+          /usr/bin/python3 -m unittest discover -s associativvordes/importers -v
+          /usr/bin/python3 -m unittest discover -s associativvordes/evidence_graph -v
+          /usr/bin/python3 -m unittest discover -s associativvordes/candidate_search -v
+          /usr/bin/python3 -m unittest discover -s associativvordes/pilot_evaluation -v
+          /usr/bin/python3 audit/associative-external-preparation/verification08/verify.py --out "$RUNNER_TEMP/readiness"

@@ -64,6 +64,7 @@ class CertificationTests(unittest.TestCase):
             (self.snapshot/'quarantine.ndjson').write_text('{}')
             with self.assertRaisesRegex(ValueError,'corruption'):
                 index.ingest('real',self.snapshot,self.registry)
+            (self.snapshot/'quarantine.ndjson').write_bytes(b'')
             (self.snapshot/'records.ndjson.gz').unlink()
             with self.assertRaises(FileNotFoundError): verified(self.snapshot,'manifest.json')
         finally: index.close()
