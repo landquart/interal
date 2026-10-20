@@ -21,6 +21,8 @@ from morphology_import import hash_file, validate_lock
 from certify_corpus import atomic_json, audit_catalog
 from audit_scale_index import audit
 from fetch_sources import fetch
+from fetch_glemm_git import export as export_glemm
+from glemm_cache import LOCK as GLEMM_LOCK
 
 REPO = Path(__file__).resolve().parents[2]
 LOCK = REPO/'data/morphology-evidence/sources/source-lock.json'
@@ -46,8 +48,20 @@ def inputs(work):
         number,artifacts=pair
         subset=temporary/(str(number)+'.json')
         subset.write_text(json.dumps(dict(lock,artifacts=artifacts)))
-        fetch(subset,work/'raw')
-    with ThreadPoolExecutor(max_workers=6) as pool:list(pool.map(get,enumerate(groups)))
+        try:
+            fetch(subset,work/'raw')
+        except OSError as error:
+            if not all(a['source']=='GLeMM' for a in artifacts):raise
+            return str(error)
+    with ThreadPoolExecutor(max_workers=6) as pool:failures=[v for v in pool.map(get,enumerate(groups)) if v]
+    if failures:
+        # Transport fallback only; checksum/size failures are ValueError and never bypassed.
+        pinned=json.loads(GLEMM_LOCK.read_text())
+        signature=lambda values:sorted((a['id'],a['revision'],a['sha256'],a['bytes']) for a in values)
+        if signature(pinned['artifacts'])!=signature(a for a in lock['artifacts'] if a['source']=='GLeMM'):
+            raise ValueError('GLeMM Git/full-lock disagreement')
+        receipt=export_glemm(GLEMM_LOCK,work/'raw')
+        atomic_json(work/'receipts/GLEMM-GIT.json',dict(receipt,http_transport_failures=len(failures)))
     validate_lock(lock,work/'raw')
     atomic_json(work/'receipts/ACQUISITION.json',dict(status='PASS',files=len(lock['artifacts']),
         lock_sha256=hash_file(LOCK),artifacts=[dict(id=a['id'],sha256=a['sha256'],revision=a['revision'],url=a['url']) for a in lock['artifacts']],
