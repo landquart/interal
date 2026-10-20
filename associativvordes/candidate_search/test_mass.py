@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import zlib
-from mass_discovery import Discovery, path_kind
+from mass_discovery import Discovery, path_kind, negative_context
 from mass_registry import Graph, LANGUAGES, canonical, sha, local_content
 from mass_source import owner_key, checked, prepare as prepare_auxiliary
 from mass_run import run, parser, dependency
@@ -296,6 +296,22 @@ class MassTests(unittest.TestCase):
 
 
 class StoreTests(unittest.TestCase):
+    def test_review_history_and_pending_identity_are_not_negative_verdicts(self):
+        self.assertFalse(negative_context(dict(status='hold',blockers=[dict(status='pending')]),[]))
+        self.assertFalse(negative_context(dict(status='hold',manual_refs=[{}]),[]))
+        self.assertTrue(negative_context(dict(status='blocked',blockers=[dict(status='rejected')]),[]))
+        self.assertTrue(negative_context(dict(status='blocked',reasons=['family_runtime_prohibition']),[]))
+        with tempfile.TemporaryDirectory() as root:
+            root=Path(root);q=Store(root/'queue.sqlite')
+            body=dict(family='family:ocul',language='en',lemma='ocular',pos=None,categories=['IDENTITY_UNRESOLVED'],priority=dict(score=1))
+            q.save_unit('u','a',[body],[],{})
+            cid=q.db.execute('SELECT id FROM questions').fetchone()[0]
+            q.decide(cid,'reviewed','test completed review, no membership verdict','test reviewer')
+            q.export_selected(root/'export',['u'])
+            row=json.loads((root/'export/questions.ndjson').read_text())
+            self.assertTrue(row['previous_decisions']);self.assertNotIn('NEGATIVE_HISTORY',row['categories'])
+            q.close()
+
     def test_later_refusal_reconciles_existing_pos_without_source_discovery(self):
         with tempfile.TemporaryDirectory() as root:
             q=Store(Path(root)/'queue.sqlite')

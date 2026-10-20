@@ -78,7 +78,7 @@ class Store(Queue):
                     'SELECT sequence,state,reason,actor,basis FROM history WHERE candidate=? ORDER BY sequence',(cid,))]
                 scopes = [r[0] for r in self.db.execute('SELECT unit FROM active WHERE question=? ORDER BY unit',(cid,))]
                 cats = set(body['categories'])
-                if history or state in {'rejected','split_required'}: cats.add('NEGATIVE_HISTORY')
+                if state in {'rejected','split_required'} or any(h['state'] in {'rejected','split_required'} for h in history): cats.add('NEGATIVE_HISTORY')
                 body.update(review_state=state,previous_decisions=history,evidence_changed_since_review=bool(changed),
                             active_scopes=scopes,input_fingerprint=fp,categories=sorted(cats),
                             review_rank_policy='new/deferred, reviewed, rejected/split; heuristic priority then stable ID')

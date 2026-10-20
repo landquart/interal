@@ -12,6 +12,13 @@ LANES = dict(direct=('direct_derivation', 'conversion'), compound=('compounding'
              orthographic=('orthographic_variant',), uncertain=('morphological_relatedness','univerbisation','source_extension'))
 
 
+def negative_context(guard, prior):
+    negative={'rejected','excluded','split_required','blocked_from_runtime'}
+    return ('family_runtime_prohibition' in guard.get('reasons',[]) or
+            any(b.get('status') in negative for b in guard.get('blockers',[])) or
+            any(p.get('status') in negative for p in prior))
+
+
 def path_kind(steps):
     kinds = [s['type'] for s in steps]
     if kinds == ['orthographic_variant']:return 'orthographic variant'
@@ -187,7 +194,7 @@ class Discovery:
             categories = ['EXISTING_MEMBER_AUDIT' if any(k['family']==family for k in known) else 'NEW_MEMBER', 'IDENTITY_UNRESOLVED']
             if item['bases']: categories.append('POSSIBLE_BASE')
             if competing or len(item['lexemes']) > 1: categories.append('CONFLICT')
-            if item['guard']['status'] in {'blocked','hold'} or any(p['status'] in {'rejected','excluded','split_required','blocked_from_runtime'} for p in prior): categories.append('NEGATIVE_HISTORY')
+            if negative_context(item['guard'],prior): categories.append('NEGATIVE_HISTORY')
             if not directed: categories.append('LOW_EVIDENCE')
             frequency = self.frequency(language,word)
             if frequency['omitted']: log('frequency_budget', word=word, count=frequency['omitted'])
