@@ -9,6 +9,7 @@ import argparse
 from collections import deque
 import fcntl
 import gzip
+import hashlib
 import json
 from pathlib import Path
 import resource
@@ -29,10 +30,14 @@ class Index:
         self.path=Path(path).resolve()
         if self.path.is_relative_to(ROOT): raise ValueError('index must be outside checkout')
         self.path.parent.mkdir(parents=True,exist_ok=True)
+        receipt=self.path.parent/'INDEX.json'
+        if receipt.exists() and json.loads(receipt.read_text())['database_sha256']!=hash_file(self.path):
+            raise ValueError('completed index checksum mismatch')
         self.db=sqlite3.connect(self.path)
         self.db.executescript('''PRAGMA cache_size=-8192; PRAGMA temp_store=FILE; PRAGMA synchronous=FULL;
           CREATE TABLE IF NOT EXISTS partitions(name TEXT PRIMARY KEY,identity TEXT,progress INTEGER,complete INTEGER,inflections INTEGER);
           CREATE TABLE IF NOT EXISTS records(seq INTEGER PRIMARY KEY,eid BLOB UNIQUE,body BLOB);
+          CREATE TABLE IF NOT EXISTS record_checksums(seq INTEGER PRIMARY KEY,sha BLOB);
           CREATE TABLE IF NOT EXISTS lexemes(id BLOB PRIMARY KEY,language TEXT,search TEXT,pos TEXT,fingerprint TEXT,seq INTEGER);
           CREATE INDEX IF NOT EXISTS lexical_lookup ON lexemes(language,search,id);
           CREATE TABLE IF NOT EXISTS arcs(src BLOB,dst BLOB,seq INTEGER,ordinal INTEGER,slot INTEGER,type TEXT,direction TEXT,
@@ -60,8 +65,10 @@ class Index:
                         if n['claims'] or n['inflection']['derivational_model']: raise ValueError('inflection contamination')
                         inflections+=1
                     else:
-                        cursor=self.db.execute('INSERT INTO records(eid,body) VALUES(?,?)',(bid(row['id']),zlib.compress(raw,1)))
+                        packed=zlib.compress(raw,1)
+                        cursor=self.db.execute('INSERT INTO records(eid,body) VALUES(?,?)',(bid(row['id']),packed))
                         seq=cursor.lastrowid
+                        self.db.execute('INSERT INTO record_checksums VALUES(?,?)',(seq,hashlib.sha256(packed).digest()))
                         for lex in n['lexemes']:
                             lid=bid(lex['id']); fingerprint=digest(lex)
                             prior=self.db.execute('SELECT fingerprint FROM lexemes WHERE id=?',(lid,)).fetchone()
@@ -100,9 +107,12 @@ class Index:
                 'truncated':len(rows)>limit,'identity_established':False}
 
     def record(self,seq):
-        row=self.db.execute('SELECT body FROM records WHERE seq=?',(seq,)).fetchone()
+        row=self.db.execute('SELECT r.body,c.sha,r.eid FROM records r JOIN record_checksums c ON c.seq=r.seq WHERE r.seq=?',(seq,)).fetchone()
         if not row: raise KeyError(seq)
-        return json.loads(zlib.decompress(row[0]))
+        if hashlib.sha256(row[0]).digest()!=row[1]: raise ValueError('record payload checksum mismatch')
+        value=json.loads(zlib.decompress(row[0]))
+        if bid(value['id'])!=row[2]: raise ValueError('record identity mismatch')
+        return value
 
     def paths(self,start,max_depth=2,max_paths=20,max_expansions=300):
         if not 1<=max_depth<=3 or not 1<=max_paths<=100 or not 1<=max_expansions<=10000: raise ValueError('bounded traversal required')

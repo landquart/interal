@@ -2,12 +2,14 @@ import contextlib
 import gzip
 import io
 import json
+import shutil
 from pathlib import Path
 import tempfile
 import unittest
 from morphology_import import run, digest, hash_file
 from certify_corpus import atomic_json, verified, publish
 from scale_index import Index
+from corpus_cache import pack, restore
 
 HERE=Path(__file__).parent
 
@@ -55,6 +57,25 @@ class CertificationTests(unittest.TestCase):
                 for path in result['paths']:
                     self.assertTrue(all(s['direction']=='directed' for s in path['steps']))
             with self.assertRaisesRegex(ValueError,'bounded'): index.exact('en','word',100000)
+        finally: index.close()
+
+    def test_cache_roundtrip_preserves_real_pinned_excerpts(self):
+        archive=self.root/'sources.zip'
+        raw=self.root/'raw'; shutil.copytree(HERE/'fixtures',raw)
+        receipt=pack(raw,archive,HERE/'fixtures/source-lock.json')
+        self.assertEqual(receipt['status'],'PASS')
+        restored=self.root/'restored'
+        restore(archive,restored,HERE/'fixtures/source-lock.json')
+        for artifact in self.registry['artifacts']:
+            self.assertEqual(hash_file(restored/artifact['path']),artifact['sha256'])
+
+    def test_index_payload_corruption_is_detected(self):
+        index=Index(self.root/'index.sqlite')
+        try:
+            index.ingest('real',self.snapshot,self.registry)
+            seq=index.db.execute('SELECT MIN(seq) FROM records').fetchone()[0]
+            index.db.execute('UPDATE records SET body=? WHERE seq=?',(b'damaged',seq)); index.db.commit()
+            with self.assertRaisesRegex(ValueError,'payload checksum'): index.record(seq)
         finally: index.close()
 
     def test_corrupt_and_missing_inputs_fail(self):
