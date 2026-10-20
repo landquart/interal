@@ -1,5 +1,6 @@
 """Read-only disk source graph and resumable bounded-owner auxiliary projection."""
 import argparse
+import fcntl
 from functools import lru_cache
 import gzip
 import json
@@ -47,10 +48,19 @@ class Source(Index):
 
 
 def owner_key(registry):
-    return sha(list(registry.execute('SELECT DISTINCT language,word FROM seeds ORDER BY language,word')))
+    return sha([list(r) for r in registry.execute('SELECT DISTINCT language,word FROM seeds ORDER BY language,word')])
 
 
 def prepare(index, release, registry, source_lock, destination):
+    destination=Path(destination).resolve()
+    if destination.is_relative_to(Path(__file__).resolve().parents[2]): raise ValueError('external auxiliary projection required')
+    destination.mkdir(parents=True,exist_ok=True)
+    with open(destination/'.prepare-lock','a') as lock:
+        fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+        return _prepare(index,release,registry,source_lock,destination)
+
+
+def _prepare(index, release, registry, source_lock, destination):
     index, release, destination = Path(index), Path(release), Path(destination)
     repo = Path(__file__).resolve().parents[2]
     if destination.resolve().is_relative_to(repo): raise ValueError('external auxiliary projection required')

@@ -78,7 +78,7 @@ def _run(a, output, queue_path):
         code[relative] = hash_file(Path(__file__).resolve().parents[1]/relative)
     common = dict(code=code,source=source_receipt['database_sha256'],catalog=source_receipt['catalog_build_id'],
                   lock=hash_file(a.source_lock),project=project_receipt['database_sha256'],limits=limits,
-                  aux_policy=ai['policy'],aux_owners=ai['owners'])
+                  aux_policy=ai['policy'])
     identity = dict(common,registry=registry_receipt['database_sha256'],aux=aux_receipt['database_sha256'],families=families,languages=languages)
     engine = Discovery(index_path,registry_path,aux_path,project_path,lock,limits,verify=False)
     queue = Store(queue_path)

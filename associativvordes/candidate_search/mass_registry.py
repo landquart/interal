@@ -1,6 +1,7 @@
 """All actual v6 families; verified pinned inputs, no family creation."""
 import argparse
 import gzip
+from functools import lru_cache
 import hashlib
 import json
 from pathlib import Path
@@ -62,11 +63,9 @@ def prepare(repo, destination, legacy_revision, revision=COMMIT):
     for f in snapshot['catalog']['families']:
         for fid in [f['id'], *f.get('legacy_ids', [])]: targets[fid] = f['id']
     if 'family:ped' in targets: targets['family:pede'] = 'family:ped'
-    cache = {}
+    @lru_cache(maxsize=1)
     def old(relative):
-        if relative not in cache:
-            cache[relative] = read('associativvordes/family-index-v5/' + relative, legacy_revision)
-        return cache[relative]
+        return read('associativvordes/family-index-v5/' + relative, legacy_revision)
     for fid, target in sorted(targets.items()):
         f = old('families/' + bucket(fid) + '.json.gz').get(fid)
         if not f: continue

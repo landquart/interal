@@ -9,7 +9,7 @@ from mass_registry import Graph, canonical, sha, lookup
 DEFAULTS = dict(seeds_per_role=4, native_per_source=2, arcs_per_class=8,
                 max_depth=2, paths_per_class=12, frequency_observations=4, inflections=8)
 LANES = dict(direct=('direct_derivation', 'conversion'), compound=('compounding',),
-             orthographic=('orthographic_variant',), uncertain=('morphological_relatedness',))
+             orthographic=('orthographic_variant',), uncertain=('morphological_relatedness','univerbisation','source_extension'))
 
 
 def path_kind(steps):
@@ -30,7 +30,7 @@ class Discovery:
         self.artifacts = {a['id']: a for a in source_lock['artifacts']}
         self.sources = sorted({a['source'] for a in self.artifacts.values()})
         self.limits = dict(DEFAULTS, **(limits or {}))
-        if set(self.limits) != set(DEFAULTS) or any(type(v) != int or not 1 <= v <= 100 for v in self.limits.values()):
+        if set(self.limits) != set(DEFAULTS) or any(type(v) != int or not 1 <= v <= DEFAULTS[k] for k,v in self.limits.items()):
             raise ValueError('invalid bounded discovery limits')
         if self.limits['max_depth'] > 3: raise ValueError('maximum native chain depth is three')
 
@@ -64,6 +64,7 @@ class Discovery:
         def log(reason, **values):
             events.append(dict(reason=reason, **values)); counters[reason] += values.get('count', 1)
         def add(identifier, steps, anchor, reverse=False):
+            counters['candidate_observations'] += 1
             lex = self.source.lexeme(identifier)
             if lex['language'] != language:
                 log('cross_language_excluded', id=lex['id']); return False
@@ -153,6 +154,7 @@ class Discovery:
             rows = self.aux.execute('SELECT body FROM inflections WHERE language=? AND owner=? ORDER BY eid LIMIT ?', (language, word, limits['inflections'])).fetchall()
             if count > len(rows): log('inflection_budget', seed=seed, count=count-len(rows))
             for raw, in rows:
+                counters['candidate_observations'] += 1
                 row = json.loads(raw); b = row['body']; lex = b['normalized']['lexemes'][0]; key=(word, lex['pos'])
                 item = groups.setdefault(key, dict(lemma=lex['lemma'], pos=lex['pos'], lexemes={}, paths={}, anchors={}, bases={}, guard=self.g.guard(family, language, word)))
                 item['lexemes'][lex['id']] = lex
@@ -161,7 +163,7 @@ class Discovery:
                     url=self.artifacts[b['artifact']]['url'], raw_locator=b['raw_locator'], category='inflection', observation=b['normalized']['inflection'])
                 counters['inflections_selected'] += 1
         questions = []
-        for (word, pos), item in sorted(groups.items(), key=lambda p: canonical(p[0])):
+        for (word, pos), item in sorted(groups.items(), key=lambda p: canonical(list(p[0]))):
             known = [dict(family=f, lemma_id=l, head_id=h, ref=json.loads(p)) for f,l,h,p in self.registry.execute(
                 'SELECT family,lemma,head,proof FROM known WHERE language=? AND word=? ORDER BY family,lemma,head', (language,word))]
             prior = [dict(family=f,status=s,proof=json.loads(p),reason=r) for f,s,p,r in self.registry.execute(
@@ -170,6 +172,16 @@ class Discovery:
             directed = [p for p in paths if p['category'] in {'direct derivation','indirect derivation','compound','mixed path'}]
             competing = sorted({v['family'] for v in known} - {family})
             sources = sorted({s['evidence']['source'] for p in paths for s in p['steps']})
+            allomorphs=[]
+            for rule,proof in self.registry.execute("SELECT e.body,e.proof FROM context_links c JOIN existing e ON e.id=c.dst WHERE c.type='scoped_allomorph' AND c.src=? ORDER BY e.id",(family,)):
+                rule=json.loads(rule)
+                if rule.get('language') != language: continue
+                matching=sorted({k['lemma_id'] for k in known if k['family']==family} & set(rule.get('finite_scope_lemma_ids',[])))
+                allomorphs.append(dict(rule_ref=json.loads(proof),status=rule.get('status'),
+                    realization=rule.get('realization'),finite_existing_lemma_ids=matching,
+                    applicable_to_external_lexeme=False,reason='external lexeme/sense identity unresolved; finite scope cannot be extended'))
+            stems=[dict(stem=s['evidence']['claim']['parameters']['stem'],evidence_id=s['evidence']['id'])
+                   for p in paths for s in p['steps'] if s['evidence'].get('claim',{}).get('parameters',{}).get('stem')]
             categories = ['EXISTING_MEMBER_AUDIT' if any(k['family']==family for k in known) else 'NEW_MEMBER', 'IDENTITY_UNRESOLVED']
             if item['bases']: categories.append('POSSIBLE_BASE')
             if competing or len(item['lexemes']) > 1: categories.append('CONFLICT')
@@ -182,7 +194,7 @@ class Discovery:
                               distinct_sources=len(sources), independence_bonus=0, merge_risk=2+int(bool(competing)),
                               prior_history=2*int('NEGATIVE_HISTORY' in categories), frequency=max(0,6-int(math.log10(rank))) if rank else 0)
             questions.append(dict(family=family,language=language,lemma=item['lemma'],pos=pos,categories=sorted(categories),
-                lexical_alternatives=[item['lexemes'][k] for k in sorted(item['lexemes'])],
+                lexeme_alternatives=[item['lexemes'][k] for k in sorted(item['lexemes'])],
                 anchors=[item['anchors'][k] for k in sorted(item['anchors'])],discovery_paths=paths,
                 inflection_observations=[item.get('inflections',{})[k] for k in sorted(item.get('inflections',{}))],
                 proposed_bases=[item['bases'][k] for k in sorted(item['bases'])], existing_memberships=known,
@@ -193,5 +205,11 @@ class Discovery:
                 sense_status='unresolved',pos_status='source_assertion_unverified' if pos else 'unknown',
                 grouping='same_language_spelling_and_pos_not_lexeme_or_sense_identity',
                 allomorph_status='finite_registry_realizations_only_no_new_rule',creates_canonical_root=False,establishes_membership=False))
+            questions[-1].update(allomorph_checks=allomorphs,native_stem_observations=stems)
+            evidence={canonical(s['evidence']) for p in paths for s in p['steps']}
+            evidence.update(canonical(a['evidence']) for a in item['anchors'].values() if 'evidence' in a)
+            questions[-1]['evidence_refs']=[json.loads(v) for v in sorted(evidence)]
+            questions[-1]['relation_types']=sorted({p['category'] for p in paths}|({'inflection'} if item.get('inflections') else set()))
         counters['questions'] = len(questions); counters['discovery_events'] = len(events)
+        counters['grouped_duplicate_observations'] = counters['candidate_observations']-len(questions)
         return questions, events, dict(counters)

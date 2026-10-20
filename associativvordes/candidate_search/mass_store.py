@@ -19,11 +19,15 @@ class Store(Queue):
         import sqlite3
         old = sqlite3.connect(Path(path).resolve().as_uri()+'?mode=ro', uri=True)
         try:
+            old.execute('BEGIN')
             with self.db:
                 for row in old.execute('SELECT * FROM questions ORDER BY id'):
                     current = self.db.execute('SELECT state FROM questions WHERE id=?', (row[0],)).fetchone()
                     if not current: self.db.execute('INSERT INTO questions VALUES(?,?,?,?,?)',row)
-                    else: self.db.execute('UPDATE questions SET state=? WHERE id=?',(row[3],row[0]))
+                    else:
+                        local_n=self.db.execute('SELECT COALESCE(MAX(sequence),0) FROM history WHERE candidate=?',(row[0],)).fetchone()[0]
+                        old_n=old.execute('SELECT COALESCE(MAX(sequence),0) FROM history WHERE candidate=?',(row[0],)).fetchone()[0]
+                        if old_n >= local_n: self.db.execute('UPDATE questions SET state=? WHERE id=?',(row[3],row[0]))
                 for row in old.execute('SELECT * FROM history ORDER BY candidate,sequence'):
                     current = self.db.execute('SELECT * FROM history WHERE candidate=? AND sequence=?',row[:2]).fetchone()
                     if current and current != row: raise ValueError('review history sequence conflict')
@@ -36,6 +40,13 @@ class Store(Queue):
             self.db.execute('DELETE FROM scopes WHERE scope=?',(unit,))
             self.db.execute('DELETE FROM discovery_log WHERE unit=?',(unit,))
             for i, body in enumerate(questions):
+                context=[]
+                for other_id,payload,state in self.db.execute("SELECT id,body,state FROM questions WHERE state!='open' AND json_extract(body,'$.language')=? AND json_extract(body,'$.family')='unassigned' ORDER BY id",(body['language'],)):
+                    other=json.loads(payload)
+                    if lookup(other['lemma'])==lookup(body['lemma']):
+                        history=[list(r) for r in self.db.execute('SELECT sequence,state,reason,actor,basis FROM history WHERE candidate=? ORDER BY sequence',(other_id,))]
+                        context.append(dict(id=other_id,state=state,history=history,scope='unassigned_prior_base_question',identity='same_spelling_only'))
+                body=dict(body,prior_unassigned_questions=context)
                 cid, _ = self.upsert(body,unit)
                 prior = body.get('guard',{}).get('blockers',[])
                 self.scoped_context(cid,prior)
