@@ -7,7 +7,7 @@ import tempfile
 import unittest
 import zlib
 from scale_project import build
-from project_store import verified_project
+from project_store import verified_project, resume_project
 from scale_index import Index
 from morphology_import import hash_file
 from benchmark_scale import benchmark
@@ -41,6 +41,10 @@ class ProjectScaleTests(unittest.TestCase):
             reused=build(repo,revision,output); self.assertEqual(reused['processed_shards'],0)
             with open(output/'project.sqlite','ab') as stream: stream.write(b'tampered index')
             with self.assertRaisesRegex(ValueError,'index checksum mismatch'): verified_project(output/'project.sqlite')
+            receipt_before=(output/'PROJECT.json').read_bytes()
+            with self.assertRaisesRegex(ValueError,'index checksum mismatch'):
+                resume_project(repo,revision,output)
+            self.assertEqual(receipt_before,(output/'PROJECT.json').read_bytes())
             member.write_bytes(b'damaged')
             with self.assertRaisesRegex(ValueError,'checksum mismatch'): build(repo,revision,output)
 
