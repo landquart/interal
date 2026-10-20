@@ -15,11 +15,10 @@ jobs:
   full:
     runs-on: ubuntu-24.04
     timeout-minutes: 180
-    env:
-      MASS_WORK: ${{ runner.temp }}/mass02
     steps:
       - name: Prepare disposable runner disk
         run: |
+          echo "MASS_WORK=$RUNNER_TEMP/mass02" >> "$GITHUB_ENV"
           if [ "$RUNNER_ENVIRONMENT" = github-hosted ]; then
             sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL
             sudo docker image prune --all --force
