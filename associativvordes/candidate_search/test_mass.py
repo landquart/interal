@@ -198,12 +198,12 @@ class MassTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'integrity'):run(self.inputs.args(self.root/'run'))
 
     def test_auxiliary_native_checkpoint_resumes_without_duplicate_arcs(self):
-        release=self.root/'release';snapshot=release/'snapshots/real/test-only-excerpts'
+        release=self.root/'release';snapshot=release/'snapshots/REAL-EXCERPTS-TEST-ONLY/test-only-excerpts'
         shutil.copytree(self.root/'snapshot',snapshot)
         atomic_json(release/'CHECKPOINT.json',dict(status='PASS',catalog=dict(build_id='TEST-EXCERPTS-NOT-FULL-CORPUS'),
-            partitions=dict(real=dict(build_id='test-only-excerpts'))))
+            partitions={'REAL-EXCERPTS-TEST-ONLY':dict(build_id='test-only-excerpts',manifest_sha256=hash_file(snapshot/'manifest.json'))}))
         destination=self.root/'built-aux'
-        with patch('mass_source.verified',side_effect=RuntimeError('injected interruption after native transaction')):
+        with patch('mass_source.gzip.open',side_effect=RuntimeError('injected interruption after native transaction')):
             with self.assertRaises(RuntimeError):
                 prepare_auxiliary(self.inputs.source,release,self.inputs.registry,LOCK,destination)
         db=sqlite3.connect(destination/'aux.sqlite')
@@ -217,6 +217,37 @@ class MassTests(unittest.TestCase):
                  '--registry',str(self.inputs.registry),'--source-lock',str(LOCK),'--destination',str(destination)]
         result=subprocess.run(command,check=True,capture_output=True,text=True)
         self.assertEqual(json.loads(result.stdout)['status'],'PASS')
+
+    def test_same_catalog_different_partition_manifest_is_rejected(self):
+        release=self.root/'release'
+        snapshot=release/'snapshots/REAL-EXCERPTS-TEST-ONLY/test-only-excerpts'
+        shutil.copytree(self.root/'snapshot',snapshot)
+        manifest=json.loads((snapshot/'manifest.json').read_text())
+        manifest['test_only_provenance_delta']='different staging release, identical normalized catalog'
+        atomic_json(snapshot/'manifest.json',manifest)
+        atomic_json(release/'CHECKPOINT.json',dict(status='PASS',
+            catalog=dict(build_id='TEST-EXCERPTS-NOT-FULL-CORPUS'),
+            partitions={'REAL-EXCERPTS-TEST-ONLY':dict(build_id='test-only-excerpts',
+                manifest_sha256=hash_file(snapshot/'manifest.json'))}))
+        with self.assertRaisesRegex(ValueError,'source partition identity mismatch'):
+            prepare_auxiliary(self.inputs.source,release,self.inputs.registry,LOCK,self.root/'bad-aux')
+        self.assertFalse((self.root/'bad-aux/aux.sqlite').exists())
+
+    def test_negative_head_without_exact_word_guard_is_not_expanded(self):
+        self.inputs.seed('family:ocul','es','ocular')
+        db=sqlite3.connect(self.inputs.registry)
+        db.execute("UPDATE seeds SET role='negative' WHERE family='family:ocul' AND language='es'")
+        db.commit();db.close();self.inputs.receipts()
+        engine=self.inputs.engine()
+        try:
+            self.assertNotIn(engine.g.guard('family:ocul','es','ocular')['status'],{'blocked','hold'})
+            questions,events,_=engine.unit('family:ocul','es')
+        finally:engine.close()
+        words={q['lemma'] for q in questions}
+        self.assertIn('ocular',words)
+        self.assertNotIn('inocular',words)
+        self.assertNotIn('inoculador',words)
+        self.assertTrue(any(e['reason']=='negative_seed_not_expanded' for e in events))
 
     def test_incremental_own_and_competing_family_dependencies(self):
         db=sqlite3.connect(self.inputs.registry)

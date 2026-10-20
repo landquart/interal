@@ -99,7 +99,7 @@ class Discovery:
         counters['available_seeds'] = sum(map(len, seeds.values())); counters['selected_seeds'] = len(selected)
         for seed in selected:
             word = seed['word']; counters['exact_lookups'] += 1
-            blocked = self.g.guard(family, language, word)['status'] in {'blocked', 'hold'}
+            blocked = seed['role'] == 'negative' or self.g.guard(family, language, word)['status'] in {'blocked', 'hold'}
             # Native IDs from every source receive an independent lookup budget.
             for source in self.sources:
                 # Native lookup is indexed first; a small range inventory locates source provenance.

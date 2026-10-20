@@ -11,6 +11,7 @@ import sqlite3
 import time
 import zlib
 from mass_registry import canonical, sha, file_hash
+import scale_index
 from scale_index import Index, bid
 from certify_corpus import verified, atomic_json
 
@@ -71,6 +72,23 @@ def _prepare(index, release, registry, source_lock, destination):
     if state['status'] != 'PASS' or state['catalog']['build_id'] != index_receipt['catalog_build_id']:
         raise ValueError('certified source/catalog identity mismatch')
     lock = json.loads(Path(source_lock).read_text())
+    # The normalized catalog ID alone does not identify staging provenance.
+    # Bind every verified manifest to the identity actually ingested by Index.
+    source_db = readonly(index)
+    try:
+        indexed = {name: (identity, progress, complete) for name, identity, progress, complete
+                   in source_db.execute('SELECT name,identity,progress,complete FROM partitions')}
+        if set(indexed) != set(state['partitions']):
+            raise ValueError('source partition coverage mismatch')
+        for name, part in sorted(state['partitions'].items()):
+            snapshot = release / 'snapshots' / name / part['build_id']
+            manifest = verified(snapshot, 'manifest.json', part['manifest_sha256'])
+            expected = scale_index.digest([file_hash(snapshot / 'manifest.json'), scale_index.digest(lock), file_hash(scale_index.__file__)])
+            actual, progress, complete = indexed[name]
+            if actual != expected or complete != 1 or progress != sum(r['accepted'] for r in manifest['reports']):
+                raise ValueError('source partition identity mismatch: ' + name)
+    finally:
+        source_db.close()
     artifacts = {a['id']: a for a in lock['artifacts']}
     reg = readonly(registry)
     owners = set(reg.execute('SELECT DISTINCT language,word FROM seeds'))
