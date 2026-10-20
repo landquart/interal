@@ -22,7 +22,7 @@ from certify_corpus import atomic_json, audit_catalog
 from audit_scale_index import audit
 from fetch_sources import fetch
 from fetch_glemm_git import export as export_glemm
-from glemm_cache import LOCK as GLEMM_LOCK
+from glemm_cache import LOCK as GLEMM_LOCK, restore as restore_glemm
 
 REPO = Path(__file__).resolve().parents[2]
 LOCK = REPO/'data/morphology-evidence/sources/source-lock.json'
@@ -39,8 +39,16 @@ def command(work, name, arguments):
     return path
 
 
-def inputs(work):
+def inputs(work, glemm_cache=None):
     lock=json.loads(LOCK.read_text())
+    if glemm_cache is not None:
+        pinned=json.loads(GLEMM_LOCK.read_text())
+        signature=lambda values:sorted((a['id'],a['revision'],a['sha256'],a['bytes']) for a in values)
+        if signature(pinned['artifacts'])!=signature(a for a in lock['artifacts'] if a['source']=='GLeMM'):
+            raise ValueError('GLeMM cache/full-lock disagreement')
+        receipt=restore_glemm(glemm_cache,work/'raw')
+        atomic_json(work/'receipts/GLEMM-CACHE.json',dict(receipt,
+            archive_sha256=hash_file(glemm_cache),archive_bytes=Path(glemm_cache).stat().st_size))
     groups=[[a] for a in lock['artifacts'] if not a.get('container')]
     groups.append([a for a in lock['artifacts'] if a.get('container')])
     temporary=work/'acquisition';temporary.mkdir(parents=True,exist_ok=True)
@@ -213,9 +221,12 @@ def collect(work):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--work',required=True,type=Path)
     parser.add_argument('--phase',required=True,choices=['inputs','build','verify','collect'])
+    parser.add_argument('--glemm-cache',type=Path,help='optional attributed cache verified against the existing GLeMM lock')
     args=parser.parse_args();work=args.work.resolve()
     if work.is_relative_to(REPO):raise ValueError('external runner storage required')
     work.mkdir(parents=True,exist_ok=True);(work/'receipts').mkdir(exist_ok=True);(work/'logs').mkdir(exist_ok=True)
     if args.phase=='inputs' and shutil.disk_usage(work).free < 32*1024**3:
         raise ValueError('at least 32 GiB free disk required for full source/project indexes and staging')
-    globals()[args.phase](work)
+    if args.glemm_cache and args.phase!='inputs':parser.error('--glemm-cache is only valid for the inputs phase')
+    if args.phase=='inputs':inputs(work,args.glemm_cache)
+    else:globals()[args.phase](work)
