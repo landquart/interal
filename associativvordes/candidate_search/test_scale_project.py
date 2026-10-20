@@ -8,6 +8,9 @@ import unittest
 import zlib
 from scale_project import build
 from project_store import verified_project
+from scale_index import Index
+from morphology_import import hash_file
+from benchmark_scale import benchmark
 
 
 class ProjectScaleTests(unittest.TestCase):
@@ -40,6 +43,45 @@ class ProjectScaleTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError,'index checksum mismatch'): verified_project(output/'project.sqlite')
             member.write_bytes(b'damaged')
             with self.assertRaisesRegex(ValueError,'checksum mismatch'): build(repo,revision,output)
+
+    def test_benchmark_real_internet_derivative_and_frequency_queue_replay(self):
+        here=Path(__file__).parent
+        fixture=json.loads((here/'fixtures/frequencies.json').read_text())[0]
+        row=json.loads(fixture['record_json']); family=fixture['locators'][0]['family_key']
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory); repo=root/'repo'; repo.mkdir()
+            prefix=repo/'associativvordes/family-index-v5'
+            family_file=prefix/'families/00.json.gz'; family_file.parent.mkdir(parents=True)
+            family_file.write_bytes(gzip.compress(json.dumps({family:{'id':family}}).encode(),mtime=0))
+            member=prefix/'members'/fixture['language']/'00.json.gz'; member.parent.mkdir(parents=True)
+            member.write_bytes(gzip.compress(json.dumps({family:[row]}).encode(),mtime=0))
+            def git(*args): return subprocess.check_output(['git',*args],cwd=repo,stderr=subprocess.DEVNULL,text=True).strip()
+            git('init'); git('add','.'); git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','-m','Real frequency excerpt')
+            project=root/'project'; build(repo,git('rev-parse','HEAD'),project)
+            snapshot=root/'snapshot'; snapshot.mkdir()
+            records=(here/'fixtures/records.ndjson').read_bytes()
+            data=snapshot/'records.ndjson.gz'; data.write_bytes(gzip.compress(records,mtime=0))
+            (snapshot/'manifest.json').write_text(json.dumps({'outputs':{'records.ndjson.gz':hash_file(data)},
+                'reports':[{'accepted':len(records.splitlines())}]}))
+            registry=json.loads((here.parents[1]/'data/morphology-evidence/sources/source-lock.json').read_text())
+            source=root/'source.sqlite'; index=Index(source)
+            try: index.ingest('real-candidate-excerpts',snapshot,registry)
+            finally: index.close()
+            out=root/'benchmark'
+            first=benchmark(source,project/'project.sqlite',out)
+            self.assertEqual(first['status'],'PASS')
+            self.assertEqual(first['bounded_paths_and_queue']['history_retained'],'PASS')
+            self.assertTrue(all(s['frequency_payloads_read']==1 for s in first['payload_stages']))
+            self.assertTrue(all(s['grouped_questions']>0 for s in first['payload_stages']))
+            before=(out/'payload-1000/questions.ndjson').read_bytes()
+            second=benchmark(source,project/'project.sqlite',out)
+            self.assertEqual(before,(out/'payload-1000/questions.ndjson').read_bytes())
+            for line in before.splitlines():
+                question=json.loads(line)
+                self.assertFalse(question['establishes_membership'])
+                self.assertEqual(question['family_guard_status'],'not_eligible_for_operational_queue')
+                self.assertEqual(set(question['native_lexemes']),{p['nodes'][-1] for p in question['discovery_paths']})
+                self.assertTrue(question['benchmark_only'])
 
 
 if __name__=='__main__': unittest.main()

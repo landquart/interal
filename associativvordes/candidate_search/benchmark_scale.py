@@ -12,6 +12,7 @@ import resource
 import sqlite3
 import sys
 import time
+import zlib
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'importers'))
 from certify_corpus import atomic_json
 from morphology_import import dumps, hash_file
@@ -42,7 +43,6 @@ def payload_stages(index, output):
                 if not seed: continue
                 language,word,lid,fid=seed; queries+=1
                 # Read the actual preserved frequency payload, including missing fields.
-                import zlib
                 body=db.execute('SELECT body FROM project.frequencies WHERE id=?',(fid,)).fetchone()
                 if body is None: raise ValueError('dangling frequency observation')
                 json.loads(zlib.decompress(body[0])); frequency_reads+=1
@@ -51,13 +51,14 @@ def payload_stages(index, output):
                 grouped={}
                 for path in result['paths']:
                     target=path['nodes'][-1]
-                    # Source-local identity is part of the group; spelling is not identity.
-                    grouped.setdefault(target,[]).append(path)
-                for target,discovery in grouped.items():
                     lang,lemma,pos=db.execute('SELECT language,search,pos FROM lexemes WHERE id=?',
                                              (bytes.fromhex(target.split(':')[1]),)).fetchone()
+                    # One review question retains every distinct native analysis.
+                    grouped.setdefault((lang,lemma,pos),[]).append(path)
+                for (lang,lemma,pos),discovery in grouped.items():
                     queue.upsert(dict(family=family,language=lang,lemma=lemma,pos=pos,
-                        native_lexeme=target,discovery_paths=discovery,benchmark_only=True,
+                        native_lexemes=sorted({p['nodes'][-1] for p in discovery}),
+                        discovery_paths=discovery,benchmark_only=True,
                         family_guard_status='not_eligible_for_operational_queue',
                         uncertainty_reasons=['v5_seed_not_reviewed_gold','sense_unresolved','family_guard_not_run']),
                         'benchmark:'+family); upserts+=1

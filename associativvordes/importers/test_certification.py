@@ -12,6 +12,7 @@ from scale_index import Index
 from corpus_cache import pack, restore
 from catalog_store import rollback, publish
 from audit_identity import partition as audit_identifiers
+from audit_scale_index import audit as audit_projection
 
 HERE=Path(__file__).parent
 
@@ -81,6 +82,25 @@ class CertificationTests(unittest.TestCase):
             index.db.execute('UPDATE records SET body=? WHERE seq=?',(b'damaged',seq)); index.db.commit()
             with self.assertRaisesRegex(ValueError,'payload checksum'): index.record(seq)
         finally: index.close()
+
+    def test_resumed_projection_audit_checks_all_payloads_and_coverage(self):
+        path=self.root/'index.sqlite'; index=Index(path)
+        try: counts=index.ingest('real',self.snapshot,self.registry)
+        finally: index.close()
+        release=self.root/'release'
+        atomic_json(release/'CHECKPOINT.json',{'status':'PASS','counts':{'accepted':counts['read']},
+            'partitions':{'real':{'counts':{'accepted':counts['read']}}}})
+        result=audit_projection(path,release,self.root/'audit.json')
+        self.assertEqual(result['status'],'PASS')
+        self.assertEqual(result['stored_productive_records']+result['inflections_retained_only_in_staging'],counts['read'])
+        self.assertEqual(result['stored_productive_records'],result['compressed_payload_checksums_verified'])
+        index=Index(path)
+        try:
+            seq=index.db.execute('SELECT MIN(seq) FROM records').fetchone()[0]
+            index.db.execute('UPDATE records SET body=? WHERE seq=?',(b'damaged',seq)); index.db.commit()
+        finally: index.close()
+        with self.assertRaisesRegex(ValueError,'payload checksum mismatch'):
+            audit_projection(path,release,self.root/'audit.json')
 
     def test_independent_identifier_audit_rejects_forged_record_id(self):
         artifacts={a['id']:a for a in self.registry['artifacts']}
