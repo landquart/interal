@@ -19,6 +19,7 @@ from certify_corpus import atomic_json
 from morphology_import import hash_file, digest
 from search import Graph, Queue, build, sha
 from build_graph import load_registry, ingest, align
+from project_store import verified_project
 
 FAMILIES=['family:ocul','family:ped','family:alter','family:regul','family:creat','family:nat','family:inter']
 
@@ -27,6 +28,7 @@ def pilot(index_path,projection,projection_lock,registry_path,project_path,repo,
     output=Path(output).resolve(); repo=Path(repo).resolve()
     if output.is_relative_to(repo): raise ValueError('external pilot storage required')
     output.mkdir(parents=True,exist_ok=True); started=time.monotonic()
+    verified_project(project_path)
     lock=json.loads(Path(projection_lock).read_text())
     if hash_file(projection)!=lock['snapshot_sha256']: raise ValueError('v6 projection checksum mismatch')
     snapshot=json.loads(Path(projection).read_text()); registry=json.loads(Path(registry_path).read_text())

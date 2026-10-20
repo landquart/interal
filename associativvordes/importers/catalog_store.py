@@ -3,8 +3,21 @@
 import argparse
 import fcntl
 import json
+import os
 from pathlib import Path
-from certify_corpus import atomic_json, verified, publish, ROOT
+from certify_corpus import atomic_json, verified, publish as select_catalog, ROOT
+
+
+def publish(store,catalog):
+    catalog=Path(catalog).resolve(); manifest=verified(catalog,'CATALOG.json')
+    # The pointer must not become durable before the immutable product files.
+    for name in [*manifest['outputs'],'CATALOG.json']:
+        with open(catalog/name,'rb') as stream: os.fsync(stream.fileno())
+    for path in [catalog,catalog.parent]:
+        directory=os.open(path,os.O_RDONLY)
+        try: os.fsync(directory)
+        finally: os.close(directory)
+    return select_catalog(store,catalog)
 
 
 def rollback(store):

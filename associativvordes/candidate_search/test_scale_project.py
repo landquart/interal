@@ -7,6 +7,7 @@ import tempfile
 import unittest
 import zlib
 from scale_project import build
+from project_store import verified_project
 
 
 class ProjectScaleTests(unittest.TestCase):
@@ -25,6 +26,7 @@ class ProjectScaleTests(unittest.TestCase):
             self.assertEqual(build(repo,revision,output,stop_after=1)['status'],'checkpoint')
             result=build(repo,revision,output)
             self.assertEqual(result['counts']['seeds'],1)
+            self.assertEqual(verified_project(output/'project.sqlite')['status'],'PASS')
             db=sqlite3.connect(output/'project.sqlite')
             try:
                 observed=json.loads(zlib.decompress(db.execute('SELECT body FROM frequencies').fetchone()[0]))
@@ -34,6 +36,8 @@ class ProjectScaleTests(unittest.TestCase):
                 self.assertEqual(original,row['lemma_id'])
             finally: db.close()
             reused=build(repo,revision,output); self.assertEqual(reused['processed_shards'],0)
+            with open(output/'project.sqlite','ab') as stream: stream.write(b'tampered index')
+            with self.assertRaisesRegex(ValueError,'index checksum mismatch'): verified_project(output/'project.sqlite')
             member.write_bytes(b'damaged')
             with self.assertRaisesRegex(ValueError,'checksum mismatch'): build(repo,revision,output)
 

@@ -7,10 +7,11 @@ from pathlib import Path
 import tempfile
 import unittest
 from morphology_import import run, digest, hash_file
-from certify_corpus import atomic_json, verified, publish
+from certify_corpus import atomic_json, verified
 from scale_index import Index
 from corpus_cache import pack, restore
-from catalog_store import rollback
+from catalog_store import rollback, publish
+from audit_identity import partition as audit_identifiers
 
 HERE=Path(__file__).parent
 
@@ -80,6 +81,20 @@ class CertificationTests(unittest.TestCase):
             index.db.execute('UPDATE records SET body=? WHERE seq=?',(b'damaged',seq)); index.db.commit()
             with self.assertRaisesRegex(ValueError,'payload checksum'): index.record(seq)
         finally: index.close()
+
+    def test_independent_identifier_audit_rejects_forged_record_id(self):
+        artifacts={a['id']:a for a in self.registry['artifacts']}
+        self.assertEqual(audit_identifiers(self.snapshot,artifacts)['status'],'PASS')
+        path=self.snapshot/'records.ndjson.gz'
+        with gzip.open(path,'rt') as stream: records=list(map(json.loads,stream))
+        records[0]['id']='evidence:'+'0'*64
+        with gzip.open(path,'wt') as stream:
+            for row in records: stream.write(json.dumps(row)+'\n')
+        manifest=json.loads((self.snapshot/'manifest.json').read_text())
+        manifest['outputs']['records.ndjson.gz']=hash_file(path)
+        atomic_json(self.snapshot/'manifest.json',manifest)
+        with self.assertRaisesRegex(ValueError,'invalid evidence identifier'):
+            audit_identifiers(self.snapshot,artifacts)
 
     def test_corrupt_and_missing_inputs_fail(self):
         index=Index(self.root/'index.sqlite')

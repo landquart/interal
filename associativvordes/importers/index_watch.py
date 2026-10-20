@@ -5,7 +5,7 @@ import fcntl
 import json
 from pathlib import Path
 import time
-from certify_corpus import atomic_json
+from certify_corpus import atomic_json, verified
 from morphology_import import hash_file, dumps
 from scale_index import Index, build
 
@@ -25,6 +25,7 @@ def watch(release,registry_path,destination,cache_kib=65536,follow=False):
                 if state['identity']['registry_sha256']!=hash_file(registry_path): raise ValueError('registry mismatch')
                 for name,p in sorted(state['partitions'].items()):
                     if name in results: continue
+                    verified(release/'snapshots'/name/p['build_id'],'manifest.json',p['manifest_sha256'])
                     t=time.monotonic(); result=index.ingest(name,release/'snapshots'/name/p['build_id'],registry)
                     results[name]=dict(result,elapsed_seconds=round(time.monotonic()-t,3))
                     atomic_json(destination/'WATCH-PROGRESS.json',dict(cache_kib=cache_kib,journal_mode='WAL',partitions=results))
