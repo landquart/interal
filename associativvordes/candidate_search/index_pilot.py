@@ -34,6 +34,7 @@ def pilot(index_path,projection,projection_lock,registry_path,project_path,repo,
     snapshot=json.loads(Path(projection).read_text()); registry=json.loads(Path(registry_path).read_text())
     g=Graph(output/'graph.sqlite'); load_registry(g,snapshot)
     source=Index(index_path); seqs=set(); queries=truncated=0
+    bound_events=dict(native_lookup=0,per_language_selection=0,family_selection=0,path_traversal=0,frequency_lookup=0)
     try:
         for family in FAMILIES:
             per_language={}
@@ -43,11 +44,15 @@ def pilot(index_path,projection,projection_lock,registry_path,project_path,repo,
                   AND EXISTS(SELECT 1 FROM arcs a WHERE a.src=l.id AND a.direction='directed'
                     AND a.type IN ('direct_derivation','conversion','compounding')) ORDER BY l.id LIMIT 3''',(lang,word)).fetchall()
                 per_language.setdefault(lang,[]).extend(matches[:2]); truncated+=int(len(matches)>2)
+                bound_events['native_lookup']+=int(len(matches)>2)
             chosen=[]
             for lang in sorted(per_language):
                 unique=sorted(set(per_language[lang])); chosen.extend(unique[:2])
+                bound_events['per_language_selection']+=int(len(unique)>2)
+            bound_events['family_selection']+=int(len(chosen)>12)
             for identifier,seq in chosen[:12]:
                 seqs.add(seq); result=source.paths('lexeme:'+identifier.hex()); queries+=1; truncated+=int(result['truncated'])
+                bound_events['path_traversal']+=int(result['truncated'])
                 for path in result['paths']:
                     for name in path['nodes']:
                         seqs.add(source.db.execute('SELECT seq FROM lexemes WHERE id=?',(bid(name),)).fetchone()[0])
@@ -69,7 +74,8 @@ def pilot(index_path,projection,projection_lock,registry_path,project_path,repo,
         for lang,word in words:
             rows=project.execute('''SELECT s.family,s.ordinal,s.raw_sha,f.path,f.sha FROM seeds s JOIN files f ON f.id=s.file
                  WHERE s.language=? AND s.word=? ORDER BY s.family,f.path,s.ordinal LIMIT 101''',(lang,word)).fetchall()
-            if len(rows)>100: truncated+=1
+            if len(rows)>100:
+                truncated+=1; bound_events['frequency_lookup']+=1
             for family,ordinal,checksum,name,file_sha in rows[:100]:
                 row=shard(name,file_sha)[family][ordinal]
                 if bytes.fromhex(digest(row))!=checksum: raise ValueError('frequency row checksum mismatch')
@@ -87,6 +93,11 @@ def pilot(index_path,projection,projection_lock,registry_path,project_path,repo,
         if any(s['changed'] for s in second.values()): raise ValueError('unchanged queue re-review')
     finally: queue.close(); g.close()
     result=dict(status='PASS',families=FAMILIES,real_records=len(seqs),source_queries=queries,truncated_queries=truncated,
+        bound_events=bound_events,
+        limits=dict(native_matches_per_word=2,source_queries_per_language_per_family=2,
+                    source_queries_per_family=12,path_depth=2,paths_per_query=20,expansions_per_query=300,
+                    frequency_observations_per_word=100),
+        bound_event_semantics='events at separate limits; overlapping events, not an exact count of skipped lexical analyses; legacy truncated_queries excludes per-language/family selection caps',
         graph=graph_counts,frequency_observations=len(frequencies),questions=questions,first=first,replay=second,
         elapsed_seconds=round(time.monotonic()-started,3),queue_sha256=hash_file(output/'queue-first.ndjson'),
         max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
