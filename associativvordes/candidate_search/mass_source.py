@@ -153,4 +153,4 @@ def _prepare(index, release, registry, source_lock, destination):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     for name in ['index', 'release', 'registry', 'source-lock', 'destination']: p.add_argument('--' + name, required=True)
-    a = p.parse_args(); print(canonical(prepare(a.index, a.release, a.registry, a.source_lock, a.destination)))
+    a = p.parse_args(); print(json.dumps(prepare(a.index, a.release, a.registry, a.source_lock, a.destination),sort_keys=True))

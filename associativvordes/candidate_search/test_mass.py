@@ -4,6 +4,8 @@ import json
 from pathlib import Path
 import sqlite3
 import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -211,6 +213,10 @@ class MassTests(unittest.TestCase):
         self.assertEqual(result['counts']['incoming'],initial)
         again=prepare_auxiliary(self.inputs.source,release,self.inputs.registry,LOCK,destination)
         self.assertTrue(again['reused']);self.assertEqual(result['database_sha256'],again['database_sha256'])
+        command=[sys.executable,str(HERE/'mass_source.py'),'--index',str(self.inputs.source),'--release',str(release),
+                 '--registry',str(self.inputs.registry),'--source-lock',str(LOCK),'--destination',str(destination)]
+        result=subprocess.run(command,check=True,capture_output=True,text=True)
+        self.assertEqual(json.loads(result.stdout)['status'],'PASS')
 
     def test_incremental_own_and_competing_family_dependencies(self):
         db=sqlite3.connect(self.inputs.registry)
@@ -221,6 +227,16 @@ class MassTests(unittest.TestCase):
         before=dependency(db,'family:ped','en',['ocular'])
         db.execute("INSERT INTO known VALUES('family:ocul','en','ocular','test-lemma','test-head','{}')")
         self.assertNotEqual(before,dependency(db,'family:ped','en',['ocular']));db.close()
+
+    def test_changed_only_recomputes_only_changed_family_units(self):
+        args=self.inputs.args(self.root/'run','--families','OCUL','PEDE','--languages','en','es')
+        run(args)
+        db=sqlite3.connect(self.inputs.registry)
+        # Explicit test-only dependency delta, not a new corpus or linguistic decision.
+        db.execute("UPDATE family_fingerprints SET value='test-only-family-delta' WHERE family='family:ocul'")
+        db.commit();db.close();self.inputs.receipts()
+        args.changed_only=True;result=run(args)
+        self.assertEqual(result['processed'],2);self.assertEqual(result['reused'],2)
 
     def test_categories_preserve_alternatives_and_unchecked_pos(self):
         self.inputs.seed('family:inter','en','a')
