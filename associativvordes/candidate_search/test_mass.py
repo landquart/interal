@@ -327,6 +327,12 @@ class MassTests(unittest.TestCase):
 
 
 class StoreTests(unittest.TestCase):
+    def test_full_runner_rejects_incompatible_runtime_before_build(self):
+        from mass_ci import runtime_preflight
+        with patch('mass_ci.platform.python_version',return_value='0.0.0-test-only'):
+            with self.assertRaisesRegex(ValueError,'certified runtime mismatch'):
+                runtime_preflight()
+
     def test_review_history_and_pending_identity_are_not_negative_verdicts(self):
         self.assertFalse(negative_context(dict(status='hold',blockers=[dict(status='pending')]),[]))
         self.assertFalse(negative_context(dict(status='hold',manual_refs=[{}]),[]))
