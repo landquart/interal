@@ -5,6 +5,9 @@ from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
+import platform
+import unicodedata
+import zlib
 from pathlib import Path
 import shutil
 import sqlite3
@@ -76,7 +79,23 @@ def inputs(work, glemm_cache=None):
         synthetic_files=0))
 
 
+def runtime_preflight():
+    """Reject a runtime that cannot reproduce the already-certified build IDs."""
+    actual=dict(python_version=platform.python_version(),sqlite_version=sqlite3.sqlite_version,
+                unicode_version=unicodedata.unidata_version,zlib_version=zlib.ZLIB_VERSION)
+    policies=[json.loads(p.read_text())['policy'] for p in sorted(
+        (REPO/'audit/associative-external-preparation/import-validation').glob('*-manifest.json'))]
+    if not policies:raise ValueError('missing certified runtime policies')
+    for policy in policies:
+        expected={k:policy[k] for k in actual}
+        if actual!=expected:
+            raise ValueError('certified runtime mismatch; expected '+json.dumps(expected,sort_keys=True)+
+                             '; actual '+json.dumps(actual,sort_keys=True))
+    return actual
+
+
 def build(work):
+    atomic_json(work/'receipts/RUNTIME.json',runtime_preflight())
     prepare(REPO,work/'registry',LEGACY)
     programs=[
         ('certify',['associativvordes/importers/certify_corpus.py','--raw-root',work/'raw','--release',work/'release','--workers','2']),
@@ -113,6 +132,7 @@ def build(work):
 
 
 def verify(work):
+    runtime=runtime_preflight()
     state=json.loads((work/'release/CHECKPOINT.json').read_text())
     prior=json.loads((REPO/'audit/associative-external-preparation/certification01/CATALOG.json').read_text())
     for key in ['build_id','identity','outputs','unique_normalized_views','evidence_occurrences']:
@@ -148,7 +168,8 @@ def verify(work):
     recovered=rollback(full)
     if pointer.read_bytes()!=previous:raise ValueError('damaged pointer recovery failed')
     atomic_json(work/'receipts/REAL-RECOVERY.json',dict(recovered,pointer_recovered_after_corruption=True))
-    atomic_json(work/'receipts/VALIDATION.json',dict(status='PASS',membership_writes=0,code_commit=None,
+    atomic_json(work/'receipts/VALIDATION.json',dict(status='PASS',membership_writes=0,runtime=runtime,
+        code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=REPO,text=True).strip(),
         independent_export_identical=True,resumed_export_identical=True,real_history_replay=True))
 
 
