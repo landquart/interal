@@ -10,6 +10,7 @@ from morphology_import import run, digest, hash_file
 from certify_corpus import atomic_json, verified, publish
 from scale_index import Index
 from corpus_cache import pack, restore
+from catalog_store import rollback
 
 HERE=Path(__file__).parent
 
@@ -26,6 +27,8 @@ class CertificationTests(unittest.TestCase):
     def test_resume_real_rows_and_preserve_original_payload(self):
         a=Index(self.root/'a.sqlite'); b=Index(self.root/'b.sqlite')
         try:
+            # Cache/journal tuning must not alter records or search results.
+            b.db.executescript('PRAGMA journal_mode=WAL; PRAGMA cache_size=-65536;')
             stopped=a.ingest('real',self.snapshot,self.registry,stop_after=1)
             self.assertTrue(stopped['checkpoint'])
             a.close(); a=Index(self.root/'a.sqlite')
@@ -105,8 +108,11 @@ class CertificationTests(unittest.TestCase):
         self.assertEqual(json.loads((store/'CURRENT.json').read_text()),selections[1])
         previous=json.loads((store/'PREVIOUS.json').read_text())
         self.assertEqual(previous,selections[0])
-        # Same validation/promotion primitive restores the previous immutable release.
-        self.assertEqual(publish(store,previous['path']),selections[0])
+        # Recovery must still work when CURRENT or its data is damaged.
+        (self.root/'second/data').write_text('damaged current')
+        (store/'CURRENT.json').write_text('damaged pointer')
+        self.assertEqual(rollback(store),selections[0])
+        self.assertEqual(json.loads((store/'CURRENT.json').read_text()),selections[0])
 
 
 if __name__=='__main__': unittest.main()
