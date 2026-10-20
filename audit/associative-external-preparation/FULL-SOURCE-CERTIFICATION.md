@@ -1,15 +1,10 @@
 # Full source certification — stage 01
 
-Baseline: `a3afb7dad56ba951cc9044591f0236731d35dbbe` (stabilization PR #671).
-Source registry SHA-256: `0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad`.
+**PASS for the complete pinned source corpus and normalized catalog.** Baseline `a3afb7dad56ba951cc9044591f0236731d35dbbe`; source-lock SHA-256 `0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad`.
 
-The 35 pinned input files (260,992,004 bytes) were acquired again from official endpoints or the verified private GLeMM cache. `certification01/INPUTS.json` records all artifact pins, licenses, sizes and hashes. UDer is 1.1, GLeMM is 2.0 at `395020177a96a81177582fb59664509ff015f934`, and MorphyNet is at `378144f64df58c78db5245af19d16a511ccecf3a`. No version changed.
+All 35 originals (260,992,004 bytes), 13 partitions and six languages were checked against the existing trusted lock. UDer remains 1.1; GLeMM remains 2.0 / `395020177a96a81177582fb59664509ff015f934`; MorphyNet remains `378144f64df58c78db5245af19d16a511ccecf3a`. UDer/MorphyNet were acquired from their official pinned endpoints; GLeMM was restored from the already verified private offline cache. No source pin, importer or original attribution was changed.
 
-Two fresh release roots are being built with `associativvordes/importers/certify_corpus.py`. Each partition must reproduce its published build identity, every logical/compressed output hash and every per-artifact count. `audit_import.py` independently compares every physical source row to its original bytes and fields in staging or quarantine. It does not call the source adapter parser.
-
-Both fresh full builds completed: 9,404,068 read, 9,404,044 staged and 24 quarantined; 3,047,035 normalized views and 3,750,624 evidence occurrences. Every partition reproduces its pinned identity, counts and output hashes. The two full catalog manifests are identical and reproduce the earlier pinned global catalog. Independent global referential/identifier audits are recorded separately when complete.
-
-Raw data, staging, catalogs and mutable databases remain outside Git. No family membership, manual decision or calculation formula is written by these commands.
+Two independent release roots, with no reused partitions, reproduced every pinned partition's identity, logical/compressed output checksum and source count. Each physical source row was independently compared with staging or quarantine, including its original fields and bytes. Both builds read **9,404,068**, staged **9,404,044** and quarantined **24**; each catalog has **3,047,035** normalized views and **3,750,624** evidence occurrences. All outputs match between runs and match the earlier pinned global catalog. Counts were compared rather than forced.
 
 | Language | Files | Read | Staging | Quarantine |
 |---|---:|---:|---:|---:|
@@ -20,4 +15,8 @@ Raw data, staging, catalogs and mutable databases remain outside Git. No family 
 | it | 5 | 910,105 | 910,105 | 0 |
 | ru | 8 | 3,025,450 | 3,025,450 | 0 |
 
-All three resources cover each of the six languages in this lock. Coverage does not imply equal semantic/POS/segmentation completeness. All 24 technical exclusions are Spanish inflections with empty inflected forms; original bytes and locators remain in quarantine.
+All 24 exclusions are Spanish inflections with empty inflected forms; originals remain in quarantine. None was silently dropped or converted to a derivation.
+
+Receipts: `certification01/INPUTS.json`, both `*-PARTITIONS.json`, both `*-RUN.json`, `REPLAY-VERIFIED.json`, `COVERAGE.json` and `CATALOG.json`. `GLOBAL-CATALOG-VALIDATION.md` records complete evidence/identifier checks. `PERFORMANCE-BENCHMARK.md` and `RECOVERY-AND-REPLAY.md` delimit measured scale and recovery. These small receipts are versioned with code, while all complete corpora/products remain outside Git.
+
+This certifies source preservation and reproducibility. It creates no accepted family memberships or linguistic gold and does not certify unrestricted operational mass annotation.
