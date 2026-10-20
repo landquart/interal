@@ -1,0 +1,14 @@
+{"glemm-deu-v1.0.2":{"inflections":0,"read":178686,"reprocessed":0,"reused":true}}
+{"glemm-eng-v1.0.2":{"inflections":0,"read":1050666,"reprocessed":0,"reused":true}}
+{"glemm-esp-v1.0.2":{"inflections":0,"read":90079,"reprocessed":0,"reused":true}}
+{"glemm-fra-v1.0.2":{"inflections":0,"read":357869,"reprocessed":0,"reused":true}}
+{"glemm-ita-v1.0.2":{"inflections":0,"read":130969,"reprocessed":0,"reused":true}}
+{"glemm-rus-v1.0.2":{"inflections":0,"read":994346,"reprocessed":0,"reused":true}}
+{"morphynet-deu-v1.0.2":{"inflections":490331,"read":519712,"reprocessed":0,"reused":true}}
+{"morphynet-eng-v1.0.2":{"inflections":649593,"read":874724,"reprocessed":0,"reused":true}}
+{"morphynet-fra-v1.0.2":{"inflections":453228,"read":526180,"reprocessed":0,"reused":true}}
+{"morphynet-ita-v1.0.2":{"inflections":712021,"read":770869,"reprocessed":0,"reused":true}}
+{"morphynet-rus-v1.0.2":{"inflections":1321024,"read":1414063,"reprocessed":0,"reused":true}}
+{"morphynet-spa-v1.0.2":{"inflections":1289300,"read":1320077,"reprocessed":0,"reused":true}}
+{"uder-v1.0.2":{"inflections":0,"read":1175804,"reprocessed":0,"reused":true}}
+{"all_13_partitions_complete": true, "checksum_unchanged_after_repeat": true, "comparison_scope": "full certified source counts plus every compressed payload checksum; not a second cold source-index construction", "final_counts": {"arcs": 6554886, "inflections": 4915497, "lexemes": 7776694, "records": 4488547, "source_records": 9404044, "unresolved": 0}, "full_post_recovery_payload_audit": "AUDIT.json", "new_input_reprocessing_on_completed_repeat": 0, "real_process_interruption": {"checkpoint_partitions": [["morphynet-deu-v1.0.2", 519712, 1], ["morphynet-eng-v1.0.2", 874724, 1], ["morphynet-fra-v1.0.2", 526180, 1], ["morphynet-ita-v1.0.2", 770869, 1], ["uder-v1.0.2", 235000, 0]], "status": "before_interrupt", "stored_productive_records": 621312, "time_utc": "2026-10-20T10:36:12Z"}, "resume_policy": "committed row batches reused; uncommitted batch rolled back by SQLite", "status": "PASS", "subsequent_disk_budget_pause": {"database_bytes": 4737101824, "partitions": [["morphynet-deu-v1.0.2", 519712, 1], ["morphynet-eng-v1.0.2", 874724, 1], ["morphynet-fra-v1.0.2", 526180, 1], ["morphynet-ita-v1.0.2", 770869, 1], ["uder-v1.0.2", 1175804, 1], ["glemm-deu-v1.0.2", 178686, 1], ["morphynet-rus-v1.0.2", 1414063, 1], ["morphynet-spa-v1.0.2", 1320077, 1], ["glemm-fra-v1.0.2", 357869, 1], ["glemm-ita-v1.0.2", 130969, 1], ["glemm-eng-v1.0.2", 349000, 0]], "reason": "reserve disk for independent catalog publication before reclaiming disposable replay products"}}

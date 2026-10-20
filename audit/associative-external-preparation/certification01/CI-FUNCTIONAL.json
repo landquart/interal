@@ -1,0 +1,36 @@
+{
+  "head": "404d31dd92cce9e996e64e46dce74f574ea95490",
+  "checks": [
+    {
+      "name": "Vercel Preview Comments",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/landquart/interal/runs/118602881317"
+    },
+    {
+      "name": "regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/landquart/interal/actions/runs/39415134865/job/118602206907"
+    },
+    {
+      "name": "test",
+      "status": "in_progress",
+      "conclusion": null,
+      "url": "https://github.com/landquart/interal/actions/runs/39415134840/job/118602206709"
+    },
+    {
+      "name": "associative-regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/landquart/interal/actions/runs/39415134729/job/118602206274"
+    },
+    {
+      "name": "pages-build",
+      "status": "completed",
+      "conclusion": "success",
+      "url": "https://github.com/landquart/interal/actions/runs/39415134673/job/118602206049"
+    }
+  ],
+  "scope": "functional code head observed before final report commit; pending checks are not marked PASS"
+}

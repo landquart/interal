@@ -1,0 +1,37 @@
+test_benchmark_real_internet_derivative_and_frequency_queue_replay (test_scale_project.ProjectScaleTests.test_benchmark_real_internet_derivative_and_frequency_queue_replay) ... {"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":10,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":100,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":1000,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":1,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.01,"expanded_arcs":1,"families":1,"families_without_productive_seed":0,"frequency_payloads_read":1,"grouped_questions":1,"operational_queue_writes":0,"paths":1,"queue_sha256":"1908ff7a2c41f799a3d65ea033f3d61b2557d944fd594bbe7878c5f87dcb218a","real_seed_queries":1,"scope":"one bounded real seed query per eligible inventory family","truncated_queries":0,"upserts":1}
+{"elapsed_seconds":0.003,"expanded_arcs":1,"families":1,"families_without_productive_seed":0,"frequency_payloads_read":1,"grouped_questions":1,"operational_queue_writes":0,"paths":1,"queue_sha256":"1908ff7a2c41f799a3d65ea033f3d61b2557d944fd594bbe7878c5f87dcb218a","real_seed_queries":1,"scope":"one bounded real seed query per eligible inventory family","truncated_queries":0,"upserts":1}
+{"elapsed_seconds":0.003,"expanded_arcs":1,"families":1,"families_without_productive_seed":0,"frequency_payloads_read":1,"grouped_questions":1,"operational_queue_writes":0,"paths":1,"queue_sha256":"1908ff7a2c41f799a3d65ea033f3d61b2557d944fd594bbe7878c5f87dcb218a","real_seed_queries":1,"scope":"one bounded real seed query per eligible inventory family","truncated_queries":0,"upserts":1}
+{"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":10,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":100,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":1000,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.0,"exact_lexeme_hits":1,"families":1,"lookup_count_checked_against_native_join":true,"membership_writes":0,"productive_arc_occurrences":1,"seed_observations":1}
+{"elapsed_seconds":0.005,"expanded_arcs":1,"families":1,"families_without_productive_seed":0,"frequency_payloads_read":1,"grouped_questions":1,"operational_queue_writes":0,"paths":1,"queue_sha256":"1908ff7a2c41f799a3d65ea033f3d61b2557d944fd594bbe7878c5f87dcb218a","real_seed_queries":1,"scope":"one bounded real seed query per eligible inventory family","truncated_queries":0,"upserts":1}
+{"elapsed_seconds":0.006,"expanded_arcs":1,"families":1,"families_without_productive_seed":0,"frequency_payloads_read":1,"grouped_questions":1,"operational_queue_writes":0,"paths":1,"queue_sha256":"1908ff7a2c41f799a3d65ea033f3d61b2557d944fd594bbe7878c5f87dcb218a","real_seed_queries":1,"scope":"one bounded real seed query per eligible inventory family","truncated_queries":0,"upserts":1}
+{"elapsed_seconds":0.005,"expanded_arcs":1,"families":1,"families_without_productive_seed":0,"frequency_payloads_read":1,"grouped_questions":1,"operational_queue_writes":0,"paths":1,"queue_sha256":"1908ff7a2c41f799a3d65ea033f3d61b2557d944fd594bbe7878c5f87dcb218a","real_seed_queries":1,"scope":"one bounded real seed query per eligible inventory family","truncated_queries":0,"upserts":1}
+ok
+test_real_frequency_observation_checkpoint_and_source_change (test_scale_project.ProjectScaleTests.test_real_frequency_observation_checkpoint_and_source_change) ... ok
+test_actual_finite_allomorph_rule_does_not_generalize (test_search.SearchTests.test_actual_finite_allomorph_rule_does_not_generalize) ... ok
+test_existing_pos_alternative_inherits_later_negative (test_search.SearchTests.test_existing_pos_alternative_inherits_later_negative) ... ok
+test_failed_build_rolls_back_scope_and_queue (test_search.SearchTests.test_failed_build_rolls_back_scope_and_queue) ... ok
+test_finite_matching_no_language_or_new_allomorph_grant (test_search.SearchTests.test_finite_matching_no_language_or_new_allomorph_grant) ... ok
+test_no_accepted_review_state (test_search.SearchTests.test_no_accepted_review_state) ... ok
+test_no_known_or_prohibited_spelling_in_new_queue (test_search.SearchTests.test_no_known_or_prohibited_spelling_in_new_queue) ... ok
+test_pos_change_cannot_hide_rejection (test_search.SearchTests.test_pos_change_cannot_hide_rejection) ... ok
+test_priority_is_configurable_separate_and_missing_impact_explicit (test_search.SearchTests.test_priority_is_configurable_separate_and_missing_impact_explicit) ... ok
+test_real_frequency_is_preserved_and_tamper_rejected (test_search.SearchTests.test_real_frequency_is_preserved_and_tamper_rejected) ... ok
+test_real_parsing_provenance_and_bounded_paths (test_search.SearchTests.test_real_parsing_provenance_and_bounded_paths) ... ok
+test_rejected_state_survives_reopen_and_evidence_change (test_search.SearchTests.test_rejected_state_survives_reopen_and_evidence_change) ... ok
+test_repeat_import_does_not_change_output_or_review (test_search.SearchTests.test_repeat_import_does_not_change_output_or_review) ... ok
+test_reverse_queue_preserves_negative_history (test_search.SearchTests.test_reverse_queue_preserves_negative_history) ... ok
+test_reverse_uses_real_observed_lexemes_only (test_search.SearchTests.test_reverse_uses_real_observed_lexemes_only) ... ok
+test_reviewed_preserved_and_unrelated_question_unchanged (test_search.SearchTests.test_reviewed_preserved_and_unrelated_question_unchanged) ... ok
+test_scope_rebuild_retains_inactive_history (test_search.SearchTests.test_scope_rebuild_retains_inactive_history) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 5.974s
+
+OK

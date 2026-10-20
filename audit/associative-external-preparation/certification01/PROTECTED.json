@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "baseline": "a3afb7dad56ba951cc9044591f0236731d35dbbe",
+  "objects": [
+    {
+      "path": "associativvordes/importers/morphology_import.py",
+      "baseline_git_blob": "00b520a1159d49279f0856ad5a10e171a924dcdc",
+      "actual_git_blob": "00b520a1159d49279f0856ad5a10e171a924dcdc",
+      "unchanged": true
+    },
+    {
+      "path": "associativvordes/importers/audit_import.py",
+      "baseline_git_blob": "e417a7e78471d8a142dffa980a5d885c9a39583e",
+      "actual_git_blob": "e417a7e78471d8a142dffa980a5d885c9a39583e",
+      "unchanged": true
+    },
+    {
+      "path": "associativvordes/importers/build_catalog.py",
+      "baseline_git_blob": "2969740f2f4d87cc15ac60ec33578f4e3132099d",
+      "actual_git_blob": "2969740f2f4d87cc15ac60ec33578f4e3132099d",
+      "unchanged": true
+    },
+    {
+      "path": "associativvordes/importers/fetch_sources.py",
+      "baseline_git_blob": "b6addddf786eaa64feb8e1c5717fd9d81b447e8a",
+      "actual_git_blob": "b6addddf786eaa64feb8e1c5717fd9d81b447e8a",
+      "unchanged": true
+    },
+    {
+      "path": "data/morphology-evidence/sources/source-lock.json",
+      "baseline_git_blob": "1686e39064507876468f88112b89a7c3786bb22f",
+      "actual_git_blob": "1686e39064507876468f88112b89a7c3786bb22f",
+      "unchanged": true
+    },
+    {
+      "path": "associativvordes/evidence_graph/graph.py",
+      "baseline_git_blob": "7c56d80116b9383df6056136e06ca17ed734aca5",
+      "actual_git_blob": "7c56d80116b9383df6056136e06ca17ed734aca5",
+      "unchanged": true
+    },
+    {
+      "path": "associativvordes/candidate_search/search.py",
+      "baseline_git_blob": "fee4f631972e9f0e360c6d51b767724ce9d72bc4",
+      "actual_git_blob": "fee4f631972e9f0e360c6d51b767724ce9d72bc4",
+      "unchanged": true
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/evaluate.py",
+      "baseline_git_blob": "a39d3d5a24a7037da1d9ac34ed60a34390d63966",
+      "actual_git_blob": "a39d3d5a24a7037da1d9ac34ed60a34390d63966",
+      "unchanged": true
+    }
+  ],
+  "scope": "all stage-01 changes are additions; existing importer, source pins, graph/queue guards and evaluation preserved"
+}

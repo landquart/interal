@@ -1,0 +1,647 @@
+{
+  "automatic_gold": 0,
+  "fixture_only_graph_controls": true,
+  "peak_rss_bytes_linux": 38051840,
+  "real_cases": 1406,
+  "replay": {
+    "graph": {
+      "index_seconds": 0.5086075990002428,
+      "manifest_sha256": "cebfd3d185f67a02329c0d8baa4da056cb065b2760d3276b476eb4ceefa67e1f",
+      "negative_guard_200_seconds": 0.005933354999797302,
+      "output_bytes": 2218368,
+      "output_files": 15
+    },
+    "import": {
+      "manifest_sha256": "7677a13941a503aa6eed7d8b685b4c92def6ceecc15ff08f2d00ff5e2fdea222",
+      "output_bytes": 169906,
+      "output_files": 5
+    }
+  },
+  "replay_seconds": 2.1578118779998476,
+  "results": [
+    {
+      "actual": 0,
+      "check": "homonym_no_bridge",
+      "detail": null,
+      "expected": 0,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "formal_similarity_not_bridge",
+      "detail": null,
+      "expected": 0,
+      "status": "PASS"
+    },
+    {
+      "actual": [
+        "a",
+        "b",
+        "z"
+      ],
+      "check": "indirect_keeps_intermediates",
+      "detail": null,
+      "expected": [
+        "a",
+        "b",
+        "z"
+      ],
+      "status": "PASS"
+    },
+    {
+      "actual": false,
+      "check": "path_not_membership",
+      "detail": null,
+      "expected": false,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "missing_link_not_skipped",
+      "detail": null,
+      "expected": 0,
+      "status": "PASS"
+    },
+    {
+      "actual": false,
+      "check": "IV004_mixed_chain_not_indirect",
+      "detail": {
+        "establishes_membership": false,
+        "nodes": [
+          {
+            "content_sha256": "11252261e4477f9b2d57d4a8cda8272b1aa8cca877de6e45e9719c6137d57f35",
+            "entity": "Lexeme",
+            "id": "a",
+            "revision": 1
+          },
+          {
+            "content_sha256": "342ce978003fc3dc02e57485326fcf183a7c51dfd7ab752354f9acdbe3560383",
+            "entity": "Lexeme",
+            "id": "b",
+            "revision": 1
+          },
+          {
+            "content_sha256": "85a3576247899edbe947b69c6c656daa4c600328834b57f0b0ad18ef824266d4",
+            "entity": "Lexeme",
+            "id": "z",
+            "revision": 1
+          }
+        ],
+        "proposed_category": "mixed_morphological_path",
+        "steps": [
+          {
+            "component_only": true,
+            "confirmed": false,
+            "direction": {
+              "from_slots": [
+                "a"
+              ],
+              "state": "directed",
+              "to_slots": [
+                "b"
+              ]
+            },
+            "evidence_refs": [
+              {
+                "content_sha256": "18f6bb1d9c342f1c682633c0a4cb625b76b7596ad0754cd47e4e346d99940d26",
+                "entity": "Evidence",
+                "id": "fixture:evidence:ada03ba5f76f08ea1c6ce1c944986e3dbc2e46a6fc0747036e45799cdc8b15a5",
+                "revision": 1
+              }
+            ],
+            "from_node": "a",
+            "relation_ref": {
+              "content_sha256": "4524871dba46d8a29a69cfad55171f2bc22fe683967a80404e89a90ec1dade84",
+              "entity": "Relation",
+              "id": "relation:f3b451ad938fcf73437223cb1180b25467dd7aa78d37c65fec7206393f0ddbf8",
+              "revision": 1
+            },
+            "sources": [
+              {
+                "raw_locator": {
+                  "fixture_only": true
+                },
+                "source_lineage": {
+                  "fixture_only": true
+                },
+                "source_revision_ref": {
+                  "content_sha256": "86760e965c203e5e2d13ce379eb03d3ff377a03603a2dd39d3b2965dfa68a105",
+                  "entity": "SourceRevision",
+                  "id": "fixture:source",
+                  "revision": 1
+                }
+              }
+            ],
+            "to_node": "b",
+            "type": "compounding",
+            "uncertainties": [
+              "source_claim_not_reviewed",
+              "sense_identity_unresolved"
+            ]
+          },
+          {
+            "component_only": false,
+            "confirmed": false,
+            "direction": {
+              "from_slots": [
+                "a"
+              ],
+              "state": "directed",
+              "to_slots": [
+                "b"
+              ]
+            },
+            "evidence_refs": [
+              {
+                "content_sha256": "a2f082743963f57fb6208295d7fba7046c9c270b7d251b75126d276e17bf2b18",
+                "entity": "Evidence",
+                "id": "fixture:evidence:2af2ef7bc1402bcd15bcf7c219d8a373b2fc6a65ea49f2ab9db3d1f67e75f7d1",
+                "revision": 1
+              }
+            ],
+            "from_node": "b",
+            "relation_ref": {
+              "content_sha256": "7237477380f2eed52d3ed8b5069e1bc620234ff0147c6351f6cf53e09a3f0c4c",
+              "entity": "Relation",
+              "id": "relation:cfe23844e00536b7c5e07490dd2c737e4245f55a683ff493536f6b12a61ecd6a",
+              "revision": 1
+            },
+            "sources": [
+              {
+                "raw_locator": {
+                  "fixture_only": true
+                },
+                "source_lineage": {
+                  "fixture_only": true
+                },
+                "source_revision_ref": {
+                  "content_sha256": "86760e965c203e5e2d13ce379eb03d3ff377a03603a2dd39d3b2965dfa68a105",
+                  "entity": "SourceRevision",
+                  "id": "fixture:source",
+                  "revision": 1
+                }
+              }
+            ],
+            "to_node": "z",
+            "type": "derivation_direct",
+            "uncertainties": [
+              "source_claim_not_reviewed",
+              "sense_identity_unresolved"
+            ]
+          }
+        ],
+        "validation_status": "hypothesis_only"
+      },
+      "expected": false,
+      "status": "PASS"
+    },
+    {
+      "actual": true,
+      "check": "compound_scope_preserved",
+      "detail": null,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "IV003_cross_language_requires_proof",
+      "detail": [],
+      "expected": 0,
+      "status": "PASS"
+    },
+    {
+      "actual": "blocked",
+      "check": "negative_direct",
+      "detail": null,
+      "expected": "blocked",
+      "status": "PASS"
+    },
+    {
+      "actual": "blocked",
+      "check": "negative_alias",
+      "detail": null,
+      "expected": "blocked",
+      "status": "PASS"
+    },
+    {
+      "actual": "blocked",
+      "check": "negative_fallback",
+      "detail": null,
+      "expected": "blocked",
+      "status": "PASS"
+    },
+    {
+      "actual": "blocked",
+      "check": "negative_path",
+      "detail": null,
+      "expected": "blocked",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "negative_forward_path",
+      "detail": null,
+      "expected": 0,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "IV002_reverse_surfaces_family_prohibition",
+      "detail": [
+        {
+          "active_scopes": [
+            "reverse:new_base"
+          ],
+          "allomorph_status": "no_new_allomorph_authorized",
+          "conflicts": {
+            "family_assignment": "unassigned",
+            "prior_scoped_decisions": [
+              {
+                "authority": "manual_verified",
+                "family": "family:pilot",
+                "head_id": null,
+                "identity_overlap": "same_language_spelling_lookup_only",
+                "lemma_id": null,
+                "reason": "Fixture-only prohibition",
+                "ref": {
+                  "entity": "ManualDecision",
+                  "id": "fixture:negative",
+                  "object_sha256": "0651c6b0f0bb52af8d3b8aeed213ed594340d487c959de829a9b6099f95e60fc",
+                  "snapshot_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+                },
+                "status": "rejected"
+              }
+            ]
+          },
+          "creates_canonical_root": false,
+          "discovery_paths": [
+            {
+              "direction": {
+                "from_slots": [
+                  "a"
+                ],
+                "state": "directed",
+                "to_slots": [
+                  "b"
+                ]
+              },
+              "lexeme_ref": {
+                "content_sha256": "6882732dafef43f0ba25bf72b4fdf6389ed60091241c686d93dbfab205925bbe",
+                "entity": "Lexeme",
+                "id": "z",
+                "revision": 1
+              },
+              "proposed_base": {
+                "content_sha256": "11252261e4477f9b2d57d4a8cda8272b1aa8cca877de6e45e9719c6137d57f35",
+                "entity": "Lexeme",
+                "id": "a",
+                "revision": 1
+              },
+              "relation_ref": {
+                "content_sha256": "d6fc047784a22f31a35d03a63b73b486531e2afc602f1bd3d239d5d9b434542f",
+                "entity": "Relation",
+                "id": "relation:f9d839417b23225334ee387617b4d3cf8362934d0c2dade34f49509ffd735c3e",
+                "revision": 1
+              },
+              "relation_type": "derivation_direct"
+            }
+          ],
+          "establishes_membership": false,
+          "evidence_changed_since_review": false,
+          "evidence_refs": [
+            {
+              "content_sha256": "545dd31742bea9bf245e7e0174269495159b08803634a29ff3da50292b192bc0",
+              "entity": "Evidence",
+              "id": "fixture:evidence:e93a46071e176ae0ee9146f88358c0fe892b9e8b58840c5796c291d9a4079a27",
+              "revision": 1
+            }
+          ],
+          "family": "unassigned",
+          "frequency_observations": [
+            {
+              "language": "en",
+              "locators": [
+                {
+                  "fixture_only": true
+                }
+              ],
+              "record_json": "{\"rank\": 123, \"word\": \"prohibited\"}",
+              "record_sha256": "1efc69d794d2bfbd0fca0fb881d495a6929516b3e478d3045da9b172f5985c71"
+            }
+          ],
+          "group_key": "1f49148ec834a58837c1cfdf73a1568636311a1519b0898061b4b846347f0e42",
+          "id": "candidate:964547c40abb338317159f9c1a0d85ddbc050cb403846b6e898441205c4933af",
+          "input_fingerprint": "17ff578dcf7991ef63516ab51e9789c79423c572daee18893d295c1ad4db18f4",
+          "language": "en",
+          "lemma": "prohibited",
+          "lexeme_alternatives": [
+            {
+              "content_sha256": "6882732dafef43f0ba25bf72b4fdf6389ed60091241c686d93dbfab205925bbe",
+              "entity": "Lexeme",
+              "id": "z",
+              "revision": 1
+            }
+          ],
+          "match_kind": "real_project_word_incoming_relation",
+          "pos": "NOUN",
+          "previous_decisions": [
+            {
+              "actor": "scoped_registry_context",
+              "basis": "scoped-context:94d2ad9bdfbd25aaa0545695c8b5608d16277642f5dab0bf5e8cd9630e4bf639",
+              "reason": "Prior scoped registry prohibition requires identity/family review",
+              "sequence": 1,
+              "state": "deferred"
+            }
+          ],
+          "priority": {
+            "components": {
+              "calculation_impact": 0,
+              "frequency": 4,
+              "independent_evidence": 0,
+              "merge_risk": 2,
+              "model_impact": 0,
+              "uncertainty": 2
+            },
+            "experimental": true,
+            "methodology_score": false,
+            "score": 22,
+            "weights": {
+              "calculation_impact": 1,
+              "frequency": 2,
+              "independent_evidence": 2,
+              "merge_risk": 4,
+              "model_impact": 1,
+              "uncertainty": 3
+            }
+          },
+          "priority_status": "experimental_reverse_source_independence_not_measured",
+          "proposed_bases": [
+            {
+              "content_sha256": "11252261e4477f9b2d57d4a8cda8272b1aa8cca877de6e45e9719c6137d57f35",
+              "entity": "Lexeme",
+              "id": "a",
+              "revision": 1
+            }
+          ],
+          "review_state": "deferred",
+          "sense_description": null,
+          "sense_status": "unresolved",
+          "uncertainty_reasons": [
+            "new_base_not_reviewed",
+            "sense_identity_unresolved"
+          ]
+        }
+      ],
+      "expected": 0,
+      "status": "PASS"
+    },
+    {
+      "actual": "rejected",
+      "check": "reverse_own_history_persists",
+      "detail": null,
+      "expected": "rejected",
+      "status": "PASS"
+    },
+    {
+      "actual": 1,
+      "check": "repeat_no_duplicate",
+      "detail": null,
+      "expected": 1,
+      "status": "PASS"
+    },
+    {
+      "actual": "hold",
+      "check": "ambiguous_family_alias_hold",
+      "detail": null,
+      "expected": "hold",
+      "status": "PASS"
+    },
+    {
+      "actual": true,
+      "check": "competing_allomorphs_retained",
+      "detail": null,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "allomorph_not_bridge",
+      "detail": null,
+      "expected": 0,
+      "status": "PASS"
+    },
+    {
+      "actual": "no_match",
+      "check": "language_scoped_lookup",
+      "detail": null,
+      "expected": "no_match",
+      "status": "PASS"
+    },
+    {
+      "actual": "abstain",
+      "check": "IV001_prediction_not_copied_to_homonym",
+      "detail": [
+        {
+          "boundaries": null,
+          "case_content_sha256": "noun",
+          "case_id": "case:noun",
+          "decision": "yes",
+          "establishes_membership": false,
+          "evidence_paths": [
+            {
+              "establishes_membership": false,
+              "nodes": [
+                {
+                  "content_sha256": "11252261e4477f9b2d57d4a8cda8272b1aa8cca877de6e45e9719c6137d57f35",
+                  "entity": "Lexeme",
+                  "id": "a",
+                  "revision": 1
+                },
+                {
+                  "content_sha256": "b84a5eb179e8081ac35d53cddc2b261841d851a8d929e1864ef8a42b64fcd651",
+                  "entity": "Lexeme",
+                  "id": "noun",
+                  "revision": 1
+                }
+              ],
+              "proposed_category": "derivation_direct",
+              "steps": [
+                {
+                  "component_only": false,
+                  "confirmed": false,
+                  "direction": {
+                    "from_slots": [
+                      "a"
+                    ],
+                    "state": "directed",
+                    "to_slots": [
+                      "b"
+                    ]
+                  },
+                  "evidence_refs": [
+                    {
+                      "content_sha256": "2851197f7a918dec56607a0409182b6822ced97423d68421426de1fa86045780",
+                      "entity": "Evidence",
+                      "id": "fixture:evidence:ee44f08b9d424e6fd81eb979324207cc7e7cc569b844dec6fdfced08aebb93b2",
+                      "revision": 1
+                    }
+                  ],
+                  "from_node": "a",
+                  "relation_ref": {
+                    "content_sha256": "a7db2f452bc8e7a08691ecad1937546d18c4e41fcbdd3e91cadaff37c203c4a4",
+                    "entity": "Relation",
+                    "id": "relation:cf43f78f055a8ab88099189b6a8ae1a1d249122226f914c450a47b2656ee4c72",
+                    "revision": 1
+                  },
+                  "sources": [
+                    {
+                      "raw_locator": {
+                        "fixture_only": true
+                      },
+                      "source_lineage": {
+                        "fixture_only": true
+                      },
+                      "source_revision_ref": {
+                        "content_sha256": "86760e965c203e5e2d13ce379eb03d3ff377a03603a2dd39d3b2965dfa68a105",
+                        "entity": "SourceRevision",
+                        "id": "fixture:source",
+                        "revision": 1
+                      }
+                    }
+                  ],
+                  "to_node": "noun",
+                  "type": "derivation_direct",
+                  "uncertainties": [
+                    "source_claim_not_reviewed",
+                    "sense_identity_unresolved"
+                  ]
+                }
+              ],
+              "validation_status": "hypothesis_only"
+            }
+          ],
+          "merged_families": [],
+          "reason": "source_proposal_requires_review",
+          "requires_manual_review": true,
+          "sense_identity_established": false
+        },
+        {
+          "boundaries": null,
+          "case_content_sha256": "verb",
+          "case_id": "case:verb",
+          "decision": "abstain",
+          "establishes_membership": false,
+          "evidence_paths": [],
+          "merged_families": [],
+          "reason": "no_finite_support_or_existing_prohibition",
+          "requires_manual_review": true,
+          "sense_identity_established": false
+        }
+      ],
+      "expected": "abstain",
+      "status": "PASS"
+    },
+    {
+      "actual": "formal_similarity",
+      "check": "no_automatic_allomorph",
+      "detail": null,
+      "expected": "formal_similarity",
+      "status": "PASS"
+    },
+    {
+      "actual": 1406,
+      "check": "real_cases_no_automatic_gold",
+      "detail": null,
+      "expected": 1406,
+      "status": "PASS"
+    },
+    {
+      "actual": true,
+      "check": "model_label_rejected",
+      "detail": null,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "actual": "preserve",
+      "check": "manual_release_not_overwritten",
+      "detail": null,
+      "expected": "preserve",
+      "status": "PASS"
+    },
+    {
+      "actual": "actual_algorithm_capture_missing",
+      "check": "missing_baseline_not_imputed",
+      "detail": null,
+      "expected": "actual_algorithm_capture_missing",
+      "status": "PASS"
+    },
+    {
+      "actual": 257,
+      "check": "independent_raw_fields_and_provenance",
+      "detail": null,
+      "expected": 257,
+      "status": "PASS"
+    },
+    {
+      "actual": "identical; SHA in replay",
+      "check": "import_fresh_manifest_replay",
+      "detail": null,
+      "expected": "identical; SHA in replay",
+      "status": "PASS"
+    },
+    {
+      "actual": true,
+      "check": "import_fresh_output_replay",
+      "detail": null,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "actual": "identical; SHA in replay",
+      "check": "graph_fresh_manifest_replay",
+      "detail": null,
+      "expected": "identical; SHA in replay",
+      "status": "PASS"
+    },
+    {
+      "actual": true,
+      "check": "graph_fresh_output_replay",
+      "detail": null,
+      "expected": true,
+      "status": "PASS"
+    },
+    {
+      "actual": false,
+      "check": "import_missing_fail_closed",
+      "detail": null,
+      "expected": false,
+      "status": "PASS"
+    },
+    {
+      "actual": false,
+      "check": "import_checksum_fail_closed",
+      "detail": null,
+      "expected": false,
+      "status": "PASS"
+    },
+    {
+      "actual": "blocked",
+      "check": "real_negative_creel",
+      "detail": null,
+      "expected": "blocked",
+      "status": "PASS"
+    },
+    {
+      "actual": 0,
+      "check": "no_external_accepted_reviews",
+      "detail": null,
+      "expected": 0,
+      "status": "PASS"
+    }
+  ],
+  "summary": {
+    "FAIL": 0,
+    "PASS": 35
+  }
+}

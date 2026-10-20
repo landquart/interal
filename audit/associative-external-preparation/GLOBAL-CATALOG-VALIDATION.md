@@ -1,0 +1,13 @@
+# Global catalog validation
+
+**PASS.** The two independent catalogs have build ID `5e5ba7e4ae2dd0fb598f4f241fc2ba5a09bc7a1bdf33acbb447a673af2c92c2d`. Every immutable output byte agrees across independent roots and with the earlier pinned catalog. `REPLAY-VERIFIED.json` reports 0 lost evidence occurrences and 0 dangling catalog references.
+
+`certify_corpus.audit_catalog` independently streams all 3,750,624 catalog occurrences against a bounded sorted merge of all 13 partition occurrence streams. It checks unique sorted evidence locators, normalized view hashes, complete view support and exact union equality. It does not hold the full graph in RAM. Independent `audit_identity.py` recomputed every identifier and namespace across **9,404,044 records** and **12,716,787 lexical observations**, with disjoint artifact namespaces and strictly unique physical locators; legitimate repeat observations of a native lexeme retain that native identity. See `IDENTITIES.json` and `REPLAY-VERIFIED.json`.
+
+The catalog preserves **692,075 analysis-difference rows**. Different relation types on a lookup pair are flagged for review, rather than declared contradictions or discarded. Original fields, alternative analyses and source-local identifiers stay in immutable staging even when identical normalized representations are grouped.
+
+GLeMM retains unknown direction and its possible dependence on MorphyNet. Matching spelling is only a lookup; it never merges lexeme/sense identity. Inflection is not productive derivation. No catalog or index record establishes associative-family membership.
+
+The completed disk projection additionally validates all **4,488,547 compressed non-inflection payload checksums**, SQLite structural integrity and complete source-partition coverage. **4,915,497 inflections remain lossless in staging and are excluded from productive arcs. It decoded 449 stratified random-access payloads. Native unresolved endpoint occurrences are recorded as **0**, not replaced with spelling matches. They cannot be traversed without native endpoints. The legacy JSON counter `stored_productive_records` means stored non-inflection observations: it includes root-only records and unknown-direction GLeMM relatedness, and does not establish productive derivations. This projection audit is not a second cold construction of the complete source index. See `INDEX-AUDIT.json`.
+
+Existing source pins, importer, graph/queue guards and calculation behavior are unchanged; stage-01 changes add separate infrastructure and reports. `PROTECTED.json` and the PR's additions-only diff establish that boundary.
