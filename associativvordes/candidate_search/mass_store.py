@@ -34,19 +34,22 @@ class Store(Queue):
                     self.db.execute('INSERT OR IGNORE INTO history VALUES(?,?,?,?,?,?)',row)
         finally: old.close()
 
+    def with_history_context(self, body):
+        context=[]
+        for other_id,payload,state in self.db.execute("SELECT id,body,state FROM questions WHERE state!='open' AND json_extract(body,'$.language')=? AND json_extract(body,'$.family')='unassigned' ORDER BY id",(body['language'],)):
+            other=json.loads(payload)
+            if lookup(other['lemma'])==lookup(body['lemma']):
+                history=[list(r) for r in self.db.execute('SELECT sequence,state,reason,actor,basis FROM history WHERE candidate=? ORDER BY sequence',(other_id,))]
+                context.append(dict(id=other_id,state=state,history=history,scope='unassigned_prior_base_question',identity='same_spelling_only'))
+        return dict(body,prior_unassigned_questions=context)
+
     def save_unit(self, unit, fingerprint, questions, events, stats, fail_after=None):
         with self.db:
             self.db.execute('DELETE FROM active WHERE unit=?',(unit,))
             self.db.execute('DELETE FROM scopes WHERE scope=?',(unit,))
             self.db.execute('DELETE FROM discovery_log WHERE unit=?',(unit,))
             for i, body in enumerate(questions):
-                context=[]
-                for other_id,payload,state in self.db.execute("SELECT id,body,state FROM questions WHERE state!='open' AND json_extract(body,'$.language')=? AND json_extract(body,'$.family')='unassigned' ORDER BY id",(body['language'],)):
-                    other=json.loads(payload)
-                    if lookup(other['lemma'])==lookup(body['lemma']):
-                        history=[list(r) for r in self.db.execute('SELECT sequence,state,reason,actor,basis FROM history WHERE candidate=? ORDER BY sequence',(other_id,))]
-                        context.append(dict(id=other_id,state=state,history=history,scope='unassigned_prior_base_question',identity='same_spelling_only'))
-                body=dict(body,prior_unassigned_questions=context)
+                body=self.with_history_context(body)
                 cid, _ = self.upsert(body,unit)
                 prior = body.get('guard',{}).get('blockers',[])
                 self.scoped_context(cid,prior)
@@ -87,3 +90,11 @@ class Store(Queue):
             import os
             for stream in streams.values(): stream.flush();os.fsync(stream.fileno());stream.close()
         return counts
+
+    def reconcile_review_history(self, units):
+        """Review edits affect POS alternatives even when source discovery is reused."""
+        with self.db:
+            for unit in units:
+                rows=self.db.execute('SELECT q.body FROM questions q JOIN active a ON a.question=q.id WHERE a.unit=? ORDER BY q.id',(unit,)).fetchall()
+                for raw, in rows:
+                    body=self.with_history_context(json.loads(raw));self.upsert(body,unit)

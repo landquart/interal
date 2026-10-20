@@ -55,3 +55,5 @@ python3 -m unittest discover -s associativvordes/candidate_search -v
 ```
 
 CI discovers `test_mass.py` through the existing corpus certification workflow. Its pinned real excerpts test native chains, ambiguous direction, inflection separation and provenance. Explicit adversarial registry/endpoint mutations test false stems, homonym and sense overlap, conflicting families, negatives, unverified POS, cross-language rejection, rollback and queue recovery; they never stand in for a full corpus run.
+
+For independently timed small, 12-family, all-family, fresh replay, unchanged and interrupted/resumed runs, use `mass_benchmark.py` with the same five input arguments as `mass_run.py` and a fresh external `--output`. It records each run in a separate process and fails if export versions differ or unchanged units are rediscovered. It does not fabricate hundreds or thousands of canonical v6 families to inflate the 19-family workload. Those larger inventory stages remain the measured stage-01 v5 benchmark.

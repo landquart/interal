@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import resource
+import time
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'evidence_graph'))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'importers'))
 from graph import Graph, canonical, sha, lookup, file_hash
@@ -30,6 +32,7 @@ def local_content(value):
 
 
 def prepare(repo, destination, legacy_revision, revision=COMMIT):
+    started=time.monotonic()
     repo, destination = Path(repo).resolve(), Path(destination).resolve()
     if destination.is_relative_to(repo): raise ValueError('external registry required')
     if revision != COMMIT: raise ValueError('unapproved v6 revision')
@@ -121,7 +124,9 @@ def prepare(repo, destination, legacy_revision, revision=COMMIT):
     finally: g.close()
     receipt = dict(schema='mass-registry/1', commit=revision, legacy_revision=legacy_revision,
                    files=proofs, counts=counts, database_sha256=file_hash(database), membership_writes=0,
-                   memory_budget_bytes=1024**3, policy_sha256=file_hash(__file__))
+                   memory_budget_bytes=1024**3, policy_sha256=file_hash(__file__),
+                   elapsed_seconds=round(time.monotonic()-started,3),max_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss)
+    if receipt['max_rss_kib'] > receipt['memory_budget_bytes']//1024:raise ValueError('registry memory budget exceeded')
     atomic_json(destination / 'REGISTRY.json', receipt)
     return receipt
 
@@ -129,4 +134,4 @@ def prepare(repo, destination, legacy_revision, revision=COMMIT):
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     for name in ['repo', 'destination', 'legacy-revision']: p.add_argument('--' + name, required=True)
-    a = p.parse_args(); print(canonical(prepare(a.repo, a.destination, a.legacy_revision)))
+    a = p.parse_args(); print(json.dumps(prepare(a.repo, a.destination, a.legacy_revision),sort_keys=True))

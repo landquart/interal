@@ -104,6 +104,7 @@ class Discovery:
                     count += 1
                     if len(chosen) < limits['native_per_source']: chosen.append((lid, seq))
                 counters['native_matches'] += count
+                if not count: log('no_exact_native_match',seed=seed,source=source)
                 if count > len(chosen): log('native_budget', seed=seed, source=source, count=count-len(chosen))
                 for lid, seq in chosen:
                     anchor = dict(seed=seed, native_lexeme='lexeme:'+lid.hex(), evidence=self.evidence(seq))

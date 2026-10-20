@@ -11,6 +11,7 @@ from mass_registry import Graph, LANGUAGES, canonical, sha, local_content
 from mass_source import owner_key, checked
 from mass_run import run, parser, dependency
 from mass_store import Store
+from mass_recover import rollback
 from scale_index import Index
 from build_graph import load_registry
 from prepare_registry import read
@@ -141,6 +142,17 @@ class MassTests(unittest.TestCase):
         self.assertTrue(any(q['inflection_observations'] for q in questions))
         self.assertFalse(any(s['type']=='inflection' for q in questions for p in q['discovery_paths'] for s in p['steps']))
 
+    def test_real_compound_and_reverse_base_keep_native_evidence(self):
+        self.inputs.seed('family:nat','ru','-валентный')
+        questions,_,_=self.discover('family:nat','ru')
+        q=next(q for q in questions if q['lemma']=='одновалентный')
+        self.assertTrue(any(p['category']=='compound' for p in q['discovery_paths']))
+        self.inputs.seed('family:nat','ru','одновалентный')
+        questions,_,_=self.discover('family:nat','ru')
+        q=next(q for q in questions if q['lemma']=='-валентный')
+        self.assertIn('POSSIBLE_BASE',q['categories'])
+        self.assertTrue(q['proposed_bases']);self.assertFalse(q['creates_canonical_root'])
+
     def test_existing_negative_is_a_question_but_not_a_frontier(self):
         db=sqlite3.connect(self.inputs.registry)
         negative=db.execute("SELECT family,language,word FROM decisions WHERE status IN ('rejected','excluded','split_required','blocked_from_runtime') ORDER BY id").fetchall();db.close()
@@ -170,6 +182,9 @@ class MassTests(unittest.TestCase):
         fresh=run(self.inputs.args(self.root/'fresh','--families','OCUL','PEDE','--languages','en','es'))
         self.assertEqual(first['version'],fresh['version'])
         self.assertEqual(first['mode'],'dry_run');self.assertEqual(first['membership_writes'],0)
+        self.assertEqual(before,json.loads((self.root/'run/CURRENT.json').read_text()))
+        (self.root/'run/CURRENT.json').write_text('damaged pointer')
+        self.assertEqual(rollback(self.root/'run')['status'],'PASS')
         self.assertEqual(before,json.loads((self.root/'run/CURRENT.json').read_text()))
 
     def test_checksum_failure_and_unknown_canonical_id(self):
@@ -245,6 +260,18 @@ class MassTests(unittest.TestCase):
 
 
 class StoreTests(unittest.TestCase):
+    def test_later_refusal_reconciles_existing_pos_without_source_discovery(self):
+        with tempfile.TemporaryDirectory() as root:
+            q=Store(Path(root)/'queue.sqlite')
+            body=dict(family='family:ocul',language='en',lemma='ocular',pos=None,categories=['IDENTITY_UNRESOLVED'],priority=dict(score=1))
+            q.save_unit('u','a',[body,dict(body,pos='NOUN')],[],{})
+            cid='candidate:'+sha(['family:ocul','en','ocular',None])
+            other='candidate:'+sha(['family:ocul','en','ocular','NOUN'])
+            q.decide(cid,'rejected','test later refusal','test reviewer')
+            q.reconcile_review_history(['u'])
+            self.assertEqual(q.db.execute('SELECT state FROM questions WHERE id=?',(other,)).fetchone()[0],'rejected')
+            q.close()
+
     def test_transaction_history_and_rejected_rediscovery(self):
         with tempfile.TemporaryDirectory() as root:
             root=Path(root);q=Store(root/'queue.sqlite')

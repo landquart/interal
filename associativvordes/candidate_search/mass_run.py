@@ -105,6 +105,7 @@ def _run(a, output, queue_path):
                 receipt=dict(status='CHECKPOINT',processed=processed,reused=reused,selected_units=len(units),
                              elapsed_seconds=round(time.monotonic()-started,3),membership_writes=0)
                 atomic_json(output/'LAST-RUN.json',receipt);return receipt
+        queue.reconcile_review_history(units)
         stage=Path(tempfile.mkdtemp(prefix='.export-',dir=output))
         try:
             counts=queue.export_selected(stage,units)

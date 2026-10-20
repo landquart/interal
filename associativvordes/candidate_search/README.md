@@ -1,5 +1,7 @@
 # Isolated candidate discovery
 
+For the full actual v6 registry, use [MASS-RUNBOOK.md](MASS-RUNBOOK.md). Its dry-run CLI replaces the seven-family scope limit with verified registry iteration, separate review categories, disk traversal, incremental checkpoints and retained negative history. The older pilot below remains available.
+
 Phase 05: proposals and review workflow only. No runtime integration, production writer, membership grant or methodology calculation. Python standard library, supported Python 3.12; uses the phase-04 graph and its checksum validation.
 
 ## Run small tests
