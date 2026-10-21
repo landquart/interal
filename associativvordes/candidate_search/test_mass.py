@@ -249,6 +249,25 @@ class MassTests(unittest.TestCase):
         self.assertNotIn('inoculador',words)
         self.assertTrue(any(e['reason']=='negative_seed_not_expanded' for e in events))
 
+    def test_preparation_registry_reuse_checks_policy_and_database(self):
+        from mass_ci import prepare_registry_input, LEGACY
+        import mass_registry
+        path=self.inputs.registry.parent/'REGISTRY.json'
+        receipt=json.loads(path.read_text())
+        receipt.update(commit=mass_registry.COMMIT,legacy_revision=LEGACY,
+                       policy_sha256=hash_file(mass_registry.__file__))
+        atomic_json(path,receipt)
+        before=hash_file(self.inputs.registry)
+        self.assertEqual(prepare_registry_input(self.root),receipt)
+        self.assertEqual(hash_file(self.inputs.registry),before)
+        atomic_json(path,dict(receipt,policy_sha256='test-only-incompatible-policy'))
+        with self.assertRaisesRegex(ValueError,'checkpoint dependency mismatch'):
+            prepare_registry_input(self.root)
+        atomic_json(path,receipt)
+        with self.inputs.registry.open('ab') as stream:stream.write(b'test-only-corruption')
+        with self.assertRaisesRegex(ValueError,'integrity'):
+            prepare_registry_input(self.root)
+
     def test_incremental_own_and_competing_family_dependencies(self):
         db=sqlite3.connect(self.inputs.registry)
         a=dependency(db,'family:ocul','en',['ocular']);b=dependency(db,'family:ped','en',[])
