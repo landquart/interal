@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Interal · Разметка семей</title><link rel="stylesheet" href="/shared/ui.css"><link rel="stylesheet" href="/review.css"><script type="module" src="/app.js"></script></head>
+<body><main>
+<header><div><p class="eyebrow">INTERAL / ИССЛЕДОВАТЕЛЬСКАЯ РАЗМЕТКА</p><h1>Проверка кандидатов</h1><p>Одобрение кандидатуры сохраняется отдельно от утверждённых семей.</p></div><div id="identity"></div></header>
+<p id="message" role="status" aria-live="polite"></p>
+<form id="login" class="card"><label>Ключ разметчика <input id="token" type="password" required autocomplete="off"></label><button>Войти</button></form>
+<section id="workspace" hidden>
+<div class="toolbar card"><label>Язык<select id="language"><option value="">Все языки</option></select></label><label>Семья<select id="family"><option value="">Все семьи</option></select></label><label>Слово<input id="search" type="search"></label><label>Мой статус<select id="status"><option value="OPEN">Без моего решения</option><option value="">Все</option></select></label><label class="unblind">Проблема<select id="category"><option value="">Все</option><option>NEW_MEMBER</option><option>EXISTING_MEMBER_AUDIT</option><option>CONFLICT</option><option>POSSIBLE_BASE</option><option>IDENTITY_UNRESOLVED</option><option>NEGATIVE_HISTORY</option><option>LOW_EVIDENCE</option></select></label><label class="unblind"><input id="grouped" type="checkbox">Группировать близкие</label><label class="unblind"><input id="independent" type="checkbox">≥2 подтверждённых независимых групп</label><label class="unblind"><input id="doubtful" type="checkbox">Сомнительные случаи</label><label id="disagreement-label" hidden><input id="disagreement" type="checkbox">Разногласия</label><button id="filter" type="button">Применить</button><button id="clear-group" type="button" hidden>Все группы</button></div>
+<div class="progress"><strong id="progress"></strong><span id="count"></span><button id="backup" type="button" hidden>Скачать резервную копию</button><button id="logout" type="button">Выйти</button></div>
+<div class="layout"><aside class="card"><div id="queue" aria-label="Очередь"></div><div class="actions"><button id="prev-page" type="button">←</button><button id="next-page" type="button">→</button></div><button id="batch" type="button">Предпросмотр принятия выбранных</button></aside>
+<article id="card" class="card"><p>Выберите вопрос из очереди.</p></article></div>
+</section>
+<dialog id="preview"><h2>Предварительный просмотр</h2><p>Проверьте каждую лексему, основание и предупреждения. Будут сохранены индивидуальные решения ACCEPT_PROPOSED.</p><div id="preview-items"></div><div class="actions"><button id="confirm-batch" type="button">Подтвердить пакет</button><button id="cancel-batch" type="button">Отмена</button></div></dialog>
+</main></body></html>

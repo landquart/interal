@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "questions": 1567,
+  "source_queue_sha256": "afde4c2a2ba82b44b793780292474cd216e581c87b9b10595b6ba9e63ff23254",
+  "source_queue_unchanged": true,
+  "snapshot": "051b69727fbe2a0bc2b168033cf5375f65d997620b7c6f85f77c080ebec0cd03",
+  "committed_transactions": 104,
+  "head": "8acb0c45cb179002d6e3fe36ff2ed92990eb122674d0be530a9ba70f1eec778d",
+  "restored_head": "8acb0c45cb179002d6e3fe36ff2ed92990eb122674d0be530a9ba70f1eec778d",
+  "source_versions_preserved": true,
+  "individual_decision_events": 104,
+  "scenarios": {
+    "100_sequential": true,
+    "reject": true,
+    "correction_and_undo": true,
+    "two_reviewer_conflict": true,
+    "arbitration_uncertain": true,
+    "process_interruption_exit_77": true,
+    "full_history_restore": true,
+    "reimport_preserves_rejection": true,
+    "research_overlay_only": true
+  },
+  "membership_writes": 0,
+  "note": "All decisions in this qualification are automated test records, not human gold."
+}

@@ -1,0 +1,28 @@
+test_pinned_graph_rebuild_does_not_apply_approved_proposal (test_graph_refresh.GraphRefreshTests.test_pinned_graph_rebuild_does_not_apply_approved_proposal) ... ok
+test_batch_preview_commit_stale_and_individual_history (test_review.HTTPTests.test_batch_preview_commit_stale_and_individual_history) ... ok
+test_batch_staged_before_refresh_requires_reopen (test_review.HTTPTests.test_batch_staged_before_refresh_requires_reopen) ... ok
+test_blind_http_cannot_access_backup_overlay_or_batch (test_review.HTTPTests.test_blind_http_cannot_access_backup_overlay_or_batch) ... ok
+test_http_auth_csrf_origin_and_production_route (test_review.HTTPTests.test_http_auth_csrf_origin_and_production_route) ... ok
+test_shared_styles_keep_variables_without_external_font (test_review.HTTPTests.test_shared_styles_keep_variables_without_external_font) ... ok
+test_100_sequence_resume_and_versioned_export (test_review.ReviewTests.test_100_sequence_resume_and_versioned_export) ... ok
+test_arbitration_requires_both_and_role (test_review.ReviewTests.test_arbitration_requires_both_and_role) ... ok
+test_blind_server_allowlist_hides_all_outcomes (test_review.ReviewTests.test_blind_server_allowlist_hides_all_outcomes) ... ok
+test_correction_and_undo_preserve_every_event (test_review.ReviewTests.test_correction_and_undo_preserve_every_event) ... ok
+test_corruption_and_missing_transaction_fail_closed (test_review.ReviewTests.test_corruption_and_missing_transaction_fail_closed) ... ok
+test_family_and_native_lexeme_scope (test_review.ReviewTests.test_family_and_native_lexeme_scope) ... ok
+test_frequency_unknown_and_independence_not_fabricated (test_review.ReviewTests.test_frequency_unknown_and_independence_not_fabricated) ... ok
+test_idempotent_retry_and_request_collision (test_review.ReviewTests.test_idempotent_retry_and_request_collision) ... ok
+test_inactive_question_history_restored_on_rediscovery (test_review.ReviewTests.test_inactive_question_history_restored_on_rediscovery) ... ok
+test_independent_review_and_arbitration (test_review.ReviewTests.test_independent_review_and_arbitration) ... ok
+test_interrupted_atomic_write_and_committed_retry (test_review.ReviewTests.test_interrupted_atomic_write_and_committed_retry) ... ok
+test_invalid_batch_all_or_nothing (test_review.ReviewTests.test_invalid_batch_all_or_nothing) ... ok
+test_lossless_source_row_attachment_and_tamper (test_review.ReviewTests.test_lossless_source_row_attachment_and_tamper) ... ok
+test_missing_committed_tail_is_detected (test_review.ReviewTests.test_missing_committed_tail_is_detected) ... ok
+test_progress_private_and_recoverable (test_review.ReviewTests.test_progress_private_and_recoverable) ... ok
+test_source_refresh_rejection_and_proposal_survive (test_review.ReviewTests.test_source_refresh_rejection_and_proposal_survive) ... ok
+test_two_writers_one_wins_no_lost_update (test_review.ReviewTests.test_two_writers_one_wins_no_lost_update) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 5.765s
+
+OK

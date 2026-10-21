@@ -1,0 +1,40 @@
+{
+  "scope": "automated Chromium interactions; not human linguistic annotation",
+  "questions": 1567,
+  "sequential_decisions": 100,
+  "first_question": "candidate:00173ed8db9db7a1e4c5f0fe1dafe7c0b7fead1d1ac3538417ec6421d970d9d5",
+  "browser": "153.0.8010.0",
+  "card_open": {
+    "n": 100,
+    "min_ms": 23.4,
+    "median_ms": 54.97,
+    "p95_ms": 99.73,
+    "max_ms": 129.11
+  },
+  "decision_save": {
+    "n": 103,
+    "min_ms": 43.73,
+    "median_ms": 60.21,
+    "p95_ms": 92.97,
+    "max_ms": 223.07
+  },
+  "filter": {
+    "n": 7,
+    "min_ms": 66.7,
+    "median_ms": 93.32,
+    "p95_ms": 121.58,
+    "max_ms": 121.58
+  },
+  "scenarios": {
+    "reject": true,
+    "correct": true,
+    "undo": true,
+    "reload_resume": true,
+    "blind_payload_redaction": true,
+    "two_reviewer_conflict": true,
+    "arbitration_uncertain": true,
+    "backup_download": true,
+    "batch_preview_and_individual_save": true
+  },
+  "console_errors": []
+}

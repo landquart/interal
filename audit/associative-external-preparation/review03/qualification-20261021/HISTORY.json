@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "history_events": 104,
+  "retained_rejected_question": "candidate:00173ed8db9db7a1e4c5f0fe1dafe7c0b7fead1d1ac3538417ec6421d970d9d5",
+  "question_history_length": 5,
+  "statuses": [
+    "REJECT",
+    "DEFER",
+    "REJECT",
+    "ACCEPT_PROPOSED",
+    "UNCERTAIN"
+  ],
+  "rejection_scope": {
+    "family": "family:loc",
+    "language": "en",
+    "lexeme": "lexeme:3b46fbf05586f6dddf9ff35423f1871390ae346d2e3e6686fe8e039193b6c0cb"
+  },
+  "prior_status_and_actor_and_timestamp_in_every_event": true,
+  "old_sources_archived": true,
+  "restore_identical": true
+}
