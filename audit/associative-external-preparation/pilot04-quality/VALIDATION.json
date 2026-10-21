@@ -1,0 +1,21 @@
+{
+  "status": "PASS_TECHNICAL_NOT_HUMAN_QUALITY",
+  "frozen_cases_identical": true,
+  "all_72_actual_runtime_searches_complete": true,
+  "actual_A_candidates_before_output_budget": 2314,
+  "independent_actual_A_replay_same_candidates": true,
+  "two_configuration_runs_same_candidates_and_predictions": true,
+  "archive": {
+    "files": 6,
+    "nodes": 53875,
+    "bytes": 1145348,
+    "sha256": "f0d1b24d00ae201af05efd49ce7cf857d9411a00449f33c40f10c2fff8f1d5a7"
+  },
+  "archive_restore": {
+    "files": 6,
+    "all_original_json_bytes_restored": true
+  },
+  "gold_labels_created": 0,
+  "source_labels_or_old_accepted_used_as_gold": false,
+  "membership_writes": 0
+}

@@ -1,0 +1,53 @@
+{
+  "base_commit": "f8b399c835dca054fe8f43d735a97a85df734e29",
+  "case_set_sha256": "3f809f5f36ea367e03c1b0bf29d4f95244f81db2df15a33c94b39e7c8c2d38a1",
+  "cases_file_sha256": "99c256a3332865667e39d3ecc6bded8fe4edd44dc9c12c5fbe4e6b328eddc4ad",
+  "cases_or_gold_automatically_rewritten": false,
+  "code_sha256": {
+    "archive04.py": "3f00f634ffd6a4c2cb119ba700d9ecb57269bc025c663e67135280dda1bf225f",
+    "capture.py": "1408eb14e72d39ebec2c4ad2538143e053dc248fbecb3b06969cadad782cf34a",
+    "compare04.py": "d7618cf1b4a65d7b1c575087b42b9d0d3d5bfde2a072e70da8fd3bdd9156bc67",
+    "evaluate.py": "5a622eb304eef9fe77953082155ab2cbbe7aba2f2ac86798a3dca69cd2dc1ceb",
+    "gold.py": "5b4a9e42902848e428e79dd65e496f38938a97374f7674de49cf864b08ee3d5b",
+    "human04.py": "83be3b9b6105a7f8b0761312331d2cb887e3dba51ad02a987ea055f16a617cea",
+    "impact.py": "c083b462b32517cbeb08333b9f542a0844763d2ae9b0ca1e857a0e54b0beefce",
+    "metrics04.py": "095c86f0bb7239cabaaa014af4200801e567658872c8750eaa722b4ed7855832",
+    "prepare_inputs.py": "2826a13082f838c3b78acec377872227b46459f11bcb0942ad1767fe5a993295",
+    "replay04.py": "36d7090cf0b8e695f55bfca149d1474a3a27dcc6fd847109ad69632d58e7576d",
+    "reproduce.py": "9df700cfe209ee5828afc82f73380494c876fd336a60bf4a0615871b406b995a",
+    "run.py": "0b7e27171c6bebc6204fab09047da21ff0a3d2111fe21b20d319f6590b1f8532",
+    "runtime04.mjs": "10518c14fc58e19184f08d44459aa2418275491f00e1df191d835bc192c04818",
+    "sample.py": "b5973e6855184a8829376c803e5e20a931e6e65f13fa9ae8b17435f1046fdf02",
+    "study04.py": "86fb72740fb5dfec5649cd2b3fc853baaa9a01565b43b96bfc28f6b9942e02f1",
+    "test_pilot.py": "694fe576a1ec190b14a8ed8775d11cf73c30af18bc7207c3d71496ddd33b83bc",
+    "test_quality04.py": "cc71e793807ef8831930eb76e9025f44f0e7817dee6542e5d02a205c036633c2"
+  },
+  "graph_manifest_sha256": "0ad2e7c40309c53b1c0ac6e4f01dd808d2eb1d99694f28833972f28f5bcfcc43",
+  "implementation_commit": "ea4a491f964d7957aaf5c45d29b8dff22cce14d7",
+  "membership_writes": 0,
+  "older_predictions_superseded": true,
+  "outputs": {
+    "COVERAGE.json": "b8acac946fefa556a6498ebf789e0251ce7f93150a8f4004d238d3a9bb3792ae",
+    "DIFFERENCES.json": "dac584138686c9b93a3128a0510f6d5d13c3e6c55c1b75f34efcb86480c74682",
+    "EFFICIENCY.json": "5cdd36e396f39be60837109d9bb5575114baaba2a29e7f2e2e5b835a33a7cfbf",
+    "GATES.json": "08842fecbd73a56116bc65d38106833435a16591e012e99e547bdae09a24569e",
+    "GOLD.json.gz": "e52e0efde503183e225cb0ea8f87b0f700d69fac887dba5658f70a69e5d0fd85",
+    "METRICS.json": "5ef981e7fa1041d2edf1eba8a92d03bd52f34c9882eed855449d08ece85410d3",
+    "RUNS.json.gz": "f36eaba6604333929739e1846f63d0b97f5b581c857b1c341b4d6a45b9750010",
+    "SEEDS.json": "1bb5084586296919a9709061221d90cf1d421bb33fb9d6267732ac033d7f89bb"
+  },
+  "protocol_sha256": "a0b014fc6de01336d02b30ef82bea6e8817cc528e443d7bf3e5f8e9339c91d0f",
+  "runtime": {
+    "platform": "Linux-6.18.49-x86_64-with-glibc2.43",
+    "python": "3.12.3"
+  },
+  "runtime_capture_sha256": "a317e998c4da50ae5d14062342007e9f71dbba5473f2cdfa4139c40957f1eccb",
+  "schema": "pilot04-experiment/1",
+  "source_lock_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad",
+  "source_versions": {
+    "GLeMM": "395020177a96a81177582fb59664509ff015f934",
+    "MorphyNet": "378144f64df58c78db5245af19d16a511ccecf3a",
+    "UDer": "1.1"
+  },
+  "study_sha256": "065b5f3cce60c1fe95fcd9d462c98c017abc89be28b961e531998c1755ec2724"
+}
