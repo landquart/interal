@@ -95,16 +95,20 @@ def runtime_preflight():
     return actual
 
 
-def build(work):
-    atomic_json(work/'receipts/RUNTIME.json',runtime_preflight())
+def prepare_registry_input(work):
     registry=work/'registry/registry.sqlite'
     if registry.exists():
         receipt=checked(registry,registry.parent/'REGISTRY.json')
         if (receipt.get('commit')!=mass_registry.COMMIT or receipt.get('legacy_revision')!=LEGACY or
                 receipt.get('policy_sha256')!=hash_file(mass_registry.__file__)):
             raise ValueError('registry checkpoint dependency mismatch; use a fresh version')
-    else:
-        prepare(REPO,work/'registry',LEGACY)
+        return receipt
+    return prepare(REPO,work/'registry',LEGACY)
+
+
+def build(work):
+    atomic_json(work/'receipts/RUNTIME.json',runtime_preflight())
+    prepare_registry_input(work)
     programs=[
         ('certify',['associativvordes/importers/certify_corpus.py','--raw-root',work/'raw','--release',work/'release','--workers','2']),
         ('index',['associativvordes/importers/index_watch.py','--release',work/'release','--registry',LOCK,'--destination',work/'index','--cache-kib','65536','--follow']),
