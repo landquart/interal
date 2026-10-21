@@ -1,0 +1,80 @@
+name: Full mass-discovery validation
+on:
+  workflow_dispatch:
+  push:
+    branches: [feat/mass-candidate-discovery-20261020]
+    paths:
+      - '.github/workflows/mass-discovery.yml'
+      - 'associativvordes/candidate_search/mass_ci.py'
+permissions:
+  contents: read
+concurrency:
+  group: full-mass-discovery-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  full:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Prepare disposable runner disk
+        run: |
+          echo "MASS_WORK=$RUNNER_TEMP/mass02" >> "$GITHUB_ENV"
+          if [ "$RUNNER_ENVIRONMENT" = github-hosted ]; then
+            sudo rm -rf -- /usr/local/lib/android /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL
+            sudo docker image prune --all --force
+          fi
+          df -h
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Fetch exact approved registry and legacy revisions
+        run: |
+          git fetch --depth=1 origin 0c167fcd8a17cfaf433c37f68e89ba7f2ee0ceae
+          git fetch --depth=1 origin 9fff76431a86a06df6db69b64d7f2ca4c871f1b7
+      - name: Check syntax and source/graph/queue regressions
+        run: |
+          /usr/bin/python3 -m compileall -q associativvordes/candidate_search
+          /usr/bin/python3 -m unittest discover -s associativvordes/importers -v
+          /usr/bin/python3 -m unittest discover -s associativvordes/evidence_graph -v
+          /usr/bin/python3 -m unittest discover -s associativvordes/candidate_search -v
+      - name: Acquire all 35 official checksum-pinned files
+        run: /usr/bin/python3 associativvordes/candidate_search/mass_ci.py --work "$MASS_WORK" --phase inputs
+      - name: Build certified catalog and disk indexes
+        run: /usr/bin/python3 associativvordes/candidate_search/mass_ci.py --work "$MASS_WORK" --phase build
+      - name: Validate full graph and mass discovery, replay and recovery
+        run: /usr/bin/python3 associativvordes/candidate_search/mass_ci.py --work "$MASS_WORK" --phase verify
+      - name: Emit durable receipt packets
+        if: always()
+        run: /usr/bin/python3 associativvordes/candidate_search/mass_ci.py --work "$MASS_WORK" --phase collect
+      - name: Preserve receipts and reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mass02-receipts-${{ github.run_id }}
+          path: ${{ runner.temp }}/mass02/receipts
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Include original source attribution with review proposals
+        if: success()
+        run: cp -a data/morphology-evidence/sources "$MASS_WORK/proposal-source-metadata"
+      - name: Preserve unreviewed proposals outside Git
+        if: success()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: mass02-proposals-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/mass02/benchmark/full/releases
+            ${{ runner.temp }}/mass02/benchmark/full/preview.sqlite
+            ${{ runner.temp }}/mass02/registry
+            ${{ runner.temp }}/mass02/proposal-source-metadata
+          if-no-files-found: error
+          retention-days: 30
+      - name: Show diagnostic tails
+        if: failure()
+        run: |
+          for file in "$MASS_WORK"/logs/*.log; do
+            if [ -f "$file" ]; then
+              echo "$file"
+              tail -60 "$file"
+            fi
+          done
