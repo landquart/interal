@@ -61,3 +61,7 @@ The operator must establish that recordings came from actual execution. A checks
 `impact.py --before FILE --after FILE --lock LOCK --output FILE` compares actual unchanged-calculator captures. LOCK stores `before_sha256` and `after_sha256`. Captures require the same case scope, methodology and complete code-hash map; all six explicit language states; model/head identities; actual P or null; preserved frequency observations; and recorded `selected_top_five` or null. Use `independent_model_id` only with separate human evidence. Include actual `internationality` or null. Missing scores/coverage prevent a numeric conclusion. The mode compares outputs and flags regressions; it does not reimplement formulas, infer P from priority, or invent candidate scores.
 
 See `06-PILOT-DESIGN.md`, `EVALUATION-METRICS.md` and `PILOT-READINESS.md` for interpretation and currently blocked work.
+
+## Current Prompt 04 experiment
+
+See [QUALITY04.md](QUALITY04.md) for actual A/B/U/C/D captures, locked budgets, independent human collection, timing, confidence intervals and blocked quality gates. Historical predictions above are not a current final quality estimate.

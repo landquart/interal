@@ -1,0 +1,20 @@
+name: Frozen pilot quality protocol
+on:
+  push:
+    paths: ['associativvordes/pilot_evaluation/**', 'tests/associative-pilot-quality.test.mjs', '.github/workflows/pilot-quality.yml']
+  pull_request:
+    paths: ['associativvordes/pilot_evaluation/**', 'tests/associative-pilot-quality.test.mjs', '.github/workflows/pilot-quality.yml']
+jobs:
+  quality-and-human-boundaries:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m unittest discover -s associativvordes/pilot_evaluation -v
+      - run: node --check associativvordes/pilot_evaluation/runtime04.mjs
+      - run: node --check associativvordes/pilot_evaluation/study04.js

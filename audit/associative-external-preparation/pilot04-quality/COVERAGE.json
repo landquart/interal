@@ -1,0 +1,270 @@
+{
+  "A": {
+    "budget": {
+      "incomplete": 0,
+      "queries": 72
+    },
+    "budget_dropped": 1777,
+    "languages": {
+      "de": {
+        "abstain": 211,
+        "cases": 219,
+        "native_identity_alternatives": 0,
+        "proposal_yes": 8,
+        "selected_word_groups": 80
+      },
+      "en": {
+        "abstain": 221,
+        "cases": 238,
+        "native_identity_alternatives": 0,
+        "proposal_yes": 17,
+        "selected_word_groups": 105
+      },
+      "es": {
+        "abstain": 227,
+        "cases": 240,
+        "native_identity_alternatives": 0,
+        "proposal_yes": 13,
+        "selected_word_groups": 103
+      },
+      "fr": {
+        "abstain": 225,
+        "cases": 233,
+        "native_identity_alternatives": 0,
+        "proposal_yes": 8,
+        "selected_word_groups": 88
+      },
+      "it": {
+        "abstain": 227,
+        "cases": 238,
+        "native_identity_alternatives": 0,
+        "proposal_yes": 11,
+        "selected_word_groups": 88
+      },
+      "ru": {
+        "abstain": 234,
+        "cases": 238,
+        "native_identity_alternatives": 0,
+        "proposal_yes": 4,
+        "selected_word_groups": 73
+      }
+    },
+    "proposal_yes": 61,
+    "selected": 537
+  },
+  "B": {
+    "budget": {
+      "combination": "round_robin_actual_A_and_UDer_then_word_group",
+      "output_cap": 20
+    },
+    "budget_dropped": 47,
+    "languages": {
+      "de": {
+        "abstain": 211,
+        "cases": 219,
+        "native_identity_alternatives": 26,
+        "proposal_yes": 8,
+        "selected_word_groups": 104
+      },
+      "en": {
+        "abstain": 220,
+        "cases": 238,
+        "native_identity_alternatives": 6,
+        "proposal_yes": 18,
+        "selected_word_groups": 108
+      },
+      "es": {
+        "abstain": 219,
+        "cases": 240,
+        "native_identity_alternatives": 41,
+        "proposal_yes": 21,
+        "selected_word_groups": 131
+      },
+      "fr": {
+        "abstain": 225,
+        "cases": 233,
+        "native_identity_alternatives": 10,
+        "proposal_yes": 8,
+        "selected_word_groups": 91
+      },
+      "it": {
+        "abstain": 225,
+        "cases": 238,
+        "native_identity_alternatives": 8,
+        "proposal_yes": 13,
+        "selected_word_groups": 95
+      },
+      "ru": {
+        "abstain": 206,
+        "cases": 238,
+        "native_identity_alternatives": 51,
+        "proposal_yes": 32,
+        "selected_word_groups": 108
+      }
+    },
+    "proposal_yes": 100,
+    "selected": 637
+  },
+  "C": {
+    "budget": {
+      "expanded": 225,
+      "queries": 347,
+      "truncated_queries": 0
+    },
+    "budget_dropped": 0,
+    "languages": {
+      "de": {
+        "abstain": 219,
+        "cases": 219,
+        "native_identity_alternatives": 31,
+        "proposal_yes": 0,
+        "selected_word_groups": 30
+      },
+      "en": {
+        "abstain": 236,
+        "cases": 238,
+        "native_identity_alternatives": 26,
+        "proposal_yes": 2,
+        "selected_word_groups": 26
+      },
+      "es": {
+        "abstain": 229,
+        "cases": 240,
+        "native_identity_alternatives": 58,
+        "proposal_yes": 11,
+        "selected_word_groups": 55
+      },
+      "fr": {
+        "abstain": 230,
+        "cases": 233,
+        "native_identity_alternatives": 20,
+        "proposal_yes": 3,
+        "selected_word_groups": 20
+      },
+      "it": {
+        "abstain": 233,
+        "cases": 238,
+        "native_identity_alternatives": 23,
+        "proposal_yes": 5,
+        "selected_word_groups": 21
+      },
+      "ru": {
+        "abstain": 209,
+        "cases": 238,
+        "native_identity_alternatives": 60,
+        "proposal_yes": 29,
+        "selected_word_groups": 58
+      }
+    },
+    "proposal_yes": 50,
+    "selected": 210
+  },
+  "D": {
+    "budget": {
+      "expanded": 437,
+      "queries": 559,
+      "truncated_queries": 0
+    },
+    "budget_dropped": 1,
+    "languages": {
+      "de": {
+        "abstain": 216,
+        "cases": 219,
+        "native_identity_alternatives": 61,
+        "proposal_yes": 3,
+        "selected_word_groups": 49
+      },
+      "en": {
+        "abstain": 235,
+        "cases": 238,
+        "native_identity_alternatives": 63,
+        "proposal_yes": 3,
+        "selected_word_groups": 60
+      },
+      "es": {
+        "abstain": 225,
+        "cases": 240,
+        "native_identity_alternatives": 93,
+        "proposal_yes": 15,
+        "selected_word_groups": 75
+      },
+      "fr": {
+        "abstain": 225,
+        "cases": 233,
+        "native_identity_alternatives": 63,
+        "proposal_yes": 8,
+        "selected_word_groups": 54
+      },
+      "it": {
+        "abstain": 227,
+        "cases": 238,
+        "native_identity_alternatives": 65,
+        "proposal_yes": 11,
+        "selected_word_groups": 55
+      },
+      "ru": {
+        "abstain": 207,
+        "cases": 238,
+        "native_identity_alternatives": 84,
+        "proposal_yes": 31,
+        "selected_word_groups": 78
+      }
+    },
+    "proposal_yes": 71,
+    "selected": 371
+  },
+  "U": {
+    "budget": {
+      "expanded": 164,
+      "queries": 123,
+      "truncated_queries": 0
+    },
+    "budget_dropped": 0,
+    "languages": {
+      "de": {
+        "abstain": 219,
+        "cases": 219,
+        "native_identity_alternatives": 26,
+        "proposal_yes": 0,
+        "selected_word_groups": 26
+      },
+      "en": {
+        "abstain": 237,
+        "cases": 238,
+        "native_identity_alternatives": 6,
+        "proposal_yes": 1,
+        "selected_word_groups": 6
+      },
+      "es": {
+        "abstain": 232,
+        "cases": 240,
+        "native_identity_alternatives": 49,
+        "proposal_yes": 8,
+        "selected_word_groups": 49
+      },
+      "fr": {
+        "abstain": 233,
+        "cases": 233,
+        "native_identity_alternatives": 10,
+        "proposal_yes": 0,
+        "selected_word_groups": 10
+      },
+      "it": {
+        "abstain": 236,
+        "cases": 238,
+        "native_identity_alternatives": 8,
+        "proposal_yes": 2,
+        "selected_word_groups": 8
+      },
+      "ru": {
+        "abstain": 209,
+        "cases": 238,
+        "native_identity_alternatives": 58,
+        "proposal_yes": 29,
+        "selected_word_groups": 57
+      }
+    },
+    "proposal_yes": 40,
+    "selected": 156
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "combined": {
+    "attempts": 0,
+    "correct": null,
+    "correct_per_hour": null,
+    "gold_evaluable": 0,
+    "total_active_seconds": null,
+    "unjudged_time_is_not_excluded": true
+  },
+  "control": {
+    "attempts": 0,
+    "correct": null,
+    "correct_per_hour": null,
+    "gold_evaluable": 0,
+    "total_active_seconds": null,
+    "unjudged_time_is_not_excluded": true
+  },
+  "method": "crossed participant/leakage-group bootstrap; all attempted time including false/uncertain candidates retained",
+  "speedup": null,
+  "speedup_ci95_cluster_bootstrap": null,
+  "status": "BLOCKED_HUMAN_TIME_AND_GOLD"
+}

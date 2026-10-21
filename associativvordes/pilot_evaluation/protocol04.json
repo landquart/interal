@@ -1,0 +1,90 @@
+{
+  "schema": "pilot04-preregistration/1",
+  "base_commit": "f8b399c835dca054fe8f43d735a97a85df734e29",
+  "frozen_case_set_sha256": "3f809f5f36ea367e03c1b0bf29d4f95244f81db2df15a33c94b39e7c8c2d38a1",
+  "cases": 1406,
+  "required_repeat_cases": 381,
+  "seed": "interal-pilot04-preregistered-20261021",
+  "configurations": {
+    "A": [],
+    "B": [
+      "runtime_A",
+      "uder"
+    ],
+    "U": [
+      "uder"
+    ],
+    "C": [
+      "uder",
+      "morphynet"
+    ],
+    "D": [
+      "uder",
+      "morphynet",
+      "glemm"
+    ]
+  },
+  "budgets": {
+    "output_per_family_language": 20,
+    "shared_native_starts_per_family_language": 8,
+    "depth": 2,
+    "paths_per_start": 20,
+    "expansions_per_start": 300
+  },
+  "unknowns": {
+    "frequency": null,
+    "sense_identity": "unresolved",
+    "pos": "source_assertion_unverified",
+    "unknown_direction": "terminal_only",
+    "missing_runtime": "abstain",
+    "unlabeled_metric": null
+  },
+  "identity_policy": "word grouping for presentation/budget only; native identities never inferred from spelling",
+  "sampling": {
+    "initial_cases": 180,
+    "strata": [
+      "family",
+      "language"
+    ],
+    "selection": "round-robin minimum cell counts then deterministic SHA256; no labels",
+    "gold_reviews_per_initial_case": 2,
+    "efficiency_reviews_per_initial_case": 2,
+    "efficiency_rater_slots": 4,
+    "efficiency_allocation": "leakage-group crossover between participants; never the same case or group in both conditions for one participant",
+    "gold_rater_slots": 2
+  },
+  "gates": {
+    "familywise_alpha": 0.05,
+    "predeclared_strata": 12,
+    "precision_lower_bound": 0.99,
+    "false_merge_upper_bound": 0.001,
+    "minimum_independent_gold_per_stratum": "calculated exact one-sided binomial zero-error requirement, adjusted for 12 strata",
+    "eligible_future_classes": [
+      "direct derivation with verified sense/POS/direction",
+      "orthographic variant with verified identity"
+    ],
+    "automatic_positive_membership": false,
+    "automatic_family_merge": false,
+    "always_manual": [
+      "homonym",
+      "compound",
+      "mixed path",
+      "unknown direction",
+      "unknown POS/sense",
+      "negative history",
+      "competing families"
+    ],
+    "permitted_now": [
+      "checksums",
+      "source import",
+      "native-ID deduplication",
+      "candidate proposals",
+      "task scheduling"
+    ],
+    "threshold_changes": "new protocol ID and untouched held-out sample required"
+  },
+  "human_status": "BLOCKED until verified authorized independent human annotators are registered",
+  "quality_warning": "no existing status, source label, path, algorithm prediction, or LLM response is gold",
+  "primary_split": "evaluation",
+  "sparse_rule": "zero observed errors is not reliability evidence; report exact denominator and interval"
+}
