@@ -15,8 +15,9 @@ import subprocess
 import sys
 import time
 from types import SimpleNamespace
+import mass_registry
 from mass_registry import prepare, LANGUAGES
-from mass_source import readonly
+from mass_source import readonly, checked
 from mass_benchmark import benchmark
 from mass_store import Store
 from mass_recover import rollback
@@ -96,7 +97,14 @@ def runtime_preflight():
 
 def build(work):
     atomic_json(work/'receipts/RUNTIME.json',runtime_preflight())
-    prepare(REPO,work/'registry',LEGACY)
+    registry=work/'registry/registry.sqlite'
+    if registry.exists():
+        receipt=checked(registry,registry.parent/'REGISTRY.json')
+        if (receipt.get('commit')!=mass_registry.COMMIT or receipt.get('legacy_revision')!=LEGACY or
+                receipt.get('policy_sha256')!=hash_file(mass_registry.__file__)):
+            raise ValueError('registry checkpoint dependency mismatch; use a fresh version')
+    else:
+        prepare(REPO,work/'registry',LEGACY)
     programs=[
         ('certify',['associativvordes/importers/certify_corpus.py','--raw-root',work/'raw','--release',work/'release','--workers','2']),
         ('index',['associativvordes/importers/index_watch.py','--release',work/'release','--registry',LOCK,'--destination',work/'index','--cache-kib','65536','--follow']),
