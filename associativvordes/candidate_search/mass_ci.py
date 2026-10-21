@@ -199,7 +199,7 @@ def collect(work):
     if (work/'receipts/VALIDATION.json').exists():
         receipt=json.loads((work/'benchmark/receipts/full.json').read_text())
         pointer=json.loads((full/'CURRENT.json').read_text());release=Path(pointer['path'])
-        per_language={lang:Counter() for lang in LANGUAGES};reasons=Counter();identifiers=set();duplicates=0
+        per_language={lang:Counter() for lang in LANGUAGES};reasons=Counter();language_reasons={lang:Counter() for lang in LANGUAGES};identifiers=set();duplicates=0
         for raw in (release/'questions.ndjson').open():
             row=json.loads(raw);lang=row['language'];duplicates+=int(row['id'] in identifiers);identifiers.add(row['id'])
             if row['establishes_membership'] or row['creates_canonical_root']:raise ValueError('unsafe proposal')
@@ -209,14 +209,18 @@ def collect(work):
             per_language[lang]['pos_unknown']+=int(row['pos'] is None)
         for unit,values in receipt['units'].items():
             lang=unit.split('|')[1]
+            per_language[lang]['search_elapsed_seconds']+=values.get('elapsed_seconds',0)
             for name in ['available_seeds','selected_seeds','native_matches','arcs_available','arcs_examined','candidate_observations','grouped_duplicate_observations']:
                 per_language[lang][name]+=values.get(name,0)
         for raw in (release/'discovery.ndjson').open():
             event=json.loads(raw);reasons[event['reason']]+=event.get('count',1)
+            language_reasons[event['unit'].split('|')[1]][event['reason']]+=event.get('count',1)
         if duplicates:raise ValueError('duplicate question IDs')
         coverage=dict(status='PASS',families=len(receipt['identity']['families']),units=receipt['selected_units'],
             unique_questions=len(identifiers),duplicate_question_ids=duplicates,by_language=per_language,
-            discovery_reason_counts=reasons,category_counts_overlap=True,bounded_recall=True,membership_writes=0)
+            discovery_reason_counts=reasons,discovery_reason_counts_by_language=language_reasons,
+            language_time_scope='sum of measured family/language discovery units; excludes shared input checksums and export I/O',
+            category_counts_overlap=True,bounded_recall=True,membership_writes=0)
         atomic_json(out/'COVERAGE.json',coverage)
         benchmark_result=json.loads((work/'benchmark/BENCHMARK.json').read_text())
         manifest=json.loads((release/'MANIFEST.json').read_text())
@@ -224,11 +228,12 @@ def collect(work):
         rows=['# Full-registry candidate discovery validation','',
             'All results below come from the full pinned sources and actual 19-family v6 registry.',
             'This is bounded proposal discovery; no memberships, confirmed annotations or production formulas were changed.','',
-            '| Language | Questions | Selected seeds | Available seeds | Unknown frequency | Grouped duplicate observations |',
-            '| --- | ---: | ---: | ---: | ---: | ---: |']
+            '| Language | Questions | Selected seeds | Available seeds | Unknown frequency | Grouped duplicate observations | Search seconds |',
+            '| --- | ---: | ---: | ---: | ---: | ---: | ---: |']
         for lang,v in per_language.items():
-            rows.append('| '+lang+' | '+' | '.join(str(v.get(k,0)) for k in ['questions','selected_seeds','available_seeds','frequency_unknown','grouped_duplicate_observations'])+' |')
+            rows.append('| '+lang+' | '+' | '.join(str(v.get(k,0)) for k in ['questions','selected_seeds','available_seeds','frequency_unknown','grouped_duplicate_observations'])+' | '+str(round(v.get('search_elapsed_seconds',0),3))+' |')
         rows.extend(['','All 114 family/language units were selected. Category counts overlap. Question IDs are unique.',
+            'Language search seconds sum the measured discovery units; shared full-file checksum reads and export I/O are included only in the stage timings below.',
             'Native analyses, paths and raw source locators remain in the proposal artifact. Source independence and sense identity remain unresolved.',
             'Detailed omissions, family statistics and bounded-search limits are in COVERAGE.json, SEARCH-full.json and MASS-RUNBOOK.md.','',
             '| Stage | Processed units | Reused units | Seconds | Peak RSS KiB |',
