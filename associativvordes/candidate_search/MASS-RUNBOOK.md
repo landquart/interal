@@ -64,7 +64,9 @@ For independently timed small, 12-family, all-family, fresh replay, unchanged an
 
 The complete runner accepts the existing attributed `GLeMM-2.0-39502017.zip` cache. It verifies the cache against the original GLeMM lock and verifies that its artifact IDs, revisions, sizes and SHA-256 agree with the combined source lock before use. Other source files are downloaded or checksum-verified from their existing local cache. An unavailable server never authorizes a different version or excerpt substitution.
 
-Run the following phases with the same Python executable (validated with Python 3.12.3), from a fresh checkout and an external work directory with at least 32 GiB free. Fetch both approved Git revisions described above first.
+The certified runtime is **Python 3.12.3, SQLite 3.45.1, Unicode 15.0.0 and zlib 1.3**. The importer includes these versions in every build ID. `build` and `verify` reject a different runtime before expensive work; installing Python 3.12.3 alone is insufficient if its linked SQLite or zlib differs. Use the original Ubuntu 24.04 runtime or the exact verified equivalent.
+
+Run the following phases with that same Python executable, from a fresh checkout and an external work directory with at least 32 GiB free. Fetch both approved Git revisions described above first.
 
 ```sh
 python3 associativvordes/candidate_search/mass_ci.py --work /external/mass02 \\
@@ -75,3 +77,5 @@ python3 associativvordes/candidate_search/mass_ci.py --work /external/mass02 --p
 ```
 
 Omit `--glemm-cache` for official network acquisition. The build starts the index follower only after certification publishes its first atomic checkpoint. Final `receipts/COVERAGE.json`, `BENCHMARK.json`, `VALIDATION.json` and `MASS-CANDIDATE-DISCOVERY.md` are produced only after full verification; input or index preparation alone is not a completed mass-search measurement.
+
+Preparation can be repeated after interruption: a completed registry is reused only if its database SHA-256, approved v6 revision, legacy revision and registry-policy hash all match. Source partitions, source index transactions and the frequency projection retain their existing checkpoints. Use persistent storage (or a saved filesystem snapshot) for long remote jobs; process state alone cannot survive VM shutdown. Run the benchmark phase in a fresh benchmark output directory when repeating an interrupted validation experiment; retain prior review queues and receipts separately.
