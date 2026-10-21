@@ -71,6 +71,10 @@ class Discovery:
         limits = self.limits
         def log(reason, **values):
             events.append(dict(reason=reason, **values)); counters[reason] += values.get('count', 1)
+        def nonaccepted_heads(word):
+            return [dict(head=h,ref=json.loads(p)) for h,p in self.registry.execute(
+                "SELECT head,proof FROM seeds WHERE family=? AND language=? AND word=? AND role='negative' ORDER BY head",
+                (family,language,word))]
         def add(identifier, steps, anchor, reverse=False):
             lex = self.source.lexeme(identifier)
             if lex['language'] != language:
@@ -86,7 +90,7 @@ class Discovery:
                             category=path_kind(steps), reverse_search=reverse, establishes_membership=False)
                 item['paths'][sha(path)] = path
             if reverse: item['bases'][lex['id']] = lex
-            return guard['status'] not in {'blocked', 'hold'}
+            return guard['status'] not in {'blocked', 'hold'} and not nonaccepted_heads(word)
 
         seeds = defaultdict(list)
         for word, head, role, proof in self.registry.execute(
@@ -99,7 +103,7 @@ class Discovery:
         counters['available_seeds'] = sum(map(len, seeds.values())); counters['selected_seeds'] = len(selected)
         for seed in selected:
             word = seed['word']; counters['exact_lookups'] += 1
-            blocked = seed['role'] == 'negative' or self.g.guard(family, language, word)['status'] in {'blocked', 'hold'}
+            blocked = bool(nonaccepted_heads(word)) or self.g.guard(family, language, word)['status'] in {'blocked', 'hold'}
             # Native IDs from every source receive an independent lookup budget.
             for source in self.sources:
                 # Native lookup is indexed first; a small range inventory locates source provenance.
@@ -214,7 +218,8 @@ class Discovery:
                 sense_status='unresolved',pos_status='source_assertion_unverified' if pos else 'unknown',
                 grouping='same_language_spelling_and_pos_not_lexeme_or_sense_identity',
                 allomorph_status='finite_registry_realizations_only_no_new_rule',creates_canonical_root=False,establishes_membership=False))
-            questions[-1].update(allomorph_checks=allomorphs,native_stem_observations=stems)
+            questions[-1].update(allomorph_checks=allomorphs,native_stem_observations=stems,
+                                 nonaccepted_head_context=nonaccepted_heads(word))
             evidence={canonical(s['evidence']) for p in paths for s in p['steps']}
             evidence.update(canonical(a['evidence']) for a in item['anchors'].values() if 'evidence' in a)
             questions[-1]['evidence_refs']=[json.loads(v) for v in sorted(evidence)]
