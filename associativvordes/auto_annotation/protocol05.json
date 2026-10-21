@@ -1,0 +1,26 @@
+{
+  "schema": "preannotation-protocol/1",
+  "date": "2026-10-21",
+  "base_commit": "8f5d6e280d2252c4d8e9b5a69bc84b9d34824aff",
+  "frozen_case_set_sha256": "3f809f5f36ea367e03c1b0bf29d4f95244f81db2df15a33c94b39e7c8c2d38a1",
+  "cases": 1406,
+  "double_review_cases": 381,
+  "primary_split": "evaluation",
+  "routes": ["deterministic", "single", "multi", "manual", "mixed"],
+  "registration_scope": "Before paid model calls or human outcomes; offline engineering smoke checks are not preregistered quality observations.",
+  "training_on_frozen_cases": false,
+  "llm_labels_are_gold": false,
+  "calibration_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+  "automatic_semantic_acceptance": false,
+  "automatic_family_merge": false,
+  "future_gates": "Unchanged pilot04 protocol; any learned routing or thresholds require a separate calibration set and an untouched grouped holdout.",
+  "stage_c": "Original card, no B answer. Trigger on risk, uncertainty or proposed decision. Model error independence remains unknown.",
+  "cost_policy": "No external paid calls without explicit operator permission_ref, positive budget, verified configured rates and allow_paid=true. Default request budget is zero.",
+  "unknown_policy": "Missing source, sense, POS, identity, direction, frequency, usage or billed cost remains unknown. It is not a semantic rejection or zero accuracy.",
+  "human_followup": {
+    "initial_balanced_cases": 180,
+    "minimum_gold_reviews": 360,
+    "original_full_pilot_minimum_reviews": 1787,
+    "llm_timing_experiment": "Separate from pilot04 morphology timing. Preassign conditions and distinct people; never expose a participant to the same case or leakage group in different arms. No speed claim without those trials."
+  }
+}
