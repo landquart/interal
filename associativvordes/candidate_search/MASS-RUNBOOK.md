@@ -79,3 +79,10 @@ python3 associativvordes/candidate_search/mass_ci.py --work /external/mass02 --p
 Omit `--glemm-cache` for official network acquisition. The build starts the index follower only after certification publishes its first atomic checkpoint. Final `receipts/COVERAGE.json`, `BENCHMARK.json`, `VALIDATION.json` and `MASS-CANDIDATE-DISCOVERY.md` are produced only after full verification; input or index preparation alone is not a completed mass-search measurement.
 
 Preparation can be repeated after interruption: a completed registry is reused only if its database SHA-256, approved v6 revision, legacy revision and registry-policy hash all match. Source partitions, source index transactions and the frequency projection retain their existing checkpoints. Use persistent storage (or a saved filesystem snapshot) for long remote jobs; process state alone cannot survive VM shutdown. Run the benchmark phase in a fresh benchmark output directory when repeating an interrupted validation experiment; retain prior review queues and receipts separately.
+
+## Разметка экспортированной очереди
+
+Для последовательной проверки вопросов, слепой второй разметки, арбитража и
+версионированных решений используйте [интерфейс разметки](../review/RUNBOOK.md).
+Он импортирует проверенный `exports/MANIFEST.json` и `questions.ndjson`, сохраняет
+собственную историю вне production и не применяет одобрения к семьям.
