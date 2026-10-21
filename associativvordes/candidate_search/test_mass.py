@@ -268,6 +268,19 @@ class MassTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'integrity'):
             prepare_registry_input(self.root)
 
+    def test_nonaccepted_head_is_not_a_bridge_from_another_seed(self):
+        self.inputs.seed('family:ocul','es','ocular')
+        db=sqlite3.connect(self.inputs.registry)
+        db.execute('INSERT INTO seeds VALUES(?,?,?,?,?,?)',
+                   ('family:ocul','es','inocular','test-only-nonaccepted-head','negative','{}'))
+        db.commit();db.close();self.inputs.receipts()
+        questions,events,_=self.discover('family:ocul','es')
+        words={q['lemma']:q for q in questions}
+        self.assertIn('inocular',words)
+        self.assertTrue(words['inocular']['nonaccepted_head_context'])
+        self.assertNotIn('inoculador',words)
+        self.assertTrue(any(e['reason']=='negative_target_not_expanded' for e in events))
+
     def test_incremental_own_and_competing_family_dependencies(self):
         db=sqlite3.connect(self.inputs.registry)
         a=dependency(db,'family:ocul','en',['ocular']);b=dependency(db,'family:ped','en',[])
