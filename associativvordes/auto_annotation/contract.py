@@ -83,7 +83,12 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
     if not isinstance(q.get('family'),str) or not q['family'].startswith('family:'):raise ValueError('family scope')
     if not isinstance(q.get('id'),str) or not q['id']:raise ValueError('question ID')
     if lexeme.get('pos') is not None and not isinstance(lexeme['pos'],str):raise ValueError('POS')
-    risks=set();paths=q.get('discovery_paths',[])
+    risks=set();paths=[];other_paths=[]
+    for path in q.get('discovery_paths',[]):
+        nodes=[n if isinstance(n,str) else n['id'] for n in path.get('nodes',[])]
+        if nodes and (nodes[-1]==lexeme['id'] or path.get('reverse_search') and nodes[0]==lexeme['id']):
+            paths.append(path)
+        else:other_paths.append(path)
     if lexeme.get('index_identity_status'):risks.add(lexeme['index_identity_status'])
     if len(q.get('lexeme_alternatives',[]))>1:risks.add('multiple_native_identities')
     if not lexeme.get('pos') or q.get('pos_status')!='verified':risks.add('pos_unverified')
@@ -105,8 +110,11 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
     refs=[]
     for eid,values in sorted(evidence.items()):
         unique={canonical(v):v for v in values}
-        refs.append({'id':eid,'assertions':[unique[k] for k in sorted(unique)]})
-        if len(unique)>1:risks.add('multiple_source_assertions')
+        # A minimal ref repeated alongside the same full assertion is not a competing analysis.
+        complete=[v for v in unique.values() if not any(v!=other and
+          all(k in other and other[k]==value for k,value in v.items()) for other in unique.values())]
+        refs.append({'id':eid,'assertions':sorted(complete,key=canonical)})
+        if len(complete)>1:risks.add('multiple_source_assertions')
     rows=[]
     for eid,row in sorted((source_rows or {}).items()):
         if eid not in evidence:continue
@@ -137,6 +145,7 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
       original_spelling=lexeme.get('original_spelling',lexeme.get('original',lexeme['lemma'])),
       family_context=family_context,existing_memberships=q.get('existing_memberships',[]),
       source_assertions=refs,source_rows=rows,paths=paths,productive_paths=productive,
+      other_native_paths_not_supporting_candidate=other_paths,
       anchors=q.get('anchors',[]),inflection_observations=q.get('inflection_observations',[]),
       allomorph_checks=q.get('allomorph_checks',[]),native_stem_observations=q.get('native_stem_observations',[]),
       nonaccepted_head_context=q.get('nonaccepted_head_context',[]),guard=q.get('guard'),

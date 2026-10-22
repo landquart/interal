@@ -85,6 +85,12 @@ class ContractTests(unittest.TestCase):
     def test_compounds_retained(self):
         q=question();q['discovery_paths'][0]['steps'][0]['type']='compounding'
         self.assertEqual(len(card(q)['productive_paths']),1)
+    def test_same_spelling_alternative_path_cannot_support_this_native_lexeme(self):
+        q=question();q['discovery_paths'][0]['nodes']=['lexeme:'+sha('other'),'lexeme:'+sha('also_other')]
+        c=card(q)
+        self.assertFalse(c['productive_paths']);self.assertFalse(c['paths'])
+        self.assertEqual(len(c['other_native_paths_not_supporting_candidate']),1)
+        self.assertEqual(stage_a(c)['assessments']['derivation']['state'],'unknown')
     def test_same_form_multiple_native_senses_not_merged(self):
         q=question();q['lexeme_alternatives'].append(question('b')['lexeme_alternatives'][0])
         self.assertIn('multiple_native_identities',card(q)['risk_flags'])
@@ -100,7 +106,9 @@ class ContractTests(unittest.TestCase):
         self.assertNotIn('private',canonical(c))
     def test_conflicting_source_assertions_are_retained(self):
         q=question();q['evidence_refs'].append(dict(q['evidence_refs'][0],claim={'direction':'unknown'}))
-        c=card(q);self.assertEqual(len(c['source_assertions'][0]['assertions']),3)
+        c=card(q);self.assertEqual(len(c['source_assertions'][0]['assertions']),1)
+        q['evidence_refs'].append(dict(q['evidence_refs'][0],claim={'direction':'directed'}))
+        c=card(q);self.assertEqual(len(c['source_assertions'][0]['assertions']),2)
         self.assertIn('multiple_source_assertions',c['risk_flags'])
     def test_model_invented_reference_rejected(self):
         c=card();r=response(c);r['evidence_refs']=['fake']
