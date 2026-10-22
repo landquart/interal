@@ -1,0 +1,35 @@
+{
+  "actual_semantic_proposals": {
+    "exclude": 0,
+    "include": 0,
+    "relation_type_changes": 0
+  },
+  "errors": 0,
+  "groups": {
+    "confirmed_existing_decisions": 0,
+    "identity_unresolved": 3813,
+    "interfamily_conflicts": 28,
+    "manual_review": 3813,
+    "possible_bases": 146,
+    "potential_additions": 929,
+    "potential_exclusions": 246,
+    "preserved_existing_decisions": 443,
+    "relation_type_audit": 3813,
+    "source_analysis_conflicts": 2815
+  },
+  "manual_fraction": 1.0,
+  "risk_flags": {
+    "INCOMPLETE_MULTI_STAGE_REVIEW": 3813,
+    "decision_history_requires_review": 443,
+    "family_meaning_unverified": 3813,
+    "low_morphological_evidence": 2630,
+    "multiple_native_identities": 2803,
+    "multiple_source_assertions": 1716,
+    "nonproductive_or_unknown_direction": 446,
+    "pos_unverified": 3813,
+    "possible_family_merge": 28,
+    "registry_guard": 223,
+    "sense_unresolved": 3813
+  },
+  "scope": "Unvalidated overlapping audit hypotheses; preserving history is not new semantic confirmation."
+}

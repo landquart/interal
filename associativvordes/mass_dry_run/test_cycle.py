@@ -128,4 +128,40 @@ class ExecutionTests(unittest.TestCase):
             before=path.read_bytes();state=queue_history(path)
             self.assertEqual(state['rows'][0][2],'rejected');self.assertEqual(before,path.read_bytes())
 
+
+class PublicationTests(unittest.TestCase):
+    def test_export_to_fresh_review_ledger(self):
+        from export_snapshot import export_snapshot
+        snap,_=snapshot();snap['questions'][0]['lemma']='TEST_ONLY'
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);path=root/'snapshot.json';path.write_text(json.dumps(snap))
+            manifest=export_snapshot(path,root/'queue',root/'ledger')
+            self.assertEqual(manifest['counts'],{'questions':1,'proposals':1})
+            self.assertEqual(manifest['human_decision_events'],0)
+            self.assertTrue((root/'ledger/source-rows').is_dir())
+    def test_export_refuses_existing_ledger(self):
+        from export_snapshot import export_snapshot
+        snap,_=snapshot()
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);path=root/'snapshot.json';path.write_text(json.dumps(snap));(root/'ledger').mkdir()
+            with self.assertRaises(ValueError):export_snapshot(path,root/'queue',root/'ledger')
+            self.assertFalse((root/'queue').exists())
+    def test_export_checksum_guard(self):
+        from export_snapshot import export_snapshot
+        snap,_=snapshot()
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);path=root/'snapshot.json';path.write_text(json.dumps(snap))
+            with self.assertRaises(ValueError):export_snapshot(path,root/'queue',expected_sha256='wrong')
+    def test_resume_rejects_changed_pinned_algorithm(self):
+        import finish
+        from unittest.mock import patch
+        from contract import file_hash
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);p=root/'a.py';p.write_text('TEST_ONLY')
+            frozen={'algorithm_modules':{'a.py':file_hash(p)}}
+            with patch.object(finish.cycle,'ROOT',root):
+                finish.verify_modules(frozen);p.write_text('changed')
+                with self.assertRaises(ValueError):finish.verify_modules(frozen)
+
 if __name__=='__main__':unittest.main()
+

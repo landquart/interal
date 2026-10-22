@@ -1,0 +1,40 @@
+{
+  "cycle_after_archive": {
+    "allocated_bytes": 3532914688,
+    "files": 100674,
+    "logical_bytes": 3246590534
+  },
+  "stage_end": {
+    "all": {
+      "allocated_bytes": 958849024,
+      "files": 33698,
+      "logical_bytes": 862875494
+    },
+    "approx-1-percent": {
+      "allocated_bytes": 180539392,
+      "files": 3181,
+      "logical_bytes": 171614657
+    },
+    "approx-25-percent": {
+      "allocated_bytes": 288845824,
+      "files": 8096,
+      "logical_bytes": 266088037
+    },
+    "approx-5-percent": {
+      "allocated_bytes": 198217728,
+      "files": 4046,
+      "logical_bytes": 186773231
+    },
+    "independent-full": {
+      "allocated_bytes": 958849024,
+      "files": 33698,
+      "logical_bytes": 862875773
+    },
+    "representative": {
+      "allocated_bytes": 95907840,
+      "files": 1098,
+      "logical_bytes": 92685098
+    }
+  },
+  "timing": "After snapshots, report, backup, archive and roundtrip were completely written."
+}

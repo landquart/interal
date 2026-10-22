@@ -1,0 +1,305 @@
+{
+  "annotation_algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+  "catalog_build": "5e5ba7e4ae2dd0fb598f4f241fc2ba5a09bc7a1bdf33acbb447a673af2c92c2d",
+  "databases": {
+    "aux": {
+      "bytes": 263385088,
+      "sha256": "430b24b1a3d5cdebd4ef8f76460b839728b783a0889d88e8a8105859fc18e79f"
+    },
+    "index": {
+      "bytes": 8639066112,
+      "sha256": "8344eba9e18653f520c453f058ef91ba62c800d700b26c077e56a6e84b551db4"
+    },
+    "prior_queue": {
+      "bytes": 47153152,
+      "sha256": "b82fcc7b36b26ae7a639ba94ec148f813b152fcf35657c485e664c40539da591"
+    },
+    "project": {
+      "bytes": 3831169024,
+      "sha256": "50fe4b471e90081e30fc36212554d5db129334e34fe9939bcb44e1f2a9fcc0f7"
+    },
+    "registry": {
+      "bytes": 183173120,
+      "sha256": "3209b790d4334a15fed0b39711a05ff1c7bb2c8c37be1f06765b8aca0e47bc9a"
+    }
+  },
+  "frozen_inputs_sha256": "cff99ce94c6e0f104b2643d7d78b3dc42c038d18d95dfd6e2ba1c9c47abcd587",
+  "graph_counts": {
+    "arcs": 6554886,
+    "inflections": 4915497,
+    "lexemes": 7776694,
+    "records": 4488547,
+    "source_records": 9404044,
+    "unresolved": 0
+  },
+  "llm": {
+    "allow_paid": false,
+    "budget_usd": "0",
+    "concurrency": 1,
+    "max_attempts": 1,
+    "max_input_tokens": 16000,
+    "max_output_tokens": 1600,
+    "max_requests": 0,
+    "permission_ref": null,
+    "providers": {},
+    "requests_per_minute": 60,
+    "roles": {},
+    "route": "multi",
+    "timeout_seconds": 45
+  },
+  "project_commit": "e66543fea9a95f50faf265aa6493680c9f99822a",
+  "protocol_sha256": "35ba7d218ae2340467e7ca8e0db37007690df76f44445905fac7c9ef89468acb",
+  "registry_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+  "registry_decisions": {
+    "accepted": 83,
+    "excluded": 433,
+    "uncertain": 321
+  },
+  "registry_entities": {
+    "Allomorph": 91,
+    "CorrectionVerdict": 266,
+    "ExistingFamilyControl": 7,
+    "Family": 19,
+    "HeadFamilyEdge": 18769,
+    "HistoricalEvidence": 20694,
+    "LemmaHeadLink": 22021,
+    "LexicalHead": 18602,
+    "Membership": 21359,
+    "PriorManualEvidence": 83
+  },
+  "registry_families": [
+    "family:act",
+    "family:alter",
+    "family:anis",
+    "family:atom",
+    "family:creat",
+    "family:inform",
+    "family:inter",
+    "family:liber",
+    "family:loc",
+    "family:manu",
+    "family:mut",
+    "family:nat",
+    "family:observ",
+    "family:ocul",
+    "family:oper",
+    "family:ped",
+    "family:regul",
+    "family:relat",
+    "family:system"
+  ],
+  "scope": "All 19 certified shadow v6 families; production v5 inventory not included.",
+  "source_artifacts": [
+    {
+      "id": "GLeMM:deu:defs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "c22cb69cfdf677d78e25d806079f0768b65382e5d34ce9cce26e41811fc92f54",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:deu:pairs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "2463ba12123fabb48542327ea241ca4bdb26a5acb1d6c864cac4e828eb7d8d40",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:eng:defs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "8dc73d48dfe8f687c3686230371d0e3218719852f9e3f924cbe9bb6f8ba6a09e",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:eng:pairs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "67073ab267768413b9e407080743d4e4e2aa36fed932600fc18fcd80f35b15db",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:esp:defs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "388e44640608d0b7ca31bf08f6f1ec30fa5517864182e75efabdeabfc5d18266",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:esp:pairs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "033a3e8679e49d0788f39c10e7e1bc641250290a6fbae8877df0653f10b81754",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:fra:defs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "d18c771f78332d03c8e2717a7a140ed541462f57de3d1262e616e7c69d00a6b4",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:fra:pairs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "d88e7d532994f6b03f09e6dc2913c7a2ae92b91749e476c54b75074a69dfc8b2",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:ita:defs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "be2fac7b7be3147ce004be6cf5f8a26524983c6744e669f293b36f6007e85491",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:ita:pairs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "d536c3d310f95d367ac7446f5e7fb6a16c9e49c5d14f95bbc4094cdc8abf38cc",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:rus:defs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "45faa636451ec9021e96e3c281aafdb24eb0e03cf4d7051fbe69dc9b04da58e4",
+      "source": "GLeMM"
+    },
+    {
+      "id": "GLeMM:rus:pairs.tsv.bz2",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "ceb1e57f137c808ba677dbe70115b36570a15109e8ba8e19b2b6e7a034f69f92",
+      "source": "GLeMM"
+    },
+    {
+      "id": "MorphyNet:deu.derivational.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "21a5fb2432e14fd995cc3ce1b44fef0f975c25c2e8368232df006395cf97033c",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:deu.inflectional.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "a5715136406aa37e2b8aa7e1ad4e5f228bc4d9885fd0abe4f29950c4aa020c86",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:eng.derivational.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "5920edacc1888b14464fc5cd96beea0a721221d56d1dc0e49de22f4c7c537c50",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:eng.inflectional.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "6295cd9a0e72e260298d8d80dc1e512e5d37ea44617dd2df6fbeef02f50bcc3f",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:fra.derivational.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "eaf40688e3175f21d05ee89fe3669d6f3b224e6a99b43260e24e0e1744563447",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:fra.inflectional.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "191f644875cd64cb0de7d5bf020dc1e4fa6fb7d4fb820c9c06bb8a24810b99b8",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:ita.derivational.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "b0988c57afdaef185bf6d9e557f994d9c960b634eb6cf9f5040c1de02f66ed99",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:ita.inflectional.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "06fda3d9db2d0884e4aa2bccf6e1efcb1578cc2bb42bd3a90afe64bde5441b74",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:rus.derivational.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "ad3c778df01ee168cb5fbebc25ef9d02195ce2337feb29e8b70405af4a6419a0",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:rus.inflectional.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "80b2c608f220a25049d632340377a5c06282c4de1db39e35277591951445f9d9",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:spa.derivational.v1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "1f1d98ec6ffa7ba1ef55dcae1db3d98931f749db5390c810887c71f80a20d519",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:spa.inflectional.v1.part1",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "135afd6bfad6c1e2774349cde2eba052a35c5d697e89ae92a526521ede83a057",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "MorphyNet:spa.inflectional.v1.part2",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "accad9db6e5f9b8a4691fc3aefc6af06ef30fbfc6a1b8d42950c8a08ce211f6a",
+      "source": "MorphyNet"
+    },
+    {
+      "id": "UDer:de-DErivBase",
+      "revision": "1.1",
+      "sha256": "b541cc6a120dcc0741cbb3ca638a778753d682c61a77d129f07caea0507871f6",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:en-CatVar",
+      "revision": "1.1",
+      "sha256": "48a2a1c4a6e5123a811ff6d968ff4308703b566a19bfd3714cb4191143a1e344",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:en-WordNet",
+      "revision": "1.1",
+      "sha256": "5f8d01d65bb2bdde94a60a05d52e245bdaf4ba5a28d63923296430d99d42c5be",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:es-DeriNetES",
+      "revision": "1.1",
+      "sha256": "cf68c43f6c52f490c4a517d394a7197ff99e429f34e5a6edb58f890da45ab7d4",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:fr-Demonette",
+      "revision": "1.1",
+      "sha256": "1271bef98f1d1fc37546471d6d950d78e3e77cf612d56073b9f265c1e0f47cee",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:it-DerIvaTario",
+      "revision": "1.1",
+      "sha256": "055badea929d67c76e8011d7b3e0444db325a865d87443fd0c376413e39e2d1c",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:ru-DeriNetRU",
+      "revision": "1.1",
+      "sha256": "5c769d95a2e49caa7f50f75fdacb1db1f1d2a23aa06a9d3de0364b03ca92ac55",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:ru-DerivBaseRU",
+      "revision": "1.1",
+      "sha256": "960c5f5ca0af8410223722ec9a34007d59c7ab3caf34c2cfbdbc3efadbbb7bed",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:ru-EtymWordNetRU",
+      "revision": "1.1",
+      "sha256": "c3f5bd75ed34a9f92150aca1c164b60ee626c23b74df4296129231af62f4418b",
+      "source": "UDer"
+    },
+    {
+      "id": "UDer:ru-GoldenCompoundAnalyses",
+      "revision": "1.1",
+      "sha256": "004965acd2a4b7f2405a30af9ec6d4be2140dfae6b5e0f3673b67f1f2ca24782",
+      "source": "UDer"
+    }
+  ],
+  "tracked_protected_files": 7894
+}
