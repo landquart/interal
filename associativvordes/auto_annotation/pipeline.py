@@ -149,6 +149,8 @@ def classify(card,client,route,run_id,recipe_hash):
       model_agreement_independence='not_independent_same_model' if len(model_ids)>1 and len(set(model_ids))==1 else 'unknown',
       evidence_independence=card['independence'],run_id=run_id,recipe_sha256=recipe_hash,
       calibrated_reliability=None,needs_human_review=True,production_writes=0,human_decision_events=0,
+      triage_category='LOW_EVIDENCE' if 'low_morphological_evidence' in reasons else
+        'CONFLICT' if any(k in reasons for k in ('possible_family_merge','multiple_native_identities','multiple_source_assertions')) else 'MANUAL_CALIBRATION_REQUIRED',
       family_merge_authorized=False,created_at=now())
 
 def result_key(card,recipe):return 'proposal:'+sha([card['candidate_id'],card['content_sha256'],recipe])
@@ -201,6 +203,7 @@ def execute(store,run_id,questions,identity,config=None,mode='dry-run',source_in
       omitted_by_language={k:all_counts[k]-selected_counts[k] for k in sorted(all_counts)},
       elapsed_seconds=round(time.monotonic()-started,6),total_candidates=len(cards),selected_candidates=len(selected),
       exact_duplicate_observations=duplicates,accounting=store.accounting(),recipe_sha256=recipe_hash,
+      cost_forecast=plan['forecast'],
       algorithm_sha256=recipe['algorithm_sha256'],production_writes=0,quality_status='BLOCKED_INDEPENDENT_HUMAN_GOLD')
 
 def export(store,run_id,output,handoff=False):
