@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
+assertHistoricalRepairAllowed();
 // Apply the locked Russian -ka surface-family decision; check members before writing.
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';

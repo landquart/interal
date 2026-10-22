@@ -17,7 +17,7 @@ from providers import Client,configuration,forecast,now
 REPO=Path(__file__).resolve().parents[2]
 def code_version():
     paths=[]
-    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation'):
+    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation','history_registry'):
         paths.extend(p for p in (REPO/'associativvordes'/d).glob('*.py') if not p.name.startswith('test_'))
     return sha({p.relative_to(REPO).as_posix():file_hash(p) for p in sorted(paths)})
 
@@ -119,6 +119,26 @@ def stage_a(card):
     result['uncertainty_flags']=sorted(set(result['uncertainty_flags']+card['risk_flags']))
     return result
 
+def historical_check(card, decision):
+    import importlib.util
+    module_path=REPO/'associativvordes'/'history_registry'/'registry.py'
+    try:
+        spec=importlib.util.spec_from_file_location('interal_historical_constraints',module_path)
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        root=REPO/'audit'/'associative-history-registry'
+        current=json.loads((root/'CURRENT.json').read_text())
+        # A native lexeme ID is not a corpus lemma ID. Missing alignment is a hold.
+        lex=card['lexeme']
+        ids=lex.get('corpus_lemma_ids',[])
+        if lex['id'].startswith('lemma:'):ids=sorted(set(ids+[lex['id']]))
+        return module.check(REPO,root/current['snapshot'],current['sha256'],dict(
+            operation='restore' if decision=='PROPOSE_INCLUDE' else 'delete',
+            family_id=card['family_id'],language=card['language'],lemma_ids=ids,
+            pos=lex.get('pos'),sense_id=None))
+    except (OSError,ValueError,KeyError,ImportError) as e:
+        return dict(status='HISTORY_UNAVAILABLE',allowed=False,reasons=[str(e)])
+
+
 def classify(card,client,route,run_id,recipe_hash):
     a=stage_a(card);answer=a;stages=[{'stage':'A','status':'DETERMINISTIC_OBSERVATION','response':a}]
     if route!='deterministic':
@@ -137,8 +157,11 @@ def classify(card,client,route,run_id,recipe_hash):
         answer=abstention('DETERMINISTIC_RISK_REQUIRES_HUMAN',card)
     if answer['decision']=='PROPOSE_EXCLUDE' and not card['source_assertions']:
         answer=abstention('NO_EVIDENCE_IS_NOT_A_REJECTION',card)
+    history=historical_check(card,answer['decision'])
+    if answer['decision'] in {'PROPOSE_INCLUDE','PROPOSE_EXCLUDE'} and not history['allowed']:
+        answer=abstention(history['status'],card)
     model_ids=[(s.get('provider'),s.get('model'),s.get('model_version')) for s in stages if s['stage']!='A' and s.get('model')]
-    return dict(schema='preannotation-proposal/1',candidate_id=card['candidate_id'],question_id=card['question_id'],
+    return dict(schema='preannotation-proposal/1',history_check=history,candidate_id=card['candidate_id'],question_id=card['question_id'],
       family_id=card['family_id'],language=card['language'],lexeme=card['lexeme'],card_sha256=card['content_sha256'],
       proposed_decision=answer['decision'],identity_resolution=answer['identity_status'],
       relation_type=answer['relation_type'],assessments=answer['assessments'],
@@ -160,7 +183,9 @@ def execute(store,run_id,questions,identity,config=None,mode='dry-run',source_in
     started=time.monotonic();config=configuration(config)
     if not re.fullmatch(r'[A-Za-z0-9_-]{1,120}',run_id):raise ValueError('safe run ID')
     cards,duplicates=prepare(store,questions,identity,source_index,family_context,aux_index)
-    recipe=dict(algorithm_sha256=code_version(),config=config,rules_sha256=sha(cards[0]['rules']) if cards else None)
+    history_pointer=REPO/'audit'/'associative-history-registry'/'CURRENT.json'
+    history_version=file_hash(history_pointer) if history_pointer.exists() else 'UNAVAILABLE'
+    recipe=dict(history_snapshot=history_version,algorithm_sha256=code_version(),config=config,rules_sha256=sha(cards[0]['rules']) if cards else None)
     lane_count=len({(c['language'],','.join(sorted({p.get('category',p.get('proposed_category','unresolved')) for p in c['paths']})) or 'unresolved') for c in cards})
     if max_candidates is not None and max_candidates<lane_count:
         raise ValueError('candidate budget must retain every nonempty language/relation lane: '+str(lane_count))

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:interal:history:decision:1",
+  "type": "object",
+  "required": [
+    "id",
+    "source",
+    "date",
+    "operation",
+    "scope",
+    "previous_status",
+    "decision",
+    "explanation",
+    "evidence_refs",
+    "authority",
+    "data_version",
+    "supersedes",
+    "evidence_status",
+    "lexical_identity_status",
+    "sense_status",
+    "relation_status",
+    "association_status"
+  ],
+  "properties": {
+    "decision": {
+      "enum": [
+        "CONFIRMED_MEMBER",
+        "CONFIRMED_NONMEMBER",
+        "UNRESOLVED",
+        "CONFLICT"
+      ]
+    },
+    "authority": {
+      "enum": [
+        "CONFIRMED_MANUAL",
+        "BOUNDED_OPERATION",
+        "ENGINEERING_CHECK",
+        "RESEARCH_HYPOTHESIS",
+        "OWNER_ACCEPTED_AT_RISK",
+        "INDEPENDENT_GOLD",
+        "UNDETERMINED"
+      ]
+    },
+    "date": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "commit",
+        "sha256"
+      ]
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "domain"
+      ],
+      "properties": {
+        "domain": {
+          "enum": [
+            "membership",
+            "alias",
+            "observation"
+          ]
+        }
+      }
+    },
+    "evidence_refs": {
+      "type": "array"
+    },
+    "supersedes": {
+      "type": "array"
+    }
+  },
+  "description": "Authority and historical_outcome do not substitute for independent linguistic gold; Python validator adds finite-scope and supersession checks."
+}

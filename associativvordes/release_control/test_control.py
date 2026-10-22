@@ -33,6 +33,10 @@ def operation(kind='ADD_MEMBER', before=None, after=None):
 
 class Releases(unittest.TestCase):
     def setUp(self):
+        # Signed-release fixtures test that protocol independently of the blocked
+        # real historical registry. No runtime bypass or configuration flag exists.
+        history_patch = patch('control.history_gate', return_value=None)
+        history_patch.start(); self.addCleanup(history_patch.stop)
         self.tmp = tempfile.TemporaryDirectory(); self.root = Path(self.tmp.name)
         self.state = fixture(); self.op = operation()
         self.inputs = context(self.state, 'snapshot', 'sources', 'algorithm', 'ledger-head')
@@ -404,3 +408,12 @@ class Releases(unittest.TestCase):
 
 
 if __name__ == '__main__': unittest.main()
+
+
+class HistoricalReleaseGate(unittest.TestCase):
+    def test_actual_history_blocks_proposal(self):
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('unpatched_control',Path(__file__).with_name('control.py'))
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        with self.assertRaisesRegex(ValueError,'HISTORY_'):
+            module.preview(fixture(),[operation()],{'base':module.digest(fixture())})

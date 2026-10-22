@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
+assertHistoricalRepairAllowed();
 // Materialize only the complete case reviews in manual-surface-family-decisions.json.
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
