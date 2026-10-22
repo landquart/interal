@@ -10,7 +10,7 @@ import threading
 import time
 from urllib.parse import urlsplit,urlunsplit
 from urllib.request import Request,build_opener,HTTPRedirectHandler,ProxyHandler
-from contract import SYSTEM,canonical,sha,response_schema,validate_response
+from contract import SYSTEM,canonical,sha,response_schema,validate_response,parse_json
 
 DEFAULT = dict(route='deterministic',providers={},roles={},allow_paid=False,budget_usd='0',
  max_requests=0,concurrency=1,requests_per_minute=60,max_attempts=1,
@@ -66,7 +66,7 @@ class NoRedirect(HTTPRedirectHandler):
 class Client:
     def __init__(self,store,config,mode='offline',transport=None):
         self.store=store;self.config=configuration(config);self.mode=mode
-        self.transport=transport or self.http;self.mutex=threading.RLock();self.next_slot=0
+        self.transport=transport or self.http;self.mutex=threading.RLock();self.admission=threading.RLock();self.key_locks={};self.next_slot=0
         self.opener=build_opener(ProxyHandler({}),NoRedirect())
     def http(self,p,request,headers):
         req=Request(p['endpoint'],data=canonical(request).encode(),headers=headers,method='POST')
@@ -108,6 +108,8 @@ class Client:
         meta=dict(provider=name,model=model,model_version=p['model_version'],request_key=reqkey,role=role)
         # Serialize identical requests as well as store-wide admission. No repeated B/C charge.
         with self.mutex:
+            lock=self.key_locks.setdefault(reqkey,threading.RLock())
+        with lock:
             cached=self.store.latest('cache:'+reqkey)
             if cached:
                 validate_response(cached['response'],card)
@@ -127,29 +129,30 @@ class Client:
             self.installed(p)
             errors=[]
             while self.store.attempts(reqkey)<c['max_attempts']:
-                accounting=self.store.accounting()
-                if accounting['unresolved_paid_reservations']:return None,dict(meta,status='UNRECONCILED_PAID_OUTCOME')
-                if accounting['requests']>=c['max_requests']:return None,dict(meta,status='REQUEST_LIMIT')
-                reserve=micro((estimate*money(p['input_per_million_usd'])+
-                    c['max_output_tokens']*money(p['output_per_million_usd']))/1000000) if paid else 0
-                if paid and accounting['budget_exposure_microusd']+reserve>micro(money(c['budget_usd'])):
-                    return None,dict(meta,status='COST_LIMIT')
-                # Never retry an unknown prior semantic/billing outcome, including after a cost receipt.
-                previous=[self.store.get(v) for v in self.store.reservations.values()
-                          if self.store.get(v)['request_key']==reqkey]
-                if any(r['id'] not in self.store.settlements or
-                       self.store.get(self.store.settlements[r['id']]).get('usage') is None for r in previous):
-                    return None,dict(meta,status='UNKNOWN_PRIOR_REQUEST_NO_RETRY')
-                delay=max(0,self.next_slot-time.monotonic())
-                if delay:time.sleep(min(delay,60))
-                self.next_slot=time.monotonic()+60/c['requests_per_minute']
-                rid='request:'+sha([reqkey,len(previous)+1])
-                reservation=dict(id=rid,request_key=reqkey,paid=paid,reserve_microusd=reserve,
-                  estimated_input_token_upper_bound=estimate,max_output_tokens=c['max_output_tokens'],
-                  provider=identity,price={k:p.get(k) for k in
-                   ('input_per_million_usd','output_per_million_usd','price_ref','price_verified_at')},
-                  permission_ref=c['permission_ref'] if paid else p.get('local_attestation'),created_at=now())
-                self.store.append('reservation',rid,reservation)
+                with self.admission:
+                    accounting=self.store.accounting()
+                    if accounting['unresolved_paid_reservations']:return None,dict(meta,status='UNRECONCILED_PAID_OUTCOME')
+                    if accounting['requests']>=c['max_requests']:return None,dict(meta,status='REQUEST_LIMIT')
+                    reserve=micro((estimate*money(p['input_per_million_usd'])+
+                        c['max_output_tokens']*money(p['output_per_million_usd']))/1000000) if paid else 0
+                    if paid and accounting['budget_exposure_microusd']+reserve>micro(money(c['budget_usd'])):
+                        return None,dict(meta,status='COST_LIMIT')
+                    # Never retry an unknown prior semantic/billing outcome, including after a cost receipt.
+                    previous=[self.store.get(v) for v in self.store.reservations.values()
+                              if self.store.get(v)['request_key']==reqkey]
+                    if any(r['id'] not in self.store.settlements or
+                           self.store.get(self.store.settlements[r['id']]).get('usage') is None for r in previous):
+                        return None,dict(meta,status='UNKNOWN_PRIOR_REQUEST_NO_RETRY')
+                    delay=max(0,self.next_slot-time.monotonic())
+                    if delay:time.sleep(min(delay,60))
+                    self.next_slot=time.monotonic()+60/c['requests_per_minute']
+                    rid='request:'+sha([reqkey,len(previous)+1])
+                    reservation=dict(id=rid,request_key=reqkey,paid=paid,reserve_microusd=reserve,
+                      estimated_input_token_upper_bound=estimate,max_output_tokens=c['max_output_tokens'],
+                      provider=identity,price={k:p.get(k) for k in
+                       ('input_per_million_usd','output_per_million_usd','price_ref','price_verified_at')},
+                      permission_ref=c['permission_ref'] if paid else p.get('local_attestation'),created_at=now())
+                    self.store.append('reservation',rid,reservation)
                 started=time.monotonic();usage=None;rated=None;violation=False;raw=None
                 try:
                     headers={'Content-Type':'application/json'}
@@ -176,7 +179,7 @@ class Client:
                 try:
                     choice=raw['choices'][0]
                     if choice.get('finish_reason') not in (None,'stop'):raise ValueError('truncated/refused')
-                    answer=json.loads(choice['message']['content'])
+                    answer=parse_json(choice['message']['content'])
                     validate_response(answer,card)
                     cached=dict(response=answer,receipt_ref=rid,actual_model=raw.get('model'),
                                 response_id=raw.get('id'),created_at=now())

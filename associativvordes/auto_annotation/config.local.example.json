@@ -1,0 +1,27 @@
+{
+  "route": "multi",
+  "providers": {
+    "local": {
+      "endpoint": "http://127.0.0.1:11434/v1/chat/completions",
+      "model": "REPLACE_WITH_INSTALLED_LOCAL_MODEL",
+      "model_version": "REPLACE_WITH_VERIFIED_VERSION",
+      "local_only": true,
+      "local_attestation": "REPLACE_WITH_OPERATOR_VERIFICATION_NO_CLOUD_PROXY",
+      "runtime": "ollama",
+      "model_digest": "sha256:REPLACE_WITH_INSTALLED_DIGEST",
+      "response_format": "json_object"
+    }
+  },
+  "roles": {
+    "B": "local",
+    "C": "local"
+  },
+  "allow_paid": false,
+  "budget_usd": "0",
+  "max_requests": 10,
+  "concurrency": 1,
+  "requests_per_minute": 30,
+  "max_attempts": 1,
+  "max_input_tokens": 64000,
+  "max_output_tokens": 1600
+}

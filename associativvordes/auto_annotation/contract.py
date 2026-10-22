@@ -132,7 +132,7 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
         raise ValueError('verified sense requires provenance')
     card=dict(schema='preannotation-card/1',candidate_id='auto-candidate:'+sha([q['id'],lexeme['id']]),
       question_id=q['id'],family_id=q['family'],language=q['language'],lexeme=lexeme,
-      original_spelling=lexeme.get('original_spelling',lexeme['lemma']),
+      original_spelling=lexeme.get('original_spelling',lexeme.get('original',lexeme['lemma'])),
       family_context=family_context,existing_memberships=q.get('existing_memberships',[]),
       source_assertions=refs,source_rows=rows,paths=paths,productive_paths=productive,
       anchors=q.get('anchors',[]),inflection_observations=q.get('inflection_observations',[]),
@@ -201,3 +201,13 @@ def abstention(reason,card):
     return dict(decision='ABSTAIN',relation_type='unresolved',identity_status='unresolved',
       assessments={k:{'state':'unknown','evidence_refs':[]} for k in AXES},evidence_refs=[],
       sense_ids=[],contradictions=[],uncertainty_flags=[reason],explanation=reason)
+
+def parse_json(text):
+    def pairs(values):
+        out={}
+        for k,v in values:
+            if k in out:raise ValueError('duplicate JSON key')
+            out[k]=v
+        return out
+    def constant(value):raise ValueError('nonfinite JSON number')
+    return json.loads(text,object_pairs_hook=pairs,parse_constant=constant)

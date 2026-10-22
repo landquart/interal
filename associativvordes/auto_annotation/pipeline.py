@@ -159,6 +159,9 @@ def execute(store,run_id,questions,identity,config=None,mode='dry-run',source_in
     if not re.fullmatch(r'[A-Za-z0-9_-]{1,120}',run_id):raise ValueError('safe run ID')
     cards,duplicates=prepare(store,questions,identity,source_index,family_context)
     recipe=dict(algorithm_sha256=code_version(),config=config,rules_sha256=sha(cards[0]['rules']) if cards else None)
+    lane_count=len({(c['language'],','.join(sorted({p.get('category',p.get('proposed_category','unresolved')) for p in c['paths']})) or 'unresolved') for c in cards})
+    if max_candidates is not None and max_candidates<lane_count:
+        raise ValueError('candidate budget must retain every nonempty language/relation lane: '+str(lane_count))
     recipe_hash=sha(recipe);selected=cards[:max_candidates] if max_candidates else cards
     plan=dict(schema='preannotation-run/1',run_id=run_id,identity=identity,recipe=recipe,
       recipe_sha256=recipe_hash,cards=[c['content_sha256'] for c in selected],total_candidates=len(cards),
@@ -219,7 +222,7 @@ def export(store,run_id,output,handoff=False):
     data=''.join(canonical(x)+'\n' for x in values).encode();atomic(output/name,data)
     manifest=dict(schema='preannotation-handoff/1' if handoff else 'preannotation-export/1',
       run_id=run_id,run_ref=store.runs[run_id],outputs={name:sha(data)},rows=len(values),
-      missing_results=missing,production_writes=0,human_decision_events=0)
+      missing_results=missing,counts={'questions':len(values)} if handoff else {'proposals':len(values)},production_writes=0,human_decision_events=0)
     # Existing review loader accepts a manifest with outputs.questions.ndjson.
     atomic(output/'MANIFEST.json',canonical(manifest).encode());return manifest
 
