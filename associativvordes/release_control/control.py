@@ -248,7 +248,23 @@ def operation_summary(operations):
                 unresolved='all unselected questions remain in review')
 
 
+def history_gate(operations):
+    """Recheck the committed historical registry before preview and atomic apply."""
+    import importlib.util
+    module_path = Path(__file__).resolve().parents[1]/'history_registry'/'registry.py'
+    spec = importlib.util.spec_from_file_location('release_historical_constraints', module_path)
+    module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
+    for op in operations:
+        for row in (op.get('before'), op.get('after')):
+            if row is None: continue
+            result = module.active_check(dict(operation='change_membership',
+                family_id=row['family_id'], language=row['language'],
+                lemma_ids=[row['lemma_id']], pos=row.get('pos'), sense_id=row.get('sense_id')))
+            require(result['allowed'], result['status']+': '+str(result.get('reasons', result.get('decision_ids', []))))
+
+
 def preview(state, operations, inputs, verdicts=None):
+    history_gate(operations)
     require(inputs['base'] == digest(state), 'wrong release base')
     require(len({o['id'] for o in operations}) == len(operations), 'duplicate operation ID')
     after = transform(state, operations)
@@ -329,6 +345,7 @@ class Store:
     def apply(self, plan, current, checks, approval, trust, ledger, fault=None):
         from review_bridge import locked_witnesses
         with self.lock(), locked_witnesses(ledger) as view:
+            history_gate(plan['operations'])
             parent, old = self.current()
             # Retry after committed write: return the same version, but never roll a later state back.
             release_id = digest(plan)
