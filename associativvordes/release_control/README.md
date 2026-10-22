@@ -165,6 +165,15 @@ python3 associativvordes/release_control/control.py restore \
 mass-registry/production receipt. Готовность материализатора production v5/v6
 по этому графу **не установлена**; публикационный пакет не переключает runtime.
 
+`registry_view.py --store ... --trust ... --baseline-registry ... --destination ...`
+подготавливает из проверенной версии совместимые seeds, family fingerprints,
+registry_documents и REGISTRY.json для существующего mass_run. Базовая registry
+проверяется по закреплённому SHA. Fingerprints привязаны к содержимому каждой
+семьи и версии политики; изменение другой семьи не входит в этот fingerprint.
+Перед поиском сравнивается owner_key новой registry с AUX: при изменении набора
+слов нужна новая auxiliary projection штатной mass_source, старую подставлять
+нельзя. Этот адаптер не материализует и не переключает production v5/v6.
+
 `workflow.py package --store ... --destination ... --approval ... --trust ...`
 требует отдельной owner подписи
 `{schema,purpose:"approve-publication-package",version,release,store}`.
@@ -205,3 +214,21 @@ npm run test:browser
 Фактические результаты, стоимость, ресурсные измерения и все блокеры —
 [отчёт этапа 07](../../audit/associative-external-preparation/release07-control/REPORT.md).
 Наличие этого модуля не означает допуска массовых семантических изменений.
+
+Для повторения реального инженерного прогона с исходными закреплёнными базами:
+
+```sh
+python3 associativvordes/release_control/exercise.py \
+  --work /external/new-release07-exercise \
+  --registry /external/mass02/registry/registry.sqlite \
+  --review-ledger /external/review-ledger \
+  --index /external/mass02/index/index.sqlite \
+  --aux /external/mass02/aux/aux.sqlite \
+  --project /external/mass02/project/project.sqlite
+```
+
+Рабочая директория должна быть новой, npm dependencies и Chromium — установлены.
+Скрипт проверяет bytes всех входов, сохраняет реальные замеры и logs. Его
+UNCONFIRMED_GATE_PROBE — заведомо неподтверждённая попытка для проверки отказа,
+а не решение разметчика и не предложение к публикации. Приватные ключи и
+владельческие approvals этот скрипт не создаёт.
