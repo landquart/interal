@@ -1,0 +1,23 @@
+name: Mass dry-run contracts
+on:
+  push:
+    paths: ['associativvordes/mass_dry_run/**', 'tests/associative-mass-dry-run.test.mjs', '.github/workflows/mass-dry-run.yml']
+  pull_request:
+    paths: ['associativvordes/mass_dry_run/**', 'tests/associative-mass-dry-run.test.mjs', '.github/workflows/mass-dry-run.yml']
+permissions:
+  contents: read
+jobs:
+  scope-history-and-resources:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m unittest discover -s associativvordes/mass_dry_run -v
+      - run: python -m unittest discover -s associativvordes/auto_annotation -v
+      - run: python -m unittest discover -s associativvordes/candidate_search -p test_mass.py -v
+      - run: node --test tests/associative-mass-dry-run.test.mjs
