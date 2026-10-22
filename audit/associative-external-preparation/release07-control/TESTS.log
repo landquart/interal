@@ -1,0 +1,42 @@
+test_all_update_classes_and_exclusion (test_control.Releases.test_all_update_classes_and_exclusion) ... ok
+test_approval_request_checks_before_signing (test_control.Releases.test_approval_request_checks_before_signing) ... ok
+test_backup_restore_and_tamper (test_control.Releases.test_backup_restore_and_tamper) ... ok
+test_changed_evidence (test_control.Releases.test_changed_evidence) ... ok
+test_classifier_cannot_sign_as_owner (test_control.Releases.test_classifier_cannot_sign_as_owner) ... ok
+test_concurrent_same_release_serializes (test_control.Releases.test_concurrent_same_release_serializes) ... ok
+test_crash_after_pointer_is_idempotent (test_control.Releases.test_crash_after_pointer_is_idempotent) ... ok
+test_crash_before_pointer_and_resume (test_control.Releases.test_crash_before_pointer_and_resume) ... ok
+test_duplicate_and_stale_before (test_control.Releases.test_duplicate_and_stale_before) ... ok
+test_every_mandatory_gate_fails_closed (test_control.Releases.test_every_mandatory_gate_fails_closed) ... ok
+test_exact_negative_scope_preserved (test_control.Releases.test_exact_negative_scope_preserved) ... ok
+test_fake_check_attestation (test_control.Releases.test_fake_check_attestation) ... ok
+test_gold_missing_not_allowed (test_control.Releases.test_gold_missing_not_allowed) ... ok
+test_incremental_partition_not_all_families (test_control.Releases.test_incremental_partition_not_all_families) ... ok
+test_incremental_unknown_license_and_dependency_block (test_control.Releases.test_incremental_unknown_license_and_dependency_block) ... ok
+test_incremental_uses_exact_selected_families_and_prior_queue (test_control.Releases.test_incremental_uses_exact_selected_families_and_prior_queue) ... ok
+test_input_content_change_without_context_refresh (test_control.Releases.test_input_content_change_without_context_refresh) ... ok
+test_invalid_restored_chain_never_publishes_target (test_control.Releases.test_invalid_restored_chain_never_publishes_target) ... ok
+test_no_inflection_member (test_control.Releases.test_no_inflection_member) ... ok
+test_no_new_canonical_family_or_head (test_control.Releases.test_no_new_canonical_family_or_head) ... ok
+test_no_unrelated_changes (test_control.Releases.test_no_unrelated_changes) ... ok
+test_one_reviewer_not_independent (test_control.Releases.test_one_reviewer_not_independent) ... ok
+test_publication_requires_separate_owner_authorization (test_control.Releases.test_publication_requires_separate_owner_authorization) ... ok
+test_real_review_ledger_bridge (test_control.Releases.test_real_review_ledger_bridge) ... ok
+test_real_sigkill_before_publication (test_control.Releases.test_real_sigkill_before_publication) ... ok
+test_rejected_or_stale_review (test_control.Releases.test_rejected_or_stale_review) ... ok
+test_revoked_key (test_control.Releases.test_revoked_key) ... ok
+test_rollback_retains_history_and_requires_owner (test_control.Releases.test_rollback_retains_history_and_requires_owner) ... ok
+test_signed_apply_and_retry (test_control.Releases.test_signed_apply_and_retry) ... ok
+test_stale_source (test_control.Releases.test_stale_source) ... ok
+test_store_corruption_detected (test_control.Releases.test_store_corruption_detected) ... ok
+test_two_models_not_two_humans (test_control.Releases.test_two_models_not_two_humans) ... ok
+test_unknown_gold_cannot_be_overridden_by_boolean_gate (test_control.Releases.test_unknown_gold_cannot_be_overridden_by_boolean_gate) ... ok
+test_unresolved_and_new_base_blocked (test_control.Releases.test_unresolved_and_new_base_blocked) ... ok
+test_without_owner_signature (test_control.Releases.test_without_owner_signature) ... ok
+test_wrong_family_review (test_control.Releases.test_wrong_family_review) ... ok
+test_wrong_store_approval (test_control.Releases.test_wrong_store_approval) ... ok
+
+----------------------------------------------------------------------
+Ran 37 tests in 2.748s
+
+OK

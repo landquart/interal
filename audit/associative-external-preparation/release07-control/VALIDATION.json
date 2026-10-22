@@ -1,0 +1,29 @@
+{
+  "approved_release_id": null,
+  "browser_regression": "PASS",
+  "full_npm_test": "PASS",
+  "full_test_driver_commands": 98,
+  "independent_check_type": "Separate signed-transition replay, not independent linguistic gold.",
+  "mass_registry_interop": "PASS_REGUL_SIX_LANGUAGES",
+  "node_wrapper_tests": 2,
+  "paid_requests": 0,
+  "production_writes": 0,
+  "real_baseline_scope": {
+    "families": 19,
+    "heads": 18602,
+    "languages": [
+      "de",
+      "en",
+      "es",
+      "fr",
+      "it",
+      "ru"
+    ],
+    "memberships": 21359
+  },
+  "real_confirmed_operations": 0,
+  "real_sigkill_and_concurrency": "PASS_TEST_ONLY_OPERATIONS",
+  "staged_native_restore": "PASS",
+  "status": "ENGINEERING_PASS_SEMANTIC_APPLICATION_BLOCKED",
+  "targeted_python_tests": 37
+}
