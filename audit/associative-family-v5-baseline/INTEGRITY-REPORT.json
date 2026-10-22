@@ -1,0 +1,123 @@
+{
+  "blockers": [
+    "Original assignments are not available.",
+    "Original candidate index and Kaikki generation input bytes are not captured.",
+    "Per-source license/attribution manifests of original inputs are not available."
+  ],
+  "cross_reference_checks": {
+    "alias_orphan_targets": 0,
+    "cross_snapshot_identity_mismatches": 0,
+    "current_identity_collisions": 0,
+    "current_not_in_source": 0,
+    "missing_reverse_aliases": 0,
+    "reverse_only_alias_pairs": 0,
+    "source_identity_collisions": 0
+  },
+  "damaged_record_list": [],
+  "historical_controls": {
+    "aliases": {
+      "actual": 1934050,
+      "expected": 1934050,
+      "match": true
+    },
+    "families": {
+      "actual": 2456543,
+      "expected": 2456543,
+      "match": true
+    },
+    "materialized": {
+      "actual": 4924281,
+      "expected": 4924281,
+      "match": true
+    },
+    "memberships": {
+      "actual": 10078319,
+      "expected": 10078319,
+      "match": true
+    },
+    "source": {
+      "actual": 4924980,
+      "expected": 4924980,
+      "match": true
+    },
+    "unassigned": {
+      "actual": 699,
+      "expected": 699,
+      "match": true
+    }
+  },
+  "issue_details_location": "ISSUES.jsonl.gz (complete independent issue export)",
+  "legacy_metadata_note": "Empty relation_types and legacy verified/safe_automatic are stored production metadata, not linguistic confirmation. Component-evidence counts use a separate unit.",
+  "legacy_metadata_without_relation_type": 2435769,
+  "linguistic_correctness_certified": false,
+  "linguistic_status": "NOT_CERTIFIED",
+  "original_membership_delta": {
+    "added": 2,
+    "current": 10078319,
+    "holds": true,
+    "removed": 347760
+  },
+  "overall_status": "UPSTREAM_PROVENANCE_BLOCKED",
+  "repair_ledger_checks": {
+    "all_declared_hashes_match": true,
+    "declared_ledger_hashes": 27,
+    "repairs": 29
+  },
+  "runtime_disk_interruption": {
+    "observed_process_peak_rss_kib_before_disk_failure": {
+      "restored-run": 254708,
+      "run": 256232
+    },
+    "reason": "Disk exhausted by transient workspace synchronization copies; production and frozen snapshot unchanged.",
+    "runs": {
+      "restored-run": {
+        "observed_seconds_until_recovery": 943.44526720047,
+        "preserved_checkpoints": 600,
+        "sqlite_integrity_after_recovery": "ok"
+      },
+      "run": {
+        "observed_seconds_until_recovery": 984.7686536312103,
+        "preserved_checkpoints": 606,
+        "sqlite_integrity_after_recovery": "ok"
+      }
+    }
+  },
+  "samples": {},
+  "schema_version": 1,
+  "source_equation": {
+    "holds": true,
+    "materialized": 4924281,
+    "source": 4924980,
+    "unassigned": 699
+  },
+  "stable_id_audit": {
+    "algorithm": "stableLemmaId: lowercase und-equivalent normalized inputs, NFC fields, NUL separator, SHA256 first 20 hex",
+    "schema_version": 1,
+    "tables": {
+      "current_lemmas": {
+        "checked": 4924281,
+        "mismatches": 0,
+        "samples": []
+      },
+      "source_lemmas": {
+        "checked": 4924980,
+        "mismatches": 0,
+        "samples": []
+      }
+    },
+    "unicode_version": "15.0.0",
+    "verdict": "PASS"
+  },
+  "structural_findings": {},
+  "structural_status": "PASS",
+  "unassigned_content_sha256": "be30bf73ab72f0348eda86cb67a3298d830e9306317994443c8df47f61a76bc0",
+  "untracked_checkout_files": {
+    "excluded_from_snapshot": [
+      "associativvordes/family-index-v5/members/en/.3e.json.gz.RMPdmG",
+      "associativvordes/family-index-v5/members/es/.14.json.gz.UgBo0i",
+      "associativvordes/family-index-v5/members/it/.75.json.gz.SUvWPB"
+    ],
+    "reason": "Untracked transport temporary files are not production Git objects; preserved unchanged."
+  },
+  "verdict": "BLOCKED"
+}
