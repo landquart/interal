@@ -1,0 +1,21 @@
+{
+  "archive": {
+    "bytes": 522631,
+    "files": 2,
+    "nodes": 29741,
+    "sha256": "c6ca684556536ca25b43a54e61faf3df65affa335f893bb42b49135e5a14bc67"
+  },
+  "archived_files": [
+    "PROPOSALS.json",
+    "HUMAN-STUDY.json"
+  ],
+  "canonical_results_sha256": "c951fcaf69bed6cfce2905431f5b3545e37bd5e46578de6ebda14c400704a452",
+  "human_plan_sha256": "0231bd62cfe7433d4884b72e56e6323e5f31f4d5ac02d7e43fd2abfe06266e15",
+  "outputs": {
+    "EXPERIMENT.json": "f38b2c6d95169ce483908f36d2873999783db96f8520a633d082634186175b61",
+    "PACKED-RESULTS.json.gz": "c6ca684556536ca25b43a54e61faf3df65affa335f893bb42b49135e5a14bc67"
+  },
+  "proposals": 5624,
+  "roundtrip": "PASS",
+  "schema": "preannotation-report-release/1"
+}

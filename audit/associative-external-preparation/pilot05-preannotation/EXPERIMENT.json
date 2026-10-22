@@ -1,0 +1,2940 @@
+{
+  "agreement": {
+    "no_independent_double_labels": true,
+    "pairs": [],
+    "sampling_warning": "double-review set includes all prior-decision cases plus fixed random subset; not a population reliability estimate",
+    "warning": "repeat set is stratified and prior-risk enriched; interval is not population inter-rater reliability"
+  },
+  "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+  "automatic_family_merge": false,
+  "automatic_semantic_acceptance": false,
+  "by_language": {
+    "de": 219,
+    "en": 238,
+    "es": 240,
+    "fr": 233,
+    "it": 238,
+    "ru": 238
+  },
+  "calibrated_reliability": null,
+  "cases": 1406,
+  "cost_this_offline_evaluation_usd": 0,
+  "double_review_cases": 381,
+  "families": [
+    "family:alter",
+    "family:creat",
+    "family:inter",
+    "family:liber",
+    "family:manu",
+    "family:mut",
+    "family:nat",
+    "family:ocul",
+    "family:oper",
+    "family:ped",
+    "family:regul",
+    "family:relat"
+  ],
+  "frozen": {
+    "case_set_sha256": "3f809f5f36ea367e03c1b0bf29d4f95244f81db2df15a33c94b39e7c8c2d38a1",
+    "input_sha256": "71dd2924f918917a01bcdfea6ec9c2f919e337bfcb1644f1e0d1721edbfa20a7",
+    "kind": "frozen04",
+    "protocol_sha256": "557977dd3bc842f24ae5bd3b3b3b66ebb6dff14f79058f11e7c8feb0fd8faebd"
+  },
+  "generated_at": "2026-10-22T10:46:54.295407+00:00",
+  "gold_counts": {
+    "adjudicated": 0,
+    "disagreement": 0,
+    "resolved": 0,
+    "single_review": 0,
+    "unannotated": 1406,
+    "uncertain": 0
+  },
+  "limitations": [
+    "Offline engineering run is not a quality comparison of real LLMs.",
+    "Unknown frequency, meaning, POS, identity and cost are not replaced by zero.",
+    "No thresholds learned from the frozen evaluation set. Independent calibration and untouched grouped holdout required.",
+    "Model or source agreement does not establish error independence.",
+    "Timing is pipeline wall time including preparation; not annotator time or source-hint speedup."
+  ],
+  "llm_vs_human_speedup": {
+    "ci95": null,
+    "status": "BLOCKED_DISTINCT_BLINDED_TIMING_TRIALS",
+    "value": null
+  },
+  "manual_baseline": {
+    "correct_per_hour": null,
+    "status": "BLOCKED_HUMAN_TIME_AND_GOLD",
+    "trials": 0
+  },
+  "production_writes": 0,
+  "required_followup": {
+    "adjudications": "additional independent third-person reviews where disagreement",
+    "full_pilot_gold_reviews": 1787,
+    "initial_cases": 180,
+    "initial_distinct_timing_reviews": 360,
+    "initial_gold_reviews": 360,
+    "llm_outputs": "same cases and budgets, explicitly authorized provider/local model; models are never gold"
+  },
+  "runs": {
+    "deterministic": {
+      "actual_correct_per_processing_hour": null,
+      "by_language": {
+        "de": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9827614715815287,
+              1
+            ],
+            "denominator": 219,
+            "numerator": 219,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 219,
+            "cases": 219,
+            "missing_gold": 219
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "en": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "es": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9842460800584412,
+              1
+            ],
+            "denominator": 240,
+            "numerator": 240,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 240,
+            "cases": 240,
+            "missing_gold": 240
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "fr": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9837804629315244,
+              1
+            ],
+            "denominator": 233,
+            "numerator": 233,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 233,
+            "cases": 233,
+            "missing_gold": 233
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "it": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "ru": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "by_relation": {
+        "unannotated": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9972752547482132,
+              1
+            ],
+            "denominator": 1406,
+            "numerator": 1406,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 1406,
+            "cases": 1406,
+            "missing_gold": 1406
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "execution": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "CONFIGURED_RATE_BOUND",
+              "upper_rated_usd": "0"
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "CONFIGURED_RATE_BOUND",
+              "upper_rated_usd": "0"
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "CONFIGURED_RATE_BOUND",
+              "upper_rated_usd": "0"
+            }
+          },
+          "max_stage_requests_per_candidate": 0,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "processed": 1406
+        },
+        "decisions": {
+          "ABSTAIN": 1406
+        },
+        "elapsed_seconds": 10.006232,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "08c7c2c021b436497c9623dadf428f25f528d893b367da9102ff5e8012a4abcb",
+        "run_id": "deterministic",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "export": {
+        "counts": {
+          "proposals": 1406
+        },
+        "human_decision_events": 0,
+        "missing_results": 0,
+        "outputs": {
+          "proposals.ndjson": "b9bc13a47579d84a757f2f4ff1461678a3c2e62aca212056abb1739e4f605c09"
+        },
+        "production_writes": 0,
+        "rows": 1406,
+        "run_id": "deterministic",
+        "run_ref": "2c4e21153969d8a027b5a0558f2da82f3eac8b952dff5962497b3a07c1da0cac",
+        "schema": "preannotation-export/1"
+      },
+      "model_observation_status": "NO_REAL_MODEL_OUTPUTS",
+      "overall": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9972752547482132,
+            1
+          ],
+          "denominator": 1406,
+          "numerator": 1406,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1406,
+          "cases": 1406,
+          "missing_gold": 1406
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "primary_evaluation": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9965788056804308,
+            1
+          ],
+          "denominator": 1119,
+          "numerator": 1119,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1119,
+          "cases": 1119,
+          "missing_gold": 1119
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "repeat": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "CONFIGURED_RATE_BOUND",
+              "upper_rated_usd": "0"
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "CONFIGURED_RATE_BOUND",
+              "upper_rated_usd": "0"
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "CONFIGURED_RATE_BOUND",
+              "upper_rated_usd": "0"
+            }
+          },
+          "max_stage_requests_per_candidate": 0,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "already_completed": 1406
+        },
+        "decisions": {},
+        "elapsed_seconds": 0.413644,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {},
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "08c7c2c021b436497c9623dadf428f25f528d893b367da9102ff5e8012a4abcb",
+        "run_id": "deterministic",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "stage_status_counts": {
+        "DETERMINISTIC_OBSERVATION": 1406
+      }
+    },
+    "mixed": {
+      "actual_correct_per_processing_hour": null,
+      "by_language": {
+        "de": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9827614715815287,
+              1
+            ],
+            "denominator": 219,
+            "numerator": 219,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 219,
+            "cases": 219,
+            "missing_gold": 219
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "en": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "es": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9842460800584412,
+              1
+            ],
+            "denominator": 240,
+            "numerator": 240,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 240,
+            "cases": 240,
+            "missing_gold": 240
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "fr": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9837804629315244,
+              1
+            ],
+            "denominator": 233,
+            "numerator": 233,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 233,
+            "cases": 233,
+            "missing_gold": 233
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "it": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "ru": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "by_relation": {
+        "unannotated": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9972752547482132,
+              1
+            ],
+            "denominator": 1406,
+            "numerator": 1406,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 1406,
+            "cases": 1406,
+            "missing_gold": 1406
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "execution": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            }
+          },
+          "max_stage_requests_per_candidate": 2,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "processed": 1406
+        },
+        "decisions": {
+          "ABSTAIN": 1406
+        },
+        "elapsed_seconds": 12.996589,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "43b7daf15d36aeac9a5c9672251a9ecf8825f9d256cbe536f391a09615b42dde",
+        "run_id": "mixed",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "export": {
+        "counts": {
+          "proposals": 1406
+        },
+        "human_decision_events": 0,
+        "missing_results": 0,
+        "outputs": {
+          "proposals.ndjson": "196adc0b0019df7f0ba868bc5618658f939cee631f9cc60915b0c93e50c06936"
+        },
+        "production_writes": 0,
+        "rows": 1406,
+        "run_id": "mixed",
+        "run_ref": "ed5c9cfa8c5268a95e807ccae501683d24e0e64490324b157bdee5d966b3590c",
+        "schema": "preannotation-export/1"
+      },
+      "model_observation_status": "NO_REAL_MODEL_OUTPUTS",
+      "overall": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9972752547482132,
+            1
+          ],
+          "denominator": 1406,
+          "numerator": 1406,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1406,
+          "cases": 1406,
+          "missing_gold": 1406
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "primary_evaluation": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9965788056804308,
+            1
+          ],
+          "denominator": 1119,
+          "numerator": 1119,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1119,
+          "cases": 1119,
+          "missing_gold": 1119
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "repeat": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            }
+          },
+          "max_stage_requests_per_candidate": 2,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "already_completed": 1406
+        },
+        "decisions": {},
+        "elapsed_seconds": 0.585135,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {},
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "43b7daf15d36aeac9a5c9672251a9ecf8825f9d256cbe536f391a09615b42dde",
+        "run_id": "mixed",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "stage_status_counts": {
+        "DETERMINISTIC_OBSERVATION": 1406,
+        "MODEL_UNCONFIGURED": 2812
+      }
+    },
+    "multi": {
+      "actual_correct_per_processing_hour": null,
+      "by_language": {
+        "de": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9827614715815287,
+              1
+            ],
+            "denominator": 219,
+            "numerator": 219,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 219,
+            "cases": 219,
+            "missing_gold": 219
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "en": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "es": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9842460800584412,
+              1
+            ],
+            "denominator": 240,
+            "numerator": 240,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 240,
+            "cases": 240,
+            "missing_gold": 240
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "fr": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9837804629315244,
+              1
+            ],
+            "denominator": 233,
+            "numerator": 233,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 233,
+            "cases": 233,
+            "missing_gold": 233
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "it": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "ru": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "by_relation": {
+        "unannotated": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9972752547482132,
+              1
+            ],
+            "denominator": 1406,
+            "numerator": 1406,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 1406,
+            "cases": 1406,
+            "missing_gold": 1406
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "execution": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            }
+          },
+          "max_stage_requests_per_candidate": 2,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "processed": 1406
+        },
+        "decisions": {
+          "ABSTAIN": 1406
+        },
+        "elapsed_seconds": 10.067528,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "5309ad997a1d00c2b2b535fc70dd066b2c7b9bf792927d7c03204b35198b0020",
+        "run_id": "multi",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "export": {
+        "counts": {
+          "proposals": 1406
+        },
+        "human_decision_events": 0,
+        "missing_results": 0,
+        "outputs": {
+          "proposals.ndjson": "21a94995a932d330b97112f47fe851846a053482a58413ee5f80af35d95205d5"
+        },
+        "production_writes": 0,
+        "rows": 1406,
+        "run_id": "multi",
+        "run_ref": "0f7b6350c8553ce4d3387d4f7326b958deb51cb2c38681f6bc673d99c646926b",
+        "schema": "preannotation-export/1"
+      },
+      "model_observation_status": "NO_REAL_MODEL_OUTPUTS",
+      "overall": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9972752547482132,
+            1
+          ],
+          "denominator": 1406,
+          "numerator": 1406,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1406,
+          "cases": 1406,
+          "missing_gold": 1406
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "primary_evaluation": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9965788056804308,
+            1
+          ],
+          "denominator": 1119,
+          "numerator": 1119,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1119,
+          "cases": 1119,
+          "missing_gold": 1119
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "repeat": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            }
+          },
+          "max_stage_requests_per_candidate": 2,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "already_completed": 1406
+        },
+        "decisions": {},
+        "elapsed_seconds": 0.490869,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {},
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "5309ad997a1d00c2b2b535fc70dd066b2c7b9bf792927d7c03204b35198b0020",
+        "run_id": "multi",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "stage_status_counts": {
+        "DETERMINISTIC_OBSERVATION": 1406,
+        "MODEL_UNCONFIGURED": 2812
+      }
+    },
+    "single": {
+      "actual_correct_per_processing_hour": null,
+      "by_language": {
+        "de": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9827614715815287,
+              1
+            ],
+            "denominator": 219,
+            "numerator": 219,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 219,
+            "cases": 219,
+            "missing_gold": 219
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "en": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "es": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9842460800584412,
+              1
+            ],
+            "denominator": 240,
+            "numerator": 240,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 240,
+            "cases": 240,
+            "missing_gold": 240
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "fr": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9837804629315244,
+              1
+            ],
+            "denominator": 233,
+            "numerator": 233,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 233,
+            "cases": 233,
+            "missing_gold": 233
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "it": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        },
+        "ru": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9841157970207982,
+              0.9999999999999999
+            ],
+            "denominator": 238,
+            "numerator": 238,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 238,
+            "cases": 238,
+            "missing_gold": 238
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "by_relation": {
+        "unannotated": {
+          "algorithm_abstain": {
+            "ci95_wilson": [
+              0.9972752547482132,
+              1
+            ],
+            "denominator": 1406,
+            "numerator": 1406,
+            "value": 1.0
+          },
+          "confusion": {
+            "fn": null,
+            "fp": null,
+            "tn": null,
+            "tp": null
+          },
+          "correct_case_ids": [],
+          "counts": {
+            "algorithm_abstain": 1406,
+            "cases": 1406,
+            "missing_gold": 1406
+          },
+          "false_family_merge": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "human_uncertain": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "membership_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "precision": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "recall_labeled_scope": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "relation_error": {
+            "ci95_wilson": null,
+            "denominator": 0,
+            "numerator": 0,
+            "value": null
+          },
+          "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+          "status": "BLOCKED_HUMAN_GOLD"
+        }
+      },
+      "execution": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            }
+          },
+          "max_stage_requests_per_candidate": 1,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "processed": 1406
+        },
+        "decisions": {
+          "ABSTAIN": 1406
+        },
+        "elapsed_seconds": 9.539107,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "5a5d2f5b8fefed89a6fb931a8e50a074fe7192d8c6c3cd706f8029889e671809",
+        "run_id": "single",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "export": {
+        "counts": {
+          "proposals": 1406
+        },
+        "human_decision_events": 0,
+        "missing_results": 0,
+        "outputs": {
+          "proposals.ndjson": "9de642b2ef98abf55a77b5b77d50e411e0d019deb6286df7d6e61ee20eca0304"
+        },
+        "production_writes": 0,
+        "rows": 1406,
+        "run_id": "single",
+        "run_ref": "a6d335ba9c8555f3ee18e6ab02fceb5acc89834f7d2bc85b3ba3b255e355f12b",
+        "schema": "preannotation-export/1"
+      },
+      "model_observation_status": "NO_REAL_MODEL_OUTPUTS",
+      "overall": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9972752547482132,
+            1
+          ],
+          "denominator": 1406,
+          "numerator": 1406,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1406,
+          "cases": 1406,
+          "missing_gold": 1406
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "primary_evaluation": {
+        "algorithm_abstain": {
+          "ci95_wilson": [
+            0.9965788056804308,
+            1
+          ],
+          "denominator": 1119,
+          "numerator": 1119,
+          "value": 1.0
+        },
+        "confusion": {
+          "fn": null,
+          "fp": null,
+          "tn": null,
+          "tp": null
+        },
+        "correct_case_ids": [],
+        "counts": {
+          "algorithm_abstain": 1119,
+          "cases": 1119,
+          "missing_gold": 1119
+        },
+        "false_family_merge": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "human_uncertain": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "membership_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "precision": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "recall_labeled_scope": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "relation_error": {
+          "ci95_wilson": null,
+          "denominator": 0,
+          "numerator": 0,
+          "value": null
+        },
+        "scope_warning": "word/candidate proposals do not establish native lexeme or sense identity; no population recall claim",
+        "status": "BLOCKED_HUMAN_GOLD"
+      },
+      "repeat": {
+        "accounting": {
+          "actual_billed_microusd": 0,
+          "budget_exposure_microusd": 0,
+          "completion_tokens": 0,
+          "prompt_tokens": 0,
+          "rated_microusd": 0,
+          "requests": 0,
+          "unresolved_paid_reservations": []
+        },
+        "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+        "cost_forecast": {
+          "actual_billed_usd": null,
+          "counts": {
+            "100": {
+              "candidate_count": 100,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1000": {
+              "candidate_count": 1000,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            },
+            "1406": {
+              "candidate_count": 1406,
+              "status": "UNKNOWN_PROVIDER_OR_PRICE",
+              "upper_rated_usd": null
+            }
+          },
+          "max_stage_requests_per_candidate": 1,
+          "schema": "preannotation-forecast/1",
+          "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+        },
+        "counts": {
+          "already_completed": 1406
+        },
+        "decisions": {},
+        "elapsed_seconds": 0.369469,
+        "exact_duplicate_observations": 0,
+        "omitted_by_language": {
+          "de": 0,
+          "en": 0,
+          "es": 0,
+          "fr": 0,
+          "it": 0,
+          "ru": 0
+        },
+        "processed_by_language": {},
+        "production_writes": 0,
+        "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+        "recipe_sha256": "5a5d2f5b8fefed89a6fb931a8e50a074fe7192d8c6c3cd706f8029889e671809",
+        "run_id": "single",
+        "selected_by_language": {
+          "de": 219,
+          "en": 238,
+          "es": 240,
+          "fr": 233,
+          "it": 238,
+          "ru": 238
+        },
+        "selected_candidates": 1406,
+        "status": "ENGINEERING_RUN_ONLY",
+        "total_candidates": 1406
+      },
+      "stage_status_counts": {
+        "DETERMINISTIC_OBSERVATION": 1406,
+        "MODEL_UNCONFIGURED": 1406
+      }
+    }
+  },
+  "schema": "preannotation-experiment/1"
+}

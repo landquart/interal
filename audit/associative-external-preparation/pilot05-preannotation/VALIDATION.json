@@ -1,0 +1,44 @@
+{
+  "actual_api_spend_usd": 0,
+  "annotator_speed_status": "BLOCKED_DISTINCT_BLINDED_TIMING_TRIALS",
+  "api_generation_requests": 0,
+  "archive_roundtrip": "PASS_EXACT_JSON_BYTES_PROPOSALS_AND_HUMAN_PLAN",
+  "backup_bytes": 7226894,
+  "backup_sha256": "30b180daeb5936448bfe18137e32b5e560b622993c9e6cd5e45511d8c5752b69",
+  "frozen_resume_completed_each_route": 1406,
+  "frozen_route_proposals": 5624,
+  "human_decision_events_written_by_pipeline": 0,
+  "human_gold_labels": 0,
+  "infrastructure_status": "IMPLEMENTED_AND_EXERCISED",
+  "llm_quality_status": "BLOCKED_NO_REAL_MODEL_OUTPUTS_AND_INDEPENDENT_HUMAN_GOLD",
+  "mass_native_candidates": 3813,
+  "mass_resume_completed": 3813,
+  "production_family_writes": 0,
+  "restored": {
+    "accounting": {
+      "actual_billed_microusd": 0,
+      "budget_exposure_microusd": 0,
+      "completion_tokens": 0,
+      "prompt_tokens": 0,
+      "rated_microusd": 0,
+      "requests": 0,
+      "unresolved_paid_reservations": []
+    },
+    "cards": 1406,
+    "events": 2813,
+    "results": 1406
+  },
+  "runtime": {
+    "node": "v24.19.0",
+    "python": "3.12.14"
+  },
+  "schema": "preannotation-validation/1",
+  "tests": {
+    "new": 47,
+    "node_wrapper": "PASS",
+    "pilot_regression": 38,
+    "review_js_syntax": "PASS",
+    "review_regression": 23
+  },
+  "ui_validation": "Safe text rendering, Node syntax, handoff import and server-side blind boundary tested; no new browser timing claim."
+}

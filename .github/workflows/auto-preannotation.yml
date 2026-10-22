@@ -1,0 +1,26 @@
+name: Preliminary annotation safety and replay
+on:
+  push:
+    paths: ['associativvordes/auto_annotation/**', 'associativvordes/review/**', 'tests/associative-auto-annotation.test.mjs', '.github/workflows/auto-preannotation.yml']
+  pull_request:
+    paths: ['associativvordes/auto_annotation/**', 'associativvordes/review/**', 'tests/associative-auto-annotation.test.mjs', '.github/workflows/auto-preannotation.yml']
+permissions:
+  contents: read
+jobs:
+  contracts-and-history:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m unittest discover -s associativvordes/auto_annotation -v
+      - run: python -m unittest discover -s associativvordes/pilot_evaluation -v
+      - run: python -m unittest discover -s associativvordes/review -v
+      - run: node --check associativvordes/review/app.js
+      - run: node --test tests/associative-auto-annotation.test.mjs
+      - name: Replay frozen offline routes without external credentials
+        run: python associativvordes/auto_annotation/benchmark.py --cases audit/associative-external-preparation/pilot-validation/CASES.ndjson.gz --store "${{ runner.temp }}/preannotation-store" --output "${{ runner.temp }}/preannotation-report"

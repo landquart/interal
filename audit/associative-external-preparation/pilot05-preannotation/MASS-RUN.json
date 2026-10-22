@@ -1,0 +1,195 @@
+{
+  "card_audit": {
+    "frequency_status_native_candidates": {
+      "observed": 3373,
+      "unknown": 440
+    },
+    "history_preserved": true,
+    "human_decision_events": 0,
+    "other_native_paths_preserved_as_context": 2485,
+    "own_native_path_observations": 1726,
+    "productive_path_native_candidates": 1183,
+    "risk_flags": {
+      "decision_history_requires_review": 443,
+      "family_meaning_unverified": 3813,
+      "low_morphological_evidence": 2630,
+      "multiple_native_identities": 2803,
+      "multiple_source_assertions": 1716,
+      "nonproductive_or_unknown_direction": 446,
+      "pos_unverified": 3813,
+      "possible_family_merge": 28,
+      "registry_guard": 223,
+      "sense_unresolved": 3813
+    },
+    "unique_raw_rows_attached": 2991
+  },
+  "first": {
+    "accounting": {
+      "actual_billed_microusd": 0,
+      "budget_exposure_microusd": 0,
+      "completion_tokens": 0,
+      "prompt_tokens": 0,
+      "rated_microusd": 0,
+      "requests": 0,
+      "unresolved_paid_reservations": []
+    },
+    "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+    "cost_forecast": {
+      "actual_billed_usd": null,
+      "counts": {
+        "100": {
+          "candidate_count": 100,
+          "status": "CONFIGURED_RATE_BOUND",
+          "upper_rated_usd": "0"
+        },
+        "1000": {
+          "candidate_count": 1000,
+          "status": "CONFIGURED_RATE_BOUND",
+          "upper_rated_usd": "0"
+        },
+        "3813": {
+          "candidate_count": 3813,
+          "status": "CONFIGURED_RATE_BOUND",
+          "upper_rated_usd": "0"
+        }
+      },
+      "max_stage_requests_per_candidate": 0,
+      "schema": "preannotation-forecast/1",
+      "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+    },
+    "counts": {
+      "processed": 3813
+    },
+    "decisions": {
+      "ABSTAIN": 3813
+    },
+    "elapsed_seconds": 26.482658,
+    "exact_duplicate_observations": 0,
+    "omitted_by_language": {
+      "de": 0,
+      "en": 0,
+      "es": 0,
+      "fr": 0,
+      "it": 0,
+      "ru": 0
+    },
+    "processed_by_language": {
+      "de": 594,
+      "en": 923,
+      "es": 579,
+      "fr": 441,
+      "it": 373,
+      "ru": 903
+    },
+    "production_writes": 0,
+    "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+    "recipe_sha256": "08c7c2c021b436497c9623dadf428f25f528d893b367da9102ff5e8012a4abcb",
+    "run_id": "registry-full-05",
+    "selected_by_language": {
+      "de": 594,
+      "en": 923,
+      "es": 579,
+      "fr": 441,
+      "it": 373,
+      "ru": 903
+    },
+    "selected_candidates": 3813,
+    "status": "ENGINEERING_RUN_ONLY",
+    "total_candidates": 3813
+  },
+  "input": {
+    "aux": "430b24b1a3d5cdebd4ef8f76460b839728b783a0889d88e8a8105859fc18e79f",
+    "families": [
+      "family:act",
+      "family:alter",
+      "family:anis",
+      "family:atom",
+      "family:creat",
+      "family:inform",
+      "family:inter",
+      "family:liber",
+      "family:loc",
+      "family:manu",
+      "family:mut",
+      "family:nat",
+      "family:observ",
+      "family:ocul",
+      "family:oper",
+      "family:ped",
+      "family:regul",
+      "family:relat",
+      "family:system"
+    ],
+    "manifest_sha256": "7c1d325ff440046695efdcf687c34f5449c4301c16bc53acc2171bbfa560a894",
+    "questions": 1567,
+    "questions_sha256": "afde4c2a2ba82b44b793780292474cd216e581c87b9b10595b6ba9e63ff23254",
+    "registry": "3209b790d4334a15fed0b39711a05ff1c7bb2c8c37be1f06765b8aca0e47bc9a",
+    "source": "8344eba9e18653f520c453f058ef91ba62c800d700b26c077e56a6e84b551db4",
+    "source_lock_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad"
+  },
+  "repeat": {
+    "accounting": {
+      "actual_billed_microusd": 0,
+      "budget_exposure_microusd": 0,
+      "completion_tokens": 0,
+      "prompt_tokens": 0,
+      "rated_microusd": 0,
+      "requests": 0,
+      "unresolved_paid_reservations": []
+    },
+    "algorithm_sha256": "87e3f2e97ccb2b009573fbb3c560a8d36f5ce8729177503351af426f94707c18",
+    "cost_forecast": {
+      "actual_billed_usd": null,
+      "counts": {
+        "100": {
+          "candidate_count": 100,
+          "status": "CONFIGURED_RATE_BOUND",
+          "upper_rated_usd": "0"
+        },
+        "1000": {
+          "candidate_count": 1000,
+          "status": "CONFIGURED_RATE_BOUND",
+          "upper_rated_usd": "0"
+        },
+        "3813": {
+          "candidate_count": 3813,
+          "status": "CONFIGURED_RATE_BOUND",
+          "upper_rated_usd": "0"
+        }
+      },
+      "max_stage_requests_per_candidate": 0,
+      "schema": "preannotation-forecast/1",
+      "warning": "Configured token bound, not a quote or invoice; C worst case and retry cap included; hardware cost unknown."
+    },
+    "counts": {
+      "already_completed": 3813
+    },
+    "decisions": {},
+    "elapsed_seconds": 15.58256,
+    "exact_duplicate_observations": 0,
+    "omitted_by_language": {
+      "de": 0,
+      "en": 0,
+      "es": 0,
+      "fr": 0,
+      "it": 0,
+      "ru": 0
+    },
+    "processed_by_language": {},
+    "production_writes": 0,
+    "quality_status": "BLOCKED_INDEPENDENT_HUMAN_GOLD",
+    "recipe_sha256": "08c7c2c021b436497c9623dadf428f25f528d893b367da9102ff5e8012a4abcb",
+    "run_id": "registry-full-05",
+    "selected_by_language": {
+      "de": 594,
+      "en": 923,
+      "es": 579,
+      "fr": 441,
+      "it": 373,
+      "ru": 903
+    },
+    "selected_candidates": 3813,
+    "status": "ENGINEERING_RUN_ONLY",
+    "total_candidates": 3813
+  }
+}
