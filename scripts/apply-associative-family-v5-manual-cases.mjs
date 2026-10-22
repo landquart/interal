@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
+assertHistoricalRepairAllowed();
 // Mechanical materialization of explicit case-by-case judgments; never infers linguistic labels.
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';

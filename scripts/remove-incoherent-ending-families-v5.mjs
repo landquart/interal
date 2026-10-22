@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
+assertHistoricalRepairAllowed();
 // Apply six explicit ending-based family decisions; lock members and evidence before writing.
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';

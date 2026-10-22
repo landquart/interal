@@ -64,6 +64,16 @@ class RegistryTests(unittest.TestCase):
         self.s['conflicts']=[{'type':'HISTORY_CONFLICT'}];self.save()
         self.assertFalse(self.result()['allowed'])
 
+    def test_every_retired_repair_is_fenced(self):
+        root=Path(__file__).resolve().parents[2]
+        scripts=[p for p in (root/'scripts').glob('*.mjs') if 'assertHistoricalRepairAllowed();' in p.read_text()]
+        self.assertEqual(len(scripts),17)
+        for script in scripts:
+            r=subprocess.run(['node',str(script),str(self.root/'must-not-be-written')],capture_output=True,text=True)
+            self.assertNotEqual(r.returncode,0)
+            self.assertIn('HISTORY_CONFLICT',r.stderr)
+        self.assertFalse((self.root/'must-not-be-written').exists())
+
     def test_partial_journal(self):
         self.path.write_bytes(self.path.read_bytes()[:20]);self.assertFalse(self.result()['allowed'])
     def test_missing_snapshot(self):self.path.unlink();self.assertFalse(self.result()['allowed'])

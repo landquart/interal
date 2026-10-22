@@ -23,3 +23,9 @@ PR #629–678 metadata was retrieved independently and pinned in `PR-HISTORY-LOC
 5. Repeat a complete semantic coverage audit before changing the blocked state. A boolean edit cannot override indexed observations/conflicts. Independent linguistic gold must be supplied/verified separately.
 
 The conservative hold is intentional and prevents accidental restoration now, but it also blocks unrelated changes. It must not be described as a completed fine-grained historical resolver. Structural preservation and restored hashes do not establish linguistic correctness.
+
+## Completed preservation follow-up
+
+All 1,187,041 indexed observations were replayed from the 354 source documents; every JSON-pointer payload hash and document observation digest matched. Each now exposes the full common decision envelope, original status/claim, raw scope, evidence references, authority claim and declared supersession. Unresolved authority stays UNDETERMINED; a source assertion is not promoted to manual/gold truth. See SOURCE-OBSERVATION-REPLAY.json. Exact normalized constraints are returned even when unresolved broader history holds an operation.
+
+Seventeen active legacy mutation entry points are now fenced before any write. Historical replay remains available from the exact historical Git versions in an isolated restoration. New mutations must use controlled release and its finite history checks. The 23 history tests include actual execution of all 17 fences and verify no target is created. Current read-only analysis can proceed with HISTORY_CONFLICT queues; semantic adjudication and release authorization remain blocked by the recorded holds.

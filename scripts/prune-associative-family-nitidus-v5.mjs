@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
+assertHistoricalRepairAllowed();
 // Collapse duplicate Latin nitid/nitidus keys and retain reviewed sense-level anchors.
 import { createHash } from 'node:crypto';
 import { readFile, writeFile } from 'node:fs/promises';

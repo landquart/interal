@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - 'associativvordes/history_registry/**'
+      - 'scripts/*v5*.mjs'
+      - 'scripts/lib/assert-historical-repair.mjs'
       - 'associativvordes/auto_annotation/**'
       - 'associativvordes/release_control/**'
       - 'audit/associative-history-registry/**'

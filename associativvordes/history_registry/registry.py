@@ -94,6 +94,7 @@ class History:
         self.source_root = Path(source_root) if source_root else None
         data = Path(snapshot).read_bytes()
         if sha(data) != expected_sha256: raise ValueError('history snapshot checksum')
+        self.digest=expected_sha256
         self.snapshot = json.loads(data)
         if self.snapshot.get('schema') != SCHEMA: raise ValueError('history schema')
         if self.snapshot.get('coverage_complete') and (self.snapshot.get('conflicts') or self.snapshot.get('observations')):
@@ -144,10 +145,21 @@ class History:
                 envelope=dict(id=oid,source_blob=blob,pointer=pointer,payload_sha256=sha(canonical(x)),
                     classification='UNINTERPRETED_SOURCE_OBSERVATION')
                 digest_entries.append(envelope);count+=1
-                yield dict(envelope,raw=x,source_commit=source['commit'],source_date=source.get('date'),
-                    authority='UNDETERMINED',decision='UNRESOLVED',
-                    original_status=x.get('previous_status',x.get('old_status')),
-                    recorded_decision=x.get('decision',x.get('verdict',x.get('status'))))
+                # An observation is a source claim, never an imported final verdict.
+                yield dict(envelope,raw=x,source=dict(commit=source['commit'],
+                    sha256=source['sha256'],blob=blob,path=source['path'],pointer=pointer),
+                    date=source.get('date'),operation=x.get('action',x.get('decision_kind','source_observation')),
+                    scope=dict(domain='observation',family_id=x.get('family_id',x.get('canonical_family_id')),
+                        language=x.get('language'),lemma_id=x.get('lemma_id'),lemma_ids=x.get('lemma_ids'),
+                        pos=None,sense_id=None,raw_scope=x.get('scope')),
+                    authority='UNDETERMINED',authority_claim=x.get('authority'),decision='UNRESOLVED',
+                    previous_status=x.get('previous_status',x.get('old_status')),
+                    recorded_decision=x.get('decision',x.get('verdict',x.get('status'))),
+                    explanation=x.get('reason',x.get('rationale','Historical source observation; exact raw scope retained')),
+                    evidence_refs=(x.get('evidence_refs',x.get('evidence',[])) if isinstance(x.get('evidence_refs',x.get('evidence',[])),list) else [x.get('evidence_refs',x.get('evidence'))]),
+                    data_version=source['commit'],supersedes=[],declared_supersession=x.get('supersedes'),
+                    evidence_status='locked_source_claim',lexical_identity_status='unresolved',
+                    sense_status='unresolved',relation_status='source_claim_only',association_status='not_evaluated')
             if count != entry['count'] or sha(canonical(digest_entries)) != entry['entries_sha256']:
                 raise ValueError('historical observation index mismatch')
 
@@ -162,13 +174,7 @@ class History:
             if domain == 'membership' and (not proposal.get('language') or not proposal.get('lemma_ids')):
                 raise ValueError('finite language and lemma IDs required (including merge)')
             if domain == 'alias' and not proposal.get('alias'): raise ValueError('alias required')
-            # Uninterpreted historical sources are coverage holds, never inferred negatives.
-            if not self.snapshot['coverage_complete']:
-                return dict(status='HISTORY_UNAVAILABLE', allowed=False,
-                            reasons=['UNMAPPED_HISTORY'], conflicts=self.snapshot['conflicts'])
             hits = []
-            # Verify all locked sources before returning CLEAR.
-            self.verify()
             for d in self.decisions:
                 s = d['scope']
                 if s['domain'] != domain or s.get('family_id') != proposal['family_id']: continue
@@ -182,6 +188,15 @@ class History:
                     if any(s.get(k) is not None and proposal.get(k) is not None and
                            s[k] != proposal[k] for k in ('pos', 'sense_id')): continue
                 hits.append(d)
+            # Preserve exact applicable constraints even while broader history
+            # requires review. A coverage hold never becomes a blanket negative.
+            if not self.snapshot['coverage_complete']:
+                return dict(status='HISTORY_UNAVAILABLE',allowed=False,reasons=['UNMAPPED_HISTORY'],
+                    snapshot_sha256=self.digest,conflict_count=len(self.snapshot['conflicts']),
+                    decision_ids=[d['id'] for d in hits],
+                    historical_outcomes=[dict(id=d['id'],outcome=d.get('historical_outcome',d['decision']),
+                        authority=d['authority'],scope=d['scope']) for d in hits])
+            self.verify()
             statuses = {d['decision'] for d in hits}
             conflict = 'CONFLICT' in statuses or {'CONFIRMED_MEMBER', 'CONFIRMED_NONMEMBER'} <= statuses
             if conflict: result = 'HISTORY_CONFLICT'

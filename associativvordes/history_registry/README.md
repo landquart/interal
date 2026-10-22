@@ -36,7 +36,7 @@ The lower-level `check(repo, snapshot, expected_sha256, proposal)` pins the expe
 
 Missing/truncated/corrupt snapshots, missing source blobs, unsupported operations, unresolved history, absent corpus identity and merge scopes all block. Setting `coverage_complete` alone cannot bypass indexed unresolved observations or conflicts. The registry has no membership writer and no authority escalation path.
 
-The preannotation pipeline checks history before returning proposals and includes the snapshot pointer hash and history code in resume dependencies. Release control checks again before preview and under its existing apply lock. The old cleanup scripts remain unchanged historical tools; they are **not** safe entry points for a future cleanup. Other writers/standalone v6 research tools have not been retrofitted; no claim of repository-wide interception is made. Mass cleanup must remain disabled until all writers are covered and the conflict queue is adjudicated.
+The preannotation pipeline checks history before returning proposals and includes the snapshot pointer hash and history code in resume dependencies. Release control checks again before preview and under its existing apply lock. Seventeen old mutation entry points are fenced before writes; exact historical Git versions remain available for isolated replay. Standalone v6 research tools outside this main checkout have not been retrofitted; no claim of repository-wide interception is made. Mass cleanup must remain disabled until all writers are covered and the conflict queue is adjudicated.
 
 ## Reproduce and restore
 
