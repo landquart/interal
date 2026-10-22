@@ -1,0 +1,118 @@
+{
+  "version": "1.0.0",
+  "notice": "Paraphrased source assertions, not independent gold. Hashes cover the four assertion fields, not remote page bytes.",
+  "sources": {
+    "manucure": {
+      "source": "manucure",
+      "version": "online; accessed 2026-10-23",
+      "locator": "https://vitrinelinguistique.oqlf.gouv.qc.ca/24041/le-vocabulaire/barbarismes-lexicaux/manucure-et-le-barbarisme-manicure",
+      "finding": "French manucure combines Latin manus (hand) and curare (care).",
+      "assertion_sha256": "87e10fb32985552b0d0c8c1227b7265e577eec8b47d56835ef1a260fa1d87d91"
+    },
+    "manikyur": {
+      "source": "manikyur",
+      "version": "online; accessed 2026-10-23",
+      "locator": "https://gramota.ru/meta/manikyur",
+      "finding": "Russian маникюр denotes nail care of the hands; borrowed from French manicure, traced to manus and curare.",
+      "assertion_sha256": "27ed2d8e628f201de656f27b175f2b1c01115f0da0e114716a1378afa8b974aa"
+    },
+    "reguler": {
+      "source": "reguler",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9R1376",
+      "finding": "French réguler comes from Latin regulare, derived from regula; its meaning concerns regulation.",
+      "assertion_sha256": "400a145761825183d34b96a8f0a32592e29407973b971b8e644a65d5dd4cfbb2"
+    },
+    "regle": {
+      "source": "regle",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9R1335",
+      "finding": "French règle comes from Latin regula and denotes a rule or straightedge.",
+      "assertion_sha256": "bb7b5b8838faa921bb324900268055be7d662664497151bd8fb201b695856f5b"
+    },
+    "regler": {
+      "source": "regler",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9R1342",
+      "finding": "French régler derives from règle and includes ordering or regulating.",
+      "assertion_sha256": "72ff8a7cf6214c3d1d725f55c7320f28e8c352bb8a1e72e0daa4ef85868bc83c"
+    },
+    "reglement": {
+      "source": "reglement",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9R1337",
+      "finding": "French règlement derives from régler; relevant uses concern ordering and regulations.",
+      "assertion_sha256": "074bee73020209ff45ee87cdbb91d2a9d48476776e82f1fd337a42e8abb1e4ba"
+    },
+    "reglament": {
+      "source": "reglament",
+      "version": "online; accessed 2026-10-23",
+      "locator": "https://gramota.ru/poisk?mode=all&query=регламент",
+      "finding": "Russian регламент is traced to French règlement and règle meaning rule.",
+      "assertion_sha256": "2f6bcc22a12dac93fbf604b4123b6d96d83caf55e1af19feed4fda09584d026a"
+    },
+    "regule": {
+      "source": "regule",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9R1375",
+      "finding": "French régule (metal alloy) comes from Latin regulus meaning young king; it is a different etymological branch from regula.",
+      "assertion_sha256": "717691b4445f63c5107150565d64dadc30f57d0124bac552327fb66abe744934"
+    },
+    "creer": {
+      "source": "creer",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9C4870",
+      "finding": "French créer comes from Latin creare; uses include producing or inventing something.",
+      "assertion_sha256": "e87098e3bb8f37b571a436c1f797d5b86730ca944047872f94979bcd770cd622"
+    },
+    "creation": {
+      "source": "creation",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9C4850",
+      "finding": "French création comes from Latin creatio associated with creare.",
+      "assertion_sha256": "f4e742cf32e1d039ba1777243a0322cd431fdc46ea6a1a226d7ee08a04cd0107"
+    },
+    "kreieren": {
+      "source": "kreieren",
+      "version": "online; accessed 2026-10-23",
+      "locator": "https://www.duden.de/rechtschreibung/kreieren",
+      "finding": "German kreieren is traced through French créer to Latin creare.",
+      "assertion_sha256": "ff052ed9a319d46ccbd3730e3b771b91d70e996e87223c976393c2495a57104f"
+    },
+    "crear": {
+      "source": "crear",
+      "version": "DLE online, accessed 2026-10-23",
+      "locator": "https://dle.rae.es/crear",
+      "finding": "Spanish crear comes from Latin creare and includes producing something new.",
+      "assertion_sha256": "d992e2b745b5ff4bcbb31f431bdad970388d1febb943cf0b3541673bacc729b8"
+    },
+    "creare": {
+      "source": "creare",
+      "version": "online; accessed 2026-10-23",
+      "locator": "https://www.treccani.it/vocabolario/creare_res-f5c71957-0016-11de-9d89-0016357eee51/",
+      "finding": "Italian creare comes from Latin creare; uses include producing, building or inventing.",
+      "assertion_sha256": "2227b544e89ea4303cde3829c7425605b05b63fb3dcd75616a452f9b6eeb950b"
+    },
+    "oculaire": {
+      "source": "oculaire",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9O0187",
+      "finding": "French oculaire comes from ocularis relating to eyes; adjective and optical noun have separate uses.",
+      "assertion_sha256": "cf74094896f2f28d4d61b5932344c674b3017f9ec3f8f66df394afbf8fdb8cb9"
+    },
+    "oeil": {
+      "source": "oeil",
+      "version": "online; accessed 2026-10-23",
+      "locator": "https://www.larousse.fr/dictionnaires/francais/%C5%93il/55645",
+      "finding": "French œil denotes the visual organ and is traced to Latin oculus.",
+      "assertion_sha256": "c18b765d1e041522ec3737f2900d6ecf24381b9a8c7018f95fb613288a0ef701"
+    },
+    "inter": {
+      "source": "inter",
+      "version": "9th edition, 2024",
+      "locator": "https://www.dictionnaire-academie.fr/article/A9I1637",
+      "finding": "French inter- comes from Latin inter meaning between; interstellaire is an example of position between things.",
+      "assertion_sha256": "f6428c07d021b7972b27eeb813e7d4707f501139d99ed050005d0cea0f464345"
+    }
+  }
+}
