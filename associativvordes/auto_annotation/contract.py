@@ -84,6 +84,7 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
     if not isinstance(q.get('id'),str) or not q['id']:raise ValueError('question ID')
     if lexeme.get('pos') is not None and not isinstance(lexeme['pos'],str):raise ValueError('POS')
     risks=set();paths=q.get('discovery_paths',[])
+    if lexeme.get('index_identity_status'):risks.add(lexeme['index_identity_status'])
     if len(q.get('lexeme_alternatives',[]))>1:risks.add('multiple_native_identities')
     if not lexeme.get('pos') or q.get('pos_status')!='verified':risks.add('pos_unverified')
     if q.get('conflicts',{}).get('competing_families'):risks.add('possible_family_merge')
@@ -96,6 +97,7 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
             if h.get('family',h.get('family_id',q['family']))==q['family']:
                 history.append(h)
     if history:risks.add('decision_history_requires_review')
+    if q.get('prior_unassigned_questions'):risks.add('prior_decision_scope_unresolved')
     evidence={}
     for e in q.get('evidence_refs',[])+list(walk_refs(paths)):
         if not isinstance(e,dict) or not e.get('id'):raise ValueError('evidence ID')
@@ -139,6 +141,7 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
       allomorph_checks=q.get('allomorph_checks',[]),native_stem_observations=q.get('native_stem_observations',[]),
       nonaccepted_head_context=q.get('nonaccepted_head_context',[]),guard=q.get('guard'),
       scoped_history=scrub(history),conflicts=q.get('conflicts',{}),
+      unassigned_history=scrub(q.get('prior_unassigned_questions',[])),
       frequency=q.get('frequency') or {'status':'unknown','value':None},
       independence=q.get('independence') or {'status':'unknown'},
       known_senses=senses,risk_flags=sorted(risks),provenance=provenance,
@@ -186,6 +189,8 @@ def validate_response(x,card):
     if cited-refs:raise ValueError('invented evidence')
     senses={s['id'] for s in card['known_senses']}
     if set(x['sense_ids'])-senses:raise ValueError('invented sense')
+    if x['decision']=='PROPOSE_EXCLUDE' and x['assessments']['family_membership']['state']!='refuted':
+        raise ValueError('exclusion needs cited family-specific contradiction')
     if x['decision']=='PROPOSE_INCLUDE':
         if x['relation_type'] in {'inflection','unresolved'}:raise ValueError('not a standalone derivation')
         for k in ('formal_morphology','semantics','lexeme_identity','family_membership'):

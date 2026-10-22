@@ -78,12 +78,12 @@ def fair_order(cards):
         for lane in sorted(lanes):
             if lanes[lane]:yield lanes[lane].popleft()
 
-def prepare(store,questions,identity,source_index=None,family_context=None):
+def prepare(store,questions,identity,source_index=None,family_context=None,aux_index=None):
     from source import NativeSource
     source=None
     if source_index:
         if identity['kind']!='mass02':raise ValueError('native index only with mass02 manifest; frozen graph refs are separate')
-        source=NativeSource(source_index,identity['source'])
+        source=NativeSource(source_index,identity['source'],aux_index)
     cards=[];duplicates=0
     try:
         for original in questions:
@@ -152,12 +152,12 @@ def classify(card,client,route,run_id,recipe_hash):
       family_merge_authorized=False,created_at=now())
 
 def result_key(card,recipe):return 'proposal:'+sha([card['candidate_id'],card['content_sha256'],recipe])
-RETRY_STATUSES={'REQUEST_LIMIT','COST_LIMIT','UNRECONCILED_PAID_OUTCOME','PAID_NOT_AUTHORIZED'}
+RETRY_STATUSES={'REQUEST_LIMIT','COST_LIMIT','UNRECONCILED_PAID_OUTCOME','PAID_NOT_AUTHORIZED','OFFLINE_NO_REQUEST'}
 def execute(store,run_id,questions,identity,config=None,mode='dry-run',source_index=None,
-            family_context=None,max_candidates=None,stop_after=None,transport=None):
+            family_context=None,max_candidates=None,stop_after=None,transport=None,aux_index=None):
     started=time.monotonic();config=configuration(config)
     if not re.fullmatch(r'[A-Za-z0-9_-]{1,120}',run_id):raise ValueError('safe run ID')
-    cards,duplicates=prepare(store,questions,identity,source_index,family_context)
+    cards,duplicates=prepare(store,questions,identity,source_index,family_context,aux_index)
     recipe=dict(algorithm_sha256=code_version(),config=config,rules_sha256=sha(cards[0]['rules']) if cards else None)
     lane_count=len({(c['language'],','.join(sorted({p.get('category',p.get('proposed_category','unresolved')) for p in c['paths']})) or 'unresolved') for c in cards})
     if max_candidates is not None and max_candidates<lane_count:
@@ -173,14 +173,14 @@ def execute(store,run_id,questions,identity,config=None,mode='dry-run',source_in
     pending=[]
     for card in selected:
         key=result_key(card,recipe_hash);old=store.latest(key)
-        if old and not (mode in {'resume','re-evaluate-changed'} and
+        if old and not (mode in {'pilot','batch','resume','re-evaluate-changed'} and
                        any(s.get('status') in RETRY_STATUSES for s in old['models'])):
             counts['already_completed']+=1;continue
         pending.append(card)
     if stop_after:pending=pending[:stop_after]
     def worker(card):
         key=result_key(card,recipe_hash);value=classify(card,client,config['route'],run_id,recipe_hash)
-        previous=store.results.get(key,[])
+        previous=store.proposal_index.get(card['candidate_id'],[])
         value['previous_result_ref']=previous[-1] if previous else None
         store.append('result',key,value)
         return value
@@ -231,7 +231,7 @@ def main():
     p.add_argument('mode',nargs='?',default='dry-run',choices=['offline','dry-run','pilot','batch','resume',
       're-evaluate-changed','export-proposals','export-handoff','backup','restore','record-cost'])
     p.add_argument('--store',required=True);p.add_argument('--input');p.add_argument('--registry')
-    p.add_argument('--source-index');p.add_argument('--family-context');p.add_argument('--config')
+    p.add_argument('--aux-index');p.add_argument('--source-index');p.add_argument('--family-context');p.add_argument('--config')
     p.add_argument('--run-id',default='offline-1');p.add_argument('--output')
     p.add_argument('--receipt');p.add_argument('--max-candidates',type=int);p.add_argument('--stop-after',type=int)
     a=p.parse_args()
@@ -250,6 +250,6 @@ def main():
             qs,identity=load_input(a.input,a.registry)
             cfg=json.loads(Path(a.config).read_text()) if a.config else {}
             context=json.loads(Path(a.family_context).read_text()) if a.family_context else None
-            result=execute(s,a.run_id,qs,identity,cfg,a.mode,a.source_index,context,a.max_candidates,a.stop_after)
+            result=execute(s,a.run_id,qs,identity,cfg,a.mode,a.source_index,context,a.max_candidates,a.stop_after,aux_index=a.aux_index)
     print(canonical(result))
 if __name__=='__main__':main()

@@ -47,6 +47,8 @@ class Store:
         return json.loads(data)
     def reload(self):
         self.events=[];self.cards={};self.results={};self.runs={};self.reservations={};self.settlements={};self.receipts={}
+        self.proposal_index={}
+        self.billing={};self.request_index={};self.totals={k:0 for k in ('exposure','rated','actual','unbilled','input','output')};self.unknown=set()
         self.head=None
         files=sorted((self.root/'journal').glob('*.json'))
         committed=json.loads((self.root/'HEAD').read_text()) if (self.root/'HEAD').exists() else None
@@ -62,9 +64,19 @@ class Store:
         if files:atomic(self.root/'HEAD',canonical({'sequence':len(files),'hash':self.head}).encode())
     def apply(self,e):
         kind,key,ref=e['kind'],e['key'],e['object']
-        self.get(ref) # Check every referenced object at recovery, not just latest result.
+        value=self.get(ref) # Check every referenced object at recovery, not just latest result.
+        if kind in ('reservation','settlement','receipt'):
+            old=self.contribution(key)
+            self.billing.setdefault(key,{})[kind]=value
+            if kind=='reservation':self.request_index.setdefault(value['request_key'],[]).append(value)
+            new=self.contribution(key)
+            for k in self.totals:self.totals[k]+=new[k]-old[k]
+            self.unknown.discard(key)
+            if new['unknown']:self.unknown.add(key)
         if kind=='card':self.cards[key]=ref
-        elif kind=='result':self.results.setdefault(key,[]).append(ref)
+        elif kind=='result':
+            self.results.setdefault(key,[]).append(ref)
+            if value.get('candidate_id'):self.proposal_index.setdefault(value['candidate_id'],[]).append(ref)
         elif kind=='run':self.runs[key]=ref
         elif kind=='reservation':self.reservations[key]=ref
         elif kind=='settlement':self.settlements[key]=ref
@@ -90,26 +102,28 @@ class Store:
         refs=self.results.get(key,[])
         return self.get(refs[-1]) if refs else None
     def attempts(self,request_key):
-        return sum(self.get(v)['request_key']==request_key for v in self.reservations.values())
+        return len(self.request_index.get(request_key,[]))
+    def request_reservations(self,key):return self.request_index.get(key,[])
+    def contribution(self,key):
+        v=self.billing.get(key,{});r=v.get('reservation');s=v.get('settlement');receipt=v.get('receipt')
+        out={k:0 for k in ('exposure','rated','actual','unbilled','input','output','unknown')}
+        if not r:return out
+        if s and s.get('usage'):
+            out['input']=s['usage']['prompt_tokens'];out['output']=s['usage']['completion_tokens']
+        if r['paid']:
+            rated=s.get('rated_microusd') if s else None
+            out['rated']=rated or 0
+            out['exposure']=receipt['billed_microusd'] if receipt else rated if rated is not None else r['reserve_microusd']
+            out['actual']=receipt['billed_microusd'] if receipt else 0
+            out['unbilled']=int(not receipt)
+            out['unknown']=int((not s or s.get('usage') is None or s.get('contract_violation')) and not receipt)
+        return out
     def accounting(self):
         with self.mutex:
-            total=0;unknown=[];rated=0;actual=0;all_actual=True;tokens_in=tokens_out=0
-            for rid,ref in self.reservations.items():
-                r=self.get(ref);s=self.get(self.settlements[rid]) if rid in self.settlements else None
-                receipt=self.get(self.receipts[rid]) if rid in self.receipts else None
-                if s and s.get('usage'):
-                    tokens_in+=s['usage']['prompt_tokens'];tokens_out+=s['usage']['completion_tokens']
-                if r['paid']:
-                    if s and s.get('rated_microusd') is not None:rated+=s['rated_microusd']
-                    if receipt:
-                        actual+=receipt['billed_microusd'];total+=receipt['billed_microusd']
-                    else:
-                        all_actual=False
-                        total+=s['rated_microusd'] if s and s.get('rated_microusd') is not None else r['reserve_microusd']
-                    if (not s or s.get('usage') is None or s.get('contract_violation')) and not receipt:unknown.append(rid)
-            return dict(requests=len(self.reservations),budget_exposure_microusd=total,
-              rated_microusd=rated,actual_billed_microusd=actual if all_actual else None,
-              unresolved_paid_reservations=unknown,prompt_tokens=tokens_in,completion_tokens=tokens_out)
+            t=self.totals
+            return dict(requests=len(self.reservations),budget_exposure_microusd=t['exposure'],
+              rated_microusd=t['rated'],actual_billed_microusd=t['actual'] if not t['unbilled'] else None,
+              unresolved_paid_reservations=sorted(self.unknown),prompt_tokens=t['input'],completion_tokens=t['output'])
     def receipt(self,r):
         required={'reservation_id','billed_microusd','currency','provider_receipt_ref','author','verified_at'}
         if set(r)!=required or r['currency']!='USD' or type(r['billed_microusd'])!=int or r['billed_microusd']<0:

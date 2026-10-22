@@ -68,6 +68,7 @@ async function openCard(id) {
   }
   if (!unique.size) evidence.append(el('p', 'Свидетельства отсутствуют. Сохраните UNCERTAIN при недостаточных основаниях.'));
   root.append(evidence);
+  if (session.role !== 'blind' && q.automated_proposals?.length) section(root, 'Предварительные выводы моделей · требуют проверки, не решения разметчика', q.automated_proposals, true);
   section(root, 'Лексемы · исходное написание, POS, ключи и область значения', q.lexeme_alternatives);
   section(root, 'Частота · наблюдения и их происхождение', q.frequency || {status: 'unknown'});
   section(root, 'История этой проверки', card.history);

@@ -37,7 +37,7 @@ def configuration(value=None):
     if not isinstance(c['providers'],dict) or not isinstance(c['roles'],dict) or set(c['roles'])-{'B','C'}:
         raise ValueError('provider/role map')
     for name,p in c['providers'].items():
-        allowed={'endpoint','model','model_version','key_env','folder_env','local_only','local_attestation',
+        allowed={'endpoint','model','model_version','key_env','folder_env','auth_scheme','local_only','local_attestation',
                  'runtime','model_digest','input_per_million_usd','output_per_million_usd',
                  'price_ref','price_verified_at','response_format'}
         if not isinstance(p,dict) or set(p)-allowed:raise ValueError('provider fields')
@@ -53,6 +53,7 @@ def configuration(value=None):
         elif u.scheme!='https' or local:raise ValueError('paid endpoint requires remote HTTPS')
         for k in ('key_env','folder_env'):
             if p.get(k) and not re.fullmatch(r'[A-Z_][A-Z0-9_]*',p[k]):raise ValueError('environment variable name')
+        if p.get('auth_scheme','Bearer') not in {'Bearer','Api-Key'}:raise ValueError('authorization scheme')
         for k in ('input_per_million_usd','output_per_million_usd'):
             if k in p:money(p[k])
         if p.get('response_format','json_object') not in {'json_object','json_schema'}:raise ValueError('response format')
@@ -66,7 +67,7 @@ class NoRedirect(HTTPRedirectHandler):
 class Client:
     def __init__(self,store,config,mode='offline',transport=None):
         self.store=store;self.config=configuration(config);self.mode=mode
-        self.transport=transport or self.http;self.mutex=threading.RLock();self.admission=threading.RLock();self.key_locks={};self.next_slot=0
+        self.transport=transport or self.http;self.mutex=threading.RLock();self.admission=threading.RLock();self.key_locks={};self.next_slot=0;self.inflight=set()
         self.opener=build_opener(ProxyHandler({}),NoRedirect())
     def http(self,p,request,headers):
         req=Request(p['endpoint'],data=canonical(request).encode(),headers=headers,method='POST')
@@ -131,15 +132,15 @@ class Client:
             while self.store.attempts(reqkey)<c['max_attempts']:
                 with self.admission:
                     accounting=self.store.accounting()
-                    if accounting['unresolved_paid_reservations']:return None,dict(meta,status='UNRECONCILED_PAID_OUTCOME')
+                    if set(accounting['unresolved_paid_reservations'])-self.inflight:
+                        return None,dict(meta,status='UNRECONCILED_PAID_OUTCOME')
                     if accounting['requests']>=c['max_requests']:return None,dict(meta,status='REQUEST_LIMIT')
                     reserve=micro((estimate*money(p['input_per_million_usd'])+
                         c['max_output_tokens']*money(p['output_per_million_usd']))/1000000) if paid else 0
                     if paid and accounting['budget_exposure_microusd']+reserve>micro(money(c['budget_usd'])):
                         return None,dict(meta,status='COST_LIMIT')
                     # Never retry an unknown prior semantic/billing outcome, including after a cost receipt.
-                    previous=[self.store.get(v) for v in self.store.reservations.values()
-                              if self.store.get(v)['request_key']==reqkey]
+                    previous=self.store.request_reservations(reqkey)
                     if any(r['id'] not in self.store.settlements or
                            self.store.get(self.store.settlements[r['id']]).get('usage') is None for r in previous):
                         return None,dict(meta,status='UNKNOWN_PRIOR_REQUEST_NO_RETRY')
@@ -153,10 +154,11 @@ class Client:
                        ('input_per_million_usd','output_per_million_usd','price_ref','price_verified_at')},
                       permission_ref=c['permission_ref'] if paid else p.get('local_attestation'),created_at=now())
                     self.store.append('reservation',rid,reservation)
+                    self.inflight.add(rid)
                 started=time.monotonic();usage=None;rated=None;violation=False;raw=None
                 try:
                     headers={'Content-Type':'application/json'}
-                    if key:headers['Authorization']='Bearer '+key
+                    if key:headers['Authorization']=p.get('auth_scheme','Bearer')+' '+key
                     raw=self.transport(p,payload,headers)
                     # Do not persist raw upstream errors or secret echoes.
                     if key and key in canonical(raw):raise Stop('credential echo rejected')
@@ -170,10 +172,10 @@ class Client:
                     else:rated=0
                 except Exception:
                     # Unknown charge: keep reservation and block further paid calls. No network error text.
-                    self.store.append('settlement',rid,dict(usage=usage,rated_microusd=rated,
+                    self.settle(rid,dict(usage=usage,rated_microusd=rated,
                       contract_violation=violation,status='TRANSPORT_OR_USAGE_ERROR',elapsed_seconds=time.monotonic()-started))
                     return None,dict(meta,status='TRANSPORT_OR_USAGE_ERROR',reservation_id=rid)
-                self.store.append('settlement',rid,dict(usage=usage,rated_microusd=rated,
+                self.settle(rid,dict(usage=usage,rated_microusd=rated,
                     contract_violation=violation,status='USAGE_RECORDED',elapsed_seconds=time.monotonic()-started))
                 if violation:return None,dict(meta,status='TOKEN_CONTRACT_VIOLATION',reservation_id=rid)
                 try:
@@ -189,6 +191,11 @@ class Client:
                 except (ValueError,KeyError,IndexError,TypeError):
                     errors.append(rid)
             return None,dict(meta,status='INVALID_RESPONSE_ATTEMPT_LIMIT',attempt_refs=errors)
+
+    def settle(self,rid,value):
+        with self.admission:
+            self.store.append('settlement',rid,value)
+            self.inflight.discard(rid)
 
 def forecast(config,count):
     c=configuration(config);roles=['B'] if c['route']=='single' else ['B','C'] if c['route'] in {'multi','mixed'} else []
