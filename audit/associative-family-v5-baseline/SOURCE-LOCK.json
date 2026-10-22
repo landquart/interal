@@ -1,0 +1,1382 @@
+{
+  "schema_version": 1,
+  "production_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "initial_materialization_commit": "ee6637b266f4bbb4acd77cccf597ed75b2b44aef",
+  "original_generation_commit": "3d71828f9bfa7ce6ea5f1814442a6604cb180c96",
+  "generation_source_run_id": "35647932153",
+  "schema_versions": {
+    "static_v5": "5",
+    "baseline": "v5-baseline-1.0.0"
+  },
+  "snapshot": {
+    "files": 4306,
+    "bytes": 1466534695,
+    "inventory_sha256": "d1c09919569701edc5405969e790ef0769e15e1cbbe67679305040c5b4c9171e",
+    "receipt_sha256": "efc61f91632a25f49930fcd284cccdcffb2cf2711f268e21bdcac31d8fddea80",
+    "full_inventory_location": "SNAPSHOT.json inside the independently verified backup archive"
+  },
+  "files": [
+    {
+      "bytes": 8135,
+      "path": "current/associativvordes/family-index-v5/manifest.json",
+      "sha256": "d259400f98939bfa518e688b3bf5c8218404aaffa3091c6ecb0fa96ed1bf9c5c"
+    },
+    {
+      "bytes": 329855,
+      "path": "current/associativvordes/family-index-v5/report.json",
+      "sha256": "2ed317f98483f64d114f16b5b4dd4611ec279cf075b80a7df6f191ce90bcfdd7"
+    },
+    {
+      "bytes": 14573,
+      "path": "current/associativvordes/family-index-v5/repository-provenance.json",
+      "sha256": "d12de988f95fb50ecc174a93b1275f5771940bbe3b45f6dd34a4b6e71e0d855a"
+    },
+    {
+      "bytes": 3019,
+      "path": "current/audit/associative-family-v5/actus-false-memberships.json",
+      "sha256": "c0d11e3deb9370063f7d36de1ccccbd87dba85da3bd73a0458a11ef49e502d72"
+    },
+    {
+      "bytes": 3412,
+      "path": "current/audit/associative-family-v5/annotation-input-lock.json",
+      "sha256": "709872c3a617ac2f987b96ad487b33d613108d757a7bc1ae455b2bc266a9d122"
+    },
+    {
+      "bytes": 4543,
+      "path": "current/audit/associative-family-v5/annotation-protocol.md",
+      "sha256": "540407f335be531b59d77c65635793fe551b313b0d5719dfd28d64e95e55e4aa"
+    },
+    {
+      "bytes": 655,
+      "path": "current/audit/associative-family-v5/annotation-qa.json",
+      "sha256": "a67fb954bc9ec7e2686e901065d988d2a7b21a26e1e8b90c64372199e8677868"
+    },
+    {
+      "bytes": 367,
+      "path": "current/audit/associative-family-v5/annotators.json",
+      "sha256": "57e1c76506645fdae689258f6ac017dc54c381cee0bde685cd16a29838290a0f"
+    },
+    {
+      "bytes": 3153,
+      "path": "current/audit/associative-family-v5/artifact-checksums.json",
+      "sha256": "795c2dd114e5d485fc7dc848f12767a79e23d4216d0acb6ca8ca2a518311f0a0"
+    },
+    {
+      "bytes": 24618,
+      "path": "current/audit/associative-family-v5/audit-summary.md",
+      "sha256": "d76b03af83132c00d4577d35baf6edea5144eab9a7b4076337eee32a939040b0"
+    },
+    {
+      "bytes": 37331,
+      "path": "current/audit/associative-family-v5/browser-regression.json",
+      "sha256": "4baedc4fd70b3a07a57fff0eb4518365e743fea5e1fcb3ed2d212c124d87319b"
+    },
+    {
+      "bytes": 3930,
+      "path": "current/audit/associative-family-v5/continuation-20260930.md",
+      "sha256": "9bb9a5de3f311a77a599658cf6f9884c9d05067d435d9ee9506545ff3fc6f4b8"
+    },
+    {
+      "bytes": 1932,
+      "path": "current/audit/associative-family-v5/corrective-build-plan.md",
+      "sha256": "363570f9cae80473b8da49d9084ca0fade4f6f47ffd4abc0f296fe9faeb97388"
+    },
+    {
+      "bytes": 1244,
+      "path": "current/audit/associative-family-v5/etymon-key-distribution.json",
+      "sha256": "3b83c31b74746ba4c02557efc7a78d5faa5139bedae1b8e07e297580b305a61f"
+    },
+    {
+      "bytes": 1329,
+      "path": "current/audit/associative-family-v5/false-negative-gold.jsonl",
+      "sha256": "3bd21439a5ff12966542439975d735335ae5eaf8ca4e8aa6f025c77a2e21e998"
+    },
+    {
+      "bytes": 1347,
+      "path": "current/audit/associative-family-v5/genea-german-decision.json",
+      "sha256": "e1db2d57ff8660a1c87850af43ab18ac11210c68b727a8f8449ea973dab41eb2"
+    },
+    {
+      "bytes": 2190,
+      "path": "current/audit/associative-family-v5/genea-other-languages-decision.json",
+      "sha256": "f09c751e25be9d5e42c07dab4c58ba7fe491f918492fb030698b1f567f2cbc75"
+    },
+    {
+      "bytes": 2355,
+      "path": "current/audit/associative-family-v5/illas-family-decision.json",
+      "sha256": "2df09de7b4bec645b56a6404fdeb87fedb738a4981bd3674adfcb57f3dd01c30"
+    },
+    {
+      "bytes": 3278,
+      "path": "current/audit/associative-family-v5/illos-illis-family-decisions.json",
+      "sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598"
+    },
+    {
+      "bytes": 2076,
+      "path": "current/audit/associative-family-v5/input-lock.json",
+      "sha256": "caee313605073ca58f1dc0ddb64ef7425fd1cc132bfff12985df3c36023a2111"
+    },
+    {
+      "bytes": 653,
+      "path": "current/audit/associative-family-v5/known-false-merges-regression.json",
+      "sha256": "5cc770196a70c0cbd00b3b1fcf15a49457ff33ba2ea094404d015a5e547d6436"
+    },
+    {
+      "bytes": 6967,
+      "path": "current/audit/associative-family-v5/manual-case-decisions.json",
+      "sha256": "0b1dac6949f2dfdc89ee20b2907dd4724297a9b66603e04e1b860ded94f8cbc1"
+    },
+    {
+      "bytes": 2714,
+      "path": "current/audit/associative-family-v5/manual-surface-family-decisions-2.json",
+      "sha256": "0a24a7ce3d56171bacc1a448c1578720e965f06ef5b5053c751707dfebc9c7d3"
+    },
+    {
+      "bytes": 2602,
+      "path": "current/audit/associative-family-v5/manual-surface-family-decisions-3.json",
+      "sha256": "4931913bb5bea97b7e46422f93e5fbd0c2412764735036e1d283f57e32a6314f"
+    },
+    {
+      "bytes": 2685,
+      "path": "current/audit/associative-family-v5/manual-surface-family-decisions-4.json",
+      "sha256": "ab915eaec481654d2dc145148f717868f555c2ac1672d6020bc263bc6b9b1c24"
+    },
+    {
+      "bytes": 2291,
+      "path": "current/audit/associative-family-v5/manual-surface-family-decisions.json",
+      "sha256": "143973a4ca187a5155282884413d80e4dd8395b945b7f3b3f89655ca6a5e79ba"
+    },
+    {
+      "bytes": 6886,
+      "path": "current/audit/associative-family-v5/net-alias-routing-decision.json",
+      "sha256": "69b282895257dfd3f62addd0580a8e9c299d3f172f00f7fb43f2e54233eb76a3"
+    },
+    {
+      "bytes": 1659,
+      "path": "current/audit/associative-family-v5/next-cluster-diagnostics-20260929.md",
+      "sha256": "b0994246be43ade549647a0f1a4342633634983011067aa771c0394cfd73d722"
+    },
+    {
+      "bytes": 7627,
+      "path": "current/audit/associative-family-v5/nitidus-family-decisions.json",
+      "sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa"
+    },
+    {
+      "bytes": 2939,
+      "path": "current/audit/associative-family-v5/nitidus-family-review.md",
+      "sha256": "c4bce4e5e6978c4f618fbb965d07eeaf0ee872462a262c01136064590759078d"
+    },
+    {
+      "bytes": 2699,
+      "path": "current/audit/associative-family-v5/old-vs-new-comparison.json",
+      "sha256": "33f7e8ae77347578ccdfb6fc60025ad9d19c5aa1d2810993f98a458c581f391f"
+    },
+    {
+      "bytes": 1369,
+      "path": "current/audit/associative-family-v5/owner-risk-acceptance.json",
+      "sha256": "7fc53ccb868b7d1dbf1750fc879c4bfab19ed67f03a9334b35a87b45fd1b5709"
+    },
+    {
+      "bytes": 230,
+      "path": "current/audit/associative-family-v5/parser-fixtures/adjacent-nodes.json",
+      "sha256": "c1d43c1bde3aecb9ef68ca99d4b1b5e8f46936fbd42d997a7447a1587d565cad"
+    },
+    {
+      "bytes": 346,
+      "path": "current/audit/associative-family-v5/parser-fixtures/nested-ancestry.json",
+      "sha256": "04b1c03935b6d055a5536bd26c2bfdbbf4c2b0851ea046054e30d0b449c034eb"
+    },
+    {
+      "bytes": 2441,
+      "path": "current/audit/associative-family-v5/post-prune-integrity-review.md",
+      "sha256": "39592b67b8d9e179520975077db8446782f1245439f6cb663dace78a3b129d3d"
+    },
+    {
+      "bytes": 90119,
+      "path": "current/audit/associative-family-v5/production-regression.json",
+      "sha256": "18329332f24c3debc4750f951fac8a477814b6669f6fa6e38d59cecdceb1dd5f"
+    },
+    {
+      "bytes": 649,
+      "path": "current/audit/associative-family-v5/relation-policy.json",
+      "sha256": "d998f93b59ccde9ade11a9473c33f890a412e86bd116b0100dee93cdd70888be"
+    },
+    {
+      "bytes": 2661,
+      "path": "current/audit/associative-family-v5/repair-reproducibility-20260929.json",
+      "sha256": "08ffcbe9f378ee15a5cd356e52b378b16c1bc06b79551611f3867e8c72091e24"
+    },
+    {
+      "bytes": 5507,
+      "path": "current/audit/associative-family-v5/repair-reproducibility-20260930.json",
+      "sha256": "1ee3c1787242f390555e1deb34db7ad1b3c97b6dc9dc031a9a6e30aac3bf93be"
+    },
+    {
+      "bytes": 16937,
+      "path": "current/audit/associative-family-v5/repository-static-integrity.json",
+      "sha256": "56d4940d49e83a94ba97560cd7649145f132b08ff66d8fce2aef812d026884ca"
+    },
+    {
+      "bytes": 16876,
+      "path": "current/audit/associative-family-v5/runtime-benchmark.json",
+      "sha256": "d7234a9f59df26d49405d75d213202e2e6eb76c39a3b8af8ff6d1129bde7e3a8"
+    },
+    {
+      "bytes": 2254,
+      "path": "current/audit/associative-family-v5/sampling-design.json",
+      "sha256": "948e8b5248fbbda31e6bcdf39a4855c2f520d89fd91e945fa7e34a5d0bdeb052"
+    },
+    {
+      "bytes": 1314,
+      "path": "current/audit/associative-family-v5/semantic-acceptance-thresholds.json",
+      "sha256": "24b77c32a2e507525f78f8f8f164562a9b58eadcfd91eb7f78e9b7ae259986c2"
+    },
+    {
+      "bytes": 1087,
+      "path": "current/audit/associative-family-v5/session-recovery-20260929.md",
+      "sha256": "0dca056e58352388ec25a7fdb6d91579105cb34cd85e179598d9745b10153074"
+    },
+    {
+      "bytes": 3776,
+      "path": "current/audit/associative-family-v5/sonus-language-decisions.json",
+      "sha256": "53ce7b8028e24903bb9d9ee45a7add7268e38640985c60868f372f4500bba605"
+    },
+    {
+      "bytes": 25672,
+      "path": "current/audit/associative-family-v5/staging-network-benchmark.json",
+      "sha256": "5e01766fabb6215f8ea29051f29983a82b4356f97339edfac4a29851a4f26ec1"
+    },
+    {
+      "bytes": 3423,
+      "path": "current/audit/associative-family-v5/surface-ending-decisions.json",
+      "sha256": "32d98d7bb5fffc5bdbb967aa75bae9a90d10d46a75190eb4b163450c706bdd10"
+    },
+    {
+      "bytes": 3089,
+      "path": "current/audit/associative-family-v5/surface-inflection-decisions.json",
+      "sha256": "f1d30083107253de92d8832ede7a6b091e44655b0c4eb67f5125e246913d2c4b"
+    },
+    {
+      "bytes": 1333,
+      "path": "current/audit/associative-family-v5/surface-ru-ka-decision.json",
+      "sha256": "b6e5d800d8e1a9d0f4a5f25a0c6356ee60e57293085173e283c3fff2ae3da5cf"
+    },
+    {
+      "bytes": 6786,
+      "path": "current/audit/associative-family-v5/surface-ru-two-letter-decisions.json",
+      "sha256": "4471cd4b5f88b0e11bbb60b9635b9e1982225d31242181af43041541fa818102"
+    },
+    {
+      "bytes": 8707,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-10.json",
+      "sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274"
+    },
+    {
+      "bytes": 4510,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-11.json",
+      "sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568"
+    },
+    {
+      "bytes": 5101,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-12.json",
+      "sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099"
+    },
+    {
+      "bytes": 2251,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-5.json",
+      "sha256": "524a426e3321a6712751de276646b9704ae7e1adb484b538db31aa110c9fd69a"
+    },
+    {
+      "bytes": 2277,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-6.json",
+      "sha256": "a682ad50539629d45fe088d25e5822922baf93d2531d9e33a8fab5e68baeff09"
+    },
+    {
+      "bytes": 2743,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-7.json",
+      "sha256": "0e2751936b67e5fc2ca41bbc4c3fb4e5489badab46460691fa1252f06d2d13c3"
+    },
+    {
+      "bytes": 4354,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-8.json",
+      "sha256": "c005b44ff1902de1a38417e8781157f818c428c9faf41478d5032300d0dc2cdc"
+    },
+    {
+      "bytes": 5939,
+      "path": "current/audit/associative-family-v5/surface-suffix-decisions-9.json",
+      "sha256": "33cd2fa4d6fa15370b038a746f0e71babec0c55bbbb8e37352e06b342037bfad"
+    },
+    {
+      "bytes": 1234,
+      "path": "current/audit/associative-family-v5/surface-ten-decision.json",
+      "sha256": "fe227a1066d41ee0543341d62253bce834ea67b975a39bc266381c3d40621d80"
+    },
+    {
+      "bytes": 1207,
+      "path": "current/audit/associative-family-v5/template-relation-matrix.csv",
+      "sha256": "456d95eb10331c1083d2e520e7e91670259dd4bb2441c566e0d75a27e9210e77"
+    },
+    {
+      "bytes": 206768,
+      "path": "current/audit/associative-family-v5/val-and-ru-short-decisions-20260930.json",
+      "sha256": "926891085b1b2c31da386a18e1bc75d5c7774eff736d1b13b5f12a87f08aa1ef"
+    },
+    {
+      "bytes": 9249,
+      "path": "generation/.github/workflows/build-associative-exhaustive-families.yml",
+      "sha256": "c3faae72d453074b911833e46a0f23533510091fb9fdf9eae5669a95ad0a31af"
+    },
+    {
+      "bytes": 1897,
+      "path": "generation/associativvordes/js/affix-boundary-index.js",
+      "sha256": "621533ce11c7208fe1e57d249a498d303f09fa318795fb15c725f5bfd7a46cd1"
+    },
+    {
+      "bytes": 9890,
+      "path": "generation/associativvordes/js/affix-search-config.js",
+      "sha256": "ca1b6d3b4a025c0557aaab51eaa247aae018df00c3ea3ebdcb7029d3a16d6c59"
+    },
+    {
+      "bytes": 26370,
+      "path": "generation/associativvordes/js/association-analyzer.js",
+      "sha256": "1e3b0b47812b67aba0fec3f0deba56f0efe3f867b858c22905f1fdbf4c81b24d"
+    },
+    {
+      "bytes": 21411,
+      "path": "generation/associativvordes/js/associative-calculation-runner.js",
+      "sha256": "c550f8559d9c861ef59c151dc017c587ce1e5e873b5dacdc73cb30da2181fd0b"
+    },
+    {
+      "bytes": 2210,
+      "path": "generation/associativvordes/js/associative-family-registry.js",
+      "sha256": "64e1849c5798d0798421eedcd959481b17d8dc98855bbff3bb6cd19ba975c313"
+    },
+    {
+      "bytes": 21229,
+      "path": "generation/associativvordes/js/associative-state.js",
+      "sha256": "765e5f423858268f3711638e2a12f272ded26c98aab22dc0f6650912a2169fcf"
+    },
+    {
+      "bytes": 8105,
+      "path": "generation/associativvordes/js/candidate-finder.js",
+      "sha256": "bf5ced82c282a7b4e38bf832359f74609872d037bdc5101a1c5627c612d9b126"
+    },
+    {
+      "bytes": 19790,
+      "path": "generation/associativvordes/js/candidate-index-loader.js",
+      "sha256": "7dc36fd7f4ec425ae30dd2d57939584c45d3160ff043f49245618b22a62c4c7b"
+    },
+    {
+      "bytes": 5780,
+      "path": "generation/associativvordes/js/candidate-integrity.js",
+      "sha256": "451b339e331025d2130cc2e540939e1b61e3a1277d42681399c04d003d7a69d9"
+    },
+    {
+      "bytes": 5646,
+      "path": "generation/associativvordes/js/candidate-model-family.js",
+      "sha256": "64b37bc9c4d1b4e2d359809a07d4f68b450e150804a3786e53742e8f9e4d6964"
+    },
+    {
+      "bytes": 13292,
+      "path": "generation/associativvordes/js/candidate-static-search.js",
+      "sha256": "6d3b0159a5b664440f1f75cf550764ce6f31012805cccbd874b5764c3a5402c1"
+    },
+    {
+      "bytes": 1661,
+      "path": "generation/associativvordes/js/card-metadata.js",
+      "sha256": "e14fc3661169bb02f95ce402118badcf94969e97c3d9437359aff0350d47ed81"
+    },
+    {
+      "bytes": 2067,
+      "path": "generation/associativvordes/js/config-frequency-sources.js",
+      "sha256": "275da159e7790297704d7fc33ccf44a48b655a8110407a8cb81068dfe024b22a"
+    },
+    {
+      "bytes": 4975,
+      "path": "generation/associativvordes/js/family-index-loader.js",
+      "sha256": "ea3c33502086f2d2470abf8f24dd929a0d51c45675c5408b3010e191403867b4"
+    },
+    {
+      "bytes": 8597,
+      "path": "generation/associativvordes/js/frequency-loader.js",
+      "sha256": "fd4642980829546fda663602b8436c1045225133c57bd3d0f5c719190b34a9a5"
+    },
+    {
+      "bytes": 1485,
+      "path": "generation/associativvordes/js/language-source-descriptor.js",
+      "sha256": "d3d3b8bd92f2303e315dbe7d2b8a4187f673e9a33e0b05af015edaba32bb7ac1"
+    },
+    {
+      "bytes": 758,
+      "path": "generation/associativvordes/js/morpheme-model-parser.js",
+      "sha256": "bdd77d100cd6a57c1b6c74544833d1ecbe99d4e10013ffa71aab5354af1d6f17"
+    },
+    {
+      "bytes": 1654,
+      "path": "generation/associativvordes/js/morphology/analysis-ranker.js",
+      "sha256": "bfb0606052a847fe13ea97d61ef7af02603d09fab50af4de9af078a428cf5fbe"
+    },
+    {
+      "bytes": 15613,
+      "path": "generation/associativvordes/js/morphology/analyzer.js",
+      "sha256": "b92c011ebd92fe0b9b76f3548cd82bb3f961d98f76286813f160d75ef72305db"
+    },
+    {
+      "bytes": 251,
+      "path": "generation/associativvordes/js/morphology/data/contextual-sequences.js",
+      "sha256": "b074f62c602a48a65086ee6cb62f58de6015f89b9f9ece46cb9ce353d4dc09e1"
+    },
+    {
+      "bytes": 466,
+      "path": "generation/associativvordes/js/morphology/data/manually-verified-roots.js",
+      "sha256": "660cbf8cbe5cd5e29ea10168b28132392a98dd5b3da15a26b626a6053e236e9c"
+    },
+    {
+      "bytes": 1775,
+      "path": "generation/associativvordes/js/morphology/data/root-allomorphs.js",
+      "sha256": "1425b4d0c5ff5b3d7508f90ff9f20436e08463c025ad86a6f6eb52743aca883f"
+    },
+    {
+      "bytes": 215,
+      "path": "generation/associativvordes/js/morphology/languages/base.js",
+      "sha256": "3b5c4a8e23b67db0a3c651a4cd918da51e76d324ad2dd43827ca3dc351148ff9"
+    },
+    {
+      "bytes": 765,
+      "path": "generation/associativvordes/js/morphology/languages/de.js",
+      "sha256": "ff52cc947dc7f6c838c3e3dff83d710eb81b6baf812f9d330ef23f95976bf66a"
+    },
+    {
+      "bytes": 1100,
+      "path": "generation/associativvordes/js/morphology/languages/en.js",
+      "sha256": "5c1cf6ef86339cc111edf5402779d00ec4875d55d0d6b0f9ffa5ec9330bedaed"
+    },
+    {
+      "bytes": 931,
+      "path": "generation/associativvordes/js/morphology/languages/es.js",
+      "sha256": "336631d329f9d30f9d79405fcf6f3290f5c00e6187e349857427878d776dc504"
+    },
+    {
+      "bytes": 901,
+      "path": "generation/associativvordes/js/morphology/languages/fr.js",
+      "sha256": "ab3a4234132eb8a056add75d475c44f7e19024b76e6b29145051779256fece3e"
+    },
+    {
+      "bytes": 374,
+      "path": "generation/associativvordes/js/morphology/languages/index.js",
+      "sha256": "35cb960a9b1578895d73bb7246b552061ca67ad0419edaa91f800ee82c119031"
+    },
+    {
+      "bytes": 917,
+      "path": "generation/associativvordes/js/morphology/languages/it.js",
+      "sha256": "4582415477fc857a25293b036e183f8b333e12df226e5efeb90eaaa1fbf79d68"
+    },
+    {
+      "bytes": 1574,
+      "path": "generation/associativvordes/js/morphology/languages/ru.js",
+      "sha256": "043991d9480363933b730f1aaf22ba8ff0a18c9dd8850deb99daf6ae357f128f"
+    },
+    {
+      "bytes": 4249,
+      "path": "generation/associativvordes/js/morphology/lexical-root-index.js",
+      "sha256": "e0881e95d9bd7a03206d1c8054ceff0071f516ed85737adfbb8a03be744506e0"
+    },
+    {
+      "bytes": 1433,
+      "path": "generation/associativvordes/js/morphology/model-key.js",
+      "sha256": "4d3ccec25ec32ed9842152e18e900b5c1316586765916f072579c7654a4f7ab0"
+    },
+    {
+      "bytes": 2508,
+      "path": "generation/associativvordes/js/morphology/morphotactics.js",
+      "sha256": "39c1d2759cb97f2f6eb17a444de8df11b43df8f0155b810fbd48d9876b312b7d"
+    },
+    {
+      "bytes": 1945,
+      "path": "generation/associativvordes/js/morphology/normalizer.js",
+      "sha256": "a0ae8e5a300ad85bd53d744900de90e1bb0c8a707c54b9a0ed73269b5b03d94d"
+    },
+    {
+      "bytes": 4233,
+      "path": "generation/associativvordes/js/morphology/segmentation-engine.js",
+      "sha256": "518a3782bd055b197d9955e39038f6db6b8fa1c195e3931bcc20363db1d0e06c"
+    },
+    {
+      "bytes": 316,
+      "path": "generation/associativvordes/js/morphology/types.js",
+      "sha256": "9cfc137a176dec178e29e19383af1585f14b55a1c1fb4e2f69d24b801e26a0ff"
+    },
+    {
+      "bytes": 4049,
+      "path": "generation/associativvordes/js/qwen-checkbox-hook.js",
+      "sha256": "80cbedace924416c20a474e44eb563ba02f11e30919463aa3958f42202644c40"
+    },
+    {
+      "bytes": 49941,
+      "path": "generation/associativvordes/js/qwen-client.js",
+      "sha256": "6140ecfe68282c752d2bf2f9c633fc84597c66d30a8e0f841b4e0285ea23dc77"
+    },
+    {
+      "bytes": 11194,
+      "path": "generation/associativvordes/js/render-results.js",
+      "sha256": "3e38e027441e1cb789e6f9b2f7b593e79b632d752436152cb69c29e7e3daee1c"
+    },
+    {
+      "bytes": 7023,
+      "path": "generation/associativvordes/js/root-matcher.js",
+      "sha256": "25caa0174273e252b7b371e25cddf269872c8b728d1fd10e5e09cb3509884728"
+    },
+    {
+      "bytes": 1296,
+      "path": "generation/associativvordes/js/search-normalizer.js",
+      "sha256": "1a1347389cc6a855d6bda2c83e00fce0ae171991e8b5e3a6b95b124b5de96587"
+    },
+    {
+      "bytes": 6568,
+      "path": "generation/associativvordes/js/swow-client.js",
+      "sha256": "4c0116fca8555f47b02f779ed8fb345ac59d532d0794d2f82de9d3117e427c9c"
+    },
+    {
+      "bytes": 9522,
+      "path": "generation/associativvordes/js/target-meaning-translator.js",
+      "sha256": "6bfa1be7888a6c35eaa0dd7b7ef8ef0727bc7314ba855969a297d347a4eb3b3f"
+    },
+    {
+      "bytes": 5472,
+      "path": "generation/package-lock.json",
+      "sha256": "40d8fdd1180ce87517b32569921f1283e7b12ad9724af8a79d299864f3cbcd04"
+    },
+    {
+      "bytes": 1442,
+      "path": "generation/package.json",
+      "sha256": "bc9c3bf63635a094aa5aed0da2748213bb8aa8e553e910acc10264cb8ca1e4f5"
+    },
+    {
+      "bytes": 17076,
+      "path": "generation/scripts/add-pie-roots.mjs",
+      "sha256": "f729bcff3fbbe53e1e9e879dd6536e178c9db7caaef918b2fd88ae9cb60877b8"
+    },
+    {
+      "bytes": 8507,
+      "path": "generation/scripts/audit-associative-family-output.mjs",
+      "sha256": "7d2a6b1da9528e415c5de7d15f0affa0ed38502bb1dbf73583a255c828d7bd6a"
+    },
+    {
+      "bytes": 6543,
+      "path": "generation/scripts/audit-associative-family-regressions.mjs",
+      "sha256": "04e8473d2ad1f9fc645d51321f543e68339c7cc62308b4acc9efcb3a9b7b1e8e"
+    },
+    {
+      "bytes": 2967,
+      "path": "generation/scripts/audit-associative-family-semantic-sample.mjs",
+      "sha256": "ca8e0b0a8846656099b884c77be42851805dda1314f11231c8441d0f36712d7b"
+    },
+    {
+      "bytes": 4840,
+      "path": "generation/scripts/audit-associative-index-memory.mjs",
+      "sha256": "bf68bf15219b5f479a0aa869c145efb0dc77cb18d850cef51ced270b69ca4573"
+    },
+    {
+      "bytes": 6504,
+      "path": "generation/scripts/benchmark-associative-family-runtime.mjs",
+      "sha256": "f2f933cb86ed0316357c4779e4b13f150e00fbf02c439d86492773e6a574fd49"
+    },
+    {
+      "bytes": 20168,
+      "path": "generation/scripts/build-associative-candidate-index.mjs",
+      "sha256": "062da9f722371a683c1dbff47326c9aa7e8219f21871efa02c4c2c54b88d2ad3"
+    },
+    {
+      "bytes": 42520,
+      "path": "generation/scripts/build-associative-exhaustive-family-index.mjs",
+      "sha256": "b71e26901a26da50421f9cb3f41ebbda864b76e24303a5ad26ef606bdfed13fa"
+    },
+    {
+      "bytes": 13497,
+      "path": "generation/scripts/build-associative-static-search-index.mjs",
+      "sha256": "c9d2b4ccf91472f7e9a0498b26d75a5f89112bcb0d2d742269308dca778da546"
+    },
+    {
+      "bytes": 7900,
+      "path": "generation/scripts/build-global-card-registry.mjs",
+      "sha256": "f1f2e5e9ae558dc5d6fb3993aff2e3ccfa4942ffbe1f7cad77bd33947bb8748c"
+    },
+    {
+      "bytes": 6431,
+      "path": "generation/scripts/check-associative-index-deployment.mjs",
+      "sha256": "beaa1e9dac81674f1c2a231f8923c0a858df213ec71402ef294650ae1fe4dbf9"
+    },
+    {
+      "bytes": 6517,
+      "path": "generation/scripts/check-associative-static-search-index-deployment.mjs",
+      "sha256": "442e27e4b57c8194e5bbe0d8f9d5d641e6290c8d91f6c79111b8532dff21479f"
+    },
+    {
+      "bytes": 4178,
+      "path": "generation/scripts/lib/associative-annotation-stats.mjs",
+      "sha256": "d548b2c299020963f639d4b5f7e7600560425fa90465bf9dc9af66320083d83a"
+    },
+    {
+      "bytes": 1353,
+      "path": "generation/scripts/lib/associative-corpus-quality.mjs",
+      "sha256": "d64c333adb8dae6a8dd77234b17de92811dc06df0e356752d1bdc9accffbbd59"
+    },
+    {
+      "bytes": 5863,
+      "path": "generation/scripts/lib/associative-etymology-policy.mjs",
+      "sha256": "3641a41604bc1a021d1dcdd14e459d536b9920440ef6317f5acee4d6a18dca43"
+    },
+    {
+      "bytes": 2700,
+      "path": "generation/scripts/lib/associative-family-graph.mjs",
+      "sha256": "31bd56acb85e92fdf3e78a6863d18fb8b51c2b28cfbdd6fc34f725cbf41f5b12"
+    },
+    {
+      "bytes": 5765,
+      "path": "generation/scripts/lib/associative-index-core.mjs",
+      "sha256": "3b291fe34ba09a543b28866e55ada56b7ecbf4de388e218859aa173c82df5a20"
+    },
+    {
+      "bytes": 7603,
+      "path": "generation/scripts/lib/frequency-record-stream.mjs",
+      "sha256": "f636691de5a111efff204e41ebb082e16cf0c9366728559c0aef209462d8db3d"
+    },
+    {
+      "bytes": 963,
+      "path": "generation/scripts/lib/registry-translations.mjs",
+      "sha256": "61838fb3cb3c5adf20f9a05ab8bf2d064455c2af0383b9d81d89222d8d2a93d5"
+    },
+    {
+      "bytes": 11174,
+      "path": "generation/scripts/merge-associative-index-artifacts.mjs",
+      "sha256": "dadcb3b54f2e723ddf373c3f396670c6c663d976ffe460993a139ac10fc864ee"
+    },
+    {
+      "bytes": 3133,
+      "path": "generation/scripts/merge-associative-static-search-artifacts.mjs",
+      "sha256": "5217c83d79a755da4c3c69686ab845e53ff7c7dade6a1a517bfec4bcd73ede27"
+    },
+    {
+      "bytes": 15171,
+      "path": "generation/scripts/patch-associative-search-runtime.mjs",
+      "sha256": "e19bc941c77798a4f76f023730d668622405f7e57ee5e41099d8c861eefda95a"
+    },
+    {
+      "bytes": 8209,
+      "path": "generation/scripts/repair-associative-family-controls.mjs",
+      "sha256": "f82c898bb9d622a822204345a1911b53d94f4635829992243fbaae6913a59b9c"
+    },
+    {
+      "bytes": 1786,
+      "path": "generation/scripts/run-tests.mjs",
+      "sha256": "6f92af10acf3524296869c34e54dc26fcb87995006d6c6165e306ed477465a04"
+    },
+    {
+      "bytes": 12284,
+      "path": "generation/scripts/sample-associative-family-memberships.mjs",
+      "sha256": "0f72e514a763480eb87b592a813908a7aab19b8c6c32cc65c8a60eec69af03f0"
+    },
+    {
+      "bytes": 6807,
+      "path": "generation/scripts/score-associative-family-annotations.mjs",
+      "sha256": "0aac4efca7bf5167676b87f4df1a0dc46e5cb6b0cabf55598759fffa21e88387"
+    },
+    {
+      "bytes": 3275,
+      "path": "generation/scripts/stamp-accepted-at.mjs",
+      "sha256": "615952b3a6443495b08e93446a6e43be0d71867a0b47d47d6ad556625cda6b63"
+    },
+    {
+      "bytes": 2562,
+      "path": "generation/scripts/test-cards-schema.mjs",
+      "sha256": "56511298c1c3b93797f53f782f05f26e50ba0a14d968e1eff5c2531f17b2f185"
+    },
+    {
+      "bytes": 776,
+      "path": "generation/scripts/upload-associative-family-blobs.mjs",
+      "sha256": "2d3dd305374d2c89dde908e9dce1940ec6e4d4dbadcfa81b244fa18b66c6b1f5"
+    },
+    {
+      "bytes": 5762,
+      "path": "generation/scripts/validate-associative-candidate-index.mjs",
+      "sha256": "7c886337631a85ff30cf9666f9c565c31ba84bbbdbc285be49210fc17ec04b8c"
+    },
+    {
+      "bytes": 2627,
+      "path": "generation/scripts/validate-associative-family-output.mjs",
+      "sha256": "350aae73bb26101d3ca461497443729ecfaeaa1725716d1a6783c27f28d70d7b"
+    },
+    {
+      "bytes": 15623,
+      "path": "generation/scripts/validate-associative-index.mjs",
+      "sha256": "c603ec9f2bc28074c1d25580ac7395b5e10941c1b5cc815b6373d84296f3946c"
+    },
+    {
+      "bytes": 14143,
+      "path": "generation/scripts/validate-associative-static-search-index.mjs",
+      "sha256": "ecf3b7cf0c581614eefb1b487970867f9faf36bd1126352c70120a47170de1cc"
+    },
+    {
+      "bytes": 1515,
+      "path": "generation/shared/altervordes-ipa-hook.js",
+      "sha256": "e6b794ca8f3c51b715c7855c4411968e7b9aed82f66b5ec91df515e8f68e1a5e"
+    },
+    {
+      "bytes": 5189,
+      "path": "generation/shared/associative-affix-calculation.mjs",
+      "sha256": "2d787fc0e50f2fe68fe6fe904c28e1e7dbb56e9f63b3a8725a402ef9b0c3b1c1"
+    },
+    {
+      "bytes": 11612,
+      "path": "generation/shared/button-status.js",
+      "sha256": "6f2c12f5b73b67461ce6682bb8e82d68c8388aadf16347106b889015a68144d4"
+    },
+    {
+      "bytes": 11825,
+      "path": "generation/shared/card-schema.mjs",
+      "sha256": "4212331cb47f373f5fc9cbeacda7b85c86bc7580a04482c39d84348744898269"
+    },
+    {
+      "bytes": 2033,
+      "path": "generation/shared/control-language-demographics.mjs",
+      "sha256": "0c91670d4f028bf5a0053034748fd7c011285835fd528a622ee0d20fa351c6c6"
+    },
+    {
+      "bytes": 6570,
+      "path": "generation/shared/copy-plain.js",
+      "sha256": "d015714075ad962df12d04edfd3899210cef248d8ea6043a59da297127fb0b17"
+    },
+    {
+      "bytes": 7120,
+      "path": "generation/shared/design-refinements.css",
+      "sha256": "60c3664542fd53d8a81e63fe3e68cb39fc0b0d5923322e168cdb3e3ee687dd97"
+    },
+    {
+      "bytes": 29936,
+      "path": "generation/shared/form-draft.js",
+      "sha256": "d7630bd6f7711f463a26a3cee141c8280905eb520335d52cae96e5f111e3785e"
+    },
+    {
+      "bytes": 3679,
+      "path": "generation/shared/home-scroll-reveal.css",
+      "sha256": "ecccdf80f14372d53693307e9f63697965666b9075a94812cdd3d4eb02fb3e6b"
+    },
+    {
+      "bytes": 7055,
+      "path": "generation/shared/instrument-glass-cubes.css",
+      "sha256": "4a938d7a97232cab84e3f36e03221883ebcc276f516bfb8938b37aebdead2085"
+    },
+    {
+      "bytes": 853,
+      "path": "generation/shared/instrument-glass-cubes.js",
+      "sha256": "cdc092b3f40da99f4fcb30db4c94eea4eb409331c7995021ad84f95aadd79e93"
+    },
+    {
+      "bytes": 12282,
+      "path": "generation/shared/instrumentes-carousel.js",
+      "sha256": "cc55d12456f44eb75099ce96933cae7a8a3d85acdb76703125c2140f2758dbd7"
+    },
+    {
+      "bytes": 2890,
+      "path": "generation/shared/instrumentes-nav.js",
+      "sha256": "10b497a46fa9ac27fb67ed9d73c2088d12c6c0fbc7e2c96fca86ebdb1c3fedf7"
+    },
+    {
+      "bytes": 12720,
+      "path": "generation/shared/instrumentes-page.js",
+      "sha256": "b250de77976acf60cd10fe7022a6d13db9ddd892b3615138d24da17cd6ef80d4"
+    },
+    {
+      "bytes": 15400,
+      "path": "generation/shared/instrumentes.css",
+      "sha256": "cdfc5de3cd0fef3137cb86cba70a0d151ff1bb98bdb759ce5bbec9f0bb796973"
+    },
+    {
+      "bytes": 5975,
+      "path": "generation/shared/interal-ipa.mjs",
+      "sha256": "b33c9c1ef952a9418ef68673cbd51429ee8fd43e5a39f4fbb9e9c429aabad2ec"
+    },
+    {
+      "bytes": 2733,
+      "path": "generation/shared/json-author-autosave.js",
+      "sha256": "8e8054b248630e954d4bd3511e3b514dcbbc9eb3cca6cbfeef6d2d8d75521a55"
+    },
+    {
+      "bytes": 85,
+      "path": "generation/shared/liquid-glass-isolation.js",
+      "sha256": "41fe713a9a97118ae03bfa930b205b27f5371ddfee58378ff889e5ce4814d0d6"
+    },
+    {
+      "bytes": 90,
+      "path": "generation/shared/liquid-glass-layout-fix.css",
+      "sha256": "d485c852c6c0428c9befd27955749db5e1e61a22e54029739b38c14c5d4ec55c"
+    },
+    {
+      "bytes": 90,
+      "path": "generation/shared/liquid-glass-tuning.css",
+      "sha256": "d485c852c6c0428c9befd27955749db5e1e61a22e54029739b38c14c5d4ec55c"
+    },
+    {
+      "bytes": 85,
+      "path": "generation/shared/liquid-glass-tuning.js",
+      "sha256": "41fe713a9a97118ae03bfa930b205b27f5371ddfee58378ff889e5ce4814d0d6"
+    },
+    {
+      "bytes": 7955,
+      "path": "generation/shared/liquid-glass.css",
+      "sha256": "28d8f9078246922d599c5092b4367139c8435b46de7e14f7cebf521c01312d33"
+    },
+    {
+      "bytes": 1615,
+      "path": "generation/shared/liquid-glass.js",
+      "sha256": "bb092c0e599854986a0cea185f1f913480aa284cbf9dc7be7b1c54aa093ec4bf"
+    },
+    {
+      "bytes": 2749,
+      "path": "generation/shared/loader-paint-fix.js",
+      "sha256": "aeab1e1f5c46aac7441cd9ee4774d73cde4372050f8224501c7173972f6509d3"
+    },
+    {
+      "bytes": 1443,
+      "path": "generation/shared/methodology-calculation.mjs",
+      "sha256": "93226d39526df319ab1f45cf74a9dea835ba061ea57279b62290e56a2034c17a"
+    },
+    {
+      "bytes": 587,
+      "path": "generation/shared/modal-motion.css",
+      "sha256": "b2a0bbbd0341fcfc244353130d6d2c08c0f67fe8d15a9484695154dea2e0d0e8"
+    },
+    {
+      "bytes": 23011,
+      "path": "generation/shared/modal-motion.js",
+      "sha256": "0037864fc7cb8310594787a3f47875c4d9b0903aa1ffb01d972333f7e056946c"
+    },
+    {
+      "bytes": 1933,
+      "path": "generation/shared/registry-altervordes-fields.js",
+      "sha256": "556d36dbf42840085b8123530d55cf5db52cbf40c502b0bedbfbe23daa0584ca"
+    },
+    {
+      "bytes": 5360,
+      "path": "generation/shared/site-motion.js",
+      "sha256": "84349f7063c97a562faf43f892c1f543be86cb41ea614109a5fda17654826ee4"
+    },
+    {
+      "bytes": 71855,
+      "path": "generation/shared/ui-core.js",
+      "sha256": "978bcc90af7dd4f7c45c520d3c0acdc5f9737ead1b06a198dac8a5e82ebe476f"
+    },
+    {
+      "bytes": 60230,
+      "path": "generation/shared/ui.css",
+      "sha256": "aa069bbe1681771410578ab27f93ea918b841e830a993def473a10bd82dbc9ad"
+    },
+    {
+      "bytes": 10580,
+      "path": "generation/shared/ui.js",
+      "sha256": "deecb5aa6383f8709408ad9ba68c667b61b116e8c52a83b347171749cc5a0565"
+    },
+    {
+      "bytes": 8135,
+      "path": "original/associativvordes/family-index-v5/manifest.json",
+      "sha256": "d7cb17af2df067abc4df10a31a5a08b969c1626bca66e4aeae2f8bc35c93a185"
+    },
+    {
+      "bytes": 257837,
+      "path": "original/associativvordes/family-index-v5/report.json",
+      "sha256": "c702d7d0890abde53d941f1ecf5a3d877a408b0f6e24b532641713856fa17cda"
+    },
+    {
+      "bytes": 574,
+      "path": "original/associativvordes/family-index-v5/repository-provenance.json",
+      "sha256": "addd5f01ddeefc891248e793159c119097fdebf933278b59c84ac01f6973719e"
+    },
+    {
+      "bytes": 25580,
+      "path": "tool/census.py",
+      "sha256": "388502638fab3cdbcbbe63620e4b8731d0da1b66573e7b2c4e847e27542e78fa"
+    },
+    {
+      "bytes": 6515,
+      "path": "tool/test_census.py",
+      "sha256": "db047fcd1ef162bb13a8d7b5921d99999a10a2c8c63648a9eaa5774c22b2b0d3"
+    }
+  ],
+  "original_generation_input_lock_declared_not_reverified": {
+    "source_commit": "3d71828f9bfa7ce6ea5f1814442a6604cb180c96",
+    "workflow_run_id": "35647932153",
+    "workflow_run_attempt": "1",
+    "node_version": "v22.23.2",
+    "package_lock_sha256": "40d8fdd1180ce87517b32569921f1283e7b12ad9724af8a79d299864f3cbcd04",
+    "candidate_cache_key": "Linux-family-candidates-v3-3024370275a832dc65b5d4c58055343f36da1d4d2169ceaa2743d2e152ce01c2",
+    "candidate_tree_sha256": "2fa23e5690cbdcb80e27708f950a3c3935d87a566030221327c06eabbab0f2f6",
+    "candidate_manifest_sha256": "380c6ac273c418b95f9e4cf3713b094ef4ae9538abec0868e1245cb36fd91658",
+    "candidate_bytes": 3903477475,
+    "kaikki_cache_key": "Linux-kaikki-320b99476e1a55df57761bd1d38b1cc68965f77a747f95fb3cc93625b2027d1b",
+    "kaikki_sha256": "42e0bfe1669513cb89bd0a12f2e85d1a8f4ebedc70c65ec88c9509d0f5d392f9",
+    "kaikki_bytes": 2863667287,
+    "kaikki_url_at_audited_v4_build": "https://kaikki.org/dictionary/raw-wiktextract-data.jsonl.gz"
+  },
+  "initial_generation_artifacts": {
+    "metadata": {
+      "id": 10665305365,
+      "sha256": "b82ffcb2e10a5cadf2b99581800db8070b2f8b727444b49a2b78ffa20209a80b"
+    },
+    "members": {
+      "id": 10665150741,
+      "sha256": "4e58676f25a92af0402df0f05a7f0e32e6239133b6b4da6a94fc6ddcca4be9fb"
+    }
+  },
+  "initial_materialization_and_later_repairs_distinct": true,
+  "materialized_repair_ledger": [
+    {
+      "repair": "exclude_known_rejected_corpus_noise_from_runtime",
+      "removed_memberships": 30,
+      "removed_lemmas": 9,
+      "deleted_empty_families": 1,
+      "source_run_id": 35647932153
+    },
+    {
+      "repair": "remove_individually_reviewed_false_memberships",
+      "removed_memberships": 22,
+      "affected_families": 7,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "0b1dac6949f2dfdc89ee20b2907dd4724297a9b66603e04e1b860ded94f8cbc1",
+      "not_human_statistical_annotation": true,
+      "quarantined_families": [
+        "ety:111ecf2b9102"
+      ]
+    },
+    {
+      "repair": "remove_reviewed_surface_families",
+      "removed_memberships": 81,
+      "deleted_families": [
+        "surface:en:ofn",
+        "surface:en:lpo",
+        "surface:en:ilv"
+      ],
+      "deleted_aliases": 0,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "143973a4ca187a5155282884413d80e4dd8395b945b7f3b3f89655ca6a5e79ba",
+      "not_human_statistical_annotation": true
+    },
+    {
+      "repair": "remove_reviewed_surface_families_batch_2",
+      "removed_memberships": 119,
+      "deleted_families": [
+        "surface:en:gup",
+        "surface:en:rrt",
+        "surface:en:mef"
+      ],
+      "deleted_aliases": 0,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "0a24a7ce3d56171bacc1a448c1578720e965f06ef5b5053c751707dfebc9c7d3",
+      "not_human_statistical_annotation": true
+    },
+    {
+      "repair": "remove_reviewed_surface_families_batch_3",
+      "removed_memberships": 99,
+      "deleted_families": [
+        "surface:es:nnn",
+        "surface:it:dib",
+        "surface:ru:abr"
+      ],
+      "deleted_aliases": 0,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "4931913bb5bea97b7e46422f93e5fbd0c2412764735036e1d283f57e32a6314f",
+      "not_human_statistical_annotation": true
+    },
+    {
+      "repair": "remove_reviewed_surface_families_batch_4",
+      "removed_memberships": 65,
+      "deleted_families": [
+        "surface:fr:nni",
+        "surface:de:cil",
+        "surface:ru:esb"
+      ],
+      "deleted_aliases": 0,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "ab915eaec481654d2dc145148f717868f555c2ac1672d6020bc263bc6b9b1c24",
+      "not_human_statistical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_surface_de_ten",
+      "removed_memberships": 17618,
+      "deleted_families": [
+        "surface:de:ten"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "fe227a1066d41ee0543341d62253bce834ea67b975a39bc266381c3d40621d80",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_inflection_surface_families",
+      "removed_memberships": 70807,
+      "deleted_families": [
+        "surface:ru:yj",
+        "surface:ru:sja",
+        "surface:ru:skij",
+        "surface:ru:nie",
+        "surface:de:nen"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "f1d30083107253de92d8832ede7a6b091e44655b0c4eb67f5125e246913d2c4b",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_ending_surface_families",
+      "removed_memberships": 34010,
+      "deleted_families": [
+        "surface:es:rla",
+        "surface:es:ado",
+        "surface:it:are",
+        "surface:es:nos",
+        "surface:es:ria",
+        "surface:ru:vat"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "32d98d7bb5fffc5bdbb967aa75bae9a90d10d46a75190eb4b163450c706bdd10",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_genea_german_false_memberships",
+      "family_id": "ety:cf2897b18b16",
+      "language": "de",
+      "removed_memberships": 14651,
+      "retained_memberships": 3,
+      "decision_ledger_sha256": "e1db2d57ff8660a1c87850af43ab18ac11210c68b727a8f8449ea973dab41eb2",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_genea_other_language_false_memberships",
+      "family_id": "ety:cf2897b18b16",
+      "removed_memberships": 281,
+      "retained_memberships": 1,
+      "decision_ledger_sha256": "f09c751e25be9d5e42c07dab4c58ba7fe491f918492fb030698b1f567f2cbc75",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_sonus_false_memberships",
+      "family_id": "ety:1e7afcab5044",
+      "removed_memberships": 6661,
+      "retained_memberships": 9,
+      "decision_ledger_sha256": "53ce7b8028e24903bb9d9ee45a7add7268e38640985c60868f372f4500bba605",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_surface_ru_ka",
+      "removed_memberships": 5949,
+      "deleted_families": [
+        "surface:ru:ka"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "b6e5d800d8e1a9d0f4a5f25a0c6356ee60e57293085173e283c3fff2ae3da5cf",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_5",
+      "removed_memberships": 14349,
+      "deleted_families": [
+        "surface:ru:ija",
+        "surface:es:elo",
+        "surface:it:ato"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "524a426e3321a6712751de276646b9704ae7e1adb484b538db31aa110c9fd69a",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_6",
+      "removed_memberships": 12744,
+      "deleted_families": [
+        "surface:de:chen",
+        "surface:en:ted",
+        "surface:es:ela"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "a682ad50539629d45fe088d25e5822922baf93d2531d9e33a8fab5e68baeff09",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_7",
+      "removed_memberships": 15721,
+      "deleted_families": [
+        "surface:de:schen",
+        "surface:de:ers",
+        "surface:de:ons",
+        "surface:it:elo"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "0e2751936b67e5fc2ca41bbc4c3fb4e5489badab46460691fa1252f06d2d13c3",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_8",
+      "removed_memberships": 23558,
+      "deleted_families": [
+        "surface:fr:ons",
+        "surface:it:mente",
+        "surface:de:tes",
+        "surface:es:ose",
+        "surface:es:ando",
+        "surface:en:ers",
+        "surface:ru:vatsja"
+      ],
+      "deleted_aliases": 1,
+      "decision_ledger_sha256": "c005b44ff1902de1a38417e8781157f818c428c9faf41478d5032300d0dc2cdc",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_9",
+      "removed_memberships": 35254,
+      "deleted_families": [
+        "surface:es:arte",
+        "surface:es:ias",
+        "surface:es:ome",
+        "surface:it:ico",
+        "surface:de:ken",
+        "surface:es:rio",
+        "surface:es:nes",
+        "surface:es:ito",
+        "surface:de:zen",
+        "surface:ru:tyj",
+        "surface:es:ita",
+        "surface:de:sen"
+      ],
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "33cd2fa4d6fa15370b038a746f0e71babec0c55bbbb8e37352e06b342037bfad",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_verified_actus_false_memberships",
+      "removed_memberships": 10,
+      "affected_families": 1,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "c0d11e3deb9370063f7d36de1ccccbd87dba85da3bd73a0458a11ef49e502d72",
+      "not_human_statistical_annotation": true
+    },
+    {
+      "repair": "prune_candidate_only_illas_memberships",
+      "removed_memberships": 7734,
+      "affected_families": 1,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "2df09de7b4bec645b56a6404fdeb87fedb738a4981bd3674adfcb57f3dd01c30",
+      "not_human_statistical_annotation": true
+    },
+    {
+      "repair": "prune_candidate_only_illos_illis_memberships",
+      "removed_memberships": 14129,
+      "affected_families": 2,
+      "source_run_id": 35647932153,
+      "decision_ledger_sha256": "2fc48f87d69f8ca53560245048b2b00d1adc07112ea69c5d5f39145346fb0598",
+      "not_human_statistical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_10",
+      "removed_memberships": 26757,
+      "deleted_families": [
+        "surface:es:ote",
+        "surface:ru:nut",
+        "surface:fr:tes",
+        "surface:de:eln",
+        "surface:ru:nost",
+        "surface:de:eren",
+        "surface:es:ento",
+        "surface:ru:cheskij",
+        "surface:es:amos",
+        "surface:es:ras"
+      ],
+      "deleted_aliases": 1,
+      "decision_ledger_sha256": "4d0ccfacf38eaedaeedad9c1d685f0244b44877433969b4dc6b791bd1fa5d274",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "reconcile_pronoun_review_and_materialized_lemmas",
+      "affected_families": [
+        "ety:1e9cc0c12192",
+        "ety:315724e202e2",
+        "ety:ca11c4d91dcb"
+      ],
+      "materialized_unique_lemmas": 4924403,
+      "lemmas_without_materialized_family": 577,
+      "source_run_id": 35647932153,
+      "note": "No memberships added; malformed áquellos remains excluded. The original build-time zero-family claim was stale after repository pruning."
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_11",
+      "removed_memberships": 14711,
+      "deleted_families": [
+        "surface:ru:tnyj",
+        "surface:es:ido",
+        "surface:en:ons",
+        "surface:ru:stvo",
+        "surface:it:armi",
+        "surface:en:ans"
+      ],
+      "deleted_aliases": 1,
+      "materialized_unique_lemmas": 4924383,
+      "lemmas_without_materialized_family": 597,
+      "decision_ledger_sha256": "0089c0b61e5627d45b0ae6d237f8b494a1940e37b86788e29bce0bc929cc7568",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "remove_incoherent_suffix_surface_families_batch_12",
+      "removed_memberships": 11782,
+      "deleted_families": [
+        "surface:it:ina",
+        "surface:es:cia",
+        "surface:en:tes",
+        "surface:en:ngs"
+      ],
+      "retained_sky_members": 8,
+      "materialized_unique_lemmas": 4924331,
+      "lemmas_without_materialized_family": 649,
+      "deleted_aliases": 0,
+      "decision_ledger_sha256": "d89af63b906e829b2c97f2723e52b92f2944a8c4cc4c83e54a0be105f30e6099",
+      "source_run_id": 35647932153,
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "consolidate_and_prune_latin_nitidus",
+      "source_run_id": 35647932153,
+      "deleted_duplicate_family": "ety:03193cddd861",
+      "deleted_surface_family": "surface:es:nitid",
+      "retained_family": "ety:94c776d13c76",
+      "removed_memberships": 9924,
+      "added_memberships": 2,
+      "removed_unrelated_net_alias_targets": [
+        "ety:10929f75019c",
+        "ety:3c9ed8371259",
+        "ety:c1b6e2919722"
+      ],
+      "added_lookup_aliases": [
+        "nitidus",
+        "neto",
+        "nitido"
+      ],
+      "deleted_aliases": 0,
+      "materialized_unique_lemmas": 4924329,
+      "lemmas_without_materialized_family": 651,
+      "multi_family_lemmas": 3339803,
+      "decision_ledger_sha256": "76cd3ddf53bb7a6e4bc6c43a6b5e0ba9efd074d1162ff736776a0e9b6bdcbffa",
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "prune_russian_two_letter_surface_buckets",
+      "source_run_id": 35647932153,
+      "removed_memberships": 8138,
+      "deleted_families": [
+        "surface:ru:ti",
+        "surface:ru:gs"
+      ],
+      "retained_headwords": [
+        [
+          "surface:ru:no",
+          "но"
+        ],
+        [
+          "surface:ru:ja",
+          "я"
+        ],
+        [
+          "surface:ru:ko",
+          "ко"
+        ],
+        [
+          "surface:ru:ha",
+          "ха"
+        ],
+        [
+          "surface:ru:za",
+          "за"
+        ]
+      ],
+      "deleted_aliases": 0,
+      "corrected_genea_suspicion": true,
+      "decision_ledger_sha256": "4471cd4b5f88b0e11bbb60b9635b9e1982225d31242181af43041541fa818102",
+      "not_individual_lexical_annotation": true
+    },
+    {
+      "repair": "quarantine_uncurated_net_reverse_aliases",
+      "source_run_id": 35647932153,
+      "removed_reverse_targets": 21,
+      "retained_targets": [
+        "ety:94c776d13c76",
+        "surface:de:net",
+        "surface:it:net"
+      ],
+      "decision_ledger_sha256": "69b282895257dfd3f62addd0580a8e9c299d3f172f00f7fb43f2e54233eb76a3",
+      "memberships_removed": 0
+    },
+    {
+      "repair": "bounded_val_routing_and_russian_short_batch_20260930",
+      "source_run_id": 35647932153,
+      "removed_memberships": 2556,
+      "removed_reverse_alias_targets": 12,
+      "retained_val_targets": [
+        "ety:082a0688243f",
+        "ety:74e7854bc739",
+        "ety:88d0d6fc2226",
+        "ety:90cc3df5865e",
+        "ety:961ca0038bb5",
+        "ety:acab8c629de8",
+        "ety:d8d34e574c18",
+        "ety:ddf6d676859e",
+        "ety:e12cdb45881f",
+        "ety:e8bac130ca91",
+        "ety:f00bcab16c95",
+        "ety:f6fe7a68b637",
+        "ety:f7c173d84c24",
+        "surface:it:val",
+        "surface:ru:val"
+      ],
+      "decision_ledger_sha256": "926891085b1b2c31da386a18e1bc75d5c7774eff736d1b13b5f12a87f08aa1ef",
+      "deleted_families": [],
+      "not_individual_lexical_annotation": true
+    }
+  ],
+  "sources_and_licenses": {
+    "etymology_source": "Kaikki/Wiktionary; original gzip hash recorded in generation input lock",
+    "frequency_sources": "Frozen generation/associativvordes/js/config-frequency-sources.js and per-row sources in current/original member carriers",
+    "raw_generation_inputs_present": false,
+    "original_assignments_present": false,
+    "license_status": "Original per-source license manifests not present in captured v5 generation inputs; no blanket license certification is asserted.",
+    "blocking_gaps": [
+      "Original assignments are not available.",
+      "Original candidate index and Kaikki generation input bytes are not captured.",
+      "Per-source license/attribution manifests of original inputs are not available."
+    ]
+  },
+  "retrieval_checks": {
+    "checked_at": "2026-10-23 Europe/Moscow",
+    "metadata_artifact_10665305365": "Dedicated GitHub artifact download returned 404 Not Found.",
+    "members_artifact_10665150741": "Dedicated GitHub artifact download returned 404 Not Found.",
+    "run_artifact_listing": "Source run currently lists only associative-family-v5-input-lock (10664855834); original payload artifacts not listed."
+  },
+  "normative_specification_reference": {
+    "pr": 679,
+    "commit": "ad32277ab9bc4fc8cd28ba82f08eaba2ab130f05",
+    "merged_into_captured_main": false,
+    "used_to_change_data": false
+  },
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "sqlite": "3.53.1",
+    "node": "v24.19.0"
+  }
+}
