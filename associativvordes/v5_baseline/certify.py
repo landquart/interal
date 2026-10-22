@@ -21,7 +21,9 @@ def main():
  run(snapshot,work/'run')
  archive=work/'baseline.tar';b=backup(snapshot,archive);restored=work/'restored';r=restore(archive,restored,b['archive_sha256'])
  # Execute the independently restored tool; no checkout imports or original snapshot required.
+ measurement_start=time.monotonic()
  subprocess.run([sys.executable,str(restored/'tool/census.py'),'census','--snapshot',str(restored),'--work',str(work/'restored-run')],check=True)
+ atomic_json(work/'COMPLETE-RESOURCE-MEASUREMENT.json',{'schema_version':1,'wall_seconds':time.monotonic()-measurement_start,'peak_rss_kib':resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss,'scope':'complete restored census, fresh database, all 768 tasks'})
  first=sha_file(work/'run/FULL-CENSUS.json');second=sha_file(work/'restored-run/FULL-CENSUS.json')
  atomic_json(work/'BACKUP-RESTORE-REPORT.json',{'schema_version':1,**b,**r,'full_recount_equal':first==second,
    'first_census_sha256':first,'restored_census_sha256':second,'interruption':interruption,

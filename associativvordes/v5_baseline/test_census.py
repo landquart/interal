@@ -10,7 +10,9 @@ class CensusTests(unittest.TestCase):
  def snapshot(self):
   snap=self.root/'snapshot';families={};members={};aliases={}
   for i in range(2):
-   fid='family:test:'+str(i);alias='test'+str(i)
+   j=0
+   while c.bucket(f'family:test:{i}:{j}')!=f'{i:02x}':j+=1
+   fid=f'family:test:{i}:{j}';alias='test'+str(i)
    row={'lemma_id':'lemma:'+str(i),'word':alias,'normalized':alias,'frequency_score':12,'sources':[{'id':'test-source'}],'components':[{'canonical_candidate':alias,'evidence':[{'type':'TEST_ONLY'}]}]}
    families[fid]={'id':fid,'canonical':alias,'aliases':[alias],'support':1,'language_support':{'en':1},'relation_types':['TEST_ONLY']}
    members[fid]=[row];aliases[alias]=[fid]
@@ -50,7 +52,7 @@ class CensusTests(unittest.TestCase):
   snap,_=self.snapshot();work=self.root/'run'
   cmd=[sys.executable,str(pathlib.Path(c.__file__)),'census','--snapshot',str(snap),'--work',str(work),'--crash-after','2']
   r=subprocess.run(cmd,capture_output=True);self.assertEqual(r.returncode,75,r.stderr)
-  db=sqlite3.connect(work/'census.sqlite');self.assertEqual(db.execute('select count(*) from checkpoints').fetchone()[0],1);db.close()
+  db=sqlite3.connect(work/'census.sqlite');self.assertEqual(db.execute('select count(*) from checkpoints').fetchone()[0],1);self.assertEqual(db.execute('select count(*) from current_lemmas').fetchone()[0],1);db.close()
   with contextlib.redirect_stdout(io.StringIO()):c.run(snap,work)
   result=c.load(work/'FULL-CENSUS.json');self.assertEqual(result['counts']['canonical_families'],2);self.assertEqual(result['counts']['memberships'],2)
   self.assertTrue(result['source_equation']['holds']);before=c.sha_file(work/'FULL-CENSUS.json')
