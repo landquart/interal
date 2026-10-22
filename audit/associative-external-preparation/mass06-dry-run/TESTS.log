@@ -1,0 +1,194 @@
+=== tests ===
+test_abstain_is_not_semantic_rejection (test_cycle.AuditTests.test_abstain_is_not_semantic_rejection) ... ok
+test_cross_language_productive_path_fails (test_cycle.AuditTests.test_cross_language_productive_path_fails) ... ok
+test_duplicates_fatal (test_cycle.AuditTests.test_duplicates_fatal) ... ok
+test_existing_exclusion_is_only_an_audit (test_cycle.AuditTests.test_existing_exclusion_is_only_an_audit) ... ok
+test_family_conflict_does_not_merge (test_cycle.AuditTests.test_family_conflict_does_not_merge) ... ok
+test_independent_clone_matches (test_cycle.AuditTests.test_independent_clone_matches) ... ok
+test_inflection_not_derivation (test_cycle.AuditTests.test_inflection_not_derivation) ... ok
+test_manual_counts_not_doubled (test_cycle.AuditTests.test_manual_counts_not_doubled) ... ok
+test_no_invented_zero_frequency (test_cycle.AuditTests.test_no_invented_zero_frequency) ... ok
+test_original_sense_and_spelling_preserved (test_cycle.AuditTests.test_original_sense_and_spelling_preserved) ... ok
+test_other_native_same_spelling_cannot_provide_path (test_cycle.AuditTests.test_other_native_same_spelling_cannot_provide_path) ... ok
+test_preserving_decision_is_not_confirmation (test_cycle.AuditTests.test_preserving_decision_is_not_confirmation) ... ok
+test_random_and_risk_sampling_stable (test_cycle.AuditTests.test_random_and_risk_sampling_stable) ... ok
+test_replay_compares_evidence_and_relations (test_cycle.AuditTests.test_replay_compares_evidence_and_relations) ... ok
+test_replay_compares_groups_and_history (test_cycle.AuditTests.test_replay_compares_groups_and_history) ... ok
+test_source_groups_not_counted_as_independent (test_cycle.AuditTests.test_source_groups_not_counted_as_independent) ... ok
+test_stable_normalization_only_removes_volatile_fields (test_cycle.AuditTests.test_stable_normalization_only_removes_volatile_fields) ... ok
+test_uncalibrated_probability_fails (test_cycle.AuditTests.test_uncalibrated_probability_fails) ... ok
+test_wrong_family_negative_is_not_global (test_cycle.AuditTests.test_wrong_family_negative_is_not_global) ... ok
+test_history_read_does_not_write (test_cycle.ExecutionTests.test_history_read_does_not_write) ... ok
+test_protocol_disables_network_and_production (test_cycle.ExecutionTests.test_protocol_disables_network_and_production) ... ok
+test_real_signal_is_reported (test_cycle.ExecutionTests.test_real_signal_is_reported) ... ok
+test_resource_measurement_is_real_child_usage (test_cycle.ExecutionTests.test_resource_measurement_is_real_child_usage) ... ok
+test_export_checksum_guard (test_cycle.PublicationTests.test_export_checksum_guard) ... ok
+test_export_refuses_existing_ledger (test_cycle.PublicationTests.test_export_refuses_existing_ledger) ... ok
+test_export_to_fresh_review_ledger (test_cycle.PublicationTests.test_export_to_fresh_review_ledger) ... ok
+test_resume_rejects_changed_pinned_algorithm (test_cycle.PublicationTests.test_resume_rejects_changed_pinned_algorithm) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.094s
+
+OK
+
+=== auto-tests ===
+test_cited_axes_do_not_establish_other_axes (test_annotation.ContractTests.test_cited_axes_do_not_establish_other_axes) ... ok
+test_compounds_retained (test_annotation.ContractTests.test_compounds_retained) ... ok
+test_conflicting_source_assertions_are_retained (test_annotation.ContractTests.test_conflicting_source_assertions_are_retained) ... ok
+test_cross_language_and_direction (test_annotation.ContractTests.test_cross_language_and_direction) ... ok
+test_exclusion_requires_scoped_contradiction (test_annotation.ContractTests.test_exclusion_requires_scoped_contradiction) ... ok
+test_inflection_is_not_derivation (test_annotation.ContractTests.test_inflection_is_not_derivation) ... ok
+test_language_mismatch (test_annotation.ContractTests.test_language_mismatch) ... ok
+test_model_invented_reference_rejected (test_annotation.ContractTests.test_model_invented_reference_rejected) ... ok
+test_model_invented_sense_and_confidence_rejected (test_annotation.ContractTests.test_model_invented_sense_and_confidence_rejected) ... ok
+test_negative_scope_and_privacy (test_annotation.ContractTests.test_negative_scope_and_privacy) ... ok
+test_orthographic_identity_not_derivation (test_annotation.ContractTests.test_orthographic_identity_not_derivation) ... ok
+test_pos_and_frequency_unknown (test_annotation.ContractTests.test_pos_and_frequency_unknown) ... ok
+test_prompt_injection_retained_only_as_data (test_annotation.ContractTests.test_prompt_injection_retained_only_as_data) ... ok
+test_same_form_multiple_native_senses_not_merged (test_annotation.ContractTests.test_same_form_multiple_native_senses_not_merged) ... ok
+test_same_spelling_alternative_path_cannot_support_this_native_lexeme (test_annotation.ContractTests.test_same_spelling_alternative_path_cannot_support_this_native_lexeme) ... ok
+test_separate_axes_and_stable_native_ids (test_annotation.ContractTests.test_separate_axes_and_stable_native_ids) ... ok
+test_strict_json (test_annotation.ContractTests.test_strict_json) ... ok
+test_substring_without_path_remains_unknown (test_annotation.ContractTests.test_substring_without_path_remains_unknown) ... ok
+test_inflection_only_native_identity_is_verified_in_auxiliary (test_annotation.NativeSourceTests.test_inflection_only_native_identity_is_verified_in_auxiliary) ... ok
+test_algorithm_change_cannot_silently_resume (test_annotation.PipelineTests.test_algorithm_change_cannot_silently_resume) ... ok
+test_balanced_budget_does_not_drop_language (test_annotation.PipelineTests.test_balanced_budget_does_not_drop_language) ... ok
+test_export_repeat_is_identical (test_annotation.PipelineTests.test_export_repeat_is_identical) ... ok
+test_handoff_preserves_questions_and_blind_boundary (test_annotation.PipelineTests.test_handoff_preserves_questions_and_blind_boundary) ... ok
+test_multi_same_model_not_independent (test_annotation.PipelineTests.test_multi_same_model_not_independent) ... ok
+test_offline_result_does_not_prevent_explicit_pilot (test_annotation.PipelineTests.test_offline_result_does_not_prevent_explicit_pilot) ... ok
+test_resume_rejection_and_changed_input (test_annotation.PipelineTests.test_resume_rejection_and_changed_input) ... ok
+test_concurrent_admission_respects_global_limit (test_annotation.ProviderTests.test_concurrent_admission_respects_global_limit) ... ok
+test_cost_forecast_unknown_without_provider (test_annotation.ProviderTests.test_cost_forecast_unknown_without_provider) ... ok
+test_default_does_not_call_transport (test_annotation.ProviderTests.test_default_does_not_call_transport) ... ok
+test_durable_invalid_attempt_limit (test_annotation.ProviderTests.test_durable_invalid_attempt_limit) ... ok
+test_endpoint_and_inline_key_guards (test_annotation.ProviderTests.test_endpoint_and_inline_key_guards) ... ok
+test_local_cloud_rejected (test_annotation.ProviderTests.test_local_cloud_rejected) ... ok
+test_ollama_digest_required (test_annotation.ProviderTests.test_ollama_digest_required) ... ok
+test_paid_no_authorization (test_annotation.ProviderTests.test_paid_no_authorization) ... ok
+test_paid_parallel_reservations_are_not_crash_outcomes (test_annotation.ProviderTests.test_paid_parallel_reservations_are_not_crash_outcomes) ... ok
+test_request_limit_survives_new_client (test_annotation.ProviderTests.test_request_limit_survives_new_client) ... ok
+test_secret_echo_is_not_persisted (test_annotation.ProviderTests.test_secret_echo_is_not_persisted) ... ok
+test_token_contract_violation_blocks_paid_continuation (test_annotation.ProviderTests.test_token_contract_violation_blocks_paid_continuation) ... ok
+test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt (test_annotation.ProviderTests.test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt) ... ok
+test_valid_response_cache_across_roles_and_prices (test_annotation.ProviderTests.test_valid_response_cache_across_roles_and_prices) ... ok
+test_backup_restores_full_history (test_annotation.StoreTests.test_backup_restores_full_history) ... ok
+test_backup_traversal (test_annotation.StoreTests.test_backup_traversal) ... ok
+test_concurrent_writers_excluded (test_annotation.StoreTests.test_concurrent_writers_excluded) ... ok
+test_corrupt_object_detected (test_annotation.StoreTests.test_corrupt_object_detected) ... ok
+test_partial_write_and_head_recovery (test_annotation.StoreTests.test_partial_write_and_head_recovery) ... ok
+test_repeat_and_history (test_annotation.StoreTests.test_repeat_and_history) ... ok
+test_tail_loss_detected (test_annotation.StoreTests.test_tail_loss_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.581s
+
+OK
+
+=== mass-tests ===
+test_auxiliary_native_checkpoint_resumes_without_duplicate_arcs (test_mass.MassTests.test_auxiliary_native_checkpoint_resumes_without_duplicate_arcs) ... ok
+test_categories_preserve_alternatives_and_unchecked_pos (test_mass.MassTests.test_categories_preserve_alternatives_and_unchecked_pos) ... ok
+test_changed_only_recomputes_only_changed_family_units (test_mass.MassTests.test_changed_only_recomputes_only_changed_family_units) ... ok
+test_checksum_failure_and_unknown_canonical_id (test_mass.MassTests.test_checksum_failure_and_unknown_canonical_id) ... ok
+test_cross_language_native_endpoint_is_excluded (test_mass.MassTests.test_cross_language_native_endpoint_is_excluded) ... ok
+test_existing_negative_is_a_question_but_not_a_frontier (test_mass.MassTests.test_existing_negative_is_a_question_but_not_a_frontier) ... ok
+test_incremental_own_and_competing_family_dependencies (test_mass.MassTests.test_incremental_own_and_competing_family_dependencies) ... ok
+test_inflection_observations_do_not_enter_paths (test_mass.MassTests.test_inflection_observations_do_not_enter_paths) ... ok
+test_multiple_meanings_and_conflicting_family_stay_separate (test_mass.MassTests.test_multiple_meanings_and_conflicting_family_stay_separate) ... ok
+test_negative_head_without_exact_word_guard_is_not_expanded (test_mass.MassTests.test_negative_head_without_exact_word_guard_is_not_expanded) ... ok
+test_no_substring_expansion (test_mass.MassTests.test_no_substring_expansion) ... ok
+test_nonaccepted_head_is_not_a_bridge_from_another_seed (test_mass.MassTests.test_nonaccepted_head_is_not_a_bridge_from_another_seed) ... ok
+test_preparation_registry_reuse_checks_policy_and_database (test_mass.MassTests.test_preparation_registry_reuse_checks_policy_and_database) ... ok
+test_prior_queue_is_read_only_and_refusal_survives_mass_rebuild (test_mass.MassTests.test_prior_queue_is_read_only_and_refusal_survives_mass_rebuild) ... ok
+test_real_compound_and_reverse_base_keep_native_evidence (test_mass.MassTests.test_real_compound_and_reverse_base_keep_native_evidence) ... ok
+test_real_native_chain_and_provenance (test_mass.MassTests.test_real_native_chain_and_provenance) ... ok
+test_relation_classes (test_mass.MassTests.test_relation_classes) ... ok
+test_same_catalog_different_partition_manifest_is_rejected (test_mass.MassTests.test_same_catalog_different_partition_manifest_is_rejected) ... ok
+test_scope_replay_resume_dry_run_and_independent_export (test_mass.MassTests.test_scope_replay_resume_dry_run_and_independent_export) ... ok
+test_unknown_direction_stays_one_hop_and_correlated (test_mass.MassTests.test_unknown_direction_stays_one_hop_and_correlated) ... ok
+test_full_runner_rejects_incompatible_runtime_before_build (test_mass.StoreTests.test_full_runner_rejects_incompatible_runtime_before_build) ... ok
+test_later_refusal_reconciles_existing_pos_without_source_discovery (test_mass.StoreTests.test_later_refusal_reconciles_existing_pos_without_source_discovery) ... ok
+test_review_history_and_pending_identity_are_not_negative_verdicts (test_mass.StoreTests.test_review_history_and_pending_identity_are_not_negative_verdicts) ... ok
+test_snapshot_provenance_does_not_invalidate_other_families (test_mass.StoreTests.test_snapshot_provenance_does_not_invalidate_other_families) ... ok
+test_transaction_history_and_rejected_rediscovery (test_mass.StoreTests.test_transaction_history_and_rejected_rediscovery) ... ok
+
+----------------------------------------------------------------------
+Ran 25 tests in 8.033s
+
+OK
+
+=== review-tests ===
+test_pinned_graph_rebuild_does_not_apply_approved_proposal (test_graph_refresh.GraphRefreshTests.test_pinned_graph_rebuild_does_not_apply_approved_proposal) ... ok
+test_batch_preview_commit_stale_and_individual_history (test_review.HTTPTests.test_batch_preview_commit_stale_and_individual_history) ... ok
+test_batch_staged_before_refresh_requires_reopen (test_review.HTTPTests.test_batch_staged_before_refresh_requires_reopen) ... ok
+test_blind_http_cannot_access_backup_overlay_or_batch (test_review.HTTPTests.test_blind_http_cannot_access_backup_overlay_or_batch) ... ok
+test_http_auth_csrf_origin_and_production_route (test_review.HTTPTests.test_http_auth_csrf_origin_and_production_route) ... ok
+test_shared_styles_keep_variables_without_external_font (test_review.HTTPTests.test_shared_styles_keep_variables_without_external_font) ... ok
+test_100_sequence_resume_and_versioned_export (test_review.ReviewTests.test_100_sequence_resume_and_versioned_export) ... ok
+test_arbitration_requires_both_and_role (test_review.ReviewTests.test_arbitration_requires_both_and_role) ... ok
+test_blind_server_allowlist_hides_all_outcomes (test_review.ReviewTests.test_blind_server_allowlist_hides_all_outcomes) ... ok
+test_correction_and_undo_preserve_every_event (test_review.ReviewTests.test_correction_and_undo_preserve_every_event) ... ok
+test_corruption_and_missing_transaction_fail_closed (test_review.ReviewTests.test_corruption_and_missing_transaction_fail_closed) ... ok
+test_family_and_native_lexeme_scope (test_review.ReviewTests.test_family_and_native_lexeme_scope) ... ok
+test_frequency_unknown_and_independence_not_fabricated (test_review.ReviewTests.test_frequency_unknown_and_independence_not_fabricated) ... ok
+test_idempotent_retry_and_request_collision (test_review.ReviewTests.test_idempotent_retry_and_request_collision) ... ok
+test_inactive_question_history_restored_on_rediscovery (test_review.ReviewTests.test_inactive_question_history_restored_on_rediscovery) ... ok
+test_independent_review_and_arbitration (test_review.ReviewTests.test_independent_review_and_arbitration) ... ok
+test_interrupted_atomic_write_and_committed_retry (test_review.ReviewTests.test_interrupted_atomic_write_and_committed_retry) ... ok
+test_invalid_batch_all_or_nothing (test_review.ReviewTests.test_invalid_batch_all_or_nothing) ... ok
+test_lossless_source_row_attachment_and_tamper (test_review.ReviewTests.test_lossless_source_row_attachment_and_tamper) ... ok
+test_missing_committed_tail_is_detected (test_review.ReviewTests.test_missing_committed_tail_is_detected) ... ok
+test_progress_private_and_recoverable (test_review.ReviewTests.test_progress_private_and_recoverable) ... ok
+test_source_refresh_rejection_and_proposal_survive (test_review.ReviewTests.test_source_refresh_rejection_and_proposal_survive) ... ok
+test_two_writers_one_wins_no_lost_update (test_review.ReviewTests.test_two_writers_one_wins_no_lost_update) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 4.034s
+
+OK
+
+=== pilot-tests ===
+test_actual_capture_adapter_uses_complete_absence_not_missing_search (test_pilot.PilotTests.test_actual_capture_adapter_uses_complete_absence_not_missing_search) ... ok
+test_agreement_and_unknown_disputes_without_judgments (test_pilot.PilotTests.test_agreement_and_unknown_disputes_without_judgments) ... ok
+test_baseline_missing_is_unavailable_not_a_proxy (test_pilot.PilotTests.test_baseline_missing_is_unavailable_not_a_proxy) ... ok
+test_blinded_tasks_hide_prior_decisions (test_pilot.PilotTests.test_blinded_tasks_hide_prior_decisions) ... ok
+test_boundary_errors_and_merges_are_separate_from_membership (test_pilot.PilotTests.test_boundary_errors_and_merges_are_separate_from_membership) ... ok
+test_empty_gold_has_no_quality_claim (test_pilot.PilotTests.test_empty_gold_has_no_quality_claim) ... ok
+test_exact_precision_recall_abstentions_and_unknown (test_pilot.PilotTests.test_exact_precision_recall_abstentions_and_unknown) ... ok
+test_frozen_release_cannot_erase_existing_annotations (test_pilot.PilotTests.test_frozen_release_cannot_erase_existing_annotations) ... ok
+test_independent_double_review_and_adjudication (test_pilot.PilotTests.test_independent_double_review_and_adjudication) ... ok
+test_missing_scores_and_missing_language_never_zero_or_new_formula (test_pilot.PilotTests.test_missing_scores_and_missing_language_never_zero_or_new_formula) ... ok
+test_model_labels_unauthorized_humans_and_prior_status_not_gold (test_pilot.PilotTests.test_model_labels_unauthorized_humans_and_prior_status_not_gold) ... ok
+test_paired_contribution_not_claimed_without_gold (test_pilot.PilotTests.test_paired_contribution_not_claimed_without_gold) ... ok
+test_real_source_ablation_preserves_manual_and_native_identity_guards (test_pilot.PilotTests.test_real_source_ablation_preserves_manual_and_native_identity_guards) ... ok
+test_same_case_checksums_and_complete_prediction_scope (test_pilot.PilotTests.test_same_case_checksums_and_complete_prediction_scope) ... ok
+test_top_five_new_models_coverage_frequency_and_head_regressions (test_pilot.PilotTests.test_top_five_new_models_coverage_frequency_and_head_regressions) ... ok
+test_B_has_real_additions_and_displacement (test_quality04.Quality04Tests.test_B_has_real_additions_and_displacement) ... ok
+test_budget_balances_classes_and_keeps_unknown_frequency (test_quality04.Quality04Tests.test_budget_balances_classes_and_keeps_unknown_frequency) ... ok
+test_current_case_lock_rejects_changed_prediction (test_quality04.Quality04Tests.test_current_case_lock_rejects_changed_prediction) ... ok
+test_efficiency_requires_humans_and_does_not_erase_false_candidate_time (test_quality04.Quality04Tests.test_efficiency_requires_humans_and_does_not_erase_false_candidate_time) ... ok
+test_frozen_real_subset_is_balanced_and_reproducible (test_quality04.Quality04Tests.test_frozen_real_subset_is_balanced_and_reproducible) ... ok
+test_interrupted_human_time_is_unknown (test_quality04.Quality04Tests.test_interrupted_human_time_is_unknown) ... ok
+test_merge_missing_is_not_observed_zero (test_quality04.Quality04Tests.test_merge_missing_is_not_observed_zero) ... ok
+test_no_gold_is_null_not_zero_accuracy (test_quality04.Quality04Tests.test_no_gold_is_null_not_zero_accuracy) ... ok
+test_rater_agreement_intervals_and_constant_kappa (test_quality04.Quality04Tests.test_rater_agreement_intervals_and_constant_kappa) ... ok
+test_relation_error_distinct_from_membership (test_quality04.Quality04Tests.test_relation_error_distinct_from_membership) ... ok
+test_sparse_zero_errors_have_nonzero_upper_bound (test_quality04.Quality04Tests.test_sparse_zero_errors_have_nonzero_upper_bound) ... ok
+test_spelling_group_does_not_resolve_native_identity (test_quality04.Quality04Tests.test_spelling_group_does_not_resolve_native_identity) ... ok
+test_tp_fp_fn_denominators_and_abstention (test_quality04.Quality04Tests.test_tp_fp_fn_denominators_and_abstention) ... ok
+test_two_reviews_required_in_initial_cohort_without_case_mutation (test_quality04.Quality04Tests.test_two_reviews_required_in_initial_cohort_without_case_mutation) ... ok
+test_uncertain_gold_not_forced_into_confusion (test_quality04.Quality04Tests.test_uncertain_gold_not_forced_into_confusion) ... ok
+test_control_allowlist_has_no_cues_or_other_answers (test_quality04.Study04Tests.test_control_allowlist_has_no_cues_or_other_answers) ... ok
+test_http_collects_blind_task_and_idempotent_human_record (test_quality04.Study04Tests.test_http_collects_blind_task_and_idempotent_human_record) ... ok
+test_interruption_marks_timing_unknown (test_quality04.Study04Tests.test_interruption_marks_timing_unknown) ... ok
+test_lossless_archive_restores_raw_capture_bytes (test_quality04.Study04Tests.test_lossless_archive_restores_raw_capture_bytes) ... ok
+test_missing_verified_humans_blocks_collection (test_quality04.Study04Tests.test_missing_verified_humans_blocks_collection) ... ok
+test_save_idempotency_and_recovery_with_full_labels (test_quality04.Study04Tests.test_save_idempotency_and_recovery_with_full_labels) ... ok
+test_source_evidence_cannot_change_silently (test_quality04.Study04Tests.test_source_evidence_cannot_change_silently) ... ok
+test_study_tail_corruption_is_detected (test_quality04.Study04Tests.test_study_tail_corruption_is_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 38 tests in 2.249s
+
+OK

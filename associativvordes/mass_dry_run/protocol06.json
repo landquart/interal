@@ -1,0 +1,88 @@
+{
+  "schema": "mass-dry-run-protocol/1",
+  "date": "2026-10-22",
+  "base_commit": "e66543fea9a95f50faf265aa6493680c9f99822a",
+  "seed": "interal-mass06-20261022-v1",
+  "scope": "All actual canonical families in the certified pinned v6 registry; production v5 inventory is separate and is not switched or claimed covered.",
+  "stages": [
+    {
+      "name": "representative",
+      "families": [
+        "REGUL",
+        "PEDE",
+        "INTER"
+      ],
+      "languages": [
+        "de",
+        "en",
+        "es",
+        "fr",
+        "it",
+        "ru"
+      ],
+      "limits": {
+        "seeds_per_role": 1,
+        "native_per_source": 1,
+        "arcs_per_class": 2,
+        "max_depth": 1,
+        "paths_per_class": 2,
+        "frequency_observations": 2,
+        "inflections": 2
+      }
+    },
+    {
+      "name": "approx-1-percent",
+      "families": [
+        "REGUL"
+      ]
+    },
+    {
+      "name": "approx-5-percent",
+      "families": [
+        "REGUL",
+        "PEDE"
+      ]
+    },
+    {
+      "name": "approx-25-percent",
+      "families": [
+        "REGUL",
+        "PEDE",
+        "INTER",
+        "ALTER",
+        "LIBER"
+      ]
+    },
+    {
+      "name": "all"
+    }
+  ],
+  "small_registry_policy": "For 19 families nominal 1% and 5% collapse below/at one family; use fixed 1,2,5,19 family strata. Representative stage uses 3 difficult families and all languages with smaller per-class budgets. Exact achieved fractions reported.",
+  "llm_config": {
+    "route": "multi",
+    "providers": {},
+    "roles": {},
+    "allow_paid": false,
+    "budget_usd": "0",
+    "max_requests": 0,
+    "concurrency": 1
+  },
+  "stage_gates": {
+    "max_errors": 0,
+    "max_rss_kib": 2097152,
+    "max_output_bytes": 8589934592,
+    "max_api_requests": 0,
+    "history_must_be_preserved": true,
+    "checkpoint_must_recover": true,
+    "production_writes": 0
+  },
+  "quality": "Inherited protocol04 gates unchanged; missing independent human gold never counts as zero errors or a passed precision threshold. Semantic gates remain BLOCKED; safe engineering-only dry-run may continue with every proposal manual.",
+  "new_quality_samples": {
+    "random": 60,
+    "risk_oriented": 60,
+    "reviews_per_unique_case": 2
+  },
+  "paid_calls": false,
+  "canonical_roots_created": false,
+  "formulas_changed": false
+}

@@ -1,0 +1,22 @@
+{
+  "discovery_manifest_identical": true,
+  "llm_comparison_status": "NOT_RUN_NO_REAL_MODEL_RESPONSES",
+  "llm_disagreement_rate": null,
+  "parts": {
+    "actual_semantic_proposals": true,
+    "card_index": true,
+    "groups": true,
+    "identity": true,
+    "proposals": true,
+    "questions": true,
+    "raw_source_rows": true
+  },
+  "prior_history_identical": true,
+  "snapshot_sha256": "52366e2e13a7117bef255a4099ae869d6b6938247fcf9816754cb2d0fa7fb3c5",
+  "status": "PASS",
+  "volatile_fields_separated": [
+    "created_at",
+    "run_id",
+    "previous_result_ref"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "archive_equals_original": true,
+  "archive_resources": {
+    "command": [
+      "/usr/bin/python3",
+      "-c",
+      "import sys,json;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from archive04 import pack;root=Path(sys.argv[2]);print(json.dumps(pack({'SNAPSHOT.json':str(root/'final/SNAPSHOT.json'),'QUALITY.json':str(root/'QUALITY.json'),'REGISTRY-STATE.json':str(root/'final/REGISTRY-STATE.json')},root/'PACKED-PROPOSALS.json.gz')))",
+      "/vercel/p06-code/associativvordes/pilot_evaluation",
+      "/vercel/p06-work/coordinator-resume-check"
+    ],
+    "max_rss_kib": 1131468,
+    "returncode": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "e99dd88df330fdb5bceb04a42142f5575ecdde8bb8b2efa57475137654c37347",
+    "system_seconds": 0.403933,
+    "user_seconds": 13.509864,
+    "wall_seconds": 13.927976
+  },
+  "driver_sha256": "d08cd9f5459a095f93be2babeec8d4c8d8041714a7e41a25dc64515385f76aed",
+  "finisher_max_rss_kib": 1242504,
+  "input_lock_sha256": "cff99ce94c6e0f104b2643d7d78b3dc42c038d18d95dfd6e2ba1c9c47abcd587",
+  "policy": "Reuse only complete hash-verified stage snapshots; no semantic algorithms, inputs or thresholds changed.",
+  "reused_stages": 6,
+  "scenario": "Independent hardlink copy; completion marker removed to simulate interruption before publishing; all six complete stage snapshots verified; original untouched.",
+  "schema": "mass06-coordinator-resume/1",
+  "status": "PASS"
+}
