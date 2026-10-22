@@ -1,6 +1,8 @@
 # Continuation checkpoint — 2026-09-30
 
-Repository: `landquart/interal`. Continue PR #649 and its existing branch.
+Historical checkpoint. PR #649 is now merged; use `continuation-20261001.md` for the current information repair and subsequent work.
+
+Repository: `landquart/interal`. The original working PR was #649.
 Immutable source run remains `35647932153`.
 
 ## Completed bounded decisions
