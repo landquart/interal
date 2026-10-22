@@ -22,9 +22,12 @@ def active_operations(store, version):
 
 
 def build(store, trust, destination):
-    store.audit(trust)
+    audited = store.audit(trust)
     with store.lock():
-        version, value = store.current(); state = value['state']
+        version, value = store.current()
+        require(version == audited['current_version'],
+                'release version changed since audited; retry with fresh trust')
+        state = value['state']
         target = external(destination); require(not target.exists(), 'fresh graph destination required')
         target.parent.mkdir(parents=True, exist_ok=True)
         temp = Path(tempfile.mkdtemp(prefix='.release07-graph-', dir=target.parent))

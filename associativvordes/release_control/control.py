@@ -131,7 +131,7 @@ def context(state, snapshot_hash, source_hash, algorithm_hash, ledger_head, file
 
 def check_input_files(inputs):
     files = inputs.get('files', {})
-    for name in ('snapshot', 'sources', 'algorithm', 'controller', 'registry', 'index', 'aux', 'project'):
+    for name in ('snapshot', 'sources', 'algorithm', 'controller', 'review_bridge', 'ledger_store', 'registry', 'index', 'aux', 'project'):
         require(name in files, 'missing frozen input binding: '+name)
         item = files[name]; hasher = hashlib.sha256()
         with open(item['path'], 'rb') as stream:
@@ -140,6 +140,10 @@ def check_input_files(inputs):
         if name in ('snapshot', 'sources', 'algorithm'):
             require(inputs[name] == item['sha256'], 'inconsistent input binding: '+name)
     require(files['controller']['sha256'] == digest(Path(__file__).read_bytes()), 'controller code changed')
+    require(files['review_bridge']['sha256'] == digest(Path(__file__).with_name('review_bridge.py').read_bytes()),
+            'review bridge code changed')
+    require(files['ledger_store']['sha256'] == digest(
+        (Path(__file__).resolve().parents[1]/'review/store.py').read_bytes()), 'review store code changed')
 
 
 def verdict_payload(operation, inputs):
@@ -161,6 +165,10 @@ def transform(state, operations):
         require(op['question_id'] and op['candidate_id'], 'candidate identity required')
         before, after = op['before'], op['after']
         require(before is not None or after is not None, 'empty operation')
+        # Candidate identity must belong to the exact native membership being reviewed.
+        # Identity corrections use the existing ("before") native ID for review.
+        require(op['candidate_id'] == (before or after)['lemma_id'],
+                'operation candidate_id is not the reviewed native membership')
         identity = key(before or after)
         require(identity not in touched, 'multiple operations on one scoped membership')
         touched.add(identity)
@@ -190,8 +198,8 @@ def transform(state, operations):
         # Every effective removal/update is compensating history, never deletion of old verdicts.
         if before is not None: del members[key(before)]
         if after is not None:
-            require(after.get('relation', 'unresolved') != 'inflection' or op['kind'] != 'ADD_MEMBER',
-                    'inflection cannot create an independent derivative')
+            require(after.get('relation', 'unresolved') not in ('inflection', 'unresolved'),
+                    'released membership cannot use unresolved or inflection relation')
             members[key(after)] = copy.deepcopy(after)
         result['history'].append(dict(operation=copy.deepcopy(op), previous=digest(state)))
     if operations: data['memberships'] = sorted(members.values(), key=key)
@@ -228,21 +236,24 @@ def check_verdicts(plan, trust, ledger, view=None):
                         'verdict lacks exact family/language review scope')
                 require(d['status'] == expected_status and d['lexeme_id'] == op['candidate_id'],
                         'missing current concrete human verdict')
-                require(d['snapshot'] == view['snapshot'] and d['action'] != 'undo', 'stale/undone review')
+                require(d['snapshot'] == view['snapshot'] and d['action'] == 'decide', 'only independent decide actions can witness a release')
         require(roles == {'reviewer', 'blind'} and len(seen) >= 2, 'two independent human reviews required')
     return {'head': view['head'], 'snapshot': view['snapshot'], 'transactions': view['transactions']}
+
+
+def operation_summary(operations):
+    return dict(counts={k: sum(o['kind'] == k for o in operations) for k in KINDS},
+                families=sorted({x['family_id'] for o in operations for x in (o['before'], o['after']) if x}),
+                superseded_decisions=[r for o in operations for r in o['supersedes']],
+                unresolved='all unselected questions remain in review')
 
 
 def preview(state, operations, inputs, verdicts=None):
     require(inputs['base'] == digest(state), 'wrong release base')
     require(len({o['id'] for o in operations}) == len(operations), 'duplicate operation ID')
     after = transform(state, operations)
-    counts = {k: sum(o['kind'] == k for o in operations) for k in KINDS}
-    scope = sorted({x['family_id'] for o in operations for x in (o['before'], o['after']) if x})
     return dict(schema=VERSION, inputs=inputs, operations=operations, verdicts=verdicts or {},
-                after=digest(after), summary=dict(counts=counts, families=scope,
-                    superseded_decisions=[r for o in operations for r in o['supersedes']],
-                    unresolved='all unselected questions remain in review'),
+                after=digest(after), summary=operation_summary(operations),
                 production_writes=0)
 
 
@@ -325,6 +336,8 @@ class Store:
                 return {'version': parent, 'idempotent': True}
             require(digest(old['state']) == plan['inputs']['base'], 'compare-and-swap base changed')
             require(plan['operations'], 'empty preview is not an applicable release')
+            require(plan.get('summary') == operation_summary(plan['operations']),
+                    'release summary does not match signed operations')
             evidence_gate(plan, current, checks, trust)
             provenance = check_verdicts(plan, trust, ledger, view)
             verify(approval, trust, 'owner', dict(schema=VERSION, purpose='approve-release',
@@ -378,12 +391,14 @@ class Store:
         """Separate replay of committed transitions and their signed provenance."""
         self.verify_chain()
         with self.lock():
-            ident, value = self.current(); applied = 0; rolled_back = 0
+            ident, value = self.current(); audited_version = ident; applied = 0; rolled_back = 0
             while value['parent']:
                 parent = self.version(value['parent'])
                 if value['transition'] == 'APPLY':
                     plan = value['plan']; checks = value['checks']; approval = value['approvals'][0]
                     require(digest(plan) == value['release'], 'release identity changed')
+                    require(plan.get('summary') == operation_summary(plan['operations']),
+                            'historical summary does not match actual operations')
                     require(plan['inputs']['base'] == digest(parent['state']), 'wrong historical base')
                     require(transform(parent['state'], plan['operations']) == value['state'], 'applied delta differs')
                     require(plan['after'] == digest(value['state']), 'wrong historical after digest')
@@ -417,7 +432,7 @@ class Store:
                     rolled_back += 1
                 else: raise ValueError('unknown committed transition')
                 ident = value['parent']; value = parent
-            return dict(status='PASS', applied_releases=applied, rollbacks=rolled_back,
+            return dict(status='PASS', current_version=audited_version, applied_releases=applied, rollbacks=rolled_back,
                         semantic_quality_estimate=None, production_writes=0)
 
     def backup(self, destination):

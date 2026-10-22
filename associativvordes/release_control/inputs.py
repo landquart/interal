@@ -73,7 +73,7 @@ def source_delta(previous, current, dependencies, reviewed):
     blocks scheduling instead of silently missing families or rerunning all.
     """
     changed = sorted(k for k in set(previous)|set(current) if previous.get(k) != current.get(k))
-    unknown = [k for k in changed if k not in dependencies]
+    unknown = [k for k in changed if k not in dependencies or not isinstance(dependencies[k], list) or not dependencies[k]]
     license_review = [k for k in changed if k in current and
         (current[k].get('license_status') != 'VERIFIED' or not current[k].get('license_sha256')
          or not current[k].get('revision') or not current[k].get('sha256'))]

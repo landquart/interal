@@ -26,7 +26,10 @@ def run(a):
     files = {name: dict(path=str(path), sha256=digest(Path(path).read_bytes())) for name, path in (
         ('snapshot', REPORT/'PACKED-PROPOSALS.json.gz'),
         ('sources', ROOT/'data/morphology-evidence/sources/source-lock.json'),
-        ('algorithm', ROOT/'associativvordes/auto_annotation/pipeline.py'), ('controller', Path(__file__).with_name('control.py')))}
+        ('algorithm', ROOT/'associativvordes/auto_annotation/pipeline.py'),
+        ('controller', Path(__file__).with_name('control.py')),
+        ('review_bridge', Path(__file__).with_name('review_bridge.py')),
+        ('ledger_store', ROOT/'associativvordes/review/store.py'))}
     for name, path in [('registry', a.registry), ('index', a.index), ('aux', a.aux), ('project', a.project)]:
         files[name] = dict(path=str(Path(path).resolve()), sha256=frozen['databases'][name]['sha256'])
     inputs = context(state, files['snapshot']['sha256'], files['sources']['sha256'],
@@ -54,7 +57,8 @@ def run(a):
     # Explicitly UNCONFIRMED probe: exercise the real quality gate, not a verdict.
     m = state['data']['memberships'][0]
     probe = dict(id='UNCONFIRMED_GATE_PROBE', kind='CORRECT_RELATION', question_id='UNCONFIRMED',
-        candidate_id=m['lemma_id'], before=m, after=dict(m, relation='unresolved'),
+        candidate_id=m['lemma_id'], before=m,
+         after=dict(m, relation='compound' if m.get('relation') != 'compound' else 'direct derivation'),
         evidence_refs=m['source_proof'], reason='UNCONFIRMED: safety-gate exercise only', supersedes=[])
     probe_plan = preview(state, [probe], inputs)
     checks = dict(plan=digest(probe_plan), base=digest(state), after=probe_plan['after'], checks={

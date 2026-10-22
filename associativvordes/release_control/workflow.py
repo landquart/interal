@@ -45,8 +45,10 @@ def package(store, destination, approval, trust):
             rollback_target=value['parent'], production_switch=False, approval_sha256=digest(approval))
         atomic(target/'RELEASE.json', canonical(public))
         atomic(target/'STATE.json', canonical(value['state']))
+        atomic(target/'PUBLICATION-APPROVAL.json', canonical(approval))
         atomic(target/'CHECKSUMS.json', canonical({name: digest((target/name).read_bytes())
-                                                 for name in ('RELEASE.json', 'STATE.json')}))
+                                                 for name in ('RELEASE.json', 'STATE.json',
+                                                              'PUBLICATION-APPROVAL.json')}))
         return dict(path=str(target), release=value['release'], merge_authorized=False,
                     production_switch_authorized=False)
 

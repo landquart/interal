@@ -36,9 +36,13 @@ class Releases(unittest.TestCase):
         self.tmp = tempfile.TemporaryDirectory(); self.root = Path(self.tmp.name)
         self.state = fixture(); self.op = operation()
         self.inputs = context(self.state, 'snapshot', 'sources', 'algorithm', 'ledger-head')
-        for name in ('snapshot', 'sources', 'algorithm', 'controller', 'registry', 'index', 'aux', 'project'):
+        for name in ('snapshot', 'sources', 'algorithm', 'controller', 'review_bridge', 'ledger_store', 'registry', 'index', 'aux', 'project'):
             path = self.root/(name+'.input')
-            path.write_bytes(Path(__file__).with_name('control.py').read_bytes() if name == 'controller' else name.encode())
+            if name == 'controller': data = Path(__file__).with_name('control.py').read_bytes()
+            elif name == 'review_bridge': data = Path(__file__).with_name('review_bridge.py').read_bytes()
+            elif name == 'ledger_store': data = (Path(__file__).resolve().parents[1]/'review/store.py').read_bytes()
+            else: data = name.encode()
+            path.write_bytes(data)
             sha = digest(path.read_bytes()); self.inputs['files'][name] = dict(path=str(path), sha256=sha)
             if name in ('snapshot', 'sources', 'algorithm'): self.inputs[name] = sha
         self.trust = {'principals': {}}; self.keys = {}
@@ -155,7 +159,7 @@ class Releases(unittest.TestCase):
             with patch('review_bridge.witnesses', return_value=view): check_verdicts(self.plan, self.trust, 'x')
 
     def test_rejected_or_stale_review(self):
-        for field, value in [('status', 'REJECT'), ('snapshot', 'obsolete'), ('action', 'undo')]:
+        for field, value in [('status', 'REJECT'), ('snapshot', 'obsolete'), ('action', 'undo'), ('action', 'arbitrate')]:
             view = self.view(); view['current'][(self.op['question_id'], 'second')][field] = value
             with self.subTest(field=field), self.assertRaises(ValueError):
                 with patch('review_bridge.witnesses', return_value=view): check_verdicts(self.plan, self.trust, 'x')
@@ -177,6 +181,43 @@ class Releases(unittest.TestCase):
         for field, value in [('family_id', 'family:new'), ('head_id', 'head:new'), ('language', 'ru')]:
             op = copy.deepcopy(self.op); op['after'][field] = value
             with self.subTest(field=field), self.assertRaises(ValueError): transform(self.state, [op])
+
+    def test_candidate_binding_blocks_cross_lexeme_review(self):
+        op = copy.deepcopy(self.op); op['candidate_id'] = 'native:someone-else'
+        with self.assertRaises(ValueError): transform(self.state, [op])
+        existing = transform(self.state, [self.op])
+        correction = operation('CORRECT_RELATION', member(), dict(member(), relation='compound'))
+        correction['candidate_id'] = 'native:someone-else'
+        with self.assertRaises(ValueError): transform(existing, [correction])
+
+    def test_no_unresolved_relation_can_be_published(self):
+        op = copy.deepcopy(self.op); op['after'].pop('relation')
+        with self.assertRaises(ValueError): transform(self.state, [op])
+        state = transform(self.state, [self.op])
+        for relation in ('unresolved', 'inflection'):
+            change = operation('CORRECT_RELATION', member(), dict(member(), relation=relation))
+            with self.subTest(relation=relation), self.assertRaises(ValueError):
+                transform(state, [change])
+
+    def test_forged_signed_summary_rejected(self):
+        self.plan['summary']['families'] = ['family:wrong']
+        self.checks['plan'] = digest(self.plan); self.attest()
+        self.approval = self.token('owner', dict(schema=VERSION, purpose='approve-release',
+            release=digest(self.plan), checks=digest(self.checks),
+            store=str(self.store.root), parent=self.baseline))
+        with self.assertRaisesRegex(ValueError, 'summary'): self.apply()
+
+    def test_human_witness_code_locked(self):
+        for name in ('review_bridge', 'ledger_store'):
+            inputs = copy.deepcopy(self.inputs)
+            inputs['files'][name]['sha256'] = '0'*64
+            with self.subTest(name=name), self.assertRaises(ValueError): check_input_files(inputs)
+
+    def test_changed_partition_without_families_blocks(self):
+        row = dict(revision='r2', sha256='a', license_sha256='b', license_status='VERIFIED')
+        plan = source_delta({}, {'UDer/en': row}, {'UDer/en': []}, [])
+        self.assertFalse(plan['runnable'])
+        self.assertEqual(plan['blockers']['missing_dependency_partitions'], ['UDer/en'])
 
     def test_no_inflection_member(self):
         op = copy.deepcopy(self.op); op['after']['relation'] = 'inflection'
@@ -341,6 +382,9 @@ class Releases(unittest.TestCase):
         result = package(self.store, self.root/'package', self.token('owner', payload), self.trust)
         self.assertFalse(result['merge_authorized']); self.assertFalse(result['production_switch_authorized'])
         self.assertNotIn('transactions', read(self.root/'package/RELEASE.json'))
+        self.assertEqual(read(self.root/'package/PUBLICATION-APPROVAL.json')['payload'], payload)
+        self.assertEqual(read(self.root/'package/CHECKSUMS.json')['PUBLICATION-APPROVAL.json'],
+                         digest((self.root/'package/PUBLICATION-APPROVAL.json').read_bytes()))
 
     def test_approval_request_checks_before_signing(self):
         from workflow import approval_request

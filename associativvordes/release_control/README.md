@@ -37,8 +37,9 @@ ACCEPT_PROPOSED сам ничего не применяет. EXCLUDE_MEMBER до
 по связанному файлу: gold > 0, thresholds_passed и semantic_application_allowed.
 Одной выставленной строки PASS недостаточно.
 
-Проверяются реальные bytes snapshot/source-lock/algorithm/controller/registry/
-index/aux/project. `inputs.files` содержит для каждого `{path, sha256}`; первые
+Проверяются реальные bytes snapshot/source-lock/algorithm/controller/review_bridge/
+ledger_store/registry/index/aux/project. Подписи блокируются при изменении
+`review_bridge.py` либо `review/store.py`. `inputs.files` содержит для каждого `{path, sha256}`; первые
 три SHA совпадают с соответствующими полями inputs. После изменения данных или
 кода старое разрешение неприменимо. Локальный POSIX flock удерживается одновременно
 для версии данных и журнала человеческих решений до завершения записи.
@@ -177,7 +178,7 @@ registry_documents и REGISTRY.json для существующего mass_run. 
 `workflow.py package --store ... --destination ... --approval ... --trust ...`
 требует отдельной owner подписи
 `{schema,purpose:"approve-publication-package",version,release,store}`.
-Пакет содержит точный RELEASE, STATE и checksums, без человеческих транзакций
+Пакет содержит точные RELEASE, STATE, подписанный PUBLICATION-APPROVAL.json и checksums, без человеческих транзакций
 в публичной сводке. Это вход для отдельного PR. Слияние и production switch
 не разрешаются этим envelope и командой не выполняются.
 
