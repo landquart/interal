@@ -1,0 +1,105 @@
+{
+  "blockers": [
+    {
+      "effect": "Precision/recall/false merges cannot be estimated. First fixed pilot cohort needs 360 independent reviews of 180 cases; full pilot at least 1787.",
+      "id": "NO_INDEPENDENT_HUMAN_GOLD"
+    },
+    {
+      "effect": "No stochastic LLM comparison or calibrated confidence; both planned stages are explicitly unconfigured.",
+      "id": "NO_REAL_LLM_OUTPUTS"
+    },
+    {
+      "effect": "All proposals require human review. No addition, exclusion, relation change or family merge may be applied.",
+      "id": "UNCALIBRATED_SEMANTIC_CLASSES"
+    },
+    {
+      "effect": "All 19 canonical families in the certified shadow v6 registry covered; production v5 million-family inventory is neither switched nor claimed covered.",
+      "id": "FROZEN_V6_SCOPE_ONLY"
+    },
+    {
+      "effect": "240 independent reviews needed for 120 distinct random/risk sampled proposals, plus arbitration.",
+      "id": "NEW_MASS_SAMPLE_UNREVIEWED"
+    },
+    {
+      "effect": "Family meaning, source POS and lexeme senses remain unverified; automated includes/excludes cannot be justified by morphology alone.",
+      "id": "SEMANTIC_CONTEXT_UNVERIFIED",
+      "native_candidates": 3813
+    }
+  ],
+  "exact_native_matched_frozen_cases": 85,
+  "false_family_merge": {
+    "ci95": null,
+    "denominator": 0,
+    "errors": null,
+    "value": null
+  },
+  "false_merge_zero_error_required_per_stratum": 5478,
+  "frozen_counts": {
+    "adjudicated": 0,
+    "disagreement": 0,
+    "resolved": 0,
+    "single_review": 0,
+    "unannotated": 1406,
+    "uncertain": 0
+  },
+  "full_pilot_minimum_required_reviews": 1787,
+  "initial_fixed_pilot_required_reviews": 360,
+  "new_random_cases": 60,
+  "new_required_human_reviews": 240,
+  "new_risk_cases": 60,
+  "new_unique_cases": 120,
+  "precision": {
+    "ci95": null,
+    "denominator": 0,
+    "numerator": null,
+    "value": null
+  },
+  "release07_additional_blockers": [
+    {
+      "effect": "No real human/verifier/owner operation signatures. approved_release_id=null.",
+      "id": "NO_OWNER_AUTHORIZED_NONEMPTY_RELEASE"
+    },
+    {
+      "effect": "Baseline replay is measured, not an approved nonempty change. Semantic model independence is unverified.",
+      "id": "NO_APPROVED_CHANGE_CALCULATOR_IMPACT"
+    },
+    {
+      "effect": "Graph and mass-search registry adapters work. STATE packages do not materialize or switch production v5/v6.",
+      "id": "PRODUCTION_MATERIALIZATION_UNVERIFIED"
+    }
+  ],
+  "semantic_application_allowed": false,
+  "status": "BLOCKED",
+  "thresholds": {
+    "always_manual": [
+      "homonym",
+      "compound",
+      "mixed path",
+      "unknown direction",
+      "unknown POS/sense",
+      "negative history",
+      "competing families"
+    ],
+    "automatic_family_merge": false,
+    "automatic_positive_membership": false,
+    "eligible_future_classes": [
+      "direct derivation with verified sense/POS/direction",
+      "orthographic variant with verified identity"
+    ],
+    "false_merge_upper_bound": 0.001,
+    "familywise_alpha": 0.05,
+    "minimum_independent_gold_per_stratum": "calculated exact one-sided binomial zero-error requirement, adjusted for 12 strata",
+    "permitted_now": [
+      "checksums",
+      "source import",
+      "native-ID deduplication",
+      "candidate proposals",
+      "task scheduling"
+    ],
+    "precision_lower_bound": 0.99,
+    "predeclared_strata": 12,
+    "threshold_changes": "new protocol ID and untouched held-out sample required"
+  },
+  "thresholds_passed": false,
+  "usable_independent_gold": 0
+}

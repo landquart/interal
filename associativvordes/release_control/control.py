@@ -454,11 +454,21 @@ def restore(archive, destination, expected_sha256):
         for name, sha in proofs.items():
             require(name == 'CURRENT' or re.fullmatch(r'versions/[a-f0-9]{64}\.json', name), 'unsafe backup path')
             require(digest(z.read(name)) == sha, 'corrupt backup entry')
-        target.mkdir(parents=True, exist_ok=True, mode=0o700); (target/'versions').mkdir()
-        for name in sorted(set(proofs)-{'CURRENT'}): atomic(target/name, z.read(name))
-        # Validate the complete chain in an unpublished staging pointer first.
-        atomic(target/'CURRENT', z.read('CURRENT'))
-    return Store(target).verify_chain()
+        target.parent.mkdir(parents=True, exist_ok=True)
+        stage = Path(tempfile.mkdtemp(prefix='.restore-release07-', dir=target.parent))
+        try:
+            (stage/'versions').mkdir()
+            for name in sorted(set(proofs)-{'CURRENT'}): atomic(stage/name, z.read(name))
+            atomic(stage/'CURRENT', z.read('CURRENT'))
+            result = Store(stage).verify_chain()
+            if target.exists(): target.rmdir()  # Only the prechecked empty destination.
+            stage.rename(target)
+            fd = os.open(target.parent, os.O_RDONLY | os.O_DIRECTORY)
+            try: os.fsync(fd)
+            finally: os.close(fd)
+            return result
+        finally:
+            __import__('shutil').rmtree(stage, ignore_errors=True)
 
 
 def main():

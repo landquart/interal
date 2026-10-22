@@ -1,0 +1,22 @@
+{
+  "base_commit": "e10ba3a2616ac9c114a396c4153e27bfb13339cb",
+  "exercise_controller_note": "Complete native exercise preceded final staged-restore hardening. FINAL-RESTORE and 37-test final regressions verify the final controller.",
+  "files": {
+    ".github/workflows/release-control.yml": "a69af0e45820a2f4af4dd231cdc13cbfba6f8728aa67271f2430b5f872f37037",
+    "associativvordes/release_control/.gitignore": "5196da777ded54ac323cf9e9902bc70183708d3724d99396362d10a0f7dbf095",
+    "associativvordes/release_control/README.md": "12e510882f481b8621b3001dde18916dfa0775a8c531674b335f97f678e1b4e3",
+    "associativvordes/release_control/baseline.mjs": "7a5d175196fe59341fcfdf37bf92c843cf7f221b10ee69efd67667cf2ca75f86",
+    "associativvordes/release_control/calculator.mjs": "ef0dd812789121250cc9bea5c2f8c49b6322593b2d594934bbeaf3917cf1daa5",
+    "associativvordes/release_control/control.py": "6c934edb252e905ece542fd047baf6c9eff15af7b2a1768ce8a1306eb643782a",
+    "associativvordes/release_control/exercise.py": "97abf9137f2252060ffd9c85dec687434b25f6a36d19eeec676a9d575252e337",
+    "associativvordes/release_control/graph_view.py": "02b5047e3104315b778498897c3e356284f31e6d767fe036e8dbf6ded74b1fa9",
+    "associativvordes/release_control/inputs.py": "6af707fa0a31d629ba5bb81ac2848ac81f255b5651930459e8b47c92ac04ade0",
+    "associativvordes/release_control/recordings.py": "07089a30538e5b7d1b60054469da955a309a7e95fbcdea391f93f54d66adeb8d",
+    "associativvordes/release_control/registry_view.py": "eede206bebe8381d4025dd3bb589ee9c0db74e17439e446d9968fe889c0df94e",
+    "associativvordes/release_control/review_bridge.py": "36d9e50d81e778092f67c1f966f6e348cf509263a4c054aa971e63e93861ca67",
+    "associativvordes/release_control/test_control.py": "ab06ea75e6c1b72028debcc408e09916c49ea16134402dab1daee1fb11dbffca",
+    "associativvordes/release_control/workflow.py": "c786332f6aed7eb81b2807f4a353fa84f5aa05b3eec8b2323b179d49a361e257",
+    "tests/associative-release-control.test.mjs": "88310f2584b753816c9392558f508b2390522a233b454f6b0f0dabbb7b793c57"
+  },
+  "frozen_sources_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad"
+}

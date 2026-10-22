@@ -1,0 +1,36 @@
+{
+  "calculator_seconds": 0.966,
+  "capture_seconds": 58.15,
+  "exercise_peak_rss_kib": 897924,
+  "exercise_wall_seconds": 220.719,
+  "final_regressions": [
+    {
+      "exit": 0,
+      "name": "final-full-regressions",
+      "seconds": 75.18017757999999,
+      "sha256": "9394479b1c6ec2a0d30027acd132f8ea7e005e1823d6780ab3f990735bed5341"
+    },
+    {
+      "exit": 0,
+      "name": "final-browser-regressions",
+      "seconds": 2.9201208789999953,
+      "sha256": "556e7e7b9a6a1c515225f77add7b63df2132eee16639171e3e3afbb1d2f13af7"
+    }
+  ],
+  "final_restore": {
+    "committed_versions": 1,
+    "history_preserved": true,
+    "orphan_versions_ignored": 0,
+    "seconds": 1.6191113269999846,
+    "state_equal": true,
+    "status": "PASS"
+  },
+  "infrastructure_cost": "unknown",
+  "interop_search_peak_rss_kib": 437020,
+  "interop_search_seconds": 15.429,
+  "interop_wall_seconds": 38.66579911300005,
+  "llm_calls": 0,
+  "llm_cost_usd": 0,
+  "native_working_disk_bytes": 599863425,
+  "schema": "release07-resources/1"
+}

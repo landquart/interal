@@ -237,6 +237,17 @@ class Releases(unittest.TestCase):
         (self.store.root/'versions'/(self.baseline+'.json')).write_text('{}')
         with self.assertRaises(ValueError): self.store.current()
 
+    def test_invalid_restored_chain_never_publishes_target(self):
+        import zipfile
+        raw = canonical({'version': '0'*64})
+        archive = self.root/'invalid-chain.zip'
+        with zipfile.ZipFile(archive, 'w') as z:
+            z.writestr('CURRENT', raw)
+            z.writestr('CHECKSUMS.json', canonical({'CURRENT': digest(raw)}))
+        with self.assertRaises((ValueError, FileNotFoundError)):
+            restore(archive, self.root/'invalid-restored', digest(archive.read_bytes()))
+        self.assertFalse((self.root/'invalid-restored').exists())
+
     def test_real_sigkill_before_publication(self):
         pid = os.fork()
         if pid == 0:
