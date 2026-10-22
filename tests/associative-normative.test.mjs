@@ -39,7 +39,8 @@ function fixture(c=cases[0]) {
       source_lock_sha256:digest(locks),algorithm_sha256:digest('TEST_ONLY'),policy_version:'1.0.0',origin:'test_fixture'}};
   return d;
 }
-function trust(d) { return {verifiedEvidenceIds:new Set(d.evidence.map(e=>e.id)),authorizedDecisionIds:new Set([d.id]),allowTestFixtures:true}; }
+function trust(d) { return {verifiedEvidenceIds:new Set(d.evidence.map(e=>e.id)),authorizedDecisionIds:new Set([d.id]),
+  verifiedEvidenceDigests:new Map(d.evidence.map(e=>[e.id,digest(e)])),authorizedDecisionDigests:new Map([[d.id,digest(d)]]),allowTestFixtures:true}; }
 function result(d,ctx=trust(d)) { return evaluateMembership(d,ctx).decision; }
 
 for (const c of cases) test('explainable case: '+c.id,()=>{
@@ -88,7 +89,7 @@ test('modern association needs a separate verified assessment',()=>{
   assert.equal(evaluateAssociation(d,trust(d)).status,'unknown');
   const ctx={...trust(d),verifiedAssociationDecisionIds:new Set([d.id])};
   assert.equal(evaluateAssociation(d,ctx).status,'supported');
-  d.association_status='weak';assert.equal(evaluateAssociation(d,ctx).status,'weak');assert.equal(result(d),M);
+  d.association_status='weak';assert.equal(evaluateAssociation(d,{...trust(d),verifiedAssociationDecisionIds:new Set([d.id])}).status,'weak');assert.equal(result(d),M);
 });
 test('unknown homonym sense blocks confirmation',()=>{
   const d=fixture();d.scope.sense_id=null;d.correspondence.scope.sense_id=null;d.evidence.forEach(e=>e.scope.sense_id=null);
@@ -104,6 +105,12 @@ test('source dataset alone cannot confirm linguistic membership',()=>{
 });
 test('test fixture authority is disabled outside explicit test mode',()=>{
   const d=fixture();assert.equal(result(d,{...trust(d),allowTestFixtures:false}),U);
+});
+test('trusted IDs cannot be reused after changing decision or evidence content',()=>{
+  const d=fixture(),ctx=trust(d);d.reason+=' changed';assert.equal(result(d,ctx),U);
+  const x=fixture(),prior=trust(x);x.evidence[0].finding+=' changed';
+  const {source,version,locator,finding}=x.evidence[0];x.evidence[0].assertion_sha256=digest({source,version,locator,finding});
+  prior.authorizedDecisionDigests.set(x.id,digest(x));assert.equal(result(x,prior),U);
 });
 test('tampered assertion fails hash validation',()=>{
   const d=fixture();d.evidence[0].finding+=' altered';assert.throws(()=>validateDecision(d),/digest mismatch/);

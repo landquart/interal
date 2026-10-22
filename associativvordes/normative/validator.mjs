@@ -81,11 +81,12 @@ export function validateDecision(d) {
 }
 
 function proofTrusted(d,trust) {
-  if (!trust.authorizedDecisionIds?.has(d.id) ||
+  if (!trust.authorizedDecisionIds?.has(d.id) || trust.authorizedDecisionDigests?.get(d.id)!==digest(d) ||
     !(d.provenance.origin==='human_review' || d.provenance.origin==='test_fixture' && trust.allowTestFixtures===true)) return false;
   const byId=new Map(d.evidence.map(e=>[e.id,e]));
   const axes=['evidence_status','lexical_identity_status','sense_status','relation_status'];
-  const valid = id => trust.verifiedEvidenceIds?.has(id) && ['dictionary','grammar','reviewed_document'].includes(byId.get(id)?.origin);
+  const valid = id => trust.verifiedEvidenceIds?.has(id) && trust.verifiedEvidenceDigests?.get(id)===digest(byId.get(id)) &&
+    ['dictionary','grammar','reviewed_document'].includes(byId.get(id)?.origin);
   const polarity=d.decision==='CONFIRMED_NONMEMBER'?'rebuts':'supports';
   return axes.every(axis=>d.axis_evidence[axis].some(id=>valid(id) && (axis!=='relation_status'||byId.get(id).polarity===polarity))) &&
     (d.decision!=='CONFIRMED_MEMBER' || d.correspondence.evidence_ids.some(valid) &&
@@ -96,15 +97,16 @@ function proofTrusted(d,trust) {
 export function scopeCovers(prior,scope) {
   return Object.keys(scope).every(k=>prior[k]===null || prior[k]===scope[k]);
 }
-export function evaluateMembership(d,{history=[],verifiedEvidenceIds=new Set(),authorizedDecisionIds=new Set(),authorizedSupersessions=new Set(),allowTestFixtures=false}={}) {
+export function evaluateMembership(d,{history=[],verifiedEvidenceIds=new Set(),authorizedDecisionIds=new Set(),verifiedEvidenceDigests=new Map(),authorizedDecisionDigests=new Map(),authorizedSupersessions=new Set(),allowTestFixtures=false}={}) {
   validateDecision(d);
-  const trust={verifiedEvidenceIds,authorizedDecisionIds,allowTestFixtures};
+  const trust={verifiedEvidenceIds,authorizedDecisionIds,verifiedEvidenceDigests,authorizedDecisionDigests,allowTestFixtures};
   const relevant=history.filter(h=>scopeCovers(h.scope,d.scope));
   const superseded=h=>d.supersedes.includes(h.id) && authorizedSupersessions.has(`${d.id}:${h.id}`) && proofTrusted(d,trust);
   const active=relevant.filter(h=>!superseded(h));
   const negative=active.filter(h=>h.decision==='CONFIRMED_NONMEMBER' || h.guard==='excluded' || h.guard==='quarantine');
   const hold=active.some(h=>h.guard==='uncertain' || h.guard==='pending');
-  const relationPolarities=new Set(d.axis_evidence.relation_status.filter(id=>verifiedEvidenceIds.has(id)).map(id=>d.evidence.find(e=>e.id===id).polarity));
+  const relationPolarities=new Set(d.axis_evidence.relation_status.filter(id=>verifiedEvidenceIds.has(id) &&
+    verifiedEvidenceDigests.get(id)===digest(d.evidence.find(e=>e.id===id))).map(id=>d.evidence.find(e=>e.id===id).polarity));
   if (relationPolarities.size>1 || d.evidence_status==='contradictory' || ['lexical_identity_status','sense_status','relation_status'].some(k=>d[k]==='conflict') ||
     active.some(h=>h.decision==='CONFLICT') || d.decision==='CONFLICT') return {decision:'CONFLICT',reason:'incompatible_evidence_or_decisions'};
   if (negative.length) return d.decision==='CONFIRMED_MEMBER' ?
