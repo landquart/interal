@@ -74,6 +74,9 @@ def run(repo, work):
     if not (work/'STABLE-ID-AUDIT.json').exists():
         checked([sys.executable,audit_script,'--database',work/'after-census/census.sqlite','--output',work/'STABLE-ID-AUDIT.json'],work/'stable-id-audit.log')
     if load(work/'STABLE-ID-AUDIT.json')['verdict']!='PASS': raise ValueError('stable ID disagreement requires review')
+    from audit_metadata import audit
+    metadata=audit(work/'after',work/'after-census/FULL-CENSUS.json',work/'METADATA-CHECK.json')
+    if metadata['status']!='PASS': raise ValueError('materialized report counters require review')
     meta = load(work/'after/current'/PREFIX/'manifest.json'); report=load(work/'after/current'/PREFIX/'report.json')
     expected = dict(families=before['counts']['canonical_families'], aliases=before['counts']['aliases'])
     if any(meta['counts'][k] != v for k,v in expected.items()): raise ValueError('manifest current count mismatch')
