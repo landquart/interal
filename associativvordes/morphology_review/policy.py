@@ -67,9 +67,13 @@ def unresolved_reasons(mask,rows,history,flags):
     if history:reasons.append('EXACT_HISTORY_OVERLAP')
     return reasons
 
-def guard_application(proposal,history_checker=None):
+def guard_application(proposal,history_checker=None,correspondence_checker=None):
     if history_checker is None:return dict(allowed=False,status='HISTORY_UNAVAILABLE')
     try:
         result=history_checker(proposal)
-        return dict(allowed=bool(result.get('allowed') and result.get('status')=='CLEAR'),status=result.get('status','HISTORY_UNAVAILABLE'))
+        if not (result.get('allowed') and result.get('status')=='CLEAR'):
+            return dict(allowed=False,status=result.get('status','HISTORY_UNAVAILABLE'))
+        if correspondence_checker is None:return dict(allowed=False,status='CORRESPONDENCE_REGISTRY_UNAVAILABLE')
+        protection=correspondence_checker(proposal)
+        return dict(allowed=bool(protection.get('allowed') and protection.get('status')=='CLEAR'),status=protection.get('status','CORRESPONDENCE_REGISTRY_UNAVAILABLE'))
     except (OSError,ValueError,TypeError,AttributeError):return dict(allowed=False,status='HISTORY_UNAVAILABLE')

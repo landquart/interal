@@ -40,6 +40,12 @@ class PolicyTests(unittest.TestCase):
         self.assertFalse(authorize('REMOVE_EXACT_MEMBERSHIPS',['a'],['a'],p,dict(allowed=True,status='CLEAR')))
     def test_negative_history_cannot_enable_unavailable_history(self):
         self.assertFalse(authorize('REMOVE_EXACT_MEMBERSHIPS',['a'],['a'],{},dict(allowed=False,status='HISTORY_UNAVAILABLE'),lambda p:True))
+    def test_correspondence_gate_cannot_be_omitted_or_cover_only_sample(self):
+        proof=dict(verified_existing_review_receipt=True,authority='INDEPENDENT_GOLD',independent_source_adapter_verified=True,all_native_identity_and_sense_bindings_verified=True,all_competing_paths_adjudicated=True,negative_scope_sha256=scope_hash(['a','b']),source_version_matches=True)
+        args=('REJECT_ENTIRE_FAMILY',['a','b'],['a','b'],proof,dict(allowed=True,status='CLEAR'),lambda p:True)
+        self.assertFalse(authorize(*args))
+        self.assertFalse(authorize(*args,lambda ids,h:dict(allowed=True,status='CLEAR',scope_sha256=h,memberships_checked=1,registry_sha256='a'*64)))
+        self.assertFalse(authorize(*args,lambda ids,h:dict(allowed=False,status='BLOCKED_DOCUMENTED_CORRESPONDENCE',scope_sha256=h,memberships_checked=2,registry_sha256='a'*64)))
     def test_equal_sets_hash_order_independent(self):self.assertEqual(scope_hash([['en','a'],['ru','b']]),scope_hash([['ru','b'],['en','a']]))
     def test_sense_specific_scopes_not_merged(self):self.assertNotEqual(scope_hash([['en','id','sense-a']]),scope_hash([['en','id','sense-b']]))
     def test_unknown_operation_rejected(self):

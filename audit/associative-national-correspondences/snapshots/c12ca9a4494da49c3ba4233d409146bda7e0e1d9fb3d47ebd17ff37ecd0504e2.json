@@ -1,0 +1,1494 @@
+{
+  "authority": "DOCUMENTARY_RESEARCH_NOT_LINGUISTIC_GOLD",
+  "default_policy": "HOLD_EXCLUSION_UNLESS_ALL_CHECKS_AND_INDEPENDENT_PROOF_PASS",
+  "entries": [
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:manu",
+      "component": {
+        "evidence_refs": [
+          "oqlf-manucure"
+        ],
+        "meaning": "hand",
+        "role": "historical_root_component",
+        "segmentation_status": "DICTIONARY_DOCUMENTED_WITHIN_EXACT_LEXEME"
+      },
+      "context": "Modern French noun; hand-care sense only",
+      "evidence_refs": [
+        "oqlf-manucure"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "manu-fr-manucure",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "manucure",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "care of hand nails",
+        "sense_id": "manu-fr-manucure:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "manu",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "manu",
+      "notes": "manu is the hand component; cure is care. Historical French manicure is not the recommended modern form.",
+      "path": [
+        {
+          "evidence_refs": [
+            "oqlf-manucure"
+          ],
+          "from_form": "la:manus",
+          "relation": "learned_compound",
+          "to_form": "fr:manucure"
+        }
+      ],
+      "relation_kind": "COMPOUND_COMPONENT",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:manu",
+      "context": "Noun, not the metaphorical hedge-trimming verb",
+      "evidence_refs": [
+        "oqlf-manucure",
+        "ah-manicure"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "manu-en-manicure",
+      "language": "en",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "manicure",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "cosmetic care of fingernails",
+        "sense_id": "manu-en-manicure:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "mani",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "manu",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "oqlf-manucure"
+          ],
+          "from_form": "la:manus",
+          "relation": "historical_formation",
+          "to_form": "fr:manicure"
+        },
+        {
+          "evidence_refs": [
+            "ah-manicure"
+          ],
+          "from_form": "fr:manicure",
+          "relation": "borrowing",
+          "to_form": "en:manicure"
+        }
+      ],
+      "relation_kind": "HISTORICAL_ALLOMORPH",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:manu",
+      "context": "Duden sense 1 only",
+      "evidence_refs": [
+        "duden-manik"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "manu-de-manik",
+      "language": "de",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "Maniküre",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "hand and fingernail care",
+        "sense_id": "manu-de-manik:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "Mani",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "manu",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "duden-manik"
+          ],
+          "from_form": "la:manus",
+          "relation": "historical_formation",
+          "to_form": "fr:manicure"
+        },
+        {
+          "evidence_refs": [
+            "duden-manik"
+          ],
+          "from_form": "fr:manicure",
+          "relation": "borrowing",
+          "to_form": "de:Maniküre"
+        }
+      ],
+      "relation_kind": "HISTORICAL_ALLOMORPH",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:manu",
+      "context": "Kuznetsov treatment sense, not nail-polish metonymy",
+      "evidence_refs": [
+        "gramota-manik"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "manu-ru-manik",
+      "language": "ru",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "маникюр",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "cleaning and polishing fingernails",
+        "sense_id": "manu-ru-manik:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "мани",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "manu",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "gramota-manik"
+          ],
+          "from_form": "la:manus",
+          "relation": "historical_formation",
+          "to_form": "fr:manicure"
+        },
+        {
+          "evidence_refs": [
+            "gramota-manik"
+          ],
+          "from_form": "fr:manicure",
+          "relation": "borrowing",
+          "to_form": "ru:маникюр"
+        }
+      ],
+      "relation_kind": "HISTORICAL_ALLOMORPH",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:regul",
+      "context": "Transitive regulating sense",
+      "evidence_refs": [
+        "ac-reguler"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "regul-fr-reguler",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "réguler",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "VERB",
+        "sense_gloss": "regulate a system",
+        "sense_id": "regul-fr-reguler:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "régul",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "regul",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "ac-reguler"
+          ],
+          "from_form": "la:regula",
+          "relation": "derivation",
+          "to_form": "la:regulare"
+        },
+        {
+          "evidence_refs": [
+            "ac-reguler"
+          ],
+          "from_form": "la:regulare",
+          "relation": "borrowing",
+          "to_form": "fr:réguler"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:regul",
+      "context": "Académie section II; payment sense I not licensed",
+      "evidence_refs": [
+        "ac-regle",
+        "ac-regler",
+        "ac-reglement"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "regul-fr-reglement",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "règlement",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "set of rules",
+        "sense_id": "regul-fr-reglement:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "règl",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "regul",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "ac-regle"
+          ],
+          "from_form": "la:regula",
+          "relation": "historical_development",
+          "to_form": "fr:règle"
+        },
+        {
+          "evidence_refs": [
+            "ac-regler"
+          ],
+          "from_form": "fr:règle",
+          "relation": "derivation",
+          "to_form": "fr:régler"
+        },
+        {
+          "evidence_refs": [
+            "ac-reglement"
+          ],
+          "from_form": "fr:régler",
+          "relation": "suffixation",
+          "to_form": "fr:règlement"
+        }
+      ],
+      "relation_kind": "HISTORICAL_CORRESPONDENCE",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [
+        {
+          "dictionary": "Kuznetsov",
+          "route": [
+            "fr:règlement",
+            "ru:регламент"
+          ],
+          "source": "gramota-reglement",
+          "source_spelling": "reglement"
+        },
+        {
+          "dictionary": "Krysin",
+          "route": [
+            "fr:règlement",
+            "pl:reglament",
+            "ru:регламент"
+          ],
+          "source": "gramota-reglement",
+          "source_spelling": "réglement"
+        }
+      ],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:regul",
+      "context": "Rules sense; route disagreement preserved",
+      "evidence_refs": [
+        "ac-regle",
+        "ac-regler",
+        "ac-reglement",
+        "gramota-reglement"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "regul-ru-reglament",
+      "language": "ru",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "регламент",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "rules governing an organization",
+        "sense_id": "regul-ru-reglament:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "регл",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "regul",
+      "notes": "Common French rule path documented. Direct borrowing versus Polish mediation remains CONFLICT; neither route promoted to final.",
+      "path": [
+        {
+          "evidence_refs": [
+            "ac-regle"
+          ],
+          "from_form": "la:regula",
+          "relation": "historical_development",
+          "to_form": "fr:règle"
+        },
+        {
+          "evidence_refs": [
+            "ac-regler"
+          ],
+          "from_form": "fr:règle",
+          "relation": "derivation",
+          "to_form": "fr:régler"
+        },
+        {
+          "evidence_refs": [
+            "ac-reglement"
+          ],
+          "from_form": "fr:régler",
+          "relation": "suffixation",
+          "to_form": "fr:règlement"
+        },
+        {
+          "evidence_refs": [
+            "gramota-reglement"
+          ],
+          "from_form": "fr:règlement",
+          "relation": "borrowing_route_unresolved",
+          "to_form": "ru:регламент"
+        }
+      ],
+      "relation_kind": "HISTORICAL_CORRESPONDENCE",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:creat",
+      "context": "American Heritage sense 1",
+      "evidence_refs": [
+        "ah-create"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "creat-en-create",
+      "language": "en",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "create",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "VERB",
+        "sense_gloss": "bring into being",
+        "sense_id": "creat-en-create:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "creat",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "creat",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "ah-create"
+          ],
+          "from_form": "la:creare/creat-",
+          "relation": "borrowing",
+          "to_form": "enm:createn"
+        },
+        {
+          "evidence_refs": [
+            "ah-create"
+          ],
+          "from_form": "enm:createn",
+          "relation": "historical_development",
+          "to_form": "en:create"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:creat",
+      "context": "Académie sense 4",
+      "evidence_refs": [
+        "ac-creation"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "creat-fr-creation",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "création",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "human invention or artistic product",
+        "sense_id": "creat-fr-creation:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "créat",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "creat",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "ac-creation"
+          ],
+          "from_form": "la:creare",
+          "relation": "derivation",
+          "to_form": "la:creatio"
+        },
+        {
+          "evidence_refs": [
+            "ac-creation"
+          ],
+          "from_form": "la:creatio",
+          "relation": "borrowing",
+          "to_form": "fr:création"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:creat",
+      "context": "Duden sense 2b, no plural",
+      "evidence_refs": [
+        "duden-kreation"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "creat-de-kreation",
+      "language": "de",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "Kreation",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "act of creating",
+        "sense_id": "creat-de-kreation:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "Kreat",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "creat",
+      "notes": "Fashion sense 1 has French mediation; not silently substituted for sense 2b.",
+      "path": [
+        {
+          "evidence_refs": [
+            "duden-kreation"
+          ],
+          "from_form": "la:creare",
+          "relation": "derivation",
+          "to_form": "la:creatio"
+        },
+        {
+          "evidence_refs": [
+            "duden-kreation"
+          ],
+          "from_form": "la:creatio",
+          "relation": "borrowing",
+          "to_form": "de:Kreation"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:creat",
+      "context": "Krysin sense 1 only",
+      "evidence_refs": [
+        "gramota-creative"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "creat-ru-creative",
+      "language": "ru",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "креативный",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "ADJ",
+        "sense_gloss": "creative, producing new things",
+        "sense_id": "creat-ru-creative:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "креат",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "creat",
+      "notes": "Dictionary Latin attribution retained verbatim; not evidence for every креат word.",
+      "path": [
+        {
+          "evidence_refs": [
+            "gramota-creative"
+          ],
+          "from_form": "la:creatio",
+          "relation": "historical_relation",
+          "to_form": "en:creative"
+        },
+        {
+          "evidence_refs": [
+            "gramota-creative"
+          ],
+          "from_form": "en:creative",
+          "relation": "borrowing",
+          "to_form": "ru:креативный"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:creat",
+      "context": "Historical connection with semantic drift; modern root-to-sense path requires review",
+      "evidence_refs": [
+        "gramota-creature",
+        "ac-creature"
+      ],
+      "evidence_status": "UNRESOLVED",
+      "id": "creat-ru-creature",
+      "language": "ru",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "креатура",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "protege",
+        "sense_id": "creat-ru-creature:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "креат",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "creat",
+      "notes": "French/German routes and Italian origin of French protege sense remain alternatives; no invented missing path.",
+      "path": [
+        {
+          "evidence_refs": [
+            "gramota-creature"
+          ],
+          "from_form": "la:creatura",
+          "relation": "borrowing_route_unresolved",
+          "to_form": "ru:креатура"
+        }
+      ],
+      "relation_kind": "OPAQUE_HISTORICAL_DERIVATIVE",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:ocul",
+      "context": "American Heritage adjective 1a",
+      "evidence_refs": [
+        "ah-ocular"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "ocul-en-ocular",
+      "language": "en",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "ocular",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "ADJ",
+        "sense_gloss": "relating to the eye",
+        "sense_id": "ocul-en-ocular:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "ocul",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "ocul",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "ah-ocular"
+          ],
+          "from_form": "la:oculus",
+          "relation": "derivation",
+          "to_form": "la:ocularis"
+        },
+        {
+          "evidence_refs": [
+            "ah-ocular"
+          ],
+          "from_form": "la:ocularis",
+          "relation": "borrowing",
+          "to_form": "en:ocular"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:ocul",
+      "context": "Académie adjective, not noun eyepiece",
+      "evidence_refs": [
+        "ah-ocular",
+        "ac-oculaire"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "ocul-fr-oculaire",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "oculaire",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "ADJ",
+        "sense_gloss": "relating to the eye",
+        "sense_id": "ocul-fr-oculaire:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "ocul",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "ocul",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "ah-ocular"
+          ],
+          "from_form": "la:oculus",
+          "relation": "derivation",
+          "to_form": "la:ocularis"
+        },
+        {
+          "evidence_refs": [
+            "ac-oculaire"
+          ],
+          "from_form": "la:ocularis",
+          "relation": "borrowing",
+          "to_form": "fr:oculaire"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:ocul",
+      "context": "Académie I.1; opaque inherited form",
+      "evidence_refs": [
+        "ac-oeil"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "ocul-fr-oeil",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "œil",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "visual organ",
+        "sense_id": "ocul-fr-oeil:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "œil",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "ocul",
+      "notes": "Historical relationship does not establish modern recognition of ocul.",
+      "path": [
+        {
+          "evidence_refs": [
+            "ac-oeil"
+          ],
+          "from_form": "la:oculus",
+          "relation": "historical_development",
+          "to_form": "fr:œil"
+        }
+      ],
+      "relation_kind": "HISTORICAL_CORRESPONDENCE",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:ocul",
+      "component": {
+        "evidence_refs": [
+          "duden-monokel"
+        ],
+        "meaning": "eye",
+        "role": "historical_root_component",
+        "segmentation_status": "HISTORICAL_ONLY_NO_MODERN_SEGMENT_BOUNDARY_ASSERTED"
+      },
+      "context": "Whole lexical carrier of a historical eye component; no invented modern segmentation",
+      "evidence_refs": [
+        "duden-monokel"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "ocul-de-monokel",
+      "language": "de",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "Monokel",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "corrective glass for one eye",
+        "sense_id": "ocul-de-monokel:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "Monokel",
+      "national_form_role": "WHOLE_LEXICAL_CARRIER_OF_HISTORICAL_COMPONENT",
+      "normative_form": "ocul",
+      "notes": "national_form denotes whole carrier, not a claim that Monokel is an allomorph of the root.",
+      "path": [
+        {
+          "evidence_refs": [
+            "duden-monokel"
+          ],
+          "from_form": "la:oculus",
+          "relation": "historical_component",
+          "to_form": "la:monoculus"
+        },
+        {
+          "evidence_refs": [
+            "duden-monokel"
+          ],
+          "from_form": "la:monoculus",
+          "relation": "historical_development",
+          "to_form": "fr:monocle"
+        },
+        {
+          "evidence_refs": [
+            "duden-monokel"
+          ],
+          "from_form": "fr:monocle",
+          "relation": "borrowing",
+          "to_form": "de:Monokel"
+        }
+      ],
+      "relation_kind": "INDIRECT_COMPOUND_COMPONENT",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:ped",
+      "component": {
+        "evidence_refs": [
+          "larousse-pedicure"
+        ],
+        "meaning": "foot",
+        "role": "historical_root_component",
+        "segmentation_status": "DICTIONARY_DOCUMENTED_WITHIN_EXACT_LEXEME"
+      },
+      "context": "Larousse noun practitioner; pes/pedis + cura",
+      "evidence_refs": [
+        "larousse-pedicure"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "ped-fr-pedicure",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "pédicure",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "foot-care practitioner",
+        "sense_id": "ped-fr-pedicure:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "pédi",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "ped",
+      "notes": "Foot component and care component have distinct roles; no Greek child component.",
+      "path": [
+        {
+          "evidence_refs": [
+            "larousse-pedicure"
+          ],
+          "from_form": "la:pes/pedis",
+          "relation": "learned_compound",
+          "to_form": "fr:pédicure"
+        }
+      ],
+      "relation_kind": "COMPOUND_COMPONENT",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:ped",
+      "context": "Specific proposed Latin-foot analysis refuted",
+      "evidence_refs": [
+        "ac-pedagogie"
+      ],
+      "evidence_status": "DIFFERENT_ETYMON",
+      "id": "ped-fr-pedagogie",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "pédagogie",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "education of children",
+        "sense_id": "ped-fr-pedagogie:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "péd",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "ped",
+      "notes": "This is not an automatic CONFIRMED_NONMEMBER decision for a corpus row.",
+      "path": [
+        {
+          "evidence_refs": [
+            "ac-pedagogie"
+          ],
+          "from_form": "gr:pais/paidos",
+          "relation": "compound",
+          "to_form": "gr:paidagogia"
+        },
+        {
+          "evidence_refs": [
+            "ac-pedagogie"
+          ],
+          "from_form": "gr:paidagogia",
+          "relation": "borrowing",
+          "to_form": "fr:pédagogie"
+        }
+      ],
+      "relation_kind": "REFUTED_SPECIFIC_PATH",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:inter",
+      "component": {
+        "evidence_refs": [
+          "ac-interposer",
+          "ac-inter-prefix",
+          "ah-interpose"
+        ],
+        "meaning": "between",
+        "role": "prefix_between",
+        "segmentation_status": "DICTIONARY_DOCUMENTED_WITHIN_EXACT_LEXEME"
+      },
+      "context": "Académie sense 1; between component only",
+      "evidence_refs": [
+        "ac-interposer",
+        "ac-inter-prefix",
+        "ah-interpose"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "inter-fr-interposer",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "interposer",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "VERB",
+        "sense_gloss": "put between",
+        "sense_id": "inter-fr-interposer:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "inter",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "inter",
+      "notes": "No productive general segmentation rule inferred; inter remains the normative preposition.",
+      "path": [
+        {
+          "evidence_refs": [
+            "ah-interpose",
+            "ac-inter-prefix"
+          ],
+          "from_form": "la:inter",
+          "relation": "prefixation",
+          "to_form": "la:interponere"
+        },
+        {
+          "evidence_refs": [
+            "ac-interposer",
+            "ah-interpose"
+          ],
+          "from_form": "la:interponere",
+          "relation": "borrowing_with_verb_remodelling",
+          "to_form": "fr:interposer"
+        }
+      ],
+      "relation_kind": "PREFIX_COMPONENT",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:liber",
+      "context": "Conditional FREE etymon; normative target sense not supplied by catalog",
+      "evidence_refs": [
+        "larousse-liberer"
+      ],
+      "evidence_status": "UNRESOLVED",
+      "id": "liber-fr-liberer",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "libérer",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "VERB",
+        "sense_gloss": "set free",
+        "sense_id": "liber-fr-liberer:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "libér",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "liber",
+      "notes": "Root-target binding requires authority; must not conflate BOOK and FREE.",
+      "path": [
+        {
+          "evidence_refs": [
+            "larousse-liberer"
+          ],
+          "from_form": "la:liber[FREE]",
+          "relation": "derivation",
+          "to_form": "la:liberare"
+        },
+        {
+          "evidence_refs": [
+            "larousse-liberer"
+          ],
+          "from_form": "la:liberare",
+          "relation": "borrowing",
+          "to_form": "fr:libérer"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:liber",
+      "context": "Conditional BOOK etymon, distinct from FREE",
+      "evidence_refs": [
+        "larousse-libraire"
+      ],
+      "evidence_status": "UNRESOLVED",
+      "id": "liber-fr-libraire",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "libraire",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "bookseller",
+        "sense_id": "liber-fr-libraire:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "libr",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "liber",
+      "notes": "Cannot decide whether this fits canonical liber until its intended sense is fixed.",
+      "path": [
+        {
+          "evidence_refs": [
+            "larousse-libraire"
+          ],
+          "from_form": "la:liber[BOOK]",
+          "relation": "derivation",
+          "to_form": "la:librarius"
+        },
+        {
+          "evidence_refs": [
+            "larousse-libraire"
+          ],
+          "from_form": "la:librarius",
+          "relation": "borrowing",
+          "to_form": "fr:libraire"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:mut",
+      "context": "Larousse sense 1",
+      "evidence_refs": [
+        "larousse-mutation"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "mut-fr-mutation",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "mutation",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "radical change",
+        "sense_id": "mut-fr-mutation:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "mut",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "mut",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "larousse-mutation"
+          ],
+          "from_form": "la:mutare",
+          "relation": "historical_relation",
+          "to_form": "fr:mutation"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:mut",
+      "context": "Duden biological sense",
+      "evidence_refs": [
+        "duden-mutation"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "mut-de-mutation",
+      "language": "de",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "Mutation",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "genetic change",
+        "sense_id": "mut-de-mutation:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "Mut",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "mut",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "duden-mutation"
+          ],
+          "from_form": "la:mutatio",
+          "relation": "borrowing",
+          "to_form": "de:Mutation"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:mut",
+      "context": "Specific Latin-change analysis refuted for courage",
+      "evidence_refs": [
+        "duden-mut"
+      ],
+      "evidence_status": "DIFFERENT_ETYMON",
+      "id": "mut-de-mut",
+      "language": "de",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "Mut",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "courage",
+        "sense_id": "mut-de-mut:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "Mut",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "mut",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "duden-mut"
+          ],
+          "from_form": "goh:muot",
+          "relation": "historical_inheritance",
+          "to_form": "gmh:muot"
+        },
+        {
+          "evidence_refs": [
+            "duden-mut"
+          ],
+          "from_form": "gmh:muot",
+          "relation": "historical_inheritance",
+          "to_form": "de:Mut"
+        }
+      ],
+      "relation_kind": "REFUTED_SPECIFIC_PATH",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:regul",
+      "context": "American Heritage verb sense 1",
+      "evidence_refs": [
+        "ah-regulate"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "regul-en-regulate",
+      "language": "en",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "regulate",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "VERB",
+        "sense_gloss": "direct according to rule",
+        "sense_id": "regul-en-regulate:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "regul",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "regul",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "ah-regulate"
+          ],
+          "from_form": "la:regula",
+          "relation": "derivation",
+          "to_form": "la:regulare"
+        },
+        {
+          "evidence_refs": [
+            "ah-regulate"
+          ],
+          "from_form": "la:regulare",
+          "relation": "historical_relation",
+          "to_form": "en:regulate"
+        }
+      ],
+      "relation_kind": "LEXICAL_REALIZATION",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:manu",
+      "context": "Historical French spelling only; not modern recommended manucure",
+      "evidence_refs": [
+        "oqlf-manucure"
+      ],
+      "evidence_status": "SOURCE_DOCUMENTED",
+      "id": "manu-fr-historical-manicure",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "manicure",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "cosmetic care of fingernails",
+        "sense_id": "manu-fr-historical-manicure:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "mani",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "manu",
+      "notes": "",
+      "path": [
+        {
+          "evidence_refs": [
+            "oqlf-manucure"
+          ],
+          "from_form": "la:manus",
+          "relation": "historical_formation",
+          "to_form": "fr:manicure"
+        }
+      ],
+      "relation_kind": "HISTORICAL_ALLOMORPH",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    },
+    {
+      "alternative_paths": [],
+      "association_status": "NOT_ASSESSED",
+      "canonical_root_id": "family:creat",
+      "context": "Biochemical substance; proposed Latin-create derivation refuted",
+      "evidence_refs": [
+        "ac-creatine"
+      ],
+      "evidence_status": "DIFFERENT_ETYMON",
+      "id": "creat-fr-creatine",
+      "language": "fr",
+      "lexeme": {
+        "corpus_lemma_id": null,
+        "lemma": "créatine",
+        "lexical_identity_status": "DICTIONARY_ENTRY_ONLY_NOT_BOUND_TO_V5",
+        "pos": "NOUN",
+        "sense_gloss": "biochemical substance",
+        "sense_id": "creat-fr-creatine:sense"
+      },
+      "membership_status": "UNRESOLVED",
+      "national_form": "créat",
+      "national_form_role": "EXACT_SCOPED_COMPONENT_OR_REALIZATION",
+      "normative_form": "creat",
+      "notes": "Do not project this analysis onto every creat/créat carrier or another language.",
+      "path": [
+        {
+          "evidence_refs": [
+            "ac-creatine"
+          ],
+          "from_form": "gr:kreas/kreatos",
+          "relation": "learned_derivation",
+          "to_form": "fr:créatine"
+        }
+      ],
+      "relation_kind": "REFUTED_SPECIFIC_PATH",
+      "scope": {
+        "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+        "propagation": "FORBIDDEN",
+        "regular_language_rule": false
+      },
+      "verification_status": "DOCUMENTARY_CHECK_NOT_INDEPENDENT_GOLD"
+    }
+  ],
+  "global_rules": [],
+  "legacy_carriers": [
+    {
+      "entry_id": "ocul-de-monokel",
+      "family_id": "family:ocul",
+      "language": "de",
+      "lemma_id": "lemma:274ced6b7dab9fb4ae00",
+      "lexical_identity_status": "UNRESOLVED",
+      "reason": "Existing v5 lowercase carrier versus dictionary Monokel; no general case folding and no sense binding",
+      "record_sha256": "2e7bd02bf0511855bb911ec723d2f95bf446052aa62d1a270f23676fad6d4b62",
+      "scope": "EXACT_LEGACY_RECORD_ONLY",
+      "source_version": "47723611112610945cb09b34e18588b7bd151911",
+      "word": "monokel"
+    }
+  ],
+  "normative_spec_commit": "ad32277ab9bc4fc8cd28ba82f08eaba2ab130f05",
+  "production_enabled": false,
+  "production_source_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "root_catalog_sha256": "8e8717ec2737b2b63e75af942036251228bba1dc468f525370f774b36a6f352f",
+  "roots": [
+    {
+      "canonical_root_id": "family:manu",
+      "element_kind": "root",
+      "legacy_family_ids": [
+        "family:manu"
+      ],
+      "normative_form": "manu",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "EXISTING_TARGET_CONTEXT_ONLY"
+    },
+    {
+      "canonical_root_id": "family:regul",
+      "element_kind": "root",
+      "legacy_family_ids": [
+        "family:regul"
+      ],
+      "normative_form": "regul",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "EXISTING_TARGET_CONTEXT_ONLY"
+    },
+    {
+      "canonical_root_id": "family:creat",
+      "element_kind": "root",
+      "legacy_family_ids": [
+        "family:creat"
+      ],
+      "normative_form": "creat",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "EXISTING_TARGET_CONTEXT_ONLY"
+    },
+    {
+      "canonical_root_id": "family:ocul",
+      "element_kind": "root",
+      "legacy_family_ids": [
+        "family:ocul"
+      ],
+      "normative_form": "ocul",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "EXISTING_TARGET_CONTEXT_ONLY"
+    },
+    {
+      "canonical_root_id": "family:ped",
+      "element_kind": "root",
+      "legacy_family_ids": [
+        "family:pede"
+      ],
+      "normative_form": "ped",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "EXISTING_TARGET_CONTEXT_ONLY"
+    },
+    {
+      "canonical_root_id": "family:inter",
+      "element_kind": "preposition",
+      "legacy_family_ids": [
+        "family:inter"
+      ],
+      "normative_form": "inter",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "EXISTING_TARGET_CONTEXT_ONLY"
+    },
+    {
+      "canonical_root_id": "family:liber",
+      "element_kind": "root",
+      "legacy_family_ids": [
+        "family:liber"
+      ],
+      "normative_form": "liber",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "UNRESOLVED"
+    },
+    {
+      "canonical_root_id": "family:mut",
+      "element_kind": "root",
+      "legacy_family_ids": [
+        "family:mut"
+      ],
+      "normative_form": "mut",
+      "root_catalog_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "target_binding": "EXISTING_TARGET_CONTEXT_ONLY"
+    }
+  ],
+  "schema": "interal-national-correspondences/1",
+  "sources_sha256": "c3d63935d068dba0793994b99fcf19fee398ebe3c3a733fd484e4e89a0ab23de",
+  "version": "1.0.0"
+}

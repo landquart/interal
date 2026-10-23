@@ -34,7 +34,8 @@ q=copy.deepcopy(p);q['requested_status']='COMPETING_ANALYSES';q['analyses']=['di
 assert not guard_application({})['allowed']
 assert not guard_application({},lambda q:dict(allowed=True,status='HISTORY_UNAVAILABLE'))['allowed']
 assert not guard_application({},lambda q:dict(allowed=False,status='HISTORY_CONFLICT'))['allowed']
-assert guard_application({},lambda q:dict(allowed=True,status='CLEAR'))['allowed']
+assert not guard_application({},lambda q:dict(allowed=True,status='CLEAR'))['allowed']
+assert guard_application({},lambda q:dict(allowed=True,status='CLEAR'),lambda q:dict(allowed=True,status='CLEAR'))['allowed']
 # No relationship ruling automatically deletes membership, even if its type is wrong.
 assert adjudicate(p,verifier)['membership_operation']=='NONE'
 for mask in [0,1,1|256,1|4,512]:
