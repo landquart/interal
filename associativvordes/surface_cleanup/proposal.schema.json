@@ -1,0 +1,15 @@
+{
+ "$schema":"https://json-schema.org/draft/2020-12/schema",
+ "$id":"urn:interal:v5-surface-proposal:1",
+ "type":"object",
+ "required":["operation","family_id","source_version","scope","evidence_status","history_status"],
+ "properties":{
+  "operation":{"enum":["REJECT_ENTIRE_FAMILY","REMOVE_EXACT_MEMBERSHIPS","SPLIT_REQUIRED","RETAIN_WITH_REVIEW","INSUFFICIENT_EVIDENCE"]},
+  "family_id":{"type":"string","minLength":1},
+  "source_version":{"type":"string","pattern":"^[0-9a-f]{40}$"},
+  "scope":{"type":"object","required":["memberships","sha256"],"properties":{"memberships":{"type":"array"},"sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"}}},
+  "source_corpus_mutation":{"const":false}
+ },
+ "allOf":[{"if":{"properties":{"operation":{"enum":["REJECT_ENTIRE_FAMILY","REMOVE_EXACT_MEMBERSHIPS"]}}},"then":{"required":["verified_proof_receipt"],"properties":{"scope":{"properties":{"memberships":{"minItems":1}}}}}}],
+ "description":"Schema validation is not authority. policy.authorize additionally requires a trusted existing-source verification adapter, exact native identity/sense bindings, complete scope and a clear protected history. This release produces no authorized exclusions."
+}
