@@ -12,7 +12,7 @@ for(const [family,language,word]of cases){
  const observations=gunzipSync(readFileSync(join(run,'buckets',b,'FAMILIES.ndjson.gz'))).toString().trim().split('\n').filter(Boolean).map(JSON.parse);
  const f=observations.find(x=>x.family_id===family);
  if(f?.automatic_exclusion)throw Error('protected observation excluded');
- records.push({family_id:family,language,word,existing_lemma_ids:matches.map(x=>x.lemma_id),status:matches.length?'PRESERVED_EXACT_LEGACY_RECORD':'NOT_MATERIALIZED_NOT_RESTORED',operation:f?.operation||'NO_CURRENT_FAMILY',native_correspondence_confirmed_by_this_test:false,sense_status:'UNRESOLVED'});
+ records.push({family_id:family,language,word,existing_lemma_ids:matches.map(x=>x.lemma_id),status:matches.length?'PRESERVED_EXACT_LEGACY_RECORD':'NOT_IN_THIS_EXACT_LEGACY_FAMILY_NOT_RESTORED',operation:f?.operation||'NO_CURRENT_FAMILY',native_correspondence_confirmed_by_this_test:false,sense_status:'UNRESOLVED'});
 }
 const result={schema:'v5-surface-current-form-controls/1',records,production_writes:0,semantics:'Exact legacy lookup and preservation only; these tests do not create national correspondences or memberships.'};
 writeFileSync(output,JSON.stringify(result)+'\n');console.log(JSON.stringify({cases:records.length,preserved:records.filter(x=>x.existing_lemma_ids.length).length}));
