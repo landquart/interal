@@ -10,6 +10,7 @@ def load_queue(path,projection,external_folder=None):
  for name,h in m['outputs'].items():
   p=(path/name).resolve()
   if p.parent!=path.resolve() or filehash(p)!=h:raise ValueError('v5 queue output checksum')
+ if (path/'questions.ndjson').stat().st_size>32*1024*1024:raise ValueError('finite queue byte budget')
  if not projection:raise ValueError('actual --registry projection directory required for v5')
  h,history_sha=history_reader()
  if m['identity']['history']!=history_sha:raise ValueError('stale history snapshot')

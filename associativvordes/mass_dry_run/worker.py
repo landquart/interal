@@ -10,12 +10,16 @@ from contract import canonical
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)
-    for n in ('input','registry','index','aux','store','config'):p.add_argument('--'+n,required=True)
+    for n in ('input','registry','store','config'):p.add_argument('--'+n,required=True)
+    p.add_argument('--index');p.add_argument('--aux');p.add_argument('--v5-external')
     p.add_argument('--kill-after',type=int);p.add_argument('--resume',action='store_true');a=p.parse_args()
     config=json.loads(Path(a.config).read_text())
     if config.get('allow_paid') or config.get('max_requests') or config.get('providers'):
         raise ValueError('phase06 requires zero-generation offline configuration')
-    qs,identity=load_input(a.input,a.registry);s=Store(a.store)
+    qs,identity=load_input(a.input,a.registry,a.v5_external)
+    if identity['kind']=='mass02' and (not a.index or not a.aux):raise ValueError('mass02 requires native index and auxiliary')
+    if identity['kind']=='v5' and (a.index or a.aux):raise ValueError('v5 uses its exact row index; no implicit v6 index alignment')
+    s=Store(a.store)
     with s.lease():
         count=0;append=s.append
         def fault(kind,key,value):

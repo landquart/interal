@@ -24,11 +24,13 @@ class Adapter:
  def aliases(self,alias):
   r=self.db(bucket(alias)).execute('SELECT body FROM aliases WHERE alias=?',(alias,)).fetchone()
   return json.loads(zlib.decompress(r[0])) if r else []
- def rows(self,family=None,language=None,lemma=None):
+ def rows(self,family=None,language=None,lemma=None,after=None):
   for b in ([bucket(family)] if family else sorted(self.shards)):
+   if after and b<after[0]:continue
    sql='SELECT family,language,lemma,ordinal,body FROM members';args=[];where=[]
    for column,value in [('family',family),('language',language),('lemma',lemma)]:
     if value is not None:where.append(column+'=?');args.append(value)
+   if after and b==after[0]:where.append('(family,language,lemma)>(?,?,?)');args.extend(after[1:])
    if where:sql+=' WHERE '+' AND '.join(where)
    for fid,lang,lid,ordinal,body in self.db(b).execute(sql+' ORDER BY family,language,lemma',args):yield fid,lang,lid,ordinal,json.loads(zlib.decompress(body))
  def question(self,fid,lang,lid,ordinal,row):
