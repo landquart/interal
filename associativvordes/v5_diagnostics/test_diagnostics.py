@@ -70,11 +70,14 @@ class WholeShard(unittest.TestCase):
   ingest(self.db,self.root,self.receipt);cross_family(self.db);self.db.commit()
   sys.path.insert(0,str(Path(__file__).with_name('tools')))
   from query import filehash
-  from backup import backup
+  from backup import backup,restore_archive
   m=dict(database='out.sqlite',database_sha256=filehash(self.root/'out.sqlite'),complete=True);m['version']=digest(m);(self.root/'MANIFEST.json').write_bytes(canonical(m))
   r=backup(self.root,self.root/'archive.zip',self.root/'restored')
   self.assertTrue(r['all_exact_file_hashes_verified']);self.assertEqual(r['restored_counts'],dict(families=3,memberships=11))
   self.assertEqual(filehash(self.root/'out.sqlite'),filehash(self.root/'restored/out.sqlite'))
+  (self.root/'MANIFEST.json').unlink()
+  independent=restore_archive(self.root/'archive.zip',self.root/'restored-independent',filehash(self.root/'archive.zip'))
+  self.assertFalse(independent['source_directory_required']);self.assertEqual(independent['restored_counts']['memberships'],11)
 
 
 

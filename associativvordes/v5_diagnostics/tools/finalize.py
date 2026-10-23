@@ -34,7 +34,7 @@ def finalize(first,replay):
    scope=dict(category=category,formation_source=source,observed_type_signature=types or '',base_bin=basebin)
    cohorts.append(dict(id='cohort:'+digest(scope),scope=scope,families=n,memberships=nm,review_unit='mechanism investigation; no blanket membership verdict'))
   save(out/'MECHANISM-COHORTS.json',dict(schema='v5-mechanism-cohorts/1',disjoint_partition=True,cohorts=cohorts,families=sum(x['families'] for x in cohorts),memberships=sum(x['memberships'] for x in cohorts)))
-  qm=dict(schema='v5-diagnostic-priority-queues/1',registry_manifest_version=m['version'],outputs=outputs,disjoint_by_priority_band=True,production_writes=0)
+  qm=dict(schema='v5-diagnostic-priority-queues/1',registry_manifest_version=m['version'],outputs=outputs,disjoint_by_priority_band=True,queue_role='research drill-down indexes, not independent LLM jobs',primary_review_units='MECHANISM-COHORTS.json',human_or_model_decisions_created=0,production_writes=0)
   save(folder/'MANIFEST.json',qm)
   kinds={}
   for kind,n in db.execute('SELECT kind,COUNT(*) FROM patterns GROUP BY kind ORDER BY kind'):
@@ -45,7 +45,8 @@ def finalize(first,replay):
    kinds[kind]=dict(groups=n,path=path.name,sha256=filehash(path),bytes=path.stat().st_size)
   save(out/'PATTERN-MANIFEST.json',dict(schema='v5-complete-patterns/1',patterns=kinds,registry_manifest_version=m['version']))
   direct_flags={flag:dict(families_with_direct_flag=n,memberships_with_direct_flag=nm) for flag,n,nm in db.execute("SELECT j.key,COUNT(*),SUM(j.value) FROM families f,json_each(f.body,'$.member_flag_counts') j GROUP BY j.key ORDER BY j.key")}
-  save(out/'DIRECT-MEMBER-FLAGS.json',dict(schema='v5-direct-membership-flags/1',flags=direct_flags,overlapping_flags_not_additive=True))
+  ending_links=db.execute("SELECT COALESCE(SUM(json_extract(body,'$.ending_proxy.ending_members')),0) FROM families WHERE id IN (SELECT family FROM flags WHERE flag='ENDING_PREFIX_DIVERSITY_PROXY')").fetchone()[0]
+  save(out/'DIRECT-MEMBER-FLAGS.json',dict(schema='v5-direct-membership-flags/1',flags=direct_flags,ending_condition_matching_memberships=ending_links,overlapping_flags_not_additive=True))
   source_distribution=[dict(source=source,families=n,memberships=nm) for source,n,nm in db.execute("SELECT json_extract(body,'$.formation_source'),COUNT(*),SUM(n) FROM families GROUP BY 1 ORDER BY 1")]
   legacy_distribution=[dict(label=label,families=n,memberships=nm) for label,n,nm in db.execute("SELECT json_extract(body,'$.legacy_review_status'),COUNT(*),SUM(n) FROM families GROUP BY 1 ORDER BY 1")]
   save(out/'PROVENANCE-DISTRIBUTION.json',dict(schema='v5-provenance-distribution/1',formation_sources=source_distribution,legacy_review_labels=legacy_distribution,labels_are_not_linguistic_verdicts=True))

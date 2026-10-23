@@ -1,0 +1,61 @@
+{
+  "adapter_commit": "b39f55638c118ccbb17a4495db88d2b07e27c354",
+  "complete_bucket_source_locks": {
+    "buckets": 256,
+    "files": 2048,
+    "path": "audit/associative-v5-adapter/PROJECTION-MANIFEST.json",
+    "sha256": "edcb3e6d57a0ba995832ed5d122158c53ab9fdc60b106febc407b459a322b394"
+  },
+  "external_native_identity_policy": "Pinned alternatives remain unbound to v5 senses; no native identity is promoted by spelling",
+  "generator_sources": "GENERATOR-SOURCE-LOCK.json",
+  "history_snapshot": {
+    "schema": "interal-history/1",
+    "sha256": "fe87153c07976f8b4ae02fffee778b5213303cd01d5f8e1f380b08f2d0882374",
+    "snapshot": "snapshots/sha256-fe87153c07976f8b4ae02fffee778b5213303cd01d5f8e1f380b08f2d0882374.json"
+  },
+  "normative_spec": "NORMATIVE-SPEC-LOCK.json",
+  "original_assignments_status": "Baseline provenance blockers retained; 699 unassigned records not restored",
+  "production_main": "47723611112610945cb09b34e18588b7bd151911",
+  "production_metadata": {
+    "associativvordes/family-index-v5/manifest.json": {
+      "bytes": 8135,
+      "git_blob": "b9fe834aae2eb69e676bffbae78c12e385d25f53",
+      "sha256": "d259400f98939bfa518e688b3bf5c8218404aaffa3091c6ecb0fa96ed1bf9c5c"
+    },
+    "associativvordes/family-index-v5/report.json": {
+      "bytes": 329855,
+      "git_blob": "d55b38833e1d4bb4eb7827ae0eb3aea11975e23b",
+      "sha256": "2ed317f98483f64d114f16b5b4dd4611ec279cf075b80a7df6f191ce90bcfdd7"
+    },
+    "associativvordes/family-index-v5/repository-provenance.json": {
+      "bytes": 14573,
+      "git_blob": "8b7cf42207165a9a97a2d4bae748d8eb9ee6945d",
+      "sha256": "d12de988f95fb50ecc174a93b1275f5771940bbe3b45f6dd34a4b6e71e0d855a"
+    }
+  },
+  "production_writes": 0,
+  "projection_manifest_sha256": "edcb3e6d57a0ba995832ed5d122158c53ab9fdc60b106febc407b459a322b394",
+  "projection_version": "8c5fb2096111df99f73984c4dfd754b2ef8d147dbbaf520f4dda4f7e95f58faa",
+  "runtime": {
+    "node": "v24.19.0",
+    "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+    "python": "3.12.14",
+    "unicode": "15.0.0"
+  },
+  "schema": "v5-diagnostics-source-lock/1",
+  "supplementary_suffix_exposure": {
+    "legacy_normalization_is_not_a_national_correspondence": true,
+    "path": "SUFFIX-EXPOSURE.json",
+    "sha256": "7481010f28237f4f68633aa7380e79f033adee663363f89dd377c5e6105a7404",
+    "source_code_sha256": {
+      "associativvordes/js/morphology/languages/de.js": "ff52cc947dc7f6c838c3e3dff83d710eb81b6baf812f9d330ef23f95976bf66a",
+      "associativvordes/js/morphology/languages/en.js": "5c1cf6ef86339cc111edf5402779d00ec4875d55d0d6b0f9ffa5ec9330bedaed",
+      "associativvordes/js/morphology/languages/es.js": "336631d329f9d30f9d79405fcf6f3290f5c00e6187e349857427878d776dc504",
+      "associativvordes/js/morphology/languages/fr.js": "ab3a4234132eb8a056add75d475c44f7e19024b76e6b29145051779256fece3e",
+      "associativvordes/js/morphology/languages/index.js": "35cb960a9b1578895d73bb7246b552061ca67ad0419edaa91f800ee82c119031",
+      "associativvordes/js/morphology/languages/it.js": "4582415477fc857a25293b036e183f8b333e12df226e5efeb90eaaa1fbf79d68",
+      "associativvordes/js/morphology/languages/ru.js": "043991d9480363933b730f1aaf22ba8ff0a18c9dd8850deb99daf6ae357f128f",
+      "associativvordes/js/root-matcher.js": "25caa0174273e252b7b371e25cddf269872c8b728d1fd10e5e09cb3509884728"
+    }
+  }
+}

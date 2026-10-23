@@ -75,4 +75,32 @@ python associativvordes/v5_diagnostics/tools/backup.py \
   --receipt /external/BACKUP-RESTORE-REPORT.json
 ```
 
-The restore checks every exact file hash and byte count, opens SQLite read-only, runs an integrity check and recounts families/memberships. Keep the versioned archive and its externally pinned SHA-256 away from mutable execution directories. Source/projection inputs remain separately pinned; the archive contains research observations, not authoritative replacement v6 data.
+The restore checks every exact file hash and byte count, opens SQLite read-only, runs a quick integrity check after exact byte verification (the original full checks are already certified) and recounts families/memberships. Keep the versioned archive and its externally pinned SHA-256 away from mutable execution directories. Source/projection inputs remain separately pinned; the archive contains research observations, not authoritative replacement v6 data.
+
+Standalone recovery needs only the archive, the pinned SHA-256 and this code:
+
+```sh
+python associativvordes/v5_diagnostics/tools/backup.py \
+  --restore-archive /external/interal-v5-diagnostics-20261023.zip \
+  --expected-sha256 3194e13cab335863a9d5df8d471b5de15e9aa6971948636aaed6222a8fb9c634 \
+  --restore-target /external/recovered-v5-diagnostics \
+  --receipt /external/RESTORE-REPORT.json
+```
+
+The portable archive is also split into five independently valid ZIP volumes, each below 400 MiB plus ZIP metadata. Download all five files named in `audit/associative-v5-diagnostics/ARCHIVE-VOLUMES.json`, then reconstruct the exact original archive:
+
+```sh
+python associativvordes/v5_diagnostics/tools/join_volumes.py \
+  --manifest audit/associative-v5-diagnostics/ARCHIVE-VOLUMES.json \
+  --directory /external/downloads \
+  --output /external/interal-v5-diagnostics-20261023.zip
+```
+
+Supplementary complete configured-tail exposure, including long endings, is reproducible without changing the core registry:
+
+```sh
+python associativvordes/v5_diagnostics/tools/suffix_exposure.py \
+  --registry /external/v5-diagnostics --output /external/SUFFIX-EXPOSURE.json
+```
+
+The 252 configured tokens are joined by exact legacy surface-family routing over the entire registry. The resulting 131 families/34,251 memberships are exposure observations, not confirmed inflection or deletion scopes. This result was repeated byte-for-byte against the real restored registry. Its finite manifest is committed alongside the archive receipt; it resolves all members through the same immutable core registry.
