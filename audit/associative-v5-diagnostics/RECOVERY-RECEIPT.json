@@ -1,0 +1,15 @@
+{
+  "actual_forced_exit": 75,
+  "bucket_checkpoints_after_crash": 0,
+  "committed_bucket_reuse_test": "test_driver_resumes_committed_buckets_after_interruption: fixture interruption after bucket 00; resume skips 00 and processes remaining 255 buckets",
+  "complete_database_bytes_equal": true,
+  "complete_manifest_absent_after_crash": true,
+  "historical_scope_rows_preserved": 348028,
+  "independent_fresh_replay_database_sha256": "558a49e2e06bc057bcaab73f69945164e7c92fbc788a26f85f1211b4b62b646b",
+  "interrupted_inside_bucket": "00",
+  "memberships_committed_after_crash": 0,
+  "production_writes": 0,
+  "resume_completed_all_256_buckets": true,
+  "schema": "v5-diagnostic-restart/1",
+  "status": "PASS"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/landquart/interal/associativvordes/v5_diagnostics/registry.schema.json",
+  "title": "Read-only v5 diagnostic registry query record",
+  "oneOf": [{"$ref": "#/$defs/family"}, {"$ref": "#/$defs/membership"}],
+  "$defs": {
+    "family": {
+      "type": "object",
+      "required": ["record_type", "id", "primary_category", "category_status", "memberships", "language_counts", "flags", "semantic_status", "confirmed_memberships", "unresolved_memberships", "investigation_priority"],
+      "properties": {
+        "record_type": {"const": "family"},
+        "id": {"type": "string"},
+        "primary_category": {"enum": ["EXACT_MORPHOLOGICAL", "HISTORICAL_ETYMON", "BORROWING_FAMILY", "COMPOUND_COMPONENT", "SURFACE_FRAGMENT", "INFLECTION_DERIVED", "MIXED_ORIGIN", "UNCLASSIFIED"]},
+        "category_status": {"const": "OBSERVATIONAL_HYPOTHESIS"},
+        "memberships": {"type": "integer", "minimum": 0},
+        "language_counts": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "flags": {"type": "array", "uniqueItems": true, "items": {"type": "string"}},
+        "semantic_status": {"const": "UNRESOLVED"},
+        "confirmed_memberships": {"const": 0},
+        "unresolved_memberships": {"type": "integer", "minimum": 0},
+        "investigation_priority": {"type": "object", "required": ["score", "band", "components", "meaning"], "properties": {"score": {"type": "integer", "minimum": 0, "maximum": 100}, "band": {"enum": ["PRIORITY_1", "PRIORITY_2", "PRIORITY_3", "PRIORITY_4"]}}}
+      }
+    },
+    "membership": {
+      "type": "object",
+      "required": ["record_type", "family_id", "language", "lemma_id", "ordinal", "source_bucket", "source_record_sha256", "relation_types", "risk_flags", "semantic_status", "lexical_identity_status", "sense_status", "correspondence_status"],
+      "properties": {
+        "record_type": {"const": "membership"},
+        "language": {"enum": ["en", "de", "fr", "es", "it", "ru"]},
+        "source_record_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_bucket": {"type": "string", "pattern": "^[0-9a-f]{2}$"},
+        "ordinal": {"type": "integer", "minimum": 0},
+        "semantic_status": {"const": "UNRESOLVED"},
+        "lexical_identity_status": {"const": "legacy_exact_record"},
+        "sense_status": {"const": "UNRESOLVED"},
+        "correspondence_status": {"const": "UNKNOWN_NOT_EVALUATED"}
+      }
+    }
+  }
+}
