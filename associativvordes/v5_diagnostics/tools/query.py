@@ -16,11 +16,13 @@ def open_registry(folder):
  if m['version']!=expected or not m['complete'] or filehash(db)!=m['database_sha256']:raise ValueError('immutable diagnostic input checksum')
  c=sqlite3.connect(db.resolve().as_uri()+'?mode=ro',uri=True);c.executescript('PRAGMA query_only=ON;PRAGMA cache_size=-8192;PRAGMA temp_store=FILE;');return c,m
 
-def query(db,family=None,flag=None,category=None,band=None,pattern=None,members=False):
+def query(db,family=None,flag=None,category=None,band=None,pattern=None,members=False,cohort=None):
  where=[];args=[]
  for col,val in [('f.id',family),('f.category',category),('p.band',band)]:
   if val is not None:where.append(col+'=?');args.append(val)
  if flag:where.append('EXISTS(SELECT 1 FROM flags x WHERE x.family=f.id AND x.flag=?)');args.append(flag)
+ if cohort:
+  where.extend(["f.category=?","json_extract(f.body,'$.formation_source') IS ?","COALESCE((SELECT group_concat(key,',') FROM json_each(f.body,'$.relation_type_counts')),'')=?","(CASE WHEN length(f.base)<=3 THEN 'SHORT' ELSE 'LONG' END)=?"]);args.extend([cohort['category'],cohort['formation_source'],cohort['observed_type_signature'],cohort['base_bin']])
  if pattern:
   kind,key=pattern
   row=db.execute('SELECT body FROM patterns WHERE kind=? AND key=?',(kind,key)).fetchone()
@@ -35,7 +37,12 @@ def query(db,family=None,flag=None,category=None,band=None,pattern=None,members=
    for lang,lid,ordinal,types,flags,recordsha in db.execute('SELECT language,lemma,ordinal,types,flags,source_record_sha256 FROM members WHERE family=? ORDER BY language,lemma',(fid,)):
     yield dict(record_type='membership',family_id=fid,language=lang,lemma_id=lid,ordinal=ordinal,source_bucket=b,source_record_sha256=recordsha,relation_types=json.loads(types),risk_flags=json.loads(flags),semantic_status='UNRESOLVED',lexical_identity_status='legacy_exact_record',sense_status='UNRESOLVED',correspondence_status='UNKNOWN_NOT_EVALUATED')
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--registry',required=True);p.add_argument('--family');p.add_argument('--flag');p.add_argument('--category');p.add_argument('--band');p.add_argument('--pattern',nargs=2);p.add_argument('--members',action='store_true');a=p.parse_args();db,_=open_registry(a.registry)
+ p=argparse.ArgumentParser();p.add_argument('--registry',required=True);p.add_argument('--family');p.add_argument('--flag');p.add_argument('--category');p.add_argument('--band');p.add_argument('--pattern',nargs=2);p.add_argument('--members',action='store_true');p.add_argument('--cohort');a=p.parse_args();db,_=open_registry(a.registry)
+ cohort=None
+ if a.cohort:
+  folder=Path(a.registry);artifacts=json.loads((folder/'ARTIFACTS.json').read_bytes())
+  if filehash(folder/'MECHANISM-COHORTS.json')!=artifacts['outputs']['MECHANISM-COHORTS.json']['sha256']:raise ValueError('cohort manifest checksum')
+  cohort=next(x['scope'] for x in json.loads((folder/'MECHANISM-COHORTS.json').read_bytes())['cohorts'] if x['id']==a.cohort)
  try:
-  for row in query(db,a.family,a.flag,a.category,a.band,a.pattern,a.members):print(canonical(row).decode())
+  for row in query(db,a.family,a.flag,a.category,a.band,a.pattern,a.members,cohort):print(canonical(row).decode())
  finally:db.close()

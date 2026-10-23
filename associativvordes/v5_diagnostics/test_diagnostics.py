@@ -1,4 +1,4 @@
-import json,sqlite3,sys,tempfile,unittest,zlib
+import contextlib,io,json,sqlite3,sys,tempfile,unittest,zlib
 from pathlib import Path
 from classify import *
 from run import setup,ingest,cross_family,summarize,connect,rank
@@ -51,4 +51,64 @@ class WholeShard(unittest.TestCase):
   affected=list(self.db.execute("SELECT family,lemma FROM members WHERE flags LIKE '%HISTORICAL_EXCLUSION_OVERLAP%'"));self.assertEqual(affected,[('a','lemma:0')]);self.assertEqual(json.loads(self.db.execute('SELECT scope FROM history').fetchone()[0])['sense_id'],'known-sense')
  def test_global_stage_is_idempotent(self):
   ingest(self.db,self.root,self.receipt);cross_family(self.db);a=summarize(self.db,{});cross_family(self.db);self.assertEqual(a,summarize(self.db,{}))
+
+
+ def test_query_checksum_and_full_affected_ids(self):
+  ingest(self.db,self.root,self.receipt);cross_family(self.db)
+  from importlib.util import spec_from_file_location,module_from_spec
+  path=Path(__file__).with_name('tools')/'query.py';spec=spec_from_file_location('diagnostic_query_test',path);q=module_from_spec(spec);spec.loader.exec_module(q)
+  rows=list(q.query(self.db,flag='EXACT_DUPLICATE_MEMBER_SET',members=True))
+  self.assertEqual(len([r for r in rows if r['record_type']=='family']),2)
+  self.assertEqual(len([r for r in rows if r['record_type']=='membership']),10)
+  m=dict(database='out.sqlite',database_sha256=q.filehash(self.root/'out.sqlite'),complete=True);m['version']=digest(m);(self.root/'MANIFEST.json').write_bytes(canonical(m));c,_=q.open_registry(self.root);c.close()
+  with (self.root/'out.sqlite').open('ab') as f:f.write(b'corrupt')
+  with self.assertRaisesRegex(ValueError,'checksum'):q.open_registry(self.root)
+
+
+
+ def test_real_backup_restore_has_exact_database_bytes(self):
+  ingest(self.db,self.root,self.receipt);cross_family(self.db);self.db.commit()
+  sys.path.insert(0,str(Path(__file__).with_name('tools')))
+  from query import filehash
+  from backup import backup
+  m=dict(database='out.sqlite',database_sha256=filehash(self.root/'out.sqlite'),complete=True);m['version']=digest(m);(self.root/'MANIFEST.json').write_bytes(canonical(m))
+  r=backup(self.root,self.root/'archive.zip',self.root/'restored')
+  self.assertTrue(r['all_exact_file_hashes_verified']);self.assertEqual(r['restored_counts'],dict(families=3,memberships=11))
+  self.assertEqual(filehash(self.root/'out.sqlite'),filehash(self.root/'restored/out.sqlite'))
+
+
+
+ def test_driver_resumes_committed_buckets_after_interruption(self):
+  import shutil
+  from unittest.mock import patch
+  import run as driver
+  sys.path.insert(0,str(Path(__file__).with_name('tools')))
+  projection=self.root/'projection';projection.mkdir();shutil.copyfile(self.root/'source.sqlite',projection/'00.sqlite');shutil.copyfile(self.root/'source.sqlite',projection/'empty.sqlite')
+  empty=sqlite3.connect(projection/'empty.sqlite');empty.executescript('DELETE FROM families;DELETE FROM members;DELETE FROM aliases;');empty.close()
+  from query import filehash
+  receipts=[dict(identity=dict(bucket=f'{i:02x}',files=[]),database='00.sqlite' if i==0 else 'empty.sqlite',database_sha256=filehash(projection/('00.sqlite' if i==0 else 'empty.sqlite'))) for i in range(256)]
+  m=dict(complete=True,shards=receipts,version='TEST_ONLY',source_commit='0'*40,source_root=str(projection),counts=dict(families=3,aliases=1,en=11,de=0,es=0,fr=0,it=0,ru=0));(projection/'MANIFEST.json').write_bytes(canonical(m))
+  class FixtureAdapter:
+   manifest=m
+   def __init__(self,*args):pass
+   def close(self):pass
+  class FixtureHistory:
+   decisions=[];digest='TEST_ONLY'
+  original=driver.ingest;calls=[]
+  def interrupted(db,source,receipt,crash):
+   if receipt['identity']['bucket']=='01':raise RuntimeError('TEST_ONLY interruption after committed bucket')
+   return original(db,source,receipt,crash)
+  out=self.root/'driver'
+  with patch.object(driver,'Adapter',FixtureAdapter),patch.object(driver,'history_reader',lambda:(FixtureHistory(),'TEST_ONLY')),contextlib.redirect_stdout(io.StringIO()):
+   with patch.object(driver,'ingest',interrupted):
+    with self.assertRaisesRegex(RuntimeError,'interruption'):driver.run(projection,out)
+   self.assertFalse((out/'MANIFEST.json').exists())
+   def resumed(db,source,receipt,crash):calls.append(receipt['identity']['bucket']);return original(db,source,receipt,crash)
+   with patch.object(driver,'ingest',resumed):result=driver.run(projection,out)
+  self.assertNotIn('00',calls);self.assertEqual(len(calls),255);self.assertEqual(result['counts']['memberships'],11)
+  from finalize import finalize
+  replay=self.root/'driver-replay';shutil.copytree(out,replay);finalize(out,replay)
+  self.assertEqual(json.loads((out/'MECHANISM-COHORTS.json').read_bytes())['memberships'],11)
+  self.assertEqual(json.loads((out/'PRIORITY-QUEUES/MANIFEST.json').read_bytes())['outputs']['PRIORITY_2.ndjson.gz']['families']+sum(v['families'] for k,v in json.loads((out/'PRIORITY-QUEUES/MANIFEST.json').read_bytes())['outputs'].items() if k!='PRIORITY_2.ndjson.gz'),3)
+
 if __name__=='__main__':unittest.main()
