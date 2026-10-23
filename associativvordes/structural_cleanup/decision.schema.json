@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:interal:v5-structural-decision:1",
+  "type": "object",
+  "required": ["id", "classification", "source_version"],
+  "properties": {
+    "id": {"type": "string", "minLength": 1},
+    "classification": {"enum": ["SAFE_STRUCTURAL_FIX", "REVIEW_REQUIRED"]},
+    "source_version": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+  },
+  "allOf": [{
+    "if": {"properties": {"classification": {"const": "SAFE_STRUCTURAL_FIX"}}},
+    "then": {
+      "required": ["object", "before", "after", "rule", "evidence", "inverse", "impact", "source_inventory_sha256", "source_file_sha256"],
+      "properties": {
+        "rule": {"enum": ["FAMILY_SUPPORT", "FAMILY_LANGUAGE_SUPPORT", "REPORT_CACHED_SUPPORT", "REPORT_CACHED_LANGUAGES"]},
+        "object": {"type": "object", "required": ["path", "pointer"]},
+        "inverse": {"type": "object", "required": ["before", "after"]},
+        "impact": {"const": {"semantic_memberships": 0, "source_evidence_records": 0, "source_lemmas": 0}},
+        "source_inventory_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_file_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "else": {
+      "required": ["kind", "scope", "evidence", "automatic_change"],
+      "properties": {"automatic_change": {"const": false}}
+    }
+  }]
+}
