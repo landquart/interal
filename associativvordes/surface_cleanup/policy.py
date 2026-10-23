@@ -21,13 +21,23 @@ def decide(f,flags,claim_types,history_ids=()):
         independent_morphological_paths='UNKNOWN_NOT_DISPROVED',historical_correspondences='UNKNOWN_NOT_DISPROVED',
         competing_analyses='POSSIBLE_UNRESOLVED',positive_decisions='PRESERVED_NOT_OVERRIDDEN',
         sense_identity='LEGACY_UNRESOLVED',automatic_exclusion=False,history_decision_ids=sorted(history_ids))
-def authorize(operation,actual_ids,proposed_ids,proof,history_result,trusted_verifier=None):
+def authorize(operation,actual_ids,proposed_ids,proof,history_result,trusted_verifier=None,correspondence_checker=None):
     """Rejection proof gate. This module cannot create trusted proof receipts."""
     if operation not in OPERATIONS:raise ValueError('unsupported operation')
     if operation not in {'REJECT_ENTIRE_FAMILY','REMOVE_EXACT_MEMBERSHIPS'}:return False
     if not proposed_ids or len(set(proposed_ids))!=len(proposed_ids):return False
     if operation=='REJECT_ENTIRE_FAMILY' and set(actual_ids)!=set(proposed_ids):return False
     if not set(proposed_ids)<=set(actual_ids):return False
+    # National correspondence protection is mandatory for the entire exact scope.
+    # The configured checker, never an input flag, must bind the complete ID set.
+    if not callable(correspondence_checker):return False
+    try:
+        protection=correspondence_checker(proposed_ids,scope_hash(proposed_ids))
+        if not (isinstance(protection,dict) and protection.get('allowed') and protection.get('status')=='CLEAR'
+                and protection.get('scope_sha256')==scope_hash(proposed_ids)
+                and protection.get('memberships_checked')==len(proposed_ids)
+                and len(protection.get('registry_sha256',''))==64):return False
+    except (OSError,ValueError,TypeError,AttributeError):return False
     # Trusted existing review/authority adapters must supply a verified receipt.
     # An inline model confidence or a historical engineering delta is insufficient.
     return bool(callable(trusted_verifier) and trusted_verifier(proof) is True
