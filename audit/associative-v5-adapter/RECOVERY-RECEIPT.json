@@ -1,0 +1,14 @@
+{
+  "annotation_hard_interruption": "E2E-REPORT.json",
+  "fresh_full_replay": "REPLAY-RECEIPT.json",
+  "full_build_interruption": {
+    "bucket": "00",
+    "complete_manifest_not_published": true,
+    "exit": 75,
+    "inside_uncommitted_membership_transaction": true,
+    "resumed_into_full_256_bucket_projection": true
+  },
+  "production_writes": 0,
+  "schema": "v5-adapter-recovery/1",
+  "unit_tests": "test_hard_interruption_rollback_and_resume; test_corruption_fails_closed; test_incremental_rebuild_and_previous_question_ids"
+}

@@ -17,7 +17,7 @@ from providers import Client,configuration,forecast,now
 REPO=Path(__file__).resolve().parents[2]
 def code_version():
     paths=[]
-    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation','history_registry'):
+    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation','history_registry','v5_adapter'):
         paths.extend(p for p in (REPO/'associativvordes'/d).glob('*.py') if not p.name.startswith('test_'))
     return sha({p.relative_to(REPO).as_posix():file_hash(p) for p in sorted(paths)})
 
@@ -27,10 +27,14 @@ def rows(path):
         for l in f:
             if l.strip():yield json.loads(l)
 
-def load_input(path,registry=None):
+def load_input(path,registry=None,v5_external=None):
     path=Path(path)
     if path.is_dir():
         m=json.loads((path/'MANIFEST.json').read_text())
+        if m.get('schema')=='v5-review-projection/1':
+            sys.path.insert(0,str(REPO/'associativvordes'/'v5_adapter'))
+            from queue_input import load_queue
+            return load_queue(path,registry,v5_external)
         if m.get('schema')!='mass-candidate-release/1' or m.get('version')!=sha({k:v for k,v in m.items() if k!='version'}):
             raise ValueError('mass manifest integrity')
         qpath=path/'questions.ndjson'
@@ -88,6 +92,9 @@ def prepare(store,questions,identity,source_index=None,family_context=None,aux_i
     try:
         for original in questions:
             q,raw=(source.enrich(original) if source else (copy.deepcopy(original),{}))
+            if identity.get('kind')=='v5':
+                import base64
+                raw={r['id']:dict(id=r['id'],revision=r['body']['revision'],artifact=r['body']['artifact'],raw_locator=r['body']['raw_locator'],original_line_base64=r['body']['original_line_base64'],raw_text=base64.b64decode(r['body']['original_line_base64'],validate=True).decode()) for r in q.get('external_rows',[])}
             seen={}
             for lex in q['lexeme_alternatives']:
                 if lex['id'] in seen:
@@ -133,7 +140,7 @@ def historical_check(card, decision):
         if lex['id'].startswith('lemma:'):ids=sorted(set(ids+[lex['id']]))
         return module.check(REPO,root/current['snapshot'],current['sha256'],dict(
             operation='restore' if decision=='PROPOSE_INCLUDE' else 'delete',
-            family_id=card['family_id'],language=card['language'],lemma_ids=ids,
+            family_id=card.get('legacy_scope',{}).get('family_id',card['family_id']),language=card['language'],lemma_ids=ids,
             pos=lex.get('pos'),sense_id=None))
     except (OSError,ValueError,KeyError,ImportError) as e:
         return dict(status='HISTORY_UNAVAILABLE',allowed=False,reasons=[str(e)])
@@ -259,7 +266,7 @@ def main():
     p.add_argument('mode',nargs='?',default='dry-run',choices=['offline','dry-run','pilot','batch','resume',
       're-evaluate-changed','export-proposals','export-handoff','backup','restore','record-cost'])
     p.add_argument('--store',required=True);p.add_argument('--input');p.add_argument('--registry')
-    p.add_argument('--aux-index');p.add_argument('--source-index');p.add_argument('--family-context');p.add_argument('--config')
+    p.add_argument('--v5-external');p.add_argument('--aux-index');p.add_argument('--source-index');p.add_argument('--family-context');p.add_argument('--config')
     p.add_argument('--run-id',default='offline-1');p.add_argument('--output')
     p.add_argument('--receipt');p.add_argument('--max-candidates',type=int);p.add_argument('--stop-after',type=int)
     a=p.parse_args()
@@ -275,7 +282,7 @@ def main():
         elif a.mode.startswith('export-'):result=export(s,a.run_id,a.output,a.mode=='export-handoff')
         else:
             if not a.input:p.error('--input frozen cases or mass02 release required')
-            qs,identity=load_input(a.input,a.registry)
+            qs,identity=load_input(a.input,a.registry,a.v5_external)
             cfg=json.loads(Path(a.config).read_text()) if a.config else {}
             context=json.loads(Path(a.family_context).read_text()) if a.family_context else None
             result=execute(s,a.run_id,qs,identity,cfg,a.mode,a.source_index,context,a.max_candidates,a.stop_after,aux_index=a.aux_index)

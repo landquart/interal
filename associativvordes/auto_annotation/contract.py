@@ -84,6 +84,7 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
     if not isinstance(q.get('id'),str) or not q['id']:raise ValueError('question ID')
     if lexeme.get('pos') is not None and not isinstance(lexeme['pos'],str):raise ValueError('POS')
     risks=set();paths=[];other_paths=[]
+    if q.get('source_family_id'):risks.add('legacy_exact_record_is_not_a_reviewed_lexical_head')
     for path in q.get('discovery_paths',[]):
         nodes=[n if isinstance(n,str) else n['id'] for n in path.get('nodes',[])]
         if nodes and (nodes[-1]==lexeme['id'] or path.get('reverse_search') and nodes[0]==lexeme['id']):
@@ -155,6 +156,8 @@ def card_for(q,lexeme,provenance,source_rows=None,family_context=None):
       independence=q.get('independence') or {'status':'unknown'},
       known_senses=senses,risk_flags=sorted(risks),provenance=provenance,
       rules=RULES,establishes_membership=False)
+    if q.get('source_family_id'):
+        card['legacy_scope']=dict(family_id=q['source_family_id'],lemma_id=q['source_lemma_id'],original_record_ref=q['original_record_ref'])
     return dict(card,content_sha256=sha(card))
 
 def response_schema(card):
