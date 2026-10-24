@@ -4,6 +4,7 @@ from pathlib import Path
 from associativvordes.family_boundary.core import ROOT,read,save,digest,sha,stream
 from .prepare import HERE,sanitized
 from .evaluate import release,rows
+from .privacy import blind_record
 
 def run(source,output):
     source=Path(source);out=Path(output).resolve();cases,old=release(source)
@@ -21,6 +22,7 @@ def run(source,output):
         cards=rows(source/f'BLIND-{role}.ndjson.gz')
         for c in added:
             cards.append(dict(task_id='blind-task:'+digest([role,c['id']]),role=role,case_id=c['id'],case_sha256=c['content_sha256'],protocol_sha256=ph,language=c['language'],family_id=c['family_id'],family_canonical=c['family_canonical'],lemma_id=c['lemma_id'],word=c['word'],pos=None,sense_id=None,source_record=sanitized(c['source_record']),historical_scope_only=True,collection_status='NOT_RELEASED_PENDING_CALIBRATION_AND_RECRUITMENT'))
+        for card in cards:card['source_record']=blind_record(card['source_record'])
         cards.sort(key=lambda c:digest([protocol['seed'],role,c['task_id']]));stream(out/f'BLIND-{role}.ndjson.gz',cards)
     preds=rows(source/'PREDICTIONS.ndjson.gz')
     for cfg in protocol['configurations']:
@@ -29,6 +31,7 @@ def run(source,output):
     design=read(out/'SAMPLING-DESIGN.json');design['frame']=sum(s['N'] for s in design['strata'].values());save(out/'SAMPLING-DESIGN.json',design)
     h=read(out/'HOLDOUT.json');h.update(challenge=h['challenge']+len(added),known_historical_exposure_units=h['known_historical_exposure_units']+len(added),heldout_case_hashes_sha256=digest([c['content_sha256'] for c in cases]));save(out/'HOLDOUT.json',h)
     save(out/'DOCUMENTARY-SUPPLEMENT.json',dict(source_manifest_sha256=sha(source/'MANIFEST.json'),registry_path=str(registry.relative_to(ROOT)),registry_sha256=sha(registry),contexts=len(added),new_v5_memberships=0,authority='REVIEW_TASKS_NOT_HUMAN_GOLD',supplement_code_sha256=sha(__file__)))
+    save(out/'BLINDING-POLICY.json',dict(version=2,privacy_code_sha256=sha(Path(__file__).with_name('privacy.py')),permitted_source_fields=['word','normalized','search_form','context','source_refs','sources{id,file,category}'],component_predictions_visible=False,prior_decisions_visible=False,real_human_responses_collected_before_fix=0,mandatory_final_delivery='Only this final supplemented release, never intermediate prepare outputs'))
     save(out/'MANIFEST.json',dict(old,identity=dict(old['identity'],supplement_code_sha256=sha(__file__),documentary_registry_sha256=sha(registry)),case_set_sha256=digest(cases),challenge_cases=old['challenge_cases']+len(added),files=[dict(path=p.name,bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(out.iterdir()) if p.is_file()]))
     return dict(status='DOCUMENTARY_CONTEXTS_ADDED_WITHOUT_CORPUS_BINDING',contexts=len(added))
 if __name__=='__main__':

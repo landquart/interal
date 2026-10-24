@@ -6,6 +6,7 @@ from associativvordes.family_boundary.core import digest,read,save,sha
 from .prepare import HERE
 from .human import compile_gold
 from .statistics import evaluate, agreement, zero_error_n, ratio
+from .privacy import require_final_blinding
 
 def rows(path):
     with (gzip.open(path,'rt') if str(path).endswith('.gz') else open(path)) as f:return [json.loads(x) for x in f if x.strip()]
@@ -22,7 +23,7 @@ def release(folder):
 def run(folder,output,review_path=None,adjudication_path=None,roster_path=None):
     folder=Path(folder);out=Path(output)
     if out.exists():raise ValueError('new immutable evaluation directory required')
-    cases,m=release(folder);protocol=read(HERE/'protocol.json')
+    cases,m=release(folder);require_final_blinding(folder);protocol=read(HERE/'protocol.json')
     if m['identity']['protocol_sha256']!=digest(protocol):raise ValueError('protocol changed; new preregistration and untouched sample required')
     review_path=Path(review_path) if review_path else folder/'RAW-HUMAN-REVIEWS.ndjson';adjudication_path=Path(adjudication_path) if adjudication_path else folder/'RAW-ADJUDICATIONS.ndjson';roster_path=Path(roster_path) if roster_path else folder/'ROSTER.json'
     gold=compile_gold(cases,rows(review_path),rows(adjudication_path),read(roster_path));gg={r['case_id']:r for r in gold['rows']};pp=rows(folder/'PREDICTIONS.ndjson.gz');index={c['id']:c for c in cases};seen=set()

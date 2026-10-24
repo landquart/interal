@@ -22,10 +22,21 @@ assert summary([dict(weight=1,prediction='REMOVE',gold=None)])['precision_missin
 `));
 test('linked dependence clusters cross languages and cases; they never become family merges',()=>py(String.raw`
 from associativvordes.cleanup_quality.prepare import linked_clusters,sanitized
+from associativvordes.cleanup_quality.privacy import blind_record,assert_blind_record,require_final_blinding
 cases=[dict(id='a',family_id='F',language='en',lemma_id='x',record_sha256='1'),dict(id='b',family_id='F',language='de',lemma_id='y',record_sha256='2'),dict(id='c',family_id='G',language='de',lemma_id='y',record_sha256='3'),dict(id='d',family_id='H',language='fr',lemma_id='z',record_sha256='1')]
 c=linked_clusters(cases);assert len(set(c.values()))==1
 assert [r['family_id'] for r in cases]==['F','F','G','H']
 assert sanitized(dict(confidence=.99,risk_flags=['X'],components=[dict(path=['a','b'],confidence=1)],review_status='safe'))==dict(components=[dict(path=['a','b'])])
+raw=dict(word='TEST_ONLY',components=[dict(canonical_candidate='GUESS',evidence=[dict(path=['x','y'])])],national_form='GUESS',sources=[dict(id='corpus',confidence=1,ipm=9)])
+assert blind_record(raw)==dict(word='TEST_ONLY',sources=[dict(id='corpus')]);assert_blind_record(blind_record(raw))
+try:assert_blind_record(raw)
+except ValueError:pass
+else:raise AssertionError('component predictions visible to blind reviewer')
+import tempfile
+with tempfile.TemporaryDirectory() as td:
+ try:require_final_blinding(td)
+ except ValueError:pass
+ else:raise AssertionError('intermediate packets eligible for human evaluation')
 `));
 test('human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review',()=>py(String.raw`
 from associativvordes.cleanup_quality.human import *

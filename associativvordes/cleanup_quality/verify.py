@@ -5,6 +5,7 @@ from pathlib import Path
 from associativvordes.family_boundary.core import digest,read,save,sha,verify_sources
 from .evaluate import release,rows
 from .prepare import HERE
+from .privacy import assert_blind_record
 
 def verify(first,replay,index,eval_first,eval_replay,receipt):
     start=time.monotonic();first=Path(first);replay=Path(replay);index=Path(index);cases,m=release(first);other,om=release(replay)
@@ -50,7 +51,7 @@ def verify(first,replay,index,eval_first,eval_replay,receipt):
         cards=rows(first/f'BLIND-{role}.ndjson.gz');seen=set()
         for c in cards:
             if c['case_id'] in seen or c['case_sha256']!=ii[c['case_id']]['content_sha256'] or c['role']!=role:raise ValueError('blind exact identity')
-            seen.add(c['case_id']);clean(c)
+            seen.add(c['case_id']);clean(c);assert_blind_record(c['source_record'])
         if seen!=set(ii):raise ValueError('missing review tasks')
         orders.append([c['case_id'] for c in cards])
     if orders[0]==orders[1]:raise ValueError('reviewers not independently shuffled')
