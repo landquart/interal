@@ -1,0 +1,82 @@
+{
+  "schema": "boundary-durable-research-copy/2",
+  "status": "PASS",
+  "archive_name": "interal-v5-family-boundary-20261024.zip",
+  "archive_sha256": "7d386a7519bd2a92f04c26328dd32172c4b50b90354cd96206e6d5f9898df3a4",
+  "archive_bytes": 2136781098,
+  "saved_files": 17,
+  "files": [
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0001",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0002",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0003",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0005",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0006",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0007",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0008",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-001",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-002",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-003",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-004",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-005",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-006",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-007",
+      "status": "SAVED"
+    },
+    {
+      "filename": "interal-v5-family-boundary-20261024.zip.part-0004.fragment-008",
+      "status": "SAVED"
+    },
+    {
+      "filename": "BUNDLE-PARTS.json",
+      "status": "SAVED"
+    },
+    {
+      "filename": "PART-0004-FRAGMENTS.json",
+      "status": "SAVED"
+    }
+  ],
+  "fourth_volume_storage": "Eight exact fragments; reassemble PART-0004-FRAGMENTS.json before BUNDLE-PARTS.json",
+  "cold_restore": "BACKUP-RESTORE-REPORT.json",
+  "whole_volume_reassembly": "VOLUME-REASSEMBLY-RECEIPT.json",
+  "fragment_reassembly": "FRAGMENT-REASSEMBLY-RECEIPT.json"
+}
