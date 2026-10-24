@@ -1,0 +1,52 @@
+{
+  "blockers": [
+    "Original source assignments and original metadata/members ZIP artifacts are unavailable; recovered source carriers do not certify original assignment provenance."
+  ],
+  "cross_reference_checks": {
+    "alias_orphan_targets": 0,
+    "cross_snapshot_identity_mismatches": 0,
+    "current_identity_collisions": 0,
+    "current_not_in_source": 0,
+    "missing_reverse_aliases": 0,
+    "reverse_only_alias_pairs": 0,
+    "source_identity_collisions": 0
+  },
+  "historical_controls": {
+    "aliases": {
+      "actual": 1934050,
+      "expected": 1934050,
+      "match": true
+    },
+    "families": {
+      "actual": 2456543,
+      "expected": 2456543,
+      "match": true
+    },
+    "materialized": {
+      "actual": 4924281,
+      "expected": 4924281,
+      "match": true
+    },
+    "memberships": {
+      "actual": 10078319,
+      "expected": 10078319,
+      "match": true
+    },
+    "source": {
+      "actual": 4924980,
+      "expected": 4924980,
+      "match": true
+    },
+    "unassigned": {
+      "actual": 699,
+      "expected": 699,
+      "match": true
+    }
+  },
+  "issue_details_location": "ISSUES.jsonl.gz (complete independent issue export)",
+  "linguistic_correctness_certified": false,
+  "samples": {},
+  "schema_version": 1,
+  "structural_findings": {},
+  "verdict": "BLOCKED"
+}

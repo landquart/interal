@@ -70,3 +70,23 @@ receipt bundle contains complete diffs, recounts, guards, runtime comparison,
 resource/recovery receipts and a reference to that independent full backup.
 Databases and copies stay outside Git. Preserve original journals and 699
 unassigned rows; never restore false links to make source counts match.
+
+## Restore the complete new research results
+
+Obtain the 24 files listed in RESEARCH-PARTS.json beside that manifest. All part
+hashes and the complete archive hash are checked independently:
+
+```sh
+python3 -m associativvordes.family_boundary.archive join --manifest /research/parts/RESEARCH-PARTS.json --destination /research/study.zip
+python3 -m associativvordes.family_boundary.archive restore --archive /research/study.zip --destination /research/restored-study --expected 80faa6a0e36a2aceaa3e828660c767755261ccbdf78899a5e34546550eef95c5
+```
+
+The 71-file result includes both complete SQL census indexes and the full
+CALCULATOR-COMPARISON.json recording. The Git calculator file is its bounded
+summary and exact full-recording hash. FULL-DIFF-MANIFEST.json locates the complete
+3,587-row compressed file diff. Per-membership/family/alias changed-record logs
+are empty only because the full exact-byte comparison and fresh censuses proved
+zero changes. SQLite restoration is separately checked with PRAGMA quick_check.
+The corpus itself is restored independently from CORPUS-BACKUP-REFERENCE.json.
+This preserves two distinct artifacts: the verified unchanged data backup and the
+new complete research results. Neither is an authorization for a data release.
