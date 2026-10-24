@@ -4,7 +4,7 @@
   "full_test_command": "npm test",
   "test_files": 108,
   "all_pass": true,
-  "test_log_sha256": "37035aa61c9404c93a218981c5f6e3271f4c91542db038e3d681c347cfbfba7a",
+  "test_log_sha256": "da3afa5dd5c16a381bf6dc7753935687d94df132e69b08779d303c26aaaae786",
   "sampler_resume": {
     "pause_after": 250000,
     "full_continuous_replay_identical": true
@@ -13,5 +13,8 @@
   "cold_restore": "BACKUP-RESTORE-REPORT.json",
   "gold0_not_fake": true,
   "semantic_gate": "BLOCKED",
-  "production_writes": 0
+  "production_writes": 0,
+  "blinding_revision": 2,
+  "component_guesses_hidden": true,
+  "intermediate_evaluation_rejected": true
 }

@@ -24,11 +24,11 @@
       },
       {
         "path": "BLIND-A.ndjson.gz",
-        "sha256": "2a2fa1c132e7fbe700ff6369127f25fac87a8d8cad167929116e84762ebab707"
+        "sha256": "b947514a666bc4ffd306986e988bfdf0488e3066540a78772cd3cbdf730fcb6e"
       },
       {
         "path": "BLIND-B.ndjson.gz",
-        "sha256": "965db2009ba986d6bf8336b890355bb49905a56a53276e1cb3c59af56d4c4246"
+        "sha256": "4c7d7dc68810978005f7e604acde3ddae9b16b7cccdc558a35975e7ed3fd4712"
       },
       {
         "path": "PREDICTIONS.ndjson.gz",
@@ -51,12 +51,12 @@
         "sha256": "0b46b8c3f7441fce42c4f3cf11fe71af1ff06829570abb1f0e835f52a12ea1bc"
       }
     ],
-    "elapsed_seconds": 91.10250651299975,
+    "elapsed_seconds": 91.32316522600013,
     "evaluation_replay_identical": true,
     "holdout_independence_certification": "BLOCKED",
     "independent_method": "Full frozen-cutoff census without the sampler heap",
     "no_placeholder_counted_as_human": true,
-    "peak_rss_mib": 330.359375,
+    "peak_rss_mib": 280.01171875,
     "probability_units": 9600,
     "production_writes": 0,
     "schema": "cleanup-quality-independent-verification/1",
@@ -80,7 +80,7 @@
       "ru": 1600
     }
   },
-  "derived_study_bytes": 12211770,
+  "derived_study_bytes": 11211388,
   "llm_requests": 0,
   "billed_tokens": 0,
   "llm_cost_usd": 0,

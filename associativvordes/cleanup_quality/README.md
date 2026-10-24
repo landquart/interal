@@ -130,13 +130,13 @@ REJECTED_POLICY. Approval of a technical rule cannot authorize semantic cleanup.
 
 ## Research archive and cold restore
 
-`interal-v5-cleanup-quality-20261024.zip` is a coordinator bundle, not a blind
+`interal-v5-cleanup-quality-20261024-v2.zip` is a coordinator bundle, not a blind
 reviewer delivery. Its exact inventory contains the frozen release/evaluation,
 the original historical kit, pinned normative inputs and independent verification.
 The code remains versioned separately in Git. Restore only to a fresh directory:
 
 ```sh
-python3 -m associativvordes.family_boundary.archive restore --archive /external/interal-v5-cleanup-quality-20261024.zip --destination /external/q11-restored --expected a84dfb2ea305ded0cc43b3df17221c5aaaaa563bfd5cbe120e100a44fa77a654
+python3 -m associativvordes.family_boundary.archive restore --archive /external/interal-v5-cleanup-quality-20261024-v2.zip --destination /external/q11-restored --expected 07ef8c73370861b40091fb88d13e364310bc27085b38994b25b1fd6e628c8d6f
 python3 -m associativvordes.cleanup_quality.evaluate --release /external/q11-restored/release --output /external/q11-replayed-evaluation
 ```
 
@@ -152,3 +152,9 @@ The normative files are extracted, without checkout changes, from commit
 NATIONAL-CORRESPONDENCES.md, rules.json and decision.schema.json. Verify against
 NORMATIVE-SOURCE-LOCK.json. Their absence from the stage10 working branch is an
 explicit semantic-release integration blocker, not permission to use older rules.
+
+Final blind views use the strict `privacy.py` whitelist: observed forms, context
+and corpus/dictionary locators only. Inferred component paths and national-form
+proposals are hidden. Intermediate `prepare` output is coordinator staging,
+never reviewer delivery; `evaluate` requires the final BLINDING-POLICY revision2
+and matching privacy code hash. No human answer was collected before this fix.

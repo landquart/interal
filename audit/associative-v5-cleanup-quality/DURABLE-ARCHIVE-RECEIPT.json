@@ -1,10 +1,14 @@
 {
   "status": "SAVED",
-  "filename": "interal-v5-cleanup-quality-20261024.zip",
-  "sha256": "a84dfb2ea305ded0cc43b3df17221c5aaaaa563bfd5cbe120e100a44fa77a654",
-  "bytes": 15819017,
-  "files": 33,
+  "filename": "interal-v5-cleanup-quality-20261024-v2.zip",
+  "sha256": "07ef8c73370861b40091fb88d13e364310bc27085b38994b25b1fd6e628c8d6f",
+  "bytes": 14818311,
+  "files": 34,
   "cold_restore": "BACKUP-RESTORE-REPORT.json",
   "contains": "Full probability/challenge cases, two blind task sets, predictions, frozen unannotated gold, raw empty logs, original historical 9600 kit, pinned normative documents and verification receipt",
-  "source_code": "Separate Git PR; not duplicated in the research archive"
+  "source_code": "Separate Git PR; not duplicated in the research archive",
+  "revision": 2,
+  "blinding_policy_version": 2,
+  "supersedes_pre_review_bundle_sha256": "a84dfb2ea305ded0cc43b3df17221c5aaaaa563bfd5cbe120e100a44fa77a654",
+  "pre_revision_human_reviews": 0
 }
