@@ -54,3 +54,52 @@ with tempfile.TemporaryDirectory() as td:
  q="SELECT head FROM v6_links JOIN v6_heads ON v6_heads.id=v6_links.head WHERE kind IN ('lexical_head','historically_reviewed_lexical_head') GROUP BY head HAVING COUNT(DISTINCT f)>1"
  assert list(d.execute(q))==[];d.execute("UPDATE v6_heads SET kind='lexical_head'");assert list(d.execute(q))==[('h',)];d.close()
 `));
+
+test('independent membership checks recompute stored IDs instead of trusting copied fingerprints',()=>python(String.raw`
+import pathlib,tempfile
+from associativvordes.family_boundary.core import *
+from associativvordes.family_boundary.replay import actual_fingerprints
+with tempfile.TemporaryDirectory() as td:
+ d=dbopen(pathlib.Path(td)/'db');d.executescript('CREATE TABLE families(f INTEGER,ids_hash TEXT,n INTEGER,langs TEXT);CREATE TABLE members(f INTEGER,lang TEXT,lid TEXT);')
+ d.execute('INSERT INTO families VALUES(?,?,?,?)',(1,fp([('en','L')]),1,'{"en":1}'));d.execute("INSERT INTO members VALUES(1,'en','L')");assert actual_fingerprints(d)==1
+ d.execute("UPDATE members SET lid='wrong'")
+ try:actual_fingerprints(d)
+ except ValueError:pass
+ else:raise AssertionError('stale copied fingerprint trusted')
+ d.close()
+`));
+test('v6 source proofs retain JavaScript insertion-order hashing and exact source forms',()=>python(String.raw`
+import tempfile,pathlib,json,gzip,hashlib,subprocess
+with tempfile.TemporaryDirectory() as td:
+ r=pathlib.Path(td)/'repo';v=pathlib.Path(td)/'v6';(v/'generated').mkdir(parents=True);path='associativvordes/family-index-v5/members/en/00.json.gz';source=r/path;source.parent.mkdir(parents=True)
+ raw='{"word":"x","lemma_id":"L","z":1,"a":2}';row=json.loads(raw);data=gzip.compress(json.dumps({'old:A':[row]}).encode());source.write_bytes(data)
+ baseline=r/'audit/associative-v5-structural-cleanup/BEFORE-MANIFEST.json';baseline.parent.mkdir(parents=True);baseline.write_text(json.dumps(dict(files=[dict(path='current/'+path,bytes=len(data),sha256=hashlib.sha256(data).hexdigest())])))
+ m=dict(language='en',lemma_id='L',word='x',head_id='head:finite',family_id='v6:other',source_proof=[dict(lemma_id='L',source=dict(path=path,family_id='old:A',record_sha256=hashlib.sha256(raw.encode()).hexdigest()))]);(v/'generated/memberships.json.gz').write_bytes(gzip.compress(json.dumps([m]).encode()))
+ cmd=['node','associativvordes/family_boundary/v6_proofs.mjs',str(r),str(v)];p=subprocess.run(cmd,capture_output=True,text=True);assert p.returncode==0,p.stderr
+ assert json.loads((v/'SOURCE-PROOF-CHECKS.ndjson').read_text())['status']=='EXACT_FINITE_SOURCE_PROOF'
+ m['word']='different';(v/'generated/memberships.json.gz').write_bytes(gzip.compress(json.dumps([m]).encode()));p=subprocess.run(cmd,capture_output=True,text=True);assert p.returncode==0,p.stderr
+ assert json.loads((v/'SOURCE-PROOF-CHECKS.ndjson').read_text())['status']=='SOURCE_FORM_MISMATCH'
+`));
+
+test('immutable backups reject corruption, unfinished data and path escape',()=>python(String.raw`
+import tempfile,pathlib,json,zipfile,hashlib
+from associativvordes.family_boundary.archive import pack,restore,split,join
+from associativvordes.family_boundary.core import sha
+with tempfile.TemporaryDirectory() as td:
+ p=pathlib.Path(td);r=p/'r';c=p/'c';i=p/'i'
+ for d in [r,c,i]:d.mkdir();(d/'data').write_text(d.name)
+ replay=p/'replay.json';replay.write_text('{}');a=p/'backup.zip';pack(a,r,c,i,replay)
+ restore(a,p/'restored',sha(a));assert (p/'restored/release/data').read_text()=='r'
+ def rejects(fn):
+  try:fn()
+  except (ValueError,FileExistsError):pass
+  else:raise AssertionError('unsafe archive accepted')
+ rejects(lambda:restore(a,p/'restored'));rejects(lambda:restore(a,p/'wrong','0'*64))
+ (r/'unfinished.partial').write_text('partial');rejects(lambda:pack(p/'bad.zip',r,c,i,replay))
+ split(a,p/'parts');join(p/'parts/BUNDLE-PARTS.json',p/'joined.zip');assert sha(a)==sha(p/'joined.zip')
+ first=next((p/'parts').glob('*.part-*'));first.write_bytes(b'corrupt');rejects(lambda:join(p/'parts/BUNDLE-PARTS.json',p/'broken.zip'))
+ evil=p/'evil.zip';body=b'escape'
+ with zipfile.ZipFile(evil,'w') as z:
+  z.writestr('../escape',body);z.writestr('ARCHIVE-CONTENTS.json',json.dumps(dict(files=[dict(path='../escape',bytes=len(body),sha256=hashlib.sha256(body).hexdigest())])))
+ rejects(lambda:restore(evil,p/'evil-restore'));assert not (p/'escape').exists()
+`));

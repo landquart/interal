@@ -36,7 +36,7 @@ def run(index,prior,v6,stop_after_phase=None):
   if stop_after_phase=='overlap':d.close();return dict(status='PAUSED_AFTER_ATOMIC_OVERLAP')
   def profiles():
    if sha(prior/'registry.sqlite')!=m['identity']['certified_diagnostic_database_sha256']:raise ValueError('diagnostic source changed')
-   d.execute('ATTACH DATABASE ? AS prior',(str(prior/'registry.sqlite'),));d.execute('INSERT INTO profiles SELECT f.f,p.body FROM families f JOIN prior.families p ON p.id=f.fid')
+   d.execute('ATTACH DATABASE ? AS prior',(str(prior/'registry.sqlite'),));d.execute("INSERT INTO profiles SELECT f.f,json_object('source_family_id',p.id,'relation_type_counts',json_extract(p.body,'$.relation_type_counts'),'evidence_source_counts',json_extract(p.body,'$.evidence_source_counts'),'semantic_status','UNRESOLVED','claims_are_not_gold',json('true')) FROM families f JOIN prior.families p ON p.id=f.fid")
   checkpoint(d,'profiles',profiles)
   if any(row[1]=='prior' for row in d.execute('PRAGMA database_list')):d.execute('DETACH DATABASE prior')
   checks=[json.loads(line) for line in (v6/'SOURCE-PROOF-CHECKS.ndjson').read_text().splitlines()];bykey={r['key']:r for r in checks}

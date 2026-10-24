@@ -25,4 +25,36 @@ Candidate sets use exact sorted family IDs, with one independent signal list. Ne
 
 Review admission is separate from category. All generated groups are held pending lexical/sense binding, independent morphological evidence, scoped history and correspondence checks. An external verified authority receipt can admit a finite proposal to further review; it never supplies production capability. Histories retain original family/language/lemma/POS/sense scopes. Missing history blocks operations; redirects never resolve conflicts by last-write-wins.
 
-Large data stays outside Git. A final audit report and immutable artifact receipts accompany the completed release. Until those receipts exist, code checkpoints are implementation progress and must not be presented as certified results.
+Large data stays outside Git. A final audit report and immutable artifact receipts accompany the completed release. The completed release receipts are in `audit/associative-v5-family-boundary/`; their certification concerns reproducible structural observations, not semantic verdicts.
+
+## Restore and inspect the immutable release
+
+Obtain all eight files named in `audit/associative-v5-family-boundary/ARCHIVE-VOLUMES.json`, place them beside a copy named BUNDLE-PARTS.json, and run:
+
+```sh
+python3 -m associativvordes.family_boundary.archive join --manifest /absolute/volumes/BUNDLE-PARTS.json --destination /absolute/boundary.zip
+python3 -m associativvordes.family_boundary.archive restore --archive /absolute/boundary.zip --destination /absolute/restored --expected 7d386a7519bd2a92f04c26328dd32172c4b50b90354cd96206e6d5f9898df3a4
+python3 -m associativvordes.family_boundary.query --index /absolute/restored/release --group boundary:c86f57f3d0d42c4ffcebcb3ef0b647fd3ddd4476ebbbe08fdd8a442bd63835cd --output /absolute/context.json --scope-output /absolute/scope.ndjson.gz
+```
+
+The restore validates every file hash before publishing a fresh directory and checks the actual SQLite database. Original v5 gzip files at the pinned baseline must be available in the checkout for source-record context inspection; they are not duplicated in the research archive. The archive contains the full derived database, all group/scoped-ID exports, 35 detailed contexts, independent raw-traversal fingerprints and pinned v6 input. BUNDLE-PARTS.json checks individual parts and the complete archive. Never rename a part without updating its explicit local path arrangement.
+
+To rebuild from the earlier certified diagnostic archive, use its five volumes and `audit/associative-v5-diagnostics/ARCHIVE-VOLUMES.json` with the existing `join_volumes.py`, then:
+
+```sh
+python3 -m associativvordes.family_boundary.restore_prior --archive /absolute/interal-v5-diagnostics-20261023.zip --output /absolute/prior --receipt /absolute/SOURCE-RESTORE.json
+```
+
+Use the pinned v6 files under `restored/release/PINNED-V6` for the build commands above. Keep the prior database until **both** analyses have copied their legacy claim profiles. The restored release itself can be inspected without restoring the prior 9 GB database.
+
+To archive a new completed research run (destinations must be fresh and outside the checkout):
+
+```sh
+python3 -m associativvordes.family_boundary.query --index /absolute/first --output /absolute/contexts
+python3 -m associativvordes.family_boundary.report --help
+python3 -m associativvordes.family_boundary.archive pack --archive /absolute/boundary.zip --release /absolute/first --contexts /absolute/contexts --independent /absolute/independent --replay /absolute/REPLAY-RECEIPT.json
+python3 -m associativvordes.family_boundary.archive split --archive /absolute/boundary.zip --destination /absolute/volumes
+npm test
+```
+
+No SQLite file or large export should be committed to Git. `CODE-LOCK.json` binds the executable implementation; `RELEASE-MANIFEST.json` binds the frozen research inputs and outputs. All accepted/excluded labels from earlier sources retain their original authority, scope and version. Missing history or unbound senses block further operations.

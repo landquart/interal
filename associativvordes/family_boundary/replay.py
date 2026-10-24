@@ -5,6 +5,16 @@ from .core import *
 from .guard import group_id
 from associativvordes.v5_adapter.common import bucket
 
+def actual_fingerprints(d):
+ rows=iter(d.execute('SELECT f,lang,lid FROM members ORDER BY f,lang,lid'));current=next(rows,None);total=0
+ for f,expected,n,packed in d.execute('SELECT f,ids_hash,n,langs FROM families ORDER BY f'):
+  h=hashlib.sha256();counts=Counter();seen=0
+  while current is not None and current[0]==f:
+   _,lang,lid=current;h.update(canonical([lang,lid])+b'\n');counts[lang]+=1;seen+=1;total+=1;current=next(rows,None)
+  if h.hexdigest()!=expected or seen!=n or dict(counts)!=json.loads(packed):raise ValueError('actual stored membership fingerprint differs')
+ if current is not None:raise ValueError('orphan membership')
+ return total
+
 def verify(first,replay,independent,receipt):
  first=Path(first);replay=Path(replay);independent=Path(independent);a=read(first/'MANIFEST.json');b=read(replay/'MANIFEST.json');j=read(independent/'MANIFEST.json')
  if a['identity']!=b['identity'] or a['logical_tables']!=b['logical_tables'] or a['outputs']!=b['outputs'] or a['version']!=b['version']:raise ValueError('fresh full replay differs')
@@ -24,6 +34,8 @@ def verify(first,replay,independent,receipt):
    if (n,json.loads(l),fp,m.get('etymon_keys',[]),m.get('source'))!=(r['n'],r['language_counts'],r['member_ids_sha256'],r['etymon_keys'],r['formation_source']):raise ValueError('independent exact source fingerprint mismatch')
    seen+=1
  if seen!=2456543:raise ValueError('incomplete family census')
+ actual_members=actual_fingerprints(d)
+ if actual_members!=10078319:raise ValueError('actual membership coverage')
  hs={f'{n:02x}':hashlib.sha256() for n in range(256)};edges=0
  for alias,fid in d.execute('SELECT alias,fid FROM aliases ORDER BY alias,fid'):hs[bucket(alias)].update(canonical([alias,fid])+b'\n');edges+=1
  for p in j['buckets']:
@@ -40,6 +52,6 @@ def verify(first,replay,independent,receipt):
  exact=d.execute("SELECT COUNT(*) FROM signals WHERE kind='EXACT_MEMBER_IDS'").fetchone()[0];fans=d.execute("SELECT COUNT(*) FROM signals WHERE kind='SHARED_ALIAS'").fetchone()[0]
  old=read(ROOT/'audit/associative-v5-diagnostics/PATTERN-MANIFEST.json')['patterns']
  if (exact,fans)!=(old['EXACT_DUPLICATE_MEMBER_SET']['groups'],old['ALIAS_FANOUT']['groups']):raise ValueError('prior diagnostic discrepancy')
- d.close();result=dict(schema='boundary-independent-replay/2',status='PASS',full_fresh_replay=True,logical_tables_identical=True,all_exports_identical=True,independent_implementation='JavaScript full raw traversal versus Python verified disk-index import',all_source_families_compared=seen,all_source_memberships_fingerprinted=j['memberships'],all_alias_edges_compared=edges,all_candidate_groups_checked=n,weighted_legacy_intersections=weight,inverted_identity_pair_count=inverted,exact_duplicate_groups=exact,alias_fanout_aliases=fans,release_version=a['version'],linguistic_gold=False,production_writes=0);save(receipt,result);return result
+ d.close();result=dict(schema='boundary-independent-replay/2',status='PASS',full_fresh_replay=True,logical_tables_identical=True,all_exports_identical=True,independent_implementation='JavaScript full raw traversal versus Python verified disk-index import',all_source_families_compared=seen,all_source_memberships_fingerprinted=j['memberships'],all_stored_memberships_recomputed=actual_members,all_alias_edges_compared=edges,all_candidate_groups_checked=n,weighted_legacy_intersections=weight,inverted_identity_pair_count=inverted,exact_duplicate_groups=exact,alias_fanout_aliases=fans,release_version=a['version'],linguistic_gold=False,production_writes=0);save(receipt,result);return result
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--first',required=True);p.add_argument('--replay',required=True);p.add_argument('--independent',required=True);p.add_argument('--receipt',required=True);a=p.parse_args();print(json.dumps(verify(a.first,a.replay,a.independent,a.receipt)))

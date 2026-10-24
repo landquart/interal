@@ -1,0 +1,54 @@
+{
+  "schema": "boundary-dictionary-context/2",
+  "scope": {
+    "family_id": "ety:00ff06cbe8c8",
+    "language": "de",
+    "lemma_id": "lemma:c642b26f56356618d4a2",
+    "word": "südkurier-lokalredaktion",
+    "pos": null,
+    "sense_id": null
+  },
+  "dictionary_match": "COMPONENT_HYPOTHESIS_ONLY_NOT_WHOLE_LEXEME",
+  "segmentation": "NOT_INFERRED_FROM_SYLLABLES",
+  "sources": [
+    {
+      "publisher": "Duden",
+      "url": "https://www.duden.de/rechtschreibung/Lokalredaktion",
+      "accessed": "2026-10-24",
+      "dictionary_lemma": "Lokalredaktion",
+      "dictionary_pos": "NOUN",
+      "excerpt": "Redaktion einer Zeitung, die die Lokalnachrichten bearbeitet",
+      "excerpt_sha256": "a7e3b5405df849fcea8f5a95f31525627795891b6df30260480f278f6a55721d",
+      "hash_scope": "EXCERPT_ONLY_NOT_PAGE",
+      "research_interpretation": "Two dictionary senses: local-news editorial staff and local newspaper office; no corpus sense binding.",
+      "authority": "DICTIONARY_CONTEXT_NOT_CORPUS_GOLD"
+    },
+    {
+      "publisher": "Duden",
+      "url": "https://www.duden.de/rechtschreibung/lokal",
+      "accessed": "2026-10-24",
+      "dictionary_lemma": "lokal",
+      "dictionary_pos": "ADJ",
+      "excerpt": "französisch local < spätlateinisch localis",
+      "excerpt_sha256": "835861cf8f3c672bf3a4a08a03dad257b34f7bc375c0283da89e73ef5b8e25f2",
+      "hash_scope": "EXCERPT_ONLY_NOT_PAGE",
+      "research_interpretation": "Locality adjective with documented French/Latin history; no license to merge families.",
+      "authority": "DICTIONARY_CONTEXT_NOT_CORPUS_GOLD"
+    },
+    {
+      "publisher": "Duden",
+      "url": "https://www.duden.de/rechtschreibung/Redaktion",
+      "accessed": "2026-10-24",
+      "dictionary_lemma": "Redaktion",
+      "dictionary_pos": "NOUN",
+      "excerpt": "Tätigkeit eines Redakteurs; das Redigieren, Herausgeben von Texten",
+      "excerpt_sha256": "ede11491a27db8bfe4541577ff88433419ce785529bdc06b51fa9416cfb86938",
+      "hash_scope": "EXCERPT_ONLY_NOT_PAGE",
+      "research_interpretation": "Distinct editorial activity, staff, office and edition senses; not the whole source compound.",
+      "authority": "DICTIONARY_CONTEXT_NOT_CORPUS_GOLD"
+    }
+  ],
+  "status": "INSUFFICIENT_EVIDENCE",
+  "production_operation": "NONE",
+  "new_membership_decisions": 0
+}
