@@ -41,6 +41,8 @@ def run(work):
  restored=work/'restored';verify_files(restored,snapshot)
  if (restored/'SNAPSHOT.json').read_bytes()!=(after/'SNAPSHOT.json').read_bytes():raise ValueError('restored complete snapshot differs')
  r=load(work/'BACKUP-RESTORE-REPORT.json');r.update(status='PASS_EXACT_REUSED_BACKUP',archive_sha256=expected,archive_bytes=archive.stat().st_size,shadow_full_file_bytes_equal=True,archive_created_stage='05',actual_restore_stage='12',reason='Empty operation plan; existing durable archive is exact full byte backup of the shadow snapshot');save(work/'BACKUP-RESTORE-REPORT.json',r)
- save(work/'COPY-PHASE.json',dict(status='PASS_NOOP_SHADOW_COPY_ONLY',data_root=str(after.relative_to(work)),layers=5,applied_operations=0,production_writes=0,semantic_gate='BLOCKED'));return after
+ from .completion import seal
+ seal(work);return after
 if __name__=='__main__':
  p=argparse.ArgumentParser();p.add_argument('--work',required=True);a=p.parse_args();print(run(a.work))
+
