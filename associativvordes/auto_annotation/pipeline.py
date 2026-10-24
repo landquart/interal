@@ -15,9 +15,10 @@ from storage import Store,atomic,backup,restore
 from providers import Client,configuration,forecast,now
 
 REPO=Path(__file__).resolve().parents[2]
+sys.path.insert(0,str(REPO))
 def code_version():
     paths=[]
-    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation','history_registry','v5_adapter'):
+    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation','history_registry','v5_adapter','semantic_cleanup'):
         paths.extend(p for p in (REPO/'associativvordes'/d).glob('*.py') if not p.name.startswith('test_'))
     return sha({p.relative_to(REPO).as_posix():file_hash(p) for p in sorted(paths)})
 
@@ -31,6 +32,9 @@ def load_input(path,registry=None,v5_external=None):
     path=Path(path)
     if path.is_dir():
         m=json.loads((path/'MANIFEST.json').read_text())
+        if m.get('schema')=='semantic-review-release/1':
+            from associativvordes.semantic_cleanup.bridge import load_queue
+            return load_queue(path)
         if m.get('schema')=='v5-review-projection/1':
             sys.path.insert(0,str(REPO/'associativvordes'/'v5_adapter'))
             from queue_input import load_queue
@@ -92,7 +96,7 @@ def prepare(store,questions,identity,source_index=None,family_context=None,aux_i
     try:
         for original in questions:
             q,raw=(source.enrich(original) if source else (copy.deepcopy(original),{}))
-            if identity.get('kind')=='v5':
+            if identity.get('kind') in {'v5','semantic09'}:
                 import base64
                 raw={r['id']:dict(id=r['id'],revision=r['body']['revision'],artifact=r['body']['artifact'],raw_locator=r['body']['raw_locator'],original_line_base64=r['body']['original_line_base64'],raw_text=base64.b64decode(r['body']['original_line_base64'],validate=True).decode()) for r in q.get('external_rows',[])}
             seen={}

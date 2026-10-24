@@ -1,0 +1,815 @@
+{
+  "corpus_membership_gold": false,
+  "schema": "interal-semantic-lexical-senses/1",
+  "senses": [
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Old English net",
+      "family_relation": {
+        "ety:111ecf2b9102": "TARGET_MEANING_MIXED",
+        "ety:94c776d13c76": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "mesh fabric",
+      "id": "dict-sense:en-net-mesh",
+      "language": "en",
+      "lemma": "net",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "net",
+      "pos": "NOUN",
+      "publisher_sense_locator": "net1 n.1",
+      "source_refs": [
+        "ah-net"
+      ]
+    },
+    {
+      "analysis_kind": "HISTORICAL_SEMANTIC_SHIFT",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin nitidus → French net / Italian netto → English net",
+      "family_relation": {
+        "ety:111ecf2b9102": "TARGET_MEANING_MIXED",
+        "ety:94c776d13c76": "HISTORICAL_SEMANTIC_BRIDGE_REVIEW"
+      },
+      "gloss": "remaining after deductions",
+      "id": "dict-sense:en-net-finance",
+      "language": "en",
+      "lemma": "net",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "net",
+      "pos": "ADJ",
+      "publisher_sense_locator": "net2 adj.1a",
+      "source_refs": [
+        "ah-net",
+        "ox-net"
+      ]
+    },
+    {
+      "analysis_kind": "DOCUMENTED_SENSE",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin nitidus → French net",
+      "family_relation": {
+        "ety:94c776d13c76": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "clean, unsoiled",
+      "id": "dict-sense:fr-net-clean",
+      "language": "fr",
+      "lemma": "net",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "net",
+      "pos": "ADJ",
+      "publisher_sense_locator": "net sense 1",
+      "source_refs": [
+        "ac-net"
+      ]
+    },
+    {
+      "analysis_kind": "HISTORICAL_SEMANTIC_SHIFT",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin nitidus → French net",
+      "family_relation": {
+        "ety:94c776d13c76": "HISTORICAL_SEMANTIC_BRIDGE_REVIEW"
+      },
+      "gloss": "after deductions",
+      "id": "dict-sense:fr-net-finance",
+      "language": "fr",
+      "lemma": "net",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "net",
+      "pos": "ADJ",
+      "publisher_sense_locator": "net sense 2",
+      "source_refs": [
+        "ac-net"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "English Internet → French Net abbreviation",
+      "family_relation": {
+        "ety:94c776d13c76": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "Internet network",
+      "id": "dict-sense:fr-net-internet",
+      "language": "fr",
+      "lemma": "net",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "Net",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Net, noun entry",
+      "source_refs": [
+        "lar-net",
+        "lar-internet"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin sonus → French son → Middle English soun → sound",
+      "family_relation": {
+        "ety:1e7afcab5044": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "auditory vibrations",
+      "id": "dict-sense:en-sound-audio",
+      "language": "en",
+      "lemma": "sound",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "sound",
+      "pos": "NOUN",
+      "publisher_sense_locator": "sound1 n.1a",
+      "source_refs": [
+        "ah-sound",
+        "ox-sound"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Old English gesund → sound",
+      "family_relation": {
+        "ety:1e7afcab5044": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "healthy, not injured",
+      "id": "dict-sense:en-sound-healthy",
+      "language": "en",
+      "lemma": "sound",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "sound",
+      "pos": "ADJ",
+      "publisher_sense_locator": "sound2 adj.2",
+      "source_refs": [
+        "ah-sound"
+      ]
+    },
+    {
+      "analysis_kind": "CONFLICTING_HISTORICAL_ROUTE",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "AH: Old English sund; Oxford: Old Norse sund → sound",
+      "family_relation": {
+        "ety:1e7afcab5044": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "water passage or inlet",
+      "id": "dict-sense:en-sound-water",
+      "language": "en",
+      "lemma": "sound",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "Keep both Germanic route accounts; no transfer of auditory Latin etymology.",
+      "original_form": "sound",
+      "pos": "NOUN",
+      "publisher_sense_locator": "sound3 n.1 / Oxford noun 6",
+      "source_refs": [
+        "ah-sound",
+        "ox-sound"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "French sonde → sonder → sound",
+      "family_relation": {
+        "ety:1e7afcab5044": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "measure water depth",
+      "id": "dict-sense:en-sound-depth",
+      "language": "en",
+      "lemma": "sound",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "sound",
+      "pos": "VERB",
+      "publisher_sense_locator": "sound4 v.tr.1",
+      "source_refs": [
+        "ah-sound"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin sonus → Old French suon → son",
+      "family_relation": {
+        "ety:1e7afcab5044": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "auditory sound",
+      "id": "dict-sense:fr-son-audio",
+      "language": "fr",
+      "lemma": "son",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "son",
+      "pos": "NOUN",
+      "publisher_sense_locator": "III son",
+      "source_refs": [
+        "ac-son"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin suus/sua/suum → French son/sa",
+      "family_relation": {
+        "ety:1e7afcab5044": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "third-person possessive",
+      "id": "dict-sense:fr-son-possessive",
+      "language": "fr",
+      "lemma": "son",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "son",
+      "pos": "DET",
+      "publisher_sense_locator": "I son, sa",
+      "source_refs": [
+        "ac-son-poss"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin secundus, second sifting → French son (bran)",
+      "family_relation": {
+        "ety:1e7afcab5044": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "bran from cereal",
+      "id": "dict-sense:fr-son-bran",
+      "language": "fr",
+      "lemma": "son",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "son",
+      "pos": "NOUN",
+      "publisher_sense_locator": "II son",
+      "source_refs": [
+        "ac-son-bran"
+      ]
+    },
+    {
+      "analysis_kind": "CONFLICTING_HISTORICAL_ROUTE",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Johannsen coinage using Greek genos",
+      "family_relation": {
+        "ety:cf2897b18b16": "HISTORICAL_DIRECT_GENA_CLAIM_CONFLICT"
+      },
+      "gloss": "hereditary unit",
+      "id": "dict-sense:de-gen-biology",
+      "language": "de",
+      "lemma": "gen",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "Gen",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Gen Bedeutung; Grammatik",
+      "source_refs": [
+        "duden-gen"
+      ]
+    },
+    {
+      "analysis_kind": "INFLECTION_NOT_DERIVATION",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Gen → Gens, inflection, not separate derivation",
+      "family_relation": {
+        "ety:cf2897b18b16": "INFLECTION_RELATION_REVIEW"
+      },
+      "gloss": "genitive singular of biological Gen",
+      "id": "dict-sense:de-gens-genitive",
+      "language": "de",
+      "lemma": "gens",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "Gens",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Gen Grammatik: Genitiv des Gens",
+      "source_refs": [
+        "duden-gen"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin gens → German Gens",
+      "family_relation": {
+        "ety:cf2897b18b16": "DISTINCT_ETYMON_REVIEW"
+      },
+      "gloss": "ancient Roman clan",
+      "id": "dict-sense:de-gens-clan",
+      "language": "de",
+      "lemma": "gens",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "Gens",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Gens Bedeutung",
+      "source_refs": [
+        "duden-gens"
+      ]
+    },
+    {
+      "analysis_kind": "CONFLICTING_HISTORICAL_ROUTE",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "German Gen / Pangen from Greek gen- / genos → English gene",
+      "family_relation": {
+        "ety:cf2897b18b16": "HISTORICAL_DIRECT_GENA_CLAIM_CONFLICT"
+      },
+      "gloss": "hereditary unit",
+      "id": "dict-sense:en-gene-biology",
+      "language": "en",
+      "lemma": "gene",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "gene",
+      "pos": "NOUN",
+      "publisher_sense_locator": "gene n.",
+      "source_refs": [
+        "ah-gene",
+        "ox-gene"
+      ]
+    },
+    {
+      "analysis_kind": "DOCUMENTED_SENSE",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Greek gen- historical family; exact genea path unconfirmed",
+      "family_relation": {
+        "ety:cf2897b18b16": "RELATED_PATH_UNRESOLVED"
+      },
+      "gloss": "biological gene",
+      "id": "dict-sense:fr-gene-biology",
+      "language": "fr",
+      "lemma": "gène",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "gène",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Gène masculine noun",
+      "source_refs": [
+        "ac-gene-gene"
+      ]
+    },
+    {
+      "analysis_kind": "ORTHOGRAPHIC_NEIGHBOUR_NOT_IDENTICAL",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Frankish jehhjan → old French gehine → gêne",
+      "family_relation": {
+        "ety:cf2897b18b16": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "discomfort, embarrassment",
+      "id": "dict-sense:fr-gene-discomfort",
+      "language": "fr",
+      "lemma": "gêne",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "gêne",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Gêne feminine noun",
+      "source_refs": [
+        "ac-gene-gene",
+        "ac-gene"
+      ]
+    },
+    {
+      "analysis_kind": "POLYSEMY",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin actus action branch",
+      "family_relation": {
+        "ety:5bed7c192e10": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "process of doing",
+      "id": "dict-sense:en-act-action",
+      "language": "en",
+      "lemma": "act",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "act",
+      "pos": "NOUN",
+      "publisher_sense_locator": "act n.1",
+      "source_refs": [
+        "ah-act"
+      ]
+    },
+    {
+      "analysis_kind": "POLYSEMY",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Same historical act lexeme; semantic scope needs review",
+      "family_relation": {
+        "ety:5bed7c192e10": "HISTORICAL_SEMANTIC_BRIDGE_REVIEW"
+      },
+      "gloss": "major division of a play",
+      "id": "dict-sense:en-act-theatre",
+      "language": "en",
+      "lemma": "act",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "act",
+      "pos": "NOUN",
+      "publisher_sense_locator": "act n.5",
+      "source_refs": [
+        "ah-act"
+      ]
+    },
+    {
+      "analysis_kind": "POS_DISTINCTION",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Act verb, separate POS context",
+      "family_relation": {
+        "ety:5bed7c192e10": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "carry out an action",
+      "id": "dict-sense:en-act-do",
+      "language": "en",
+      "lemma": "act",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "act",
+      "pos": "VERB",
+      "publisher_sense_locator": "act v.intr.6",
+      "source_refs": [
+        "ah-act"
+      ]
+    },
+    {
+      "analysis_kind": "CASE_NORMALIZATION_COLLISION",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Separate uppercase trademark; origin not asserted",
+      "family_relation": {
+        "ety:5bed7c192e10": "IDENTITY_CASEFOLD_CONFLICT"
+      },
+      "gloss": "college entrance examination brand",
+      "id": "dict-sense:en-act-exam",
+      "language": "en",
+      "lemma": "act",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "ACT",
+      "pos": "PROPN",
+      "publisher_sense_locator": "ACT1 trademark entry",
+      "source_refs": [
+        "ah-act"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin actus, from agere",
+      "family_relation": {
+        "ety:5bed7c192e10": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "action, deed",
+      "id": "dict-sense:de-akt-action",
+      "language": "de",
+      "lemma": "akt",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "Akt",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Akt Handlung sense 1a",
+      "source_refs": [
+        "duden-akt"
+      ]
+    },
+    {
+      "analysis_kind": "HISTORICAL_SEMANTIC_SHIFT",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Same dictionary actus etymon; semantic bridge not independently decided",
+      "family_relation": {
+        "ety:5bed7c192e10": "HISTORICAL_SEMANTIC_BRIDGE_REVIEW"
+      },
+      "gloss": "artistic nude representation",
+      "id": "dict-sense:de-akt-nude",
+      "language": "de",
+      "lemma": "akt",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "Akt",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Akt Handlung sense 4",
+      "source_refs": [
+        "duden-akt"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Frisian acki → Ack(e) / Akt",
+      "family_relation": {
+        "ety:5bed7c192e10": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "ramp on a dike",
+      "id": "dict-sense:de-akt-ramp",
+      "language": "de",
+      "lemma": "akt",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "Akt",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Akt Deichauffahrt",
+      "source_refs": [
+        "duden-akt-ramp"
+      ]
+    },
+    {
+      "analysis_kind": "ACCIDENTAL_SUBSTRING",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin com + tangere → contingere → contactus → contact",
+      "family_relation": {
+        "ety:5bed7c192e10": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "touching",
+      "id": "dict-sense:en-contact-touch",
+      "language": "en",
+      "lemma": "contact",
+      "morphological_segmentation": {
+        "description": "Latin com + tangere → contingere → contactus → contact",
+        "status": "DOCUMENTED"
+      },
+      "note": "",
+      "original_form": "contact",
+      "pos": "NOUN",
+      "publisher_sense_locator": "contact n.1a",
+      "source_refs": [
+        "ah-contact"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "netto → nettare; netto from nitidus",
+      "family_relation": {
+        "ety:94c776d13c76": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "clean, remove dirt",
+      "id": "dict-sense:it-nettare-clean",
+      "language": "it",
+      "lemma": "nettare",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "Historic ledger asserts direct nitidare; Treccani gives derivation from netto. Preserve differing path analyses.",
+      "original_form": "nettare",
+      "pos": "VERB",
+      "publisher_sense_locator": "nettare verb sense 2",
+      "source_refs": [
+        "treccani-nettare-v",
+        "treccani-netto"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Greek nektar → Latin nectar → Italian nettare",
+      "family_relation": {
+        "ety:94c776d13c76": "REFUTED_SPECIFIC_ETYMON"
+      },
+      "gloss": "plant nectar",
+      "id": "dict-sense:it-nettare-nectar",
+      "language": "it",
+      "lemma": "nettare",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "nèttare",
+      "pos": "NOUN",
+      "publisher_sense_locator": "nèttare noun sense 2",
+      "source_refs": [
+        "treccani-nettare-n"
+      ]
+    },
+    {
+      "analysis_kind": "DOCUMENTED_SENSE",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin sonus → Italian suono",
+      "family_relation": {
+        "ety:1e7afcab5044": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "acoustic sound",
+      "id": "dict-sense:it-suono-audio",
+      "language": "it",
+      "lemma": "suono",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "suono",
+      "pos": "NOUN",
+      "publisher_sense_locator": "suono noun sense 1",
+      "source_refs": [
+        "treccani-suono"
+      ]
+    },
+    {
+      "analysis_kind": "HOMONYM",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin sonus → Spanish son",
+      "family_relation": {
+        "ety:1e7afcab5044": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "pleasant musical sound",
+      "id": "dict-sense:es-son-music",
+      "language": "es",
+      "lemma": "son",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "son",
+      "pos": "NOUN",
+      "publisher_sense_locator": "son noun sense 1",
+      "source_refs": [
+        "rae-son"
+      ]
+    },
+    {
+      "analysis_kind": "POLYSEMY",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Latin actus → Russian акт",
+      "family_relation": {
+        "ety:5bed7c192e10": "DOCUMENTED_COMPATIBLE"
+      },
+      "gloss": "individual act or deed",
+      "id": "dict-sense:ru-act-action",
+      "language": "ru",
+      "lemma": "акт",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "акт",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Kuznetsov sense 1",
+      "source_refs": [
+        "gramota-act"
+      ]
+    },
+    {
+      "analysis_kind": "POLYSEMY",
+      "association_status": "NOT_ASSESSED",
+      "corpus_identity_status": "UNRESOLVED",
+      "dictionary_fact_status": "DOCUMENTED",
+      "etymological_path": "Same recorded Latin actus source; document sense separate",
+      "family_relation": {
+        "ety:5bed7c192e10": "HISTORICAL_SEMANTIC_BRIDGE_REVIEW"
+      },
+      "gloss": "official record or protocol",
+      "id": "dict-sense:ru-act-document",
+      "language": "ru",
+      "lemma": "акт",
+      "morphological_segmentation": {
+        "description": null,
+        "status": "NOT_ASSERTED_FROM_LETTERS"
+      },
+      "note": "",
+      "original_form": "акт",
+      "pos": "NOUN",
+      "publisher_sense_locator": "Kuznetsov sense 3",
+      "source_refs": [
+        "gramota-act"
+      ]
+    }
+  ]
+}

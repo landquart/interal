@@ -1,0 +1,42 @@
+{
+  "schema": "interal-semantic-scope-policy/1",
+  "family_ids": [
+    "ety:08ba51b746e3",
+    "ety:111ecf2b9102",
+    "ety:1e7afcab5044",
+    "ety:48a6d1a8bd70",
+    "ety:5399d3940845",
+    "ety:5bed7c192e10",
+    "ety:6f02cd73a41b",
+    "ety:75eed4d759a7",
+    "ety:7ddf5971ff53",
+    "ety:86b44cd0f312",
+    "ety:889cac18ee34",
+    "ety:94c776d13c76",
+    "ety:af877da095f4",
+    "ety:b23a886af6e9",
+    "ety:b7896f4b4d14",
+    "ety:c8234fd1680b",
+    "ety:c83f49f12347",
+    "ety:cf09b1ebc137",
+    "ety:cf2897b18b16",
+    "ety:cfe2dc7e6baf",
+    "ety:d5d40d053345",
+    "ety:d6e821e309c7",
+    "ety:d8ae5a62c6a1",
+    "ety:de121cd2e13a",
+    "family:liber",
+    "family:regul",
+    "surface:de:net",
+    "surface:it:net"
+  ],
+  "reason": "Entire exact memberships of every historical net routing target, sonus/nitidus/genea/act, plus liber and regul controls; not a sample and not a deletion rule",
+  "selection_sources": [
+    "audit/associative-family-v5/net-alias-routing-decision.json",
+    "audit/associative-family-v5/manual-case-decisions.json",
+    "audit/associative-family-v5/genea-german-decision.json",
+    "audit/associative-family-v5/sonus-language-decisions.json"
+  ],
+  "remaining_corpus": "Retain existing v2 morphology review queues; no semantic correctness inferred from being outside this priority scope",
+  "llm_requests_authorized": 0
+}
