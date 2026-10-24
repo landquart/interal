@@ -2,6 +2,7 @@
 import fs from 'node:fs';import path from 'node:path';import {gunzipSync} from 'node:zlib';import {createHash} from 'node:crypto';
 import {FamilyIndexLoader} from '../js/family-index-loader.js';
 import {replay} from '../release_control/calculator.mjs';
+const started=performance.now(),cpuStarted=process.cpuUsage();
 const work=process.argv[2];if(!work)throw Error('work required');const read=p=>JSON.parse(fs.readFileSync(p));
 const hash=x=>createHash('sha256').update(JSON.stringify(x)).digest('hex');
 const roots={before:path.join(work,'before','current','associativvordes/family-index-v5'),after:path.join(work,read(path.join(work,'SHADOW-PATH.json')).relative,'current','associativvordes/family-index-v5')};
@@ -27,5 +28,5 @@ for(const query of queries){
  const runtimeEqual=hash(runtimes.before)===hash(runtimes.after),calculatorEqual=hash(recordings.before)===hash(recordings.after);runtimeDifferences+=!runtimeEqual;calculatorDifferences+=!calculatorEqual;
  result.push({query,runtime:runtimes,calculator:recordings,runtime_equal:runtimeEqual,calculator_equal:calculatorEqual});process.stdout.write(JSON.stringify({query,runtimeEqual,calculatorEqual})+'\n');global.gc?.();
 }
-const r={schema:'full-v5-runtime-calculator-comparison/1',scope:'Actual v5 byte-identical shadow, not v6 recordings or a changed materializer',queries:queries.length,language_queries:queries.length*6,rows:result,runtime_differences:runtimeDifferences,calculator_state_differences:calculatorDifferences,semantic_impact_certified:false,semantic_gate:'BLOCKED',unknown_reason:'No independently verified target sense, A/P or sense-specific frequency binding; no scores synthesized',paid_api_calls:0,production_writes:0};
+const r={schema:'full-v5-runtime-calculator-comparison/1',scope:'Actual v5 byte-identical shadow, not v6 recordings or a changed materializer',queries:queries.length,language_queries:queries.length*6,rows:result,runtime_differences:runtimeDifferences,calculator_state_differences:calculatorDifferences,semantic_impact_certified:false,semantic_gate:'BLOCKED',unknown_reason:'No independently verified target sense, A/P or sense-specific frequency binding; no scores synthesized',paid_api_calls:0,production_writes:0,performance:{wall_seconds:(performance.now()-started)/1000,cpu_microseconds:process.cpuUsage(cpuStarted),peak_rss_kib:process.resourceUsage().maxRSS}};
 const out=path.join(work,'CALCULATOR-COMPARISON.json');fs.writeFileSync(out+'.partial',JSON.stringify(r));fs.renameSync(out+'.partial',out);if(runtimeDifferences||calculatorDifferences)throw Error('runtime replay differs');

@@ -21,6 +21,9 @@ with tempfile.TemporaryDirectory() as td:
  assert materialize(src,w/'store',plan)['status']=='ALREADY_MATERIALIZED'
  a=layers(src,w/'store',plan);assert len(a)==5 and all(not x['applied_operation_ids'] for x in a)
  materialize(src,w/'replay',plan);layers(src,w/'replay',plan);assert load(w/'store/CURRENT.json')==load(w/'replay/CURRENT.json')
+ recover=w/'truncated-recovery';stage=recover/'materialization.partial';first=files[0];second=files[1];(stage/first['path']).parent.mkdir(parents=True);(stage/first['path']).write_bytes((src/first['path']).read_bytes());t=stage/second['path'];t.parent.mkdir(parents=True,exist_ok=True);t.with_name(t.name+'.partial').write_bytes(b'TRUNCATED_TEST_ONLY')
+ save(recover/'IDENTITY.json',dict(plan_sha256=sha(plan),source_snapshot_sha256=sha(src/'SNAPSHOT.json'),inventory_sha256=lock['inventory_sha256'],store_code_sha256=sha(ROOT/'associativvordes/full_v5_dry_run/store.py')));save(recover/'CHECKPOINT.json',dict(committed=[first['path']]))
+ resumed=materialize(src,recover,plan);assert resumed['reused_files']==1 and resumed['copied_files']==1
  bad=w/'store/objects'/lock['inventory_sha256']/'current/a.json';bad.chmod(0o644);bad.write_text('corrupt')
  try:materialize(src,w/'store',plan)
  except ValueError:pass
