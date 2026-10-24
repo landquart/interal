@@ -1,0 +1,99 @@
+{
+  "schema": "full-v5-executed-code/1",
+  "pinned_baseline": {
+    "commit": "44f1105cfe8e59d50affa08889654bfb488056c1",
+    "sha256": "388502638fab3cdbcbbe63620e4b8731d0da1b66573e7b2c4e847e27542e78fa"
+  },
+  "files": [
+    {
+      "path": "associativvordes/full_v5_dry_run/README.md",
+      "bytes": 6253,
+      "sha256": "72d73d678b5b2eaa80fbe7fe2fa1872e2251719f8e52b547227a033cfabd5eed"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/bundle.mjs",
+      "bytes": 2293,
+      "sha256": "ef648c21084d6d8e0b782f60ceb65f053ae5099e6a8b3a1972ec0b7db80d93d2"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/census.py",
+      "bytes": 1874,
+      "sha256": "25261c427ba9788831eb5fd467e9cc8f08fc713735094a14e6f793e6924f735f"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/checks.py",
+      "bytes": 4973,
+      "sha256": "415350ab41f5343aa5abb37162a5ef13ec6a122b8d9cdbbf5c0ea05d81dd30f3"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "bytes": 6761,
+      "sha256": "582e3db2b9aa180db2e426abe3da65e2edc96b1c7a9e8b96844443a00cb47c68"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/exercise.py",
+      "bytes": 4567,
+      "sha256": "bd797cd560064ded335b8c778d5207a220e5aa254dd336cd07ea1304c6b185ea"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/raw_replay.mjs",
+      "bytes": 3785,
+      "sha256": "af92064b574898e5525a32929bd27b09ff7723092ed0bbc93a401e888c62df82"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/runtime.mjs",
+      "bytes": 4327,
+      "sha256": "a70250edad71e60224e3a5ccc212bb15eb7654d680068ad1985b3aacd0f65dd2"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/store.py",
+      "bytes": 5122,
+      "sha256": "10364eaec70da92425f0a4e1126fa6863e6858fd07ff2f35884de608f1668668"
+    },
+    {
+      "path": "associativvordes/history_registry/registry.py",
+      "bytes": 14407,
+      "sha256": "2430f58f1e5b586f7bc09f278b08168f4b224247e88e41d9c323975fd20f0216"
+    },
+    {
+      "path": "associativvordes/js/association-analyzer.js",
+      "bytes": 29153,
+      "sha256": "d1d15be5d67c5039d4e6a2a62dd208c4d7713337de02be7047d0595110ac2e00"
+    },
+    {
+      "path": "associativvordes/js/associative-calculation-runner.js",
+      "bytes": 23020,
+      "sha256": "bdbb520dd1fdfa783e7c176f218384aa85b2d888ea3ea5f52ce10b5325bfee73"
+    },
+    {
+      "path": "associativvordes/js/family-index-loader.js",
+      "bytes": 6293,
+      "sha256": "8c8c5b0efcf3559ce6a35ce9fba02828e490ad1059de36f43743a6cf9464fff1"
+    },
+    {
+      "path": "associativvordes/js/qwen-client.js",
+      "bytes": 48564,
+      "sha256": "0a74ab24a10a47796cdcde644a6aa0d7f7f04ef3fa6e9ffbbbe306b1145ec16c"
+    },
+    {
+      "path": "associativvordes/release_control/calculator.mjs",
+      "bytes": 2839,
+      "sha256": "ef0dd812789121250cc9bea5c2f8c49b6322593b2d594934bbeaf3917cf1daa5"
+    },
+    {
+      "path": "shared/control-language-demographics.mjs",
+      "bytes": 2033,
+      "sha256": "0c91670d4f028bf5a0053034748fd7c011285835fd528a622ee0d20fa351c6c6"
+    },
+    {
+      "path": "shared/methodology-calculation.mjs",
+      "bytes": 1443,
+      "sha256": "93226d39526df319ab1f45cf74a9dea835ba061ea57279b62290e56a2034c17a"
+    },
+    {
+      "path": "tests/associative-full-v5-dry-run.test.mjs",
+      "bytes": 4516,
+      "sha256": "7aa6d458ece59f2ce3281af4159c73883b1ffe465ebd55258de8bda86250a84d"
+    }
+  ]
+}

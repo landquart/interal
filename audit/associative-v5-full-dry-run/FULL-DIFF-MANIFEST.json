@@ -1,0 +1,29 @@
+{
+  "schema": "full-v5-complete-diff/1",
+  "file_diff": {
+    "path": "FULL-DIFF.ndjson.gz",
+    "bytes": 192061,
+    "sha256": "52b3905d304a8b97806a552b429100ad1787f9a940c15804b18ac71d6fb6d28c",
+    "records": 3587,
+    "coverage": "Every current production file plus every historical source-carrier file",
+    "all_statuses": "UNCHANGED",
+    "location": "Research archive"
+  },
+  "membership_diff": {
+    "path": "MEMBERSHIP-DIFF.ndjson",
+    "records": 0,
+    "coverage_memberships": 10078319
+  },
+  "family_diff": {
+    "path": "FAMILY-DIFF.ndjson",
+    "records": 0,
+    "coverage_families": 2456543
+  },
+  "alias_diff": {
+    "path": "ALIAS-DIFF.ndjson",
+    "records": 0,
+    "coverage_aliases": 1934050
+  },
+  "unaccounted_disappearances": 0,
+  "approved_operation_ids": []
+}
