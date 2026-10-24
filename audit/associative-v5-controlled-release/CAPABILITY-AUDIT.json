@@ -1,0 +1,33 @@
+{
+  "data_release_pr_created": false,
+  "inspection": "Source inspection at stage13 research commit; not a new full native exercise",
+  "owner_approval_requested": false,
+  "pr_678": {
+    "head": "31c28e7dfd15bb6213236e3c45355c2d60d3adfc",
+    "merge_commit": "47723611112610945cb09b34e18588b7bd151911",
+    "state": "MERGED"
+  },
+  "production_v5_capabilities": {
+    "full_static_v5_materializer": false,
+    "nonempty_v5_replay_certified": false,
+    "nonempty_v5_rollback_certified": false,
+    "production_promotion": false
+  },
+  "production_writes": 0,
+  "research_capabilities": [
+    "exact before/after finite native operations",
+    "versioned STATE store",
+    "Ed25519 operation signatures with reviewer/blind ledger witnesses",
+    "independent verifier checks and exact owner release approval",
+    "immutable human history",
+    "staged validation",
+    "atomic local CURRENT",
+    "compensating signed rollback",
+    "independent replay/audit",
+    "separately approved publication package"
+  ],
+  "schema": "v5-release-capability-audit/1",
+  "signatures_created": false,
+  "stage13_scope": "read-only pinned readiness package, deterministic replay and independent Node byte verification",
+  "trusted_owner_keys_accessed": false
+}
