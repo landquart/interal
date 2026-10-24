@@ -15,6 +15,7 @@ def load_queue(path):
     if manifest.get('lexical_senses_sha256')!=filehash(audit/'LEXICAL-SENSES.json') or manifest.get('dictionary_sources_sha256')!=filehash(audit/'DICTIONARY-SOURCES.json'):
         raise ValueError('stale or unavailable dictionary authority catalog')
     catalog={s['id']:s for s in read(audit/'LEXICAL-SENSES.json')['senses']}
+    sources={s['id']:s for s in read(audit/'DICTIONARY-SOURCES.json')['sources']}
     cases=restore_cases((path/'SEMANTIC-CASES.ndjson').read_bytes())
     questions=read(path/'QUESTIONS.json')['questions']
     if len(questions)!=len(cases) or len({q['id'] for q in questions})!=len(questions):raise ValueError('semantic scope/sense loss')
@@ -22,6 +23,8 @@ def load_queue(path):
     for q in questions:
         c=cases_by_id[q['id']];s=c['scope'];sense=c['dictionary_sense']
         if sense!=catalog.get(sense['id']):raise ValueError('invented or altered dictionary sense')
+        expected_refs=[dict(id='dictionary:'+ref,source_receipt=sources[ref],meaning_status='DICTIONARY_ONLY_NOT_CORPUS_BINDING') for ref in sense['source_refs']]
+        if q.get('evidence_refs')!=expected_refs:raise ValueError('invented or altered dictionary evidence receipt')
         if q['source_family_id']!=s['family_id'] or q['source_lemma_id']!=s['lemma_id'] or q['language']!=s['language']:raise ValueError('semantic legacy scope mismatch')
         if len(q['lexeme_alternatives'])!=1 or len(q['lexeme_alternatives'][0]['verified_senses'])!=1 or q['lexeme_alternatives'][0]['verified_senses'][0]['id']!=sense['id']:raise ValueError('sense coalescing')
         lex=q['lexeme_alternatives'][0]

@@ -58,14 +58,8 @@ def review_import(queue,ledger_root):
  from store import Ledger,atomic as ledger_atomic,canonical as ledger_canonical,digest
  queue=Path(queue);m=read(queue/'MANIFEST.json');raw=(queue/'source-rows.json').read_bytes()
  if sha(raw)!=m['outputs']['source-rows.json']:raise ValueError('source rows checksum')
- ledger=Ledger(ledger_root);result=ledger.import_queue(queue);rows=json.loads(raw)
- wanted={e['id']:e for q in ledger.questions.values() for e in q.get('evidence_refs',[])}
- if set(rows)!=set(wanted):raise ValueError('source evidence closure')
- for identifier,r in rows.items():
-  if r['raw_locator']!=wanted[identifier]['raw_locator'] or sha(base64.b64decode(r['original_line_base64'],validate=True))!=r['raw_locator']['raw_sha256']:raise ValueError('raw row differs from question evidence')
+ ledger=Ledger(ledger_root);result=ledger.import_queue(queue,source_rows=raw);rows=json.loads(raw)
  payload=ledger_canonical(rows).encode();version=digest(payload)
- with ledger.lock():
-  folder=ledger.root/'source-rows';folder.mkdir(exist_ok=True);ledger_atomic(folder/(version+'.json'),payload)
  return dict(result,source_rows=len(rows),source_rows_version=version)
 
 if __name__=='__main__':

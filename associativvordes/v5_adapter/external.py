@@ -64,6 +64,7 @@ def build(raw,lock,out,allow_unavailable=False):
 class External:
  def __init__(self,folder,source_lock,verify=True,allow_incomplete=False):
   self.folder=Path(folder);self.manifest=read(self.folder/'EXTERNAL.json');self.registry=read(source_lock)
+  if self.manifest.get('version')!=sha(canonical({k:v for k,v in self.manifest.items() if k!='version'})):raise ValueError('external manifest identity mismatch')
   if filehash(source_lock)!=self.manifest['identity']['source_lock_sha256']:raise ValueError('source lock mismatch')
   if not self.manifest['complete'] and not allow_incomplete:raise ValueError('incomplete external corpus')
   self.parts=self.manifest['parts'];self.identity=self.manifest['version']

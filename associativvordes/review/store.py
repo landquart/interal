@@ -135,7 +135,7 @@ class Ledger:
                 self.snapshot = snap
                 self.manifest = manifest
 
-    def import_queue(self, directory):
+    def import_queue(self, directory, source_rows=None):
         directory = Path(directory)
         manifest = json.loads((directory / 'MANIFEST.json').read_bytes())
         raw = (directory / 'questions.ndjson').read_bytes()
@@ -147,8 +147,28 @@ class Ledger:
         for q in qs:
             if not all(q.get(k) for k in ('id', 'family', 'language', 'lemma', 'lexeme_alternatives')):
                 raise ValueError('question lacks native identity')
+        attachment = None
+        if source_rows is not None or manifest.get('schema') == 'v5-review-projection/1':
+            import base64
+            source_rows = source_rows if source_rows is not None else (directory/'source-rows.json').read_bytes()
+            if digest(source_rows) != manifest['outputs'].get('source-rows.json'):
+                raise ValueError('source rows checksum')
+            rows = json.loads(source_rows)
+            wanted = {e['id']: e for q in qs for e in q.get('evidence_refs', [])}
+            if set(rows) != set(wanted):raise ValueError('source evidence closure')
+            for identifier,row in rows.items():
+                evidence = wanted[identifier]
+                raw_row = base64.b64decode(row['original_line_base64'], validate=True)
+                if row['raw_locator'] != evidence['raw_locator'] or digest(raw_row) != evidence['raw_locator']['raw_sha256']:
+                    raise ValueError('raw row differs from question evidence')
+                if row.get('raw_text') != raw_row.decode('utf-8') or any(row.get(k) != evidence.get(k) for k in ('revision','artifact')):
+                    raise ValueError('source row metadata mismatch')
+            attachment = canonical(rows).encode()
         snap = digest(manifest)
         with self.lock():
+            if attachment is not None:
+                row_folder = self.root/'source-rows';row_folder.mkdir(exist_ok=True)
+                atomic(row_folder/(digest(attachment)+'.json'), attachment)
             folder = self.root / 'snapshots' / snap
             folder.mkdir(exist_ok=True)
             atomic(folder / 'questions.ndjson', raw)

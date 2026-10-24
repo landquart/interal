@@ -13,7 +13,7 @@ def validate(j,case,roster,role):
     if j.get('verdict') not in LABELS or not j.get('reason') or not j.get('sources'):raise ValueError('incomplete human answer')
     date=datetime.fromisoformat(j['reviewed_at'].replace('Z','+00:00'))
     if date.tzinfo is None:raise ValueError('timezone required')
-    if j['verdict']!='UNCERTAIN' and (not j.get('pos') or not j.get('sense') or not any(s.get('locator') and s.get('finding') and s.get('publisher') for s in j['sources'])):raise ValueError('independent POS/sense/source evidence required')
+    if j['verdict']!='UNCERTAIN' and (not j.get('relation') or not j.get('pos') or not j.get('sense') or not any(s.get('locator') and s.get('finding') and s.get('publisher') for s in j['sources'])):raise ValueError('independent POS/sense/relation/source evidence required')
     return j
 
 def compile_gold(cases,reviews,arbitrations,roster):

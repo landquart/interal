@@ -25,6 +25,10 @@ def authorize(operation,actual_ids,proposed_ids,proof,history_result,trusted_ver
     """Rejection proof gate. This module cannot create trusted proof receipts."""
     if operation not in OPERATIONS:raise ValueError('unsupported operation')
     if operation not in {'REJECT_ENTIRE_FAMILY','REMOVE_EXACT_MEMBERSHIPS'}:return False
+    try:
+        actual_ids=[tuple(x) if isinstance(x,(list,tuple)) else x for x in actual_ids]
+        proposed_ids=[tuple(x) if isinstance(x,(list,tuple)) else x for x in proposed_ids]
+    except TypeError:return False
     if not proposed_ids or len(set(proposed_ids))!=len(proposed_ids):return False
     if operation=='REJECT_ENTIRE_FAMILY' and set(actual_ids)!=set(proposed_ids):return False
     if not set(proposed_ids)<=set(actual_ids):return False

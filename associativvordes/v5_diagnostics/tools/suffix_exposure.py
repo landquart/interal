@@ -44,7 +44,7 @@ def audit(registry):
    exposed.append(dict(family_id=fid,canonical=f['canonical'],configured_tokens=inventory,configured_roles=types,memberships=n,flags=flags,existing_priority=priority,semantic_status='UNRESOLVED',scope='entire current family envelope; not a confirmed inflection relation'))
   for language in ['en','de','fr','es','it','ru']:
    p=ROOT/f'associativvordes/js/morphology/languages/{language}.js';sources[str(p.relative_to(ROOT))]=filehash(p)
-  for name in ['associativvordes/js/root-matcher.js','associativvordes/js/morphology/languages/index.js']:
+  for name in ['associativvordes/js/root-matcher.js','associativvordes/js/search-normalizer.js','associativvordes/js/morphology/languages/base.js','associativvordes/js/morphology/languages/index.js']:
    sources[name]=filehash(ROOT/name)
   coverage=json.loads((Path(registry)/'SUMMARY.json').read_bytes())['selected_signal_union']
   return dict(schema='v5-configured-tail-exposure/1',registry_version=m['version'],registry_sha256=m['database_sha256'],source_code_sha256=sources,configured_tokens=len(tokens),distinct_candidate_family_ids=len(grouped),matched_families=len(exposed),memberships_in_matched_families=sum(x['memberships'] for x in exposed),by_configured_role=roles,roles_overlap_not_additive=True,records=exposed,absent_candidates=absent,

@@ -12,9 +12,15 @@ def save(p,x):
 def finalize(first,replay):
  start=time.monotonic();out=Path(first);db,m=open_registry(out);other,rm=open_registry(replay)
  try:
+  executions=[m.get('execution'),rm.get('execution')]
+  if Path(first).resolve()==Path(replay).resolve() or not all(isinstance(e,dict) and e.get('run_id') for e in executions) or executions[0]['run_id']==executions[1]['run_id']:raise ValueError('distinct completed executions required; copied/self replay rejected')
+  for folder,connection,e in zip([first,replay],[db,other],executions):
+   recorded=connection.execute("SELECT value FROM state WHERE key='execution'").fetchone()
+   if not recorded or json.loads(recorded[0])!=e or e.get('output')!=str(Path(folder).resolve()):raise ValueError('replay execution provenance differs')
   if m['identity']!=rm['identity'] or m['logical_tables']!=rm['logical_tables']:raise ValueError('independent replay differs')
   if (out/'SUMMARY.json').read_bytes()!=(Path(replay)/'SUMMARY.json').read_bytes():raise ValueError('summary replay differs')
   coverage=json.loads((out/'COVERAGE.json').read_bytes())
+  if (out/'COVERAGE.json').read_bytes()!=(Path(replay)/'COVERAGE.json').read_bytes():raise ValueError('coverage replay differs')
   save(out/'REPLAY-RECEIPT.json',dict(schema='v5-diagnostics-independent-replay/1',status='PASS',fresh_replay=True,logical_tables_equal=True,summary_bytes_equal=True,coverage_bytes_equal=(out/'COVERAGE.json').read_bytes()==(Path(replay)/'COVERAGE.json').read_bytes(),first_version=m['version'],replay_version=rm['version'],first_database_sha256=m['database_sha256'],replay_database_sha256=rm['database_sha256'],logical_tables=m['logical_tables']))
   folder=out/'PRIORITY-QUEUES';folder.mkdir(exist_ok=True);outputs={};total=0
   for band in ['PRIORITY_1','PRIORITY_2','PRIORITY_3','PRIORITY_4']:

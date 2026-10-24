@@ -1,0 +1,71 @@
+{
+  "version": "1.0.0",
+  "production_enabled": false,
+  "languages": {
+    "en": "germanic",
+    "de": "germanic",
+    "fr": "romance",
+    "es": "romance",
+    "it": "romance",
+    "ru": "slavic"
+  },
+  "decisions": [
+    "CONFIRMED_MEMBER",
+    "CONFIRMED_NONMEMBER",
+    "UNRESOLVED",
+    "CONFLICT"
+  ],
+  "relations": [
+    "exact_base",
+    "documented_allomorph",
+    "sound_change",
+    "historical_shortening",
+    "compound_component",
+    "indirect",
+    "accidental_similarity",
+    "distant_etymology"
+  ],
+  "positive_relations": [
+    "exact_base",
+    "documented_allomorph",
+    "sound_change",
+    "historical_shortening",
+    "compound_component",
+    "indirect"
+  ],
+  "thresholds": {
+    "root": {
+      "languages": 3,
+      "groups": 2,
+      "FAv": 35
+    },
+    "preposition": {
+      "languages": 3,
+      "groups": 2,
+      "FAv": 35
+    },
+    "suffix": {
+      "languages": 3,
+      "groups": 2,
+      "ipm_each": 3,
+      "FAa": 15
+    }
+  },
+  "preserved_metrics": [
+    "Di",
+    "Pr",
+    "Sh",
+    "SWOW",
+    "A",
+    "F",
+    "P",
+    "FAv",
+    "FAₐ"
+  ],
+  "forbidden_automation": [
+    "create_root",
+    "recognize_root",
+    "substring_expansion",
+    "formula_change"
+  ]
+}

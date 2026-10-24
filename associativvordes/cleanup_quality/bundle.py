@@ -8,6 +8,8 @@ def pack(archive,release,evaluation,normative,old_kit,verification):
     entries=[]
     for prefix,path in [('release',release),('evaluation',evaluation),('pinned-normative',normative),('historical-kit/v5-probability-kit-v2.zip',old_kit),('INDEPENDENT-VERIFICATION.json',verification)]:
         path=Path(path)
+        if path.is_symlink() or not path.exists() or not (path.is_file() or path.is_dir()):raise ValueError('missing or unsupported required archive source: '+str(path))
+        if prefix in {'release','evaluation','pinned-normative'} and (not path.is_dir() or not any(path.iterdir())):raise ValueError('required nonempty source directory: '+str(path))
         for f in sorted(path.rglob('*')) if path.is_dir() else [path]:
             if f.is_symlink():raise ValueError('symlink archive input')
             if not f.is_file():continue

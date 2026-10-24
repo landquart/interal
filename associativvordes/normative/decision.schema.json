@@ -1,0 +1,666 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://interal.vercel.app/spec/family-decision/1.0.0",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "element": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "root",
+            "preposition",
+            "suffix"
+          ]
+        },
+        "normative_form": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target_meaning": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "id",
+        "kind",
+        "normative_form",
+        "target_meaning"
+      ],
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "family_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "element_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "enum": [
+            "en",
+            "de",
+            "fr",
+            "es",
+            "it",
+            "ru"
+          ]
+        },
+        "lemma_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "lexeme_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sense_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "context_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "family_id",
+        "element_id",
+        "language",
+        "lemma_id",
+        "lexeme_id",
+        "sense_id",
+        "context_id"
+      ],
+      "additionalProperties": false
+    },
+    "decision": {
+      "enum": [
+        "CONFIRMED_MEMBER",
+        "CONFIRMED_NONMEMBER",
+        "UNRESOLVED",
+        "CONFLICT"
+      ]
+    },
+    "evidence_status": {
+      "enum": [
+        "documented",
+        "insufficient",
+        "contradictory"
+      ]
+    },
+    "lexical_identity_status": {
+      "enum": [
+        "resolved",
+        "unresolved",
+        "conflict"
+      ]
+    },
+    "sense_status": {
+      "enum": [
+        "resolved",
+        "unresolved",
+        "conflict"
+      ]
+    },
+    "relation_status": {
+      "enum": [
+        "supported",
+        "refuted",
+        "unresolved",
+        "conflict"
+      ]
+    },
+    "association_status": {
+      "enum": [
+        "supported",
+        "weak",
+        "unknown",
+        "conflict"
+      ]
+    },
+    "relation_type": {
+      "enum": [
+        "exact_base",
+        "documented_allomorph",
+        "sound_change",
+        "historical_shortening",
+        "compound_component",
+        "indirect",
+        "accidental_similarity",
+        "distant_etymology"
+      ]
+    },
+    "correspondence": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "form": {
+              "type": "string",
+              "minLength": 1
+            },
+            "scope": {
+              "type": "object",
+              "properties": {
+                "family_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "element_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "language": {
+                  "enum": [
+                    "en",
+                    "de",
+                    "fr",
+                    "es",
+                    "it",
+                    "ru"
+                  ]
+                },
+                "lemma_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "lexeme_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "sense_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "context_id": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "family_id",
+                "element_id",
+                "language",
+                "lemma_id",
+                "lexeme_id",
+                "sense_id",
+                "context_id"
+              ],
+              "additionalProperties": false
+            },
+            "evidence_ids": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "minLength": 1
+              },
+              "uniqueItems": true
+            },
+            "steps": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "from": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "to": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "from_sense": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "to_sense": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "direction": {
+                    "const": "directed"
+                  },
+                  "evidence_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "uniqueItems": true,
+                    "minItems": 1
+                  },
+                  "scope": {
+                    "type": "object",
+                    "properties": {
+                      "family_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "element_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "language": {
+                        "enum": [
+                          "en",
+                          "de",
+                          "fr",
+                          "es",
+                          "it",
+                          "ru"
+                        ]
+                      },
+                      "lemma_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "lexeme_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sense_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "context_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "family_id",
+                      "element_id",
+                      "language",
+                      "lemma_id",
+                      "lexeme_id",
+                      "sense_id",
+                      "context_id"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "from",
+                  "to",
+                  "from_sense",
+                  "to_sense",
+                  "direction",
+                  "evidence_ids"
+                ],
+                "additionalProperties": false
+              }
+            }
+          },
+          "required": [
+            "form",
+            "scope",
+            "evidence_ids",
+            "steps"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "axis_evidence": {
+      "type": "object",
+      "properties": {
+        "evidence_status": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "lexical_identity_status": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "sense_status": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "relation_status": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "association_status": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "evidence_status",
+        "lexical_identity_status",
+        "sense_status",
+        "relation_status",
+        "association_status"
+      ],
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1
+          },
+          "version": {
+            "type": "string",
+            "minLength": 1
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "type": "string",
+            "minLength": 1
+          },
+          "assertion_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "scope": {
+            "type": "object",
+            "properties": {
+              "family_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "element_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "language": {
+                "enum": [
+                  "en",
+                  "de",
+                  "fr",
+                  "es",
+                  "it",
+                  "ru"
+                ]
+              },
+              "lemma_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "lexeme_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "sense_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "context_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "family_id",
+              "element_id",
+              "language",
+              "lemma_id",
+              "lexeme_id",
+              "sense_id",
+              "context_id"
+            ],
+            "additionalProperties": false
+          },
+          "polarity": {
+            "enum": [
+              "supports",
+              "rebuts"
+            ]
+          },
+          "origin": {
+            "enum": [
+              "dictionary",
+              "grammar",
+              "reviewed_document",
+              "source_dataset",
+              "model"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "version",
+          "locator",
+          "finding",
+          "assertion_sha256",
+          "scope",
+          "polarity",
+          "origin"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "provenance": {
+      "type": "object",
+      "properties": {
+        "snapshot_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_lock_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "algorithm_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "policy_version": {
+          "const": "1.0.0"
+        },
+        "origin": {
+          "enum": [
+            "human_review",
+            "legacy",
+            "model",
+            "test_fixture"
+          ]
+        }
+      },
+      "required": [
+        "snapshot_sha256",
+        "source_lock_sha256",
+        "algorithm_sha256",
+        "policy_version",
+        "origin"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "element",
+    "scope",
+    "decision",
+    "evidence_status",
+    "lexical_identity_status",
+    "sense_status",
+    "relation_status",
+    "association_status",
+    "relation_type",
+    "correspondence",
+    "axis_evidence",
+    "evidence",
+    "reason",
+    "supersedes",
+    "provenance"
+  ],
+  "additionalProperties": false
+}

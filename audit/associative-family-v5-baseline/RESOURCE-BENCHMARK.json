@@ -1,0 +1,85 @@
+{
+  "archive_bytes": 1475102720,
+  "complete_fresh_pass": {
+    "exit_code": 0,
+    "note": "Complete fresh census of all 768 tasks, without checkpoint reuse, measured by a separate parent process; private /tmp SQLite working directory.",
+    "peak_rss_kib": 255552,
+    "wall_seconds": 1089.2758049230001
+  },
+  "concurrency_note": "The fresh pass initially overlapped resumed verification passes and supplementary read-only checks; measurements are actual observed costs, not an isolated speed comparison.",
+  "disk_note": "Includes original/restored snapshots, archive, six retained local parts, and three SQLite result databases. Extra workspace synchronization copies caused the separately recorded disk failure; active SQLite moved to /tmp.",
+  "interrupted_traversals": {
+    "observed_process_peak_rss_kib_before_disk_failure": {
+      "restored-run": 254708,
+      "run": 256232
+    },
+    "reason": "Disk exhausted by transient workspace synchronization copies; production and frozen snapshot unchanged.",
+    "runs": {
+      "restored-run": {
+        "observed_seconds_until_recovery": 943.44526720047,
+        "preserved_checkpoints": 600,
+        "sqlite_integrity_after_recovery": "ok"
+      },
+      "run": {
+        "observed_seconds_until_recovery": 984.7686536312103,
+        "preserved_checkpoints": 606,
+        "sqlite_integrity_after_recovery": "ok"
+      }
+    }
+  },
+  "resumed_tail_only_not_full_runtime": {
+    "restored-run": {
+      "database_bytes": 972914688,
+      "disk_work_bytes": 973182395,
+      "note": "Segments include source hash revalidation on resume; intentional hard-crash segment measured separately by supervisor.",
+      "peak_rss_kib": 167360,
+      "schema_version": 1,
+      "seconds_total_completed_segments": 320.138995022,
+      "segments": [
+        {
+          "new_tasks": 168,
+          "peak_rss_kib": 167360,
+          "resumed_tasks": 600,
+          "seconds": 320.138995022
+        }
+      ],
+      "snapshot_bytes": 1466534695
+    },
+    "run": {
+      "database_bytes": 972914688,
+      "disk_work_bytes": 973149632,
+      "note": "Segments include source hash revalidation on resume; intentional hard-crash segment measured separately by supervisor.",
+      "peak_rss_kib": 167372,
+      "schema_version": 1,
+      "seconds_total_completed_segments": 290.55182553899976,
+      "segments": [
+        {
+          "new_tasks": 162,
+          "peak_rss_kib": 167372,
+          "resumed_tasks": 606,
+          "seconds": 290.55182553899976
+        }
+      ],
+      "snapshot_bytes": 1466534695
+    }
+  },
+  "retained_payload_bytes": 8802018894,
+  "schema_version": 1,
+  "streaming_pass": {
+    "database_bytes": 972914688,
+    "disk_work_bytes": 973411774,
+    "note": "Segments include source hash revalidation on resume; intentional hard-crash segment measured separately by supervisor.",
+    "peak_rss_kib": 255552,
+    "schema_version": 1,
+    "seconds_total_completed_segments": 1072.2485662020003,
+    "segments": [
+      {
+        "new_tasks": 768,
+        "peak_rss_kib": 255552,
+        "resumed_tasks": 0,
+        "seconds": 1072.2485662020003
+      }
+    ],
+    "snapshot_bytes": 1466534695
+  }
+}
