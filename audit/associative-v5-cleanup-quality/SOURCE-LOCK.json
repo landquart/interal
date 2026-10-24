@@ -1,0 +1,112 @@
+{
+  "schema": "cleanup-quality-source-lock/1",
+  "main_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "parent_commit": "7bee3d975e972f673ae9dbfb28475783032a4121",
+  "preregistered_commit": "a725f41e48f368cf8762b8010f084c7c0bcc7e58",
+  "normative_commit": "ad32277ab9bc4fc8cd28ba82f08eaba2ab130f05",
+  "PR678": {
+    "state": "MERGED",
+    "merged_at": "2026-10-22T18:08:28Z",
+    "merge_commit": "47723611112610945cb09b34e18588b7bd151911",
+    "note": "Prompt description as open is outdated; no extra approval/merge is inferred"
+  },
+  "files": [
+    {
+      "path": "audit/associative-family-v5/annotation-protocol.md",
+      "bytes": 4543,
+      "sha256": "540407f335be531b59d77c65635793fe551b313b0d5719dfd28d64e95e55e4aa"
+    },
+    {
+      "path": "audit/associative-family-v5/annotation-input-lock.json",
+      "bytes": 3412,
+      "sha256": "709872c3a617ac2f987b96ad487b33d613108d757a7bc1ae455b2bc266a9d122"
+    },
+    {
+      "path": "audit/associative-family-v5/annotation-qa.json",
+      "bytes": 655,
+      "sha256": "a67fb954bc9ec7e2686e901065d988d2a7b21a26e1e8b90c64372199e8677868"
+    },
+    {
+      "path": "audit/associative-family-v5/annotators.json",
+      "bytes": 367,
+      "sha256": "57e1c76506645fdae689258f6ac017dc54c381cee0bde685cd16a29838290a0f"
+    },
+    {
+      "path": "audit/associative-family-v5/sampling-design.json",
+      "bytes": 2254,
+      "sha256": "948e8b5248fbbda31e6bcdf39a4855c2f520d89fd91e945fa7e34a5d0bdeb052"
+    },
+    {
+      "path": "audit/associative-family-v5/semantic-acceptance-thresholds.json",
+      "bytes": 1314,
+      "sha256": "24b77c32a2e507525f78f8f8f164562a9b58eadcfd91eb7f78e9b7ae259986c2"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/protocol04.json",
+      "bytes": 2843,
+      "sha256": "a0b014fc6de01336d02b30ef82bea6e8817cc528e443d7bf3e5f8e9339c91d0f"
+    },
+    {
+      "path": "audit/associative-external-preparation/pilot04-quality/REPORT.md",
+      "bytes": 7573,
+      "sha256": "8b16df206d4969ade55a7d7cf79d31f4f1a3a67b4a04fa1df46fe5d6cf134383"
+    },
+    {
+      "path": "audit/associative-external-preparation/pilot05-preannotation/REPORT.md",
+      "bytes": 15778,
+      "sha256": "d505d182c7e45f1e80676eb51d3ed468f55d2877afc9f46c3c59c7565b34e0c7"
+    },
+    {
+      "path": "audit/associative-external-preparation/mass06-dry-run/REPORT.md",
+      "bytes": 21487,
+      "sha256": "2209af84ad605d5fe8bedb6cc2def4ad3b2ae4590b56da26961e3ac811a482b5"
+    },
+    {
+      "path": "audit/associative-external-preparation/release07-control/REPORT.md",
+      "bytes": 12806,
+      "sha256": "0c528707369b1d34db23d9e9065c59b0ce1533cd4f611a6b9882dd33a7b9f837"
+    },
+    {
+      "path": "audit/associative-external-preparation/EVIDENCE-AND-VERDICTS.md",
+      "bytes": 27608,
+      "sha256": "205d4224b3438bd88f696f29d55f9e4425b6a39dd690a0528ca17727fcfa88f9"
+    },
+    {
+      "path": "associativvordes/release_control/control.py",
+      "bytes": 31184,
+      "sha256": "8fd0832bd553dea721d64b5aa7c840a75777750fcbd6c63793a58015196e85e3"
+    },
+    {
+      "path": "associativvordes/release_control/review_bridge.py",
+      "bytes": 835,
+      "sha256": "36d9e50d81e778092f67c1f966f6e348cf509263a4c054aa971e63e93861ca67"
+    },
+    {
+      "path": "associativvordes/review/store.py",
+      "bytes": 18521,
+      "sha256": "a0072308fc65d1fd8deb60aa66797cdfedc069af7daf4f8ed3687b55da0119dd"
+    },
+    {
+      "path": "audit/associative-v5-family-boundary/RELEASE-MANIFEST.json",
+      "bytes": 4349,
+      "sha256": "4d21f6aff6270f2d075a394bed95c62889780a6eae0d80a29fd682fe6497c20b"
+    },
+    {
+      "path": "audit/associative-v5-structural-cleanup/BEFORE-MANIFEST.json",
+      "bytes": 592277,
+      "sha256": "b746c75869c40e2e1ca255298c540942b9d549747867b9ff75860595b2c84ddb"
+    }
+  ],
+  "research_index": {
+    "code_sha256": "011de4e6266a45b4b4ff34836db45f57b6875943e12fe9f6942c68d1b2f2d7b6",
+    "index_sha256": "beaada18b4388710716b661951c1cc88b620889c5a80348314992961cb43d0cd",
+    "index_version": "83b756c9cbb21b1da46b10189d1e39d269f42dcfa83bcd774d7b15628b62dbd4",
+    "old_kit_sha256": "0e19c9d40961da7be037a63156576db0d8a5093c2e61134b6c10bb3c7dc593f8",
+    "protocol_sha256": "16de18663c6f9dfb0eba951b3d8262cfe525b8f80dad399c4ff69e8276cd5601"
+  },
+  "historical_kit": {
+    "artifact_id": 10603949468,
+    "bytes": 2808130,
+    "sha256": "0e19c9d40961da7be037a63156576db0d8a5093c2e61134b6c10bb3c7dc593f8"
+  }
+}

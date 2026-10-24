@@ -1,0 +1,17 @@
+{
+  "status": "PASS_ENGINEERING_ONLY",
+  "regression_tests": 5,
+  "full_test_command": "npm test",
+  "test_files": 108,
+  "all_pass": true,
+  "test_log_sha256": "37035aa61c9404c93a218981c5f6e3271f4c91542db038e3d681c347cfbfba7a",
+  "sampler_resume": {
+    "pause_after": 250000,
+    "full_continuous_replay_identical": true
+  },
+  "independent_full_cutoff_verifier": "INDEPENDENT-VERIFICATION.json",
+  "cold_restore": "BACKUP-RESTORE-REPORT.json",
+  "gold0_not_fake": true,
+  "semantic_gate": "BLOCKED",
+  "production_writes": 0
+}
