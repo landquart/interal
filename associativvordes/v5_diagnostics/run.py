@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Whole-corpus diagnostics on disk, transactional bucket checkpoints and exact IDs."""
-import argparse,fcntl,gzip,hashlib,importlib.util,itertools,json,os,resource,sqlite3,subprocess,sys,time,zlib
+import argparse,fcntl,gzip,hashlib,importlib.util,itertools,json,os,resource,sqlite3,subprocess,sys,time,zlib,uuid
 from collections import Counter
 from pathlib import Path
 from classify import POLICY,canonical,digest,member,family,rank,normal
@@ -10,7 +10,9 @@ from common import atomic,filehash,connect,read,sha
 from adapter import Adapter
 from bridge import history_reader
 SCHEMA='v5-global-diagnostics/1'
-def code_lock():return {p.name:filehash(p) for p in Path(__file__).parent.glob('*.py') if not p.name.startswith('test') }|{'policy.json':filehash(Path(__file__).with_name('policy.json'))}
+sys.path.insert(0,str(ROOT))
+from associativvordes.pr_review_audit.integrity import executable_lock
+def code_lock():return executable_lock(ROOT,'associativvordes/v5_diagnostics','associativvordes/v5_adapter','associativvordes/history_registry')
 def setup(db):
  db.executescript('''CREATE TABLE IF NOT EXISTS state(key TEXT PRIMARY KEY,value TEXT);
  CREATE TABLE IF NOT EXISTS checkpoints(bucket TEXT PRIMARY KEY,receipt TEXT);
@@ -51,7 +53,7 @@ def ingest(db,projection,receipt,crash=0):
     mf.update(flags);unknown_types+=int(not view['types']);identity=canonical([fid,lang,lid]);memberids.update(identity+b'\n');fp.update(canonical([lang,lid])+b'\n')
     rows.append((fid,lang,lid,ordinal,canonical(view['types']).decode(),canonical(flags).decode(),sha(canonical(r))))
     if base and len(base)<=POLICY['ending_proxy']['max_base_length']:
-     word=normal(r.get('normalized',r.get('word','')))
+     word=normal(r.get('search_form',r.get('normalized',r.get('word',''))))
      if word.endswith(base) and len(word)>len(base):ending_counts[lang]+=1;prefixes.add((lang,word[:-len(base)]))
     n+=1
     if crash and n>=crash:os._exit(75)
@@ -141,7 +143,8 @@ def publish(db,out,identity):
  for t,cols,order in [('families','*','id'),('members','*','family,language,lemma'),('flags','*','flag,family'),('patterns','*','kind,key'),('priority','*','family'),('alias_targets','*','alias,family'),('history','*','id'),('history_ids','*','family,language,lemma,decision')]:logical[t]=row_hash(db,t,cols,order)
  coverage=dict(schema='v5-diagnostic-coverage/1',status='PASS',counts=actual,each_family_one_primary_category=sum(v['families'] for v in summary['categories'].values())==actual['families'],each_membership_classified_or_explicitly_unknown=True,exact_id_stream_comparison=True,buckets=receipts,logical_tables=logical,overlapping_flags_not_additive=True,production_writes=0)
  atomic(out/'COVERAGE.json',canonical(coverage)+b'\n')
- manifest=dict(schema=SCHEMA,complete=True,identity=identity,outputs={n:filehash(out/n) for n in ['SUMMARY.json','COVERAGE.json']},database='registry.sqlite',database_sha256=filehash(out/'registry.sqlite'),logical_tables=logical,authoritative=False)
+ execution=db.execute("SELECT value FROM state WHERE key='execution'").fetchone()
+ manifest=dict(schema=SCHEMA,complete=True,identity=identity,outputs={n:filehash(out/n) for n in ['SUMMARY.json','COVERAGE.json']},database='registry.sqlite',database_sha256=filehash(out/'registry.sqlite'),logical_tables=logical,authoritative=False,execution=json.loads(execution[0]) if execution else None)
  manifest['version']=digest(manifest);atomic(out/'MANIFEST.json',canonical(manifest)+b'\n');return summary
 
 def run(projection,out,crash=0):
@@ -157,6 +160,7 @@ def run(projection,out,crash=0):
   prior=db.execute("SELECT value FROM state WHERE key='identity'").fetchone()
   if prior and json.loads(prior[0])!=identity:raise ValueError('dependency change requires fresh output')
   with db:db.execute('INSERT OR IGNORE INTO state VALUES(?,?)',('identity',canonical(identity).decode()))
+  with db:db.execute('INSERT OR IGNORE INTO state VALUES(?,?)',('execution',canonical(dict(run_id=uuid.uuid4().hex,output=str(out),pid=os.getpid(),started_ns=time.time_ns())).decode()))
   build_history(db,h);del h
   db.execute('CREATE INDEX IF NOT EXISTS flag_family ON flags(family,flag)')
   db.execute('CREATE INDEX IF NOT EXISTS families_bucket ON families(bucket,id)')

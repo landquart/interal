@@ -1,0 +1,38 @@
+{
+  "buckets_visited": 256,
+  "family_records": 2456543,
+  "family_records_by_relation_signature": {
+    "UNSPECIFIED": 2435769,
+    "borrowed_form": 2096,
+    "borrowed_form|direct_allomorph": 2,
+    "borrowed_form|direct_descendant": 6672,
+    "borrowed_form|direct_descendant|inherited_form": 1830,
+    "borrowed_form|inherited_form": 279,
+    "direct_allomorph": 7,
+    "direct_allomorph|direct_descendant": 1,
+    "direct_descendant": 4449,
+    "direct_descendant|inherited_form": 4177,
+    "inherited_form": 1261
+  },
+  "family_records_without_declared_relation_type": 2435769,
+  "family_relation_type_occurrences": {
+    "borrowed_form": 10879,
+    "direct_allomorph": 10,
+    "direct_descendant": 17129,
+    "inherited_form": 7547
+  },
+  "family_review_status_distribution": {
+    "manually_verified": 7,
+    "needs_review": 4024,
+    "safe_automatic": 2452511,
+    "split_required": 1
+  },
+  "family_source_distribution": {
+    "methodology_seed+manual_override": 7,
+    "surface_singleton": 2435769,
+    "wiktionary_non_proto_etymology": 20767
+  },
+  "legacy_verified_flag_true": 7,
+  "note": "Empty relation_types and legacy verified/safe_automatic are stored production metadata, not linguistic confirmation. Component-evidence counts use a separate unit.",
+  "schema_version": 1
+}

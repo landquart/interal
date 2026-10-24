@@ -29,6 +29,10 @@ const discovered=['structural','surface','morphology'].flatMap(k=>walk(join(root
 const coverage=read(join(d,'EXCLUSION-COVERAGE.json')),state=read(join(d,'OUTPUT-STATE.json'));let rows=0;
 assert.equal(state.status,'COMPLETE');assert.equal(hash(join(d,'EXCLUSION-COVERAGE.json')),state.coverage_sha256);
 assert.equal(hash(join(d,'BLOCKED-OPERATIONS.ndjson')),coverage.blocked_output_sha256);assert.equal(state.blocked_sha256,coverage.blocked_output_sha256);
+for(const input of coverage.inputs){
+ assert.equal(hash(join(root,input.path)),input.sha256,'changed covered input '+input.path);
+ assert.equal(statSync(join(root,input.path)).size,input.bytes);
+}
 for(const p of discovered){
  const input=coverage.inputs.find(i=>i.path===relative(root,p));assert.ok(input,'missing proposal manifest');
  assert.equal(hash(p),input.sha256);assert.equal(statSync(p).size,input.bytes);

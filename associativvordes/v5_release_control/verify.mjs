@@ -48,6 +48,8 @@ require(release.source_lock_sha256===await fileHash(safe(root,'SOURCE-LOCK.json'
 require(release.gates_sha256===await fileHash(safe(root,'GATES.json')),'gate binding');
 require(JSON.stringify(release.blockers)===JSON.stringify(gates.filter(g=>g.status!=='PASS').map(g=>g.id)),'gate mismatch');
 const seen=new Set();
+const config=read(checkout,'associativvordes/v5_release_control/INPUTS.json');
+require(canonical(source.inputs)===canonical(config.files),'incomplete or substituted required source inventory');
 for(const row of source.inputs){
  require(!seen.has(row.path),'duplicate input');seen.add(row.path);
  const p=safe(checkout,row.path);

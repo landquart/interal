@@ -1,0 +1,421 @@
+{
+  "version": "1.0.0",
+  "test_only": true,
+  "cases": [
+    {
+      "id": "manu-full",
+      "element": "manu",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "manucure",
+      "form": "manu",
+      "relation_type": "compound_component",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "manucure"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Доказан компонент со значением руки; не равенство всей лексемы корню."
+    },
+    {
+      "id": "manu-mani",
+      "element": "manu",
+      "kind": "root",
+      "language": "ru",
+      "lemma": "маникюр",
+      "form": "мани",
+      "relation_type": "documented_allomorph",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "manikyur"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Конечное заимствование подтверждает мани- в этой лексеме, но не универсальное man-."
+    },
+    {
+      "id": "manu-foreign-mani",
+      "element": "manu",
+      "kind": "root",
+      "language": "en",
+      "lemma": "manicure",
+      "form": "mani",
+      "relation_type": "documented_allomorph",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Русское свидетельство не сертифицирует английскую лексему."
+    },
+    {
+      "id": "manu-many",
+      "element": "manu",
+      "kind": "root",
+      "language": "en",
+      "lemma": "many",
+      "form": "man",
+      "relation_type": "accidental_similarity",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Буквы не доказывают связи; без независимой проверки даже отрицание не окончательное."
+    },
+    {
+      "id": "manu-manifest",
+      "element": "manu",
+      "kind": "root",
+      "language": "ru",
+      "lemma": "манифест",
+      "form": "мани",
+      "relation_type": "historical_shortening",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Перенос варианта из маникюр недопустим; нужен собственный исторический путь."
+    },
+    {
+      "id": "regul-full",
+      "element": "regul",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "réguler",
+      "form": "régul",
+      "relation_type": "exact_base",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "reguler"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Национальная орфография и значение подтверждены, не отброшены из-за диакритики."
+    },
+    {
+      "id": "regul-regl",
+      "element": "regul",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "règlement",
+      "form": "règl",
+      "relation_type": "indirect",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "regle",
+        "regler",
+        "reglement"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Конечная цепочка règle → régler → règlement; нет универсального reg-."
+    },
+    {
+      "id": "regul-russian",
+      "element": "regul",
+      "kind": "root",
+      "language": "ru",
+      "lemma": "регламент",
+      "form": "регл",
+      "relation_type": "indirect",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "regle",
+        "regler",
+        "reglement",
+        "reglament"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Отдельное свидетельство русского заимствования замыкает национальную цепочку."
+    },
+    {
+      "id": "regul-homonym",
+      "element": "regul",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "régule",
+      "form": "régul",
+      "relation_type": "accidental_similarity",
+      "expected": "CONFIRMED_NONMEMBER",
+      "sources": [
+        "regule"
+      ],
+      "sense": "metal",
+      "association_status": "unknown",
+      "explanation": "Металл от regulus; это не ветвь regula, несмотря на совпадение букв."
+    },
+    {
+      "id": "regul-regolith",
+      "element": "regul",
+      "kind": "root",
+      "language": "en",
+      "lemma": "regolith",
+      "form": "reg",
+      "relation_type": "accidental_similarity",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Исторический запрет сохраняется отдельно; новое решение требует точных источников и ID."
+    },
+    {
+      "id": "creat-fr-short",
+      "element": "creat",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "créer",
+      "form": "cré",
+      "relation_type": "documented_allomorph",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "creer"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Национальная основа cré- отличается от нормативной creat; нужна конечная связь."
+    },
+    {
+      "id": "creat-fr-full",
+      "element": "creat",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "création",
+      "form": "créat",
+      "relation_type": "exact_base",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "creation"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Документированный номинальный вариант основы."
+    },
+    {
+      "id": "creat-de",
+      "element": "creat",
+      "kind": "root",
+      "language": "de",
+      "lemma": "kreieren",
+      "form": "krei",
+      "relation_type": "documented_allomorph",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "kreieren"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Отдельная немецкая история и форма, а не механическая замена c на k."
+    },
+    {
+      "id": "creat-es",
+      "element": "creat",
+      "kind": "root",
+      "language": "es",
+      "lemma": "crear",
+      "form": "cre",
+      "relation_type": "documented_allomorph",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "crear"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Собственная испанская форма подтверждается в crear."
+    },
+    {
+      "id": "creat-it",
+      "element": "creat",
+      "kind": "root",
+      "language": "it",
+      "lemma": "creare",
+      "form": "cre",
+      "relation_type": "documented_allomorph",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "creare"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Итальянская форма имеет собственное свидетельство."
+    },
+    {
+      "id": "creat-en-unlocked",
+      "element": "creat",
+      "kind": "root",
+      "language": "en",
+      "lemma": "create",
+      "form": "creat",
+      "relation_type": "exact_base",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Похожая английская форма требует собственного закреплённого свидетельства."
+    },
+    {
+      "id": "creat-opaque",
+      "element": "creat",
+      "kind": "root",
+      "language": "en",
+      "lemma": "creature",
+      "form": "creat",
+      "relation_type": "indirect",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Историческое предположение не заменяет конечную цепочку и современный A."
+    },
+    {
+      "id": "ocul-adj",
+      "element": "ocul",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "oculaire",
+      "form": "ocul",
+      "relation_type": "exact_base",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "oculaire"
+      ],
+      "sense": "adjective-eye",
+      "association_status": "unknown",
+      "explanation": "Прилагательное относится к глазу."
+    },
+    {
+      "id": "ocul-noun",
+      "element": "ocul",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "oculaire",
+      "form": "ocul",
+      "relation_type": "exact_base",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "oculaire"
+      ],
+      "sense": "optical-noun",
+      "association_status": "unknown",
+      "explanation": "Оптический предмет — отдельное значение той же лексемы."
+    },
+    {
+      "id": "ocul-opaque",
+      "element": "ocul",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "œil",
+      "form": "œil",
+      "relation_type": "sound_change",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "oeil"
+      ],
+      "sense": "visual-organ",
+      "association_status": "unknown",
+      "explanation": "Документированная историческая форма допускает членство; современная узнаваемость не измерена."
+    },
+    {
+      "id": "ocul-monokel",
+      "element": "ocul",
+      "kind": "root",
+      "language": "de",
+      "lemma": "Monokel",
+      "form": "okel",
+      "relation_type": "historical_shortening",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Нужна цепочка исторического сокращения именно этого слова."
+    },
+    {
+      "id": "inter-component",
+      "element": "inter",
+      "kind": "preposition",
+      "language": "fr",
+      "lemma": "interstellaire",
+      "form": "inter",
+      "relation_type": "compound_component",
+      "expected": "CONFIRMED_MEMBER",
+      "sources": [
+        "inter"
+      ],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Документировано значение компонента между, не равенство целого предлогу."
+    },
+    {
+      "id": "inter-opaque",
+      "element": "inter",
+      "kind": "preposition",
+      "language": "fr",
+      "lemma": "intérêt",
+      "form": "inter",
+      "relation_type": "indirect",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Непрозрачный исторический путь требует всех промежуточных звеньев; A неизвестен."
+    },
+    {
+      "id": "inter-substring",
+      "element": "inter",
+      "kind": "preposition",
+      "language": "en",
+      "lemma": "internal",
+      "form": "inter",
+      "relation_type": "accidental_similarity",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Строка inter не доказывает нужного приставочного компонента."
+    },
+    {
+      "id": "ending-ten",
+      "element": "ten",
+      "kind": "root",
+      "language": "de",
+      "lemma": "retten",
+      "form": "ten",
+      "relation_type": "accidental_similarity",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": "relevant",
+      "association_status": "unknown",
+      "explanation": "Сам хвост не семья; реальный прежний запрет на surface:de:ten проверяет отдельный regression test."
+    },
+    {
+      "id": "liber-unknown",
+      "element": "liber",
+      "kind": "root",
+      "language": "en",
+      "lemma": "liber",
+      "form": "liber",
+      "relation_type": "exact_base",
+      "expected": "UNRESOLVED",
+      "sources": [],
+      "sense": null,
+      "association_status": "unknown",
+      "explanation": "Неустановленный омоним не выбирается по форме."
+    },
+    {
+      "id": "same-lemma-unknown-sense",
+      "element": "ocul",
+      "kind": "root",
+      "language": "fr",
+      "lemma": "oculaire",
+      "form": "ocul",
+      "relation_type": "exact_base",
+      "expected": "UNRESOLVED",
+      "sources": [
+        "oculaire"
+      ],
+      "sense": null,
+      "association_status": "unknown",
+      "explanation": "Наличие двух значений требует выбора scope; одно не наследует частоту другого."
+    }
+  ]
+}

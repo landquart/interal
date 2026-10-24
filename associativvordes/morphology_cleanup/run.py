@@ -9,6 +9,9 @@ from common import load,save,atomic,sha_file,verify,PREFIX,LANGS,outside_repo
 from shadow import decode
 sys.path.insert(0,str(ROOT/'associativvordes/v5_diagnostics'))
 from classify import member
+sys.path.insert(0,str(ROOT))
+from associativvordes.pr_review_audit.integrity import executable_lock
+def code_lock():return executable_lock(ROOT,'associativvordes/morphology_cleanup','associativvordes/v5_diagnostics','associativvordes/structural_cleanup','associativvordes/history_registry','associativvordes/v5_adapter')
 
 def scan(snapshot,profiles,history,out,crash=None):
  start=time.monotonic();out=outside_repo(ROOT,out);out.mkdir(parents=True,exist_ok=True);snapshot=pathlib.Path(snapshot)
@@ -16,7 +19,7 @@ def scan(snapshot,profiles,history,out,crash=None):
  expected=load(ROOT/'audit/associative-v5-surface-cleanup/HISTORY-INDEX.json')
  if sha_file(history)!=expected['sha256']:raise ValueError('history index checksum')
  pointer=load(ROOT/'audit/associative-history-registry/CURRENT.json')
- identity=dict(schema='v5-morphology-review/1',source_inventory_sha256=lock['inventory_sha256'],profiles_sha256=sha_file(pathlib.Path(profiles)/'MANIFEST.json'),history_sha256=sha_file(history),history_pointer=pointer,code={p.name:sha_file(p) for p in sorted(pathlib.Path(__file__).parent.glob('*.py'))})
+ identity=dict(schema='v5-morphology-review/1',source_inventory_sha256=lock['inventory_sha256'],profiles_sha256=sha_file(pathlib.Path(profiles)/'MANIFEST.json'),history_sha256=sha_file(history),history_pointer=pointer,code=code_lock())
  if (out/'IDENTITY.json').exists() and load(out/'IDENTITY.json')!=identity:raise ValueError('stale resume')
  save(out/'IDENTITY.json',identity);digest=hashlib.sha256(json.dumps(identity,sort_keys=True).encode()).hexdigest()
  db=sqlite3.connect(history.resolve().as_uri()+'?mode=ro',uri=True);totals=collections.Counter();receipts=[];root=snapshot/'current'/PREFIX
@@ -62,7 +65,7 @@ def scan(snapshot,profiles,history,out,crash=None):
   totals.update(r['stats']);receipts.append(r)
   if bi%16==15:print(b,totals['memberships'],totals['selected'],flush=True)
  db.close();pr.close();verify(snapshot,lock)
- if identity['code']!={p.name:sha_file(p) for p in sorted(pathlib.Path(__file__).parent.glob('*.py'))}:raise ValueError('code changed during scan')
+ if identity['code']!=code_lock():raise ValueError('code changed during scan')
  for name in ('VERIFIED-RELATION-CORRECTIONS.ndjson','PROPOSED-MEMBERSHIP-EXCLUSIONS.ndjson'):atomic(out/name,b'')
  summary=dict(schema='v5-morphology-review/1',totals=dict(totals),confirmed_relations=0,confirmed_wrong_relations=0,verified_type_corrections=0,proposed_membership_exclusions=0,history_application='BLOCKED_INCOMPLETE_HISTORY',lexical_identity='UNBOUND_SPELLING_CANDIDATES',sense_status='UNRESOLVED',production_writes=0,source_lemma_delta=0,type_counts_overlap=True,source_row_counts_are_not_independent_evidence=True)
  save(out/'SUMMARY.json',summary);save(out/'MANIFEST.json',dict(identity=identity,buckets=receipts,summary_sha256=sha_file(out/'SUMMARY.json')))

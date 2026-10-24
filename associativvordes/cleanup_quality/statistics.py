@@ -34,6 +34,7 @@ def summary(rows):
     c=Counter(); all_weight=sum(r['weight'] for r in rows)
     for r in rows:
         w=r['weight']; gold=r.get('gold'); prediction=r['prediction']
+        if prediction=='NOT_RUN':c['not_run']+=w;continue
         if gold not in ('VALID','INVALID'): c['unknown']+=w; continue
         c['labeled']+=w; c['valid' if gold=='VALID' else 'invalid']+=w
         if prediction=='REMOVE': c['correct_removal' if gold=='INVALID' else 'false_removal']+=w

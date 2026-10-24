@@ -6,6 +6,9 @@ sys.path.insert(0,str(ROOT/'associativvordes/structural_cleanup'))
 from common import load,save,atomic,sha_file,verify,MAIN,PREFIX,LANGS,outside_repo
 from shadow import decode
 from history import collect,build_scope_index
+sys.path.insert(0,str(ROOT))
+from associativvordes.pr_review_audit.integrity import executable_lock
+def code_lock():return executable_lock(ROOT,'associativvordes/surface_cleanup','associativvordes/structural_cleanup','associativvordes/history_registry')
 
 def gz(path):
     raw=open(path,'xb');stream=gzip.GzipFile(filename='',mode='wb',fileobj=raw,mtime=0,compresslevel=6)
@@ -13,9 +16,10 @@ def gz(path):
 
 def scan(repo,snapshot,output,crash_bucket=None):
     started=time.monotonic();repo=pathlib.Path(repo).resolve();snapshot=pathlib.Path(snapshot);output=outside_repo(repo,output)
+    if output.resolve().is_relative_to(snapshot.resolve()) or snapshot.resolve().is_relative_to(output.resolve()):raise ValueError('independent snapshot/output required')
     output.mkdir(parents=True,exist_ok=True);lock=load(snapshot/'SNAPSHOT.json');verify(snapshot,lock)
     h,catalog=collect(repo);identity=dict(schema=VERSION,source_inventory_sha256=lock['inventory_sha256'],source_commit=lock['production_commit'],
-       history_sha256=h.digest,code={p.name:sha_file(p) for p in sorted(pathlib.Path(__file__).parent.glob('*.py'))},
+       history_sha256=h.digest,code=code_lock(),
        catalog_sha256=hashlib.sha256(canonical(catalog)).hexdigest(),suffix_exposure_sha256=sha_file(repo/'audit/associative-v5-diagnostics/SUFFIX-EXPOSURE.json'))
     if (output/'IDENTITY.json').exists() and load(output/'IDENTITY.json')!=identity:raise ValueError('changed source/code/history; stale resume refused')
     save(output/'IDENTITY.json',identity);save(output/'HISTORICAL-SCHEMES.json',catalog)
@@ -89,7 +93,7 @@ def scan(repo,snapshot,output,crash_bucket=None):
             agg=all_groups.setdefault(key,dict(families=0,memberships=0));agg['families']+=v['families'];agg['memberships']+=v['memberships']
         if bi%16==15:print(canonical(dict(bucket=b,totals=dict(all_totals))).decode(),flush=True)
     db.close();verify(snapshot,lock)
-    if identity['code']!={p.name:sha_file(p) for p in sorted(pathlib.Path(__file__).parent.glob('*.py'))}:raise ValueError('code changed during scan')
+    if identity['code']!=code_lock():raise ValueError('code changed during scan')
     atomic(output/'PROPOSED-EXCLUSIONS.ndjson',b'')
     summary=dict(schema=VERSION,status='FULL_DRY_RUN_COMPLETE_NO_AUTHORIZED_EXCLUSIONS',totals=dict(all_totals),groups=all_groups,
       confirmed_current_erroneous_schemes=0,proposed_exclusions=0,full_scope_proofs_for_new_exclusions=0,scope_ids='buckets/*/AFFECTED-IDS.ndjson.gz',
