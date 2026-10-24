@@ -19,7 +19,12 @@ python3 -m associativvordes.semantic_cleanup.review --scan "$WORK/scan" --native
 node associativvordes/semantic_cleanup/verify.mjs "$PWD" "$WORK/scan" "$WORK/review"
 python3 associativvordes/auto_annotation/pipeline.py offline --store "$WORK/annotation" --input "$WORK/review" --config associativvordes/auto_annotation/config.offline.json --run-id semantic09-offline --stop-after 3
 python3 associativvordes/auto_annotation/pipeline.py resume --store "$WORK/annotation" --input "$WORK/review" --config associativvordes/auto_annotation/config.offline.json --run-id semantic09-offline
-python3 associativvordes/auto_annotation/pipeline.py export --store "$WORK/annotation" --run-id semantic09-offline --output "$WORK/annotation-export"
+python3 associativvordes/auto_annotation/pipeline.py export-proposals --store "$WORK/annotation" --run-id semantic09-offline --output "$WORK/annotation-export"
+python3 associativvordes/auto_annotation/pipeline.py backup --store "$WORK/annotation" --output "$WORK/annotation-backup.zip"
+python3 associativvordes/auto_annotation/pipeline.py restore --store "$WORK/annotation-restored" --input "$WORK/annotation-backup.zip"
+python3 associativvordes/auto_annotation/pipeline.py resume --store "$WORK/annotation-restored" --input "$WORK/review" --config associativvordes/auto_annotation/config.offline.json --run-id semantic09-offline
+python3 associativvordes/auto_annotation/pipeline.py export-proposals --store "$WORK/annotation-restored" --run-id semantic09-offline --output "$WORK/annotation-restored-export"
+cmp "$WORK/annotation-export/proposals.ndjson" "$WORK/annotation-restored-export/proposals.ndjson"
 node tests/associative-semantic-cleanup.test.mjs
 npm test
 ```
@@ -29,7 +34,7 @@ For an independent replay use fresh `scan-replay` and `review-replay` paths, omi
 The bundle command packages scan checkpoints, every native alternative, review outputs, the actual annotation backup and the sense-preserving export. It verifies a cold restore against all archived file hashes; it refuses an existing restore destination. See `BUNDLE-RESTORE.json` in the audit directory for the executed invocation's receipt. No downloaded licensed dictionary pages or full production copy is included.
 
 ```sh
-node associativvordes/semantic_cleanup/bundle.mjs pack /absolute/research.zip "$WORK/scan" "$WORK/native" "$WORK/review" /absolute/annotation-backup.zip "$WORK/annotation-export"
+node associativvordes/semantic_cleanup/bundle.mjs pack /absolute/research.zip "$WORK/scan" "$WORK/native" "$WORK/review" "$WORK/annotation-backup.zip" "$WORK/annotation-export"
 node associativvordes/semantic_cleanup/bundle.mjs restore /absolute/research.zip /absolute/fresh-restore
 ```
 
