@@ -51,10 +51,18 @@ To archive a new completed research run (destinations must be fresh and outside 
 
 ```sh
 python3 -m associativvordes.family_boundary.query --index /absolute/first --output /absolute/contexts
-python3 -m associativvordes.family_boundary.report --help
+python3 -m associativvordes.family_boundary.report --index /absolute/first --output /absolute/small-receipts --contexts /absolute/contexts
 python3 -m associativvordes.family_boundary.archive pack --archive /absolute/boundary.zip --release /absolute/first --contexts /absolute/contexts --independent /absolute/independent --replay /absolute/REPLAY-RECEIPT.json
 python3 -m associativvordes.family_boundary.archive split --archive /absolute/boundary.zip --destination /absolute/volumes
 npm test
 ```
 
 No SQLite file or large export should be committed to Git. `CODE-LOCK.json` binds the executable implementation; `RELEASE-MANIFEST.json` binds the frozen research inputs and outputs. All accepted/excluded labels from earlier sources retain their original authority, scope and version. Missing history or unbound senses block further operations.
+
+The fourth large volume is also supplied as eight 32 MiB fragments because its original transfer failed. These are an exact byte-preserving subdivision, not a new research release. If the full part-0004 is unavailable, obtain the eight files named in `PART-0004-FRAGMENTS.json` and reconstruct it first:
+
+```sh
+python3 -m associativvordes.family_boundary.archive join --manifest /absolute/volumes/PART-0004-FRAGMENTS.json --destination /absolute/volumes/interal-v5-family-boundary-20261024.zip.part-0004
+```
+
+Then join BUNDLE-PARTS.json as above. Both layers are checksum-verified; neither command overwrites existing files. The fragment manifest and its independent reassembly receipt accompany the main volume manifest.

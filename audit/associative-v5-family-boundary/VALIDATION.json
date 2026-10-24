@@ -1,0 +1,18 @@
+{
+  "schema": "boundary-validation/2",
+  "status": "PASS",
+  "targeted_regression_tests": 6,
+  "full_repository_test_command": "npm test",
+  "full_repository_test_file_count": 107,
+  "full_repository_tests_pass": true,
+  "test_log_sha256": "dfbe30e260aeba3354050bd76eaa5f49e44ba0aa2504ede701d870ecd3a47863",
+  "independent_full_replay": "REPLAY-RECEIPT.json",
+  "raw_production_verification": "INDEPENDENT-SOURCE-VERIFICATION.json",
+  "cold_restore": "BACKUP-RESTORE-REPORT.json",
+  "volume_reassembly": "VOLUME-REASSEMBLY-RECEIPT.json",
+  "all_scoped_proposals_blocked": true,
+  "new_linguistic_gold": 0,
+  "production_tracked_diff": [],
+  "production_writes_by_audit": 0,
+  "semantic_completion": "Candidate discovery complete; linguistic adjudication remains unresolved, no split/merge admitted"
+}
