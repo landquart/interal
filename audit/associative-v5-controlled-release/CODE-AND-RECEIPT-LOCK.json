@@ -1,0 +1,111 @@
+{
+  "files": [
+    {
+      "bytes": 8922,
+      "path": "associativvordes/v5_release_control/INPUTS.json",
+      "sha256": "736501dfb9e7f540608814a3532be2140ed4862a4c0244221127d2d8a321de47"
+    },
+    {
+      "bytes": 5978,
+      "path": "associativvordes/v5_release_control/README.md",
+      "sha256": "75460636e32361d83e8b338bb7c6d0963df77f3f2d82a25c1744cf1d26aaac81"
+    },
+    {
+      "bytes": 22952,
+      "path": "associativvordes/v5_release_control/package.py",
+      "sha256": "ab84cc9a2b1587ae4f8289e2be41c1b616caaee066bad34e4c61efd75a1838ea"
+    },
+    {
+      "bytes": 4213,
+      "path": "associativvordes/v5_release_control/verify.mjs",
+      "sha256": "63ba7c5f468b005f467fb205476331cb60d7dbd51f15266da96335afe11a432a"
+    },
+    {
+      "bytes": 5504,
+      "path": "tests/associative-v5-release-readiness.test.mjs",
+      "sha256": "9e21b59a673716831b652c713792c6814821db5f8c2fadfd3ea1b006d752c1f9"
+    },
+    {
+      "bytes": 1249,
+      "path": "audit/associative-v5-controlled-release/CAPABILITY-AUDIT.json",
+      "sha256": "13190d2f765bc72f3e7208923827444fe5f4529595c25e964a48f910e0c9424e"
+    },
+    {
+      "bytes": 336,
+      "path": "audit/associative-v5-controlled-release/INDEPENDENT-ARTIFACT-VERIFICATION.json",
+      "sha256": "c3c86f7090d49aa0f1d4bb310273ce7bf682f29338bc20e226f80e5352323f24"
+    },
+    {
+      "bytes": 1412,
+      "path": "audit/associative-v5-controlled-release/REMOTE-OBSERVATIONS.json",
+      "sha256": "1df1b60c50c04b3f7b796b0f36ad7d4f1a28488072406cd3fad79273d14421e9"
+    },
+    {
+      "bytes": 340,
+      "path": "audit/associative-v5-controlled-release/RESOURCE-BENCHMARK.json",
+      "sha256": "2d1751e5e97b2674975598ad988bea9af202c1eadf11b85e10d4c7784390ce5b"
+    },
+    {
+      "bytes": 823,
+      "path": "audit/associative-v5-controlled-release/VALIDATION.json",
+      "sha256": "3592a4cefcb25cee5b697ab5eef34969d36eb95e6ae4055f5a1d21d87f8ef61c"
+    },
+    {
+      "bytes": 986,
+      "path": "audit/associative-v5-controlled-release/package/BEFORE-AFTER-SUMMARY.json",
+      "sha256": "98d449657a04300748828bb39443e38b7fcf17af7927e0ae27b4f4c01754594e"
+    },
+    {
+      "bytes": 6216,
+      "path": "audit/associative-v5-controlled-release/package/FINAL-CLEANUP-AUDIT.md",
+      "sha256": "375b064599ee08d0bbccfb9095af1d0905a62696bd364d845f4a9236f637fda0"
+    },
+    {
+      "bytes": 2733,
+      "path": "audit/associative-v5-controlled-release/package/GATES.json",
+      "sha256": "660c08aea5c173634f08881762d712601e008a4529ac6208694b33804548780c"
+    },
+    {
+      "bytes": 2318,
+      "path": "audit/associative-v5-controlled-release/package/INTEGRITY-REPORT.json",
+      "sha256": "67423a4eb1d562bafb9e7baa9f433c4e06b5622be2ed75150ccc1d6ff0a0791a"
+    },
+    {
+      "bytes": 1393,
+      "path": "audit/associative-v5-controlled-release/package/PACKAGE-INDEX.json",
+      "sha256": "5f1bea8471609f94d0bbccbda534372a0e64cf4d3b8074a806b6fa1a1c8ad4d0"
+    },
+    {
+      "bytes": 4639,
+      "path": "audit/associative-v5-controlled-release/package/QUALITY-REPORT.json",
+      "sha256": "fb86d40a55aa50af7ad162aa88cb8a4f845f7597dcaacf00f2d7f24a837502a4"
+    },
+    {
+      "bytes": 2887,
+      "path": "audit/associative-v5-controlled-release/package/RELEASE-MANIFEST.json",
+      "sha256": "c7cbf52ed1fe79676ee647afeb88d4c4d8a9be08efbec25f5a3c6836dd5432a9"
+    },
+    {
+      "bytes": 1226,
+      "path": "audit/associative-v5-controlled-release/package/REMOTE-OBSERVATIONS.json",
+      "sha256": "9a7a204bdaaf97f46dcdf243f245e11abe0562b5310261e3f74e8e8d5cc4216a"
+    },
+    {
+      "bytes": 1193,
+      "path": "audit/associative-v5-controlled-release/package/ROLLBACK-RECEIPT.json",
+      "sha256": "86b794f9fdf23d1e303bdfba2bccb6e997d9e0df4a5656347ab5ebfb513923ed"
+    },
+    {
+      "bytes": 11085,
+      "path": "audit/associative-v5-controlled-release/package/SOURCE-LOCK.json",
+      "sha256": "1797cce4fc20bc813bcbfdb668e3a1f15afe04dd27a7539905a904458f4413b6"
+    },
+    {
+      "bytes": 2486,
+      "path": "audit/associative-v5-controlled-release/package/UNRESOLVED-INDEX.json",
+      "sha256": "b51edfd55ac1d5443dad33df6190229b24aedfa25ca5174027515d2d0b41d131"
+    }
+  ],
+  "schema": "v5-readiness-code-and-receipts/1",
+  "source_commit": "69fc414fe5cfbed470779b6ee1454578b1f00a99"
+}

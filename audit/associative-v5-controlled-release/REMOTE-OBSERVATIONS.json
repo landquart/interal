@@ -1,0 +1,35 @@
+{
+  "freshness": "point_in_time_only_not_apply_time_CAS",
+  "observed_at_utc": "2026-10-24T18:05:16.794134+00:00",
+  "owner_approval": null,
+  "production_main_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "production_v5_tree": "c7f59a4d41919e65838f8f2ecce4fe08a6d7786f",
+  "prs": [
+    {
+      "head_sha": "31c28e7dfd15bb6213236e3c45355c2d60d3adfc",
+      "merge_commit_sha": "47723611112610945cb09b34e18588b7bd151911",
+      "merged": true,
+      "number": 678,
+      "state": "closed",
+      "url": "https://github.com/landquart/interal/pull/678"
+    },
+    {
+      "head_sha": "69fc414fe5cfbed470779b6ee1454578b1f00a99",
+      "merge_commit_sha": "744492b60afd7e855a8e7b62767a80534d18da50",
+      "merged": false,
+      "number": 693,
+      "state": "open",
+      "url": "https://github.com/landquart/interal/pull/693"
+    }
+  ],
+  "references": [
+    "https://api.github.com/repos/landquart/interal/git/ref/heads/main",
+    "https://api.github.com/repos/landquart/interal/contents/associativvordes?ref=main",
+    "https://api.github.com/repos/landquart/interal/contents/associativvordes?ref=69fc414fe5cfbed470779b6ee1454578b1f00a99"
+  ],
+  "research_v5_tree": "c7f59a4d41919e65838f8f2ecce4fe08a6d7786f",
+  "schema": "v5-production-observations/1",
+  "source_commit": "69fc414fe5cfbed470779b6ee1454578b1f00a99",
+  "transport": "authenticated GitHub connector read",
+  "verifier_attestation": null
+}
