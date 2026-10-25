@@ -81,7 +81,8 @@ class Graph:
         from associativvordes.v5_contract.versions import database_binding
         database_binding(path,version_contract,'entities')
         self.version_contract=version_contract;self.normative_trust=normative_trust
-        self.normative_observation=None
+        from associativvordes.normative.resolver import observe
+        self.normative_observation=observe('evidence_graph')
         if version_contract:
             from associativvordes.v5_contract.policy import hypothesis
             self.normative_observation=hypothesis({'stage':'evidence','status':'unreviewed_source_claim'},version_contract)
@@ -108,6 +109,10 @@ class Graph:
     def put(self,r):
         if r!=envelope(r['entity'],r['id'],r['body'],r['revision'],r['supersedes']):raise IntegrityConflict('invalid envelope')
         kind=r['entity'];b=r['body']
+        if kind=='Verdict' and b.get('subject',{}).get('domain') in {'membership','family_membership'}:raise IntegrityConflict('BLOCKED: membership verdict belongs in the normative decision stage')
+        if kind=='Evidence' and not self.version_contract:
+            b=dict(b,extensions=dict(b.get('extensions',{}),normative=self.normative_observation))
+            r=envelope(kind,r['id'],b,r['revision'],r['supersedes'])
         if self.version_contract:
             if kind=='Verdict':
                 from associativvordes.v5_contract.policy import decision

@@ -96,7 +96,9 @@ class GraphTests(unittest.TestCase):
         v,grant=self.verdict(r)
         with self.assertRaises(ValueError):self.g.review_relation(r,v,[])
         self.g.review_relation(r,v,[grant]);self.assertEqual(self.g.classify(r)['classification'],'derivation_direct');self.assertFalse(self.g.classify(r)['establishes_membership'])
-        wrong,_=self.verdict(r,id='review:wrong',domain='membership')
+        with self.assertRaisesRegex(IntegrityConflict,'normative decision stage'):
+            self.verdict(r,id='review:wrong',domain='membership')
+        wrong,_=self.verdict(r,id='review:wrong-domain',domain='unapproved_domain')
         with self.assertRaises(ValueError):self.g.review_relation(r,wrong,[grant])
     def test_competing_reviews_create_hold_not_latest_wins(self):
         a=self.lex('a','a');b=self.lex('b','b');r=self.rel(a,b);self.evidence(r);v,grant=self.verdict(r);self.g.review_relation(r,v,[grant]);v2,_=self.verdict(r,'rejected','review:2')

@@ -146,7 +146,8 @@ class Registry:
         covering alternative paths, compound/sense identity and source versions.
         Even CLEAR is not authorization to apply a data patch.
         """
-        result = dict(allowed=False, status='CORRESPONDENCE_REVIEW_REQUIRED', matches=[], membership_operation='NONE')
+        from associativvordes.normative.resolver import observe
+        result = dict(allowed=False, status='CORRESPONDENCE_REVIEW_REQUIRED', matches=[], membership_operation='NONE',normative_evaluation=observe('national_correspondence_guard'),establishes_membership=False)
         try:
             if proposal.get('operation') in {'REJECT_ENTIRE_FAMILY', 'REMOVE_EXACT_MEMBERSHIPS', 'merge'}:
                 raise ValueError('full finite scope must be checked separately; a single row cannot authorize a family operation')

@@ -3,11 +3,13 @@ if not __package__:
     import sys as _bootstrap_sys
     from pathlib import Path as _BootstrapPath
     _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
+from associativvordes.normative.resolver import observe
 import json,zlib
 from pathlib import Path
 from associativvordes.v5_adapter.common import *
 class Adapter:
  def __init__(self,folder,verify=True,history=None):
+  self.normative=observe('v5_adapter')
   self.folder=Path(folder);self.manifest=read(self.folder/'MANIFEST.json');self.history=history;self.conns={}
   m=self.manifest
   if m.get('schema')!=SCHEMA or m.get('authoritative') is not False:raise ValueError('projection schema')
@@ -58,4 +60,4 @@ class Adapter:
    original_record_ref=locator,canonical=f.get('canonical'),aliases=f.get('aliases',[]),history_check=guard,
    provenance=dict(family_source=f.get('source'),legacy_review_status=f.get('review_status')),
    evidence_completeness='legacy_observation_only',independence=dict(status='not_established',independent_groups=[]),
-   establishes_membership=False,existing_memberships=[dict(family_id=fid,lemma_id=lid,status='legacy_materialized')])
+   normative=self.normative,establishes_membership=False,existing_memberships=[dict(family_id=fid,lemma_id=lid,status='legacy_materialized')])

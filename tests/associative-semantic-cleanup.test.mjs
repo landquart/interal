@@ -24,7 +24,8 @@ for requested in FINAL:
 q=copy.deepcopy(a);q.update(corpus_binding=dict(q['scope'],dictionary_sense_id=q['dictionary_sense']['id'],pos='NOUN',corpus_sense_id='independently-bound-test-sense'),all_alternative_paths_reviewed=True,family_target_meaning_ref='test-only-reviewed-root',positive_contradiction_refs=['test-only-proof'])
 clear=lambda c:dict(allowed=True,status='CLEAR')
 verifier=lambda h:dict(authority='INDEPENDENT_GOLD',payload_sha256=h,status='APPROVED')
-assert adjudicate(q,'MEMBERSHIP_CONFIRMED',verifier,clear)['status']=='MEMBERSHIP_CONFIRMED'
+# A generic receipt and clear guards cannot bypass installed normative admission.
+assert adjudicate(q,'MEMBERSHIP_CONFIRMED',verifier,clear)['status']=='INSUFFICIENT_EVIDENCE'
 assert adjudicate(q,'MEMBERSHIP_CONFIRMED',None,clear)['status']=='INSUFFICIENT_EVIDENCE'
 assert adjudicate(q,'MEMBERSHIP_REJECT_PROPOSED',verifier,clear)['status']=='INSUFFICIENT_EVIDENCE'
 assert adjudicate(q,'MEMBERSHIP_REJECT_PROPOSED',verifier,clear,lambda c:dict(allowed=False,status='BLOCKED_DOCUMENTED_CORRESPONDENCE'))['status']=='INSUFFICIENT_EVIDENCE'
@@ -38,7 +39,7 @@ for k,v in [('dictionary_sense_id',water['dictionary_sense']['id']),('pos','ADJ'
 # The configured verifier must match the entire content, not a reusable signed boolean.
 h=digest(dict(case=q,requested_status='MEMBERSHIP_CONFIRMED'))
 frozen=lambda x:dict(authority='CONFIRMED_MANUAL',payload_sha256=h,status='APPROVED') if x==h else None
-assert adjudicate(q,'MEMBERSHIP_CONFIRMED',frozen,clear)['status']=='MEMBERSHIP_CONFIRMED'
+assert adjudicate(q,'MEMBERSHIP_CONFIRMED',frozen,clear)['status']=='INSUFFICIENT_EVIDENCE'
 bad=copy.deepcopy(q);bad['dictionary_sense']['gloss']='invented meaning'
 assert adjudicate(bad,'MEMBERSHIP_CONFIRMED',frozen,clear)['status']=='INSUFFICIENT_EVIDENCE'
 bad=copy.deepcopy(q);bad['positive_contradiction_refs']=[]

@@ -1,0 +1,65 @@
+{
+  "schema": "interal-normative-test-report/1",
+  "normative_adversarial_node": {
+    "tests": 104,
+    "pass_count": 104,
+    "includes_original_normative_tests": 89
+  },
+  "python_admission": {
+    "tests": 11,
+    "pass_count": 11
+  },
+  "targeted_suites": [
+    {
+      "test": "associative-normative-resolver",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-normative-admission",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-v5-integration",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-v5-release-readiness",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-morphology-review-v2",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-semantic-cleanup",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-evidence-graph",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-release-control",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-cleanup-quality",
+      "exit_code": 0
+    },
+    {
+      "test": "history-adjudication",
+      "exit_code": 0
+    }
+  ],
+  "fresh_final_source_e2e": "PASS_TEST_ONLY",
+  "normative_admission_current_locks": true,
+  "approved_registry_read_write_revalidation": true,
+  "whole_repository_npm": {
+    "status": "FAIL_STOPPED_AT_FIRST_FAILURE",
+    "test": "associative-national-correspondences.test.mjs",
+    "reason": "Historical CODE-LOCK mismatches installed code; no historic expected hash rewritten; fresh independent stage receipt required"
+  },
+  "production_data_writes": 0,
+  "all_repository_tests_green": false,
+  "linguistic_gold_certified": false
+}

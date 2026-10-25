@@ -3,7 +3,9 @@ import {readFileSync} from 'node:fs';
 import {validateDecision,evaluateMembership,assessRecognition,automaticCorrectionEligibility,rules} from '../normative/validator.mjs';
 const request=JSON.parse(readFileSync(0,'utf8'));
 try {
+ if(!['research-v5','TEST_ONLY-v5'].includes(request.namespace))throw Error('unknown normative namespace');
  const results=request.actions.map(a=>{
+  if(!['recognition','membership','schema','correction'].includes(a.type))throw Error('unknown normative action');
   const context={...a.context,allowTestFixtures:request.namespace==='TEST_ONLY-v5'};
   for(const k of ['verifiedEvidenceIds','authorizedDecisionIds','authorizedSupersessions'])context[k]=new Set(context[k]||[]);
   for(const k of ['verifiedEvidenceDigests','authorizedDecisionDigests'])context[k]=new Map(Object.entries(context[k]||{}));

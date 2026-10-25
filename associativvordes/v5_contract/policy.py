@@ -15,11 +15,17 @@ def evaluate(actions,contract):
  return result['results']
 
 def hypothesis(payload,contract):
+ from associativvordes.normative.resolver import observe
+ observation=observe('versioned_observation')
  gate=evaluate([dict(type='recognition',result=dict(languages=[],calculator_gates_passed=False))],contract)[0]
- return dict(version_contract_sha256=contract['version'],policy_version=contract['normative']['version'],policy='installed normative validator',recognition=gate,membership='UNRESOLVED',establishes_membership=False,payload_sha256=digest(payload))
+ return dict(observation,version_contract_sha256=contract['version'],policy_version=contract['normative']['version'],policy='installed normative validator',recognition=gate,membership='UNRESOLVED',establishes_membership=False,payload_sha256=digest(payload))
 
 def decision(d,contract,trust=None,scope=None,confirmed=False):
  require(isinstance(d,dict),'explicit normative decision object required')
+ validate(contract)
+ if contract['namespace']=='TEST_ONLY-v5':require(d.get('scope',{}).get('family_id','').startswith('family:TEST_ONLY:'),'test namespace cannot confirm production family')
+ locks=dict(snapshot_sha256=contract['baseline']['inventory_sha256'],source_lock_sha256=contract['sources']['sha256'],algorithm_sha256=digest(contract['algorithms']),policy_version=contract['normative']['version'])
+ require(all(d.get('provenance',{}).get(k)==v for k,v in locks.items()),'incompatible normative decision provenance')
  if scope:
   require(all(d['scope'].get(k)==v for k,v in scope.items()),'normative decision differs from exact native scope')
  result=evaluate([dict(type='membership',decision=d,context=trust or {})],contract)[0]
@@ -65,3 +71,10 @@ def history_gate(operations,contract):
     require(row['family_id'].startswith('family:TEST_ONLY:'),'production family cannot enter test namespace')
     for guard in h.get('fixture',{}).get('constraints',[]):
      if all(row.get(k)==guard[k] for k in ('family_id','language','lemma_id')):raise Blocked('preserved exact test-history restriction')
+
+def admit(d,context,scope=None,expected=None):
+ """Context is independently configured by the application, never read from d."""
+ if not isinstance(context,dict) or not context.get('version_contract'):raise ValueError('normative version contract and external trust required')
+ result=decision(d,context['version_contract'],context.get('trust'),scope,confirmed=True)
+ if expected and result['decision']!=expected:raise ValueError('normative conclusion incompatible with requested membership')
+ return dict(result,decision_id=d['id'],scope=d['scope'],establishes_membership=True,production_write_authorized=False)

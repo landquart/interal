@@ -51,6 +51,9 @@ class Queue:
         if self.version_contract:
             from associativvordes.v5_contract.policy import hypothesis
             body=dict(body,normative=hypothesis(body,self.version_contract),version_contract_sha256=self.version_contract['version'])
+        if not self.version_contract:
+            from associativvordes.normative.resolver import observe
+            body=dict(body,normative=observe('candidate_search'))
         body=dict(body,id=cid);fp=sha(body)
         old=self.db.execute('SELECT fingerprint,state,changed FROM questions WHERE id=?',(cid,)).fetchone()
         if old and old[0]==fp:changed=old[2]

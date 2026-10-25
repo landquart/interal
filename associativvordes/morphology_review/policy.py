@@ -47,7 +47,8 @@ def adjudicate(proposal,verify_receipt=None):
     versions, scope, endpoints, evidence, competing analyses and explanation.
     This is a proof-envelope validator, not an automatic linguistic expert.
     """
-    result=dict(status='INSUFFICIENT_EVIDENCE',membership_operation='NONE',alternatives_preserved=True)
+    from associativvordes.normative.resolver import observe
+    result=dict(status='INSUFFICIENT_EVIDENCE',membership_operation='NONE',alternatives_preserved=True,normative_evaluation=observe('morphology_review'),establishes_membership=False)
     try:
         if proposal.get('requested_status') not in FINAL:raise ValueError('no supported requested verdict')
         validate_steps(proposal)

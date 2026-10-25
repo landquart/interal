@@ -280,13 +280,19 @@ def history_gate(operations,version_contract=None):
             require(result['allowed'], result['status']+': '+str(result.get('reasons', result.get('decision_ids', []))))
 
 
+def normative_gate(operations,state,inputs,trust=None,release_verified=False):
+    contract=state.get('version_contract')
+    if operations:require(contract is not None and inputs.get('version_contract') is not None,'normative version contract required for nonempty operations')
+    if not contract and not inputs.get('version_contract'):return []
+    from associativvordes.v5_contract.versions import compatible
+    from associativvordes.v5_contract.policy import operation_gate
+    compatible(contract,inputs.get('version_contract'))
+    return operation_gate(operations,inputs,trust,release_verified=release_verified)
+
+
 def preview(state, operations, inputs, verdicts=None, normative_context=None):
     contract=state.get('version_contract')
-    if contract or inputs.get('version_contract'):
-        from associativvordes.v5_contract.versions import compatible
-        from associativvordes.v5_contract.policy import operation_gate
-        compatible(contract,inputs.get('version_contract'))
-        correction_receipts=operation_gate(operations,inputs,normative_context)
+    correction_receipts=normative_gate(operations,state,inputs,normative_context)
     history_gate(operations,contract)
     require(inputs['base'] == digest(state), 'wrong release base')
     require(len({o['id'] for o in operations}) == len(operations), 'duplicate operation ID')
@@ -384,13 +390,14 @@ class Store:
             require(plan['operations'], 'empty preview is not an applicable release')
             require(plan.get('summary') == operation_summary(plan['operations']),
                     'release summary does not match signed operations')
+            normative_gate(plan['operations'],old['state'],plan['inputs'],checks.get('normative_trust'),release_verified=True)
             evidence_gate(plan, current, checks, trust)
             if contract:
                 from associativvordes.v5_contract.versions import compatible
                 from associativvordes.v5_contract.policy import operation_gate
                 compatible(old['state'].get('version_contract'),contract)
                 # Only the externally signed verifier attestation may supply this trust.
-                operation_gate(plan['operations'],plan['inputs'],checks.get('normative_trust'),release_verified=True)
+                # normative_gate above revalidated the exact signed operation decisions.
             provenance = check_verdicts(plan, trust, ledger, view)
             verify(approval, trust, 'owner', dict(schema=VERSION, purpose='approve-release',
                 release=release_id, checks=digest(checks), store=str(self.root), parent=parent))

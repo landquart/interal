@@ -34,7 +34,13 @@ class Pipeline:
    fcntl.flock(lock,fcntl.LOCK_EX)
    if path.exists():require(json.loads(path.read_bytes())==contract,'research destination belongs to another implementation')
    else:atomic(path,canonical(contract)+b'\n')
- def publish(self,stage,payload,parents=()):
+ def publish(self,stage,payload,parents=(),normative_context=None):
+  if stage=='decision':
+   from associativvordes.v5_contract.approved import ApprovedRegistry
+   require(normative_context is not None,'approved decision requires external normative trust')
+   require(payload.get('write_authorized') is False,'decision publication never authorizes a production write')
+   r=ApprovedRegistry(self.root/'approved-decisions',self.contract).read(payload['approved_record_sha256'],normative_context)
+   require(payload['decision']==r['decision'] and payload['result']==r['result'],'approved decision publication differs')
   result=seal(stage,payload,self.contract,parents);path=self.root/(stage+'-'+result['sha256']+'.json')
   if path.exists():require(json.loads(path.read_bytes())==result,'immutable publication differs')
   else:
@@ -82,12 +88,19 @@ class Pipeline:
  def decision(self,review,decision,trust):
   reviewed=open_envelope(review,self.contract);require(review['stage']=='review_event','human review event required')
   require(any(r.get('normative_decision')==decision for r in reviewed['transaction']['decisions']),'normative decision not present in human transaction')
-  evaluation=policy.decision(decision,self.contract,trust,confirmed=True)
-  return self.publish('decision',dict(decision=decision,result=evaluation,write_authorized=False),[review])
+  from associativvordes.v5_contract.approved import ApprovedRegistry
+  approved=ApprovedRegistry(self.root/'approved-decisions',self.contract).approve(decision,trust)
+  return self.publish('decision',dict(decision=decision,result=approved['result'],approved_record_sha256=approved['sha256'],write_authorized=False),[review],normative_context=trust)
  def quality(self,cases,reviews,arbitrations,roster,trust,parents=()):
   from associativvordes.cleanup_quality.human import compile_gold
   require(any(p['stage']=='decision' for p in parents) and any(p['stage']=='review_event' for p in parents),'review and decision lineage required for quality')
-  approved={digest(open_envelope(p,self.contract)['decision']) for p in parents if p['stage']=='decision'}
+  from associativvordes.v5_contract.approved import ApprovedRegistry
+  registry=ApprovedRegistry(self.root/'approved-decisions',self.contract);approved=set()
+  for p in parents:
+   if p['stage']!='decision':continue
+   payload=open_envelope(p,self.contract);row=registry.read(payload['approved_record_sha256'],trust)
+   require(row['decision']==payload['decision'] and row['result']==payload['result'],'unverified approved decision lineage')
+   approved.add(digest(row['decision']))
   for j in reviews:
    if j.get('verdict')!='UNCERTAIN':require(digest(j.get('normative_decision')) in approved,'quality answer lacks reviewed decision lineage')
   for c in cases:require(c.get('version_contract')==self.contract,'unversioned/mixed quality case')

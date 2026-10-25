@@ -1,0 +1,56 @@
+{
+  "schema": "interal-normative-end-to-end/1",
+  "normative_policy_version": "1.0.0",
+  "decision_schema_version": "1.0.0",
+  "execution_contract": "interal-normative-resolver/1",
+  "base_commit": "6fddd712395fd1a9bcd45b78cd25b45cd9511368",
+  "integration_ancestor": {
+    "pr": 698,
+    "head": "78f73c0b4e151088c5ce2e7daab6dcd4472de52e",
+    "state": "DRAFT_UNMERGED_NOT_FULLY_CERTIFIED"
+  },
+  "membership_model": [
+    "normative element",
+    "finite national correspondence",
+    "native lexical identity",
+    "sense",
+    "morphological or historical relation",
+    "family membership"
+  ],
+  "independent_association_model": [
+    "confirmed family membership",
+    "separately verified contemporary associative support",
+    "separate root recognition"
+  ],
+  "confirmed_scope": [
+    "family_id",
+    "element_id",
+    "language",
+    "lemma_id",
+    "lexeme_id",
+    "sense_id",
+    "context_id"
+  ],
+  "indirect_step_scope": [
+    "from_scope",
+    "to_scope",
+    "directed from/to sense continuity",
+    "relation_step_sha256 binding full transition except evidence IDs"
+  ],
+  "trust_source": "Operator-configured external verifier, never a proposed decision or human answer",
+  "required_input_locks": [
+    "Git commit and installed code hashes",
+    "normative schema/rules hashes",
+    "baseline version and inventory",
+    "historical snapshot and adjudication",
+    "source lock",
+    "algorithm hashes",
+    "schema versions",
+    "research/test namespace"
+  ],
+  "unknown_metrics": "unknown; no defaults or score calculation",
+  "approved_registry": "interal-approved-membership/1; revalidation on reads and writes",
+  "production_data_write": false,
+  "historical_blocks_preserved": true,
+  "automatic_national_form_propagation": false
+}

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { validateDecision,validateSchema,evaluateMembership,assessRecognition,
-  automaticCorrectionEligibility,evaluateAssociation,digest,scopeCovers,rules } from '../associativvordes/normative/validator.mjs';
+  automaticCorrectionEligibility,evaluateAssociation,digest,scopeCovers,rules,stepDigest } from '../associativvordes/normative/validator.mjs';
 
 const read=p=>JSON.parse(readFileSync(new URL('../'+p,import.meta.url),'utf8'));
 const base='associativvordes/normative/';
@@ -28,6 +28,12 @@ function fixture(c=cases[0]) {
       to:i===ids.length-1?scope.lexeme_id:'fixture:path:'+words[i+1],
       from_sense:i===0?'rule':'relevant',to_sense:i===ids.length-1?scope.sense_id:'relevant',
       direction:'directed',evidence_ids:[id]}));
+  }
+  for(let i=0;i<steps.length;i++) {
+    const step=steps[i];
+    step.from_scope=i===0?{...scope,language:'fr',lemma_id:step.from,lexeme_id:step.from,sense_id:step.from_sense,context_id:'path:'+step.from}:structuredClone(steps[i-1].to_scope);
+    step.to_scope=i===steps.length-1?structuredClone(scope):{...scope,language:'fr',lemma_id:step.to,lexeme_id:step.to,sense_id:step.to_sense,context_id:'path:'+step.to};
+    const e=evidence.find(e=>e.id===step.evidence_ids[0]);e.scope=structuredClone(step.to_scope);e.relation_step_sha256=stepDigest(step);
   }
   const d={schema_version:'1.0.0',id:'test-only:'+c.id,element,scope,decision:c.expected,
     evidence_status:confirmed?'documented':'insufficient',lexical_identity_status:'resolved',
@@ -124,9 +130,9 @@ test('negative polarity cannot support a positive verdict',()=>{
 });
 test('indirect path must be complete, sense-continuous and terminate at exact target',()=>{
   const d=fixture(cases.find(c=>c.id==='regul-regl'));assert.equal(result(d),M);
-  const x=structuredClone(d);x.correspondence.steps[1].from_sense='homonym';assert.throws(()=>validateDecision(x),/discontinuous/);
+  const x=structuredClone(d);x.correspondence.steps[1].from_sense='homonym';assert.throws(()=>validateDecision(x),/discontinuous|endpoint scope/);
   const y=structuredClone(d);y.correspondence.steps.at(-1).to='other';assert.throws(()=>validateDecision(y),/endpoint/);
-  d.correspondence.steps=[];assert.throws(()=>validateDecision(d),/path missing/);
+  d.correspondence.steps=[];assert.throws(()=>validateDecision(d),/path missing|scope mismatch/);
 });
 test('pending/excluded v6 guards cannot be promoted implicitly',()=>{
   const d=fixture();for(const guard of ['pending','uncertain','excluded','quarantine']){
@@ -216,7 +222,7 @@ test('4354127406: indirect evidence retains exact intermediate endpoint scopes',
  const d=fixture(cases.find(c=>c.id==='regul-regl'));
  for(const step of d.correspondence.steps.slice(0,-1)){
   const e=d.evidence.find(e=>e.id===step.evidence_ids[0]);
-  e.scope={...d.scope,language:'fr',lexeme_id:step.to,sense_id:step.to_sense,lemma_id:step.to};
+  e.scope=structuredClone(step.to_scope);
  }
  assert.doesNotThrow(()=>validateDecision(d));assert.equal(result(d),M);
  const bad=structuredClone(d);bad.evidence[0].scope.lexeme_id='unrelated';
@@ -227,8 +233,10 @@ test('4354127406: intermediate contexts remain distinct and cannot replace final
  const d=fixture(cases.find(c=>c.id==='regul-regl'));
  const intermediate=[];
  for(const step of d.correspondence.steps.slice(0,-1)){
-  const e=d.evidence.find(e=>e.id===step.evidence_ids[0]);e.scope={...d.scope,language:'fr',lexeme_id:step.to,sense_id:step.to_sense,lemma_id:step.to,context_id:'French-dictionary:'+e.id};intermediate.push(e.id);
+  const e=d.evidence.find(e=>e.id===step.evidence_ids[0]);e.scope=structuredClone(step.to_scope);intermediate.push(e.id);
  }
  assert.doesNotThrow(()=>validateDecision(d));assert.equal(result(d),M);
  d.axis_evidence.lexical_identity_status=intermediate;assert.equal(result(d),U);
 });
+
+export {fixture,trust,result,cases};
