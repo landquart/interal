@@ -103,11 +103,17 @@ def historical_context(h):
     data=json.loads(gzip.decompress(raw) if source['path'].endswith('.gz') else raw)
     for token in source.get('pointer','').split('/')[1:]:
         token=token.replace('~1','/').replace('~0','~');data=data[int(token)] if isinstance(data,list) else data[token]
-    word=data.get('word') or data.get('lemma')
+    native=data.get('source_record') if isinstance(data.get('source_record'),dict) else data
+    word=native.get('word') or native.get('lemma')
     if not isinstance(word,str) or not word:raise ValueError('historical task lacks a documented lexical form')
-    # Previous decisions, explanations and proposed analyses remain blinded.
-    observed={k:data[k] for k in ('word','normalized','search_form','context') if k in data}
-    observed['word']=word;observed['source_refs']=[{k:source[k] for k in ('commit','path','blob','sha256','pointer') if k in source}]
+    # A historical decision filename itself can disclose the previous verdict.
+    # Reviewers get a neutral, sanitized context object; the original history
+    # locator stays coordinator-only in history_ref/history_sha256.
+    observed={k:native[k] for k in ('word','normalized','search_form','context') if k in native}
+    observed['word']=word
+    if 'sources' in native:observed['sources']=[{k:r[k] for k in ('id','file','category') if k in r} for r in native['sources']]
+    key=digest(observed)
+    observed['source_refs']=[dict(artifact='HISTORICAL-LEXICAL-CONTEXTS.json',pointer='/contexts/'+key,sha256=key)]
     return word,observed
 
 def challenges(d):
@@ -189,6 +195,11 @@ def run(index,output,kit,stop_after=None):
         for r in rs:
             c=dict(r,dataset=name,split='holdout',protocol_sha256=ph)
             c['id']='quality-case:'+digest([name,c['family_id'],c['language'],c['lemma_id'],c.get('record_sha256'),c.get('history_ref')]);allcases.append(c)
+    contexts={}
+    for c in allcases:
+        if c['case_kind']=='HISTORICAL_SCOPE_NOT_POPULATION_MEMBERSHIP':
+            context={k:v for k,v in c['source_record'].items() if k!='source_refs'};contexts[digest(context)]=context
+    save(out/'HISTORICAL-LEXICAL-CONTEXTS.json',dict(schema='blind-historical-contexts/1',contexts=contexts))
     clusters=linked_clusters(allcases)
     for c in allcases:
         c['cluster']=clusters[c['id']];c['historical_exposure_flags']=[t for t in ['family:'+c['family_id'],'lemma:'+c['language']+':'+c['lemma_id'],'record:'+str(c.get('record_sha256'))] if t in exposure]

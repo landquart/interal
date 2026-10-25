@@ -158,6 +158,7 @@ class Ledger:
             if set(rows) != set(wanted):raise ValueError('source evidence closure')
             for identifier,row in rows.items():
                 evidence = wanted[identifier]
+                if row.get('record_id') != identifier:raise ValueError('source row identity mismatch')
                 raw_row = base64.b64decode(row['original_line_base64'], validate=True)
                 if row['raw_locator'] != evidence['raw_locator'] or digest(raw_row) != evidence['raw_locator']['raw_sha256']:
                     raise ValueError('raw row differs from question evidence')

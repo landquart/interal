@@ -63,16 +63,18 @@ with tempfile.TemporaryDirectory() as td:
  assert not out.exists()
 `));
 test('4367043678: historical blind tasks retain observed word and locked locator',()=>py(String.raw`
-import json
+import json,sqlite3
 from pathlib import Path
-from associativvordes.cleanup_quality.prepare import historical_context
+from associativvordes.cleanup_quality.prepare import challenges,digest
 p=Path('audit/associative-history-registry');pointer=json.loads((p/'CURRENT.json').read_text());s=json.loads((p/pointer['snapshot']).read_text())
-ds=[d for d in s['decisions'] if d['decision']=='CONFIRMED_NONMEMBER' and d['scope'].get('lemma_ids')]
-for d in ds:
- word,record=historical_context(d);assert word and record['word']==word and record['source_refs'][0]['sha256']==d['source']['sha256']
- assert not {'decision','verdict','explanation','reason'}&set(record)
+h=next(d for d in s['decisions'] if d['decision']=='CONFIRMED_NONMEMBER' and d['scope'].get('lemma_ids'))
+d=sqlite3.connect(':memory:');d.executescript('CREATE TABLE families(f INTEGER,fid TEXT,n INTEGER,meta TEXT,bucket TEXT);CREATE TABLE members(f INTEGER,lang TEXT,lid TEXT,ordinal INTEGER,record_hash TEXT);CREATE TABLE aliases(alias TEXT,fid TEXT);CREATE TABLE history(id TEXT,body TEXT);');d.execute('INSERT INTO history VALUES(?,?)',(h['id'],json.dumps(h)))
+ordinary,historical=challenges(d);assert not ordinary and len(historical)==1
+case=historical[0];assert case['word'] and case['source_record']['word']==case['word'] and case['source_record']['source_refs'][0]['artifact']=='HISTORICAL-LEXICAL-CONTEXTS.json'
+assert not {'decision','verdict','explanation','reason'}&set(case['source_record'])
+observed={k:v for k,v in case['source_record'].items() if k!='source_refs'};assert case['source_record']['source_refs'][0]['sha256']==digest(observed)
+assert 'baseline-excluded' not in json.dumps(case['source_record'])
 `));
-
 test('4365260804: rehashed dictionary receipts are rejected',()=>py(String.raw`
 import tempfile,json,copy
 from pathlib import Path
@@ -113,7 +115,7 @@ test('4368023514: changed production tree has unknown current counts',()=>py(Str
 from associativvordes.v5_release_control.package import *
 obs=loads((ROOT/'audit/associative-v5-controlled-release/REMOTE-OBSERVATIONS.json').read_bytes());obs['production_v5_tree']='0'*40
 files=compile_package(ROOT,obs);s=loads(files['BEFORE-AFTER-SUMMARY.json'])
-assert s['current_unchanged'] is None and s['families_remaining_unchanged'] is None
+assert s['current_unchanged'] is None and s['families_remaining_unchanged'] is None and s['unassigned_lemmas_preserved'] is None
 assert 'current counts are unknown' in files['FINAL-CLEANUP-AUDIT.md'].decode()
 `));
 test('4368023519: rehashed package cannot omit required source inventory',()=>py(String.raw`
@@ -210,4 +212,57 @@ with surface() as (t,unused,snap,unused_out):
  out=t.root/'morphology'
  with patch.object(m,'Profiles',lambda *args:Profiles()),patch.object(m,'load',load),contextlib.redirect_stdout(io.StringIO()):m.scan(snap,profiles,history,out)
  assert 'associativvordes/v5_diagnostics/classify.py' in json.loads((out/'IDENTITY.json').read_bytes())['code']
+`));
+
+test('4363656925: structural JSON plan bytes are verified with NDJSON inputs',()=>{
+ const code=String.raw`
+import fs from 'node:fs';import path from 'node:path';import {syncBuiltinESMExports} from 'node:module';import {pathToFileURL} from 'node:url';
+const root=path.dirname(fs.realpathSync('audit')),original=fs.readFileSync;
+fs.readFileSync=function(p,options){
+ if(String(p)===path.join(root,'audit/associative-v5-structural-cleanup/DATA-CHANGE-PROPOSAL.json')){
+  const bytes=Buffer.from(JSON.stringify({status:'DATA_PATCH_NEEDED',membership_removals:1}));return typeof options==='string'?bytes.toString(options):bytes;
+ }
+ return original.apply(this,arguments);
+};syncBuiltinESMExports();
+process.argv=['node','verify.mjs',root];await import(pathToFileURL(path.resolve('associativvordes/national_correspondences/verify.mjs')).href);
+`;
+ const r=spawnSync(process.execPath,['--input-type=module','-e',code],{encoding:'utf8'});
+ assert.notEqual(r.status,0,'a changed structural JSON plan was accepted');
+});
+test('4362455083: fresh apply and idempotence receipts substantiate different operations',()=>py(String.raw`
+import json,subprocess
+from pathlib import Path
+r=json.loads(Path('audit/pr-review-679-694/APPLY-REPLAY-VERIFICATION.json').read_bytes())
+assert r['fresh_apply']['status']=='SHADOW_ONLY' and r['idempotence']['status']=='ALREADY_APPLIED'
+assert r['rollback']['status']=='ROLLBACK_VERIFIED'
+m=json.loads(Path('audit/pr-review-679-694/FRESH-SHADOW-MANIFEST.json').read_bytes());assert r['fresh_apply']['inventory_sha256']==m['inventory_sha256']
+old=json.loads(subprocess.check_output(['git','show','4b528326f230ef9dd1df968829dd253ecad9a63f:audit/associative-v5-structural-cleanup/APPLY-RECEIPT.json']))
+assert old['status']=='ALREADY_APPLIED' and old!=r['fresh_apply']
+`));
+test('4362455091: both complete issue exports resolve and match their report counts',()=>py(String.raw`
+import json,gzip
+from pathlib import Path
+for side in ['BEFORE','AFTER']:
+ r=json.loads(Path('audit/associative-v5-structural-cleanup/'+side+'-INTEGRITY.json').read_bytes());p=Path(r['issue_details_location']);assert p.is_file()
+ rows=[json.loads(x) for x in gzip.decompress(p.read_bytes()).splitlines() if x.strip()]
+ assert len(rows)==sum(r['structural_findings'].values())
+`));
+
+test('4359323435: source-row body identity cannot differ from its evidence key',()=>py(String.raw`
+import sys,tempfile,base64,json
+from pathlib import Path
+sys.path.insert(0,'associativvordes/review')
+from store import Ledger,digest,canonical
+with tempfile.TemporaryDirectory() as td:
+ p=Path(td);qdir=p/'queue';qdir.mkdir();data=b'TEST_ONLY_SOURCE\n';loc=dict(raw_sha256=digest(data));e=dict(id='TEST_ONLY_ROW',raw_locator=loc,revision='fixture',artifact='fixture')
+ q=dict(id='TEST_ONLY_Q',family='TEST_ONLY_F',language='en',lemma='word',lexeme_alternatives=[dict(id='TEST_ONLY_L')],evidence_refs=[e]);raw=(canonical(q)+'\n').encode();(qdir/'questions.ndjson').write_bytes(raw)
+ rows={'TEST_ONLY_ROW':dict(record_id='FORGED',raw_locator=loc,revision='fixture',artifact='fixture',original_line_base64=base64.b64encode(data).decode(),raw_text=data.decode())}
+ def freeze():
+  source=canonical(rows).encode();(qdir/'source-rows.json').write_bytes(source);(qdir/'MANIFEST.json').write_text(json.dumps(dict(schema='v5-review-projection/1',counts=dict(questions=1),outputs={'questions.ndjson':digest(raw),'source-rows.json':digest(source)})))
+ freeze();ledger=Ledger(p/'ledger')
+ try:ledger.import_queue(qdir)
+ except ValueError:pass
+ else:raise AssertionError('forged raw-row identity accepted')
+ assert not (p/'ledger/CURRENT').exists()
+ rows['TEST_ONLY_ROW']['record_id']='TEST_ONLY_ROW';freeze();assert ledger.import_queue(qdir)['questions']==1
 `));

@@ -222,3 +222,13 @@ test('4354127406: indirect evidence retains exact intermediate endpoint scopes',
  const bad=structuredClone(d);bad.evidence[0].scope.lexeme_id='unrelated';
  assert.throws(()=>validateDecision(bad),/scope mismatch/);
 });
+
+test('4354127406: intermediate contexts remain distinct and cannot replace final identity proof',()=>{
+ const d=fixture(cases.find(c=>c.id==='regul-regl'));
+ const intermediate=[];
+ for(const step of d.correspondence.steps.slice(0,-1)){
+  const e=d.evidence.find(e=>e.id===step.evidence_ids[0]);e.scope={...d.scope,language:'fr',lexeme_id:step.to,sense_id:step.to_sense,lemma_id:step.to,context_id:'French-dictionary:'+e.id};intermediate.push(e.id);
+ }
+ assert.doesNotThrow(()=>validateDecision(d));assert.equal(result(d),M);
+ d.axis_evidence.lexical_identity_status=intermediate;assert.equal(result(d),U);
+});

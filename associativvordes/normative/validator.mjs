@@ -49,7 +49,7 @@ export function validateDecision(d) {
   for (const e of d.evidence) {
     const intermediate=d.relation_type==='indirect' && d.correspondence?.steps.some(step=>
       step.evidence_ids.includes(e.id) && e.scope.family_id===d.scope.family_id && e.scope.element_id===d.scope.element_id &&
-      e.scope.context_id===d.scope.context_id && e.scope.language && e.scope.lemma_id &&
+      e.scope.language && e.scope.lemma_id &&
       ((e.scope.lexeme_id===step.from && e.scope.sense_id===step.from_sense) ||
        (e.scope.lexeme_id===step.to && e.scope.sense_id===step.to_sense)));
     demand(sameScope(e.scope,d.scope) || intermediate, 'evidence scope mismatch');
@@ -93,8 +93,8 @@ function proofTrusted(d,trust) {
   const valid = id => trust.verifiedEvidenceIds?.has(id) && trust.verifiedEvidenceDigests?.get(id)===digest(byId.get(id)) &&
     ['dictionary','grammar','reviewed_document'].includes(byId.get(id)?.origin);
   const polarity=d.decision==='CONFIRMED_NONMEMBER'?'rebuts':'supports';
-  return axes.every(axis=>d.axis_evidence[axis].some(id=>valid(id) && (axis!=='relation_status'||byId.get(id).polarity===polarity))) &&
-    (d.decision!=='CONFIRMED_MEMBER' || d.correspondence.evidence_ids.some(id=>valid(id) && byId.get(id).polarity==='supports') &&
+  return axes.every(axis=>d.axis_evidence[axis].some(id=>valid(id) && sameScope(byId.get(id).scope,d.scope) && (axis!=='relation_status'||byId.get(id).polarity===polarity))) &&
+    (d.decision!=='CONFIRMED_MEMBER' || d.correspondence.evidence_ids.some(id=>valid(id) && sameScope(byId.get(id).scope,d.scope) && byId.get(id).polarity==='supports') &&
       d.correspondence.evidence_ids.every(id=>!valid(id) || byId.get(id).polarity==='supports') &&
       d.correspondence.steps.every(step=>step.evidence_ids.some(id=>valid(id) && byId.get(id).polarity==='supports') &&
         step.evidence_ids.every(id=>!valid(id) || byId.get(id).polarity==='supports')));
