@@ -88,12 +88,17 @@ def tracked_paths(repo,commit):
   p in ('package.json','package-lock.json','.github/workflows/build-associative-exhaustive-families.yml','.github/workflows/materialize-associative-family-v5-repository.yml') or
   p.startswith('scripts/') and ('associative-family' in p or 'associative-exhaustive' in p or 'associative-etymology' in p or 'associative-index-core' in p)]
 def inventory(root):
- return [{'path':p.relative_to(root).as_posix(),'bytes':p.stat().st_size,'sha256':sha_file(p)} for p in sorted(pathlib.Path(root).rglob('*')) if p.is_file() and p.name!='SNAPSHOT.json']
+ return [{'path':p.relative_to(root).as_posix(),'bytes':p.stat().st_size,'sha256':sha_file(p)} for p in sorted(pathlib.Path(root).rglob('*')) if p.is_file() and p!=pathlib.Path(root)/'SNAPSHOT.json']
 def prepare(repo,work,commit):
  work=pathlib.Path(work);work.mkdir(parents=True,exist_ok=True);final=work/'snapshot'
  if final.exists():raise ValueError('Snapshot already exists; never overwrite')
  stage=work/'snapshot.partial'
  if stage.exists():raise ValueError('Incomplete prepare; use a new work directory')
+ generation='3d71828f9bfa7ce6ea5f1814442a6604cb180c96'
+ for required in (ORIGINAL,generation):
+  if subprocess.run(['git','-C',str(repo),'cat-file','-e',required+'^{commit}'],stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL).returncode:
+   subprocess.run(['git','-C',str(repo),'fetch','--no-tags','origin',required],check=True)
+  if git(repo,'rev-parse',required+'^{commit}').decode().strip()!=required:raise ValueError('pinned commit acquisition mismatch')
  head=git(repo,'rev-parse',commit+'^{commit}').decode().strip()
  extract_git(repo,head,tracked_paths(repo,head),stage/'current')
  extract_git(repo,ORIGINAL,[PREFIX],stage/'original')
@@ -125,11 +130,12 @@ def connect(path):
 
 def run(snapshot,work,stop_after=None,crash_after=None):
  start=time.monotonic();snapshot=pathlib.Path(snapshot);work=pathlib.Path(work);work.mkdir(parents=True,exist_ok=True)
- lock=load(snapshot/'SNAPSHOT.json');expected={r['path']:r for r in lock['files']}
+ lock=verify_snapshot(snapshot);expected={r['path']:r for r in lock['files']}
  if hashlib.sha256(canonical(lock['files'])).hexdigest()!=lock['inventory_sha256']:raise ValueError('Inventory lock mismatch')
  # DB identity cannot be reused against another snapshot or changed implementation.
  identity={'snapshot':sha_file(snapshot/'SNAPSHOT.json'),'implementation':sha_file(__file__),'version':VERSION}
  ident=work/'IDENTITY.json'
+ if not ident.exists() and (work/'census.sqlite').exists():raise ValueError('Existing census database without identity')
  if ident.exists() and load(ident)!=identity:raise ValueError('Checkpoint belongs to other snapshot/code')
  atomic_json(ident,identity);db=connect(work/'census.sqlite');processed=0;skipped=0
  existing=work/'segments.json'
@@ -146,8 +152,11 @@ def run(snapshot,work,stop_after=None,crash_after=None):
   if not row.get('sources') or not row.get('components'):issue('missing_lexical_evidence',scope,row['lemma_id'])
   v=row.get('frequency_score')
   if not isinstance(v,(int,float)) or not math.isfinite(v) or not 0<=v<=100:issue('invalid_frequency',scope,row['lemma_id'])
-  for comp in row.get('components',[]):
-   if not comp.get('canonical_candidate') or not comp.get('evidence'):issue('invalid_component',scope,row['lemma_id'])
+  components=row.get('components',[])
+  if not isinstance(components,list):issue('invalid_component',scope,row['lemma_id']);return False
+  for comp in components:
+   if not isinstance(comp,dict) or not comp.get('canonical_candidate') or not isinstance(comp.get('evidence'),list) or not comp['evidence'] or any(not isinstance(e,dict) for e in comp['evidence']):
+    issue('invalid_component',scope,row['lemma_id']);return False
   return True
  def checked(path):
   key=path.relative_to(snapshot).as_posix();record=expected.get(key)
@@ -243,7 +252,8 @@ def run(snapshot,work,stop_after=None,crash_after=None):
   segments.append({'seconds':elapsed,'new_tasks':processed,'resumed_tasks':skipped,'peak_rss_kib':resource.getrusage(resource.RUSAGE_SELF).ru_maxrss})
   atomic_json(existing,segments)
   db.execute('pragma wal_checkpoint(TRUNCATE)')
-  if db.execute('select count(*) from checkpoints').fetchone()[0]==len(tasks):finish(db,snapshot,work,lock,segments)
+  if db.execute('select count(*) from checkpoints').fetchone()[0]==len(tasks):
+   verify_snapshot(snapshot);finish(db,snapshot,work,lock,segments)
  finally:db.close()
  return {'new_tasks':processed,'resumed_tasks':skipped}
 
@@ -301,7 +311,7 @@ def finish(db,snapshot,work,lock,segments):
 def verify_snapshot(root):
  root=pathlib.Path(root);lock=load(root/'SNAPSHOT.json')
  if hashlib.sha256(canonical(lock['files'])).hexdigest()!=lock['inventory_sha256']:raise ValueError('Invalid inventory digest')
- expected={x['path'] for x in lock['files']};actual={p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and p.name!='SNAPSHOT.json'}
+ expected={x['path'] for x in lock['files']};actual={p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file() and p!=pathlib.Path(root)/'SNAPSHOT.json'}
  if expected!=actual:raise ValueError('Inventory path mismatch')
  for r in lock['files']:
   p=root/r['path']
@@ -315,7 +325,11 @@ def backup(snapshot,archive):
  with tarfile.open(str(archive)+'.partial','w') as tar:
   for p in sorted(snapshot.rglob('*')):
    if p.is_file():tar.add(p,arcname=p.relative_to(snapshot).as_posix(),recursive=False)
+ with open(str(archive)+'.partial','rb') as f:os.fsync(f.fileno())
  os.replace(str(archive)+'.partial',archive)
+ fd=os.open(archive.parent,os.O_RDONLY)
+ try:os.fsync(fd)
+ finally:os.close(fd)
  result={'archive_bytes':archive.stat().st_size,'archive_sha256':sha_file(archive),'snapshot_receipt_sha256':sha_file(snapshot/'SNAPSHOT.json')}
  atomic_json(str(archive)+'.receipt.json',result);return result
 
@@ -329,8 +343,8 @@ def restore(archive,destination,expected_hash):
  with tarfile.open(archive,'r:') as tar:
   for m in tar:
    p=pathlib.PurePosixPath(m.name)
-   if p.is_absolute() or '..' in p.parts or not m.isfile() or m.name in seen:raise ValueError('Unsafe/duplicate archive member')
-   seen.add(m.name);target=partial.joinpath(*p.parts);target.parent.mkdir(parents=True,exist_ok=True)
+   if p.is_absolute() or '..' in p.parts or not m.isfile() or not p.parts or p.as_posix() in seen:raise ValueError('Unsafe/duplicate archive member')
+   seen.add(p.as_posix());target=partial.joinpath(*p.parts);target.parent.mkdir(parents=True,exist_ok=True)
    with tar.extractfile(m) as inp,open(str(target)+'.partial','xb') as out:shutil.copyfileobj(inp,out,1024*1024);out.flush();os.fsync(out.fileno())
    os.replace(str(target)+'.partial',target)
  lock=verify_snapshot(partial);os.replace(partial,dest)
@@ -348,3 +362,4 @@ def main():
  elif a.command=='backup':print(json.dumps(backup(a.snapshot,a.archive)))
  else:print(json.dumps(restore(a.archive,a.destination,a.sha256)))
 if __name__=='__main__':main()
+

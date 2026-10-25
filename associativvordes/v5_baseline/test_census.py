@@ -88,4 +88,54 @@ class CensusTests(unittest.TestCase):
   with tarfile.open(archive,'w') as tar:
    m=tarfile.TarInfo('link');m.type=tarfile.SYMTYPE;m.linkname='/etc/passwd';tar.addfile(m)
   with self.assertRaisesRegex(ValueError,'Unsafe'):c.restore(archive,self.root/'restore',c.sha_file(archive))
+
+ def test_4354484833_nested_snapshot_is_hashed(self):
+  snap,_=self.snapshot();p=snap/'current/SNAPSHOT.json';p.write_text('nested');self.refresh(snap)
+  self.assertIn('current/SNAPSHOT.json',{r['path'] for r in c.load(snap/'SNAPSHOT.json')['files']})
+  p.write_text('corrupt')
+  with self.assertRaisesRegex(ValueError,'checksum'):c.verify_snapshot(snap)
+ def test_4354484841_standalone_census_checks_nonshard_files(self):
+  snap,_=self.snapshot();p=snap/'current/provenance.json';p.write_text('{}');self.refresh(snap);p.write_text('changed')
+  with self.assertRaisesRegex(ValueError,'checksum'):c.run(snap,self.root/'run',stop_after=1)
+ def test_4354484848_tar_aliases_are_duplicates(self):
+  snap,_=self.snapshot();archive=self.root/'alias.tar'
+  with tarfile.open(archive,'w') as t:
+   for p in sorted(snap.rglob('*')):
+    if p.is_file():t.add(p,arcname=p.relative_to(snap).as_posix())
+   t.add(snap/'SNAPSHOT.json',arcname='./SNAPSHOT.json')
+  with self.assertRaisesRegex(ValueError,'duplicate'):c.restore(archive,self.root/'restored',c.sha_file(archive))
+ def test_4354484852_malformed_components_reported(self):
+  for components in ['bad',[None],[17],{'bad':'type'}]:
+   snap,members=self.snapshot() if not (self.root/'snapshot').exists() else (self.root/'snapshot',None)
+   p=snap/'current'/c.PREFIX/'members/en/00.json.gz';data=dict(c.pairs(p));next(iter(data.values()))[0]['components']=components;self.gz(p,data);self.refresh(snap)
+   work=self.root/('run'+str(len(list(self.root.glob('run*')))))
+   with contextlib.redirect_stdout(io.StringIO()):c.run(snap,work)
+   self.assertGreater(c.load(work/'INTEGRITY-REPORT.json')['structural_findings'].get('invalid_component',0),0)
+ def test_4354484861_existing_database_needs_identity(self):
+  snap,_=self.snapshot();work=self.root/'run'
+  with contextlib.redirect_stdout(io.StringIO()):c.run(snap,work,stop_after=1)
+  (work/'IDENTITY.json').unlink()
+  with self.assertRaisesRegex(ValueError,'identity'):c.run(snap,work,stop_after=1)
+
+
+ def test_4354484873_archive_fsynced_before_receipt(self):
+  from unittest.mock import patch
+  import os
+  snap,_=self.snapshot();events=[];original=c.os.fsync
+  def sync(fd):
+   events.append(os.readlink('/proc/self/fd/'+str(fd)));return original(fd)
+  with patch.object(c.os,'fsync',sync):c.backup(snap,self.root/'backup.tar')
+  self.assertTrue(any(x.endswith('backup.tar.partial') for x in events))
+  self.assertLess(next(i for i,x in enumerate(events) if x.endswith('backup.tar.partial')),next(i for i,x in enumerate(events) if 'receipt.json.' in x))
+ def test_4354484825_fetch_exact_unreachable_generation(self):
+  from unittest.mock import patch
+  from types import SimpleNamespace
+  calls=[]
+  def command(args,**kw):calls.append(args);return SimpleNamespace(returncode=1 if 'cat-file' in args else 0)
+  def fake_git(repo,*args):return (args[-1].split('^')[0]+'\n').encode()
+  repo=self.root/'repo';(repo/'associativvordes/v5_baseline').mkdir(parents=True)
+  with patch.object(c,'git',fake_git),patch.object(c.subprocess,'run',command),patch.object(c,'extract_git',lambda *args:args[-1].mkdir(parents=True,exist_ok=True)),patch.object(c,'tracked_paths',lambda *args:[]):
+   with contextlib.redirect_stdout(io.StringIO()):c.prepare(repo,self.root/'capture','a'*40)
+  self.assertTrue(any(args[-1]=='3d71828f9bfa7ce6ea5f1814442a6604cb180c96' and 'fetch' in args for args in calls))
 if __name__=='__main__':unittest.main()
+
