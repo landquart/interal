@@ -27,6 +27,10 @@ def validate(j,case,roster,role,normative_context=None):
     return j
 
 def compile_gold(cases,reviews,arbitrations,roster,normative_context=None):
+    if (reviews or arbitrations) and not (cases and all(c.get('version_contract',{}).get('namespace')=='TEST_ONLY-v5' for c in cases)):
+        from associativvordes.calibration_study.study import require_main_annotation
+        context=normative_context or {}
+        require_main_annotation(context.get('calibrationAnalysis'),context.get('calibrationTrust'))
     index={c['id']:c for c in cases};by={};adjs={}
     if len(index)!=len(cases) or any(c['content_sha256']!=digest({k:v for k,v in c.items() if k!='content_sha256'}) for c in cases):raise ValueError('case checksum/duplicate')
     for j in reviews:

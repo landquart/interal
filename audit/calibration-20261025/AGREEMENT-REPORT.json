@@ -1,0 +1,261 @@
+{
+  "schema": "interal-human-calibration-analysis/1",
+  "status": "BLOCKED",
+  "study_sha256": "c3a36f14c5df53d79dacd3145081aeb637aad8ccf4dafa1082a36bf700c5b0ac",
+  "protocol_sha256": "25498e196d679d403183a17457455e80fee3844bd744f280e5b5f23bcef8c03a",
+  "instructions_sha256": "6a4fac0364a7d1d63d4b251ed6461fa7c83ac48add6688ebf840cdd93040790d",
+  "scientific_implementation_sha256": "bc34f864e6a438ef70a216a4e171e5caa2f76a26f3dfd791c0ead1c331c02a5f",
+  "registered_roster_entries": 0,
+  "accepted_human_reviews": 0,
+  "accepted_arbitrations": 0,
+  "paired_cases": 0,
+  "human_gold": [],
+  "arbitration_ledger": [],
+  "pending_arbitrations": 0,
+  "metrics": {
+    "overall": {
+      "pairs": 0,
+      "confusion": {
+        "INVALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "UNCERTAIN": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "VALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        }
+      },
+      "raw_agreement": null,
+      "cohens_kappa": null,
+      "kappa_undefined_reason": "No paired responses or degenerate marginals",
+      "dimension_disagreements": {},
+      "timing": {
+        "n": 0,
+        "mean_seconds": null,
+        "median_seconds": null,
+        "measurement": "self-reported active seconds, bounded by reported wall duration"
+      }
+    },
+    "en": {
+      "pairs": 0,
+      "confusion": {
+        "INVALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "UNCERTAIN": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "VALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        }
+      },
+      "raw_agreement": null,
+      "cohens_kappa": null,
+      "kappa_undefined_reason": "No paired responses or degenerate marginals",
+      "dimension_disagreements": {},
+      "timing": {
+        "n": 0,
+        "mean_seconds": null,
+        "median_seconds": null,
+        "measurement": "self-reported active seconds, bounded by reported wall duration"
+      }
+    },
+    "de": {
+      "pairs": 0,
+      "confusion": {
+        "INVALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "UNCERTAIN": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "VALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        }
+      },
+      "raw_agreement": null,
+      "cohens_kappa": null,
+      "kappa_undefined_reason": "No paired responses or degenerate marginals",
+      "dimension_disagreements": {},
+      "timing": {
+        "n": 0,
+        "mean_seconds": null,
+        "median_seconds": null,
+        "measurement": "self-reported active seconds, bounded by reported wall duration"
+      }
+    },
+    "fr": {
+      "pairs": 0,
+      "confusion": {
+        "INVALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "UNCERTAIN": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "VALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        }
+      },
+      "raw_agreement": null,
+      "cohens_kappa": null,
+      "kappa_undefined_reason": "No paired responses or degenerate marginals",
+      "dimension_disagreements": {},
+      "timing": {
+        "n": 0,
+        "mean_seconds": null,
+        "median_seconds": null,
+        "measurement": "self-reported active seconds, bounded by reported wall duration"
+      }
+    },
+    "es": {
+      "pairs": 0,
+      "confusion": {
+        "INVALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "UNCERTAIN": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "VALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        }
+      },
+      "raw_agreement": null,
+      "cohens_kappa": null,
+      "kappa_undefined_reason": "No paired responses or degenerate marginals",
+      "dimension_disagreements": {},
+      "timing": {
+        "n": 0,
+        "mean_seconds": null,
+        "median_seconds": null,
+        "measurement": "self-reported active seconds, bounded by reported wall duration"
+      }
+    },
+    "it": {
+      "pairs": 0,
+      "confusion": {
+        "INVALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "UNCERTAIN": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "VALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        }
+      },
+      "raw_agreement": null,
+      "cohens_kappa": null,
+      "kappa_undefined_reason": "No paired responses or degenerate marginals",
+      "dimension_disagreements": {},
+      "timing": {
+        "n": 0,
+        "mean_seconds": null,
+        "median_seconds": null,
+        "measurement": "self-reported active seconds, bounded by reported wall duration"
+      }
+    },
+    "ru": {
+      "pairs": 0,
+      "confusion": {
+        "INVALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "UNCERTAIN": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        },
+        "VALID": {
+          "INVALID": 0,
+          "UNCERTAIN": 0,
+          "VALID": 0
+        }
+      },
+      "raw_agreement": null,
+      "cohens_kappa": null,
+      "kappa_undefined_reason": "No paired responses or degenerate marginals",
+      "dimension_disagreements": {},
+      "timing": {
+        "n": 0,
+        "mean_seconds": null,
+        "median_seconds": null,
+        "measurement": "self-reported active seconds, bounded by reported wall duration"
+      }
+    }
+  },
+  "disagreement_dimensions": {},
+  "instruction_issue_count": 0,
+  "arbiter_timing": {
+    "n": 0,
+    "mean_seconds": null,
+    "median_seconds": null,
+    "measurement": "self-reported active seconds, bounded by reported wall duration"
+  },
+  "blockers": [
+    "TWO_AUTHENTICATED_HUMAN_RESPONSES_REQUIRED_FOR_EVERY_CASE",
+    "INCOMPLETE_HUMAN_GOLD",
+    "AGREEMENT_NOT_ESTABLISHED:overall",
+    "AGREEMENT_NOT_ESTABLISHED:en",
+    "AGREEMENT_NOT_ESTABLISHED:de",
+    "AGREEMENT_NOT_ESTABLISHED:fr",
+    "AGREEMENT_NOT_ESTABLISHED:es",
+    "AGREEMENT_NOT_ESTABLISHED:it",
+    "AGREEMENT_NOT_ESTABLISHED:ru",
+    "RESOLVED_POSITIVE_AND_NEGATIVE_COVERAGE_NOT_ESTABLISHED:en",
+    "RESOLVED_POSITIVE_AND_NEGATIVE_COVERAGE_NOT_ESTABLISHED:de",
+    "RESOLVED_POSITIVE_AND_NEGATIVE_COVERAGE_NOT_ESTABLISHED:fr",
+    "RESOLVED_POSITIVE_AND_NEGATIVE_COVERAGE_NOT_ESTABLISHED:es",
+    "RESOLVED_POSITIVE_AND_NEGATIVE_COVERAGE_NOT_ESTABLISHED:it",
+    "RESOLVED_POSITIVE_AND_NEGATIVE_COVERAGE_NOT_ESTABLISHED:ru",
+    "UNVERIFIED_PREFLIGHT:verified_independence",
+    "UNVERIFIED_PREFLIGHT:complete_context",
+    "UNVERIFIED_PREFLIGHT:category_coverage",
+    "UNVERIFIED_PREFLIGHT:qualified_assignments",
+    "UNVERIFIED_PREFLIGHT:separate_blind_delivery",
+    "PROVISIONAL_PACKETS_NOT_RELEASED",
+    "INDEPENDENT_FINAL_PROTOCOL_SIGNOFF_MISSING"
+  ],
+  "main_annotation_allowed": false,
+  "production_application_authorized": false
+}

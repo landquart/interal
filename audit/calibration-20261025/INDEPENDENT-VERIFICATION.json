@@ -1,0 +1,29 @@
+{
+  "schema": "interal-independent-calibration-reserve-audit/1",
+  "status": "PASS_ENGINEERING_ONLY",
+  "reserve_manifest_sha256": "c3a36f14c5df53d79dacd3145081aeb637aad8ccf4dafa1082a36bf700c5b0ac",
+  "cases": 240,
+  "languages": {
+    "de": 40,
+    "es": 40,
+    "ru": 40,
+    "fr": 40,
+    "it": 40,
+    "en": 40
+  },
+  "heldout_cases_checked": 9762,
+  "old_study_cases_checked": 9600,
+  "physical_membership_shards": 105,
+  "original_membership_payloads": 240,
+  "dictionary_contexts_checked": 321,
+  "raw_source_rows_physically_checked": 6742,
+  "known_family_alias_lexeme_etymon_native_observation_overlaps": 0,
+  "blind_previews": 480,
+  "human_answers": 0,
+  "human_gold": 0,
+  "semantic_category_certification": false,
+  "independence_certification": "BLOCKED_UNKNOWN_LINKAGES",
+  "main_annotation_allowed": false,
+  "producer_imported": false,
+  "production_writes": 0
+}

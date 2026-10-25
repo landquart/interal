@@ -1,0 +1,432 @@
+{
+  "parent_git_commit": "c567a24cc98653e9eeb5e3be4c1bba0adf3c9324",
+  "algorithms": {
+    "importers": {
+      "associativvordes/importers/audit_identity.py": "d4319c335edc6dd14e27056d744d871673a9cfc4c46b1f862cd231704374874f",
+      "associativvordes/importers/audit_import.py": "939ef6614114ce710244d0c3024823ae2210cafb2a7100f7e7c6483ad7969c59",
+      "associativvordes/importers/audit_scale_index.py": "542ff2ad0dc41859d7ca0cd5789e8a28cc677d70f58ac08308785d215489b318",
+      "associativvordes/importers/build_catalog.py": "afee9a2bfa91276e6bd88909db90fad99ce0762477fe05fbc4c208b234c7b482",
+      "associativvordes/importers/catalog_store.py": "dbc4a5ef5216f8f70a962f9ea3e12fd0112959d4cb36cde7e1d592bf3febdb70",
+      "associativvordes/importers/certify_corpus.py": "b79874f259c7b57036042938602b43da1ba0ae165fb386fb4f3c16fbdf8b94aa",
+      "associativvordes/importers/corpus_cache.py": "dc1952f3fe0a417926ac65f04891b92498efdc71c39ce0a70d4b13afaeefd0b1",
+      "associativvordes/importers/fetch_glemm_git.py": "3e1f55de21cace25a7dbe06e7a10fd59bd533f2bdb2a64afe84c8c97e1298204",
+      "associativvordes/importers/fetch_sources.py": "1770f713aba05d935897ebeffd34467989108e381ecb7236cfac0037a1f42e0f",
+      "associativvordes/importers/fixtures/source-lock.json": "438ff317f0525379e5a4a95917e1132b176e6b3d21b4646b0b0f371f04fe827a",
+      "associativvordes/importers/glemm_cache.py": "88e0c57fe02fe47cd0dba5eb07f7d47cf85148a9ef550820a97570de808b3d0a",
+      "associativvordes/importers/index_watch.py": "fb6af4d398568585d31ee261d10a49372191bdf424a0526a6e5488db20671e52",
+      "associativvordes/importers/morphology_import.py": "06717b9f51c6defb90613386d0833dde68f9bb865d0eb729135c5b106099ee33",
+      "associativvordes/importers/rebuild.py": "f2403ff5ed3314a7735a44d3fe12d747d2f9db98f26841cb4a98e7ecfec01037",
+      "associativvordes/importers/scale_index.py": "363ebb60b25b5eb0975049aac2c33b23c4c44867345fa3d3b2c49c1fb4901e07",
+      "associativvordes/importers/validate_sources.py": "e47502d9e6eb3b36a29704f78b40b746850717db4949b4a55213f1c31bdbe954",
+      "associativvordes/importers/verify_replay.py": "7acedac10ad351ba3f96614ffb54eba5f81c5588560f596748f1f8ead3243c37"
+    },
+    "pilot_quality": {
+      "associativvordes/pilot_evaluation/BASELINE-CODE-LOCK.json": "793017333e6b92ffdf0fba22194b007ffd68b39884ee15cae7d4a4f1d405fb8f",
+      "associativvordes/pilot_evaluation/archive04.py": "515dbc4ff7d2b2fd8593f96497a6925af17b235c740e88ba9592af6a36dd553c",
+      "associativvordes/pilot_evaluation/capture.py": "367b44ba9ea854fe334c265a95ed8bade65bcdc8721bb4b25a5cb9e2f5b25d71",
+      "associativvordes/pilot_evaluation/compare04.py": "3c838f8f0217c979eb5b7c697927f4fd716496faa9e7a755ef33dfebb7f5d554",
+      "associativvordes/pilot_evaluation/evaluate.py": "aeff1009d6881f27ced761a957b60342d71bf4fcd4d37aa334bd8495344269d6",
+      "associativvordes/pilot_evaluation/gold.py": "d68e9d8f34d069267eb4a14d97db7de9682131743c4c93348a8cd0d2bf4c27a9",
+      "associativvordes/pilot_evaluation/human04.py": "a6a27d30d97cb0fc6c45a76a5dfdbc4b495ee216174301b02959dddef88565c5",
+      "associativvordes/pilot_evaluation/impact.py": "d47f6993c15cbe9e9b2210c4fc1450700afb3896e7bc2b2927c8f640f335a0e9",
+      "associativvordes/pilot_evaluation/metrics04.py": "d20ea18ad1cc868ede5934d30a0fc43ab039e4ef578e97016051f505f5a75555",
+      "associativvordes/pilot_evaluation/prepare_inputs.py": "575fafa4d35ac542c60da24eb807befa142aad89f220ac01a64e8c861e7c113c",
+      "associativvordes/pilot_evaluation/protocol04.json": "a0b014fc6de01336d02b30ef82bea6e8817cc528e443d7bf3e5f8e9339c91d0f",
+      "associativvordes/pilot_evaluation/replay04.py": "f47bfb372c1b63e4f8ce8e7d32151c997afdd66ca2a30ebe53cc11f630220aa9",
+      "associativvordes/pilot_evaluation/reproduce.py": "e2a01d42644c43c1e73a77c2507ae955e9ee1f8f43ca63717998d863aeaf0221",
+      "associativvordes/pilot_evaluation/run.py": "17e752ef2d176947fd8e7659122f2b35fe34a6c2892061a5c398e77da4b46deb",
+      "associativvordes/pilot_evaluation/runtime04.mjs": "10518c14fc58e19184f08d44459aa2418275491f00e1df191d835bc192c04818",
+      "associativvordes/pilot_evaluation/sample.py": "034a3edb640b843592f5358bccf3bf986cd9bd27f179824834fa5ac6af5f95b5",
+      "associativvordes/pilot_evaluation/study04.js": "b349f07779ce3ba97575e5cc7411d01d57cc36b52325bf8c7c8bb468bc894c23",
+      "associativvordes/pilot_evaluation/study04.py": "e1667c76d905252e2eaeb824b19be587a70db79b7905db841283cea0570fb8b6"
+    },
+    "legacy_dry_run": {
+      "associativvordes/mass_dry_run/audit.py": "3aa59f52a552c51a38459691eaeae17a6fe6ba96707c678d4637ad08a1cf5d3e",
+      "associativvordes/mass_dry_run/export_snapshot.py": "d9a998cce98d2fd25cca5487aed8f3520b5704369ceadc0d12cb38c6ff0e0d86",
+      "associativvordes/mass_dry_run/finish.py": "57e63f757c0330e1ed90e275091f4b0ddd5a92897e817c16e7102e3df2162e0f",
+      "associativvordes/mass_dry_run/protocol06.json": "35ba7d218ae2340467e7ca8e0db37007690df76f44445905fac7c9ef89468acb",
+      "associativvordes/mass_dry_run/run.py": "6c4b73d299cec897209358e4edf9b86282964538e34288195210dd5c11fda43d",
+      "associativvordes/mass_dry_run/worker.py": "d845241b595ef62a64fd6eceb8e522b0c43e540a80fbfeaf0e712f8e3610ea13"
+    },
+    "calibration_study": {
+      "associativvordes/calibration_study/INSTRUCTIONS.md": "6a4fac0364a7d1d63d4b251ed6461fa7c83ac48add6688ebf840cdd93040790d",
+      "associativvordes/calibration_study/__init__.py": "862feaf1805295b0cf76759b945ea75d8602f26fb6c38154dabad33a8448eabf",
+      "associativvordes/calibration_study/collect.py": "5d230f62ae9e856eca1ed388847868017d41bad787647e7ed4005eb8f9561b4d",
+      "associativvordes/calibration_study/prepare.py": "82c26b644e350904172935c7a8eb487c0e0be7f27a0b574743e4ba37f1e80095",
+      "associativvordes/calibration_study/protocol.json": "1ed3930dda887c71eb39a6473308b40ea864ec780f03342bb06dbc722be64193",
+      "associativvordes/calibration_study/study.py": "064ceffaddd4788cfa2c728c987ced91634c2a1cd19553cc1e369f9842ac009e",
+      "associativvordes/calibration_study/verify.py": "ce22b9a2570f78a89e479b201289f8d02adebe261f936cb8739ffcc7e265526c"
+    },
+    "evidence_registry": {
+      "associativvordes/evidence_registry/__init__.py": "9714b3c27e04fd27df4f7f2c83cefd2e0ec3d7e6065667362991bdf3e0565b0d",
+      "associativvordes/evidence_registry/model.py": "7a792ce9e9a04d4926e40cd8095d44040c40f103bc70f6a5c9bca0b4fbd46e39",
+      "associativvordes/evidence_registry/replay.py": "f1caafa837a7d24c3a56a84170f172e989f6daba3403baeb0308d8294325bf37",
+      "associativvordes/evidence_registry/view.py": "171b53a2ab458fa87707b0b4994c40568ec5a6243d2fbacbb67324c82f7539cd"
+    },
+    "identity_mapping": {
+      "associativvordes/identity_mapping/__init__.py": "2dba36e7394ae78b6c601e165def2bdfc0bd605a32a63d70ec70c82bebc9c3ca",
+      "associativvordes/identity_mapping/dictionary.py": "95a7b4b6e004370e83e12443539d0c66e51fe1c9231a78ae0be96e2e8d20f0dc",
+      "associativvordes/identity_mapping/entity.schema.json": "4e07430b65745a2040cbf99635b0fd643a00b7956580b9a9edebbc3a1a6507b3",
+      "associativvordes/identity_mapping/model.py": "51b91364a22c3f5f5a85cb2a075267e7af66b5b2d70c23b300b57ca716a0d0d1",
+      "associativvordes/identity_mapping/native.py": "e926d8604ba539ecdca1f1f86c4395c09a27ab82a3a2a54f9a728e3cb9ff6589",
+      "associativvordes/identity_mapping/project.py": "4d51753c8991b65b57eeadbbbd251be8dc1f1c2ca33a27267e75af5d83f3da57",
+      "associativvordes/identity_mapping/query.py": "ca40bfa7c02a4de4e2d461c2e53459ef22af90b34be1776ddc51bea4967029d6",
+      "associativvordes/identity_mapping/registry.py": "edadd11cbfac621a84942f581d862699fb3389d1dd5fab1d159da09f70d0ed04",
+      "associativvordes/identity_mapping/review.py": "2cf6a8c99d239c1b1961ce3fa7cbe9c9c501f172e0ebd3db883445daecbe0023",
+      "associativvordes/identity_mapping/verify.py": "952acbef47a4e725711103c48c96d038952025e08d06735660f8ba728c0340e3"
+    },
+    "normative": {
+      "associativvordes/normative/__init__.py": "3530febd707f55bf2a37485a278028cd03dbdfc7b0c39a61754f6a1e33aafc55",
+      "associativvordes/normative/cases.json": "499255c97e285a54f81b1e8197f8954035d1365a8682358009e2e56b75e693a0",
+      "associativvordes/normative/decision.schema.json": "60f38ae7a7bac3bea8ab01df109f45d909b8c8c0bec85779ecf9d81e83b08c7a",
+      "associativvordes/normative/national-correspondence.schema.json": "70c44f047b1d3d0bf05acdf96e203b6442eb05ee390c827c6dde0c8a9aa67e14",
+      "associativvordes/normative/resolver.mjs": "860cdd1eb80103424637d9ffec7ae6ea6dcf345d8c4d95701b9b52c3ff7e0fad",
+      "associativvordes/normative/resolver.py": "c0ffca1c8fec63990bb23188a2da36b73028f75a5a22b912d9fc983db9e02515",
+      "associativvordes/normative/rules.json": "050065577f4ae4387b753d783e5e4760d4406fd5b85c18b15b6243e1b4a2018b",
+      "associativvordes/normative/sources.json": "e003653150cd64ed29a7e3149135effe80d7c8a6f584b51fd54e01406b3f1955",
+      "associativvordes/normative/validator.mjs": "90fc02c48de992064e5f0c5656a7fede567318172a8c7082448681b33eec5ef3"
+    },
+    "baseline": {
+      "associativvordes/v5_baseline/audit_ids.py": "51be30769f0e6d7a7f782538443c34545030bca0316fca282f3f21d7c3b811ae",
+      "associativvordes/v5_baseline/audit_ledger.py": "5f89ca149bc0e266eb4e1c915855b5ca0c4a44fca26b28818cd587219811328e",
+      "associativvordes/v5_baseline/audit_metadata.py": "184165e83a087890c6c263b9752ba7bc0111fc873460d948fafad066c2fed67c",
+      "associativvordes/v5_baseline/census.py": "6ebedc3e1b250f47aa54c3d61dd6d86fd1527e90a5d585f40a0ef39847128029",
+      "associativvordes/v5_baseline/certify.py": "3788e76ef66d02d128e7fb18b931e8f0d649f9965c0e4d24ac835b52a2462180"
+    },
+    "history": {
+      "associativvordes/history_registry/build.py": "3146daf7cc6852b620559f9922d0ffed46806436bd4be229e12f213434fc48f9",
+      "associativvordes/history_registry/decision.schema.json": "a81aebdc0ce134c4b6dada815f5a70eea876aea360722f5f53f49e5cf2d4d104",
+      "associativvordes/history_registry/registry.py": "f0834ab6d80ab20fcd2a882cb603c1b6eff2d27fbc0fca96df4d173334576656"
+    },
+    "adapter": {
+      "associativvordes/v5_adapter/adapter.py": "c95aadb80f339ebfb1097593d680f0f00211b1542477feeed12f140e20102f80",
+      "associativvordes/v5_adapter/bridge.py": "955b62323abd2f7caa7ecdab92dc226b322cdf76015a41d9db0aedd575909f8b",
+      "associativvordes/v5_adapter/build.py": "94cfe4e0c16a6824e37946b6ae8962d7df65e4040cefafba5d9c9bb80832f62e",
+      "associativvordes/v5_adapter/common.py": "2b7198350e7cf22a77872359d430a4a030058380bf560032e62f58cf1ad8d045",
+      "associativvordes/v5_adapter/exercise.py": "0a4a4e759455eddceb8c7736265cab01c60284f9a89e3f8022e0b2125b8b43cf",
+      "associativvordes/v5_adapter/external.py": "8f3779642599bc2aa2b303093bc1080c6ffae14fe5d6a9ab8167616883699f28",
+      "associativvordes/v5_adapter/queue_input.py": "efbf6c4a265b4ab4494e86facb5d042f586b8c1e7e2d64fad158c37acc6b8e6d",
+      "associativvordes/v5_adapter/stream.py": "84574bfb077e290e62ee2bdef5fda11f4d09b948703e4333b5e7692bc8624abe",
+      "associativvordes/v5_adapter/verify.py": "8ef593bae0f7c414cfd5ac0be2779cbf984fd7d35520eaff723363593f856fb4"
+    },
+    "diagnostics": {
+      "associativvordes/v5_diagnostics/classify.py": "4dbf5b8fd9fec4a82671c5653a3fd2d3bc2192d74d3037fcfc219b20e8bb1e13",
+      "associativvordes/v5_diagnostics/policy.json": "fbb167614f42ae6460dabd107fd215fb886b469ef363e7e1629851ecec4c3389",
+      "associativvordes/v5_diagnostics/registry.schema.json": "fc41e3a32ed683a6dd6b6fc2f001705c620932f2e31995fc13bd007c5ea30929",
+      "associativvordes/v5_diagnostics/run.py": "54098701cd6843f261152edc4c28da49c848935ac51bdc597224d02abf6f2d77",
+      "associativvordes/v5_diagnostics/tools/backup.py": "505701530913727c8484079d311374ff676b50f7b495968af8b40f8dfa74c612",
+      "associativvordes/v5_diagnostics/tools/finalize.py": "b78cbbe217ce20b1512e529125a98f4bb245f8ceedcf14abae1aff57e7d6b286",
+      "associativvordes/v5_diagnostics/tools/join_volumes.py": "5ae555ff338ee4aea7541505d0ee98b37e884eadbb2d5d253e0321dad923614d",
+      "associativvordes/v5_diagnostics/tools/query.py": "6be0a3e8a449b3cfb345e01ad90a35f340112e0b68d73f0544ab90169e1d4593",
+      "associativvordes/v5_diagnostics/tools/suffix_exposure.py": "e5137493933a0cf6e257693c6abeb3a7c8ecd51cd6bea0898c3c4aa75d7e86b1"
+    },
+    "structural": {
+      "associativvordes/structural_cleanup/audit_metadata.py": "aa754e910150a7815d6c10d5d09ff28060e01bf0a015611abff0ed2f242ceadb",
+      "associativvordes/structural_cleanup/capture.py": "79436a2ba2896c36cf3f015422c15be5b2f089f0a806589e3f3df13b94c73c6a",
+      "associativvordes/structural_cleanup/common.py": "420a3db35186a32f2eb09ce01a21c276bc391e562c865f4d4bf3d2c6dbdacf4a",
+      "associativvordes/structural_cleanup/decision.schema.json": "4f6f84cbd60f34fa8b9d9ed4e8b285d1863db7ecea2f3df560f46fd85dd83c6d",
+      "associativvordes/structural_cleanup/rules.json": "3a192a2192934ab3919d0367d45e0b480ee09f81a5f0ab708e2cfcd00d06b7b1",
+      "associativvordes/structural_cleanup/scan.py": "a9894c574b689799168b6fa9e911914236042db906bf7747aa1f7ed307f06586",
+      "associativvordes/structural_cleanup/shadow.py": "88cb0d7b6f3672eb0b69d9e7c71261f4f6ac470abb88c6cf99d062aaea7def75",
+      "associativvordes/structural_cleanup/verify.py": "c842e6d417c3ceec58e47b12fef9da00458fb1bc4496e0dd02ee755349da9ef8",
+      "associativvordes/structural_cleanup/workflow.py": "df4220d4983a66a6fd9bc076507c02ef8a757edab445519bdb92a94c77be6bcb"
+    },
+    "surface": {
+      "associativvordes/surface_cleanup/controls.mjs": "8ed7029950c3e85a628a06b04533994b429c436c479b394977b546bd22eb76de",
+      "associativvordes/surface_cleanup/exceptions.mjs": "8f63596ec54fef79a22ec63a4a891c738503c0e4f08ce18f1802e964d74a5f39",
+      "associativvordes/surface_cleanup/historical_scope.mjs": "41fc76296efb091ced833328f3b38b78a096d498c8602b7653395a4f94313099",
+      "associativvordes/surface_cleanup/history.py": "6c64067c2349bae84adff6c208d2ce64cc0bfca42af488a9ab8115943104c018",
+      "associativvordes/surface_cleanup/policy.py": "0af4600aa96ca1b1048ccb40ae16a79100274d7ac22ffe1dda5707cfa00b04eb",
+      "associativvordes/surface_cleanup/proposal.schema.json": "17ccf70fb190aa01e3371567313f25a1370480ce197d9350ee2bf9e6647b39c9",
+      "associativvordes/surface_cleanup/query.mjs": "8c307bdc63ba981f247afd2b101cdebb26658b54fa67c1cd9647b6baeca1b1db",
+      "associativvordes/surface_cleanup/run.py": "b45676d454f6365e30e89068871efee1601ae43ece185868eb933e4ff1474e84",
+      "associativvordes/surface_cleanup/verify.mjs": "0054448963ecee94f82da097bdf04a9f2bb21f60480fb644715be7dbe4d0acfb"
+    },
+    "morphology": {
+      "associativvordes/morphology_cleanup/native.py": "930bd46be1965dd85de785c1e105a1f24522425e9240088371c0b82785a2a094",
+      "associativvordes/morphology_cleanup/policy.py": "5c608960ca4005c38a73279fa57bb971444854e79fe079dafa1e89c51cf6841c",
+      "associativvordes/morphology_cleanup/run.py": "6bbedcb8d3d6c32c47f73ec14e745b4d85f273ce1ae5f8aea9aa79a3d37db95d",
+      "associativvordes/morphology_cleanup/verify.mjs": "5fd53d8c45cae915e9b3c694c9c6c8819f7bf17e72b974e0305f9f0a0f518679"
+    },
+    "morphology_review": {
+      "associativvordes/morphology_review/policy.py": "a9cc3d79e08dc153a87bfc15d33b22596d58a4f408c95c14ccf49cced8f34e0c",
+      "associativvordes/morphology_review/run.py": "8f90988cf17e533edc7abebb9a46c8023563d922c46dba6179edb52b388a257f",
+      "associativvordes/morphology_review/verify.mjs": "2876a8e1075b402da6da52180e1656c9c3ba815a3a4f454c066a4b4a8916e09a"
+    },
+    "national": {
+      "associativvordes/national_correspondences/__init__.py": "c5be24c58aba8134a03eacadd94e65d3959d3745124225833dc19311b7f1820e",
+      "associativvordes/national_correspondences/audit.py": "05270cafdcfd43a0254e8b38f7f0e9c7fff9761dfd9d94b1e278cc16d10c9afe",
+      "associativvordes/national_correspondences/registry.py": "f3ddc3a82bd9c554b500012237f230728fb801ab23e1d1e58cec911a89991185",
+      "associativvordes/national_correspondences/registry.schema.json": "2d4f42b3e4e29198b944b4a66b0f3941c39b4a2223ed71fd5dc147d2893ee4fc",
+      "associativvordes/national_correspondences/verify.mjs": "df5d4bb2b71d0a422d006f64b0a1c00ee937349e1ebac57723b19f5d5417226c"
+    },
+    "semantic": {
+      "associativvordes/semantic_cleanup/bridge.py": "0bd06176b4c4e73021ccbac8dd0226698549ab319e5d11bc2fb401b49bc59f86",
+      "associativvordes/semantic_cleanup/bundle.mjs": "e4e5c376543580a9490763008adc7da7cb62d2d496fb660d3f43e65f497de5d1",
+      "associativvordes/semantic_cleanup/history.py": "7534f49ee2fc53b2cb1743559d6a1df1e04a5c365f5ed6aca615512d5c5fd0e3",
+      "associativvordes/semantic_cleanup/native.py": "d170c91e46f107a0ebebacd6243fd84b0bad2e3ff41f532af1d55b8934200d52",
+      "associativvordes/semantic_cleanup/policy.py": "690f3be7ef6832d0e55b8652bc81dde8d2aeabda7a19880ad42188901a8b2c17",
+      "associativvordes/semantic_cleanup/review.py": "389e6be577c211d52949b691d8dbc28cdeb218856207169aa9fe012523781390",
+      "associativvordes/semantic_cleanup/scan.py": "3f0f458bfcd671810c9131430ddf1ded9c945ee8cd0c05a08df8e4598d3d003f",
+      "associativvordes/semantic_cleanup/semantic-case.schema.json": "1fe21f2c615f75573a27bedc8c9a59b6c0c5148a23074f6bbb2bafda740e07a2",
+      "associativvordes/semantic_cleanup/verify.mjs": "f398a3f40a31df3d7d81fa4eabf69eb4b3a7798460ebc8ba831687899388847c"
+    },
+    "boundary": {
+      "associativvordes/family_boundary/analyze.py": "324ef40bf35f222f74e0f57441dc0cb6937a1978a4411344780596c01713edd1",
+      "associativvordes/family_boundary/archive.py": "e0224510e906779ed5baba424c85bbf7dc61e0af4b34cfc2c00161616217edee",
+      "associativvordes/family_boundary/boundary.schema.json": "913a7a3d68f31a665dbb4caa4aa9eeb72dc5544b62d2e9b403bdabc0f7e449a5",
+      "associativvordes/family_boundary/build.py": "86293d171caa68a3e8ef12c2b07bd09171283ff7295728bfa4095b7e63fb81ed",
+      "associativvordes/family_boundary/core.py": "31b1305ad612405a04bde212ac5cabde5a24c2233cca5c523bb4ab79fbb9d210",
+      "associativvordes/family_boundary/guard.py": "fa83d3a7f9ffe0fd58b80bec381d63314df77d0dde5af41176a231f6abe72c24",
+      "associativvordes/family_boundary/policy.json": "6f58e58e566a6bcf2faeff396b243d9a2146d477d997e496eb49e834771a817e",
+      "associativvordes/family_boundary/query.py": "1c446940c1719670e11ca09cf2efbec28c19ccd38de98fe86393d77af74aa084",
+      "associativvordes/family_boundary/replay.py": "45285af9b000915ef7b0c85b9a44068adf05d52debf66ecc54ce7eea5d6e2efb",
+      "associativvordes/family_boundary/report.py": "4536809cf237aec9bc408b9d172ed4a391d5b7ae68cea9401e574f127b7873d0",
+      "associativvordes/family_boundary/restore_prior.py": "bcdbbd4a95141994eb7e4a562c7b721d6e2446d21db889968f84f735c5863340",
+      "associativvordes/family_boundary/v6_proofs.mjs": "353b9ce17da92e33d45ef95630c5c70cdaebc4dcf19bab3297f273b082e2b938",
+      "associativvordes/family_boundary/verify.mjs": "99497d49bb832ddfad26d250891925471cb6d9f46c57ea96c5175acb80df210e"
+    },
+    "quality": {
+      "associativvordes/cleanup_quality/bundle.py": "75e170aea391b8fed93be74e6f3c0c180aad6f6f5120a62bfca7f6088820b001",
+      "associativvordes/cleanup_quality/evaluate.py": "0e19685bc328575c9e4e703dc0766a79f11de3bad55316e35a59b32b95c2f8af",
+      "associativvordes/cleanup_quality/gates.py": "12615b9fba0821a07bf902712065142a0dec6e8d956462776faa810d90f25d4b",
+      "associativvordes/cleanup_quality/human.py": "2635d05f2ae32d8bf300f3884310c70c67ef4443d4e22ba7723752d26d6598b4",
+      "associativvordes/cleanup_quality/prepare.py": "52fbb1b0eafa0c518512ca2fa8263a5a1a5c1958d032046c7bd39ecb11fa8112",
+      "associativvordes/cleanup_quality/privacy.py": "8a731875d36c7ce813d48adced2affd407b03bd9c1f89dd7514157ff3b896c5d",
+      "associativvordes/cleanup_quality/protocol.json": "d6658efb06907a2f4bc291827a74f26f5ce00a4cda0ad5f282196a2a857904b6",
+      "associativvordes/cleanup_quality/statistics.py": "a13dbd43e50099de53706ffe41f977adc7485e338e232f1735e1b0a868525c65",
+      "associativvordes/cleanup_quality/supplement.py": "f4aa900e54245c8a8e33f0d62e97f6778974703b516b75d7a304e00c044ef273",
+      "associativvordes/cleanup_quality/verify.py": "f598783165d3053aecd2f89dd73a0816fd80ba67fd57bc720e2e7cf71460900b"
+    },
+    "dry_run": {
+      "associativvordes/full_v5_dry_run/bundle.mjs": "d3856a9e8545a336149ead94354c69fce737a74608e9e3e8070f3b2bdef497fc",
+      "associativvordes/full_v5_dry_run/census.py": "cccf82a4b799e21bfc33f8b57a44287b9566dbfe42167a035b88f5fb3f4cb849",
+      "associativvordes/full_v5_dry_run/checks.py": "eb7ebf93ec91bd3cba3194883489a75f97261df83d06580b4075b2261f8fbb56",
+      "associativvordes/full_v5_dry_run/completion.py": "e8bbec516e14c8841a86c4785e7e1452e7c489f995fad3a4a46239c0d491fdb5",
+      "associativvordes/full_v5_dry_run/core.py": "3e0d11e130eee660d188c810bfd7bf49946c10cdec32d18c4ee9bb260ba84dff",
+      "associativvordes/full_v5_dry_run/exercise.py": "bce210162acc547e009598d202ac9f5af01c674adae633f4d887f67b37b73cdf",
+      "associativvordes/full_v5_dry_run/raw_replay.mjs": "af92064b574898e5525a32929bd27b09ff7723092ed0bbc93a401e888c62df82",
+      "associativvordes/full_v5_dry_run/runtime.mjs": "a70250edad71e60224e3a5ccc212bb15eb7654d680068ad1985b3aacd0f65dd2",
+      "associativvordes/full_v5_dry_run/store.py": "191cbacd919442b1a5e8198b762f7c7a0f96409e9d4a8221a442fd4a5665d639"
+    },
+    "release": {
+      "associativvordes/release_control/baseline.mjs": "7a5d175196fe59341fcfdf37bf92c843cf7f221b10ee69efd67667cf2ca75f86",
+      "associativvordes/release_control/calculator.mjs": "ef0dd812789121250cc9bea5c2f8c49b6322593b2d594934bbeaf3917cf1daa5",
+      "associativvordes/release_control/control.py": "a499b56b8a0d3babc264a0002ffccb3b3a5e28da8b02f56f0dc63c859d7e3a6c",
+      "associativvordes/release_control/exercise.py": "b27c87af2649ed6132b9caab2d093f56375e5af635aacbb14f29bc6515a8d26f",
+      "associativvordes/release_control/graph_view.py": "29d45ec491f390267ccbfd6f4024b3fd4b4e0f3b711f27883d49012429c65c65",
+      "associativvordes/release_control/inputs.py": "f4b2928770061fa98cf032433f213ba40f5ffbf8f8782210a8c08216db7a55a1",
+      "associativvordes/release_control/recordings.py": "8970afa30c88df34280176e68c551202d10c58ee9c818128dd9a3989ea64bc52",
+      "associativvordes/release_control/registry_view.py": "75f9daee70ce693d3391e248efaea1292b8a767afd5b9ca54c49407f2848b734",
+      "associativvordes/release_control/review_bridge.py": "f8090e7ccfef342194f84624e582b91549ae16a61dbf01597746db5168d8ddc8",
+      "associativvordes/release_control/workflow.py": "ebbd6a679364e9d591b520f60d39a318cec70b9feb1958da555188ad4a46b7b7"
+    },
+    "release_package": {
+      "associativvordes/v5_release_control/INPUTS.json": "736501dfb9e7f540608814a3532be2140ed4862a4c0244221127d2d8a321de47",
+      "associativvordes/v5_release_control/package.py": "fad1050d0e4a5688c4aff2f7162c1374968cd2c00fd7d4608cc587b99fbb0cee",
+      "associativvordes/v5_release_control/verify.mjs": "cfed253b6aa6c9ac25a1bc63b589852c6157f80a8ef0b6cae6aa591370669502"
+    },
+    "evidence": {
+      "associativvordes/evidence_graph/analyze.py": "4ae4343d022f2099bc664a0e75142dc725860ad49f09e186b0dcdb3fd0415b54",
+      "associativvordes/evidence_graph/build_graph.py": "ee3bd767c9c32675bbcc73c66ebd4c545c9e33a70090afb69f3182298b444f34",
+      "associativvordes/evidence_graph/fixtures/v6-lock.json": "8ee6c5ae07f3df166eccee0f86fe3e100830cfb81c65ca03e25c8a27d269db58",
+      "associativvordes/evidence_graph/graph.py": "5472b8f92a41982b49d080cc3251d2ea3de8aeb01202c593694383ad3812f1e8",
+      "associativvordes/evidence_graph/prepare_registry.py": "7a116e4a6741be7303cc3729197387f7bf6f6ca3b7ba055b95c9a32159782139",
+      "associativvordes/evidence_graph/query_graph.py": "d2219a1fa628b3543ccfb98bce7e0c04d44552e7af9ef69ccdc9dc4ad3e44c46",
+      "associativvordes/evidence_graph/records.py": "490c58c62d5adbc3336cce1cee7460dbd2d787da37bf814ee9a3afb788e7a3a7",
+      "associativvordes/evidence_graph/select_pilot.py": "176b70192788111e88c2b1089675f3f67fdcdbcfe67b57bc51ad8f31154a0a02"
+    },
+    "candidates": {
+      "associativvordes/candidate_search/benchmark_scale.py": "0c03b546c5451cc2a94baeaba07a16b4b3d6df1ae71e6d7032bf802e054666bb",
+      "associativvordes/candidate_search/fixtures/frequencies.json": "9871cc3fc4a21b6d2ca7a41c8431da4bddc91dd4a4082a45f15e0d2541835d66",
+      "associativvordes/candidate_search/index_pilot.py": "ef43d67b195c33c050e96546b9e275a7bdbd4511ffa1ffaf6810729015bf9f01",
+      "associativvordes/candidate_search/mass_benchmark.py": "4ff1f707e078a1bff60d24f8d6a05a0167aca93ea6e2dc8e07c4c38fa9260c44",
+      "associativvordes/candidate_search/mass_ci.py": "fdb517331b18471d974f63dc19a2d2709b3b80fae59d73893abc93226946ba5f",
+      "associativvordes/candidate_search/mass_discovery.py": "d51aa043cb59c0fedbbcc37e41667f70639930efa1a452c44b2a47d4bc95fd54",
+      "associativvordes/candidate_search/mass_recover.py": "13b3e7c7cfa77ae4dbce3d2ff3f6bef6774b0102264d16ef66bd8e635634d289",
+      "associativvordes/candidate_search/mass_registry.py": "1bb61186cb8a97079b90ec57464e40a45566637c871e6adf1d57ce37fa267916",
+      "associativvordes/candidate_search/mass_run.py": "692626c77b8eec8470db93f13fd936e34030a58887e1e7c0d591afdbc6d400bd",
+      "associativvordes/candidate_search/mass_source.py": "b546fdf5738ce588aa2e843b32a5bd1bd29e58274c38c994bd8b97557e3799cf",
+      "associativvordes/candidate_search/mass_store.py": "7ffbcc86162fef22d6505cf691df1bfd30452bc410fee1715e4b7fb95698c614",
+      "associativvordes/candidate_search/pilot.py": "161145035f084ac61c91efd36974d752b0cc8b5ed8da72021e53dd51937f3ccc",
+      "associativvordes/candidate_search/prepare_frequency.py": "9336f87463ea047d792ab894732d2fd82ee585be6a8befc30271e3b79976e1e3",
+      "associativvordes/candidate_search/project_store.py": "af8ef4546f1658babb0b48a690eac48de5539701903be7e35433df20d68ff44f",
+      "associativvordes/candidate_search/scale_project.py": "10c5392bffcfc9d57623b85b46d541971d695b505aa7ab56b509e98dd6c71e0b",
+      "associativvordes/candidate_search/search.py": "f67e74940b6a8e046fb313502e94faa2a6fdc9962d75225544f61ea28ebd9643"
+    },
+    "review": {
+      "associativvordes/review/app.js": "3fe02de778f565bf6d14443f43a11239990be9793e62b1718ec48afdd6a3c304",
+      "associativvordes/review/exercise.py": "d5b894cd6a4b478a975b7154fc16d870fd85085f6fec25b5a32b19b8dab85c2c",
+      "associativvordes/review/server.py": "e686e0a66c5b1d67a179f42830682a710187507ee5af1644d7c479f28998392e",
+      "associativvordes/review/source_rows.py": "3cee767ea9c1dc2592ef16c8be13c8f9b151faf13a3b07c129f2a11b162ece3f",
+      "associativvordes/review/store.py": "062043baeea684fb42d48bd9b3ac3a5e0206307fd006ab57b8be8f28246c7e03"
+    },
+    "annotation": {
+      "associativvordes/auto_annotation/__init__.py": "1f0108af3f61a4fab884bff74bf391ec387fc08c00ee90153ba2fdc9d719b9bc",
+      "associativvordes/auto_annotation/benchmark.py": "49f842248d8415fe158d7acd7e2c14734d903797dcb4b346c9993e9a043a0078",
+      "associativvordes/auto_annotation/config.local.example.json": "46a0a7878dafc8334c31a59a6b69c8b24541e47fc9808ae2eb7e169670da0bb6",
+      "associativvordes/auto_annotation/config.offline.json": "49594105e4fdd0c59ab862f49c7e2f4b2c0b081d2b70e247e0da98c857a79049",
+      "associativvordes/auto_annotation/contract.py": "8f2798fe754fbd9b064d9a1ba7f0765eb148f0080215639915a3479c45da40d0",
+      "associativvordes/auto_annotation/pipeline.py": "324c9e2c5c91aee8f85e7ee027a7dc9f0ab922b63e29e96e48d3a93817244b3e",
+      "associativvordes/auto_annotation/protocol05.json": "557977dd3bc842f24ae5bd3b3b3b66ebb6dff14f79058f11e7c8feb0fd8faebd",
+      "associativvordes/auto_annotation/providers.py": "82a23bead8002e46db2af5b269c87d9cd1c507e29b5c5fa6e81797442d66542f",
+      "associativvordes/auto_annotation/source.py": "62c290b4e60c9f23223a865c2621371abefdffd3d10f120ae61d57c52d674979",
+      "associativvordes/auto_annotation/storage.py": "dbd35c4dcd9c27c24ae153b844599c0e6e769e636c5129f78692de3b1c6bde8b"
+    },
+    "contract": {
+      "associativvordes/v5_contract/__init__.py": "c1a6eac11fcb66d19fa9846d665cb0d82d9ef34b81da941f77b0727d49825f47",
+      "associativvordes/v5_contract/approved.py": "cdcf2c76215ad6f0ed5a335faea13a3881e7edfca770071c43dce049d64856bd",
+      "associativvordes/v5_contract/baseline.json": "18614be4fa3face25a91d50578f88bfc43fdbc2a6c084f9d63b28934a8b82c79",
+      "associativvordes/v5_contract/normative.mjs": "624476494c2e25e84735f2ec30218e2f00b42081ce9d95b298b0f8a14a107b43",
+      "associativvordes/v5_contract/policy.py": "bd26d65dd42407245c2c07062ae63f9fe5fa87847ddf1f08666f9a1a92e14b91",
+      "associativvordes/v5_contract/release.schema.json": "7f86f6730365204d3ee0780dd23379f80988d5df9776a6e438e99dd35e213730",
+      "associativvordes/v5_contract/versions.py": "fd822a9ad4963176aa7c875361a188671a5248b47ced1aefa3abe852e8d95ffb"
+    },
+    "integration": {
+      "associativvordes/v5_integration/__init__.py": "f7826cb84966ea2789bf1e990a6cfb2f7310e8c96afac373624f0f63ddd505ce",
+      "associativvordes/v5_integration/__main__.py": "6a1864846027df7c7441dcb165ab955a90d455ac29396a67afdbc0536c7cbae7",
+      "associativvordes/v5_integration/dependencies.py": "ae4fa407646679575bad16352ff755f0b87e3216b24cb5e715f418f4bd8b34ee",
+      "associativvordes/v5_integration/pipeline.py": "9da1dbe8cb724997ca20edb5728cf42f668b883252deb8e226227474e987674c"
+    }
+  },
+  "scientific_contract": {
+    "protocol_sha256": "25498e196d679d403183a17457455e80fee3844bd744f280e5b5f23bcef8c03a",
+    "instructions_sha256": "6a4fac0364a7d1d63d4b251ed6461fa7c83ac48add6688ebf840cdd93040790d",
+    "scientific_implementation_sha256": "bc34f864e6a438ef70a216a4e171e5caa2f76a26f3dfd791c0ead1c331c02a5f"
+  },
+  "declared_data_dependencies": {
+    "pilot_quality": [
+      "evidence",
+      "review"
+    ],
+    "legacy_dry_run": [
+      "annotation",
+      "pilot_quality"
+    ],
+    "importers": [],
+    "normative": [],
+    "baseline": [
+      "normative"
+    ],
+    "history": [
+      "baseline",
+      "normative"
+    ],
+    "calibration_study": [
+      "quality_sample",
+      "normative",
+      "identity_mapping",
+      "evidence_registry"
+    ],
+    "evidence_registry": [
+      "identity_mapping",
+      "national",
+      "history",
+      "normative"
+    ],
+    "identity_mapping": [
+      "adapter",
+      "importers"
+    ],
+    "adapter": [
+      "baseline",
+      "history"
+    ],
+    "diagnostics": [
+      "adapter",
+      "history"
+    ],
+    "structural": [
+      "baseline",
+      "diagnostics",
+      "history"
+    ],
+    "surface": [
+      "diagnostics",
+      "structural",
+      "history"
+    ],
+    "morphology": [
+      "adapter",
+      "surface"
+    ],
+    "morphology_review": [
+      "morphology",
+      "history"
+    ],
+    "national": [
+      "normative",
+      "morphology_review"
+    ],
+    "semantic": [
+      "national",
+      "adapter"
+    ],
+    "boundary": [
+      "semantic",
+      "diagnostics"
+    ],
+    "quality_sample": [
+      "boundary",
+      "national",
+      "semantic"
+    ],
+    "quality": [
+      "quality_sample",
+      "decision",
+      "calibration_study"
+    ],
+    "dry_run": [
+      "quality",
+      "structural",
+      "baseline"
+    ],
+    "release": [
+      "dry_run",
+      "quality",
+      "history",
+      "normative"
+    ],
+    "release_package": [
+      "release"
+    ],
+    "evidence": [
+      "adapter",
+      "importers"
+    ],
+    "candidates": [
+      "evidence"
+    ],
+    "review": [
+      "adapter",
+      "evidence",
+      "candidates"
+    ],
+    "review_event": [
+      "review"
+    ],
+    "decision": [
+      "review_event",
+      "normative",
+      "identity_mapping"
+    ],
+    "preview": [
+      "decision",
+      "quality"
+    ],
+    "release_gate": [
+      "preview",
+      "release"
+    ],
+    "annotation": [
+      "review"
+    ],
+    "contract": [],
+    "integration": [
+      "contract",
+      "release"
+    ]
+  },
+  "dag_acyclic": true,
+  "calibration_authorizes_production": false
+}

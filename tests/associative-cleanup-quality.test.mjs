@@ -41,6 +41,17 @@ with tempfile.TemporaryDirectory() as td:
 test('human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review',()=>py(String.raw`
 from associativvordes.cleanup_quality.human import *
 from associativvordes.family_boundary.core import digest
+from associativvordes.calibration_study.test_study import fixture,arbitrate,verify
+# Explicit synthetic calibration verifier for this old-format unit fixture.
+# This is not a human roster, calibration experiment or production gold.
+_TEST=fixture(full_protocol=True);arbitrate(_TEST)
+from associativvordes.calibration_study.study import analyze
+_TEST_ANALYSIS=analyze(**_TEST)
+_TEST_PROOF=dict(study_sha256=_TEST_ANALYSIS['study_sha256'],protocol_sha256=_TEST_ANALYSIS['protocol_sha256'],analysis_sha256=digest(_TEST_ANALYSIS),calibration_complete=True)
+verify(_TEST['trust'],'calibration_verifications',_TEST_PROOF)
+_original_compile_gold=compile_gold
+def compile_gold(*args):
+ return _original_compile_gold(*args,normative_context=dict(calibrationAnalysis=_TEST_ANALYSIS,calibrationTrust=_TEST['trust']))
 c=dict(id='c',language='en',protocol_sha256='p',family_id='F',lemma_id='L');c['content_sha256']=digest(c)
 people={a:dict(kind='human',authorization_ref='TEST_ONLY',qualified_languages=['en'],roles=['A','B','arbiter']) for a in ['a','b','arb']}
 def j(actor,role='A',verdict='VALID'):
