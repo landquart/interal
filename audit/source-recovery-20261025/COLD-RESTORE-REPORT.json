@@ -1,0 +1,19 @@
+{
+  "schema": "interal-cold-restore-summary/1",
+  "observed_at": "2026-10-25T13:59:46.099749+00:00",
+  "status": "ALL_AVAILABLE_ARCHIVE_BYTES_VERIFIED_WITH_LIMITATIONS",
+  "archives_verified": 14,
+  "archives_expected": 14,
+  "archive_parts_verified": 69,
+  "archive_members_physically_restored": 15607,
+  "restored_member_bytes": 33641847278,
+  "sqlite_databases_integrity_ok": 128,
+  "sqlite_unique_database_hashes": 110,
+  "sqlite_count_is_archive_instances": true,
+  "archive_checksums_verified": true,
+  "simultaneous_full_environment": false,
+  "full_production_pipeline_replay": false,
+  "key_engineering_replay": "evidence/KEY-REPLAY.log",
+  "production_writes": 0,
+  "missing": []
+}

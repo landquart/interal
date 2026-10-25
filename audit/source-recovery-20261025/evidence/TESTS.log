@@ -1,0 +1,13 @@
+test_checkout_restore_destination_rejected (associativvordes.source_recovery.test_restore.RecoveryTests.test_checkout_restore_destination_rejected) ... ok
+test_concat_random_seeks_and_boundaries (associativvordes.source_recovery.test_restore.RecoveryTests.test_concat_random_seeks_and_boundaries) ... ok
+test_duplicate_normalized_names_rejected (associativvordes.source_recovery.test_restore.RecoveryTests.test_duplicate_normalized_names_rejected) ... ok
+test_forged_part_hash_rejected (associativvordes.source_recovery.test_restore.RecoveryTests.test_forged_part_hash_rejected) ... ok
+test_fresh_directory_required (associativvordes.source_recovery.test_restore.RecoveryTests.test_fresh_directory_required) ... ok
+test_missing_expected_member_rejected (associativvordes.source_recovery.test_restore.RecoveryTests.test_missing_expected_member_rejected) ... ok
+test_real_sqlite_physical_restore (associativvordes.source_recovery.test_restore.RecoveryTests.test_real_sqlite_physical_restore) ... ok
+test_traversal_rejected (associativvordes.source_recovery.test_restore.RecoveryTests.test_traversal_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.012s
+
+OK

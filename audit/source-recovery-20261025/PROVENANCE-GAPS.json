@@ -1,0 +1,54 @@
+{
+  "schema": "interal-provenance-gaps/1",
+  "observed_at": "2026-10-25T13:59:46.099749+00:00",
+  "status": "BLOCKED",
+  "gaps": [
+    {
+      "id": "ORIGINAL_ASSIGNMENTS",
+      "status": "UNRECOVERED",
+      "impact": "Original generation mapping and original assignment evidence cannot be certified.",
+      "new_attestation": "Exact language/lemma/POS/sense/root relation may be independently re-established; label NEW_INDEPENDENT_ATTESTATION, never ORIGINAL_ASSIGNMENT_RECOVERED."
+    },
+    {
+      "id": "ORIGINAL_KAIKKI",
+      "status": "UNRECOVERED",
+      "expected_sha256": "42e0bfe1669513cb89bd0a12f2e85d1a8f4ebedc70c65ec88c9509d0f5d392f9",
+      "impact": "Original extraction coverage, record lineage and generation replay remain unknown.",
+      "new_attestation": "New timestamped dictionary evidence may validate a finite relation; it cannot certify the old snapshot, missing negative evidence or former frequencies."
+    },
+    {
+      "id": "ORIGINAL_CANDIDATE_INDEX",
+      "status": "UNRECOVERED",
+      "expected_tree_sha256": "2fa23e5690cbdcb80e27708f950a3c3935d87a566030221327c06eabbab0f2f6",
+      "impact": "Cannot certify the historical candidate universe, recall or source counts.",
+      "new_attestation": "Rebuild a separately versioned candidate universe from available locked sources; never replace the original identity."
+    },
+    {
+      "id": "INITIAL_V5_LICENSE_LINEAGE",
+      "status": "NOT_CERTIFIED",
+      "impact": "Original v5 materialization has no complete per-source licensing lineage; public/commercial data release blocked."
+    },
+    {
+      "id": "INDEPENDENT_BACKUPS",
+      "status": "INCOMPLETE",
+      "impact": "Raw morphology has a byte-verified Drive copy. Independent copies of all large research archives are not established; the upload route has a 100 MiB file limit.",
+      "remedy": "Create authenticated chunks under 100 MiB in an approved second store, then redownload and hash every chunk before removing this blocker."
+    },
+    {
+      "id": "SIMULTANEOUS_COLD_ENVIRONMENT",
+      "status": "NOT_RUN",
+      "impact": "Every archive member is restored and verified sequentially; a simultaneous full environment and complete production-corpus pipeline replay are not certified."
+    },
+    {
+      "id": "HISTORICAL_AUTHORITY",
+      "status": "BLOCKED",
+      "impact": "Recovered source bytes do not resolve 358 historical scope/authority conflicts or create human gold/approvals."
+    }
+  ],
+  "prohibited": [
+    "mass membership deletion",
+    "mass family merge/split",
+    "claim that reconstructed carriers are original assignments",
+    "publication under an assumed common corpus license"
+  ]
+}

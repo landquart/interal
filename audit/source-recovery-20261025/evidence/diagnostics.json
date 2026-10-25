@@ -1,0 +1,262 @@
+{
+  "schema": "interal-source-cold-restore/1",
+  "status": "BYTES_AND_SEQUENTIAL_COLD_RESTORE_VERIFIED",
+  "archive": "interal-v5-diagnostics-20261023.zip",
+  "bytes": 1852243127,
+  "sha256": "3194e13cab335863a9d5df8d471b5de15e9aa6971948636aaed6222a8fb9c634",
+  "parts": [
+    {
+      "file": "interal-v5-diagnostics-20261023-volume-001.zip",
+      "bytes": 419430524,
+      "sha256": "254fa76802c2f5e924d301f82e23a148d2e0b3804e4c8ad7657cadc574696c3c",
+      "library_file_id": "libfile_8c6c5c92cfd48191949d3010e6821500"
+    },
+    {
+      "file": "interal-v5-diagnostics-20261023-volume-002.zip",
+      "bytes": 419430524,
+      "sha256": "1de61bbde1d5b5c0c54018561c290ca15ca0aa3b303f9b49382e3a5db321d75a",
+      "library_file_id": "libfile_b49dc1b6bf68819188cb047488b1c483"
+    },
+    {
+      "file": "interal-v5-diagnostics-20261023-volume-003.zip",
+      "bytes": 419430524,
+      "sha256": "0195c4cea8eda0ab981761d9f05dcc4ea42b3ac408cf35a2b212ce9f27e2069e",
+      "library_file_id": "libfile_0d71f04fef8c819198872ca4142731b6"
+    },
+    {
+      "file": "interal-v5-diagnostics-20261023-volume-004.zip",
+      "bytes": 419430524,
+      "sha256": "646bcb388fafcfb84ac9b5604d8dae70c5a0d7274dcc1719f4ff123a1c91547e",
+      "library_file_id": "libfile_bcca9062ad588191843b2f9b754810fe"
+    },
+    {
+      "file": "interal-v5-diagnostics-20261023-volume-005.zip",
+      "bytes": 174521651,
+      "sha256": "9e1b8a91f3770b24073a1de28ff78fe4af86b51a181824471ae1b372513eb7f8",
+      "library_file_id": "libfile_2ff7ae21c45c8191930d57a1fd9edad2"
+    }
+  ],
+  "members": [
+    {
+      "path": "ALIAS_FANOUT.ndjson.gz",
+      "bytes": 5057254,
+      "sha256": "3d183319570b8c57a6cdb0f2facd077bff381a80b83c98457504040c4e32914f",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "ARTIFACTS.json",
+      "bytes": 2818,
+      "sha256": "e1e8b2fd4ae5b8d99e32c7d9123f484c04086eb6c0eb77fe7caf42d70c4d307d",
+      "schema": "v5-diagnostic-artifacts/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "COVERAGE.json",
+      "bytes": 105369,
+      "sha256": "e25836b16d06e3989f1bfe44d99788420f1e93275258235efc2b3b5c9c56124e",
+      "schema": "v5-diagnostic-coverage/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "DIRECT-MEMBER-FLAGS.json",
+      "bytes": 638,
+      "sha256": "ed00bb9af07a3af40c0d48b5f957383e6289bc8f48c259c1329c420ef5be99c7",
+      "schema": "v5-direct-membership-flags/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "EXACT_DUPLICATE_MEMBER_SET.ndjson.gz",
+      "bytes": 387405,
+      "sha256": "97fc2d080c2295f275e403e6c57dd28504c67f249d90bba0b754ce4ff3c9a0c0",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "LARGEST-FAMILIES.json",
+      "bytes": 34121,
+      "sha256": "99611d8f7e4ec258f4e78cbe9873f3b18aa8fc8567bc340981e8538581a7d54a",
+      "schema": "JSON-array",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "LARGEST-PATTERNS.json",
+      "bytes": 37421,
+      "sha256": "24320b5eac20dfc79e68b73019edc2ed9a6a20db0b7ac8e0ddd185d84cc89436",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "LEXICAL-COVERAGE.json",
+      "bytes": 29664,
+      "sha256": "a115d840553d48e76412c9684788a76fb34c4636c7e8bf1eae3d4dcf1622ca1f",
+      "schema": "v5-lexical-diagnostic-coverage/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "MANIFEST.json",
+      "bytes": 2024,
+      "sha256": "5baef98588580438ada993508d354e92737e2eb802a26ef83a9a4abb598113ac",
+      "schema": "v5-global-diagnostics/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "MECHANISM-COHORTS.json",
+      "bytes": 7466,
+      "sha256": "91c807d4d6cf5864f820efad2eea1b81ab0d0b4eba24a9e8af4ce87d9179d47d",
+      "schema": "v5-mechanism-cohorts/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "PATTERN-MANIFEST.json",
+      "bytes": 663,
+      "sha256": "0b3c7eefe126abedadd3ce4bd17af1317c3ac89ec1c265d6cc8c3f0aff59862b",
+      "schema": "v5-complete-patterns/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "PRIORITY-QUEUES/MANIFEST.json",
+      "bytes": 981,
+      "sha256": "ce139d562e55a2676c4d6a638401f29af75dc95c7b641a32071a5baa434c8997",
+      "schema": "v5-diagnostic-priority-queues/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "PRIORITY-QUEUES/PRIORITY_1.ndjson.gz",
+      "bytes": 5484,
+      "sha256": "e3ea5d1e93b44efa2298cc6e92a01e206d802c8ecefd6c758e56bbc607221814",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "PRIORITY-QUEUES/PRIORITY_2.ndjson.gz",
+      "bytes": 262349,
+      "sha256": "b229a32a27ad61bc450347267a5118bcd1058458fa13d26f159b558021ab3429",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "PRIORITY-QUEUES/PRIORITY_3.ndjson.gz",
+      "bytes": 3361295,
+      "sha256": "b13338b17efe6ddaab99c130ad51e094febc97435a7355fe5240730da97c0c0b",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "PRIORITY-QUEUES/PRIORITY_4.ndjson.gz",
+      "bytes": 7593562,
+      "sha256": "d281fe5da0f17d3979b915852a117f73466aa1630a5b1d5e631f942f31ce4b5b",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "PROVENANCE-DISTRIBUTION.json",
+      "bytes": 615,
+      "sha256": "80480e51ce598a45042cd4c1e2c8eb1fbb9cbb96cc5b86dc1ddbd6dad20a691a",
+      "schema": "v5-provenance-distribution/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "REPLAY-RECEIPT.json",
+      "bytes": 1368,
+      "sha256": "77f63019c4214f55b2c54c6fb0cc12a9cb3dd8feead536607728b282c9843305",
+      "schema": "v5-diagnostics-independent-replay/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "RESOURCE-BENCHMARK.json",
+      "bytes": 171,
+      "sha256": "87b326626ec784bd56cca4ad6fde20b710780500a0e56ff3d59964ba5521049f",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "REVIEW-ECONOMY.json",
+      "bytes": 800,
+      "sha256": "86952acab6fe38293706c8e26544bfb71721c0a230a12b1924fb1709a1c9ee9c",
+      "schema": "v5-diagnostic-review-economy/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "SHARED_LEGACY_IDENTITY.ndjson.gz",
+      "bytes": 111639633,
+      "sha256": "40131d58b3b9e65a647ce24cbf30eb4e6d5357381d7ff2306080fa4312ecd141",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "SUMMARY.json",
+      "bytes": 4192,
+      "sha256": "1465b24081aceeb2ddec941fb6439527c0448838c63024e820ceb842d54327e0",
+      "schema": "v5-global-diagnostics/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "registry.sqlite",
+      "bytes": 9638465536,
+      "sha256": "558a49e2e06bc057bcaab73f69945164e7c92fbc788a26f85f1211b4b62b646b",
+      "schema": "SQLite3",
+      "sqlite_integrity": "ok",
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "BACKUP-MANIFEST.json",
+      "bytes": 2874,
+      "sha256": "7ace7dfc0648af3da9f0b19f69520e922d552028ea45267060f28c4d99fe51b6",
+      "schema": "v5-diagnostic-backup/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    }
+  ],
+  "sqlite_databases": 1,
+  "all_sqlite_integrity_ok": true,
+  "full_environment_restored_simultaneously": false,
+  "pipeline_replayed": false,
+  "production_writes": 0
+}
