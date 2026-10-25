@@ -26,6 +26,8 @@ def verify(first,replay,index,eval_first,eval_replay,receipt):
         h=digest([protocol['seed'],*key])
         if h!=c['selection_hash'] or key in selected or digest(c['source_record'])!=c['record_sha256']:raise ValueError('sample key/raw provenance')
         selected.add(key);ns[c['language']]+=1;cutoffs[c['language']]=max(cutoffs.get(c['language'],''),h)
+    required=protocol['probability_design']
+    if set(ns)!=set(required['languages']) or any(ns[l]!=required['per_language'] for l in required['languages']):raise ValueError('preregistered per-language sample size mismatch')
     d=sqlite3.connect('file:'+str(index/'index.sqlite')+'?mode=ro',uri=True)
     # Algorithm differs from selection: scan every frame row and prove exactly n
     # meet each frozen cutoff, rather than retaining a second set of minima.

@@ -95,6 +95,21 @@ def row_for(d,fid,l=None,lid=None):
     r=d.execute(q+' ORDER BY m.lang,m.lid LIMIT 1',a).fetchone()
     return dict(zip(['family_id','language','lemma_id','ordinal','record_sha256','bucket'],r)) if r else None
 
+def historical_context(h):
+    """Recover observed lexical context from the exact locked source pointer."""
+    import subprocess,hashlib
+    source=h['source'];raw=subprocess.check_output(['git','-C',str(ROOT),'cat-file','blob',source['blob']])
+    if hashlib.sha256(raw).hexdigest()!=source['sha256']:raise ValueError('historical lexical source checksum')
+    data=json.loads(gzip.decompress(raw) if source['path'].endswith('.gz') else raw)
+    for token in source.get('pointer','').split('/')[1:]:
+        token=token.replace('~1','/').replace('~0','~');data=data[int(token)] if isinstance(data,list) else data[token]
+    word=data.get('word') or data.get('lemma')
+    if not isinstance(word,str) or not word:raise ValueError('historical task lacks a documented lexical form')
+    # Previous decisions, explanations and proposed analyses remain blinded.
+    observed={k:data[k] for k in ('word','normalized','search_form','context') if k in data}
+    observed['word']=word;observed['source_refs']=[{k:source[k] for k in ('commit','path','blob','sha256','pointer') if k in source}]
+    return word,observed
+
 def challenges(d):
     result={}
     def add(r,tag):
@@ -114,7 +129,10 @@ def challenges(d):
         if h.get('decision')=='CONFIRMED_NONMEMBER' and s.get('language') and ids:
             for lid in ids[:1]:
                 add(row_for(d,s['family_id'],s['language'],lid),'SCOPED_NEGATIVE_HISTORY')
-                historical.append(dict(case_kind='HISTORICAL_SCOPE_NOT_POPULATION_MEMBERSHIP',family_id=s['family_id'],language=s['language'],lemma_id=lid,word=None,pos=s.get('pos'),sense_id=s.get('sense_id'),history_ref=h['id'],history_sha256=digest(h),risk_flags=['SCOPED_NEGATIVE_HISTORY'],source_record_status='HISTORICAL_SCOPE_ONLY_NOT_RESTORED'))
+                word,context=historical_context(h)
+                family_row=d.execute('SELECT meta FROM families WHERE fid=?',(s['family_id'],)).fetchone()
+                family_canonical=json.loads(family_row[0]).get('canonical') if family_row else None
+                historical.append(dict(family_canonical=family_canonical,source_record=context,case_kind='HISTORICAL_SCOPE_NOT_POPULATION_MEMBERSHIP',family_id=s['family_id'],language=s['language'],lemma_id=lid,word=word,pos=s.get('pos'),sense_id=s.get('sense_id'),history_ref=h['id'],history_sha256=digest(h),risk_flags=['SCOPED_NEGATIVE_HISTORY'],source_record_status='HISTORICAL_SCOPE_ONLY_NOT_RESTORED'))
         if len(historical)>=12:break
     return list(result.values()),historical
 

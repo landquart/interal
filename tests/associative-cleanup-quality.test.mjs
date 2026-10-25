@@ -70,3 +70,34 @@ assert qualify(p)['status']=='INSUFFICIENT_EVIDENCE'
 assert qualify(dict(p,operation_class='SEMANTIC_EXCLUSION'),receipt)['status']=='HUMAN_REVIEW_REQUIRED'
 assert qualify(dict(p,basis='MODEL_CONFIDENCE_ONLY'),receipt)['status']=='REJECTED_POLICY'
 `));
+
+
+test('4367043681: NOT_RUN has no performance estimates even with complete gold',()=>py(String.raw`
+from associativvordes.cleanup_quality.statistics import evaluate
+rows=[dict(weight=1,cluster=str(i),prediction='NOT_RUN',gold='VALID' if i%2 else 'INVALID') for i in range(40)]
+s=evaluate(rows,repetitions=50)
+for k in ['precision_exclusions','false_removal_rate','recall_erroneous_existing_links']:
+ assert s[k]['value'] is None and s[k]['ci95_linked_cluster_bootstrap'] is None
+`));
+test('4367043683: resolved human answers require an explicit relation',()=>py(String.raw`
+from associativvordes.cleanup_quality.human import validate
+c=dict(id='c',content_sha256='h',protocol_sha256='p',language='en')
+r=dict(a=dict(kind='human',authorization_ref='TEST_ONLY',qualified_languages=['en'],roles=['A','arbiter']))
+for role in ['A','arbiter']:
+ j=dict(actor_id='a',action='arbitrate' if role=='arbiter' else 'independent_review',case_id='c',case_sha256='h',protocol_sha256='p',blind_to_predictions=True,blind_to_other_review=True,verdict='VALID',pos='NOUN',sense='x',reason='TEST_ONLY',sources=[dict(locator='fixture',finding='x',publisher='fixture')],reviewed_at='2026-10-25T00:00:00Z')
+ try:validate(j,c,r,role)
+ except ValueError:pass
+ else:raise AssertionError('missing relation accepted')
+ j['relation']='derivation';assert validate(j,c,r,role)==j
+`));
+test('4367043688: missing required bundle sources fail before publication',()=>py(String.raw`
+import tempfile
+from pathlib import Path
+from associativvordes.cleanup_quality.bundle import pack
+with tempfile.TemporaryDirectory() as t:
+ p=Path(t);missing=p/'missing';archive=p/'archive.zip'
+ try:pack(archive,missing,missing,missing,missing,missing)
+ except (ValueError,FileNotFoundError):pass
+ else:raise AssertionError('missing inputs silently archived')
+ assert not archive.exists()
+`));

@@ -47,6 +47,8 @@ require(release.status==='BLOCKED_NO_RELEASE_CANDIDATE'&&release.publication_all
 require(release.source_lock_sha256===await fileHash(safe(root,'SOURCE-LOCK.json')),'source binding');
 require(release.gates_sha256===await fileHash(safe(root,'GATES.json')),'gate binding');
 require(JSON.stringify(release.blockers)===JSON.stringify(gates.filter(g=>g.status!=='PASS').map(g=>g.id)),'gate mismatch');
+const config=read(checkout,'associativvordes/v5_release_control/INPUTS.json');
+require(JSON.stringify(source.inputs.map(x=>x.path).sort())===JSON.stringify(config.files.map(x=>x.path).sort()),'required source inventory differs');
 const seen=new Set();
 for(const row of source.inputs){
  require(!seen.has(row.path),'duplicate input');seen.add(row.path);

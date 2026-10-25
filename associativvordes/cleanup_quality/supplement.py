@@ -2,7 +2,7 @@
 import argparse,json,shutil
 from pathlib import Path
 from associativvordes.family_boundary.core import ROOT,read,save,digest,sha,stream
-from .prepare import HERE,sanitized
+from .prepare import HERE,sanitized,linked_clusters
 from .evaluate import release,rows
 from .privacy import blind_record
 
@@ -14,19 +14,27 @@ def run(source,output):
     for e in reg['entries']:
         lex=e['lexeme'];c=dict(dataset='challenge',split='holdout',case_kind='DOCUMENTARY_CONTEXT_NOT_CORPUS_MEMBERSHIP',family_id=e['canonical_root_id'],family_canonical=e['normative_form'],language=e['language'],lemma_id='dictionary-context:'+e['id'],word=lex['lemma'],pos=None,sense_id=None,source_record=dict(word=lex['lemma'],context=e.get('context'),national_form=e['national_form'],source_refs=e['evidence_refs']),documentary_registry_path=str(registry.relative_to(ROOT)),documentary_entry_id=e['id'],documentary_entry_sha256=digest(e),corpus_lexical_binding=None,source_record_status='DOCUMENTARY_ENTRY_ONLY_NOT_BOUND_TO_V5',risk_flags=['HISTORICAL_ALLOMORPH_OR_NATIONAL_CORRESPONDENCE',e['relation_kind']],protocol_sha256=ph,historical_exposure_flags=['PREVIOUSLY_PUBLISHED_DOCUMENTARY_CONTEXT'])
         c['id']='quality-case:'+digest(['documentary-challenge',e['id'],digest(e)]);c['cluster']='statistical-cluster:documentary:'+digest(e['canonical_root_id']);c['content_sha256']=digest(c);added.append(c)
-    cases+=added;out.mkdir(parents=True)
+    for name in ('RAW-HUMAN-REVIEWS.ndjson','RAW-ADJUDICATIONS.ndjson'):
+        if (source/name).read_bytes().strip():raise ValueError('cannot rebind cases after human review; new preregistered study required')
+    cases+=added;clusters=linked_clusters(cases)
+    for c in cases:
+        c['cluster']=clusters[c['id']];c.pop('content_sha256',None);c['content_sha256']=digest(c)
+    case_index={c['id']:c for c in cases};out.mkdir(parents=True)
     for p in source.iterdir():
         if p.is_file() and p.name!='MANIFEST.json':shutil.copyfile(p,out/p.name)
+    stream(out/'PROBABILITY.ndjson.gz',(c for c in cases if c['dataset']=='probability'))
     stream(out/'CHALLENGE.ndjson.gz',(c for c in cases if c['dataset']=='challenge'))
     for role in ['A','B']:
         cards=rows(source/f'BLIND-{role}.ndjson.gz')
         for c in added:
             cards.append(dict(task_id='blind-task:'+digest([role,c['id']]),role=role,case_id=c['id'],case_sha256=c['content_sha256'],protocol_sha256=ph,language=c['language'],family_id=c['family_id'],family_canonical=c['family_canonical'],lemma_id=c['lemma_id'],word=c['word'],pos=None,sense_id=None,source_record=sanitized(c['source_record']),historical_scope_only=True,collection_status='NOT_RELEASED_PENDING_CALIBRATION_AND_RECRUITMENT'))
-        for card in cards:card['source_record']=blind_record(card['source_record'])
+        for card in cards:
+            card['case_sha256']=case_index[card['case_id']]['content_sha256'];card['source_record']=blind_record(card['source_record'])
         cards.sort(key=lambda c:digest([protocol['seed'],role,c['task_id']]));stream(out/f'BLIND-{role}.ndjson.gz',cards)
     preds=rows(source/'PREDICTIONS.ndjson.gz')
     for cfg in protocol['configurations']:
         for c in added:preds.append(dict(case_id=c['id'],case_sha256=c['content_sha256'],configuration=cfg,prediction='NOT_RUN' if cfg=='llm_assisted' else 'ABSTAIN',authority='ALGORITHM_NOT_GOLD',reason='Documentary context has no corpus native/sense binding; never materialized as a v5 membership'))
+    for prediction in preds:prediction['case_sha256']=case_index[prediction['case_id']]['content_sha256']
     stream(out/'PREDICTIONS.ndjson.gz',preds)
     design=read(out/'SAMPLING-DESIGN.json');design['frame']=sum(s['N'] for s in design['strata'].values());save(out/'SAMPLING-DESIGN.json',design)
     h=read(out/'HOLDOUT.json');h.update(challenge=h['challenge']+len(added),known_historical_exposure_units=h['known_historical_exposure_units']+len(added),heldout_case_hashes_sha256=digest([c['content_sha256'] for c in cases]));save(out/'HOLDOUT.json',h)
