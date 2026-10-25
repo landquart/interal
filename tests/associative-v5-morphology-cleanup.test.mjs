@@ -5,9 +5,9 @@ test('morphology policy adversarial cases and lossless native analysis',()=>{
  const script=String.raw`
 import sys
 sys.path.insert(0,'associativvordes/morphology_cleanup')
-from policy import *
-from native import row_mask
-from morphology_import import parse,GLEMM
+from associativvordes.morphology_cleanup.policy import *
+from associativvordes.morphology_cleanup.native import row_mask
+from associativvordes.importers.morphology_import import parse,GLEMM
 base=dict(source='fixture',resource='fixture',revision='sha',language='en')
 g=dict(base,format='glemm_pairs')
 r,n=parse(g,['read','V','reader','N','read','','er'],'hash',GLEMM)
@@ -41,7 +41,7 @@ test('native profile corruption fails before any lookup',()=>{
  const r=spawnSync('python3',['-c',String.raw`
 import sys,tempfile,pathlib,sqlite3,json,hashlib
 sys.path.insert(0,'associativvordes/morphology_cleanup')
-from native import Profiles
+from associativvordes.morphology_cleanup.native import Profiles
 with tempfile.TemporaryDirectory() as d:
  p=pathlib.Path(d);db=sqlite3.connect(p/'00.sqlite');db.execute('CREATE TABLE profiles(word TEXT,mask INTEGER,n INTEGER)');db.commit();db.close()
  h=hashlib.sha256((p/'00.sqlite').read_bytes()).hexdigest()

@@ -5,7 +5,7 @@ test('exact native scope and independent authority are required for semantic ver
  const script=String.raw`
 import sys,copy
 sys.path.insert(0,'associativvordes/morphology_review')
-from policy import *
+from associativvordes.morphology_review.policy import *
 A=dict(id='1.0',artifact='source-A',revision='rev-A',language='en',lemma='act',pos='VERB',sense_id='do')
 B=dict(A,id='2.0',lemma='action',pos='NOUN',sense_id='doing')
 e=dict(id='e:1',artifact='source-A',artifact_sha256='a'*64,line=1,raw_sha256='b'*64)

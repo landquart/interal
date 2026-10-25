@@ -135,6 +135,12 @@ class IntegrationTests(unittest.TestCase):
   output=self.w/'ids.json'
   r=subprocess.run([sys.executable,'-I',str(tool/'audit_ids.py'),'--database',str(db),'--output',str(output)],cwd=self.w,env=env,capture_output=True,text=True)
   self.assertEqual(r.returncode,0,r.stderr);self.assertEqual(json.loads(output.read_bytes())['verdict'],'PASS')
+ def test_receipt_publication_never_replaces_an_existing_binding(self):
+  from associativvordes.v5_contract.versions import write_receipt
+  p=self.w/'receipt.json';write_receipt(p,b'TEST_ONLY:first')
+  with self.assertRaises(FileExistsError):write_receipt(p,b'TEST_ONLY:replacement')
+  self.assertEqual(p.read_bytes(),b'TEST_ONLY:first')
+  self.assertEqual(list(self.w.glob('.pending-*')),[])
  def test_directory_namespace_and_content_are_immutable(self):
   from associativvordes.v5_contract.versions import bind_directory,require_directory
   folder=self.w/'diagnostics';folder.mkdir();(folder/'MANIFEST.json').write_text('{}')

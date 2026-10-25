@@ -8,7 +8,7 @@ import copy,json,pathlib,tempfile,hashlib,shutil,sys
 from associativvordes.national_correspondences.registry import *
 from associativvordes.national_correspondences.audit import audit,REQUIRED,STAGES
 sys.path.insert(0,'associativvordes/morphology_review')
-from policy import guard_application
+from associativvordes.morphology_review.policy import guard_application
 folder=pathlib.Path('audit/associative-national-correspondences');r=Registry(folder)
 assert len(r.roots)==8 and len(r.registry['entries'])==27
 assert r.mappings['family:pede']=='family:ped' and 'family:ped' not in r.mappings

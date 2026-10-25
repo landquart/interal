@@ -255,7 +255,7 @@ test('4359323435: source-row body identity cannot differ from its evidence key',
 import sys,tempfile,base64,json
 from pathlib import Path
 sys.path.insert(0,'associativvordes/review')
-from store import Ledger,digest,canonical
+from associativvordes.review.store import Ledger,digest,canonical
 with tempfile.TemporaryDirectory() as td:
  p=Path(td);qdir=p/'queue';qdir.mkdir();data=b'TEST_ONLY_SOURCE\n';loc=dict(raw_sha256=digest(data));e=dict(id='TEST_ONLY_ROW',raw_locator=loc,revision='fixture',artifact='fixture')
  q=dict(id='TEST_ONLY_Q',family='TEST_ONLY_F',language='en',lemma='word',lexeme_alternatives=[dict(id='TEST_ONLY_L')],evidence_refs=[e]);raw=(canonical(q)+'\n').encode();(qdir/'questions.ndjson').write_bytes(raw)

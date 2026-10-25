@@ -159,7 +159,7 @@ def write_receipt(path,data):
  path=Path(path);fd,tmp=tempfile.mkstemp(dir=path.parent,prefix='.pending-')
  try:
   with os.fdopen(fd,'wb') as f:f.write(data);f.flush();os.fsync(f.fileno())
-  os.replace(tmp,path)
+  os.link(tmp,path) # Atomic no-clobber: a concurrent publisher cannot replace a receipt.
   fd=os.open(path.parent,os.O_RDONLY)
   try:os.fsync(fd)
   finally:os.close(fd)
