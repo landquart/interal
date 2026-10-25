@@ -1,0 +1,21 @@
+{
+  "schema": "interal-calibration-test-report/1",
+  "new_python_contract_tests": 28,
+  "targeted_node_tests": 15,
+  "prior_identity_python_tests": 11,
+  "prior_evidence_python_tests": 17,
+  "real_module_e2e_python_checks": 12,
+  "synthetic_fixtures_are_not_human_gold": true,
+  "human_answers": 0,
+  "human_arbitrations": 0,
+  "real_linguistic_gold": 0,
+  "full_npm_status": "NOT_NEWLY_CLAIMED_GREEN; inherited sparse baseline and national CODE-LOCK blockers remain",
+  "production_writes": 0,
+  "scientific_contract": {
+    "protocol_sha256": "25498e196d679d403183a17457455e80fee3844bd744f280e5b5f23bcef8c03a",
+    "instructions_sha256": "6a4fac0364a7d1d63d4b251ed6461fa7c83ac48add6688ebf840cdd93040790d",
+    "scientific_implementation_sha256": "bc34f864e6a438ef70a216a4e171e5caa2f76a26f3dfd791c0ead1c331c02a5f"
+  },
+  "determinism_replay_identical_files": 12,
+  "cold_analysis_replay_identical": true
+}

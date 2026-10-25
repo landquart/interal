@@ -1,0 +1,118 @@
+{
+  "schema": "interal-calibration-coverage/1",
+  "total": 240,
+  "languages": {
+    "de": {
+      "cases": 40,
+      "category_hypotheses": {
+        "ALLOMORPH": 24,
+        "BORROWING": 21,
+        "DIRECT_PATH": 35,
+        "FALSE_ENDING": 1,
+        "HISTORICAL_PATH_CONFLICT": 14,
+        "HOMONYMY": 5,
+        "OPAQUE_DERIVATION": 24
+      },
+      "missing_even_as_discovery_hypothesis": [
+        "ALTERNATIVE_ORIGIN",
+        "COMPOUND"
+      ],
+      "all_category_certifications": "BLOCKED; no independent human proof",
+      "known_correct_and_known_incorrect_certified": false
+    },
+    "en": {
+      "cases": 40,
+      "category_hypotheses": {
+        "ALLOMORPH": 22,
+        "BORROWING": 20,
+        "DIRECT_PATH": 35,
+        "HISTORICAL_PATH_CONFLICT": 14,
+        "HOMONYMY": 11,
+        "OPAQUE_DERIVATION": 22
+      },
+      "missing_even_as_discovery_hypothesis": [
+        "ALTERNATIVE_ORIGIN",
+        "COMPOUND",
+        "FALSE_ENDING"
+      ],
+      "all_category_certifications": "BLOCKED; no independent human proof",
+      "known_correct_and_known_incorrect_certified": false
+    },
+    "es": {
+      "cases": 40,
+      "category_hypotheses": {
+        "ALLOMORPH": 22,
+        "BORROWING": 24,
+        "DIRECT_PATH": 35,
+        "HISTORICAL_PATH_CONFLICT": 19,
+        "HOMONYMY": 3,
+        "OPAQUE_DERIVATION": 22
+      },
+      "missing_even_as_discovery_hypothesis": [
+        "ALTERNATIVE_ORIGIN",
+        "COMPOUND",
+        "FALSE_ENDING"
+      ],
+      "all_category_certifications": "BLOCKED; no independent human proof",
+      "known_correct_and_known_incorrect_certified": false
+    },
+    "fr": {
+      "cases": 40,
+      "category_hypotheses": {
+        "ALLOMORPH": 26,
+        "BORROWING": 22,
+        "DIRECT_PATH": 37,
+        "HISTORICAL_PATH_CONFLICT": 16,
+        "HOMONYMY": 10,
+        "OPAQUE_DERIVATION": 26
+      },
+      "missing_even_as_discovery_hypothesis": [
+        "ALTERNATIVE_ORIGIN",
+        "COMPOUND",
+        "FALSE_ENDING"
+      ],
+      "all_category_certifications": "BLOCKED; no independent human proof",
+      "known_correct_and_known_incorrect_certified": false
+    },
+    "it": {
+      "cases": 40,
+      "category_hypotheses": {
+        "ALLOMORPH": 18,
+        "BORROWING": 28,
+        "DIRECT_PATH": 33,
+        "HISTORICAL_PATH_CONFLICT": 18,
+        "HOMONYMY": 7,
+        "OPAQUE_DERIVATION": 18
+      },
+      "missing_even_as_discovery_hypothesis": [
+        "ALTERNATIVE_ORIGIN",
+        "COMPOUND",
+        "FALSE_ENDING"
+      ],
+      "all_category_certifications": "BLOCKED; no independent human proof",
+      "known_correct_and_known_incorrect_certified": false
+    },
+    "ru": {
+      "cases": 40,
+      "category_hypotheses": {
+        "ALLOMORPH": 40,
+        "BORROWING": 36,
+        "DIRECT_PATH": 31,
+        "HISTORICAL_PATH_CONFLICT": 8,
+        "OPAQUE_DERIVATION": 40
+      },
+      "missing_even_as_discovery_hypothesis": [
+        "ALTERNATIVE_ORIGIN",
+        "COMPOUND",
+        "HOMONYMY",
+        "FALSE_ENDING"
+      ],
+      "all_category_certifications": "BLOCKED; no independent human proof",
+      "known_correct_and_known_incorrect_certified": false
+    }
+  },
+  "independent_human_labels": 0,
+  "fully_ready_cases": 0,
+  "discovery_flags_are_not_linguistic_certification": true,
+  "main_annotation_allowed": false
+}
