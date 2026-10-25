@@ -43,6 +43,7 @@ def shard(task):
     n=0
     with db:
      for identifier,body in pairs(source/name/f'{b}.json.gz'):
+      if bucket(identifier)!=b:raise ValueError('wrong source bucket: '+identifier)
       db.execute('INSERT INTO '+name+' VALUES(?,?)',(identifier,zlib.compress(canonical(body),1)));n+=1
      db.execute('INSERT INTO checkpoints VALUES(?,?)',(name,n))
    for lang in LANGS:
@@ -50,6 +51,7 @@ def shard(task):
     n=0
     with db:
      for fid,rows in pairs(source/'members'/lang/f'{b}.json.gz'):
+      if bucket(fid)!=b:raise ValueError('wrong member bucket: '+fid)
       if not db.execute('SELECT 1 FROM families WHERE id=?',(fid,)).fetchone():raise ValueError('orphaned family '+fid)
       for ordinal,row in enumerate(rows):
        if not isinstance(row.get('lemma_id'),str) or not isinstance(row.get('word'),str):raise ValueError('malformed source row')
