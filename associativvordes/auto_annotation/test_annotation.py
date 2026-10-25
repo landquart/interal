@@ -247,13 +247,13 @@ class ProviderTests(Fixture):
         import os
         os.environ['INTERAL_TEST_ONLY_KEY']='TEST_ONLY_SECRET_KEY'
         self.addCleanup(os.environ.pop,'INTERAL_TEST_ONLY_KEY',None)
-        active=0;peak=0;lock=threading.Lock()
+        active=0;peak=0;lock=threading.Lock();barrier=threading.Barrier(4)
         def parallel(p,payload,headers):
             nonlocal active,peak
             self.assertEqual(headers['Authorization'],'Bearer TEST_ONLY_SECRET_KEY')
             c=json.loads(payload['messages'][1]['content'])['untrusted_card']
             with lock:active+=1;peak=max(peak,active)
-            time.sleep(.04)
+            barrier.wait(timeout=15)
             out=transport(response(c))(p,payload,headers)
             with lock:active-=1
             return out

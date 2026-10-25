@@ -194,3 +194,41 @@ test('protected calculation and negative-policy files keep baseline Git blob has
     assert.equal(hash,entry.git_blob,entry.path);
   }
 });
+
+
+
+test('4354127381: correspondence rebuttal cannot establish membership',()=>{
+ const d=fixture();const e={...structuredClone(d.evidence[0]),id:'correspondence-rebuttal',polarity:'rebuts'};
+ d.evidence.push(e);d.correspondence.evidence_ids=[e.id];
+ assert.notEqual(result(d),M);
+});
+test('4354127391: untrusted declared conflicts have no normative authority',()=>{
+ for(const field of ['decision','evidence_status','lexical_identity_status','sense_status','relation_status']){
+  const d=fixture();d.decision=U;d[field]=field==='decision'?C:field==='evidence_status'?'contradictory':'conflict';
+  assert.equal(result(d,{}),U,field);
+ }
+});
+test('4354127396: verified nonmembership survives compatible legacy guards',()=>{
+ const d=fixture(cases.find(c=>c.expected===N));
+ for(const guard of ['excluded','quarantine'])assert.equal(result(d,{...trust(d),history:[{id:'old',scope:d.scope,guard}]}),N);
+});
+test('4354127406: indirect evidence retains exact intermediate endpoint scopes',()=>{
+ const d=fixture(cases.find(c=>c.id==='regul-regl'));
+ for(const step of d.correspondence.steps.slice(0,-1)){
+  const e=d.evidence.find(e=>e.id===step.evidence_ids[0]);
+  e.scope={...d.scope,language:'fr',lexeme_id:step.to,sense_id:step.to_sense,lemma_id:step.to};
+ }
+ assert.doesNotThrow(()=>validateDecision(d));assert.equal(result(d),M);
+ const bad=structuredClone(d);bad.evidence[0].scope.lexeme_id='unrelated';
+ assert.throws(()=>validateDecision(bad),/scope mismatch/);
+});
+
+test('4354127406: intermediate contexts remain distinct and cannot replace final identity proof',()=>{
+ const d=fixture(cases.find(c=>c.id==='regul-regl'));
+ const intermediate=[];
+ for(const step of d.correspondence.steps.slice(0,-1)){
+  const e=d.evidence.find(e=>e.id===step.evidence_ids[0]);e.scope={...d.scope,language:'fr',lexeme_id:step.to,sense_id:step.to_sense,lemma_id:step.to,context_id:'French-dictionary:'+e.id};intermediate.push(e.id);
+ }
+ assert.doesNotThrow(()=>validateDecision(d));assert.equal(result(d),M);
+ d.axis_evidence.lexical_identity_status=intermediate;assert.equal(result(d),U);
+});
