@@ -236,7 +236,10 @@ r=json.loads(Path('audit/pr-review-679-694/APPLY-REPLAY-VERIFICATION.json').read
 assert r['fresh_apply']['status']=='SHADOW_ONLY' and r['idempotence']['status']=='ALREADY_APPLIED'
 assert r['rollback']['status']=='ROLLBACK_VERIFIED'
 m=json.loads(Path('audit/pr-review-679-694/FRESH-SHADOW-MANIFEST.json').read_bytes());assert r['fresh_apply']['inventory_sha256']==m['inventory_sha256']
-old=json.loads(subprocess.check_output(['git','show','4b528326f230ef9dd1df968829dd253ecad9a63f:audit/associative-v5-structural-cleanup/APPLY-RECEIPT.json']))
+import hashlib
+raw=Path('audit/pr-review-679-694/ORIGINAL-APPLY-RECEIPT.json').read_bytes()
+assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()=='bfaa842fa921aca82b72a288d179f1bd53797c58'
+old=json.loads(raw)
 assert old['status']=='ALREADY_APPLIED' and old!=r['fresh_apply']
 `));
 test('4362455091: both complete issue exports resolve and match their report counts',()=>py(String.raw`

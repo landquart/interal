@@ -155,6 +155,14 @@
     "SURFACE-INDEPENDENT-VERIFICATION.json": {
       "bytes": 330,
       "sha256": "bfe163f748aa49d22df1a9e95c7215aa61f8b88c5acc1f106bbbd35f080c3797"
+    },
+    "CI-FIRST-AUDIT-ATTEMPT.json": {
+      "bytes": 5524,
+      "sha256": "dc83aa226c00bacfb9f5a04ad11e2ad6dfa8fbabe7ef3c370bda2a844b75e2dc"
+    },
+    "BLIND-WHITELIST-VERIFICATION.json": {
+      "bytes": 392,
+      "sha256": "5a35cb0bbc8a364861aae74dff0187b435840807f4b8c557438b72ec2bd5b2e9"
     }
   },
   "tests": {
@@ -165,11 +173,17 @@
     "additional_final_tests": {
       "status": "PASS",
       "sample_size": "SAMPLE-SIZE-REGRESSION.log",
-      "archive_contract": "ARCHIVE-REGRESSION.log"
+      "archive_contract": "ARCHIVE-REGRESSION.log",
+      "all30_review_regressions": "FINAL-REVIEW-REGRESSIONS.log"
     },
     "browser": {
-      "status": "FINAL_CANDIDATE_CI_PENDING"
-    }
+      "status": "PASS_CI",
+      "tested_commit": "32420f1a722672360c99083fe363590d8f13eb88",
+      "run_id": 40167424530,
+      "job_id": 121091226387,
+      "scope": "Actual Chromium browser regression passed. Subsequent fix changes only source-receipt fixture transport in a separate test; browser/runtime code unchanged."
+    },
+    "final_head_ci": "RERUN_REQUIRED_AFTER_SHALLOW_FIXTURE_CORRECTION"
   },
   "evidence_retention": {
     "maintenance": "Temporary checkout and intermediate journals were removed by workspace maintenance. Code recovered from immutable Git commit92f7421; exact research files cold-restored and independently rechecked.",
@@ -196,5 +210,35 @@
   },
   "release_status": "BLOCKED",
   "production_writes": 0,
-  "merges_performed": 0
+  "merges_performed": 0,
+  "integration_blockers": [
+    {
+      "id": "HISTORY_SCOPE_AUTHORITY_INCOMPLETE",
+      "status": "BLOCKED",
+      "evidence": "HISTORY-SOURCE-VERIFICATION.json",
+      "details": "coverage_complete=false;358 historical conflicts"
+    },
+    {
+      "id": "ORIGINAL_PROVENANCE_NOT_IN_PINNED_INPUTS",
+      "status": "BLOCKED",
+      "evidence": "BASELINE-SOURCE-REVERIFICATION.json",
+      "details": "Recovered carriers do not establish original assignment/license provenance"
+    },
+    {
+      "id": "INDEPENDENT_HUMAN_GOLD_HOLDOUT_MISSING",
+      "status": "BLOCKED",
+      "evidence": "QUALITY-INDEPENDENT-VERIFICATION.json",
+      "details": "0 actual human reviews; no linguistic release gate passes"
+    },
+    {
+      "id": "NONEMPTY_MATERIALIZER_ROLLBACK_UNCERTIFIED",
+      "status": "BLOCKED",
+      "details": "Current stage12/13 historical receipts do not certify changed executable code or a nonempty plan"
+    },
+    {
+      "id": "EXACT_RELEASE_AUTHORIZATIONS_ABSENT",
+      "status": "BLOCKED",
+      "details": "No exact-scope owner/verifier approvals in pinned release inputs"
+    }
+  ]
 }
