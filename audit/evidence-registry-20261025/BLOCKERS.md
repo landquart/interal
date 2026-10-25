@@ -1,0 +1,1 @@
+The stage remains BLOCKED. See PROVENANCE-GAPS.json and EVIDENCE-REPORT.md for exact scopes. No confirmed corpus identities, complete independent linguistic paths or licensed cold-restorable publisher captures have been established. Stage 06–10 full payload ingestion remains pending. Parent PR702 and integration/history blockers are not waived. Production changes: zero.

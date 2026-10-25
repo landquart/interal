@@ -1,0 +1,22 @@
+test_absence_never_negative (associativvordes.evidence_registry.test_model.EvidenceTests.test_absence_never_negative) ... ok
+test_invalid_path_even_with_analysis_receipt (associativvordes.evidence_registry.test_model.EvidenceTests.test_invalid_path_even_with_analysis_receipt) ... ok
+test_missing_trust_cannot_self_authorize (associativvordes.evidence_registry.test_model.EvidenceTests.test_missing_trust_cannot_self_authorize) ... ok
+test_mutation_of_each_scope_field (associativvordes.evidence_registry.test_model.EvidenceTests.test_mutation_of_each_scope_field) ... ok
+test_no_completeness_review (associativvordes.evidence_registry.test_model.EvidenceTests.test_no_completeness_review) ... ok
+test_opposition_remains_conflict (associativvordes.evidence_registry.test_model.EvidenceTests.test_opposition_remains_conflict) ... ok
+test_partial_refutation_and_other_family_not_negative (associativvordes.evidence_registry.test_model.EvidenceTests.test_partial_refutation_and_other_family_not_negative) ... ok
+test_scope_template_cannot_be_reused_for_next_record (associativvordes.evidence_registry.test_model.EvidenceTests.test_scope_template_cannot_be_reused_for_next_record) ... ok
+test_source_bytes_or_license_missing (associativvordes.evidence_registry.test_model.EvidenceTests.test_source_bytes_or_license_missing) ... ok
+test_sufficient_negative_requires_exhaustive_scope (associativvordes.evidence_registry.test_model.EvidenceTests.test_sufficient_negative_requires_exhaustive_scope) ... ok
+test_supported_research_never_authorizes_production (associativvordes.evidence_registry.test_model.EvidenceTests.test_supported_research_never_authorizes_production) ... ok
+test_unknown_schema_or_namespace_blocks (associativvordes.evidence_registry.test_model.EvidenceTests.test_unknown_schema_or_namespace_blocks) ... ok
+test_unresolved_alternative_prevents_final_inference (associativvordes.evidence_registry.test_model.EvidenceTests.test_unresolved_alternative_prevents_final_inference) ... ok
+test_changed_part_bytes (associativvordes.evidence_registry.test_view.FrozenViewTests.test_changed_part_bytes) ... ok
+test_exact_origin_and_explicit_unknowns (associativvordes.evidence_registry.test_view.FrozenViewTests.test_exact_origin_and_explicit_unknowns) ... ok
+test_new_strong_mapping_needs_new_evaluation (associativvordes.evidence_registry.test_view.FrozenViewTests.test_new_strong_mapping_needs_new_evaluation) ... ok
+test_wrong_registry_hash (associativvordes.evidence_registry.test_view.FrozenViewTests.test_wrong_registry_hash) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.020s
+
+OK

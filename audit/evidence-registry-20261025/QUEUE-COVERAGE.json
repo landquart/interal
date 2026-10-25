@@ -1,0 +1,1545 @@
+{
+  "schema": "interal-evidence-queue-coverage/1",
+  "queues": [
+    {
+      "file": "audit/associative-v5-surface-cleanup/COMPLEX-CASE-QUEUE-MANIFEST.json",
+      "sha256": "30634f6dee56479819585119bd5bc51f2f8aa61b7a5f6e81e3d69cc71d930584",
+      "bytes": 543,
+      "ndjson_rows": null,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-v5-surface-cleanup/COMPLETE-RUN-MANIFEST.json",
+      "sha256": "106cd9682059e675ce4b61a86fbc84ac40182f10c08fc7149149450f8ef7f228",
+      "bytes": 338213,
+      "ndjson_rows": null,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-v5-morphology-cleanup/UNRESOLVED-QUEUE-MANIFEST.json",
+      "sha256": "fae8923b3bb75ea271e71281e58baf9a6e9328be6d77d75313c36f1c1cb0c8c5",
+      "bytes": 52489,
+      "ndjson_rows": null,
+      "referenced_files": [
+        {
+          "path": "buckets/00/UNRESOLVED.ndjson.gz",
+          "sha256": "db27925fa9f28140cbd1dabb7bc41d382766e72f5880ed9cab22337cfc9dc3ac",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/01/UNRESOLVED.ndjson.gz",
+          "sha256": "19c873a1ba87414aaf1e2827cd78a980d28f639eac26c51287e2edde78a24071",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/02/UNRESOLVED.ndjson.gz",
+          "sha256": "ba0fb01011a554ed1f38ec5f02c143bc4905548a15271aa772720bcdc5d53254",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/03/UNRESOLVED.ndjson.gz",
+          "sha256": "caafd6627588a3b0abb87196333a689d8ecca1e2255e20361d7332ed28d560ca",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/04/UNRESOLVED.ndjson.gz",
+          "sha256": "3315493899711aff6c6ed3db74f9b5123d7d60222d82dc0824eff2012c61e61f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/05/UNRESOLVED.ndjson.gz",
+          "sha256": "ee7fbb93e6e825f26147b48e95767060720f7a8d4d2e4526726ccfc17bb23c6a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/06/UNRESOLVED.ndjson.gz",
+          "sha256": "773a074d2b7b4c6004896674783f3bfe799cc6973d8b314497dc36078fccc25d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/07/UNRESOLVED.ndjson.gz",
+          "sha256": "e2ce760fc7b616eff413784dd6525f2138e76afc03955ff3cd707a0bbe362eed",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/08/UNRESOLVED.ndjson.gz",
+          "sha256": "dee4baa429a45fd32334402a937ac68fdd6a92504bc266c9d6e7012041bba884",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/09/UNRESOLVED.ndjson.gz",
+          "sha256": "0807c3732f6b78f368be976221c2d4edaa8e047ed39e931c310c3d04f84982a6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/0a/UNRESOLVED.ndjson.gz",
+          "sha256": "a6db596aa77429248ad606d17a1c37541f79f28cb802ba0dcdb1b0b8f7290ab8",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/0b/UNRESOLVED.ndjson.gz",
+          "sha256": "0c2948a0b59ec966447559c6e9f89d3b2e9e32a5b5578a01ae1ce352dcaa3f1b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/0c/UNRESOLVED.ndjson.gz",
+          "sha256": "5518eeb50f5cdcb418495cbf0feaf11f3debbf3f4255b86dd0962375f9f5a651",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/0d/UNRESOLVED.ndjson.gz",
+          "sha256": "5f74c1f65ee22524e6e655b5bcd40491d02829f4d7ad6a03eb10a5315021c3e3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/0e/UNRESOLVED.ndjson.gz",
+          "sha256": "aad9a023289c82606e2d2badc635aa0895f11c1332680e9d19cd8374768c6b2e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/0f/UNRESOLVED.ndjson.gz",
+          "sha256": "adcc13756de96fcb116c9b8b936e2b88fc4a1d4387ac230c839db3800179a53d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/10/UNRESOLVED.ndjson.gz",
+          "sha256": "ae569fec254b9ac64976af32ceb8546566af682aa57521f44bc67b516afd5e43",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/11/UNRESOLVED.ndjson.gz",
+          "sha256": "d1dec37b37451b54e2b3c58762f7822a59f08a4a137627c99e909bcf1cdbe1fc",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/12/UNRESOLVED.ndjson.gz",
+          "sha256": "5fc3767e220e3f9a73599e2f36a59ce1a8e50d8851b8ee1a40d588c95b502a5b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/13/UNRESOLVED.ndjson.gz",
+          "sha256": "b36061eff8c6e21087ff42998d3fa17ac2ad4c91c0a726be6565fbb590241934",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/14/UNRESOLVED.ndjson.gz",
+          "sha256": "17fb29c1d9c3b722601915e2079da536b2743c4295802602843780a0acf54b8f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/15/UNRESOLVED.ndjson.gz",
+          "sha256": "493cfdfdfce9b57d8e10c106166d156d19dae02faedcf915d1cc9358b35e49ba",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/16/UNRESOLVED.ndjson.gz",
+          "sha256": "f25d11126c440f9d8c998a83d4cfa5b6857098adaa157ca5789aa5572f29f882",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/17/UNRESOLVED.ndjson.gz",
+          "sha256": "1f5204bbcc124526be01b5f3aa408b78656217ec19ac69e01c690f0ae76dc02e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/18/UNRESOLVED.ndjson.gz",
+          "sha256": "8df126e1095b0d65fef3edc61a238cf413d9b8b1d73cf48ae2c7747a794fc8d7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/19/UNRESOLVED.ndjson.gz",
+          "sha256": "79831b423fbb25da72e22b198ed75dc470f8dd253b4521b9df43bcf76b3c176f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/1a/UNRESOLVED.ndjson.gz",
+          "sha256": "bda830a5ee6b9369c3f292e5652b168a069034acfb2b953bbfb2e9a14a01d0e9",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/1b/UNRESOLVED.ndjson.gz",
+          "sha256": "d473c142f2a44946303c21a2195edbf5831965fc1f183ff834399b706e6a872b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/1c/UNRESOLVED.ndjson.gz",
+          "sha256": "08e7d57d6485a36d598e4a7f1e9ca4d027e0344b2e78e2eac00767974dd44744",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/1d/UNRESOLVED.ndjson.gz",
+          "sha256": "e50216f34dad4f8a21bf7b71a8ff15003db1a5b8aff20ab87b5e1e048e6e70b2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/1e/UNRESOLVED.ndjson.gz",
+          "sha256": "270a232a8462c3e6719635ee871ec01e91ab8e3e0d55b9d3ba9cc1dffc1332fa",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/1f/UNRESOLVED.ndjson.gz",
+          "sha256": "897a31caa5e569dbe1b05aaec14c0d54c0c06093165ec8512a045fab95cfd0da",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/20/UNRESOLVED.ndjson.gz",
+          "sha256": "b59d47138f8226928d382f79c0f9bb2cc46f17569051b14c9b38c2b1c1a346a1",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/21/UNRESOLVED.ndjson.gz",
+          "sha256": "10704c582722db7156d26c096fabc55c5a1e38ff59f027ad26a338b1a32e8ebf",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/22/UNRESOLVED.ndjson.gz",
+          "sha256": "d1a3dab62f510bebf29f14ad280367c9c8669028ec83f1f77fba538ce1348bb0",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/23/UNRESOLVED.ndjson.gz",
+          "sha256": "a3ee36efb56b0cb204dc20da37394a098922116761f4de0aa9d15db9906c0b22",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/24/UNRESOLVED.ndjson.gz",
+          "sha256": "137433978ad1a4001844d5508181347a1d810ee2d2524ceedbbb03f9dc36c834",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/25/UNRESOLVED.ndjson.gz",
+          "sha256": "3a3b26c1080e0ffb54cbc8079ee30ad4ea956e125163f58b3bf49aac8b584219",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/26/UNRESOLVED.ndjson.gz",
+          "sha256": "00983452d50bcd7298b169b700bfb198bcc2917016f25df75d0ac1fbae0aaa5e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/27/UNRESOLVED.ndjson.gz",
+          "sha256": "8ee79708f0abc1f4e51f30327eb5d50d73c04df061b9f6b7b50e88c2bc7a58a8",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/28/UNRESOLVED.ndjson.gz",
+          "sha256": "083cad0930fb783a17dadced1f549d39e7e5ee4c28e912a425d4b253deb31622",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/29/UNRESOLVED.ndjson.gz",
+          "sha256": "9a438b135dcc987750383680ceefd8ec20a83a78c84012b2796ddb4a737481e6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/2a/UNRESOLVED.ndjson.gz",
+          "sha256": "8156e5b9b1f5ef04ed7d82c27baa25edb57ede8b6f09b0f5342a9a8003db3a86",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/2b/UNRESOLVED.ndjson.gz",
+          "sha256": "2f929ef832cd4866c76eb7b465faaaef3ba478365810cd19589055565886651d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/2c/UNRESOLVED.ndjson.gz",
+          "sha256": "3215e26ee3dc55abe158b780cd8dda6cc7b154621e901da59f1c13be585d059d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/2d/UNRESOLVED.ndjson.gz",
+          "sha256": "4b302c7d2b14753168b0301326764c3fa947184177ac92bf4654f379b52246a4",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/2e/UNRESOLVED.ndjson.gz",
+          "sha256": "dcb60f5918475bcc910c8aa173b583d90daaf001cd3641ed41f03b17d5b17e3f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/2f/UNRESOLVED.ndjson.gz",
+          "sha256": "86936d13e8cf7d790a0c935da66c579e03d81373144b228ffec29f961de17258",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/30/UNRESOLVED.ndjson.gz",
+          "sha256": "42486c3744b0d5eb475a27c32ada9deb13cbcbf33c35825d20b1b15eec4e94c5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/31/UNRESOLVED.ndjson.gz",
+          "sha256": "46d86d42c1e25669d871f0a81308f775b31f95e8751840d6bc9ee95982ffdcc6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/32/UNRESOLVED.ndjson.gz",
+          "sha256": "6f47563a8d22cea18369d3ceadba328e1f1dcf5cd0edf41d1b88c07c6d6d7502",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/33/UNRESOLVED.ndjson.gz",
+          "sha256": "a882eae6ccb166618df3806a2c12e4706c728d554aa9cd0efc8bb3ca40ddf922",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/34/UNRESOLVED.ndjson.gz",
+          "sha256": "e12ce564b5eb3a5c8d4ce0e41f76a65330a604763b990dbba3be96948f272725",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/35/UNRESOLVED.ndjson.gz",
+          "sha256": "3938af9c705798ebcd518368c04d150c7a1a2323ae092c44e08b33b4eae5c9e5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/36/UNRESOLVED.ndjson.gz",
+          "sha256": "d498491ccd1b2dcdc454b3f817d2084ed53d03d51e61e874742871f7728ebba7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/37/UNRESOLVED.ndjson.gz",
+          "sha256": "59253a412691860c0c21a43bc2db8b4a2098d4d93e9c24780e70923ba975fba7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/38/UNRESOLVED.ndjson.gz",
+          "sha256": "686e5b8513f31c285e69cc53d3307ec8896ca1e3712052e5cdec4097fdfe7492",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/39/UNRESOLVED.ndjson.gz",
+          "sha256": "aa0c01735c14cf951a446c6d157ad844f233da8fae280cb06e5987c94cad8d0a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/3a/UNRESOLVED.ndjson.gz",
+          "sha256": "e04ac7c44959a4a5d6f8abeea739b06377d9e60936ac1bd9262dabffe77c1d42",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/3b/UNRESOLVED.ndjson.gz",
+          "sha256": "56d8d986de909867dae5915a116a561d10b34a622ba15fa84a9af0f798800b02",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/3c/UNRESOLVED.ndjson.gz",
+          "sha256": "dceb14034c8713890c31167c8b3e1792ccf5370ed89cc9ddfe72a1f911a8140e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/3d/UNRESOLVED.ndjson.gz",
+          "sha256": "72967884df47ae0f0793768b63d26ab37a7cd885dcb1a584f9870fbf0309cf95",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/3e/UNRESOLVED.ndjson.gz",
+          "sha256": "41f8141486b5011e347833421b5a0392955ae8ec00ea8bc52d299ece3f626b52",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/3f/UNRESOLVED.ndjson.gz",
+          "sha256": "7a1413e62d8ed461626abe36943cd95e77dff33a6a408b866acb76e2582e8efa",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/40/UNRESOLVED.ndjson.gz",
+          "sha256": "66fdb395d06859ce38a94214c2c7ab5a0a29ea3fd82e0332f5a235ccd82d6b00",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/41/UNRESOLVED.ndjson.gz",
+          "sha256": "2c1395415433f26c7719a60e460095335744d775c77396a34047b4c4569da10e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/42/UNRESOLVED.ndjson.gz",
+          "sha256": "6ba5acf96b538eebe83fc4cf13383b6b3c0163477cf5ee143ba3c3292b555ad3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/43/UNRESOLVED.ndjson.gz",
+          "sha256": "6936c2acf26e04f92b6fde8f79a3511f6cffacb8c1d4ac5ab3ab239ebf399efd",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/44/UNRESOLVED.ndjson.gz",
+          "sha256": "affc654485bff7369d913c766c02b224a277114b1ed483fa9a5fa6910316f875",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/45/UNRESOLVED.ndjson.gz",
+          "sha256": "d468abc92cd0737dc078787a087c7031ab3c53fccd2bdcee842a7e13a2958dc5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/46/UNRESOLVED.ndjson.gz",
+          "sha256": "3a4faadeb27d56ff11ac635eb383504ab0cd2182e5e04cc68faf3fe5477e2a67",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/47/UNRESOLVED.ndjson.gz",
+          "sha256": "0937326facfcf4f6af72b9e82b140f5910404c784e6cce3acca85dce47b2c580",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/48/UNRESOLVED.ndjson.gz",
+          "sha256": "48e6422550c07997eeb64f2917551ddc82a390a964d51d60f42446f75e9e1632",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/49/UNRESOLVED.ndjson.gz",
+          "sha256": "5bb6816b4fd34ae410af86f303c9d5976bae18e2a7d3f3acdc62de8fc3a7e616",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/4a/UNRESOLVED.ndjson.gz",
+          "sha256": "b6c3a49aa3bf575934eeaff760b9f986f26c4dd36c8535cc7c51e4b5383ff7a9",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/4b/UNRESOLVED.ndjson.gz",
+          "sha256": "3262845281b12f872430386042505154fd6f99a2f2c013f81bde5eb6930d2920",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/4c/UNRESOLVED.ndjson.gz",
+          "sha256": "56f9064a5ab25db74610f0a4a939faf91c81c69bbef121460a69b1bcbcea60ef",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/4d/UNRESOLVED.ndjson.gz",
+          "sha256": "6c4cf94ca185dadc70c00c1f35d5234496589ce43a7f4a5714a0b65a8d72484b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/4e/UNRESOLVED.ndjson.gz",
+          "sha256": "59bfb16018d162a42714b0ccbac8cfd3eeae1edac4ea09a3e90df7df34694b3c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/4f/UNRESOLVED.ndjson.gz",
+          "sha256": "499ec6df581c59ba8559d8d70d1c51d15ed91a9f3d3098d5e5e22bffb5c8078c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/50/UNRESOLVED.ndjson.gz",
+          "sha256": "1efe44f674458fba63714961d05c8e0e60b4f6086c7c47d3d05ea482a139d383",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/51/UNRESOLVED.ndjson.gz",
+          "sha256": "614bcd61e952b2b63590bdfbcc33a22b748c2babfa735ebadfb09c3c2ee9dcc9",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/52/UNRESOLVED.ndjson.gz",
+          "sha256": "6fa05e62a9b3e3ead5b6da98ba5a6df206aa1216c07d7b11eb46a4a652fff2a4",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/53/UNRESOLVED.ndjson.gz",
+          "sha256": "83572e5ee39012c260e5f36522cd834c4a3a4008acfe5945d7dd8eff51446815",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/54/UNRESOLVED.ndjson.gz",
+          "sha256": "03e4063048242ff7412e8049ff9ac9aee79ed3f18ba78a662c0992a71b691196",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/55/UNRESOLVED.ndjson.gz",
+          "sha256": "e5a813a30dc37601f4925d6ddd49129d217c4ad7e695f4b920a62829464a8c16",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/56/UNRESOLVED.ndjson.gz",
+          "sha256": "30013fdb376e86b975c37eaa9ebbe3f106ad9f9bb7ec690235c7d8f02e453712",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/57/UNRESOLVED.ndjson.gz",
+          "sha256": "13ae72b0142125f62bdfa9e0aa566eb45e3868a79e7a8d3dcad3e5bc0837244f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/58/UNRESOLVED.ndjson.gz",
+          "sha256": "93b77c41483b9baee17da04214923addb29eabb8d5c35271d228230f8e36efd6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/59/UNRESOLVED.ndjson.gz",
+          "sha256": "bc3c20898811fc7a20ddea59a21500e39dd0c4aa41f4594c6ae9a1babfa90f4b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/5a/UNRESOLVED.ndjson.gz",
+          "sha256": "2417fc2b34dd315b7bdb69c74efe3cee272cb9296d287956523739722755c3ce",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/5b/UNRESOLVED.ndjson.gz",
+          "sha256": "aa7646a606f3dba42a8f20788bcacf7d0d81399271a974cd28e07dedb6da7a11",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/5c/UNRESOLVED.ndjson.gz",
+          "sha256": "3f12f071496d7998075c2210a926d9a39c92ce4ca9e941bbed099daf2272fc2a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/5d/UNRESOLVED.ndjson.gz",
+          "sha256": "0e9191168fc3d169e2bf8270284b84b985feff99e81c3d65664b0697f9197e52",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/5e/UNRESOLVED.ndjson.gz",
+          "sha256": "e8e60897416d6d8ac4dc3cf6286215fb96b5213d73e274d63c716bc000806c36",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/5f/UNRESOLVED.ndjson.gz",
+          "sha256": "c5bb80275e6bada2366efc8947b76cb836bb79a968f4c2be277aec8529bead7d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/60/UNRESOLVED.ndjson.gz",
+          "sha256": "73e3cdfe5438b858a8e0ef5dfff7b846d3b145d81cb699d71a5665737eb537c5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/61/UNRESOLVED.ndjson.gz",
+          "sha256": "d60e980fe506601a3db57dc226db3220bf00503ed567e1c3d48c0a71eb50b7e2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/62/UNRESOLVED.ndjson.gz",
+          "sha256": "02466db27e220ff05ad6eac22a7884273d16082ab40f5748c0ba181cf3ff04be",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/63/UNRESOLVED.ndjson.gz",
+          "sha256": "8eaf2de7a374e49962530cc60d9b74e8d66bdbbd0a70674eee957f4ebdb1398f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/64/UNRESOLVED.ndjson.gz",
+          "sha256": "a96bfc94bfaf74f6f46312deae307cfc502b9975dbacc35af36fbab67201c5c7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/65/UNRESOLVED.ndjson.gz",
+          "sha256": "254278f04e66cb8e057f4d4538eaf5ba846ba41987e78ade1fb82e13de6a8f2b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/66/UNRESOLVED.ndjson.gz",
+          "sha256": "cca87378acbecb976b570c80f6d1fb5fbec7a9e1294987e9e3bbf6439317841d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/67/UNRESOLVED.ndjson.gz",
+          "sha256": "12b475e5c681396ba24e08f134d76e5065afe1f47616adba66b4020a3b20f756",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/68/UNRESOLVED.ndjson.gz",
+          "sha256": "37399ac08083d660f13ad87666fa408616fba61b618b43264909306e3898d5cb",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/69/UNRESOLVED.ndjson.gz",
+          "sha256": "92fe718361e9660736e1d3e6224af9a43a96581b0602d807a281343a0f23778a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/6a/UNRESOLVED.ndjson.gz",
+          "sha256": "027f24b29f9a7eade83ffeae078e7fd2091a70951a4ccbbc24d7c2471bed701a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/6b/UNRESOLVED.ndjson.gz",
+          "sha256": "44d87ce12c754329607712201fe93de6c6ebec5e60f1a292aef7bd8ad9e45639",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/6c/UNRESOLVED.ndjson.gz",
+          "sha256": "c1f96727c31485f390cd893628f225cc0e1e850eb8ab7d26dc511cc1d44a3cb5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/6d/UNRESOLVED.ndjson.gz",
+          "sha256": "87817f203f9ada17cef3e59971cdfd335df8e751c4b5a8707949bacd46319e6c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/6e/UNRESOLVED.ndjson.gz",
+          "sha256": "53a04eb560675801ae49175a4f5d80f011dbc1c9d82d880188ec4eedfe4b71e1",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/6f/UNRESOLVED.ndjson.gz",
+          "sha256": "e730f4dfa1ed6f6658518248084bc34db9865beb8e67a51688aa78f426623cc2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/70/UNRESOLVED.ndjson.gz",
+          "sha256": "3bcd592997e162b70cd6b687251f9ea020f06b94556020c8ef170337bb022180",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/71/UNRESOLVED.ndjson.gz",
+          "sha256": "74a1d8b96fd7b9ca5f80c031f72dd85a89bd5ca10e60d5f72dec6c84dd8a26c3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/72/UNRESOLVED.ndjson.gz",
+          "sha256": "bbc8ff4d440fb61d3103b0ca90195442785d420e0d674a99c07853fe80544b19",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/73/UNRESOLVED.ndjson.gz",
+          "sha256": "eb214d118cfcbb4e7b177a59ab39a76a01f6e366bafb738eb7369e9a3fb0f137",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/74/UNRESOLVED.ndjson.gz",
+          "sha256": "59493ec9dc79bf3ce895a376c9e608020cf3b00c17944aba553c0028b2ad9fa5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/75/UNRESOLVED.ndjson.gz",
+          "sha256": "e5cbe93b4eb198a7f7b1288f48b0b63f975d855d8171f9d8445da549c2449ea0",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/76/UNRESOLVED.ndjson.gz",
+          "sha256": "45d52d5b99bdca3d673f0cdfb1708365750d7f5f4221630ff082fb507d9b18dd",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/77/UNRESOLVED.ndjson.gz",
+          "sha256": "f42577bdfdb210ffaef9ee89579dda1f3bc0fcd143b8ffa7efad84259c280030",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/78/UNRESOLVED.ndjson.gz",
+          "sha256": "9987cf867490b5874d323eaad9067145b9bc944379567748c0677b3e353a6370",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/79/UNRESOLVED.ndjson.gz",
+          "sha256": "c4c06d8510d6893e3313c9023850a28bb5a0f0ac3136f0baabcc80d1d3e01ba6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/7a/UNRESOLVED.ndjson.gz",
+          "sha256": "ccdee91c3d35ddd0fac7be9bab55f98c8c0efb29b761fa51f8c73118e6e32ba4",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/7b/UNRESOLVED.ndjson.gz",
+          "sha256": "a39567435f44284917582ce3df78dc3bc3c602b5d220701eb7b8160e54e47246",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/7c/UNRESOLVED.ndjson.gz",
+          "sha256": "848a9316eb5f36cdbcb7ba8275cd66f33170e1fe6f3c130e3dc026e0ab638345",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/7d/UNRESOLVED.ndjson.gz",
+          "sha256": "cfa2ea27697dc6e1652d59a1662f71125222eb825732e7da3cdb74795b413805",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/7e/UNRESOLVED.ndjson.gz",
+          "sha256": "edcbe68c063b9ca38bce38021a0a0cd48427d749aea9532cb6bb614cb28a0f1d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/7f/UNRESOLVED.ndjson.gz",
+          "sha256": "33f0a4f8aa7f77f4a373a1030db00d6cc2721474b884d0c0f0af26fe880cf8f3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/80/UNRESOLVED.ndjson.gz",
+          "sha256": "c3af8073b4e52f3f4d90f49b6822ad2e08463edba2e5fe59b07f6af5a7f3eb33",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/81/UNRESOLVED.ndjson.gz",
+          "sha256": "c1e1bfc798cc414b01c712afda1c6a842cd4782d2e952c2ab4a97c467e0f74d5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/82/UNRESOLVED.ndjson.gz",
+          "sha256": "a8be6335a329c0e4a6006dfae49bb75bdff1b7930eccf1c1967ff50c664e4755",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/83/UNRESOLVED.ndjson.gz",
+          "sha256": "42ffd2a80edfe4c4f812a4d9ceb15c78f9a8ff6b5a4e1a89f59173a2ca000a6f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/84/UNRESOLVED.ndjson.gz",
+          "sha256": "3912493a927a80f6fb869930c60a354d948fdd9f69efc0e55ddd25184c08b685",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/85/UNRESOLVED.ndjson.gz",
+          "sha256": "d117a4b84cf589f048f184f198013398f0668820b5a149d3094ea27b1ac42a13",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/86/UNRESOLVED.ndjson.gz",
+          "sha256": "05bfe3e95ec85c3debb417474ba289774b8ebb52e335b70d737eed4459605c01",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/87/UNRESOLVED.ndjson.gz",
+          "sha256": "6ad2572330237db7d65794e34468d1f6db121ba9fcddeb128b67654b275b274c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/88/UNRESOLVED.ndjson.gz",
+          "sha256": "b0848c86fa73a21e73e8c33e926d42840090c71287ae351aeb14b85e4d2f945d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/89/UNRESOLVED.ndjson.gz",
+          "sha256": "caa570ecc81e9d673e85f2560a2864ac1cacaab5b84ac618b54bc37f5891c903",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/8a/UNRESOLVED.ndjson.gz",
+          "sha256": "61ea680c34a1557064db2f02185ccf49cd49705e8f2adcf2c6f538f432c46ebb",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/8b/UNRESOLVED.ndjson.gz",
+          "sha256": "0eaea08f33298bd6b46202e704b6fc2ba55f8f99a540b4bea942a6b181f4faa3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/8c/UNRESOLVED.ndjson.gz",
+          "sha256": "859fb8f5f1336f30b25294fc85f728b6c117fd9c43f8e77c12dc6fb763ecb8cd",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/8d/UNRESOLVED.ndjson.gz",
+          "sha256": "8ae347ccfa4c3b7fa8e09dfd95d79296b6fe9473b1861f5c27348c98d4d83287",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/8e/UNRESOLVED.ndjson.gz",
+          "sha256": "cff2fc0936f42b62cf8459aeb9e7b641413baab6c34fc1e402d716b4534078dc",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/8f/UNRESOLVED.ndjson.gz",
+          "sha256": "605a6cc1fdb94c716b2d4873b3dd18987ec6c0263158a74b6db25eef882be1cb",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/90/UNRESOLVED.ndjson.gz",
+          "sha256": "a6919b52bcc06835262f772441d87a33accda8e5a919dec9428efaca89ea5f37",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/91/UNRESOLVED.ndjson.gz",
+          "sha256": "8930c99be85d6882a01b586cd27cf03dc239cdad97d6bd10ca4c6a1e2faf5fdd",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/92/UNRESOLVED.ndjson.gz",
+          "sha256": "43a8fb3fed65a75ffdb4d187ee0aa556d07506c85be63c6d21831fa94a0db087",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/93/UNRESOLVED.ndjson.gz",
+          "sha256": "7324b0e3194e3026f464f3d60de312a8555fb2529724ae253c1e079866810625",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/94/UNRESOLVED.ndjson.gz",
+          "sha256": "8da67df6c36ac5e0b8f8d356acb0894b905665501af3fb8e827541e31309733b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/95/UNRESOLVED.ndjson.gz",
+          "sha256": "82f5b958bc5a1ac517c1b597f5e8556375f7457b72faba8f82b711408d6c0f46",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/96/UNRESOLVED.ndjson.gz",
+          "sha256": "d5169266dbcb94eebffbc82247ff694aabae9dd611c3e94db4164dc8e9ecbf85",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/97/UNRESOLVED.ndjson.gz",
+          "sha256": "b9cd6f53504a6b4b8c2ee27417315b9a697f4b45424caf10c82e3b418a6fdd17",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/98/UNRESOLVED.ndjson.gz",
+          "sha256": "ee77b1e12aa294abd2e2bc0ecea9e259b5eb552fee09f84556113f1cb7fbbfca",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/99/UNRESOLVED.ndjson.gz",
+          "sha256": "50b5f4264d72648a5f1885ba7f8eddd809a51050f98d36bcf87df33e29ba47fb",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/9a/UNRESOLVED.ndjson.gz",
+          "sha256": "aa11f51b30ac87908d2623b92853601069d275d7fb35a52fd6a6edbe76fe51ea",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/9b/UNRESOLVED.ndjson.gz",
+          "sha256": "ca58a828838f926585da86de53feaaccab92debaa3477263a60d1bccef7853f0",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/9c/UNRESOLVED.ndjson.gz",
+          "sha256": "abfadc316c7ad2fdc0f509ce9a68906dd815cd2089afe0ede67c816aded89a88",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/9d/UNRESOLVED.ndjson.gz",
+          "sha256": "49a3ee97b91aecb1a149857e0997644a0bebc331b30c99efacc3d42c9331448a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/9e/UNRESOLVED.ndjson.gz",
+          "sha256": "6b47631a46c97091848e292f1ee424b8f03518789a35d8890be6d05cd2964da4",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/9f/UNRESOLVED.ndjson.gz",
+          "sha256": "b976b3e0749eac95ec199575278d755034243ec06ebbe762d67604181c5ab409",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a0/UNRESOLVED.ndjson.gz",
+          "sha256": "6ff6f7d7c54ff080d76f91a97296aa0c5ce352e6d198334d0621117426b238f3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a1/UNRESOLVED.ndjson.gz",
+          "sha256": "205ae5493ed0e851177777ba255f7e97fe68b4efd819c00acaa5eebe38420cfd",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a2/UNRESOLVED.ndjson.gz",
+          "sha256": "f375ad01888aa34da8d8ed6d90d359b2303a379c66066a0b7d31c5cb32f58543",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a3/UNRESOLVED.ndjson.gz",
+          "sha256": "a84ed6684732e3e960654ed2e96ad607ff9b520f303fa371dfbf51c9b9945725",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a4/UNRESOLVED.ndjson.gz",
+          "sha256": "fbebf38acf075f087fa7c16f1cb41bf386d8455cf11508dedb3e6718f8a6787f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a5/UNRESOLVED.ndjson.gz",
+          "sha256": "98a82d2d69380cc03a4a43fad815d62682a010f8215331ef7be250770ae8ace3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a6/UNRESOLVED.ndjson.gz",
+          "sha256": "94003e5b0f99a7663e19e1a016e4e9caa4dc1ef2948e85b6cc071f849cc9ff98",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a7/UNRESOLVED.ndjson.gz",
+          "sha256": "2a29206a1c131d8cd2bc9701e8620c69838bd69bc68f536daae8f6dea3a32d50",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a8/UNRESOLVED.ndjson.gz",
+          "sha256": "7d7b757c8d6950e29b159db846d2300c50017030e65eb23672a5166fedb34bea",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/a9/UNRESOLVED.ndjson.gz",
+          "sha256": "bdbacfc8efb7ce7187f3750294c28a89891a6dffcedb6a96806c376d24cef67f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/aa/UNRESOLVED.ndjson.gz",
+          "sha256": "b3de6f1fdecffcc920082f9ce07a9433ffb5f4fc95279f1ad6419d9d631530d2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ab/UNRESOLVED.ndjson.gz",
+          "sha256": "3794834898007940a13295c3c82db97c1a5d65c8c13d3ad919378902da1c4f47",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ac/UNRESOLVED.ndjson.gz",
+          "sha256": "be02a823b43b6c3160183b028c6bff3bf6e3bc9af1da59d3a7a1da592139f922",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ad/UNRESOLVED.ndjson.gz",
+          "sha256": "0182958e1c1a81245e617c267c9bef9d97b8e6c2813e1a408ebe7db69409aeb5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ae/UNRESOLVED.ndjson.gz",
+          "sha256": "91d3497f440d732d18d605b04035a0616965f9ce29e64e7bec5da1f66fc653bb",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/af/UNRESOLVED.ndjson.gz",
+          "sha256": "bf677852fc8b513f5c362f2b4b9e26a8f30e6c7f295335b2a4187b9e58e30b2b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b0/UNRESOLVED.ndjson.gz",
+          "sha256": "4dcf4f772c3e4cf7e435ee7a821e20e20a020d5a4a2ebe908be13de698a13d80",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b1/UNRESOLVED.ndjson.gz",
+          "sha256": "f0c9285b39f529e0c2c49b91dc442fdef92317abe69303274ca4444c60a07020",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b2/UNRESOLVED.ndjson.gz",
+          "sha256": "e2daa3a32a4f16fe6ced1522947dfe5cf76d2d7a17820a00be19f1022b9b279c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b3/UNRESOLVED.ndjson.gz",
+          "sha256": "5d66f463718bbc7a5db44e0774471a0856f9f0f304c508c44e76b26b56135718",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b4/UNRESOLVED.ndjson.gz",
+          "sha256": "29dec3e1a2674a14b4f5ea62b0a64b54969654f636d567aa8b7d26577c515613",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b5/UNRESOLVED.ndjson.gz",
+          "sha256": "f7cd621c059a10a597f900d55f491a20647c5df0c3916547f61cd93b2eab1b60",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b6/UNRESOLVED.ndjson.gz",
+          "sha256": "81b8be57cba5966e92827d9a376b4ebc040e95813db78dbe586af733cdba9110",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b7/UNRESOLVED.ndjson.gz",
+          "sha256": "f577f316512809ed00c9775dc081dfaa87a025564485e2d25ee111e01d15378e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b8/UNRESOLVED.ndjson.gz",
+          "sha256": "d1999471a51f5716a13eae4afa89489adbc74684aa4500b5505a68916987766a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/b9/UNRESOLVED.ndjson.gz",
+          "sha256": "872106c2ae4fd78f14e9d1a63bcf9d36c046e8a23c15f8bd85df3a3aa19ba9d4",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ba/UNRESOLVED.ndjson.gz",
+          "sha256": "3ae79331118e3bd8053c3cab16d56b6639d38db7a5e3abcb6693d5dd68f688be",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/bb/UNRESOLVED.ndjson.gz",
+          "sha256": "34fa4ecede04cbf0e9fa2197e10c11ae047e3205c4673fe50d85ecac93c70359",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/bc/UNRESOLVED.ndjson.gz",
+          "sha256": "3dbf833cfeb0a09fc724f512d899b96fe73e6025bab03f33cddac7e5c842e9ef",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/bd/UNRESOLVED.ndjson.gz",
+          "sha256": "7ded6c3af8a9bdb3d0b3f4d2e9fc812a20cdfa5f9dbb4dc191a0609b6608a9ff",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/be/UNRESOLVED.ndjson.gz",
+          "sha256": "d4edd3d0ad00abb6ef39a2d97580ef8c9b1049473087e5ca76213bd64e9c80ee",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/bf/UNRESOLVED.ndjson.gz",
+          "sha256": "8ecd81bab8af8d2eceb3fdba6900bbfb0afd7ceaba0ef5d153e99524f7356c1f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c0/UNRESOLVED.ndjson.gz",
+          "sha256": "3e2a748e6b7fe0172ca274cdda0dec63b896a507d1a4f81513395894d441f030",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c1/UNRESOLVED.ndjson.gz",
+          "sha256": "165e611f9322083d678b8afc10fb7a39fbe3b16b61682126df198a123bd7572e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c2/UNRESOLVED.ndjson.gz",
+          "sha256": "bda9f50660d6023703318e4e78c375a33d69df7827aa6732b46da3ddcf3b7340",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c3/UNRESOLVED.ndjson.gz",
+          "sha256": "e049e6d9c152bd55f079cd1d17acb2bb8225e1c961fccf61c33c1def82910a8a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c4/UNRESOLVED.ndjson.gz",
+          "sha256": "537abb4278f9142771671dfdf7bd923f341d7ffa3fe421a804776cb10628cf51",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c5/UNRESOLVED.ndjson.gz",
+          "sha256": "c786562c969b8a10c41630cc7b806694dc41ed059e4659af3227d739db2a52c9",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c6/UNRESOLVED.ndjson.gz",
+          "sha256": "287eb0dc31a887db80781da8dbec83c0742097be503abb921123262519cd6cb5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c7/UNRESOLVED.ndjson.gz",
+          "sha256": "8aaa94416629d6dfa9dd18c55d1c174b052993d8dbd2e3b0d346d8fdf8ba6836",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c8/UNRESOLVED.ndjson.gz",
+          "sha256": "2fe23b61f6f27eba28dafbcdfb1533b977b54dd23edf0d0947e1ec444adabb50",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/c9/UNRESOLVED.ndjson.gz",
+          "sha256": "3ac918fd52b9ac168f0cf567a409f68cec403bb5957b903f3bd265d3956c9eec",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ca/UNRESOLVED.ndjson.gz",
+          "sha256": "52dafeeeb31013f58b605650251174a170309718b8752230f3b542f86ae9a643",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/cb/UNRESOLVED.ndjson.gz",
+          "sha256": "8a0f983ed00f080830b484c29658dea554e1d629dd8ef8180175068fbc3390a2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/cc/UNRESOLVED.ndjson.gz",
+          "sha256": "851e7534bdd6b112c4cbfb1c499fc3395aa8b0df1dd9487b0913fade0aadcd56",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/cd/UNRESOLVED.ndjson.gz",
+          "sha256": "80c77df64a12651617744a10a99c64dfb9fdf4ff8f71fe24bf7c468ebe533ae8",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ce/UNRESOLVED.ndjson.gz",
+          "sha256": "de6ca6d9e3b32d457a00a50b8bb2e2c6351cea0dcb7d3cd023db9dcaeced2ea7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/cf/UNRESOLVED.ndjson.gz",
+          "sha256": "3b2df671b7b48b29852fd41f8db106ebe7a21db867cc292c282baf67ac7f0210",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d0/UNRESOLVED.ndjson.gz",
+          "sha256": "5b8758985db90d7fd247c72619f7e41e700992876963a80823fd8da698562326",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d1/UNRESOLVED.ndjson.gz",
+          "sha256": "583e99f1bacd2c8b4015a7ddaf3de5b99a6381e1cf23231b1c257c16cf3fa589",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d2/UNRESOLVED.ndjson.gz",
+          "sha256": "0bc40ea66eb95801dbd8256a24a9aa805e68ead1b9231ff3ec075e94aba41bfa",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d3/UNRESOLVED.ndjson.gz",
+          "sha256": "b2c3788a28bff836669864516f81165f161c32286856f51e7c1c600b0f61b405",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d4/UNRESOLVED.ndjson.gz",
+          "sha256": "a5c34aff4173a9fb1159e205b12861efc0e3909d79a5e785c8e473f51f26bff7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d5/UNRESOLVED.ndjson.gz",
+          "sha256": "d3835c529bc56b29d566cc73b363dc437999d0cc19c616c7de020d4c3d7d1d8e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d6/UNRESOLVED.ndjson.gz",
+          "sha256": "5ef59e6a7b1a3f7266183df9fc6ca09c3709a22ce910116c995af96e3b1c088e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d7/UNRESOLVED.ndjson.gz",
+          "sha256": "78871c916431d57436dd743ba37f1364175e691b6e680e4fd2d8b72e985e15c9",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d8/UNRESOLVED.ndjson.gz",
+          "sha256": "0a7835b7835259c5cd74fecbb73e23ed08d6c0a3420273038353484144647426",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/d9/UNRESOLVED.ndjson.gz",
+          "sha256": "a77c22a4167ab5f0810ef1171afb7cb11a43d8e722280a27ae418c812a9faea4",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/da/UNRESOLVED.ndjson.gz",
+          "sha256": "b0e3085019227dd9ec419d772c7f689df08dd1fd136b80bea60f5567ee6562b2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/db/UNRESOLVED.ndjson.gz",
+          "sha256": "c22ae7e487ca69761b2bba12f4e8e67953f72c6dd7b75eea4c5d60f2ada86491",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/dc/UNRESOLVED.ndjson.gz",
+          "sha256": "ed0acad465834f334c0bdc1cca798f5b3a916d98cd144caa8a95f1639529a2d1",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/dd/UNRESOLVED.ndjson.gz",
+          "sha256": "00fea6cdd4c40de3799fdeca0d4d80efdbc2e66e773011bf33b42ea2deaab1a7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/de/UNRESOLVED.ndjson.gz",
+          "sha256": "f65b99eecdfdd2920ae28f086c391e20b0c60a958276d3cb382dfa405e99de92",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/df/UNRESOLVED.ndjson.gz",
+          "sha256": "73825bacd36beae1547ca3cd548d068db53a49be2ab77fa209659e95077af2ce",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e0/UNRESOLVED.ndjson.gz",
+          "sha256": "9e5ca8ca4acdb578eb51efef1dae80799a0cab0bd7214e00de9c7c32e00691d9",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e1/UNRESOLVED.ndjson.gz",
+          "sha256": "956bc2517d637f4e82b061b5be564d5d8ccfcbc1758054dde5681d328815017b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e2/UNRESOLVED.ndjson.gz",
+          "sha256": "ca3b0b4182dfc9f18a4f05b26d34b43a7ad176b17156a89c39d91c46ae3454ac",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e3/UNRESOLVED.ndjson.gz",
+          "sha256": "67f59689700a036a4a131598432fd31823e0514a63052f1b1441e539494c2c01",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e4/UNRESOLVED.ndjson.gz",
+          "sha256": "595dfb5a7269fac2c83c98a2aa43fe3599c34eac4a1bd9b1e6cff04a46df2edc",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e5/UNRESOLVED.ndjson.gz",
+          "sha256": "2dbfd835a027119cd01608ba38bb26a74ecb1cc97e9c28a9cc84eeebc17a40a4",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e6/UNRESOLVED.ndjson.gz",
+          "sha256": "1a549746f88cd69f96fe4a9392536050688cdff32b0ec615813d8ff859b2cac5",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e7/UNRESOLVED.ndjson.gz",
+          "sha256": "532b61ed7fcc6e8f05ed1e7f8695e75348733035ab63dbfb26a1e0c2bedf58e9",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e8/UNRESOLVED.ndjson.gz",
+          "sha256": "704a2b54e2d71b65d1d8218d620f857896c16c5a8a0b9f2e12d34d4c59c9f03a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/e9/UNRESOLVED.ndjson.gz",
+          "sha256": "ccd20cee73427e0bdf9d4e25e1713852dba9c24bb8a9a3941d7564c8623b10d1",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ea/UNRESOLVED.ndjson.gz",
+          "sha256": "fa7729987510abbc45e823dbe6e9f65caf5dbb3a865d7f10ee652785af8c852c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/eb/UNRESOLVED.ndjson.gz",
+          "sha256": "c9b314ffa4ded90b4f90b0c784f3491c80b50a83ef982b4427da29c96c218a13",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ec/UNRESOLVED.ndjson.gz",
+          "sha256": "85ad81bdf26ff57c8a4c9c65094b2361ce5da2766a6d19fb24888b16e41b3539",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ed/UNRESOLVED.ndjson.gz",
+          "sha256": "03d1194178a5c68cc723ab5ae0a6dd2134362db992eb884a07b86b7e99addb97",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ee/UNRESOLVED.ndjson.gz",
+          "sha256": "07992cdd0a9aacdb41f916432042748c48f5816a53ca56000f9a10d8f5168c46",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ef/UNRESOLVED.ndjson.gz",
+          "sha256": "7b92876b6f636f079924e1403aca63c20d44c89f3a82db06285cc237429d3b2e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f0/UNRESOLVED.ndjson.gz",
+          "sha256": "294cb3d2cb88c82870f23207c18cdc824aa8be0e30053eb4934b4fd427fbc36a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f1/UNRESOLVED.ndjson.gz",
+          "sha256": "ecf35ade4b1fc8a142fb722839e679f7eff1ea5574c12f2bb300f709bf072769",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f2/UNRESOLVED.ndjson.gz",
+          "sha256": "5136a4759e1d50c16b3df2384fcca1e6461a9f16bb7ab299f181521ce0c2d7b7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f3/UNRESOLVED.ndjson.gz",
+          "sha256": "56f902660879daa8a34ebefc6ed199b211bdc4e2ab463a3cb1aec6c3f37e647d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f4/UNRESOLVED.ndjson.gz",
+          "sha256": "4fe1784ba15a5b463d802e9600357e609d84c5f1bbe7f6c2e06774936425b165",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f5/UNRESOLVED.ndjson.gz",
+          "sha256": "ba3b4dc4426847ae36ae8641da2219c8cd4ccb21a708c80bb540e5ddc451eaab",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f6/UNRESOLVED.ndjson.gz",
+          "sha256": "770873c90d6d83c59d46ffa5a4eccd6537571ada5cac523c752413a541c936da",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f7/UNRESOLVED.ndjson.gz",
+          "sha256": "81e9dd3259619700bcd98441cbe87d760b49f9b16501cc40ca8105e624ab2b7a",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f8/UNRESOLVED.ndjson.gz",
+          "sha256": "b3b21ba7fc3c2088949381c7a30151d3d7e3daba7572ebf2623e8a5e722998d3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/f9/UNRESOLVED.ndjson.gz",
+          "sha256": "6a7c1c78aa7f4851ab94c1f3782758726b1d49fd62e075bd962ba8a9c79222e0",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/fa/UNRESOLVED.ndjson.gz",
+          "sha256": "51209083a5059764a1ae727fc4c4f6272982c0c0043a14d5cd802d454d3a09e2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/fb/UNRESOLVED.ndjson.gz",
+          "sha256": "6073c2645618bc9c9a17aedbb9e783a62a44a0b7cd1e52a959857145e65e90be",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/fc/UNRESOLVED.ndjson.gz",
+          "sha256": "22c9cce9567fd081234ff88b8ff456ab692c88b8ce558c20b19422cd047b8a57",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/fd/UNRESOLVED.ndjson.gz",
+          "sha256": "e2bc68e575eefac2aeffcf5a345fa548fefbbf4114c3e97f86f90731a9fef87e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/fe/UNRESOLVED.ndjson.gz",
+          "sha256": "dbc3d0e4dca8410a3937981baac89a1e85a05f84479ab1e28965bb9d8efe4c19",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "buckets/ff/UNRESOLVED.ndjson.gz",
+          "sha256": "2cc0da192611868ee83946585cf002bc2f481e2880d5485f479af4a75b0735b0",
+          "present_relative_to_manifest": false
+        }
+      ],
+      "status": "MANIFEST_ONLY_MISSING_PAYLOADS"
+    },
+    {
+      "file": "audit/associative-national-correspondences/NATIONAL-CORRESPONDENCE-REGISTRY.json",
+      "sha256": "c12ca9a4494da49c3ba4233d409146bda7e0e1d9fb3d47ebd17ff37ecd0504e2",
+      "bytes": 46876,
+      "ndjson_rows": null,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-national-correspondences/BLOCKED-OPERATIONS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "ndjson_rows": 0,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-national-correspondences/UNRESOLVED-CONFLICTS.ndjson",
+      "sha256": "8e0506b5e2abbf4d88f2cd572810fa7eebaa9ab8ee14fc131a4953bc5414914c",
+      "bytes": 2684,
+      "ndjson_rows": 4,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-v5-semantic-cleanup/SEMANTIC-CASES.ndjson",
+      "sha256": "443bb6cf3065fb4b1caa870c8e45dadc4e1c556361ca1946f960c69d0277be2e",
+      "bytes": 125442,
+      "ndjson_rows": 67,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-v5-semantic-cleanup/SENSE-SPLIT-QUEUE.ndjson",
+      "sha256": "bb2aaa6d9713c6b886da336c959783b7f890d2f58ba4237098a88df3ab750ca3",
+      "bytes": 29778,
+      "ndjson_rows": 27,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-v5-semantic-cleanup/SCOPE-MANIFEST.json",
+      "sha256": "3fdcf632f96f4a86591a67869b597aa5de9a91c19f63b36b342cdce76c5b0cc2",
+      "bytes": 87263,
+      "ndjson_rows": null,
+      "referenced_files": [],
+      "status": "LOCAL_BYTES_AVAILABLE_NOT_SEMANTIC_CERTIFICATION"
+    },
+    {
+      "file": "audit/associative-v5-family-boundary/DETAILED-CONTEXT-MANIFEST.json",
+      "sha256": "fde3b7758e095a5153a00c1ddfe1b93c7a79bc3bf48177fc17c00a47b54c398b",
+      "bytes": 25257,
+      "ndjson_rows": null,
+      "referenced_files": [
+        {
+          "path": "0045093b9d12c6d3d6a03096c7c059b8cca2c479c48e3b873d3f8d846a0fbbe1.scope.ndjson.gz",
+          "sha256": "3d58d7e3f04cabfae8e45ddaa38b6c253bdfe8b89b2a0de6cd8c6b1fdae7593f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "0077333f042bf9a7af141dbf37eb1f52a821af7fa41798e5a0a3ec8a0e7de2fb.scope.ndjson.gz",
+          "sha256": "c078dc83a1c13fb9a1281cd5173ec6c03df56ec414666b4e3248f0b2f4bfc788",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "007e146946c6ca4619109acdec335286ca2e1a6808ce82dff95f456140a7d07d.scope.ndjson.gz",
+          "sha256": "9ecc433b819c148f296ee792b92f7e76d851022ac2cc02798f29a435c2e903c6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "008a40f87b74c3e3c1b082bf69754b535820978297b5ac1ea7d0b44e55dc3b57.scope.ndjson.gz",
+          "sha256": "2174f50219fba567ff3be33dd23ebd8fe90bae7013f1b31285f8b0f7d892e02d",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "00c96a29b2cf640a62b51221aff0583c8d7b7d252e6f8e8c8d3fe6425b1bd5f9.scope.ndjson.gz",
+          "sha256": "bab32986a8992462ce51c507fe491281207d01da14b89b181ab411a32c02a507",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "010d4462e12ff53e1fa00038150f660adce6b81fbae7cd1480b345fcdc2baf5f.scope.ndjson.gz",
+          "sha256": "8173486ab16f816fb09070c15d7f9e8cc5a34de8d3e2a111ffc4def846fe693e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "016140bf91c0e9d1149208ad77e7441114d98aa4afe63d10d2dc90bf214088bb.scope.ndjson.gz",
+          "sha256": "fa251f325e428980584b118d1a90f6603331c19dea97311cce1df76921c3f1ac",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "018767668915a4b28ed2e8016cbcfcf3dc16905de6c7d1049b53db771d0e2d7f.scope.ndjson.gz",
+          "sha256": "3210b53d56a219ed9df6bf8eecbde6b7ee1668e13cd71b8b34c8130c0f464df1",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "12f4b32a7343b868e93e94e583c4087f478d420d90285a7669b79b3f341795de.scope.ndjson.gz",
+          "sha256": "847c0315de0d5e01a811eda1abb1e9188ee087d4179ab085bb2a819e6e6f6ae6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "1989ef6140718f86984a91a80bb616bc25d6525885fc7c1f9549f3c181d77881.scope.ndjson.gz",
+          "sha256": "515fde5fda42e3274d5f95435991040a7345883b3f45e8c36189ae50293033c2",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "2073004c8dbcccf262a5d972f6cdb2ffd50efd116924000bdc1cd5d4f555d130.scope.ndjson.gz",
+          "sha256": "454dd4916c532e9845b6ba7969b52ab8df7b6ce0060c4d6686ddbcce2f5af7f6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "21969720dc126b55163d4cabbf74edcb1179a076538e34cb0566e878d1128775.scope.ndjson.gz",
+          "sha256": "e32695b25907ea9e979c9116eceacd09df243daa2e8ccf711068d617f4dc4ce8",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "2279d304b7b7d707138b8e08c483549b3cbc52261d780fb57295215ce8010af2.scope.ndjson.gz",
+          "sha256": "cdcf427f229da3725c37b44e5dc8ce0bb793a866631a0355c1ada63d71ba39f8",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "2458656740076b565fc97b73bba026b9456a9aefdacffda89bd0dcb99e2e892e.scope.ndjson.gz",
+          "sha256": "fadc1c0bb53c451649eac8dfe9b9d4fe6057298013c9a5b7886ae6609babb933",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "248b9141ee77d6dbeb22fb44056ca32259e3caa1d3d6cbec38393abae1f61ebd.scope.ndjson.gz",
+          "sha256": "ef3ac128ee6787ad83b42910702542d89d50f856babe7c6a920e390f224178c3",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "26fd6eb701cde656d8d24042d63eca1c2365b2648d414fcab1060cf1497b0bd3.scope.ndjson.gz",
+          "sha256": "2797c0f7b77ba89257d9d0eeb3268efb72c58699bb808cd7094b5ca0208bc1f8",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "2bad3f9b7b55986bacbb09939bc3758107ba531e2527a0de616e4a42070cd3dd.scope.ndjson.gz",
+          "sha256": "49dcc5fcd17fffb75a0bbaddee8c6d21bf225b1e7c302a88869fb23ac8f23b54",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "36d18e75bafe0acc4fee28a382a598fa5f7ac057ed2eb29faf476592b141b19b.scope.ndjson.gz",
+          "sha256": "30c31b73e7832a76d22d70bb06bb443706f3cdaaf2bb807a7e416a37d1f8f27c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "392f634d5a434666558e737fbc5831d8a192854c8046ab4845f24ebb6221f9b2.scope.ndjson.gz",
+          "sha256": "7d7ab512e18f198cf521c0b2b23209b332fbeaa127cd43ff55db8638c292f388",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "397a13b51aaac4bd9b3caaaafab0f21887c238f80b6e787107fd89df73dc39a5.scope.ndjson.gz",
+          "sha256": "82bb2d20af34f4820e2b3db592f60d719b07fb2cab35292055f3974a3c892dc7",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "46f5ef818dda754362d3c00dd282f43d7b3a9ece22f901b17d8bfc9611a7dc03.scope.ndjson.gz",
+          "sha256": "fc4ebe062538742a5feaf1ba39ce249880064fbffdf66f5e1fb7b93bcd50625c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "6311ebd8a56180774cadd033b51cbeefae7a9a6f3f1124962a22a9181aab43c6.scope.ndjson.gz",
+          "sha256": "89466e41f717080caf9623e5de3ec691118651195ea700c5195be10366ca59f8",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "66627a04423ac52a014cd8fd2a7be6cd6456ebf1da4d2f41564d012fe4374543.scope.ndjson.gz",
+          "sha256": "ab3258a46968f74bf0f20e589ecab6ac0c8cf10030c11f30752965f798bc22e6",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "7702c29acc05db7097e9b6b3d8f74d5e4b8bb598b797aaa42036399ac837a754.scope.ndjson.gz",
+          "sha256": "fc2a178f9a7d6ce10866ea88e6259582a6a54c9ca9332eadab43bbd814e01c53",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "81b2aa172d59cd484d8e0ae6660c04730fb669df6c1e2bbb5a47fe06b1e1a389.scope.ndjson.gz",
+          "sha256": "90d569b2f59567488f8cef776193e6a2da92c6a553eb8aad5cff12414b732e5b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "a4812a3674b8b5786cf73ac07b6580dbf1a6b7a81eeb494fd6f440e34faf75f3.scope.ndjson.gz",
+          "sha256": "766ff0c2cbff3ca14a25508131aaefae37a4874b40f1ed5d88764b972df5340c",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "a585b1ba68508361064f789083ad0f73d9266049d23b6f638e1a743d2ce1dc95.scope.ndjson.gz",
+          "sha256": "f6325f36fddaa3308250f5f3fc9d6e78df792f320795b840c155a6b286a62223",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "ac4ee597aef8affece28edffac82cf7f91d530481c6725592276ad010a6b72af.scope.ndjson.gz",
+          "sha256": "bb6f58d56b395edb839aeedc2f85db3cc5d2c7f55e176a362966684bbff017dd",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "b1bf0b6703405fddfa63667bd736a183182a62cba2d52e9e6c2c1e76691b61fb.scope.ndjson.gz",
+          "sha256": "b9aacedfe8d163bc99e83a254d5cbb32be0281b5fbfef4e85bdd9e06f35eb351",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "b5a6f80ff35b231f76a53196909b01ab40ac6786fb3397dbe4fed960a5d49d04.scope.ndjson.gz",
+          "sha256": "018c9556b73d13c23dc573a6d96ccac8fafe4756f7c3cb1ffd5f288d88c7511e",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "c86f57f3d0d42c4ffcebcb3ef0b647fd3ddd4476ebbbe08fdd8a442bd63835cd.scope.ndjson.gz",
+          "sha256": "7a7ffe5930f47e4c1e20872ef5ef4f85b04754f2bc557e994160b4f57b8ccadc",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "cc4e072511f4344f2688ab33cb212947e059083912ad3234decea655e3e09654.scope.ndjson.gz",
+          "sha256": "cf9a9549d8cfc187738549f576e332b3f1ae7fd68da2c0d3ae9cdd155666ce69",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "e542ad86691eade0d30bef481b94eea25cbb92e87e7a0eced670ce47d01fe5b5.scope.ndjson.gz",
+          "sha256": "4d7f6b7c4c91bec684b485301f12abd9967582611b9921bd1a7f634b30cd7e9f",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "f457227640ea361a5e11bda7f948f4bb2c02765ae21932bcdab862c8eeb37d73.scope.ndjson.gz",
+          "sha256": "72f026cf79a65380f7c86e1386f23093ce2c399faaee4b7920d3745f6d4f369b",
+          "present_relative_to_manifest": false
+        },
+        {
+          "path": "f96415886c0cd0bd0c3ce2bc3347b485c15b3b5bfa7936a95823633029b2e7d3.scope.ndjson.gz",
+          "sha256": "b59a62e6581b3377f21e7045629e526f455f41b5da0bed48097baf29aacd4c0d",
+          "present_relative_to_manifest": false
+        }
+      ],
+      "status": "MANIFEST_ONLY_MISSING_PAYLOADS"
+    }
+  ],
+  "scope": "Stages 06\u201310 manifests and local finite cases; full queue payloads not freshly restored",
+  "full_queues_verified": false,
+  "blocker": "Large prior queue payload archives need cold restore and exact-record applicability review; parent complete mapping view covers all memberships but is not a substitute for queue analyses"
+}

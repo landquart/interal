@@ -1,0 +1,37 @@
+{
+  "schema": "interal-evidence-provenance-gaps/1",
+  "status": "BLOCKED",
+  "gaps": [
+    {
+      "id": "CORPUS_BINDING",
+      "affected": 10078319,
+      "consequence": "No final membership or nonmembership conclusion"
+    },
+    {
+      "id": "QUEUE_PAYLOADS",
+      "affected": "Stage 06\u201310 full surface/morphology/boundary archives",
+      "consequence": "Queue-specific analyses not freshly ingested or verified"
+    },
+    {
+      "id": "PUBLISHER_CAPTURE",
+      "affected": "Fresh dictionary assertions",
+      "consequence": "Assertion hashes do not certify original page bytes or cold restore"
+    },
+    {
+      "id": "INDEPENDENT_GOLD",
+      "affected": "All real corpus cases",
+      "consequence": "No measured semantic error rates and no full path certification"
+    },
+    {
+      "id": "DEPENDENT_SOURCES",
+      "affected": "GLeMM/MorphyNet and partly shared UDer lineages",
+      "consequence": "No independent majority counts"
+    },
+    {
+      "id": "INTEGRATION_AND_HISTORY",
+      "affected": "Earlier draft integration and unresolved historical restrictions",
+      "consequence": "No merge/release authorization inferred"
+    }
+  ],
+  "mass_irreversible_changes_allowed": false
+}

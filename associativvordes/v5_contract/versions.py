@@ -15,7 +15,7 @@ SCHEMA='interal-v5-contract/1'
 NAMESPACES={'research-v5','TEST_ONLY-v5'}
 COMPONENTS={
  'importers':'importers','pilot_quality':'pilot_evaluation','legacy_dry_run':'mass_dry_run',
- 'identity_mapping':'identity_mapping','normative':'normative','baseline':'v5_baseline','history':'history_registry',
+ 'evidence_registry':'evidence_registry','identity_mapping':'identity_mapping','normative':'normative','baseline':'v5_baseline','history':'history_registry',
  'adapter':'v5_adapter','diagnostics':'v5_diagnostics','structural':'structural_cleanup',
  'surface':'surface_cleanup','morphology':'morphology_cleanup','morphology_review':'morphology_review',
  'national':'national_correspondences','semantic':'semantic_cleanup','boundary':'family_boundary',
@@ -24,7 +24,7 @@ COMPONENTS={
  'review':'review','annotation':'auto_annotation','contract':'v5_contract','integration':'v5_integration'}
 # Data-flow dependencies, separate from the mechanically collected Python/JS imports.
 DAG={'pilot_quality':['evidence','review'],'legacy_dry_run':['annotation','pilot_quality'],'importers':[],'normative':[],'baseline':['normative'],'history':['baseline','normative'],
- 'identity_mapping':['adapter','importers'],'adapter':['baseline','history'],'diagnostics':['adapter','history'],
+ 'evidence_registry':['identity_mapping','national','history','normative'],'identity_mapping':['adapter','importers'],'adapter':['baseline','history'],'diagnostics':['adapter','history'],
  'structural':['baseline','diagnostics','history'],'surface':['diagnostics','structural','history'],
  'morphology':['adapter','surface'],'morphology_review':['morphology','history'],
  'national':['normative','morphology_review'],'semantic':['national','adapter'],
