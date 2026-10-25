@@ -1,4 +1,8 @@
 """Reproducible qualification on a real mass02 export; uses isolated test decisions."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import json
@@ -9,7 +13,7 @@ import subprocess
 import sys
 import time
 import uuid
-from store import Ledger, canonical, digest, restore
+from associativvordes.review.store import Ledger, canonical, digest, restore
 
 
 def stats(values):

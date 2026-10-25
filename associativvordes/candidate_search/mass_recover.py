@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Select a checksum-verified previous proposal export; review history is retained."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import fcntl
 import json
 from pathlib import Path
-from mass_source import file_hash
-from certify_corpus import atomic_json
+from associativvordes.candidate_search.mass_source import file_hash
+from associativvordes.importers.certify_corpus import atomic_json
 
 
 def rollback(output):

@@ -4,6 +4,10 @@
 SQL counts cover the full inventory. Expensive path payloads and queue writes
 use an explicit bounded sample. Reports distinguish those scopes.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import hashlib
 import json
@@ -13,12 +17,12 @@ import sqlite3
 import sys
 import time
 import zlib
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'importers'))
-from certify_corpus import atomic_json
-from morphology_import import dumps, hash_file
-from scale_index import Index
-from search import Queue
-from project_store import verified_project
+pass
+from associativvordes.importers.certify_corpus import atomic_json
+from associativvordes.importers.morphology_import import dumps, hash_file
+from associativvordes.importers.scale_index import Index
+from associativvordes.candidate_search.search import Queue
+from associativvordes.candidate_search.project_store import verified_project
 
 
 def payload_stages(index, output):

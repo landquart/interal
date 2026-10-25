@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:interal:semantic-case:1",
+  "type": "object",
+  "required": [
+    "schema",
+    "id",
+    "scope",
+    "dictionary_sense",
+    "corpus_binding",
+    "status",
+    "production_application_authorized",
+    "llm_answers",
+    "human_decisions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "interal-semantic-case/1"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^semantic-question:[0-9a-f]{64}$"
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "family_id",
+        "language",
+        "lemma_id",
+        "word",
+        "source_version"
+      ],
+      "properties": {
+        "family_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "language": {
+          "type": "string",
+          "minLength": 1
+        },
+        "lemma_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "word": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "dictionary_sense": {
+      "type": "object",
+      "required": [
+        "id",
+        "lemma",
+        "language",
+        "pos",
+        "publisher_sense_locator",
+        "source_refs",
+        "corpus_identity_status"
+      ],
+      "properties": {
+        "corpus_identity_status": {
+          "const": "UNRESOLVED"
+        },
+        "source_refs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "corpus_binding": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "MEMBERSHIP_CONFIRMED",
+        "MEMBERSHIP_REJECT_PROPOSED",
+        "SENSE_SPLIT_REQUIRED",
+        "RELATION_CORRECTION_PROPOSED",
+        "HISTORICAL_BUT_SEMANTICALLY_UNRESOLVED",
+        "INSUFFICIENT_EVIDENCE"
+      ]
+    },
+    "production_application_authorized": {
+      "const": false
+    },
+    "llm_answers": {
+      "type": "array"
+    },
+    "human_decisions": {
+      "type": "array"
+    }
+  }
+}

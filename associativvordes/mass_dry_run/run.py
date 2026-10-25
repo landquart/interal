@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Staged mass dry-run on certified full inputs. Never applies memberships or decisions."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import gzip
@@ -16,15 +20,15 @@ import time
 ROOT=Path(__file__).resolve().parents[2]
 HERE=Path(__file__).resolve().parent
 for name in ('auto_annotation','candidate_search','evidence_graph','importers','pilot_evaluation'):
-    sys.path.insert(0,str(ROOT/'associativvordes'/name))
+    None
 # Restore our worker's imports to the existing annotation modules.
-sys.path.insert(0,str(ROOT/'associativvordes/auto_annotation'))
-from contract import canonical,sha,file_hash,scrub
-from storage import Store as AnnotationStore,backup,restore,atomic
-from pipeline import code_version,rows
-from providers import configuration
-sys.path.insert(0,str(HERE))
-from audit import build_snapshot,compare,samples
+None
+from associativvordes.auto_annotation.contract import canonical,sha,file_hash,scrub
+from associativvordes.auto_annotation.storage import Store as AnnotationStore,backup,restore,atomic
+from associativvordes.auto_annotation.pipeline import code_version,rows
+from associativvordes.auto_annotation.providers import configuration
+None
+from associativvordes.mass_dry_run.audit import build_snapshot,compare,samples
 
 PROTOCOL=json.loads((HERE/'protocol06.json').read_text())
 def write(path,value):
@@ -150,7 +154,7 @@ def collect(store,questions,identity):
     with s.lease():
         plan=s.get(s.runs['mass06'])
         cs={k:s.get(v)['card'] for k,v in s.cards.items() if k in set(plan['cards'])}
-        from pipeline import result_key
+        from associativvordes.auto_annotation.pipeline import result_key
         ps=[s.latest(result_key(cs[k],plan['recipe_sha256'])) for k in plan['cards']]
         if any(p is None for p in ps):raise ValueError('incomplete annotations')
         snapshot,stats=build_snapshot(questions,ps,cs,identity)
@@ -204,9 +208,9 @@ def stage_run(a,output,stage,frozen):
     return result,snapshot
 
 def quality(snapshot,a):
-    sys.path.insert(0,str(ROOT/'associativvordes/pilot_evaluation'))
-    from gold import compile_gold
-    from metrics04 import zero_error_requirement,summary
+    None
+    from associativvordes.pilot_evaluation.gold import compile_gold
+    from associativvordes.pilot_evaluation.metrics04 import zero_error_requirement,summary
     cases=list(rows(ROOT/'audit/associative-external-preparation/pilot-validation/CASES.ndjson.gz'))
     js=list(rows(a.judgments)) if a.judgments else []
     roster=json.loads(Path(a.roster).read_text()) if a.roster else {}
@@ -280,7 +284,7 @@ def run(a):
        backup_bytes=(output/'ANNOTATION-BACKUP.zip').stat().st_size,restored=restored))
     # Reuse human review interface in a fresh research ledger, never the frozen live ledger.
     s=AnnotationStore(output/'stages/all/annotation')
-    from pipeline import export
+    from associativvordes.auto_annotation.pipeline import export
     with s.lease():handoff=export(s,'mass06',output/'review-handoff',True)
     import importlib.util
     spec=importlib.util.spec_from_file_location('phase06_review_store',ROOT/'associativvordes/review/store.py')
@@ -296,7 +300,7 @@ def run(a):
       restored=restored,final_disk=disk(output),input_lock_sha256=file_hash(output/'FROZEN-INPUTS.json'))
     write(output/'CYCLE.json',report)
     # Archive all proposal rows, source rows, groups and new blinded QC tasks for durable publication.
-    from archive04 import pack,unpack
+    from associativvordes.pilot_evaluation.archive04 import pack,unpack
     files={'SNAPSHOT.json':str(final/'SNAPSHOT.json'),'QUALITY.json':str(output/'QUALITY.json'),
            'REGISTRY-STATE.json':str(final/'REGISTRY-STATE.json')}
     archive=output/'PACKED-PROPOSALS.json.gz';receipt=pack(files,archive)

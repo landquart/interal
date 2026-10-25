@@ -1,0 +1,48 @@
+{
+  "external_manifest": {
+    "path": "EXTERNAL-MANIFEST.json",
+    "sha256": "9bed1daef8b66754256690b08d49fd2cda8f44a9ff2c54be24c0f17f79553bfe"
+  },
+  "external_source_lock": {
+    "path": "data/morphology-evidence/sources/source-lock.json",
+    "sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad"
+  },
+  "history_commit": "41d3b59295296ad72a3bed6d54ebcbdb7c93c97e",
+  "history_snapshot": {
+    "schema": "interal-history/1",
+    "sha256": "fe87153c07976f8b4ae02fffee778b5213303cd01d5f8e1f380b08f2d0882374",
+    "snapshot": "snapshots/sha256-fe87153c07976f8b4ae02fffee778b5213303cd01d5f8e1f380b08f2d0882374.json"
+  },
+  "original_assignments": "Unavailable artifacts remain baseline blockers; not reconstructed or invented.",
+  "originals_cache": {
+    "bytes": 92453026,
+    "filename": "pinned-morphology-originals.zip",
+    "license_policy": "Original source attribution and individual licenses apply; cache is outside Git.",
+    "restored_and_all_35_artifacts_verified": true,
+    "sha256": "b0b27f47a7fe28d799eebb0c54525921e6e68522cadf41fa46a318d228b9054b"
+  },
+  "production_metadata": {
+    "associativvordes/family-index-v5/manifest.json": {
+      "bytes": 8135,
+      "git_blob": "b9fe834aae2eb69e676bffbae78c12e385d25f53",
+      "sha256": "d259400f98939bfa518e688b3bf5c8218404aaffa3091c6ecb0fa96ed1bf9c5c"
+    },
+    "associativvordes/family-index-v5/report.json": {
+      "bytes": 329855,
+      "git_blob": "d55b38833e1d4bb4eb7827ae0eb3aea11975e23b",
+      "sha256": "2ed317f98483f64d114f16b5b4dd4611ec279cf075b80a7df6f191ce90bcfdd7"
+    },
+    "associativvordes/family-index-v5/repository-provenance.json": {
+      "bytes": 14573,
+      "git_blob": "8b7cf42207165a9a97a2d4bae748d8eb9ee6945d",
+      "sha256": "d12de988f95fb50ecc174a93b1275f5771940bbe3b45f6dd34a4b6e71e0d855a"
+    }
+  },
+  "projection_manifest": {
+    "includes_all_2048_source_file_locks": true,
+    "path": "PROJECTION-MANIFEST.json",
+    "sha256": "edcb3e6d57a0ba995832ed5d122158c53ab9fdc60b106febc407b459a322b394"
+  },
+  "schema": "v5-adapter-source-lock/1",
+  "source_commit": "47723611112610945cb09b34e18588b7bd151911"
+}

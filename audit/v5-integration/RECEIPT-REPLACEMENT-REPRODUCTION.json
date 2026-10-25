@@ -1,0 +1,6 @@
+{
+  "previous_commit": "d4ce761826af36dd3cabf8f6bc5b3975090f241b",
+  "previous_primitive_replaces_existing_binding": true,
+  "exposure": "TOCTOU race between bind_directory existence check and replace; no-clobber publication required",
+  "regression": "test_receipt_publication_never_replaces_an_existing_binding"
+}

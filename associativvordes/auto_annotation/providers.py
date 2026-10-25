@@ -1,4 +1,8 @@
 """Explicit opt-in compatible HTTP adapter; durable reservations precede every generation."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 from datetime import datetime,timezone
 from decimal import Decimal,ROUND_CEILING
 import ipaddress
@@ -10,7 +14,7 @@ import threading
 import time
 from urllib.parse import urlsplit,urlunsplit
 from urllib.request import Request,build_opener,HTTPRedirectHandler,ProxyHandler
-from contract import SYSTEM,canonical,sha,response_schema,validate_response,parse_json
+from associativvordes.auto_annotation.contract import SYSTEM,canonical,sha,response_schema,validate_response,parse_json
 
 DEFAULT = dict(route='deterministic',providers={},roles={},allow_paid=False,budget_usd='0',
  max_requests=0,concurrency=1,requests_per_minute=60,max_attempts=1,

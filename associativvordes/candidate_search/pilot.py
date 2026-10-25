@@ -1,4 +1,8 @@
 """Explicit bounded seven-family evaluation. No production entry point."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import json
@@ -6,7 +10,7 @@ from pathlib import Path
 import resource
 import tempfile
 import time
-from search import Graph,Queue,build,reverse,canonical,file_hash,lookup,enqueue_reverse
+from associativvordes.candidate_search.search import Graph,Queue,build,reverse,canonical,file_hash,lookup,enqueue_reverse
 
 def run(snapshot,frequencies,output):
     output=Path(output);output.mkdir(parents=True,exist_ok=True)

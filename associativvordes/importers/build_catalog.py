@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Merge only normalized claim views; preserve every evidence occurrence."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import errno
 import heapq
@@ -9,7 +13,7 @@ from pathlib import Path
 import shutil
 import sqlite3
 import tempfile
-from morphology_import import digest,dumps,hash_file
+from associativvordes.importers.morphology_import import digest,dumps,hash_file
 
 
 def rows(path,key):

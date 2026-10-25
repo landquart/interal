@@ -1,3 +1,7 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import contextlib
 import gzip
 import io
@@ -6,13 +10,13 @@ import shutil
 from pathlib import Path
 import tempfile
 import unittest
-from morphology_import import run, digest, hash_file
-from certify_corpus import atomic_json, verified
-from scale_index import Index
-from corpus_cache import pack, restore
-from catalog_store import rollback, publish
-from audit_identity import partition as audit_identifiers
-from audit_scale_index import audit as audit_projection
+from associativvordes.importers.morphology_import import run, digest, hash_file
+from associativvordes.importers.certify_corpus import atomic_json, verified
+from associativvordes.importers.scale_index import Index
+from associativvordes.importers.corpus_cache import pack, restore
+from associativvordes.importers.catalog_store import rollback, publish
+from associativvordes.importers.audit_identity import partition as audit_identifiers
+from associativvordes.importers.audit_scale_index import audit as audit_projection
 
 HERE=Path(__file__).parent
 

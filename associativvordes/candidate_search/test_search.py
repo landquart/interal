@@ -1,12 +1,16 @@
 """Real pinned probes; mutations below are explicitly adversarial tests, not corpus data."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import copy
 import json
 from pathlib import Path
 import tempfile
 import unittest
-from search import Graph,Queue,build,collect,reverse,priority,DEFAULT_WEIGHTS,match_real_lexeme,lookup,canonical,sha,frequency_index,enqueue_reverse
-from records import read_json
-from build_graph import load_registry,ingest
+from associativvordes.candidate_search.search import Graph,Queue,build,collect,reverse,priority,DEFAULT_WEIGHTS,match_real_lexeme,lookup,canonical,sha,frequency_index,enqueue_reverse
+from associativvordes.evidence_graph.records import read_json
+from associativvordes.evidence_graph.build_graph import load_registry,ingest
 
 HERE=Path(__file__).parent
 

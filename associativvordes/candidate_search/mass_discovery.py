@@ -1,10 +1,14 @@
 """Bounded native-identity traversal, spelling groups are review questions only."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 from collections import Counter, defaultdict
 import json
 import math
 import zlib
-from mass_source import Source, readonly
-from mass_registry import Graph, canonical, sha, lookup
+from associativvordes.candidate_search.mass_source import Source, readonly
+from associativvordes.candidate_search.mass_registry import Graph, canonical, sha, lookup
 
 DEFAULTS = dict(seeds_per_role=4, native_per_source=2, arcs_per_class=8,
                 max_depth=2, paths_per_class=12, frequency_observations=4, inflections=8)

@@ -1,13 +1,17 @@
 """Freeze real, unannotated membership questions before evaluating predictions."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
-from gold import new_release_directory
+from associativvordes.pilot_evaluation.gold import new_release_directory
 from collections import Counter,defaultdict
 import json
 import tempfile
 from pathlib import Path
-from gold import canonical,sha,file_hash,case_hash,validate_cases,assignments
-from prepare_inputs import ROOTS
-from graph import Graph,lookup,ref
+from associativvordes.pilot_evaluation.gold import canonical,sha,file_hash,case_hash,validate_cases,assignments
+from associativvordes.pilot_evaluation.prepare_inputs import ROOTS
+from associativvordes.evidence_graph.graph import Graph,lookup,ref
 
 SEED='interal-phase06-preregistered-1'
 LANGS=['en','de','fr','es','it','ru']

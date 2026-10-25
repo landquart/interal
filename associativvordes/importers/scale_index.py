@@ -5,6 +5,10 @@ Each partition is checkpointed in SQLite transactions. Productive observations
 are stored compressed for random access; inflections remain losslessly in the
 certified staging files and cannot become derivational arcs.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import deque
 import fcntl
@@ -17,8 +21,8 @@ import sqlite3
 import time
 import unicodedata
 import zlib
-from morphology_import import digest, dumps, hash_file
-from certify_corpus import atomic_json, verified, ROOT
+from associativvordes.importers.morphology_import import digest, dumps, hash_file
+from associativvordes.importers.certify_corpus import atomic_json, verified, ROOT
 
 
 def bid(value): return bytes.fromhex(value.split(':',1)[1])

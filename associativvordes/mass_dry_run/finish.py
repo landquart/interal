@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Resume coordinator after host execution limit; pinned algorithms and data are reverified."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import fcntl
 import json
@@ -9,11 +13,11 @@ import resource
 import shutil
 import sys
 import time
-import run as cycle
-from audit import compare,sha
-from contract import file_hash
-from storage import Store,backup,restore
-from pipeline import export
+from associativvordes.mass_dry_run import run as cycle
+from associativvordes.mass_dry_run.audit import compare,sha
+from associativvordes.auto_annotation.contract import file_hash
+from associativvordes.auto_annotation.storage import Store,backup,restore
+from associativvordes.auto_annotation.pipeline import export
 
 def verify_modules(frozen):
     for name,expected in frozen['algorithm_modules'].items():
@@ -109,7 +113,7 @@ def finish(a):
       str(cycle.ROOT/'associativvordes/pilot_evaluation'),str(output)]
     metrics,receipt=cycle.measured(output,'finished-archive',args)
     if metrics['max_rss_kib']>cycle.PROTOCOL['stage_gates']['max_rss_kib']:raise ValueError('archive resource gate exceeded')
-    from archive04 import unpack
+    from associativvordes.pilot_evaluation.archive04 import unpack
     roundtrip=output/'archive-roundtrip-finished';unpack(output/'PACKED-PROPOSALS.json.gz',roundtrip)
     files={'SNAPSHOT.json':final/'SNAPSHOT.json','QUALITY.json':output/'QUALITY.json','REGISTRY-STATE.json':final/'REGISTRY-STATE.json'}
     for name,path in files.items():

@@ -1,0 +1,45 @@
+✖ 4367062598: verifier rejects 1599 per language before opening the population index (208.485618ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 294.64635
+
+✖ failing tests:
+
+test at tests/associative-cleanup-quality.test.mjs:128:1
+✖ 4367062598: verifier rejects 1599 per language before opening the population index (208.485618ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 18, in <module>
+    File "/tmp/interal-audit-old/associativvordes/cleanup_quality/verify.py", line 29, in verify
+      d=sqlite3.connect('file:'+str(index/'index.sqlite')+'?mode=ro',uri=True)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+      return self._mock_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+      return self._execute_mock_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+      raise effect
+  AssertionError: undersized sample reached population index
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:2:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:128:95)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -68,7 +68,14 @@ TABLES={
  'family_controls':('family TEXT PRIMARY KEY,status TEXT,proof TEXT',['family','status','proof'])}
 
 class Graph:
-    def __init__(self,path=':memory:'):
+    def __init__(self,path=':memory:',version_contract=None,normative_trust=None):
+        from associativvordes.v5_contract.versions import database_binding
+        database_binding(path,version_contract,'entities')
+        self.version_contract=version_contract;self.normative_trust=normative_trust
+        self.normative_observation=None
+        if version_contract:
+            from associativvordes.v5_contract.policy import hypothesis
+            self.normative_observation=hypothesis({'stage':'evidence','status':'unreviewed_source_claim'},version_contract)
         self.db=sqlite3.connect(path);self.trusted_snapshots=set();self.trusted_manual_refs=set()
         self.db.executescript('''PRAGMA cache_size=-8192;PRAGMA temp_store=FILE;
          CREATE TABLE IF NOT EXISTS entities(id TEXT,revision INTEGER,kind TEXT,payload TEXT,PRIMARY KEY(id,revision));
@@ -80,11 +87,27 @@ class Graph:
         for table,(ddl,_) in TABLES.items():self.db.execute('CREATE TABLE IF NOT EXISTS '+table+'('+ddl+')')
         self.db.execute('CREATE INDEX IF NOT EXISTS arcs_src ON arcs(src)')
         self.db.execute('CREATE INDEX IF NOT EXISTS decision_scope ON decisions(family,language,word)')
+        if version_contract:
+            self.db.execute('CREATE TABLE IF NOT EXISTS v5_version_meta(k TEXT PRIMARY KEY,v TEXT)')
+            self.db.execute('INSERT OR IGNORE INTO v5_version_meta VALUES(?,?)',('contract',json.dumps(version_contract,sort_keys=True)))
     def close(self):self.db.close()
-    def commit(self):self.db.commit()
+    def commit(self):
+        if self.version_contract:
+            from associativvordes.v5_contract.versions import validate
+            validate(self.version_contract)
+        self.db.commit()
     def put(self,r):
         if r!=envelope(r['entity'],r['id'],r['body'],r['revision'],r['supersedes']):raise IntegrityConflict('invalid envelope')
-        kind=r['entity'];b=r['body'];payload=canonical(r)
+        kind=r['entity'];b=r['body']
+        if self.version_contract:
+            if kind=='Verdict':
+                from associativvordes.v5_contract.policy import decision
+                decision(b.get('extensions',{}).get('normative_decision'),self.version_contract,self.normative_trust,confirmed=True)
+                raise IntegrityConflict('BLOCKED: a normative membership decision belongs in the decision stage, not the evidence graph')
+            if kind=='Evidence':
+                b=dict(b,extensions=dict(b.get('extensions',{}),normative=self.normative_observation))
+                r=envelope(kind,r['id'],b,r['revision'],r['supersedes'])
+        payload=canonical(r)
         if kind not in REQUIRED or not REQUIRED[kind]<=b.keys():raise ValueError('unknown or incomplete entity')
         if kind in {'Evidence','CorpusAlignment'} and b.get('initial_status')!='needs_review':raise ValueError('import cannot accept')
         if kind=='Lexeme' and (not b['lemma'].strip() or not b['language'] or unicodedata.normalize('NFC',b['lemma'])!=b['lemma']):raise ValueError('invalid lexical identity')

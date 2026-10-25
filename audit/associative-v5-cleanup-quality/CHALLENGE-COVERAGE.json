@@ -1,0 +1,39 @@
+{
+  "units": 162,
+  "case_kinds": {
+    "EXISTING_MEMBERSHIP": 128,
+    "HISTORICAL_SCOPE_NOT_POPULATION_MEMBERSHIP": 7,
+    "DOCUMENTARY_CONTEXT_NOT_CORPUS_MEMBERSHIP": 27
+  },
+  "overlapping_risk_flags": {
+    "ROOT_OR_OVERLAP:manu": 6,
+    "ROOT_OR_OVERLAP:regul": 6,
+    "ROOT_OR_OVERLAP:creat": 4,
+    "ROOT_OR_OVERLAP:ocul": 6,
+    "ROOT_OR_OVERLAP:ped": 6,
+    "ROOT_OR_OVERLAP:pede": 6,
+    "ROOT_OR_OVERLAP:inter": 6,
+    "ROOT_OR_OVERLAP:liber": 6,
+    "ROOT_OR_OVERLAP:mut": 6,
+    "ROOT_OR_OVERLAP:net": 7,
+    "ROOT_OR_OVERLAP:nitidus": 5,
+    "SEMANTIC_IDENTITY_UNRESOLVED": 67,
+    "ROOT_OR_OVERLAP:sonus": 2,
+    "ROOT_OR_OVERLAP:genea": 2,
+    "ROOT_OR_OVERLAP:act": 13,
+    "LARGE_FAMILY": 12,
+    "SINGLETON": 12,
+    "SCOPED_NEGATIVE_HISTORY": 14,
+    "HISTORICAL_ALLOMORPH_OR_NATIONAL_CORRESPONDENCE": 27,
+    "COMPOUND_COMPONENT": 2,
+    "HISTORICAL_ALLOMORPH": 4,
+    "LEXICAL_REALIZATION": 12,
+    "HISTORICAL_CORRESPONDENCE": 3,
+    "OPAQUE_HISTORICAL_DERIVATIVE": 1,
+    "INDIRECT_COMPOUND_COMPONENT": 1,
+    "REFUTED_SPECIFIC_PATH": 3,
+    "PREFIX_COMPONENT": 1
+  },
+  "counts_are_not_additive": true,
+  "not_probability_sample": true
+}

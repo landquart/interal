@@ -1,0 +1,3596 @@
+{
+  "schema": "interal-v5-dependencies/1",
+  "data_flow": {
+    "pilot_quality": [
+      "evidence",
+      "review"
+    ],
+    "legacy_dry_run": [
+      "annotation",
+      "pilot_quality"
+    ],
+    "importers": [],
+    "normative": [],
+    "baseline": [
+      "normative"
+    ],
+    "history": [
+      "baseline",
+      "normative"
+    ],
+    "adapter": [
+      "baseline",
+      "history"
+    ],
+    "diagnostics": [
+      "adapter",
+      "history"
+    ],
+    "structural": [
+      "baseline",
+      "diagnostics",
+      "history"
+    ],
+    "surface": [
+      "diagnostics",
+      "structural",
+      "history"
+    ],
+    "morphology": [
+      "adapter",
+      "surface"
+    ],
+    "morphology_review": [
+      "morphology",
+      "history"
+    ],
+    "national": [
+      "normative",
+      "morphology_review"
+    ],
+    "semantic": [
+      "national",
+      "adapter"
+    ],
+    "boundary": [
+      "semantic",
+      "diagnostics"
+    ],
+    "quality_sample": [
+      "boundary",
+      "national",
+      "semantic"
+    ],
+    "quality": [
+      "quality_sample",
+      "decision"
+    ],
+    "dry_run": [
+      "quality",
+      "structural",
+      "baseline"
+    ],
+    "release": [
+      "dry_run",
+      "quality",
+      "history",
+      "normative"
+    ],
+    "release_package": [
+      "release"
+    ],
+    "evidence": [
+      "adapter",
+      "importers"
+    ],
+    "candidates": [
+      "evidence"
+    ],
+    "review": [
+      "adapter",
+      "evidence",
+      "candidates"
+    ],
+    "review_event": [
+      "review"
+    ],
+    "decision": [
+      "review_event",
+      "normative"
+    ],
+    "preview": [
+      "decision",
+      "quality"
+    ],
+    "release_gate": [
+      "preview",
+      "release"
+    ],
+    "annotation": [
+      "review"
+    ],
+    "contract": [],
+    "integration": [
+      "contract",
+      "release"
+    ]
+  },
+  "data_flow_topological_order": [
+    "contract",
+    "importers",
+    "normative",
+    "baseline",
+    "history",
+    "adapter",
+    "diagnostics",
+    "evidence",
+    "candidates",
+    "structural",
+    "review",
+    "surface",
+    "annotation",
+    "morphology",
+    "pilot_quality",
+    "review_event",
+    "decision",
+    "legacy_dry_run",
+    "morphology_review",
+    "national",
+    "semantic",
+    "boundary",
+    "quality_sample",
+    "quality",
+    "dry_run",
+    "preview",
+    "release",
+    "integration",
+    "release_gate",
+    "release_package"
+  ],
+  "physical_imports": [
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/audit_identity.py",
+      "line": 14,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/audit_identity.py",
+      "line": 15,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/audit_import.py",
+      "line": 20,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/audit_scale_index.py",
+      "line": 13,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/audit_scale_index.py",
+      "line": 14,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/audit_scale_index.py",
+      "line": 15,
+      "import_name": "associativvordes.importers.scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/build_catalog.py",
+      "line": 16,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/catalog_store.py",
+      "line": 12,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/certify_corpus.py",
+      "line": 18,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/certify_corpus.py",
+      "line": 19,
+      "import_name": "associativvordes.importers.audit_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/certify_corpus.py",
+      "line": 20,
+      "import_name": "associativvordes.importers.build_catalog",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/corpus_cache.py",
+      "line": 15,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/corpus_cache.py",
+      "line": 16,
+      "import_name": "associativvordes.importers.glemm_cache",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/fetch_glemm_git.py",
+      "line": 14,
+      "import_name": "associativvordes.importers.glemm_cache",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/fetch_glemm_git.py",
+      "line": 15,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/fetch_sources.py",
+      "line": 19,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/glemm_cache.py",
+      "line": 15,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/index_watch.py",
+      "line": 12,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/index_watch.py",
+      "line": 13,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/index_watch.py",
+      "line": 14,
+      "import_name": "associativvordes.importers.scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/rebuild.py",
+      "line": 11,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/rebuild.py",
+      "line": 12,
+      "import_name": "associativvordes.importers.audit_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/rebuild.py",
+      "line": 13,
+      "import_name": "associativvordes.importers.build_catalog",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/scale_index.py",
+      "line": 24,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/scale_index.py",
+      "line": 25,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/validate_sources.py",
+      "line": 20,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/validate_sources.py",
+      "line": 21,
+      "import_name": "associativvordes.importers.fetch_sources",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/validate_sources.py",
+      "line": 22,
+      "import_name": "associativvordes.importers.audit_import",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/validate_sources.py",
+      "line": 23,
+      "import_name": "associativvordes.importers.build_catalog",
+      "kind": "python"
+    },
+    {
+      "source": "importers",
+      "target": "importers",
+      "file": "associativvordes/importers/verify_replay.py",
+      "line": 12,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/capture.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/capture.py",
+      "line": 10,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/capture.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.run",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/compare04.py",
+      "line": 10,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/compare04.py",
+      "line": 11,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/compare04.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.metrics04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/evaluate.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/gold.py",
+      "line": 10,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/human04.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "review",
+      "file": "associativvordes/pilot_evaluation/human04.py",
+      "line": 13,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/human04.py",
+      "line": 206,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/impact.py",
+      "line": 10,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/impact.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.run",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/metrics04.py",
+      "line": 8,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/metrics04.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.evaluate",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "line": 17,
+      "import_name": "associativvordes.evidence_graph.prepare_registry",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 8,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.prepare_inputs",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 10,
+      "import_name": "associativvordes.evidence_graph.select_pilot",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 11,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.study04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.compare04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.prepare_inputs",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.sample",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 14,
+      "import_name": "associativvordes.pilot_evaluation.run",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 15,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 16,
+      "import_name": "associativvordes.evidence_graph.select_pilot",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 17,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 14,
+      "import_name": "associativvordes.pilot_evaluation.evaluate",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 15,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.prepare_inputs",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 14,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/study04.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/study04.py",
+      "line": 10,
+      "import_name": "associativvordes.pilot_evaluation.compare04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/study04.py",
+      "line": 11,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/audit.py",
+      "line": 12,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/export_snapshot.py",
+      "line": 15,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/export_snapshot.py",
+      "line": 16,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "review",
+      "file": "associativvordes/mass_dry_run/export_snapshot.py",
+      "line": 48,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 16,
+      "import_name": "associativvordes.mass_dry_run",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 17,
+      "import_name": "associativvordes.mass_dry_run.audit",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 18,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 19,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 20,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 116,
+      "import_name": "associativvordes.pilot_evaluation.archive04",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 26,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 27,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 28,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 29,
+      "import_name": "associativvordes.auto_annotation.providers",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 31,
+      "import_name": "associativvordes.mass_dry_run.audit",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 212,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 213,
+      "import_name": "associativvordes.pilot_evaluation.metrics04",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 287,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 303,
+      "import_name": "associativvordes.pilot_evaluation.archive04",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 157,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/worker.py",
+      "line": 11,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/worker.py",
+      "line": 12,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/worker.py",
+      "line": 13,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "baseline",
+      "target": "baseline",
+      "file": "associativvordes/v5_baseline/audit_ids.py",
+      "line": 4,
+      "import_name": "associativvordes.v5_baseline.census",
+      "kind": "python"
+    },
+    {
+      "source": "baseline",
+      "target": "baseline",
+      "file": "associativvordes/v5_baseline/audit_ledger.py",
+      "line": 4,
+      "import_name": "associativvordes.v5_baseline.census",
+      "kind": "python"
+    },
+    {
+      "source": "baseline",
+      "target": "baseline",
+      "file": "associativvordes/v5_baseline/audit_metadata.py",
+      "line": 4,
+      "import_name": "associativvordes.v5_baseline.census",
+      "kind": "python"
+    },
+    {
+      "source": "baseline",
+      "target": "baseline",
+      "file": "associativvordes/v5_baseline/certify.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_baseline.census",
+      "kind": "python"
+    },
+    {
+      "source": "baseline",
+      "target": "baseline",
+      "file": "associativvordes/v5_baseline/certify.py",
+      "line": 26,
+      "import_name": "associativvordes.v5_baseline.audit_ids",
+      "kind": "python"
+    },
+    {
+      "source": "baseline",
+      "target": "baseline",
+      "file": "associativvordes/v5_baseline/certify.py",
+      "line": 27,
+      "import_name": "associativvordes.v5_baseline.audit_metadata",
+      "kind": "python"
+    },
+    {
+      "source": "baseline",
+      "target": "baseline",
+      "file": "associativvordes/v5_baseline/certify.py",
+      "line": 28,
+      "import_name": "associativvordes.v5_baseline.audit_ledger",
+      "kind": "python"
+    },
+    {
+      "source": "history",
+      "target": "history",
+      "file": "associativvordes/history_registry/build.py",
+      "line": 17,
+      "import_name": "associativvordes.history_registry.registry",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/adapter.py",
+      "line": 8,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/bridge.py",
+      "line": 8,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/bridge.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_adapter.adapter",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "review",
+      "file": "associativvordes/v5_adapter/bridge.py",
+      "line": 62,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/bridge.py",
+      "line": 84,
+      "import_name": "associativvordes.v5_adapter.external",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/build.py",
+      "line": 10,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/build.py",
+      "line": 11,
+      "import_name": "associativvordes.v5_adapter.stream",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/exercise.py",
+      "line": 8,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/exercise.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_adapter.adapter",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/exercise.py",
+      "line": 10,
+      "import_name": "associativvordes.v5_adapter.external",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/exercise.py",
+      "line": 11,
+      "import_name": "associativvordes.v5_adapter.bridge",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "annotation",
+      "file": "associativvordes/v5_adapter/exercise.py",
+      "line": 61,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/v5_adapter/exercise.py",
+      "line": 70,
+      "import_name": "associativvordes.mass_dry_run.export_snapshot",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/external.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "evidence",
+      "file": "associativvordes/v5_adapter/external.py",
+      "line": 11,
+      "import_name": "associativvordes.evidence_graph.records",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "importers",
+      "file": "associativvordes/v5_adapter/external.py",
+      "line": 12,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "evidence",
+      "file": "associativvordes/v5_adapter/external.py",
+      "line": 104,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "evidence",
+      "file": "associativvordes/v5_adapter/external.py",
+      "line": 105,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/queue_input.py",
+      "line": 7,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/queue_input.py",
+      "line": 8,
+      "import_name": "associativvordes.v5_adapter.adapter",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/queue_input.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_adapter.bridge",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/queue_input.py",
+      "line": 27,
+      "import_name": "associativvordes.v5_adapter.external",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/verify.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "adapter",
+      "file": "associativvordes/v5_adapter/verify.py",
+      "line": 10,
+      "import_name": "associativvordes.v5_adapter.adapter",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/run.py",
+      "line": 11,
+      "import_name": "associativvordes.v5_diagnostics.classify",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "adapter",
+      "file": "associativvordes/v5_diagnostics/run.py",
+      "line": 14,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "adapter",
+      "file": "associativvordes/v5_diagnostics/run.py",
+      "line": 15,
+      "import_name": "associativvordes.v5_adapter.adapter",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "adapter",
+      "file": "associativvordes/v5_diagnostics/run.py",
+      "line": 16,
+      "import_name": "associativvordes.v5_adapter.bridge",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/backup.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_diagnostics.tools.query",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/backup.py",
+      "line": 11,
+      "import_name": "associativvordes.v5_diagnostics.classify",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/finalize.py",
+      "line": 10,
+      "import_name": "associativvordes.v5_diagnostics.tools.query",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/finalize.py",
+      "line": 12,
+      "import_name": "associativvordes.v5_diagnostics.classify",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/join_volumes.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_diagnostics.tools.query",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/query.py",
+      "line": 10,
+      "import_name": "associativvordes.v5_diagnostics.classify",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/suffix_exposure.py",
+      "line": 14,
+      "import_name": "associativvordes.v5_diagnostics.tools.query",
+      "kind": "python"
+    },
+    {
+      "source": "diagnostics",
+      "target": "diagnostics",
+      "file": "associativvordes/v5_diagnostics/tools/suffix_exposure.py",
+      "line": 16,
+      "import_name": "associativvordes.v5_diagnostics.classify",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/audit_metadata.py",
+      "line": 7,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/audit_metadata.py",
+      "line": 8,
+      "import_name": "associativvordes.structural_cleanup.shadow",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/capture.py",
+      "line": 7,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/scan.py",
+      "line": 7,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "adapter",
+      "file": "associativvordes/structural_cleanup/scan.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_adapter.stream",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/shadow.py",
+      "line": 7,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "history",
+      "file": "associativvordes/structural_cleanup/shadow.py",
+      "line": 91,
+      "import_name": "associativvordes.history_registry.registry",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/verify.py",
+      "line": 7,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/verify.py",
+      "line": 8,
+      "import_name": "associativvordes.structural_cleanup.shadow",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/workflow.py",
+      "line": 7,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/workflow.py",
+      "line": 8,
+      "import_name": "associativvordes.structural_cleanup.capture",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/workflow.py",
+      "line": 9,
+      "import_name": "associativvordes.structural_cleanup.shadow",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/workflow.py",
+      "line": 10,
+      "import_name": "associativvordes.structural_cleanup.verify",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "contract",
+      "file": "associativvordes/structural_cleanup/workflow.py",
+      "line": 21,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "structural",
+      "target": "structural",
+      "file": "associativvordes/structural_cleanup/workflow.py",
+      "line": 82,
+      "import_name": "associativvordes.structural_cleanup.audit_metadata",
+      "kind": "python"
+    },
+    {
+      "source": "surface",
+      "target": "history",
+      "file": "associativvordes/surface_cleanup/history.py",
+      "line": 9,
+      "import_name": "associativvordes.history_registry.registry",
+      "kind": "python"
+    },
+    {
+      "source": "surface",
+      "target": "surface",
+      "file": "associativvordes/surface_cleanup/history.py",
+      "line": 10,
+      "import_name": "associativvordes.surface_cleanup.policy",
+      "kind": "python"
+    },
+    {
+      "source": "surface",
+      "target": "surface",
+      "file": "associativvordes/surface_cleanup/run.py",
+      "line": 7,
+      "import_name": "associativvordes.surface_cleanup.policy",
+      "kind": "python"
+    },
+    {
+      "source": "surface",
+      "target": "structural",
+      "file": "associativvordes/surface_cleanup/run.py",
+      "line": 12,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "surface",
+      "target": "structural",
+      "file": "associativvordes/surface_cleanup/run.py",
+      "line": 13,
+      "import_name": "associativvordes.structural_cleanup.shadow",
+      "kind": "python"
+    },
+    {
+      "source": "surface",
+      "target": "surface",
+      "file": "associativvordes/surface_cleanup/run.py",
+      "line": 14,
+      "import_name": "associativvordes.surface_cleanup.history",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "adapter",
+      "file": "associativvordes/morphology_cleanup/native.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "adapter",
+      "file": "associativvordes/morphology_cleanup/native.py",
+      "line": 10,
+      "import_name": "associativvordes.v5_adapter.external",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "morphology",
+      "file": "associativvordes/morphology_cleanup/native.py",
+      "line": 11,
+      "import_name": "associativvordes.morphology_cleanup.policy",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "morphology",
+      "file": "associativvordes/morphology_cleanup/run.py",
+      "line": 7,
+      "import_name": "associativvordes.morphology_cleanup.native",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "morphology",
+      "file": "associativvordes/morphology_cleanup/run.py",
+      "line": 8,
+      "import_name": "associativvordes.morphology_cleanup.policy",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "structural",
+      "file": "associativvordes/morphology_cleanup/run.py",
+      "line": 14,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "structural",
+      "file": "associativvordes/morphology_cleanup/run.py",
+      "line": 15,
+      "import_name": "associativvordes.structural_cleanup.shadow",
+      "kind": "python"
+    },
+    {
+      "source": "morphology",
+      "target": "diagnostics",
+      "file": "associativvordes/morphology_cleanup/run.py",
+      "line": 17,
+      "import_name": "associativvordes.v5_diagnostics.classify",
+      "kind": "python"
+    },
+    {
+      "source": "morphology_review",
+      "target": "morphology_review",
+      "file": "associativvordes/morphology_review/run.py",
+      "line": 7,
+      "import_name": "associativvordes.morphology_review.policy",
+      "kind": "python"
+    },
+    {
+      "source": "morphology_review",
+      "target": "structural",
+      "file": "associativvordes/morphology_review/run.py",
+      "line": 10,
+      "import_name": "associativvordes.structural_cleanup.common",
+      "kind": "python"
+    },
+    {
+      "source": "morphology_review",
+      "target": "contract",
+      "file": "associativvordes/morphology_review/run.py",
+      "line": 14,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "national",
+      "target": "national",
+      "file": "associativvordes/national_correspondences/__init__.py",
+      "line": 2,
+      "import_name": "associativvordes.national_correspondences.registry",
+      "kind": "python"
+    },
+    {
+      "source": "national",
+      "target": "national",
+      "file": "associativvordes/national_correspondences/audit.py",
+      "line": 12,
+      "import_name": "associativvordes.national_correspondences.registry",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/bridge.py",
+      "line": 5,
+      "import_name": "associativvordes.national_correspondences.registry",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "semantic",
+      "file": "associativvordes/semantic_cleanup/bridge.py",
+      "line": 6,
+      "import_name": "associativvordes.semantic_cleanup.policy",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "history",
+      "file": "associativvordes/semantic_cleanup/history.py",
+      "line": 7,
+      "import_name": "associativvordes.history_registry.registry",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/history.py",
+      "line": 8,
+      "import_name": "associativvordes.national_correspondences.registry",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/history.py",
+      "line": 9,
+      "import_name": "associativvordes.national_correspondences.audit",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "evidence",
+      "file": "associativvordes/semantic_cleanup/native.py",
+      "line": 17,
+      "import_name": "associativvordes.evidence_graph.records",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/native.py",
+      "line": 18,
+      "import_name": "associativvordes.national_correspondences.registry",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/native.py",
+      "line": 19,
+      "import_name": "associativvordes.national_correspondences.audit",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/review.py",
+      "line": 10,
+      "import_name": "associativvordes.national_correspondences.registry",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/review.py",
+      "line": 11,
+      "import_name": "associativvordes.national_correspondences.audit",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "semantic",
+      "file": "associativvordes/semantic_cleanup/review.py",
+      "line": 12,
+      "import_name": "associativvordes.semantic_cleanup.native",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "semantic",
+      "file": "associativvordes/semantic_cleanup/review.py",
+      "line": 13,
+      "import_name": "associativvordes.semantic_cleanup.policy",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "semantic",
+      "file": "associativvordes/semantic_cleanup/review.py",
+      "line": 14,
+      "import_name": "associativvordes.semantic_cleanup.history",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "semantic",
+      "file": "associativvordes/semantic_cleanup/review.py",
+      "line": 15,
+      "import_name": "associativvordes.semantic_cleanup.scan",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "adapter",
+      "file": "associativvordes/semantic_cleanup/review.py",
+      "line": 43,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/scan.py",
+      "line": 14,
+      "import_name": "associativvordes.national_correspondences.registry",
+      "kind": "python"
+    },
+    {
+      "source": "semantic",
+      "target": "national",
+      "file": "associativvordes/semantic_cleanup/scan.py",
+      "line": 15,
+      "import_name": "associativvordes.national_correspondences.audit",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/analyze.py",
+      "line": 4,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/archive.py",
+      "line": 3,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/build.py",
+      "line": 4,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "contract",
+      "file": "associativvordes/family_boundary/build.py",
+      "line": 12,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/guard.py",
+      "line": 2,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/query.py",
+      "line": 3,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "adapter",
+      "file": "associativvordes/family_boundary/query.py",
+      "line": 4,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/replay.py",
+      "line": 4,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/replay.py",
+      "line": 5,
+      "import_name": "associativvordes.family_boundary.guard",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "adapter",
+      "file": "associativvordes/family_boundary/replay.py",
+      "line": 6,
+      "import_name": "associativvordes.v5_adapter.common",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/report.py",
+      "line": 3,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "boundary",
+      "target": "boundary",
+      "file": "associativvordes/family_boundary/restore_prior.py",
+      "line": 3,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/bundle.py",
+      "line": 4,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 5,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 6,
+      "import_name": "associativvordes.cleanup_quality.prepare",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 7,
+      "import_name": "associativvordes.cleanup_quality.human",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 8,
+      "import_name": "associativvordes.cleanup_quality.statistics",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 9,
+      "import_name": "associativvordes.cleanup_quality.privacy",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "contract",
+      "file": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 25,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/gates.py",
+      "line": 2,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/human.py",
+      "line": 3,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "contract",
+      "file": "associativvordes/cleanup_quality/human.py",
+      "line": 18,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "contract",
+      "file": "associativvordes/cleanup_quality/human.py",
+      "line": 20,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/prepare.py",
+      "line": 5,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "contract",
+      "file": "associativvordes/cleanup_quality/prepare.py",
+      "line": 182,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/privacy.py",
+      "line": 13,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/supplement.py",
+      "line": 4,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/supplement.py",
+      "line": 5,
+      "import_name": "associativvordes.cleanup_quality.prepare",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/supplement.py",
+      "line": 6,
+      "import_name": "associativvordes.cleanup_quality.evaluate",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/supplement.py",
+      "line": 7,
+      "import_name": "associativvordes.cleanup_quality.privacy",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "boundary",
+      "file": "associativvordes/cleanup_quality/verify.py",
+      "line": 5,
+      "import_name": "associativvordes.family_boundary.core",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/verify.py",
+      "line": 6,
+      "import_name": "associativvordes.cleanup_quality.evaluate",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/verify.py",
+      "line": 7,
+      "import_name": "associativvordes.cleanup_quality.prepare",
+      "kind": "python"
+    },
+    {
+      "source": "quality",
+      "target": "quality",
+      "file": "associativvordes/cleanup_quality/verify.py",
+      "line": 8,
+      "import_name": "associativvordes.cleanup_quality.privacy",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/census.py",
+      "line": 3,
+      "import_name": "associativvordes.full_v5_dry_run.core",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/checks.py",
+      "line": 4,
+      "import_name": "associativvordes.full_v5_dry_run.core",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/checks.py",
+      "line": 6,
+      "import_name": "associativvordes.full_v5_dry_run.completion",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "history",
+      "file": "associativvordes/full_v5_dry_run/checks.py",
+      "line": 30,
+      "import_name": "associativvordes.history_registry.registry",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/completion.py",
+      "line": 5,
+      "import_name": "associativvordes.full_v5_dry_run.core",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "contract",
+      "file": "associativvordes/full_v5_dry_run/core.py",
+      "line": 33,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "quality",
+      "file": "associativvordes/full_v5_dry_run/core.py",
+      "line": 54,
+      "import_name": "associativvordes.cleanup_quality.prepare",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "history",
+      "file": "associativvordes/full_v5_dry_run/core.py",
+      "line": 66,
+      "import_name": "associativvordes.history_registry.registry",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "contract",
+      "file": "associativvordes/full_v5_dry_run/core.py",
+      "line": 70,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/exercise.py",
+      "line": 4,
+      "import_name": "associativvordes.full_v5_dry_run.core",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/exercise.py",
+      "line": 5,
+      "import_name": "associativvordes.full_v5_dry_run.store",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/exercise.py",
+      "line": 44,
+      "import_name": "associativvordes.full_v5_dry_run.completion",
+      "kind": "python"
+    },
+    {
+      "source": "dry_run",
+      "target": "release",
+      "file": "associativvordes/full_v5_dry_run/runtime.mjs",
+      "line": 4,
+      "import_name": "associativvordes.release_control.calculator",
+      "kind": "javascript"
+    },
+    {
+      "source": "dry_run",
+      "target": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/store.py",
+      "line": 4,
+      "import_name": "associativvordes.full_v5_dry_run.core",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/baseline.mjs",
+      "line": 3,
+      "import_name": "associativvordes.release_control.calculator",
+      "kind": "javascript"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/control.py",
+      "line": 216,
+      "import_name": "associativvordes.release_control.review_bridge",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "contract",
+      "file": "associativvordes/release_control/control.py",
+      "line": 258,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "contract",
+      "file": "associativvordes/release_control/control.py",
+      "line": 277,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "contract",
+      "file": "associativvordes/release_control/control.py",
+      "line": 278,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/control.py",
+      "line": 361,
+      "import_name": "associativvordes.release_control.review_bridge",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "contract",
+      "file": "associativvordes/release_control/control.py",
+      "line": 365,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "contract",
+      "file": "associativvordes/release_control/control.py",
+      "line": 380,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "contract",
+      "file": "associativvordes/release_control/control.py",
+      "line": 381,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/exercise.py",
+      "line": 14,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/exercise.py",
+      "line": 15,
+      "import_name": "associativvordes.release_control.inputs",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/exercise.py",
+      "line": 16,
+      "import_name": "associativvordes.release_control.recordings",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/exercise.py",
+      "line": 17,
+      "import_name": "associativvordes.release_control.review_bridge",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/exercise.py",
+      "line": 18,
+      "import_name": "associativvordes.release_control.graph_view",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/graph_view.py",
+      "line": 15,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "evidence",
+      "file": "associativvordes/release_control/graph_view.py",
+      "line": 17,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "evidence",
+      "file": "associativvordes/release_control/graph_view.py",
+      "line": 18,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/inputs.py",
+      "line": 13,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "evidence",
+      "file": "associativvordes/release_control/inputs.py",
+      "line": 18,
+      "import_name": "associativvordes.evidence_graph.prepare_registry",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/recordings.py",
+      "line": 16,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/registry_view.py",
+      "line": 16,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/registry_view.py",
+      "line": 17,
+      "import_name": "associativvordes.release_control.graph_view",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "candidates",
+      "file": "associativvordes/release_control/registry_view.py",
+      "line": 19,
+      "import_name": "associativvordes.candidate_search.mass_registry",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "evidence",
+      "file": "associativvordes/release_control/registry_view.py",
+      "line": 20,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/workflow.py",
+      "line": 8,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "release",
+      "target": "release",
+      "file": "associativvordes/release_control/workflow.py",
+      "line": 9,
+      "import_name": "associativvordes.release_control.inputs",
+      "kind": "python"
+    },
+    {
+      "source": "release_package",
+      "target": "release",
+      "file": "associativvordes/v5_release_control/package.py",
+      "line": 14,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/analyze.py",
+      "line": 8,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/build_graph.py",
+      "line": 16,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/build_graph.py",
+      "line": 17,
+      "import_name": "associativvordes.evidence_graph.records",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/build_graph.py",
+      "line": 151,
+      "import_name": "associativvordes.evidence_graph.analyze",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "contract",
+      "file": "associativvordes/evidence_graph/graph.py",
+      "line": 72,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "contract",
+      "file": "associativvordes/evidence_graph/graph.py",
+      "line": 77,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "contract",
+      "file": "associativvordes/evidence_graph/graph.py",
+      "line": 96,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "contract",
+      "file": "associativvordes/evidence_graph/graph.py",
+      "line": 104,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/prepare_registry.py",
+      "line": 15,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/query_graph.py",
+      "line": 10,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "importers",
+      "file": "associativvordes/evidence_graph/records.py",
+      "line": 13,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/select_pilot.py",
+      "line": 12,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "evidence",
+      "target": "evidence",
+      "file": "associativvordes/evidence_graph/select_pilot.py",
+      "line": 13,
+      "import_name": "associativvordes.evidence_graph.records",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 21,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 22,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 23,
+      "import_name": "associativvordes.importers.scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 24,
+      "import_name": "associativvordes.candidate_search.search",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 25,
+      "import_name": "associativvordes.candidate_search.project_store",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/index_pilot.py",
+      "line": 21,
+      "import_name": "associativvordes.importers.scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/index_pilot.py",
+      "line": 22,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/index_pilot.py",
+      "line": 23,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/index_pilot.py",
+      "line": 24,
+      "import_name": "associativvordes.candidate_search.search",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "evidence",
+      "file": "associativvordes/candidate_search/index_pilot.py",
+      "line": 25,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/index_pilot.py",
+      "line": 26,
+      "import_name": "associativvordes.candidate_search.project_store",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_benchmark.py",
+      "line": 13,
+      "import_name": "associativvordes.candidate_search.mass_source",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_benchmark.py",
+      "line": 14,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 22,
+      "import_name": "associativvordes.candidate_search",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 23,
+      "import_name": "associativvordes.candidate_search.mass_registry",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 24,
+      "import_name": "associativvordes.candidate_search.mass_source",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 25,
+      "import_name": "associativvordes.candidate_search.mass_benchmark",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 26,
+      "import_name": "associativvordes.candidate_search.mass_store",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 27,
+      "import_name": "associativvordes.candidate_search.mass_recover",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 28,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 29,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 30,
+      "import_name": "associativvordes.importers.audit_scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 31,
+      "import_name": "associativvordes.importers.fetch_sources",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 32,
+      "import_name": "associativvordes.importers.fetch_glemm_git",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_ci.py",
+      "line": 33,
+      "import_name": "associativvordes.importers.glemm_cache",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_discovery.py",
+      "line": 10,
+      "import_name": "associativvordes.candidate_search.mass_source",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_discovery.py",
+      "line": 11,
+      "import_name": "associativvordes.candidate_search.mass_registry",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_recover.py",
+      "line": 11,
+      "import_name": "associativvordes.candidate_search.mass_source",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_recover.py",
+      "line": 12,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "evidence",
+      "file": "associativvordes/candidate_search/mass_registry.py",
+      "line": 18,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "evidence",
+      "file": "associativvordes/candidate_search/mass_registry.py",
+      "line": 19,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "evidence",
+      "file": "associativvordes/candidate_search/mass_registry.py",
+      "line": 20,
+      "import_name": "associativvordes.evidence_graph.prepare_registry",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_registry.py",
+      "line": 21,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_registry.py",
+      "line": 22,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_run.py",
+      "line": 17,
+      "import_name": "associativvordes.candidate_search.mass_discovery",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_run.py",
+      "line": 18,
+      "import_name": "associativvordes.candidate_search.mass_registry",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_run.py",
+      "line": 19,
+      "import_name": "associativvordes.candidate_search.mass_source",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_run.py",
+      "line": 20,
+      "import_name": "associativvordes.candidate_search.mass_store",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_run.py",
+      "line": 21,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_run.py",
+      "line": 22,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "evidence",
+      "file": "associativvordes/candidate_search/mass_run.py",
+      "line": 27,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_source.py",
+      "line": 17,
+      "import_name": "associativvordes.candidate_search.mass_registry",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_source.py",
+      "line": 18,
+      "import_name": "associativvordes.importers",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_source.py",
+      "line": 19,
+      "import_name": "associativvordes.importers.scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/mass_source.py",
+      "line": 20,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/mass_store.py",
+      "line": 8,
+      "import_name": "associativvordes.candidate_search.search",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/pilot.py",
+      "line": 13,
+      "import_name": "associativvordes.candidate_search.search",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/prepare_frequency.py",
+      "line": 10,
+      "import_name": "associativvordes.candidate_search.search",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "candidates",
+      "file": "associativvordes/candidate_search/project_store.py",
+      "line": 10,
+      "import_name": "associativvordes.candidate_search.scale_project",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/scale_project.py",
+      "line": 23,
+      "import_name": "associativvordes.importers.morphology_import",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/scale_project.py",
+      "line": 24,
+      "import_name": "associativvordes.importers.certify_corpus",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "importers",
+      "file": "associativvordes/candidate_search/scale_project.py",
+      "line": 25,
+      "import_name": "associativvordes.importers.scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "evidence",
+      "file": "associativvordes/candidate_search/search.py",
+      "line": 14,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "contract",
+      "file": "associativvordes/candidate_search/search.py",
+      "line": 27,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "candidates",
+      "target": "contract",
+      "file": "associativvordes/candidate_search/search.py",
+      "line": 43,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "review",
+      "file": "associativvordes/review/exercise.py",
+      "line": 16,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "review",
+      "file": "associativvordes/review/server.py",
+      "line": 19,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "review",
+      "file": "associativvordes/review/server.py",
+      "line": 255,
+      "import_name": "associativvordes.review.source_rows",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "review",
+      "file": "associativvordes/review/source_rows.py",
+      "line": 10,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "review",
+      "file": "associativvordes/review/store.py",
+      "line": 220,
+      "import_name": "associativvordes.review.source_rows",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "contract",
+      "file": "associativvordes/review/store.py",
+      "line": 173,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "contract",
+      "file": "associativvordes/review/store.py",
+      "line": 179,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "contract",
+      "file": "associativvordes/review/store.py",
+      "line": 278,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "review",
+      "target": "contract",
+      "file": "associativvordes/review/store.py",
+      "line": 308,
+      "import_name": "associativvordes.v5_contract.policy",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 14,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 15,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 16,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 17,
+      "import_name": "associativvordes.auto_annotation.providers",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 24,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 25,
+      "import_name": "associativvordes.pilot_evaluation.metrics04",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 26,
+      "import_name": "associativvordes.pilot_evaluation.study04",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 27,
+      "import_name": "associativvordes.pilot_evaluation.archive04",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 17,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 18,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 19,
+      "import_name": "associativvordes.auto_annotation.providers",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "contract",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 24,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 92,
+      "import_name": "associativvordes.auto_annotation.source",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 49,
+      "import_name": "associativvordes.auto_annotation.source",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "evidence",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 59,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 71,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "semantic",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 38,
+      "import_name": "associativvordes.semantic_cleanup.bridge",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "adapter",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 42,
+      "import_name": "associativvordes.v5_adapter.queue_input",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/providers.py",
+      "line": 17,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/source.py",
+      "line": 10,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "candidates",
+      "file": "associativvordes/auto_annotation/source.py",
+      "line": 13,
+      "import_name": "associativvordes.candidate_search.mass_source",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "importers",
+      "file": "associativvordes/auto_annotation/source.py",
+      "line": 14,
+      "import_name": "associativvordes.importers.scale_index",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "annotation",
+      "file": "associativvordes/auto_annotation/storage.py",
+      "line": 14,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "contract",
+      "target": "normative",
+      "file": "associativvordes/v5_contract/normative.mjs",
+      "line": 3,
+      "import_name": "associativvordes.normative.validator",
+      "kind": "javascript"
+    },
+    {
+      "source": "contract",
+      "target": "contract",
+      "file": "associativvordes/v5_contract/policy.py",
+      "line": 4,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "contract",
+      "file": "associativvordes/v5_integration/__main__.py",
+      "line": 4,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "integration",
+      "file": "associativvordes/v5_integration/__main__.py",
+      "line": 5,
+      "import_name": "associativvordes.v5_integration.dependencies",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "contract",
+      "file": "associativvordes/v5_integration/dependencies.py",
+      "line": 5,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "contract",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 8,
+      "import_name": "associativvordes.v5_contract.versions",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "contract",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 9,
+      "import_name": "associativvordes.v5_contract",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "adapter",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 13,
+      "import_name": "associativvordes.v5_adapter.bridge",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "release",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 23,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "release",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 42,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "candidates",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 49,
+      "import_name": "associativvordes.candidate_search.search",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "review",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 70,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "quality",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 79,
+      "import_name": "associativvordes.cleanup_quality.human",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "release",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 89,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    },
+    {
+      "source": "integration",
+      "target": "release",
+      "file": "associativvordes/v5_integration/pipeline.py",
+      "line": 32,
+      "import_name": "associativvordes.release_control.control",
+      "kind": "python"
+    }
+  ],
+  "physical_component_dependencies": {
+    "importers": [],
+    "pilot_quality": [
+      "evidence",
+      "review"
+    ],
+    "legacy_dry_run": [
+      "annotation",
+      "pilot_quality",
+      "review"
+    ],
+    "normative": [],
+    "baseline": [],
+    "history": [],
+    "adapter": [
+      "annotation",
+      "evidence",
+      "importers",
+      "legacy_dry_run",
+      "review"
+    ],
+    "diagnostics": [
+      "adapter"
+    ],
+    "structural": [
+      "adapter",
+      "contract",
+      "history"
+    ],
+    "surface": [
+      "history",
+      "structural"
+    ],
+    "morphology": [
+      "adapter",
+      "diagnostics",
+      "structural"
+    ],
+    "morphology_review": [
+      "contract",
+      "structural"
+    ],
+    "national": [],
+    "semantic": [
+      "adapter",
+      "evidence",
+      "history",
+      "national"
+    ],
+    "boundary": [
+      "adapter",
+      "contract"
+    ],
+    "quality": [
+      "boundary",
+      "contract"
+    ],
+    "dry_run": [
+      "contract",
+      "history",
+      "quality",
+      "release"
+    ],
+    "release": [
+      "candidates",
+      "contract",
+      "evidence"
+    ],
+    "release_package": [
+      "release"
+    ],
+    "evidence": [
+      "contract",
+      "importers"
+    ],
+    "candidates": [
+      "contract",
+      "evidence",
+      "importers"
+    ],
+    "review": [
+      "contract"
+    ],
+    "annotation": [
+      "adapter",
+      "candidates",
+      "contract",
+      "evidence",
+      "importers",
+      "pilot_quality",
+      "semantic"
+    ],
+    "contract": [
+      "normative"
+    ],
+    "integration": [
+      "adapter",
+      "candidates",
+      "contract",
+      "quality",
+      "release",
+      "review"
+    ]
+  },
+  "physical_cycles": [
+    [
+      "adapter",
+      "annotation",
+      "legacy_dry_run",
+      "semantic"
+    ]
+  ],
+  "dynamic_load_sites": [
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 96,
+      "call": "importlib.util.spec_from_file_location('phase06_finished_review', cycle.ROOT / 'associativvordes/review/store.py')"
+    },
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 97,
+      "call": "spec.loader.exec_module(review)"
+    },
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 290,
+      "call": "importlib.util.spec_from_file_location('phase06_review_store', ROOT / 'associativvordes/review/store.py')"
+    },
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 291,
+      "call": "spec.loader.exec_module(review)"
+    },
+    {
+      "component": "baseline",
+      "file": "associativvordes/v5_baseline/audit_ids.py",
+      "line": 8,
+      "call": "_util.spec_from_file_location('_restored_baseline_census', pathlib.Path(__file__).with_name('census.py'))"
+    },
+    {
+      "component": "baseline",
+      "file": "associativvordes/v5_baseline/audit_ids.py",
+      "line": 9,
+      "call": "_spec.loader.exec_module(_census)"
+    },
+    {
+      "component": "baseline",
+      "file": "associativvordes/v5_baseline/audit_ledger.py",
+      "line": 8,
+      "call": "_util.spec_from_file_location('_restored_baseline_census', pathlib.Path(__file__).with_name('census.py'))"
+    },
+    {
+      "component": "baseline",
+      "file": "associativvordes/v5_baseline/audit_ledger.py",
+      "line": 9,
+      "call": "_spec.loader.exec_module(_census)"
+    },
+    {
+      "component": "baseline",
+      "file": "associativvordes/v5_baseline/audit_metadata.py",
+      "line": 8,
+      "call": "_util.spec_from_file_location('_restored_baseline_census', pathlib.Path(__file__).with_name('census.py'))"
+    },
+    {
+      "component": "baseline",
+      "file": "associativvordes/v5_baseline/audit_metadata.py",
+      "line": 9,
+      "call": "_spec.loader.exec_module(_census)"
+    },
+    {
+      "component": "adapter",
+      "file": "associativvordes/v5_adapter/bridge.py",
+      "line": 13,
+      "call": "importlib.util.spec_from_file_location('v5_historical_constraints', path)"
+    },
+    {
+      "component": "adapter",
+      "file": "associativvordes/v5_adapter/bridge.py",
+      "line": 13,
+      "call": "spec.loader.exec_module(module)"
+    },
+    {
+      "component": "structural",
+      "file": "associativvordes/structural_cleanup/common.py",
+      "line": 40,
+      "call": "importlib.util.spec_from_file_location('installed_v5_baseline', path)"
+    },
+    {
+      "component": "structural",
+      "file": "associativvordes/structural_cleanup/common.py",
+      "line": 41,
+      "call": "spec.loader.exec_module(module)"
+    },
+    {
+      "component": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/core.py",
+      "line": 37,
+      "call": "importlib.util.spec_from_file_location('q12_installed_baseline', p)"
+    },
+    {
+      "component": "dry_run",
+      "file": "associativvordes/full_v5_dry_run/core.py",
+      "line": 38,
+      "call": "spec.loader.exec_module(m)"
+    },
+    {
+      "component": "release",
+      "file": "associativvordes/release_control/control.py",
+      "line": 263,
+      "call": "importlib.util.spec_from_file_location('release_historical_constraints', module_path)"
+    },
+    {
+      "component": "release",
+      "file": "associativvordes/release_control/control.py",
+      "line": 264,
+      "call": "spec.loader.exec_module(module)"
+    },
+    {
+      "component": "release",
+      "file": "associativvordes/release_control/review_bridge.py",
+      "line": 12,
+      "call": "importlib.util.spec_from_file_location('release07_human_ledger', path / 'store.py')"
+    },
+    {
+      "component": "release",
+      "file": "associativvordes/release_control/review_bridge.py",
+      "line": 13,
+      "call": "spec.loader.exec_module(module)"
+    },
+    {
+      "component": "annotation",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 139,
+      "call": "importlib.util.spec_from_file_location('interal_historical_constraints', module_path)"
+    },
+    {
+      "component": "annotation",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 140,
+      "call": "spec.loader.exec_module(module)"
+    }
+  ],
+  "scope": "Static Python and JS imports plus dynamic-loader inventory; does not claim runtime-generated imports are statically resolved",
+  "source_files": {
+    "associativvordes/importers/audit_identity.py": "d4319c335edc6dd14e27056d744d871673a9cfc4c46b1f862cd231704374874f",
+    "associativvordes/importers/audit_import.py": "939ef6614114ce710244d0c3024823ae2210cafb2a7100f7e7c6483ad7969c59",
+    "associativvordes/importers/audit_scale_index.py": "542ff2ad0dc41859d7ca0cd5789e8a28cc677d70f58ac08308785d215489b318",
+    "associativvordes/importers/build_catalog.py": "01fc89f82f5fda595dcd97dea4143a4833bb8638306ff6b26851a9b7bf338530",
+    "associativvordes/importers/catalog_store.py": "f69542e963e813498726271d9709f4fdc8920febec66acd99edd57b100116464",
+    "associativvordes/importers/certify_corpus.py": "615f0bd1b53d459ca2d0574feaa3e8c55867ff9e3eec2d020e015f7bef7a616e",
+    "associativvordes/importers/corpus_cache.py": "35a6b38e1c66f4278fea4ff97046f1655c9f235626120c1db65f06826efc0d1e",
+    "associativvordes/importers/fetch_glemm_git.py": "69a567a47624576f82d97cb4388933ef521091faea8bc46b566495c16f04785e",
+    "associativvordes/importers/fetch_sources.py": "9b0071ead433cdf68ec7958fbcdfefc2081b1860aff9a4e4d7ebed7f3e1bb7c9",
+    "associativvordes/importers/glemm_cache.py": "6ca02dac909429905739a28d5d32cd1fbf1310dbcfb9e8fc91f09aa5e51693b0",
+    "associativvordes/importers/index_watch.py": "ae0d5af9a94a7aaf4db44e19bada5c84a8a452e69c146c181a68115eeab45c2c",
+    "associativvordes/importers/morphology_import.py": "2c85307565b595dd2e3d48d76a91d3252403a2cb81d5af11af8a2c6968fbbc3d",
+    "associativvordes/importers/rebuild.py": "f2403ff5ed3314a7735a44d3fe12d747d2f9db98f26841cb4a98e7ecfec01037",
+    "associativvordes/importers/scale_index.py": "3945564a130cf93d65747cb0293919d1d0d9bdc104e09acb738d74e756d52932",
+    "associativvordes/importers/validate_sources.py": "55fe021a19df22bb18f6580bad33491113b78bed29ee3184661d76995d59d96e",
+    "associativvordes/importers/verify_replay.py": "7acedac10ad351ba3f96614ffb54eba5f81c5588560f596748f1f8ead3243c37",
+    "associativvordes/pilot_evaluation/archive04.py": "3f00f634ffd6a4c2cb119ba700d9ecb57269bc025c663e67135280dda1bf225f",
+    "associativvordes/pilot_evaluation/capture.py": "e9d3c5987d3815e3d1dde5dd48558f42f8ef98dac65e068f364a274bc7bf5433",
+    "associativvordes/pilot_evaluation/compare04.py": "836a5c0ac3160a1c5bbc15fb8df5fd7273626a84483588aae01fe557c45473d9",
+    "associativvordes/pilot_evaluation/evaluate.py": "aeff1009d6881f27ced761a957b60342d71bf4fcd4d37aa334bd8495344269d6",
+    "associativvordes/pilot_evaluation/gold.py": "d68e9d8f34d069267eb4a14d97db7de9682131743c4c93348a8cd0d2bf4c27a9",
+    "associativvordes/pilot_evaluation/human04.py": "5626857d87196cb03a6e3a904ba6883424f26ff2dfc51999639399ae0a1cd314",
+    "associativvordes/pilot_evaluation/impact.py": "a7c68f5a7c56c585c3ffbc792d3a9b87c80b414faf00543102fee84d78dc1088",
+    "associativvordes/pilot_evaluation/metrics04.py": "d20ea18ad1cc868ede5934d30a0fc43ab039e4ef578e97016051f505f5a75555",
+    "associativvordes/pilot_evaluation/prepare_inputs.py": "41971719e75656db8450d5e9d85df08bc745a332ec564d1b45bca7455ebd88e0",
+    "associativvordes/pilot_evaluation/replay04.py": "7c25ca009c96477e549b579ddedb7502b2e368b49c251c0b4e0b1858d5a110d4",
+    "associativvordes/pilot_evaluation/reproduce.py": "9c7314197f5999d2242c237c343942ffae1c889825a6ea98e41ca5f886f5ee52",
+    "associativvordes/pilot_evaluation/run.py": "b7a0bf34c3887d90a34cdfb9b7e58ecd3be3e0f2c4a41487c913eddc70dbb76a",
+    "associativvordes/pilot_evaluation/sample.py": "ef285fb6c9a10345e80ff7d13f32ccc8dee9cd7e0340f3239b0c8fd6ac1033cb",
+    "associativvordes/pilot_evaluation/study04.py": "37e84adcf5e3dcd11706b6f383cb82ebbad5ec8ca629a058d0b70ca0d35e7954",
+    "associativvordes/mass_dry_run/audit.py": "3aa59f52a552c51a38459691eaeae17a6fe6ba96707c678d4637ad08a1cf5d3e",
+    "associativvordes/mass_dry_run/export_snapshot.py": "d9a998cce98d2fd25cca5487aed8f3520b5704369ceadc0d12cb38c6ff0e0d86",
+    "associativvordes/mass_dry_run/finish.py": "0c2f5544946745609de051aabebf16cb371167c5f38b4031994be9604ef8c6b7",
+    "associativvordes/mass_dry_run/run.py": "6eeca2806a0f070757cb26f09957fad8ba230c89d3d6ca7a82d2f43b9eaa7f8d",
+    "associativvordes/mass_dry_run/worker.py": "d845241b595ef62a64fd6eceb8e522b0c43e540a80fbfeaf0e712f8e3610ea13",
+    "associativvordes/v5_baseline/audit_ids.py": "d416247f4d29d3d1aa011dd29a46451e094e75000a34783de7d7e4fdf2210c01",
+    "associativvordes/v5_baseline/audit_ledger.py": "5f89ca149bc0e266eb4e1c915855b5ca0c4a44fca26b28818cd587219811328e",
+    "associativvordes/v5_baseline/audit_metadata.py": "184165e83a087890c6c263b9752ba7bc0111fc873460d948fafad066c2fed67c",
+    "associativvordes/v5_baseline/census.py": "b1a7849f84781111181f2912d8fa75bfab4d62b95a3a2ab38fb5ed2874b27dab",
+    "associativvordes/v5_baseline/certify.py": "ef67fde301f52f0298e7e688488497a9fc38b0d22f30991eec1087252715c934",
+    "associativvordes/history_registry/build.py": "3146daf7cc6852b620559f9922d0ffed46806436bd4be229e12f213434fc48f9",
+    "associativvordes/history_registry/registry.py": "2430f58f1e5b586f7bc09f278b08168f4b224247e88e41d9c323975fd20f0216",
+    "associativvordes/v5_adapter/adapter.py": "0aca69d33f99ae13904e3dc35860e12d5cf7044f14cacfcc6f7cd28434696341",
+    "associativvordes/v5_adapter/bridge.py": "955b62323abd2f7caa7ecdab92dc226b322cdf76015a41d9db0aedd575909f8b",
+    "associativvordes/v5_adapter/build.py": "59d9365e38c83d6ab7e3b836872d4595319f89b585df71ea2b86eab1ba0e809b",
+    "associativvordes/v5_adapter/common.py": "7075c4799e8201f2fdec73baf3ee506a4cc260ae38463083a10575561c928278",
+    "associativvordes/v5_adapter/exercise.py": "0a4a4e759455eddceb8c7736265cab01c60284f9a89e3f8022e0b2125b8b43cf",
+    "associativvordes/v5_adapter/external.py": "8f3779642599bc2aa2b303093bc1080c6ffae14fe5d6a9ab8167616883699f28",
+    "associativvordes/v5_adapter/queue_input.py": "efbf6c4a265b4ab4494e86facb5d042f586b8c1e7e2d64fad158c37acc6b8e6d",
+    "associativvordes/v5_adapter/stream.py": "84574bfb077e290e62ee2bdef5fda11f4d09b948703e4333b5e7692bc8624abe",
+    "associativvordes/v5_adapter/verify.py": "8ef593bae0f7c414cfd5ac0be2779cbf984fd7d35520eaff723363593f856fb4",
+    "associativvordes/v5_diagnostics/classify.py": "4dbf5b8fd9fec4a82671c5653a3fd2d3bc2192d74d3037fcfc219b20e8bb1e13",
+    "associativvordes/v5_diagnostics/run.py": "a4b552a97753810bff21a61de02110ae247e3a49543eb58476b8b1286bc3be5c",
+    "associativvordes/v5_diagnostics/tools/backup.py": "042daf49c27ae19787af1cbdc36fda6776f8e8cd4b4673745096640c95b66f91",
+    "associativvordes/v5_diagnostics/tools/finalize.py": "cd750616829685b3b5cb18abf85c3564780439ecc3e8eaaa13fc955e30d78878",
+    "associativvordes/v5_diagnostics/tools/join_volumes.py": "dab72d90685e473ac212985e70e38cd3c0726e1ce12cbd4a8b586a3151985c8a",
+    "associativvordes/v5_diagnostics/tools/query.py": "24bf6514e5ed54e39e68ce86db893ac9ffae80bd036136391295a85f167b773b",
+    "associativvordes/v5_diagnostics/tools/suffix_exposure.py": "48c5bf8e1e90a9a76e54e6c3d6f14cec036dd1643e40445751403393b5a90abd",
+    "associativvordes/structural_cleanup/audit_metadata.py": "aa754e910150a7815d6c10d5d09ff28060e01bf0a015611abff0ed2f242ceadb",
+    "associativvordes/structural_cleanup/capture.py": "302f5b06cb2387904fc69ac4e9c1d5b4e100911c393a541db58af4beb4ff589b",
+    "associativvordes/structural_cleanup/common.py": "4c0669e18476ceae4196e27895f8c8fadf090cccb11ff932a271903171cfbbac",
+    "associativvordes/structural_cleanup/scan.py": "97b7dffccbd955e19548b6dedcf588a3a5c6fd3fb9b4e8c4d532e699ec27dfae",
+    "associativvordes/structural_cleanup/shadow.py": "6c45585d4bcf71e5fccfce467a00b942b396e7e4e4cb5fcd297211e10d8f242a",
+    "associativvordes/structural_cleanup/verify.py": "c842e6d417c3ceec58e47b12fef9da00458fb1bc4496e0dd02ee755349da9ef8",
+    "associativvordes/structural_cleanup/workflow.py": "6efc11009e12c8d2a2dee104275b55fa5c2b47dbce9f5093bb5b0b2eb20f347c",
+    "associativvordes/surface_cleanup/history.py": "cb753ed3939e01400ebdc666bdf63a647baf7aa2420b06aca0483c43ea035628",
+    "associativvordes/surface_cleanup/policy.py": "0af4600aa96ca1b1048ccb40ae16a79100274d7ac22ffe1dda5707cfa00b04eb",
+    "associativvordes/surface_cleanup/run.py": "37fb40f5cd82e91633a5f59825eef93c4ddfee88eb385a3a976058ef7dcc3bc2",
+    "associativvordes/morphology_cleanup/native.py": "1698f2115555f667c1e2bc6f102ab47e9c4cd848ce80ed598a5da0cebf19caaf",
+    "associativvordes/morphology_cleanup/policy.py": "5c608960ca4005c38a73279fa57bb971444854e79fe079dafa1e89c51cf6841c",
+    "associativvordes/morphology_cleanup/run.py": "9492eb09a6491288b894c72e4752c3190e66f9dbc1ba7d5a05d6c12eaec0d1f4",
+    "associativvordes/morphology_review/policy.py": "0400b51fe64bc4b5169890663165de55b1aed1c34e7c8791d50e26a92d2393e7",
+    "associativvordes/morphology_review/run.py": "ce979893e0394c22cf93e714e3714804c82c88f88a4ee50aeff19c4fd68d10e3",
+    "associativvordes/national_correspondences/__init__.py": "c5be24c58aba8134a03eacadd94e65d3959d3745124225833dc19311b7f1820e",
+    "associativvordes/national_correspondences/audit.py": "9ed458d253332e78b4f184070bbb9fa95a136d50a38ece042f78ac7b79e5f138",
+    "associativvordes/national_correspondences/registry.py": "133570401426834ed1664408cc903b7cf0a9e52dcb4d0420c2ed566bb44ea436",
+    "associativvordes/semantic_cleanup/bridge.py": "0bd06176b4c4e73021ccbac8dd0226698549ab319e5d11bc2fb401b49bc59f86",
+    "associativvordes/semantic_cleanup/history.py": "7534f49ee2fc53b2cb1743559d6a1df1e04a5c365f5ed6aca615512d5c5fd0e3",
+    "associativvordes/semantic_cleanup/native.py": "7fbd1997ddba1fe9e42f4d5db5a21b92535f18cab3568690be382c5ffb41f9e7",
+    "associativvordes/semantic_cleanup/policy.py": "e9668b4ab94d7f8b51cf542facff53925d8dbf76fbdfd5b9cb91fb90251d04b2",
+    "associativvordes/semantic_cleanup/review.py": "389e6be577c211d52949b691d8dbc28cdeb218856207169aa9fe012523781390",
+    "associativvordes/semantic_cleanup/scan.py": "3f0f458bfcd671810c9131430ddf1ded9c945ee8cd0c05a08df8e4598d3d003f",
+    "associativvordes/family_boundary/analyze.py": "a59e0f1f633064b566b21e9895614d3ec19a82a0c549fa0744ef9176bd701d2c",
+    "associativvordes/family_boundary/archive.py": "65b524b4acf59a4ab153a256d8a59853c84dd6ef3f8cbbd3b5cc52a49d7f2daf",
+    "associativvordes/family_boundary/build.py": "3b9a3696b53b836bd63f30b187cb0b3574133bb5bfe2a4fa1787affc0278fcce",
+    "associativvordes/family_boundary/core.py": "0ccca568188e3edf18317ef48f467e7091cf5f4d5f27b72915ddfc2a32f743d0",
+    "associativvordes/family_boundary/guard.py": "fa83d3a7f9ffe0fd58b80bec381d63314df77d0dde5af41176a231f6abe72c24",
+    "associativvordes/family_boundary/query.py": "1c446940c1719670e11ca09cf2efbec28c19ccd38de98fe86393d77af74aa084",
+    "associativvordes/family_boundary/replay.py": "45285af9b000915ef7b0c85b9a44068adf05d52debf66ecc54ce7eea5d6e2efb",
+    "associativvordes/family_boundary/report.py": "4536809cf237aec9bc408b9d172ed4a391d5b7ae68cea9401e574f127b7873d0",
+    "associativvordes/family_boundary/restore_prior.py": "8c7eceb4c54d1c1597cb19344bc0dadb9e63e3250260ce24c959910b27e0375a",
+    "associativvordes/cleanup_quality/bundle.py": "b3c869294e263ab6478a99c944d455d23546c70ac8c20a1141846fd715c14079",
+    "associativvordes/cleanup_quality/evaluate.py": "d27b3e9156983fe0ae5dd17933d5c5aad5f43b68c6a2a5f1e75d84be3b5d6488",
+    "associativvordes/cleanup_quality/gates.py": "12615b9fba0821a07bf902712065142a0dec6e8d956462776faa810d90f25d4b",
+    "associativvordes/cleanup_quality/human.py": "6c28cb5ba0597d16884cf4df83768fbe6a789675b07d741117cc8e5b3565a21d",
+    "associativvordes/cleanup_quality/prepare.py": "a8b9cd25586c69a7deaf2c8a85d01161a27b07cdb34c6f3a9f1eaa3a7cab4663",
+    "associativvordes/cleanup_quality/privacy.py": "8a731875d36c7ce813d48adced2affd407b03bd9c1f89dd7514157ff3b896c5d",
+    "associativvordes/cleanup_quality/statistics.py": "a13dbd43e50099de53706ffe41f977adc7485e338e232f1735e1b0a868525c65",
+    "associativvordes/cleanup_quality/supplement.py": "0c156785fcbb505061b8a1dfbb3b513cf515075e3c1d22e26ae58472b7c6001d",
+    "associativvordes/cleanup_quality/verify.py": "d68c9813e331b8506c8cb6ef64a76c80b9965187bbd5603120991c8ea9b02c92",
+    "associativvordes/full_v5_dry_run/census.py": "cccf82a4b799e21bfc33f8b57a44287b9566dbfe42167a035b88f5fb3f4cb849",
+    "associativvordes/full_v5_dry_run/checks.py": "c440f83c36998350ba3660060a96e17892ae6007fede18e47fdb0716166d9172",
+    "associativvordes/full_v5_dry_run/completion.py": "e8bbec516e14c8841a86c4785e7e1452e7c489f995fad3a4a46239c0d491fdb5",
+    "associativvordes/full_v5_dry_run/core.py": "acce0f6bf8f90bc328a6cfb15eee4bc03436c8e6db506a6d60643619bbba4f53",
+    "associativvordes/full_v5_dry_run/exercise.py": "63f536caccfff3e9a7621f8dd7f99a441ea1949141d8cf4e360dbb02e18cd612",
+    "associativvordes/full_v5_dry_run/store.py": "10364eaec70da92425f0a4e1126fa6863e6858fd07ff2f35884de608f1668668",
+    "associativvordes/release_control/control.py": "3a9d36542a548aa8d9da64826c95b76263965956b9c3d700ed4e0672d5ccc687",
+    "associativvordes/release_control/exercise.py": "f83d671b1779d9bc9165886cc9768bb0d04ff952ab387ffcf3d811aade62a82d",
+    "associativvordes/release_control/graph_view.py": "29d45ec491f390267ccbfd6f4024b3fd4b4e0f3b711f27883d49012429c65c65",
+    "associativvordes/release_control/inputs.py": "fe9bc6c8428737a9b356b97b5f68beb40740c69dff76ab871faf68fc66bce06c",
+    "associativvordes/release_control/recordings.py": "8970afa30c88df34280176e68c551202d10c58ee9c818128dd9a3989ea64bc52",
+    "associativvordes/release_control/registry_view.py": "4ee24bbb32503ae0cf1b65bf6c74543deb06f0a9f26146a0ae15680bc04f041d",
+    "associativvordes/release_control/review_bridge.py": "f8090e7ccfef342194f84624e582b91549ae16a61dbf01597746db5168d8ddc8",
+    "associativvordes/release_control/workflow.py": "ebbd6a679364e9d591b520f60d39a318cec70b9feb1958da555188ad4a46b7b7",
+    "associativvordes/v5_release_control/package.py": "9b9c2211965e038b1195b7e1639b43bdf0700891711fe18abcd9bb7b0c634314",
+    "associativvordes/evidence_graph/analyze.py": "a658a3265d8f82ebcad8afeba610f4ecfc94536046ae71228ffdd45237026aac",
+    "associativvordes/evidence_graph/build_graph.py": "e896d0ee5cbe8ca0160992dac4e55b4620e1ab87c2a50e4918945e5a3e91d3e6",
+    "associativvordes/evidence_graph/graph.py": "e6c5d326f7e5aaf6a54e05d77c67dbbd2c7bfdcdebbb30bf4660dae87a4c111b",
+    "associativvordes/evidence_graph/prepare_registry.py": "8882e1d72cf084b72f73488766f5d519fab6bdd81c15f82a0896b34d8f20f0cd",
+    "associativvordes/evidence_graph/query_graph.py": "d2219a1fa628b3543ccfb98bce7e0c04d44552e7af9ef69ccdc9dc4ad3e44c46",
+    "associativvordes/evidence_graph/records.py": "490c58c62d5adbc3336cce1cee7460dbd2d787da37bf814ee9a3afb788e7a3a7",
+    "associativvordes/evidence_graph/select_pilot.py": "fdd3888bfc570cee6feae3f4f73f2dd9835181d6dde49bf5776a22a838a1164b",
+    "associativvordes/candidate_search/benchmark_scale.py": "0c03b546c5451cc2a94baeaba07a16b4b3d6df1ae71e6d7032bf802e054666bb",
+    "associativvordes/candidate_search/index_pilot.py": "228551d270de8e8177ea5ddcceadd4bc8efe71a312c04e1f502d903326f85405",
+    "associativvordes/candidate_search/mass_benchmark.py": "4ff1f707e078a1bff60d24f8d6a05a0167aca93ea6e2dc8e07c4c38fa9260c44",
+    "associativvordes/candidate_search/mass_ci.py": "ba31f97571c80108fceed63dc4378e0077118e0c210e92d5768f9d9f0544c691",
+    "associativvordes/candidate_search/mass_discovery.py": "d51aa043cb59c0fedbbcc37e41667f70639930efa1a452c44b2a47d4bc95fd54",
+    "associativvordes/candidate_search/mass_recover.py": "62046b952e8f43af68efcac925fc28a60a518b207bb6c7bf8bbd2f259e62c6f2",
+    "associativvordes/candidate_search/mass_registry.py": "1bb61186cb8a97079b90ec57464e40a45566637c871e6adf1d57ce37fa267916",
+    "associativvordes/candidate_search/mass_run.py": "7281624ee802aa583bc7c99fba3681d31259fe2b7cb33c1c6893a3134c14015d",
+    "associativvordes/candidate_search/mass_source.py": "bfcfa82f6870590c817e680a4ce8b3050d71353b0313fd56651e13126b644a69",
+    "associativvordes/candidate_search/mass_store.py": "ad622e82c46d8bd14b402aa7c16c83fe4356f0a44883f4201cbd0e37b44d5d07",
+    "associativvordes/candidate_search/pilot.py": "6da5909f277bcacd7515d21090eebf0fc2b381b4074e29804287d49f034d73dc",
+    "associativvordes/candidate_search/prepare_frequency.py": "643f667d0d1e649325a390b34a1bc4a3017e51304598f688e67b4f8f6cf9dcf4",
+    "associativvordes/candidate_search/project_store.py": "245313035f342740bd11e4e3ca7a23698168efe908fd4bcb4dee32a10ec6d56a",
+    "associativvordes/candidate_search/scale_project.py": "033b4b1a94719c2683cbc6038c769190820e66f274875cb7f5a81561d234f610",
+    "associativvordes/candidate_search/search.py": "cc0261ffc05f3f5a7e8f6057a1f7ad730082ab77c1c5483ab4fdbe3ab831767d",
+    "associativvordes/review/exercise.py": "1800621a97c43e5909e98cf389d5d629a5cb5cc2ee8c437f11c86365006efbb7",
+    "associativvordes/review/server.py": "ea12ff0ba158bb4bb1710971b3990cfda08050560a04148e28b869fcdbe2a61e",
+    "associativvordes/review/source_rows.py": "3cee767ea9c1dc2592ef16c8be13c8f9b151faf13a3b07c129f2a11b162ece3f",
+    "associativvordes/review/store.py": "ecc765eb5566cc8a48670e63b525c0fbee4cb3d65cb3532ea4fb9ef6b4a2f09f",
+    "associativvordes/auto_annotation/__init__.py": "1f0108af3f61a4fab884bff74bf391ec387fc08c00ee90153ba2fdc9d719b9bc",
+    "associativvordes/auto_annotation/benchmark.py": "a7cc8bf8e14f0d3ee465909c8d690f7fae2ef961fa1c6ffa3cf0a99d5d17f645",
+    "associativvordes/auto_annotation/contract.py": "8f2798fe754fbd9b064d9a1ba7f0765eb148f0080215639915a3479c45da40d0",
+    "associativvordes/auto_annotation/pipeline.py": "38e82e4c622e9214d5179c84bb9d43bd330cf6be45e54299b6d960470ba92d92",
+    "associativvordes/auto_annotation/providers.py": "82a23bead8002e46db2af5b269c87d9cd1c507e29b5c5fa6e81797442d66542f",
+    "associativvordes/auto_annotation/source.py": "62c290b4e60c9f23223a865c2621371abefdffd3d10f120ae61d57c52d674979",
+    "associativvordes/auto_annotation/storage.py": "b26b09ac6c7e6b5543950fa6779fc8e3d937144bfe88e4c9953b2579ed8e331a",
+    "associativvordes/v5_contract/__init__.py": "c1a6eac11fcb66d19fa9846d665cb0d82d9ef34b81da941f77b0727d49825f47",
+    "associativvordes/v5_contract/policy.py": "2a6c663ac74c7f3d3fb148d2aed6e3e50882800b26b5a591bc702d0320111ffb",
+    "associativvordes/v5_contract/versions.py": "02baddddd7aa147910504736f859655d0a94cd40ebadb482740b70b1497be3a2",
+    "associativvordes/v5_integration/__init__.py": "f7826cb84966ea2789bf1e990a6cfb2f7310e8c96afac373624f0f63ddd505ce",
+    "associativvordes/v5_integration/__main__.py": "6a1864846027df7c7441dcb165ab955a90d455ac29396a67afdbc0536c7cbae7",
+    "associativvordes/v5_integration/dependencies.py": "ae4fa407646679575bad16352ff755f0b87e3216b24cb5e715f418f4bd8b34ee",
+    "associativvordes/v5_integration/pipeline.py": "77abd6f0f37d697e16811638f11e4bf1fac9418d197d4e05a0e96deaaf79f9cc"
+  }
+}

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Reproduce full mass-discovery measurements on a disposable, disk-budgeted runner."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -15,18 +19,18 @@ import subprocess
 import sys
 import time
 from types import SimpleNamespace
-import mass_registry
-from mass_registry import prepare, LANGUAGES
-from mass_source import readonly, checked
-from mass_benchmark import benchmark
-from mass_store import Store
-from mass_recover import rollback
-from morphology_import import hash_file, validate_lock
-from certify_corpus import atomic_json, audit_catalog
-from audit_scale_index import audit
-from fetch_sources import fetch
-from fetch_glemm_git import export as export_glemm
-from glemm_cache import LOCK as GLEMM_LOCK, restore as restore_glemm
+from associativvordes.candidate_search import mass_registry
+from associativvordes.candidate_search.mass_registry import prepare, LANGUAGES
+from associativvordes.candidate_search.mass_source import readonly, checked
+from associativvordes.candidate_search.mass_benchmark import benchmark
+from associativvordes.candidate_search.mass_store import Store
+from associativvordes.candidate_search.mass_recover import rollback
+from associativvordes.importers.morphology_import import hash_file, validate_lock
+from associativvordes.importers.certify_corpus import atomic_json, audit_catalog
+from associativvordes.importers.audit_scale_index import audit
+from associativvordes.importers.fetch_sources import fetch
+from associativvordes.importers.fetch_glemm_git import export as export_glemm
+from associativvordes.importers.glemm_cache import LOCK as GLEMM_LOCK, restore as restore_glemm
 
 REPO = Path(__file__).resolve().parents[2]
 LOCK = REPO/'data/morphology-evidence/sources/source-lock.json'

@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "audit": "Reran complete proposal-input audit; outputs byte-identical. Does not certify census or linguistic conclusions.",
+  "independent": {
+    "status": "PASS",
+    "scope": "Independent JavaScript receipt and complete proposal-input verification; no linguistic certification",
+    "entries": 27,
+    "sources": 31,
+    "proposal_manifests": 6,
+    "proposal_rows": 0,
+    "production_writes": 0
+  },
+  "old_code_lock_sha256": "71469ed4671ee9d8645934a0a00e806bd5992e628e46e9980ec33f91035df8bb",
+  "new_code_lock_sha256": "799bcae1fa85d7a82d3ffa575bdad3e8877a05185cf36ffaf572060586b7b00e"
+}

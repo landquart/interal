@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """Index audited checkpoints as they become available, with a bounded disk cache."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import fcntl
 import json
 from pathlib import Path
 import time
-from certify_corpus import atomic_json, verified
-from morphology_import import hash_file, dumps
-from scale_index import Index, build
+from associativvordes.importers.certify_corpus import atomic_json, verified
+from associativvordes.importers.morphology_import import hash_file, dumps
+from associativvordes.importers.scale_index import Index, build
 
 
 def watch(release,registry_path,destination,cache_kib=65536,follow=False):

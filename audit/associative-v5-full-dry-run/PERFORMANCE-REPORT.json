@@ -1,0 +1,102 @@
+{
+  "before_census": {
+    "cpu_seconds": 967.691929937,
+    "disk_bytes": 972953783,
+    "implementation": {
+      "adapter_sha256": "25261c427ba9788831eb5fd467e9cc8f08fc713735094a14e6f793e6924f735f",
+      "core_sha256": "388502638fab3cdbcbbe63620e4b8731d0da1b66573e7b2c4e847e27542e78fa",
+      "decoder": "strict_one_gzip_bucket",
+      "snapshot_sha256": "ec629364d04a2b6f5ecf2a044629f1d0852590db8ee8f85c0e40baa9208e3809"
+    },
+    "peak_rss_kib": 373532,
+    "wall_seconds": 1062.715866438
+  },
+  "after_census": {
+    "cpu_seconds": 989.454114441,
+    "disk_bytes": 972953780,
+    "implementation": {
+      "adapter_sha256": "25261c427ba9788831eb5fd467e9cc8f08fc713735094a14e6f793e6924f735f",
+      "core_sha256": "388502638fab3cdbcbbe63620e4b8731d0da1b66573e7b2c4e847e27542e78fa",
+      "decoder": "strict_one_gzip_bucket",
+      "snapshot_sha256": "ec629364d04a2b6f5ecf2a044629f1d0852590db8ee8f85c0e40baa9208e3809"
+    },
+    "peak_rss_kib": 428912,
+    "wall_seconds": 1077.040504853
+  },
+  "raw_replay": {
+    "wall_seconds": 141.226767166,
+    "cpu_microseconds": {
+      "user": 172815199,
+      "system": 3219354
+    },
+    "peak_rss_kib": 460236
+  },
+  "runtime_and_calculator": {
+    "wall_seconds": 49.464565106,
+    "cpu_microseconds": {
+      "user": 102893905,
+      "system": 1902159
+    },
+    "peak_rss_kib": 928612
+  },
+  "shadow_materialization": {
+    "copied_bytes": 1401458610,
+    "copied_files": 3586,
+    "cpu_seconds": 6.870602669,
+    "inventory_sha256": "615100bd660269356e17d38d2ddf29109616240fbd9ada1c59f8f6dcec075302",
+    "peak_rss_kib": 26528,
+    "production_writes": 0,
+    "reused_files": 1,
+    "status": "MATERIALIZED_BYTE_IDENTICAL_SHADOW",
+    "total_files": 3587,
+    "wall_seconds": 12.948102142000039
+  },
+  "independent_copy": {
+    "copied_bytes": 1401532272,
+    "copied_files": 3587,
+    "cpu_seconds": 7.3009965050000005,
+    "inventory_sha256": "615100bd660269356e17d38d2ddf29109616240fbd9ada1c59f8f6dcec075302",
+    "peak_rss_kib": 26912,
+    "production_writes": 0,
+    "reused_files": 0,
+    "status": "MATERIALIZED_BYTE_IDENTICAL_SHADOW",
+    "total_files": 3587,
+    "wall_seconds": 14.288408093000044
+  },
+  "rollback": {
+    "copied_bytes": 1401532272,
+    "copied_files": 3587,
+    "cpu_seconds": 8.011390458999998,
+    "inventory_sha256": "615100bd660269356e17d38d2ddf29109616240fbd9ada1c59f8f6dcec075302",
+    "peak_rss_kib": 26912,
+    "production_writes": 0,
+    "reused_files": 0,
+    "status": "MATERIALIZED_BYTE_IDENTICAL_SHADOW",
+    "total_files": 3587,
+    "wall_seconds": 16.429800338000064
+  },
+  "idempotence": {
+    "copied_files": 0,
+    "production_writes": 0,
+    "reused_files": 3587,
+    "status": "ALREADY_MATERIALIZED"
+  },
+  "research_archive": {
+    "schema": "full-v5-dry-run-bundle/1",
+    "bytes": 778480584,
+    "sha256": "80faa6a0e36a2aceaa3e828660c767755261ccbdf78899a5e34546550eef95c5",
+    "files": 71
+  },
+  "corpus_snapshot_bytes": 1401532272,
+  "corpus_backup_archive_bytes": 1408552960,
+  "full_work_bytes": 10367049501,
+  "qualified_operations": 0,
+  "applied_operations": 0,
+  "reused_unchanged_memberships": 10078319,
+  "old_history_conflicts": 358,
+  "new_history_conflicts": 0,
+  "blocked_semantic_classes": 4,
+  "whole_session_wall_seconds": null,
+  "crashed_census_segment_cpu": null,
+  "measurement_note": "Completed invocation/process metrics; processes overlap, wall times are not summed. Interrupted pre-reset run is excluded. Abort-segment and session-wide overhead were not measured; no invented total or speedup."
+}

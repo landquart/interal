@@ -1,0 +1,3353 @@
+{
+  "schema": "full-v5-calculator-summary/1",
+  "scope": "Actual v5 byte-identical shadow, not v6 recordings or a changed materializer",
+  "queries": 17,
+  "language_queries": 102,
+  "runtime_differences": 0,
+  "calculator_state_differences": 0,
+  "semantic_gate": "BLOCKED",
+  "semantic_impact_certified": false,
+  "paid_api_calls": 0,
+  "full_recording": {
+    "filename": "CALCULATOR-COMPARISON.json",
+    "bytes": 879540,
+    "sha256": "1529d777a4dc03e3bdc984e20cb5c5acf282b878b79f935bbcec15cffb43406d",
+    "storage": "Research receipt bundle"
+  },
+  "rows": [
+    {
+      "query": "manu",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "79842c40575aef1e7f0aa2dad284ab9aa807d014dc4d84f6608c1e4c71220988",
+          "ordered_after_sha256": "79842c40575aef1e7f0aa2dad284ab9aa807d014dc4d84f6608c1e4c71220988",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "manual",
+              "lemma_id": "lemma:c42ef46efa3061a814db",
+              "family_id": "family:manu",
+              "sources_sha256": "f9fc131c51ee04630c85f05749505cdba00fcea8d5c3045c37a09574615c0a62"
+            },
+            {
+              "word": "manufacture",
+              "lemma_id": "lemma:6af1eabca1f819ce52ff",
+              "family_id": "family:manu",
+              "sources_sha256": "79d1d6bd486d7759980321912bc8ec02efec21cac8d7bf885bf22ac515604f56"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "4df9c0875db5a64b76369da9b32e7fc08c4e0d47aee3869af51ebc63eff69ac8",
+          "ordered_after_sha256": "4df9c0875db5a64b76369da9b32e7fc08c4e0d47aee3869af51ebc63eff69ac8",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "manuell",
+              "lemma_id": "lemma:c0b01847d1eca7ab7ad0",
+              "family_id": "family:manu",
+              "sources_sha256": "e6e6b70611730d0f9503ec032a89a281de66f36f7c546f6da1c6f79e0612c52d"
+            },
+            {
+              "word": "manufaktur",
+              "lemma_id": "lemma:5907bd09411a2def3878",
+              "family_id": "family:manu",
+              "sources_sha256": "20b1a70aa9cc87e086e713548c4269ebaaf5d167826de1e1132b9b344ba5f756"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "1fcfa5379e585b99c4f58fca77038046307dbfcdd2a2f23c2296cd3bef89db85",
+          "ordered_after_sha256": "1fcfa5379e585b99c4f58fca77038046307dbfcdd2a2f23c2296cd3bef89db85",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "manuel",
+              "lemma_id": "lemma:7e7f315d15b6590196ba",
+              "family_id": "family:manu",
+              "sources_sha256": "4b20f56603cf4f28e04877937f0057b26f85746cf5c6e6c299682c916689a0df"
+            },
+            {
+              "word": "manufacture",
+              "lemma_id": "lemma:4a1339bc092b8c725530",
+              "family_id": "family:manu",
+              "sources_sha256": "6033bb8be0778f2a8e1c8f4562a9386cb4c84c35c586e34bce1972e597f5bba5"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "38533c3fe11f8a8c13b3d988ac2437a6e7cf10a01065fd77b762666d60122341",
+          "ordered_after_sha256": "38533c3fe11f8a8c13b3d988ac2437a6e7cf10a01065fd77b762666d60122341",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "manual",
+              "lemma_id": "lemma:7334ca940739760d8d54",
+              "family_id": "family:manu",
+              "sources_sha256": "3823d888f555baed5d0f1092d0872ad0adc124891ff7e9273f79fe0200b221b7"
+            },
+            {
+              "word": "manufactura",
+              "lemma_id": "lemma:bb91d00f9ad5b0352807",
+              "family_id": "family:manu",
+              "sources_sha256": "14e32a9a978a8a2887050ea997053f23912f0c655eadc7647382e8d8b61e9045"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "01a79ab215fae6f0a0d4a8f258aa3da2881ffd0e7153bef971137c1cfebee1b4",
+          "ordered_after_sha256": "01a79ab215fae6f0a0d4a8f258aa3da2881ffd0e7153bef971137c1cfebee1b4",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "manifattura",
+              "lemma_id": "lemma:d7255080cf953fbf6bc5",
+              "family_id": "family:manu",
+              "sources_sha256": "0834063ea7848de1a7a92b5b120a4a9e2f0d4c24d4d6f4e21a6810398d204559"
+            },
+            {
+              "word": "manuale",
+              "lemma_id": "lemma:9e9ac29f202b8d046b6d",
+              "family_id": "family:manu",
+              "sources_sha256": "0ef99bff2df0acfcad9a8b02a37f14f5878f48ea1da8e6cdd2a72bfced022070"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "0479561b14fdeb662d7a5bc6b8570410d7cb931e6f6649f91482c842eb3eaaac",
+          "ordered_after_sha256": "0479561b14fdeb662d7a5bc6b8570410d7cb931e6f6649f91482c842eb3eaaac",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "мануальный",
+              "lemma_id": "lemma:d109181c12081047788f",
+              "family_id": "family:manu",
+              "sources_sha256": "e7539516606df5e17f1af2349fb1d541fc37b36a2e49b47c99a12f374bfebcd1"
+            },
+            {
+              "word": "мануфактура",
+              "lemma_id": "lemma:b96faab8b56422fd36e2",
+              "family_id": "family:manu",
+              "sources_sha256": "73fab1bdf4d2fd76166a10df6e3973e0eff5c86493e3c035d4abc98331e97ed4"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "0bc1f1940e1f76551cc8df0b49ccf0766055287ee5f8914fe0ccf02653eb662b",
+        "state_after_sha256": "0bc1f1940e1f76551cc8df0b49ccf0766055287ee5f8914fe0ccf02653eb662b",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "regul",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "e344c1e33322d28321ecfe66e14762e0ea597bb63931e970825a5d6b454bc514",
+          "ordered_after_sha256": "e344c1e33322d28321ecfe66e14762e0ea597bb63931e970825a5d6b454bc514",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "regular",
+              "lemma_id": "lemma:5bfac79df365de7c3f16",
+              "family_id": "family:regul",
+              "sources_sha256": "0134807f1dedb6671a10c9684fbe38090146a2b6f605af9b313f54663fcd0e4e"
+            },
+            {
+              "word": "regulation",
+              "lemma_id": "lemma:2e67173e8dc9b7b49144",
+              "family_id": "family:regul",
+              "sources_sha256": "7b59ff5c120b2540e564ffc4610366048a37138cce898c5d3fbe88abd8cba12f"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "46fabd132f1dc8448553c437ce862096379bbc61fa87f5a6dc8b583d6317bff4",
+          "ordered_after_sha256": "46fabd132f1dc8448553c437ce862096379bbc61fa87f5a6dc8b583d6317bff4",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "regulär",
+              "lemma_id": "lemma:8e29009c029445b64886",
+              "family_id": "family:regul",
+              "sources_sha256": "68609607def36d1fc1d9fb2b80264110e60d3195542a5c6562798b303da29f59"
+            },
+            {
+              "word": "regulierung",
+              "lemma_id": "lemma:9f1be19f9163c49f8e70",
+              "family_id": "family:regul",
+              "sources_sha256": "fa72414422cd66dcd5c79fb96b18c5fa5ea22bf18c329adf6f3d997ce8009010"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "b7b97181ed99a32f222d97413b94747475c0eba83839a64c9c2335c02dd51dc7",
+          "ordered_after_sha256": "b7b97181ed99a32f222d97413b94747475c0eba83839a64c9c2335c02dd51dc7",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "régulation",
+              "lemma_id": "lemma:36b113dd5a19c834592d",
+              "family_id": "family:regul",
+              "sources_sha256": "b16201f1fa742cc954773d074433c2728430954fbbd778fdd2ca87b9c3f31c3e"
+            },
+            {
+              "word": "régulier",
+              "lemma_id": "lemma:c8d358461e538d46315e",
+              "family_id": "family:regul",
+              "sources_sha256": "e3f55d8e119de9b85995809ae96a1fb48e43095b87d230758434eb0063e8bfe6"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "f2b3770aaf049532f3f49c15a9a6c19635b8c4639caa8b22e959b19ead1844e9",
+          "ordered_after_sha256": "f2b3770aaf049532f3f49c15a9a6c19635b8c4639caa8b22e959b19ead1844e9",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "regulación",
+              "lemma_id": "lemma:bde024b5ca9f9f25ed56",
+              "family_id": "family:regul",
+              "sources_sha256": "c7696aecd4eb345f2a8dc1247d789556b8353f3b8e2a36d0eb5a6460495e6558"
+            },
+            {
+              "word": "regular",
+              "lemma_id": "lemma:1dcc5ac5c8698315ed01",
+              "family_id": "family:regul",
+              "sources_sha256": "b5347b60e9090dcb0b970d2c8fa37640128b7e794efebcb44c64cb2eb703c987"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "fcaf16a0aad558fc56e46a861529410411ceb9b474e24cfe7f6e643919776d35",
+          "ordered_after_sha256": "fcaf16a0aad558fc56e46a861529410411ceb9b474e24cfe7f6e643919776d35",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "regolare",
+              "lemma_id": "lemma:72ddcbf8c234c7aea82f",
+              "family_id": "family:regul",
+              "sources_sha256": "c6a60b33e585040bd53256115f8694aaa5cd6d88f2db3e9910aee9d1630b1d1e"
+            },
+            {
+              "word": "regolazione",
+              "lemma_id": "lemma:3d80f0f7506c281950cf",
+              "family_id": "family:regul",
+              "sources_sha256": "7eecaad3695bfac53fb61333bfea6c5807a9ee9904738aa4bd3f7cb153ea6d16"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "f74e6e30b136a2e16035e31a68a115432b85d9eb6ee06696e3cd9ccdeb2395d3",
+          "ordered_after_sha256": "f74e6e30b136a2e16035e31a68a115432b85d9eb6ee06696e3cd9ccdeb2395d3",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "регулирование",
+              "lemma_id": "lemma:79b286ab0c8183ffa9a8",
+              "family_id": "family:regul",
+              "sources_sha256": "9a31f46f7e06559e1e08b10a2ace5db83606f7a9b59fc777cf717dfc284edf52"
+            },
+            {
+              "word": "регулярный",
+              "lemma_id": "lemma:ca70e220d611235c4044",
+              "family_id": "family:regul",
+              "sources_sha256": "d3b71ce7c9b207b579088831a9245e856769bf6da7dcdddf142c888ad26feb89"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "f7083e9ef0e843a98c0d44170f2e954606631853aac37814f172a3c635a003fe",
+        "state_after_sha256": "f7083e9ef0e843a98c0d44170f2e954606631853aac37814f172a3c635a003fe",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "creat",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 20,
+          "count_after": 20,
+          "ordered_before_sha256": "2366ebe1831ab6deff0fb26bfb7e219f790daf25e819de5174baa36ea98b8887",
+          "ordered_after_sha256": "2366ebe1831ab6deff0fb26bfb7e219f790daf25e819de5174baa36ea98b8887",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "creat",
+              "lemma_id": "lemma:48b44310e0bde53fd516",
+              "family_id": "surface:en:creat",
+              "sources_sha256": "12591c317469143263c3f3bda028def2ef39e9f8c3ea0bcead703960b661d8d3"
+            },
+            {
+              "word": "createan",
+              "lemma_id": "lemma:6467242372025a822b49",
+              "family_id": "surface:en:creat",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "created",
+              "lemma_id": "lemma:dc3361b880e1bca71b5c",
+              "family_id": "surface:en:creat",
+              "sources_sha256": "d2b7812d8c6a4143c72a37e2c4fada4b29ecb36da2a82979e9d135cfd65394aa"
+            },
+            {
+              "word": "createda",
+              "lemma_id": "lemma:fdd20c1392876b3b5a34",
+              "family_id": "surface:en:creat",
+              "sources_sha256": "45dd4b92e3b3086856f6277a48ae3c2af07b05ed0429539c1090ca4788125f1f"
+            },
+            {
+              "word": "createst",
+              "lemma_id": "lemma:081327ffe41b446b5d20",
+              "family_id": "surface:en:creat",
+              "sources_sha256": "6798319f0f8a48d0d7bfda035c1236b802bd33565d8941e4907649698724cb20"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 6,
+          "count_after": 6,
+          "ordered_before_sha256": "74f574acf0ef87c793bf48c9bd5d74a9ca87345433922e4febd54207fbb23ddf",
+          "ordered_after_sha256": "74f574acf0ef87c793bf48c9bd5d74a9ca87345433922e4febd54207fbb23ddf",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "create",
+              "lemma_id": "lemma:26f22ba6fc48f063e6cc",
+              "family_id": "surface:de:creat",
+              "sources_sha256": "1f726218d302fd7e86d14194fa4b49374baff984b357c01d9558f6a5d28cd8a1"
+            },
+            {
+              "word": "createelement",
+              "lemma_id": "lemma:c22ea52cfd33625751ed",
+              "family_id": "surface:de:creat",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "createrl",
+              "lemma_id": "lemma:42a554d5166f34417200",
+              "family_id": "surface:de:creat",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "creating",
+              "lemma_id": "lemma:38e398abbb821010ae0b",
+              "family_id": "surface:de:creat",
+              "sources_sha256": "98796de55a93aa4fc1554a10035d16e448a9c7d801e1d84022f4d172cd084aba"
+            },
+            {
+              "word": "creative-ct",
+              "lemma_id": "lemma:0e6272ace3f80d312232",
+              "family_id": "surface:de:creat",
+              "sources_sha256": "2188741472894d8b5df0af22d784341e272631fb0bca4c1f29343ff70bde800d"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 8,
+          "count_after": 8,
+          "ordered_before_sha256": "fa7a369ab143cbc442913095d067d23b546b183c419de57b7410b31e432f4fdc",
+          "ordered_after_sha256": "fa7a369ab143cbc442913095d067d23b546b183c419de57b7410b31e432f4fdc",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "creat",
+              "lemma_id": "lemma:b9ece13f3cb20a7d2da8",
+              "family_id": "surface:fr:creat",
+              "sources_sha256": "b7e4bf7f62fb48603ae904b516dbfacd05a5776bccdf6ebebda94b15a4e18c6a"
+            },
+            {
+              "word": "créat",
+              "lemma_id": "lemma:431bdb5933d337828946",
+              "family_id": "surface:fr:creat",
+              "sources_sha256": "c9ccde6d86e25c47257cecb31878819d1148d17ff7854ea66ca3433775aaea28"
+            },
+            {
+              "word": "create",
+              "lemma_id": "lemma:33c81a39e53fb1b90a8b",
+              "family_id": "surface:fr:creat",
+              "sources_sha256": "36af765a61506480ecb9c776a02c85ecfa767b3920cd8e2d44368fc5113ed4d4"
+            },
+            {
+              "word": "creating",
+              "lemma_id": "lemma:49127ef78d648cc00543",
+              "family_id": "surface:fr:creat",
+              "sources_sha256": "b260c767697341e44fadd1893fbb2e82faa5b67557a04924d281e59e057daa14"
+            },
+            {
+              "word": "creativo",
+              "lemma_id": "lemma:b137fe6979d390a3596f",
+              "family_id": "surface:fr:creat",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 12,
+          "count_after": 12,
+          "ordered_before_sha256": "bf67fec021cb73855b0bbeec7b23f765f377430148940a534db30bd260e93bf8",
+          "ordered_after_sha256": "bf67fec021cb73855b0bbeec7b23f765f377430148940a534db30bd260e93bf8",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "creat",
+              "lemma_id": "lemma:ebfbdcfb1827b81304a6",
+              "family_id": "surface:es:creat",
+              "sources_sha256": "bc641bbbd00bdf3b03c11c042117aaa2594fc029c6f7d91b483c19c82345637c"
+            },
+            {
+              "word": "creategus",
+              "lemma_id": "lemma:4c3ea2f24636ef50a123",
+              "family_id": "surface:es:creat",
+              "sources_sha256": "95890f483ca38c97a28b6abfaf936da9c70f41f0e3fdfd8984107dce30bdbaa4"
+            },
+            {
+              "word": "creates",
+              "lemma_id": "lemma:fe0ab063c4594a15276b",
+              "family_id": "surface:es:creat",
+              "sources_sha256": "8e43f39c9115195b8a678e7222d1048265fd9ad3623be54dbc975de024bb074d"
+            },
+            {
+              "word": "creating",
+              "lemma_id": "lemma:e1d974dde924f4125035",
+              "family_id": "surface:es:creat",
+              "sources_sha256": "46fbfde588fdb50e8118c10445080130e186deab9dd45a508391ee99ff692b3f"
+            },
+            {
+              "word": "creation",
+              "lemma_id": "lemma:7dd94713dc0e812ea7ff",
+              "family_id": "surface:es:creat",
+              "sources_sha256": "2a441a26cc50d061dd488ce509e952bca7792e354bbc307077e0c649e04d0c54"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 8,
+          "count_after": 8,
+          "ordered_before_sha256": "0b86406953c0ffd3256eab93a476dae76eec3c815e15f5c37188a12ee6939504",
+          "ordered_after_sha256": "0b86406953c0ffd3256eab93a476dae76eec3c815e15f5c37188a12ee6939504",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "creat",
+              "lemma_id": "lemma:a8cdde0c924c4bc2a7fa",
+              "family_id": "surface:it:creat",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "creating",
+              "lemma_id": "lemma:cb4fa20de803370fadc3",
+              "family_id": "surface:it:creat",
+              "sources_sha256": "b2fc47f4a531880e047d91bba27e32c378b50c84ca05e1c2d081392b1254e8a1"
+            },
+            {
+              "word": "creation",
+              "lemma_id": "lemma:bcc9edfeaa33e9f81bbf",
+              "family_id": "surface:it:creat",
+              "sources_sha256": "0d2c947dc66757c3cdc9a3e5a1ddf0b0196b34a4872d8446067042be15dc20c5"
+            },
+            {
+              "word": "création",
+              "lemma_id": "lemma:5fff14fe6fcee44bc588",
+              "family_id": "surface:it:creat",
+              "sources_sha256": "eafaa07ee86d055efc778249d77c9658e45ec0e659b5e2fadf42da99df3c2bed"
+            },
+            {
+              "word": "creatorem",
+              "lemma_id": "lemma:bffb90c1293facbffd8a",
+              "family_id": "surface:it:creat",
+              "sources_sha256": "887124da08413c2cf5766e64cd295d42b98e0a667c92db99d2c384510a9eb872"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "90a1b9c2a82dae8ecf89659efef95989429d851c7d3265090e6ef9a64e57e436",
+        "state_after_sha256": "90a1b9c2a82dae8ecf89659efef95989429d851c7d3265090e6ef9a64e57e436",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_candidates",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "ocul",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 3,
+          "count_after": 3,
+          "ordered_before_sha256": "2a072cbbebc4cecc74c76033d87ec6ef99b11e57257117948271df8d5fa481f9",
+          "ordered_after_sha256": "2a072cbbebc4cecc74c76033d87ec6ef99b11e57257117948271df8d5fa481f9",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "monocle",
+              "lemma_id": "lemma:6528c71a5c15a2847996",
+              "family_id": "family:ocul",
+              "sources_sha256": "d33fa3c25852eae4188791a4961b0ec882be00df366a5da87f586e5a4ddbac88"
+            },
+            {
+              "word": "monocular",
+              "lemma_id": "lemma:2367658165e565a68fed",
+              "family_id": "family:ocul",
+              "sources_sha256": "885a41b2ebb088a0441da0e25f274b4bd6a3fcaad4abc772b62dd50457bf7ce4"
+            },
+            {
+              "word": "ocular",
+              "lemma_id": "lemma:28803dfca5e3e52ce2c5",
+              "family_id": "family:ocul",
+              "sources_sha256": "fdcabeff744c6ae78f33fdaeb176e1b6273026cac32865793a58a794580258e4"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 1,
+          "count_after": 1,
+          "ordered_before_sha256": "3fa410f81ee88ed10f31c85c0de8d619d77dee382019fdd50e4048a03b317e1d",
+          "ordered_after_sha256": "3fa410f81ee88ed10f31c85c0de8d619d77dee382019fdd50e4048a03b317e1d",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "monokel",
+              "lemma_id": "lemma:274ced6b7dab9fb4ae00",
+              "family_id": "family:ocul",
+              "sources_sha256": "3c5eca4a6d5c151ba1c9124742f56063001a02f39dee3ce834908392cb8d8e28"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "8466dc1c5982f75d812100e948b221303eac75df78ec7231f984dc7522cd00f0",
+          "ordered_after_sha256": "8466dc1c5982f75d812100e948b221303eac75df78ec7231f984dc7522cd00f0",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "monocle",
+              "lemma_id": "lemma:5f642b929a9a5cd17a53",
+              "family_id": "family:ocul",
+              "sources_sha256": "90265802ab8d708d167e1e86f87331f0446b4a12a755252e8b700e0e2258ca44"
+            },
+            {
+              "word": "oculaire",
+              "lemma_id": "lemma:78bb3868d1350f86caaa",
+              "family_id": "family:ocul",
+              "sources_sha256": "407a8e08d356da7ac1cf07994125ba5beea2b41e70f7775e63cf9642cb3244bd"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "0fff09048a95c6c35a588fef056af2e10ae3a0adca78aba6f343b25de0f410b9",
+          "ordered_after_sha256": "0fff09048a95c6c35a588fef056af2e10ae3a0adca78aba6f343b25de0f410b9",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "monóculo",
+              "lemma_id": "lemma:5db87dd5f5a61d765730",
+              "family_id": "family:ocul",
+              "sources_sha256": "9e71df1bb89a91108da3650256f8bc348a580681cf708874dd8810a63685a566"
+            },
+            {
+              "word": "ocular",
+              "lemma_id": "lemma:9f580d2cd4d317db0ee4",
+              "family_id": "family:ocul",
+              "sources_sha256": "536243d88affb0a5afd6c9430289e5af8262eb5757c658a131bf1d31d8d50e7d"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "4fe206cafeb298ee45a5579c90f0961cc73b8924a5e14d01eb72730834dd2f83",
+          "ordered_after_sha256": "4fe206cafeb298ee45a5579c90f0961cc73b8924a5e14d01eb72730834dd2f83",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "monocolo",
+              "lemma_id": "lemma:02998718b8d26ad4ebe3",
+              "family_id": "family:ocul",
+              "sources_sha256": "0d4a868c1d23aad4fc0a93a771261f5d65bf47fe42a7bc8abffcfc57a58aa070"
+            },
+            {
+              "word": "oculare",
+              "lemma_id": "lemma:2e66734b8a24f73c2839",
+              "family_id": "family:ocul",
+              "sources_sha256": "7c3e5bb65732a2f639f48005c99eebd5ff67ce609752f4f9703f179a7b1f57c2"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "88f01de3bbc9fd13a9bb5eca6b995c04e081a6bf6dc9a7fc08871330ac40869c",
+          "ordered_after_sha256": "88f01de3bbc9fd13a9bb5eca6b995c04e081a6bf6dc9a7fc08871330ac40869c",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "монокль",
+              "lemma_id": "lemma:3a07de9feef04411626c",
+              "family_id": "family:ocul",
+              "sources_sha256": "4653cec8c52e2cd9c0b530851d3333015e1e8641ca2d164606edb1799ecff851"
+            },
+            {
+              "word": "окулярный",
+              "lemma_id": "lemma:df0f0fc3cc6ae152d363",
+              "family_id": "family:ocul",
+              "sources_sha256": "f4b206dd74447d290dae149f646cc880ca5d31c25b9783a5b80caee3c04e30ea"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "53a1bfb1621edf615d6d61a80f2793b186e9df1437b719686b80c1d7698ac701",
+        "state_after_sha256": "53a1bfb1621edf615d6d61a80f2793b186e9df1437b719686b80c1d7698ac701",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "ped",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "c1f0ec446b72f0936400e87a3dfbcf10101ec6222de33fc2148c3b84a5bdc53f",
+          "ordered_after_sha256": "c1f0ec446b72f0936400e87a3dfbcf10101ec6222de33fc2148c3b84a5bdc53f",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "pedal",
+              "lemma_id": "lemma:ff24e3c1fcada6770b48",
+              "family_id": "family:pede",
+              "sources_sha256": "0bc7d51a59def9574d4812a227dd6c8828caea47d3f9acbcf0efa66c16fe589d"
+            },
+            {
+              "word": "pedicure",
+              "lemma_id": "lemma:14460610c4eaec24a591",
+              "family_id": "family:pede",
+              "sources_sha256": "03f3e056d4f87ae4042e7bd5cbc19cbb547b27954b085eb5ed7966b7812f7de8"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "7342f58a3bc6bcc40bf6d85508f444b5739dc8a3c42d058655fe6d61143709f1",
+          "ordered_after_sha256": "7342f58a3bc6bcc40bf6d85508f444b5739dc8a3c42d058655fe6d61143709f1",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "pedal",
+              "lemma_id": "lemma:94b0d9c4949d66588f02",
+              "family_id": "family:pede",
+              "sources_sha256": "59301c85da15d965f9fd745e655cb5d8699e76ae21e238beaf87834d599644db"
+            },
+            {
+              "word": "pediküre",
+              "lemma_id": "lemma:c0b3f67087035f1029c4",
+              "family_id": "family:pede",
+              "sources_sha256": "f71b5098c1eca2faf08020bf51b0d9bf7df22c1aa7f09bf21cf185021ee6ac92"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "6b0639897cd32c8e849d35f4adabf0a4d54c8d2f69ebc045359942cd96f57f19",
+          "ordered_after_sha256": "6b0639897cd32c8e849d35f4adabf0a4d54c8d2f69ebc045359942cd96f57f19",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "pédale",
+              "lemma_id": "lemma:55cc9d83e158d143cb6b",
+              "family_id": "family:pede",
+              "sources_sha256": "f9c422b99d1b03304653258e40588e023e3785e987fccd365ec3c8081df65a1d"
+            },
+            {
+              "word": "pédicure",
+              "lemma_id": "lemma:85dd6ac550a12125951e",
+              "family_id": "family:pede",
+              "sources_sha256": "78d8db50d5e94207bac1b413e16329460819e98bb6d5b5280c7097a09201a6dc"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "9c1b71592d8d31049ab2ed8331edc4b7d97a1c81343eb23dd56d64b5b92d3f4a",
+          "ordered_after_sha256": "9c1b71592d8d31049ab2ed8331edc4b7d97a1c81343eb23dd56d64b5b92d3f4a",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "pedal",
+              "lemma_id": "lemma:b372e2f5b5265ebda647",
+              "family_id": "family:pede",
+              "sources_sha256": "73c166831c05b98bbdf74198f52e07df98f04f0dbc475ea10c16f52290eb2522"
+            },
+            {
+              "word": "pedicura",
+              "lemma_id": "lemma:5059337e06638a31aef0",
+              "family_id": "family:pede",
+              "sources_sha256": "5322c39943e9c92ac19ae3487891b97e1539fb5a2c88ac23f4f0c529c93f6554"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "0315139d470416b1f05eb0f218ca307f480906c77f83cb035aa6e00686b9d87d",
+          "ordered_after_sha256": "0315139d470416b1f05eb0f218ca307f480906c77f83cb035aa6e00686b9d87d",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "pedale",
+              "lemma_id": "lemma:59bd5e6b7797b5429953",
+              "family_id": "family:pede",
+              "sources_sha256": "a39ef16a87e4cf3ba68a5fa30f6a2940938ba12f83f44432eda0abffd048f241"
+            },
+            {
+              "word": "pedicure",
+              "lemma_id": "lemma:ee75ff59537ba798960d",
+              "family_id": "family:pede",
+              "sources_sha256": "59066bb2d448a272e90f6bc85e35d1e5b8b3501bf7346699f5af235f0c7cf64c"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "08c90a6479947cbd0f5a49cdf0fcf51ce1e85d9ca7a01160d84caae369606f60",
+          "ordered_after_sha256": "08c90a6479947cbd0f5a49cdf0fcf51ce1e85d9ca7a01160d84caae369606f60",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "педаль",
+              "lemma_id": "lemma:b3ff999402865d0a4d1f",
+              "family_id": "family:pede",
+              "sources_sha256": "1e6e024ffe5460a1e07c724e0d6c6773e7e7c9ae613f51f7c4eb4db184f0e609"
+            },
+            {
+              "word": "педикюр",
+              "lemma_id": "lemma:becc51144e6e07fcfe01",
+              "family_id": "family:pede",
+              "sources_sha256": "f3490e93a3cc43df0104d0873f0976aacd6bb326b3af7879aee70d5e2aee0cf7"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "5d4b2745658832e58990d60e3de7934f524871549498db3b919f18d6bd48b09c",
+        "state_after_sha256": "5d4b2745658832e58990d60e3de7934f524871549498db3b919f18d6bd48b09c",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "inter",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "0ba5864c95271604cf556306bfbfe86d4bd97679d829309d66f07a9c9e6155dc",
+          "ordered_after_sha256": "0ba5864c95271604cf556306bfbfe86d4bd97679d829309d66f07a9c9e6155dc",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "interdisciplinary",
+              "lemma_id": "lemma:7e8b53a492d449361aeb",
+              "family_id": "family:inter",
+              "sources_sha256": "e1ffbca2b9478c09accd8f13a3f1e6da7aec79bb9d0eb9eb8f5a7213c7eb7e6f"
+            },
+            {
+              "word": "international",
+              "lemma_id": "lemma:dda21111e5537eb601fd",
+              "family_id": "family:inter",
+              "sources_sha256": "74cb6906b6b6bdd345bfdfb6819f8158e78ed68fea41761a6041c2a310f135fd"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "bcf773852e396a58a12f61132ed9bb3da7c1f9c5fed6e90613f036e50657ed6b",
+          "ordered_after_sha256": "bcf773852e396a58a12f61132ed9bb3da7c1f9c5fed6e90613f036e50657ed6b",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "interdisziplinär",
+              "lemma_id": "lemma:a4d8ce54e11761ea2420",
+              "family_id": "family:inter",
+              "sources_sha256": "901611657114179186878c070f633594548d4179ef8cacbb38ad79155ebf2c11"
+            },
+            {
+              "word": "international",
+              "lemma_id": "lemma:d5c68de76aaece8b4c6d",
+              "family_id": "family:inter",
+              "sources_sha256": "34dbf5e297f8cc03c44a7a1a658172acae9cb65cc888ec3039286e3dded57508"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "bba39030ae52857672a68daad8689bcbea2af6a7dd1d2a03bb0969e9acefc901",
+          "ordered_after_sha256": "bba39030ae52857672a68daad8689bcbea2af6a7dd1d2a03bb0969e9acefc901",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "interdisciplinaire",
+              "lemma_id": "lemma:05758850f424b075982a",
+              "family_id": "family:inter",
+              "sources_sha256": "94a0f041af9392d49a8e55620acb4525579daec2951067742b46dd6cbdec888f"
+            },
+            {
+              "word": "international",
+              "lemma_id": "lemma:9d77d09d2991c3d73d55",
+              "family_id": "family:inter",
+              "sources_sha256": "98c8f080442df75ab7e7f000fd7e55ca3a2b4f502ad04f1277cb6949764ca34c"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "7e09e65bee00e4320faa09297762087e5e2c9f4166e48ae4cb61ff6c47153fdc",
+          "ordered_after_sha256": "7e09e65bee00e4320faa09297762087e5e2c9f4166e48ae4cb61ff6c47153fdc",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "interdisciplinario",
+              "lemma_id": "lemma:0629eb6709454f01712d",
+              "family_id": "family:inter",
+              "sources_sha256": "e0ba1269537b68be989f194cd5f4f4d0c77c08437a55c2b437be1b8a50a0116b"
+            },
+            {
+              "word": "internacional",
+              "lemma_id": "lemma:7e756bfe2034e47ffc6a",
+              "family_id": "family:inter",
+              "sources_sha256": "0fd6d4bef700bd649739cf48e9b6de56220307d90993e7cfb1a4509ff71b5ccc"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "a489ad9f9ee84570cf32515cec5b72432e242e439d076232b9f7da326a865597",
+          "ordered_after_sha256": "a489ad9f9ee84570cf32515cec5b72432e242e439d076232b9f7da326a865597",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "interdisciplinare",
+              "lemma_id": "lemma:5ea2682ef6ba3af5d1b8",
+              "family_id": "family:inter",
+              "sources_sha256": "6aecf46d0e134450dcd63a93f1781f83c83f376407be90ac2ac93c81a9f1868a"
+            },
+            {
+              "word": "internazionale",
+              "lemma_id": "lemma:42b9a39234250f15c2d7",
+              "family_id": "family:inter",
+              "sources_sha256": "f6bb3f2628afec7b28aa85c7f2fb973175786c196aabc79f93806e1dddcf80a9"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 1,
+          "count_after": 1,
+          "ordered_before_sha256": "aaed78d88cdcde1a8c959f0ac3989a28b4a80d81cd064b7f526e7d59110ac06c",
+          "ordered_after_sha256": "aaed78d88cdcde1a8c959f0ac3989a28b4a80d81cd064b7f526e7d59110ac06c",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "интернациональный",
+              "lemma_id": "lemma:8fb116f8f8576f5e6dd5",
+              "family_id": "family:inter",
+              "sources_sha256": "4538853683ce49de9359b7bc85af65c10a4f1a49adfd04ad5f000d145416cb2e"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "3c4c8a1c3ac783abdab0a62f51c23cf8e1ab1a75493538e327b82e5d075dfc8f",
+        "state_after_sha256": "3c4c8a1c3ac783abdab0a62f51c23cf8e1ab1a75493538e327b82e5d075dfc8f",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "liber",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "d1955fb33b831241661b139be674e469b019166cb6cc34e49f7bb29f02ec0da3",
+          "ordered_after_sha256": "d1955fb33b831241661b139be674e469b019166cb6cc34e49f7bb29f02ec0da3",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "libertarian",
+              "lemma_id": "lemma:f617c9a012795d384828",
+              "family_id": "family:liber",
+              "sources_sha256": "7b593dbe59ec8beaca02005d40e2885802b96a430b0ca9f46fa63018744e3bdb"
+            },
+            {
+              "word": "liberty",
+              "lemma_id": "lemma:9a11a230efaa3e83fa3e",
+              "family_id": "family:liber",
+              "sources_sha256": "3ddb7d7d4be4a4d036079770a65f3c63306305412f65fd6ea23d55f3eb33186e"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "cb220839df2bdfdfe5f5ecef2d7319704cf8343575f73145747e6e90e727cd55",
+          "ordered_after_sha256": "cb220839df2bdfdfe5f5ecef2d7319704cf8343575f73145747e6e90e727cd55",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "liberal",
+              "lemma_id": "lemma:7777dc7180a78a9e1379",
+              "family_id": "family:liber",
+              "sources_sha256": "cd563bc34b8477c9c4d64314ab082c1d71cc9a07deaef4001ff5e5875376121d"
+            },
+            {
+              "word": "libertär",
+              "lemma_id": "lemma:010085d648ecb780b970",
+              "family_id": "family:liber",
+              "sources_sha256": "1ca6b57e19753fb3980ebda815e241f928b61e377d5d6fd566f496cc7efce6b6"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "6fd61d2cec3da4cb675162f9072a31377de6990d58cb1d5fdf96067cf2d057ed",
+          "ordered_after_sha256": "6fd61d2cec3da4cb675162f9072a31377de6990d58cb1d5fdf96067cf2d057ed",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "libéral",
+              "lemma_id": "lemma:e8c38fcfc70786133668",
+              "family_id": "family:liber",
+              "sources_sha256": "8c24492fd4efcd16596537fb9be2ec5be5a6fe0f26757dd8735fc974888b0e94"
+            },
+            {
+              "word": "liberté",
+              "lemma_id": "lemma:fc88c558d1960205cabb",
+              "family_id": "family:liber",
+              "sources_sha256": "86d323b595286b10877e7b22cb3bc464a5c0bab0a5d9f2ecdb4aba1f7f2df10e"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "8348e6272e42b7fa9918cd42593e02b6d632e9c67c158538aaab1524b538257d",
+          "ordered_after_sha256": "8348e6272e42b7fa9918cd42593e02b6d632e9c67c158538aaab1524b538257d",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "liberal",
+              "lemma_id": "lemma:4599bde51cecb222e483",
+              "family_id": "family:liber",
+              "sources_sha256": "10a98f9fd5bf378fc306784a2c8c24357d04997feefd777ec20a13c00df0d023"
+            },
+            {
+              "word": "libertad",
+              "lemma_id": "lemma:450bb44ef233dea494c5",
+              "family_id": "family:liber",
+              "sources_sha256": "07b71e7011d292cb5c053051a151dae7e3492cbff1cd20cae97af4ba6532c896"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "639edae205b72949693074e1e103fb3a45c6084808fdea6a8e59ab3598defcb7",
+          "ordered_after_sha256": "639edae205b72949693074e1e103fb3a45c6084808fdea6a8e59ab3598defcb7",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "liberale",
+              "lemma_id": "lemma:f4997188355cd519f7aa",
+              "family_id": "family:liber",
+              "sources_sha256": "3e5c8dbcb9eb2cb3fb75a6aee31d0e79a82b03d711493ff7412d3bcd511a8fa2"
+            },
+            {
+              "word": "libertà",
+              "lemma_id": "lemma:bb305baccc7d4884c9cd",
+              "family_id": "family:liber",
+              "sources_sha256": "e0abe1a0d98e90dc68e11f042a959db5fe7ac3ec4ef1cf47b08f4049f0306557"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "18b627ce66d1de285b8e1d56d966f672bcc9b1ce7ce2eaa57c21326da1fb06f9",
+          "ordered_after_sha256": "18b627ce66d1de285b8e1d56d966f672bcc9b1ce7ce2eaa57c21326da1fb06f9",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "либеральный",
+              "lemma_id": "lemma:22ffe32550827b5e9cb6",
+              "family_id": "family:liber",
+              "sources_sha256": "f8941823b0bfe4dfd0787e03962b8cc95ff7f86c0ed9cac1e8f43bc83bef2af2"
+            },
+            {
+              "word": "либертарианский",
+              "lemma_id": "lemma:e439f4f3c36294602bbc",
+              "family_id": "family:liber",
+              "sources_sha256": "b2d6f1877a28e4171fe2b49ff7d801759a397a91e92789f3ecb5b7caa847b777"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "d7c8f6d28a62073371f57272f6b6f3abcdb28d2f614e58946d3b48da8c2052c1",
+        "state_after_sha256": "d7c8f6d28a62073371f57272f6b6f3abcdb28d2f614e58946d3b48da8c2052c1",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "mut",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 146,
+          "count_after": 146,
+          "ordered_before_sha256": "1d7f18da3d5ec8ea565fec2df843668d960d3ba487884dd790460febc6097557",
+          "ordered_after_sha256": "1d7f18da3d5ec8ea565fec2df843668d960d3ba487884dd790460febc6097557",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "amamutelli",
+              "lemma_id": "lemma:e812f51538cdf4417bd8",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "brothermute",
+              "lemma_id": "lemma:5836292a52fcbc9c4caa",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "cd2a744a56342ebfbf8619de642dde827a9038be4bb365259122d3960d3f8c2b"
+            },
+            {
+              "word": "commute",
+              "lemma_id": "lemma:fdebd9a2decc958b4584",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "8ba3612abdb03d8a1708ea62a0b9bf20ab77f6be0ac2ba3b2819a2a6352a1783"
+            },
+            {
+              "word": "deafmute",
+              "lemma_id": "lemma:d95b2201fcbcd7d66aa6",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "cd2a744a56342ebfbf8619de642dde827a9038be4bb365259122d3960d3f8c2b"
+            },
+            {
+              "word": "helmute",
+              "lemma_id": "lemma:d1121e3f1ad4add5e111",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "40033e9c5c048e9b919bdd71c8bfc0d4def5024321de25ec433a0738a35698e7"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 72,
+          "count_after": 72,
+          "ordered_before_sha256": "099c94a7eaa7fabe0ff4a95edc803bba1ceac96765292de6f6cbaf7237fb710a",
+          "ordered_after_sha256": "099c94a7eaa7fabe0ff4a95edc803bba1ceac96765292de6f6cbaf7237fb710a",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "abdulmutallab",
+              "lemma_id": "lemma:0583162f068485ae6e2c",
+              "family_id": "surface:de:mut",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "aupumut",
+              "lemma_id": "lemma:064f15b9c899bb283a35",
+              "family_id": "surface:de:mut",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "azimut",
+              "lemma_id": "lemma:d20b4683ffc75deee6d8",
+              "family_id": "surface:de:mut",
+              "sources_sha256": "5d23a3652dc2c2fd0c39fe3bb8ff3ef8d9bf3dce750d1165b0aee199a03d6087"
+            },
+            {
+              "word": "azimutwinkel",
+              "lemma_id": "lemma:f456fb4556e902c93bdf",
+              "family_id": "surface:de:mut",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "bachmut",
+              "lemma_id": "lemma:86f483a374cbb8ff3e88",
+              "family_id": "surface:de:mut",
+              "sources_sha256": "4c78ddd72bebffe752d762a1fbafa2432ae76f073561d6df64ddb966f8a083f0"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 62,
+          "count_after": 62,
+          "ordered_before_sha256": "bf6d89f523cd81a0874b656162206ab9cf126599c9c62f5c8518b7d15440d2e1",
+          "ordered_after_sha256": "bf6d89f523cd81a0874b656162206ab9cf126599c9c62f5c8518b7d15440d2e1",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "muet",
+              "lemma_id": "lemma:44d8f4b82d41c2bf126b",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "654f56787db2dba70c44a4c7ada7e3d6f098fa56d4b0df1c51ea6e82b35c3cf3"
+            },
+            {
+              "word": "muete",
+              "lemma_id": "lemma:b700aa6903018d7a9603",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            },
+            {
+              "word": "muethaï",
+              "lemma_id": "lemma:10c15a7c9b0bba403dbd",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "1a7811253efebc97b12f23c9b60569d59730c336e134a04fbd487f2a18fa7c2b"
+            },
+            {
+              "word": "alamut",
+              "lemma_id": "lemma:047991d1cfb0d4df9a89",
+              "family_id": "surface:fr:mut",
+              "sources_sha256": "1a7811253efebc97b12f23c9b60569d59730c336e134a04fbd487f2a18fa7c2b"
+            },
+            {
+              "word": "aupumut",
+              "lemma_id": "lemma:d8a9864c7bc34ade6bc5",
+              "family_id": "surface:fr:mut",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 83,
+          "count_after": 83,
+          "ordered_before_sha256": "3be4d4bb56fe670c7de80b913304c5002aad3867a99c35cf708bea0a0f287d93",
+          "ordered_after_sha256": "3be4d4bb56fe670c7de80b913304c5002aad3867a99c35cf708bea0a0f287d93",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "alamut",
+              "lemma_id": "lemma:f1a7204deba53cb7141b",
+              "family_id": "surface:es:mut",
+              "sources_sha256": "fe4afab1fd5a8c03951171339769a8d04fc56b4ff5fe658daca41b27df9cab9f"
+            },
+            {
+              "word": "bahamut",
+              "lemma_id": "lemma:deea237cf4eb68bec1e2",
+              "family_id": "surface:es:mut",
+              "sources_sha256": "0292d191bcf83445c6dcd2d0d73fd038323f3cb014697ff7aa7016a009d66285"
+            },
+            {
+              "word": "chestmut",
+              "lemma_id": "lemma:281b39a3cb500693fe42",
+              "family_id": "surface:es:mut",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            },
+            {
+              "word": "claramut",
+              "lemma_id": "lemma:21b606e8141006868a88",
+              "family_id": "surface:es:mut",
+              "sources_sha256": "95890f483ca38c97a28b6abfaf936da9c70f41f0e3fdfd8984107dce30bdbaa4"
+            },
+            {
+              "word": "commutronics",
+              "lemma_id": "lemma:5ef8a5b037ddc3e9a6c1",
+              "family_id": "surface:es:mut",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 25,
+          "count_after": 25,
+          "ordered_before_sha256": "82e1e61c1b94193dd104e8bdef0797a7632208f76fff4429d2d6e62b2c02d48b",
+          "ordered_after_sha256": "82e1e61c1b94193dd104e8bdef0797a7632208f76fff4429d2d6e62b2c02d48b",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "alamut",
+              "lemma_id": "lemma:b8013ac46dceeb3a9ff2",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "4c6a03e640cdb2bf8f5ed13ce9bdd398571c95ea89479171366fa02cacf22415"
+            },
+            {
+              "word": "bahamut",
+              "lemma_id": "lemma:86de1ef43be167781cec",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "e43ce2db216a6bcee373d7d1c0922fbc6fa547ac5b7b1c987e0f8828f9e961c3"
+            },
+            {
+              "word": "derrimut",
+              "lemma_id": "lemma:99c71c70bfb3f94404de",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "73e1e7a19f39a9c3fce5f33101faad7a0bdbcd41035b0258323898a6197dd077"
+            },
+            {
+              "word": "hartmut",
+              "lemma_id": "lemma:b5c77530b3fe953e1d11",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "ed2a788e846928b5d2f4fb99f8713fd4fbde29d047019cb9beb6ccde78265a65"
+            },
+            {
+              "word": "heimut",
+              "lemma_id": "lemma:8b37f018adb50963b562",
+              "family_id": "ety:d5aeaee89dfd",
+              "sources_sha256": "bed50ca4a242df48a08dce3ec9d7af6cd045ad1a13fb80dab2ec1d31c3e5e5c5"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 73,
+          "count_after": 73,
+          "ordered_before_sha256": "9c9a1e53b4c6e7d407c77b72dc04d2a7def2dc4535a2c5c8c5f323870104549a",
+          "ordered_after_sha256": "9c9a1e53b4c6e7d407c77b72dc04d2a7def2dc4535a2c5c8c5f323870104549a",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "авонмут",
+              "lemma_id": "lemma:9d6db8bcc5698701fa50",
+              "family_id": "surface:ru:mut",
+              "sources_sha256": "cc16b3bd4862a367ccf5f5d8d78eeb5850ad43ea07d247040b12e0c7bc4f6f0d"
+            },
+            {
+              "word": "азимут",
+              "lemma_id": "lemma:a92ab96a653f2d3d05b3",
+              "family_id": "surface:ru:mut",
+              "sources_sha256": "04954189409f67ee9d97977ff3320c1592cc656d3a51ab41f39e40d9efbda07e"
+            },
+            {
+              "word": "бадмут",
+              "lemma_id": "lemma:7087e80167577503c91a",
+              "family_id": "surface:ru:mut",
+              "sources_sha256": "839b71c433a823f90b1d9550e5ace43c63ea8eac7f2c60e03962d3ae097d4ffe"
+            },
+            {
+              "word": "бахмут",
+              "lemma_id": "lemma:c8e738a846e7dd17ed7a",
+              "family_id": "surface:ru:mut",
+              "sources_sha256": "f7fc6d45892634e1a262c3790b2dbbbd344d39667c481ef4396c5d1ad27e6260"
+            },
+            {
+              "word": "бамут",
+              "lemma_id": "lemma:636cb8add4af8ecded82",
+              "family_id": "surface:ru:mut",
+              "sources_sha256": "8d7897481431f3083910734350c8533281b2c8595feddceb4ad9192489562834"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "669d55a07f180f4646fb618c1aa91fa6bfe0c90a8151c6dc45abeaed61f0c713",
+        "state_after_sha256": "669d55a07f180f4646fb618c1aa91fa6bfe0c90a8151c6dc45abeaed61f0c713",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "net",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 4,
+          "count_after": 4,
+          "ordered_before_sha256": "951b5fbda6b30076605e2d61c94ab1cbd90ccb871ce23813a21a8bec7e07d106",
+          "ordered_after_sha256": "951b5fbda6b30076605e2d61c94ab1cbd90ccb871ce23813a21a8bec7e07d106",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "neat",
+              "lemma_id": "lemma:6105478752ed93555141",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "2ce77a74cdeaac48a8f4cebb36a4e387a3f2c4f7b46a66fd379ad67d4f0f2f14"
+            },
+            {
+              "word": "neate",
+              "lemma_id": "lemma:4cf8482aefd731a0702c",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "2e336eac668263d64f1b177fed97d7832ea09f9c2b76bfe195381306855b2191"
+            },
+            {
+              "word": "neater",
+              "lemma_id": "lemma:20ba3dd4a33d2dbaf171",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "d6929f51b7f1865cc37e1450a0a52d1b0316f26f0af5a1aee9646153ee8ce4c7"
+            },
+            {
+              "word": "neatly",
+              "lemma_id": "lemma:043eed92d2c6b9d7a9d2",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "c8b5d7b6fab78f746002b23adac081f856bce85722e67eeb290f1d66a02287f2"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "c10bf838dd360d1214b0bffa1c9408f5f57493e3afbd513cc745d468e9c9d2c8",
+          "ordered_after_sha256": "c10bf838dd360d1214b0bffa1c9408f5f57493e3afbd513cc745d468e9c9d2c8",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "nett",
+              "lemma_id": "lemma:37be843f6f8a3f005c7a",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "c4099b3e65ab85f3a99e7b3e864994c0b142c31d80698d29cbae2a17671d36bb"
+            },
+            {
+              "word": "nette",
+              "lemma_id": "lemma:08a1fc102a6057a12b87",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "62fe03caf36821f685068cd6dfedf412d139011f006722ecd2b864f7f74c40f3"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 7,
+          "count_after": 7,
+          "ordered_before_sha256": "92e2baf90ee7dda4e228812b790f5095bfafb2c4f52e442da0c80e40d4f08340",
+          "ordered_after_sha256": "92e2baf90ee7dda4e228812b790f5095bfafb2c4f52e442da0c80e40d4f08340",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "net",
+              "lemma_id": "lemma:5276387252706f5baee4",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "4a4d5247f3bdb7be9353c7665daec03317de3b8bb37703f13f3666769552fd5a"
+            },
+            {
+              "word": "nettement",
+              "lemma_id": "lemma:a2ae56462a4cc592670d",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "bfa019a189f20e331754508e4961b09f6a3c8e2b848e7d685bfcc12c48aceb29"
+            },
+            {
+              "word": "netteté",
+              "lemma_id": "lemma:9fffdbb6a81cea21ba8d",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "d89ec1d6f5e5516fe782db7840f9ab2dc03de6ea2a00bf58aef6d286ef39d3e1"
+            },
+            {
+              "word": "nettoyage",
+              "lemma_id": "lemma:dc076636661bd21b37cd",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "1558d4c7b2c1117dc13a067532a9617ce5e834aa8b446d24fa81255adcecaca8"
+            },
+            {
+              "word": "nettoyant",
+              "lemma_id": "lemma:cf975b12662561fb9f83",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "6b6bbced72347cf6c27af43dd052416a6c9c0bc25a496fd4d7dbd98ed07d4edb"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "2a49830c71c3346975681eab3e9512ca1c9208b8821396398bf6d7a9a8377e8c",
+          "ordered_after_sha256": "2a49830c71c3346975681eab3e9512ca1c9208b8821396398bf6d7a9a8377e8c",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "neto",
+              "lemma_id": "lemma:5663eb9e91573b80b23a",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "8c351a659ae215403590c939d23c77297a1445f354746f5d2f40bce73d10b72b"
+            },
+            {
+              "word": "nítido",
+              "lemma_id": "lemma:7ef477e021dd0a5685ff",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "b6f507a17bc8ca3a89d33fecfd34394cf890b4bea5c6cc283d4031d357c81f48"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 3,
+          "count_after": 3,
+          "ordered_before_sha256": "53962700e196f38c48a50ef6c8cf0089969d9d6805162ba833aec3f67135d235",
+          "ordered_after_sha256": "53962700e196f38c48a50ef6c8cf0089969d9d6805162ba833aec3f67135d235",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "netto",
+              "lemma_id": "lemma:f9e51c4e7bf66af39c69",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "918b12b46c0b37fba6035e13cf41d66f10b3cd755f806d8a42b0651d8e1735aa"
+            },
+            {
+              "word": "nitido",
+              "lemma_id": "lemma:1a454c8252d15291fc07",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "b00b965c4d2afebe28c8bd0e22a91225731ecda2ccac56fbe8f3445740dee5a6"
+            },
+            {
+              "word": "nettare",
+              "lemma_id": "lemma:f823335b08971827016a",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "5a3a6964d37611431e5db15c66af44af740acdf721838581419857e9964aada1"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "19d348e20e9ff27219c9445cdc21367766da9c3ceae11df044e516affc701e46",
+        "state_after_sha256": "19d348e20e9ff27219c9445cdc21367766da9c3ceae11df044e516affc701e46",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_candidates",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "nitidus",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 4,
+          "count_after": 4,
+          "ordered_before_sha256": "951b5fbda6b30076605e2d61c94ab1cbd90ccb871ce23813a21a8bec7e07d106",
+          "ordered_after_sha256": "951b5fbda6b30076605e2d61c94ab1cbd90ccb871ce23813a21a8bec7e07d106",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "neat",
+              "lemma_id": "lemma:6105478752ed93555141",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "2ce77a74cdeaac48a8f4cebb36a4e387a3f2c4f7b46a66fd379ad67d4f0f2f14"
+            },
+            {
+              "word": "neate",
+              "lemma_id": "lemma:4cf8482aefd731a0702c",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "2e336eac668263d64f1b177fed97d7832ea09f9c2b76bfe195381306855b2191"
+            },
+            {
+              "word": "neater",
+              "lemma_id": "lemma:20ba3dd4a33d2dbaf171",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "d6929f51b7f1865cc37e1450a0a52d1b0316f26f0af5a1aee9646153ee8ce4c7"
+            },
+            {
+              "word": "neatly",
+              "lemma_id": "lemma:043eed92d2c6b9d7a9d2",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "c8b5d7b6fab78f746002b23adac081f856bce85722e67eeb290f1d66a02287f2"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "c10bf838dd360d1214b0bffa1c9408f5f57493e3afbd513cc745d468e9c9d2c8",
+          "ordered_after_sha256": "c10bf838dd360d1214b0bffa1c9408f5f57493e3afbd513cc745d468e9c9d2c8",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "nett",
+              "lemma_id": "lemma:37be843f6f8a3f005c7a",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "c4099b3e65ab85f3a99e7b3e864994c0b142c31d80698d29cbae2a17671d36bb"
+            },
+            {
+              "word": "nette",
+              "lemma_id": "lemma:08a1fc102a6057a12b87",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "62fe03caf36821f685068cd6dfedf412d139011f006722ecd2b864f7f74c40f3"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 7,
+          "count_after": 7,
+          "ordered_before_sha256": "92e2baf90ee7dda4e228812b790f5095bfafb2c4f52e442da0c80e40d4f08340",
+          "ordered_after_sha256": "92e2baf90ee7dda4e228812b790f5095bfafb2c4f52e442da0c80e40d4f08340",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "net",
+              "lemma_id": "lemma:5276387252706f5baee4",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "4a4d5247f3bdb7be9353c7665daec03317de3b8bb37703f13f3666769552fd5a"
+            },
+            {
+              "word": "nettement",
+              "lemma_id": "lemma:a2ae56462a4cc592670d",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "bfa019a189f20e331754508e4961b09f6a3c8e2b848e7d685bfcc12c48aceb29"
+            },
+            {
+              "word": "netteté",
+              "lemma_id": "lemma:9fffdbb6a81cea21ba8d",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "d89ec1d6f5e5516fe782db7840f9ab2dc03de6ea2a00bf58aef6d286ef39d3e1"
+            },
+            {
+              "word": "nettoyage",
+              "lemma_id": "lemma:dc076636661bd21b37cd",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "1558d4c7b2c1117dc13a067532a9617ce5e834aa8b446d24fa81255adcecaca8"
+            },
+            {
+              "word": "nettoyant",
+              "lemma_id": "lemma:cf975b12662561fb9f83",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "6b6bbced72347cf6c27af43dd052416a6c9c0bc25a496fd4d7dbd98ed07d4edb"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2,
+          "count_after": 2,
+          "ordered_before_sha256": "2a49830c71c3346975681eab3e9512ca1c9208b8821396398bf6d7a9a8377e8c",
+          "ordered_after_sha256": "2a49830c71c3346975681eab3e9512ca1c9208b8821396398bf6d7a9a8377e8c",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "neto",
+              "lemma_id": "lemma:5663eb9e91573b80b23a",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "8c351a659ae215403590c939d23c77297a1445f354746f5d2f40bce73d10b72b"
+            },
+            {
+              "word": "nítido",
+              "lemma_id": "lemma:7ef477e021dd0a5685ff",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "b6f507a17bc8ca3a89d33fecfd34394cf890b4bea5c6cc283d4031d357c81f48"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 3,
+          "count_after": 3,
+          "ordered_before_sha256": "53962700e196f38c48a50ef6c8cf0089969d9d6805162ba833aec3f67135d235",
+          "ordered_after_sha256": "53962700e196f38c48a50ef6c8cf0089969d9d6805162ba833aec3f67135d235",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "netto",
+              "lemma_id": "lemma:f9e51c4e7bf66af39c69",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "918b12b46c0b37fba6035e13cf41d66f10b3cd755f806d8a42b0651d8e1735aa"
+            },
+            {
+              "word": "nitido",
+              "lemma_id": "lemma:1a454c8252d15291fc07",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "b00b965c4d2afebe28c8bd0e22a91225731ecda2ccac56fbe8f3445740dee5a6"
+            },
+            {
+              "word": "nettare",
+              "lemma_id": "lemma:f823335b08971827016a",
+              "family_id": "ety:94c776d13c76",
+              "sources_sha256": "5a3a6964d37611431e5db15c66af44af740acdf721838581419857e9964aada1"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "c8a1ba2c1de7ed2b6d285a84d04e11de03f52d55cb8fda12d52052b85d0fe2f3",
+        "state_after_sha256": "c8a1ba2c1de7ed2b6d285a84d04e11de03f52d55cb8fda12d52052b85d0fe2f3",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_candidates",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "sonus",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "de": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "fr": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "es": {
+          "count_before": 1,
+          "count_after": 1,
+          "ordered_before_sha256": "ae832f16d5414f65f6b989f3f705c57c14218c456a0fc94a98eceef19d8c26da",
+          "ordered_after_sha256": "ae832f16d5414f65f6b989f3f705c57c14218c456a0fc94a98eceef19d8c26da",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "sonus",
+              "lemma_id": "lemma:b04259a5d748e633a40b",
+              "family_id": "surface:es:sonus",
+              "sources_sha256": "cad033ff8f2a61112b6a9dd76850e5f25fadf123c3e1a932933c8cb98d4f23bf"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 1,
+          "count_after": 1,
+          "ordered_before_sha256": "8deb194a967128afd51cfb541220ebd1ac736db92c82f901180b458de6789fbd",
+          "ordered_after_sha256": "8deb194a967128afd51cfb541220ebd1ac736db92c82f901180b458de6789fbd",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "sonus",
+              "lemma_id": "lemma:8d8db6b327b04869e13f",
+              "family_id": "surface:it:sonus",
+              "sources_sha256": "548d92d4577dbb0198c52f581e38a74d854a39e8f43a159b989fc4783c47cf52"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "09e0157ec9a9a323aef3f7cc12c6cf9edcf971daf362f5bbf5153eebed902a8f",
+        "state_after_sha256": "09e0157ec9a9a323aef3f7cc12c6cf9edcf971daf362f5bbf5153eebed902a8f",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 2,
+          "selectedLanguages": 2,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 2,
+          "selectedLanguages": 2,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "no_candidates",
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "genea",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 3,
+          "count_after": 3,
+          "ordered_before_sha256": "de4e4291d7e14a30b775f3ccc302bc4c986521695df7303a64c94188cc301fda",
+          "ordered_after_sha256": "de4e4291d7e14a30b775f3ccc302bc4c986521695df7303a64c94188cc301fda",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "genea",
+              "lemma_id": "lemma:bfc6c11919ed4e9c48cc",
+              "family_id": "surface:en:genea",
+              "sources_sha256": "b711c34785d5486e73f8dd1080ecfb61e01d3663542221fd6863414b6fe4e5b0"
+            },
+            {
+              "word": "genealogy",
+              "lemma_id": "lemma:e7885935eff4ad7475bf",
+              "family_id": "surface:en:genea",
+              "sources_sha256": "f65b331b0ba3d494e1f71f4b727b15cb94a61a9665e8654d81b0790ffe9aa672"
+            },
+            {
+              "word": "iphigenea",
+              "lemma_id": "lemma:49f719f1fa6a4ef96189",
+              "family_id": "surface:en:genea",
+              "sources_sha256": "40033e9c5c048e9b919bdd71c8bfc0d4def5024321de25ec433a0738a35698e7"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 3,
+          "count_after": 3,
+          "ordered_before_sha256": "a49fef7c039e751dca054e0f0eb7ef3f571797f73bd13ed3f353f43027b25ce2",
+          "ordered_after_sha256": "a49fef7c039e751dca054e0f0eb7ef3f571797f73bd13ed3f353f43027b25ce2",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "genea",
+              "lemma_id": "lemma:a7d07c435fcc4aedbf41",
+              "family_id": "surface:de:genea",
+              "sources_sha256": "c445c14e0f832da564137a47359265201a38f64eafa809d0a4599444ab81ffd0"
+            },
+            {
+              "word": "genealogy",
+              "lemma_id": "lemma:e24f3bc50ef21c059273",
+              "family_id": "surface:de:genea",
+              "sources_sha256": "033bdc55fda06ea437187435e62cbec3aa563044a92e38c773bbcc7e62cd41ff"
+            },
+            {
+              "word": "geneas",
+              "lemma_id": "lemma:68a725372bb097e18ef8",
+              "family_id": "surface:de:genea",
+              "sources_sha256": "12daf999693b21d99f7d92fe967c82ac3934da8877d71e217469aae50843da4b"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "es": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "it": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "ru": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "d905cb687621d5969487416c45bac3e0cdb197957571433fcc90fb0d9c2ae605",
+        "state_after_sha256": "d905cb687621d5969487416c45bac3e0cdb197957571433fcc90fb0d9c2ae605",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 2,
+          "selectedLanguages": 2,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 2,
+          "selectedLanguages": 2,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_candidates",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "act",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 2135,
+          "count_after": 2135,
+          "ordered_before_sha256": "be2b6b4c3aaacaf910e7dc2feb0c847750ff4f247cb75805b6b94e06ef4ee91f",
+          "ordered_after_sha256": "be2b6b4c3aaacaf910e7dc2feb0c847750ff4f247cb75805b6b94e06ef4ee91f",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "actor",
+              "lemma_id": "lemma:9fc3120941a0ea4d3828",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "1b29cb7d3fec80249f216ac19d4df6cd354c585223310e8dfc3c438524a8ec6f"
+            },
+            {
+              "word": "actoramir",
+              "lemma_id": "lemma:36bd36416058b2be8a48",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "actoraward",
+              "lemma_id": "lemma:06f0964312c15fe7acec",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "actorfor",
+              "lemma_id": "lemma:1f20a5dff1a945816d14",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "actorfrom",
+              "lemma_id": "lemma:e7999dbc6ad7eef1b4a3",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "45dd4b92e3b3086856f6277a48ae3c2af07b05ed0429539c1090ca4788125f1f"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 5661,
+          "count_after": 5661,
+          "ordered_before_sha256": "543b6ee8959a7c742f8ab65bf5a78d01ae022f8bbc538d62b2535c98a5bb046e",
+          "ordered_after_sha256": "543b6ee8959a7c742f8ab65bf5a78d01ae022f8bbc538d62b2535c98a5bb046e",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "abbe-refraktometers",
+              "lemma_id": "lemma:98f035baa40515a0becd",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "abendakt",
+              "lemma_id": "lemma:e7bc2272d927f00b22aa",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "abendaktivitäten",
+              "lemma_id": "lemma:d74c0e2ff8ed43cebcc0",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "abendblatt-redakteur",
+              "lemma_id": "lemma:bafbbe77711a32547492",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "abendschau-redaktion",
+              "lemma_id": "lemma:37a1763cfeaad7a9bed9",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 1036,
+          "count_after": 1036,
+          "ordered_before_sha256": "11eb4b8a55e2d73c0b15815adec78dc8ade4ae338165f5bd66d28a6483766cce",
+          "ordered_after_sha256": "11eb4b8a55e2d73c0b15815adec78dc8ade4ae338165f5bd66d28a6483766cce",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "abréaction",
+              "lemma_id": "lemma:076f7d57251757fcabd0",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "1a7811253efebc97b12f23c9b60569d59730c336e134a04fbd487f2a18fa7c2b"
+            },
+            {
+              "word": "abstract",
+              "lemma_id": "lemma:3dd23d30604382d114b0",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "aa8f8d9be5c8351380c077573215bbc41a0a8fc9a546d690a2637e3803fc2d51"
+            },
+            {
+              "word": "abstraction",
+              "lemma_id": "lemma:cd0ad6d09c0a92619061",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "f3d3f6486109d4b069968f8252ce1dc6af6874760003ee156526b57fc6d3428f"
+            },
+            {
+              "word": "abstractionnisme",
+              "lemma_id": "lemma:92c09d9e9ec4781b5cbc",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            },
+            {
+              "word": "abstractionniste",
+              "lemma_id": "lemma:f0e5810aeaf42960d9d5",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 2185,
+          "count_after": 2185,
+          "ordered_before_sha256": "b66938b12186ba3f19bee4183664c797777a76dd6139ff9ce0200242c47ecdc0",
+          "ordered_after_sha256": "b66938b12186ba3f19bee4183664c797777a76dd6139ff9ce0200242c47ecdc0",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "aartefacto",
+              "lemma_id": "lemma:5ca1f6d1c6e3cf36ba3a",
+              "family_id": "ety:23e6300c94dc",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            },
+            {
+              "word": "abstacto",
+              "lemma_id": "lemma:37d96ab65c15aca35aa3",
+              "family_id": "ety:23e6300c94dc",
+              "sources_sha256": "95890f483ca38c97a28b6abfaf936da9c70f41f0e3fdfd8984107dce30bdbaa4"
+            },
+            {
+              "word": "abstract",
+              "lemma_id": "lemma:27d1cff4b56ea9221114",
+              "family_id": "ety:23e6300c94dc",
+              "sources_sha256": "4da706472f881042cb88126d6eb5ee3d5ad3afe9505391d32584dd8abcd277b8"
+            },
+            {
+              "word": "abstractamente",
+              "lemma_id": "lemma:8e4d222d35b421216059",
+              "family_id": "ety:23e6300c94dc",
+              "sources_sha256": "9fd38874f4739540f0120014c9618e0c843fc27f7b2d7cda1dcaae7208976968"
+            },
+            {
+              "word": "abstractismo",
+              "lemma_id": "lemma:da21a93d3e389557de50",
+              "family_id": "ety:23e6300c94dc",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 7858,
+          "count_after": 7858,
+          "ordered_before_sha256": "230f272615b19f2f8737201b6e9583fdba3df530efb7bc021aad3cb150f90a9f",
+          "ordered_after_sha256": "230f272615b19f2f8737201b6e9583fdba3df530efb7bc021aad3cb150f90a9f",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "aaccatta",
+              "lemma_id": "lemma:2effc8ce823ebbc25bc8",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "abbatt",
+              "lemma_id": "lemma:7feefc7ab42eadbe81d9",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "b578b553813cc6f48a24d5234aa893b0b77dd737a219695a843e983faf9b0a2c"
+            },
+            {
+              "word": "abbattare",
+              "lemma_id": "lemma:a616f2fc453ab2a72f6c",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "b578b553813cc6f48a24d5234aa893b0b77dd737a219695a843e983faf9b0a2c"
+            },
+            {
+              "word": "abbatté",
+              "lemma_id": "lemma:855c688499ad72d6dfd1",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "2b50962da27e4551e82a9b31691dd366372c38a9903dd54bc03fb042a7d534a6"
+            },
+            {
+              "word": "abbattendola",
+              "lemma_id": "lemma:e2f50e5670460956e7b4",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 44,
+          "count_after": 44,
+          "ordered_before_sha256": "482dc038afa9e3f1da61dc5f2d69d95c13dbd35884caf61e5cd503e14911b718",
+          "ordered_after_sha256": "482dc038afa9e3f1da61dc5f2d69d95c13dbd35884caf61e5cd503e14911b718",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "актёр",
+              "lemma_id": "lemma:cdc4d2c1e867b2da61e3",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "3a4d46872c9be2d050dc1d696d78792b6604fe73462306ae615cb7a6912a6fd9"
+            },
+            {
+              "word": "антиактёр",
+              "lemma_id": "lemma:9b0ed2cdacfecd8e2a92",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "cc16b3bd4862a367ccf5f5d8d78eeb5850ad43ea07d247040b12e0c7bc4f6f0d"
+            },
+            {
+              "word": "арактёр",
+              "lemma_id": "lemma:095fef388a54a3d5aaed",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "9ecc1ed70fced0dfae16529f0799605f6cea80a05774b2d060c89f00a05a1b3c"
+            },
+            {
+              "word": "энтеробактёр",
+              "lemma_id": "lemma:19d57517abe3cc16a0e5",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "68926bef1d84a44d5322a0adeeb75d8e00038ca334766e715de98f6ebf02e561"
+            },
+            {
+              "word": "фиелтрактёр",
+              "lemma_id": "lemma:ac2bb0e0ad18b8284720",
+              "family_id": "ety:00ff06cbe8c8",
+              "sources_sha256": "68926bef1d84a44d5322a0adeeb75d8e00038ca334766e715de98f6ebf02e561"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "53d88b0cb3300cb8b83251888aef8d671a6996b0733cf0dba688eda55517aa66",
+        "state_after_sha256": "53d88b0cb3300cb8b83251888aef8d671a6996b0733cf0dba688eda55517aa66",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "actu",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 2098,
+          "count_after": 2098,
+          "ordered_before_sha256": "4cd8c7456f0e7ac016e61ac95da8e633df3141f65d0e24d523284601b19f9d37",
+          "ordered_after_sha256": "4cd8c7456f0e7ac016e61ac95da8e633df3141f65d0e24d523284601b19f9d37",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "aatiafactorily",
+              "lemma_id": "lemma:36e028fd0bebdee535a0",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "abfraction",
+              "lemma_id": "lemma:9f6449d2c4951fdbd4c7",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "45dd4b92e3b3086856f6277a48ae3c2af07b05ed0429539c1090ca4788125f1f"
+            },
+            {
+              "word": "abreact",
+              "lemma_id": "lemma:82a9880a68e0eddec8ea",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "340e370682095bbaf96e4c41c90572d0bc9af3522f4c1fddce7dc629b1606d99"
+            },
+            {
+              "word": "abreaction",
+              "lemma_id": "lemma:9f0cc38e74ebd5937df8",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "810191c30e92f5c0d04582a56fce6452555bd1b0ad7f2a87240d99fbd2c6cd05"
+            },
+            {
+              "word": "abstact",
+              "lemma_id": "lemma:45f806c0b35d0b429395",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "40033e9c5c048e9b919bdd71c8bfc0d4def5024321de25ec433a0738a35698e7"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 5563,
+          "count_after": 5563,
+          "ordered_before_sha256": "a6a0a8f4d0413f74ed3af23ed30ae7165197ac55555353875e8fff9ebfb6551a",
+          "ordered_after_sha256": "a6a0a8f4d0413f74ed3af23ed30ae7165197ac55555353875e8fff9ebfb6551a",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "abbe-refraktometers",
+              "lemma_id": "lemma:98f035baa40515a0becd",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "abendakt",
+              "lemma_id": "lemma:e7bc2272d927f00b22aa",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "abendaktivitäten",
+              "lemma_id": "lemma:d74c0e2ff8ed43cebcc0",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "abendblatt-redakteur",
+              "lemma_id": "lemma:bafbbe77711a32547492",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "abendschau-redaktion",
+              "lemma_id": "lemma:37a1763cfeaad7a9bed9",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 1041,
+          "count_after": 1041,
+          "ordered_before_sha256": "8ecdd37b04469ec2760e16db7f8b014b1f0b0badc1dddeba6d85d7e3a091d4a4",
+          "ordered_after_sha256": "8ecdd37b04469ec2760e16db7f8b014b1f0b0badc1dddeba6d85d7e3a091d4a4",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "abréaction",
+              "lemma_id": "lemma:076f7d57251757fcabd0",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "1a7811253efebc97b12f23c9b60569d59730c336e134a04fbd487f2a18fa7c2b"
+            },
+            {
+              "word": "abstract",
+              "lemma_id": "lemma:3dd23d30604382d114b0",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "aa8f8d9be5c8351380c077573215bbc41a0a8fc9a546d690a2637e3803fc2d51"
+            },
+            {
+              "word": "abstraction",
+              "lemma_id": "lemma:cd0ad6d09c0a92619061",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "f3d3f6486109d4b069968f8252ce1dc6af6874760003ee156526b57fc6d3428f"
+            },
+            {
+              "word": "abstractionnisme",
+              "lemma_id": "lemma:92c09d9e9ec4781b5cbc",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            },
+            {
+              "word": "abstractionniste",
+              "lemma_id": "lemma:f0e5810aeaf42960d9d5",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 1925,
+          "count_after": 1925,
+          "ordered_before_sha256": "c4e7d78f04fd023fd280f6706d264f498a2c8976f8dc3dfde9f72dc0e7c32155",
+          "ordered_after_sha256": "c4e7d78f04fd023fd280f6706d264f498a2c8976f8dc3dfde9f72dc0e7c32155",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "aartefacto",
+              "lemma_id": "lemma:5ca1f6d1c6e3cf36ba3a",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            },
+            {
+              "word": "abstacto",
+              "lemma_id": "lemma:37d96ab65c15aca35aa3",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "95890f483ca38c97a28b6abfaf936da9c70f41f0e3fdfd8984107dce30bdbaa4"
+            },
+            {
+              "word": "abstract",
+              "lemma_id": "lemma:27d1cff4b56ea9221114",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "4da706472f881042cb88126d6eb5ee3d5ad3afe9505391d32584dd8abcd277b8"
+            },
+            {
+              "word": "abstractamente",
+              "lemma_id": "lemma:8e4d222d35b421216059",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "9fd38874f4739540f0120014c9618e0c843fc27f7b2d7cda1dcaae7208976968"
+            },
+            {
+              "word": "abstractismo",
+              "lemma_id": "lemma:da21a93d3e389557de50",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 4463,
+          "count_after": 4463,
+          "ordered_before_sha256": "28b5a191222b4a769e2978935107e037dbbb53a924550b10f2d1d43c352c5e38",
+          "ordered_after_sha256": "28b5a191222b4a769e2978935107e037dbbb53a924550b10f2d1d43c352c5e38",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "aaccatta",
+              "lemma_id": "lemma:2effc8ce823ebbc25bc8",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "abbatt",
+              "lemma_id": "lemma:7feefc7ab42eadbe81d9",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "b578b553813cc6f48a24d5234aa893b0b77dd737a219695a843e983faf9b0a2c"
+            },
+            {
+              "word": "abbattare",
+              "lemma_id": "lemma:a616f2fc453ab2a72f6c",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "b578b553813cc6f48a24d5234aa893b0b77dd737a219695a843e983faf9b0a2c"
+            },
+            {
+              "word": "abbatté",
+              "lemma_id": "lemma:855c688499ad72d6dfd1",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "2b50962da27e4551e82a9b31691dd366372c38a9903dd54bc03fb042a7d534a6"
+            },
+            {
+              "word": "abbattendola",
+              "lemma_id": "lemma:e2f50e5670460956e7b4",
+              "family_id": "ety:5bed7c192e10",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "047e1e2791144b8b3adccad01ae17d8928b159b7f7717b6c5a6e4bf6cbdd899d",
+        "state_after_sha256": "047e1e2791144b8b3adccad01ae17d8928b159b7f7717b6c5a6e4bf6cbdd899d",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 5,
+          "selectedLanguages": 5,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_candidates",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "mani",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 277,
+          "count_after": 277,
+          "ordered_before_sha256": "11fca87323f51ac9f11368f4e72b5125a4d0864ac38c65d09333c809e2c16500",
+          "ordered_after_sha256": "11fca87323f51ac9f11368f4e72b5125a4d0864ac38c65d09333c809e2c16500",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "mania",
+              "lemma_id": "lemma:8d17b6321d04c1cdd04c",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "6a74601ff71ea5ebd4c305488225de0d276e8c18fe40ab495bada78b3b055e92"
+            },
+            {
+              "word": "antimage",
+              "lemma_id": "lemma:eadd493a45d8f877efdb",
+              "family_id": "ety:1f19d459219b",
+              "sources_sha256": "40033e9c5c048e9b919bdd71c8bfc0d4def5024321de25ec433a0738a35698e7"
+            },
+            {
+              "word": "archimage",
+              "lemma_id": "lemma:ae985a67c08c4a4c091c",
+              "family_id": "ety:1f19d459219b",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "bufferedimage",
+              "lemma_id": "lemma:d5d6fa7986ed24c01f26",
+              "family_id": "ety:1f19d459219b",
+              "sources_sha256": "e635b92274f7fcc00c326049228f368d91868f9c1cd15727c3b033988b2876a2"
+            },
+            {
+              "word": "centrimage",
+              "lemma_id": "lemma:2c62ed4000a4ecfafbee",
+              "family_id": "ety:1f19d459219b",
+              "sources_sha256": "40033e9c5c048e9b919bdd71c8bfc0d4def5024321de25ec433a0738a35698e7"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 85,
+          "count_after": 85,
+          "ordered_before_sha256": "ea2ef14b32cc64a432e745396b5386eeb52c0668e246929652fbf18ae824949d",
+          "ordered_after_sha256": "ea2ef14b32cc64a432e745396b5386eeb52c0668e246929652fbf18ae824949d",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "arithmomanie",
+              "lemma_id": "lemma:a0c83f0ee595f8b9133b",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "12daf999693b21d99f7d92fe967c82ac3934da8877d71e217469aae50843da4b"
+            },
+            {
+              "word": "beatlemanie",
+              "lemma_id": "lemma:0d9a25dc4516f7905fd0",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "bestienmanie",
+              "lemma_id": "lemma:6255a50062bfe7f15dfa",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "chungmanie",
+              "lemma_id": "lemma:2b8fcf1b7660be05fe84",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "egomanie",
+              "lemma_id": "lemma:de13964211adec4b10e0",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "f6133c076175d291e088ef886b42c95e04549f5b3a40e732c1bd324d00282175"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 201,
+          "count_after": 201,
+          "ordered_before_sha256": "f9eede85316f5060039e87de0d40b160510f4db18386c8c02535eb54929a1f65",
+          "ordered_after_sha256": "f9eede85316f5060039e87de0d40b160510f4db18386c8c02535eb54929a1f65",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "antikleptomanie",
+              "lemma_id": "lemma:17de058ab31000a1d8f5",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            },
+            {
+              "word": "arithmomanie",
+              "lemma_id": "lemma:878918f1c9265a33eb75",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "1b8eafb5998c3cecad0aa721921ba40f70ec624599d7b0c53d7b697492f9b67f"
+            },
+            {
+              "word": "birmanie",
+              "lemma_id": "lemma:1a0322ca811cc327a605",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "859664a55a4a01842bb41946470f02b8c919ed3c9d678558546d0ecee07a743c"
+            },
+            {
+              "word": "calcomanie",
+              "lemma_id": "lemma:f17f0be1e0c328a99a86",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "1a7811253efebc97b12f23c9b60569d59730c336e134a04fbd487f2a18fa7c2b"
+            },
+            {
+              "word": "cleptomanie",
+              "lemma_id": "lemma:601a2975375e642d9749",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "9dcdc617d808e09b064b3a9ced0b0653ff59323a05968258666814733c7f204c"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 313,
+          "count_after": 313,
+          "ordered_before_sha256": "fe6890c68b9a7e7a6f747b5f938e84184fb62483b096409c82dcbb4f2f9c7385",
+          "ordered_after_sha256": "fe6890c68b9a7e7a6f747b5f938e84184fb62483b096409c82dcbb4f2f9c7385",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "adjumani",
+              "lemma_id": "lemma:14ab74d2764313708fc5",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "d282ace4ca7da43868bc6b455cdcda510462801016328d5a604d0588cb93f28b"
+            },
+            {
+              "word": "adomani",
+              "lemma_id": "lemma:b31560303bbd47ae965d",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "374c0d277b30d1b04fea823d160550082c1b0532889b992357bdd14fa4a0a4bb"
+            },
+            {
+              "word": "agrimani",
+              "lemma_id": "lemma:5b3237fa888551e912b6",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            },
+            {
+              "word": "akomani",
+              "lemma_id": "lemma:c58ac2dd05901bc6c330",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "374c0d277b30d1b04fea823d160550082c1b0532889b992357bdd14fa4a0a4bb"
+            },
+            {
+              "word": "animaniacs",
+              "lemma_id": "lemma:72fce35246be6cbbb9ee",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "548a30c007701db367ee0d5453fbbb6bdb83b8c74c9f351c0df675755d6c31fb"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 159,
+          "count_after": 159,
+          "ordered_before_sha256": "b43ee402f467bce93339fc04d16fde3404f4fa0ac50ed57adb4d03c4d6652581",
+          "ordered_after_sha256": "b43ee402f467bce93339fc04d16fde3404f4fa0ac50ed57adb4d03c4d6652581",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "abbiamomani",
+              "lemma_id": "lemma:eb21a9fe7b7ab666bb81",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "adomani",
+              "lemma_id": "lemma:4c445ee9b8bdd1a9a7e9",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "393c18fab13620281c05a1628752c51b3d2805b09546d263947bfcc16f5461d1"
+            },
+            {
+              "word": "agrimani",
+              "lemma_id": "lemma:835a8adc5084d7034b84",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "animaniacs",
+              "lemma_id": "lemma:c05434b399aabc471322",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "ascigamani",
+              "lemma_id": "lemma:c4d97fb691b003ff0e7e",
+              "family_id": "ety:03c9651b0df0",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 29,
+          "count_after": 29,
+          "ordered_before_sha256": "cf365c76afb59957b2080378344dc526f4cb6924e1a1210f1580059f0ff47140",
+          "ordered_after_sha256": "cf365c76afb59957b2080378344dc526f4cb6924e1a1210f1580059f0ff47140",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "армани",
+              "lemma_id": "lemma:8dea8331c45346aa0665",
+              "family_id": "surface:ru:mani",
+              "sources_sha256": "71c965714af5390ee501276726fc9d548625615060f4d699f7bc79cc12783efd"
+            },
+            {
+              "word": "баласумбраманиум",
+              "lemma_id": "lemma:1e16258185bc80597479",
+              "family_id": "surface:ru:mani",
+              "sources_sha256": "839b71c433a823f90b1d9550e5ace43c63ea8eac7f2c60e03962d3ae097d4ffe"
+            },
+            {
+              "word": "брахманизм",
+              "lemma_id": "lemma:e65024defae48ee19ae0",
+              "family_id": "surface:ru:mani",
+              "sources_sha256": "d50e1400850007ff294afed1af5815f8054883c3f6e43913f80b62f9cffdff96"
+            },
+            {
+              "word": "дженманич",
+              "lemma_id": "lemma:38182cf04a0e137f787f",
+              "family_id": "surface:ru:mani",
+              "sources_sha256": "839b71c433a823f90b1d9550e5ace43c63ea8eac7f2c60e03962d3ae097d4ffe"
+            },
+            {
+              "word": "форманизовать",
+              "lemma_id": "lemma:905170e0128cf3b9d3c0",
+              "family_id": "surface:ru:mani",
+              "sources_sha256": "839b71c433a823f90b1d9550e5ace43c63ea8eac7f2c60e03962d3ae097d4ffe"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "71efa394c86403c954f4cc18e948455cd219b4695f0199c48fa1d97f8b60d67c",
+        "state_after_sha256": "71efa394c86403c954f4cc18e948455cd219b4695f0199c48fa1d97f8b60d67c",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "regl",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 10,
+          "count_after": 10,
+          "ordered_before_sha256": "2f95997d8bf181a8eb12c44d8a1977b5fbfaf410d03f5ebfd94891205866c58f",
+          "ordered_after_sha256": "2f95997d8bf181a8eb12c44d8a1977b5fbfaf410d03f5ebfd94891205866c58f",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "regl",
+              "lemma_id": "lemma:3632d624de67ab7521d7",
+              "family_id": "surface:en:regl",
+              "sources_sha256": "07037671795fccfcd0a10f231009fab2c9b76d3bedb8365d995f860910026f16"
+            },
+            {
+              "word": "regle",
+              "lemma_id": "lemma:109cbc1da563afd395e7",
+              "family_id": "surface:en:regl",
+              "sources_sha256": "40033e9c5c048e9b919bdd71c8bfc0d4def5024321de25ec433a0738a35698e7"
+            },
+            {
+              "word": "reglementary",
+              "lemma_id": "lemma:1ac9a5692927f6372972",
+              "family_id": "surface:en:regl",
+              "sources_sha256": "cd2a744a56342ebfbf8619de642dde827a9038be4bb365259122d3960d3f8c2b"
+            },
+            {
+              "word": "regler",
+              "lemma_id": "lemma:d377a8834375e4c85950",
+              "family_id": "surface:en:regl",
+              "sources_sha256": "0d80f092e983f0c7dee0b6b406c0e94a67a71b14410a01874f3487fa04b0a381"
+            },
+            {
+              "word": "regligert",
+              "lemma_id": "lemma:929293320de0c336534a",
+              "family_id": "surface:en:regl",
+              "sources_sha256": "40033e9c5c048e9b919bdd71c8bfc0d4def5024321de25ec433a0738a35698e7"
+            }
+          ]
+        },
+        "de": {
+          "count_before": 6,
+          "count_after": 6,
+          "ordered_before_sha256": "693880f153d32e1ed2922e0001a8decd7d50e3d6b58ee2f807f12dbb648af9df",
+          "ordered_after_sha256": "693880f153d32e1ed2922e0001a8decd7d50e3d6b58ee2f807f12dbb648af9df",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "karriereglück",
+              "lemma_id": "lemma:01001d5b2f2988fb19ec",
+              "family_id": "surface:de:regl",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "regle",
+              "lemma_id": "lemma:e4bb1a6303dba4dddec3",
+              "family_id": "surface:de:regl",
+              "sources_sha256": "a1ca9ee4e8e21486b0aa42cc718d025be60041e9b011c4801e379336d85edc93"
+            },
+            {
+              "word": "regleasslstenz",
+              "lemma_id": "lemma:c7f61e28f42422974834",
+              "family_id": "surface:de:regl",
+              "sources_sha256": "f99028028505922ff1b2be67a5f34e2159440a87623b89bffaf4a84ce2d496e3"
+            },
+            {
+              "word": "reglitz",
+              "lemma_id": "lemma:ae59b749d6871a15d1c6",
+              "family_id": "surface:de:regl",
+              "sources_sha256": "1542a510b03e36732c0ee1bd9e280ffc7616150a83086dbccc91ece86b27b05f"
+            },
+            {
+              "word": "reglori",
+              "lemma_id": "lemma:c21b8a1c0fda6db29112",
+              "family_id": "surface:de:regl",
+              "sources_sha256": "4c78ddd72bebffe752d762a1fbafa2432ae76f073561d6df64ddb966f8a083f0"
+            }
+          ]
+        },
+        "fr": {
+          "count_before": 9,
+          "count_after": 9,
+          "ordered_before_sha256": "586a3c51f120c9ec8f60372f1ff40d01b9a469e53f5eedf024a71e6e3bf2fa79",
+          "ordered_after_sha256": "586a3c51f120c9ec8f60372f1ff40d01b9a469e53f5eedf024a71e6e3bf2fa79",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "régl",
+              "lemma_id": "lemma:04eeed9d5831f3da303c",
+              "family_id": "surface:fr:regl",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            },
+            {
+              "word": "règl",
+              "lemma_id": "lemma:5b8006d6de72c998c6f6",
+              "family_id": "surface:fr:regl",
+              "sources_sha256": "1b8067c926cebac0fd26fba8f7d30e1b2ed2d33d225b28e9c9d1074c9c961055"
+            },
+            {
+              "word": "réglado",
+              "lemma_id": "lemma:ee8b6883ed692ce410b8",
+              "family_id": "surface:fr:regl",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            },
+            {
+              "word": "rêglait",
+              "lemma_id": "lemma:532792e2b2285238e5ec",
+              "family_id": "surface:fr:regl",
+              "sources_sha256": "ac6cead7060e6e42ac3e06c1b609316abad142fb307c8934e619f8f6e82d745d"
+            },
+            {
+              "word": "règlant",
+              "lemma_id": "lemma:e8cbb0a3ef4fa2905850",
+              "family_id": "surface:fr:regl",
+              "sources_sha256": "1a7811253efebc97b12f23c9b60569d59730c336e134a04fbd487f2a18fa7c2b"
+            }
+          ]
+        },
+        "es": {
+          "count_before": 10,
+          "count_after": 10,
+          "ordered_before_sha256": "f28c85402e9c4806f4702b291dab5ca47d7e9e7bd0213721cc055158af30787f",
+          "ordered_after_sha256": "f28c85402e9c4806f4702b291dab5ca47d7e9e7bd0213721cc055158af30787f",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "arrrreglarr",
+              "lemma_id": "lemma:d5c8292789a8f6f479ce",
+              "family_id": "surface:es:regl",
+              "sources_sha256": "250598fe8debd888cef093b01f7fa04b8f43c0b57f4106d67b719789d68891e1"
+            },
+            {
+              "word": "fibreglass",
+              "lemma_id": "lemma:0eb79ac4e842d62e15d6",
+              "family_id": "surface:es:regl",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            },
+            {
+              "word": "reglaje",
+              "lemma_id": "lemma:906d78e6c84115c0f0ff",
+              "family_id": "surface:es:regl",
+              "sources_sha256": "2d6011a543703e0923a100eab7645860b888c367b3d00700f5a2fc0feacc05eb"
+            },
+            {
+              "word": "réglame",
+              "lemma_id": "lemma:78627709a8e9eac60c3d",
+              "family_id": "surface:es:regl",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            },
+            {
+              "word": "reglane",
+              "lemma_id": "lemma:e690ff9c4f2ec202db3e",
+              "family_id": "surface:es:regl",
+              "sources_sha256": "378bdc96f734c8389ac69e86065601bb94e4e3313e1695bed9811a183880d95a"
+            }
+          ]
+        },
+        "it": {
+          "count_before": 10,
+          "count_after": 10,
+          "ordered_before_sha256": "2833304f65d03404fe5e9d3ccaeae4c9f57f05ddc908230fc91b228e3fe9cb87",
+          "ordered_after_sha256": "2833304f65d03404fe5e9d3ccaeae4c9f57f05ddc908230fc91b228e3fe9cb87",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "regla",
+              "lemma_id": "lemma:3b5791a111fa33064bf9",
+              "family_id": "surface:it:regl",
+              "sources_sha256": "2ffe818bbc5d12c87f0ed3dc7d78e733882b4e0a0bd6a513fdd72a261a443b6b"
+            },
+            {
+              "word": "regle",
+              "lemma_id": "lemma:bc0356dfa71d0d6af79a",
+              "family_id": "surface:it:regl",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "réglé",
+              "lemma_id": "lemma:f02ad8e9fbe1c2507869",
+              "family_id": "surface:it:regl",
+              "sources_sha256": "fb12afdcb2fb68d05b49500ae453b9d47bc61c5f67a49b85904bb9140ca809ed"
+            },
+            {
+              "word": "règle",
+              "lemma_id": "lemma:4e127a916a4b71516537",
+              "family_id": "surface:it:regl",
+              "sources_sha256": "24e5a2b86dc346eb068e67130cc51c93d1b4c0c84103090c031ea92a8e8d9ae3"
+            },
+            {
+              "word": "règlement",
+              "lemma_id": "lemma:46270af472fe75844b11",
+              "family_id": "surface:it:regl",
+              "sources_sha256": "26dd6529c8f34a6566ce00abb2938b8af32967d1f24e8a25616175091ed6bb59"
+            }
+          ]
+        },
+        "ru": {
+          "count_before": 4,
+          "count_after": 4,
+          "ordered_before_sha256": "cc77fc505f06d9b3ea2e93472e3b2dbfb9d08608beb302367d21ebfb86f2e0a6",
+          "ordered_after_sha256": "cc77fc505f06d9b3ea2e93472e3b2dbfb9d08608beb302367d21ebfb86f2e0a6",
+          "error": null,
+          "first_five_observed_rows": [
+            {
+              "word": "горегляд",
+              "lemma_id": "lemma:9cfbaec15c511607699d",
+              "family_id": "surface:ru:regl",
+              "sources_sha256": "470111c1a63bc4953d503f4bb7246b2f3b505d18b8fa5ab4cce26b5894fb38ee"
+            },
+            {
+              "word": "нореглио",
+              "lemma_id": "lemma:18614820967f5795f0a5",
+              "family_id": "surface:ru:regl",
+              "sources_sha256": "839b71c433a823f90b1d9550e5ace43c63ea8eac7f2c60e03962d3ae097d4ffe"
+            },
+            {
+              "word": "переглотать",
+              "lemma_id": "lemma:729d04fecf1c558f4b84",
+              "family_id": "surface:ru:regl",
+              "sources_sha256": "839b71c433a823f90b1d9550e5ace43c63ea8eac7f2c60e03962d3ae097d4ffe"
+            },
+            {
+              "word": "реглар",
+              "lemma_id": "lemma:0f9b9edc50363363d17d",
+              "family_id": "surface:ru:regl",
+              "sources_sha256": "839b71c433a823f90b1d9550e5ace43c63ea8eac7f2c60e03962d3ae097d4ffe"
+            }
+          ]
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "583c9caa4a4839c85b110827ef36c32e50f295c407216734f4ca633ef1a67068",
+        "state_after_sha256": "583c9caa4a4839c85b110827ef36c32e50f295c407216734f4ca633ef1a67068",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 6,
+          "selectedLanguages": 6,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "qwen_error",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    },
+    {
+      "query": "nonexistentqzx",
+      "runtime_equal": true,
+      "calculator_equal": true,
+      "runtime": {
+        "en": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "de": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "fr": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "es": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "it": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        },
+        "ru": {
+          "count_before": 0,
+          "count_after": 0,
+          "ordered_before_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "ordered_after_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "error": null,
+          "first_five_observed_rows": []
+        }
+      },
+      "calculator": {
+        "FAv_before": null,
+        "FAv_after": null,
+        "state_before_sha256": "f250a62cc3d3e2ebc65b6f74a05adb00589664173f929b10053bb65a0b224e88",
+        "state_after_sha256": "f250a62cc3d3e2ebc65b6f74a05adb00589664173f929b10053bb65a0b224e88",
+        "top_five_status": "UNKNOWN_WITHOUT_VERIFIED_A_P",
+        "demographic_coverage_status": "UNKNOWN_WITHOUT_SCORED_REPRESENTED_LANGUAGES",
+        "raw_coverage_before": 0,
+        "raw_coverage_after": 0,
+        "represented_before": 0,
+        "represented_after": 0,
+        "counts_before": {
+          "foundLanguages": 0,
+          "selectedLanguages": 0,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "counts_after": {
+          "foundLanguages": 0,
+          "selectedLanguages": 0,
+          "scoredPLanguages": 0,
+          "primaryALanguages": 0,
+          "verifiedALanguages": 0,
+          "completedLanguages": 0,
+          "includedLanguages": 0,
+          "includedGroups": 0
+        },
+        "unavailable_reasons": [
+          "no_candidates",
+          "no_calculated_data"
+        ],
+        "competing_models": "UNKNOWN_NATIVE_MODEL_BINDINGS_NOT_ASSERTED"
+      }
+    }
+  ]
+}

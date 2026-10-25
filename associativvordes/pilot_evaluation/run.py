@@ -1,14 +1,18 @@
 """Frozen source ablations over one identical case set; baseline is an explicit capture."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
-from gold import new_release_directory
+from associativvordes.pilot_evaluation.gold import new_release_directory
 from collections import defaultdict
 import json
 from pathlib import Path
 import tempfile
 import time
-from gold import canonical,sha,file_hash,json_rows,compile_gold,validate_cases
-from evaluate import evaluate,compare,validate_predictions,CONFIGS,agreement
-from graph import Graph,lookup,ref
+from associativvordes.pilot_evaluation.gold import canonical,sha,file_hash,json_rows,compile_gold,validate_cases
+from associativvordes.pilot_evaluation.evaluate import evaluate,compare,validate_predictions,CONFIGS,agreement
+from associativvordes.evidence_graph.graph import Graph,lookup,ref
 
 BASELINE_COMMIT='156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49'
 BASELINE_HASHES={k:v['sha256'] for k,v in json.loads(Path(__file__).with_name('BASELINE-CODE-LOCK.json').read_text())['files'].items()}

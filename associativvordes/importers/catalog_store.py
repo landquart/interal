@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Explicit recovery can select a verified previous catalog even if CURRENT broke."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import fcntl
 import json
 import os
 from pathlib import Path
-from certify_corpus import atomic_json, verified, publish as select_catalog, ROOT
+from associativvordes.importers.certify_corpus import atomic_json, verified, publish as select_catalog, ROOT
 
 
 def publish(store,catalog):

@@ -1,8 +1,12 @@
 """Closed frozen-scope quality, explicit denominators, intervals and missing-data gates."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 from collections import Counter,defaultdict
 import math,random
-from gold import sha,validate_cases,validate_judgment
-from evaluate import validate_predictions,agreement
+from associativvordes.pilot_evaluation.gold import sha,validate_cases,validate_judgment
+from associativvordes.pilot_evaluation.evaluate import validate_predictions,agreement
 
 def interval(success,total,z=1.959963984540054):
     if not total:return None

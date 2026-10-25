@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Offline-first research preannotation. No production mutation capability."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter,defaultdict,deque
 from concurrent.futures import ThreadPoolExecutor,wait,FIRST_COMPLETED
@@ -10,16 +14,15 @@ from pathlib import Path
 import re
 import sys
 import time
-from contract import canonical,sha,file_hash,card_for,frozen_question,abstention
-from storage import Store,atomic,backup,restore
-from providers import Client,configuration,forecast,now
+from associativvordes.auto_annotation.contract import canonical,sha,file_hash,card_for,frozen_question,abstention
+from associativvordes.auto_annotation.storage import Store,atomic,backup,restore
+from associativvordes.auto_annotation.providers import Client,configuration,forecast,now
 
 REPO=Path(__file__).resolve().parents[2]
+pass
 def code_version():
-    paths=[]
-    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation'):
-        paths.extend(p for p in (REPO/'associativvordes'/d).glob('*.py') if not p.name.startswith('test_'))
-    return sha({p.relative_to(REPO).as_posix():file_hash(p) for p in sorted(paths)})
+    from associativvordes.v5_contract.versions import implementation
+    return sha(implementation())
 
 def rows(path):
     opener=gzip.open if str(path).endswith('.gz') else open
@@ -27,16 +30,23 @@ def rows(path):
         for l in f:
             if l.strip():yield json.loads(l)
 
-def load_input(path,registry=None):
+def load_input(path,registry=None,v5_external=None):
     path=Path(path)
     if path.is_dir():
         m=json.loads((path/'MANIFEST.json').read_text())
+        if m.get('schema')=='semantic-review-release/1':
+            from associativvordes.semantic_cleanup.bridge import load_queue
+            return load_queue(path)
+        if m.get('schema')=='v5-review-projection/1':
+            pass
+            from associativvordes.v5_adapter.queue_input import load_queue
+            return load_queue(path,registry,v5_external)
         if m.get('schema')!='mass-candidate-release/1' or m.get('version')!=sha({k:v for k,v in m.items() if k!='version'}):
             raise ValueError('mass manifest integrity')
         qpath=path/'questions.ndjson'
         if file_hash(qpath)!=m['outputs']['questions.ndjson']:raise ValueError('questions checksum')
         if not registry:raise ValueError('actual --registry required for mass queue')
-        from source import checked
+        from associativvordes.auto_annotation.source import checked
         import sqlite3
         r=checked(registry,Path(registry).parent/'REGISTRY.json')
         if r['database_sha256']!=m['identity']['registry']:raise ValueError('registry dependency mismatch')
@@ -46,7 +56,7 @@ def load_input(path,registry=None):
         if set(m['identity']['families'])-known:raise ValueError('unknown canonical family')
         qs=list(rows(qpath))
         if len(qs)!=m['counts']['questions']:raise ValueError('question count')
-        from graph import lookup
+        from associativvordes.evidence_graph.graph import lookup
         for q in qs:
             if q['family'] not in m['identity']['families'] or q['language'] not in m['identity']['languages']:
                 raise ValueError('question outside actual family/language scope')
@@ -57,8 +67,8 @@ def load_input(path,registry=None):
                       source_version=m['version'],search_parameters=m['identity'])
     else:
         pilot=REPO/'associativvordes'/'pilot_evaluation'
-        sys.path.insert(0,str(pilot))
-        from gold import validate_cases
+        pass
+        from associativvordes.pilot_evaluation.gold import validate_cases
         cases=list(rows(path));validate_cases(cases)
         protocol=json.loads(Path(__file__).with_name('protocol05.json').read_text())
         if len(cases)!=protocol['cases'] or sha(cases)!=protocol['frozen_case_set_sha256']:
@@ -79,7 +89,7 @@ def fair_order(cards):
             if lanes[lane]:yield lanes[lane].popleft()
 
 def prepare(store,questions,identity,source_index=None,family_context=None,aux_index=None):
-    from source import NativeSource
+    from associativvordes.auto_annotation.source import NativeSource
     source=None
     if source_index:
         if identity['kind']!='mass02':raise ValueError('native index only with mass02 manifest; frozen graph refs are separate')
@@ -88,6 +98,9 @@ def prepare(store,questions,identity,source_index=None,family_context=None,aux_i
     try:
         for original in questions:
             q,raw=(source.enrich(original) if source else (copy.deepcopy(original),{}))
+            if identity.get('kind') in {'v5','semantic09'}:
+                import base64
+                raw={r['id']:dict(id=r['id'],revision=r['body']['revision'],artifact=r['body']['artifact'],raw_locator=r['body']['raw_locator'],original_line_base64=r['body']['original_line_base64'],raw_text=base64.b64decode(r['body']['original_line_base64'],validate=True).decode()) for r in q.get('external_rows',[])}
             seen={}
             for lex in q['lexeme_alternatives']:
                 if lex['id'] in seen:
@@ -119,6 +132,26 @@ def stage_a(card):
     result['uncertainty_flags']=sorted(set(result['uncertainty_flags']+card['risk_flags']))
     return result
 
+def historical_check(card, decision):
+    import importlib.util
+    module_path=REPO/'associativvordes'/'history_registry'/'registry.py'
+    try:
+        spec=importlib.util.spec_from_file_location('interal_historical_constraints',module_path)
+        module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+        root=REPO/'audit'/'associative-history-registry'
+        current=json.loads((root/'CURRENT.json').read_text())
+        # A native lexeme ID is not a corpus lemma ID. Missing alignment is a hold.
+        lex=card['lexeme']
+        ids=lex.get('corpus_lemma_ids',[])
+        if lex['id'].startswith('lemma:'):ids=sorted(set(ids+[lex['id']]))
+        return module.check(REPO,root/current['snapshot'],current['sha256'],dict(
+            operation='restore' if decision=='PROPOSE_INCLUDE' else 'delete',
+            family_id=card.get('legacy_scope',{}).get('family_id',card['family_id']),language=card['language'],lemma_ids=ids,
+            pos=lex.get('pos'),sense_id=None))
+    except (OSError,ValueError,KeyError,ImportError) as e:
+        return dict(status='HISTORY_UNAVAILABLE',allowed=False,reasons=[str(e)])
+
+
 def classify(card,client,route,run_id,recipe_hash):
     a=stage_a(card);answer=a;stages=[{'stage':'A','status':'DETERMINISTIC_OBSERVATION','response':a}]
     if route!='deterministic':
@@ -137,8 +170,11 @@ def classify(card,client,route,run_id,recipe_hash):
         answer=abstention('DETERMINISTIC_RISK_REQUIRES_HUMAN',card)
     if answer['decision']=='PROPOSE_EXCLUDE' and not card['source_assertions']:
         answer=abstention('NO_EVIDENCE_IS_NOT_A_REJECTION',card)
+    history=historical_check(card,answer['decision'])
+    if answer['decision'] in {'PROPOSE_INCLUDE','PROPOSE_EXCLUDE'} and not history['allowed']:
+        answer=abstention(history['status'],card)
     model_ids=[(s.get('provider'),s.get('model'),s.get('model_version')) for s in stages if s['stage']!='A' and s.get('model')]
-    return dict(schema='preannotation-proposal/1',candidate_id=card['candidate_id'],question_id=card['question_id'],
+    return dict(schema='preannotation-proposal/1',history_check=history,candidate_id=card['candidate_id'],question_id=card['question_id'],
       family_id=card['family_id'],language=card['language'],lexeme=card['lexeme'],card_sha256=card['content_sha256'],
       proposed_decision=answer['decision'],identity_resolution=answer['identity_status'],
       relation_type=answer['relation_type'],assessments=answer['assessments'],
@@ -160,7 +196,9 @@ def execute(store,run_id,questions,identity,config=None,mode='dry-run',source_in
     started=time.monotonic();config=configuration(config)
     if not re.fullmatch(r'[A-Za-z0-9_-]{1,120}',run_id):raise ValueError('safe run ID')
     cards,duplicates=prepare(store,questions,identity,source_index,family_context,aux_index)
-    recipe=dict(algorithm_sha256=code_version(),config=config,rules_sha256=sha(cards[0]['rules']) if cards else None)
+    history_pointer=REPO/'audit'/'associative-history-registry'/'CURRENT.json'
+    history_version=file_hash(history_pointer) if history_pointer.exists() else 'UNAVAILABLE'
+    recipe=dict(history_snapshot=history_version,algorithm_sha256=code_version(),config=config,rules_sha256=sha(cards[0]['rules']) if cards else None)
     lane_count=len({(c['language'],','.join(sorted({p.get('category',p.get('proposed_category','unresolved')) for p in c['paths']})) or 'unresolved') for c in cards})
     if max_candidates is not None and max_candidates<lane_count:
         raise ValueError('candidate budget must retain every nonempty language/relation lane: '+str(lane_count))
@@ -234,7 +272,7 @@ def main():
     p.add_argument('mode',nargs='?',default='dry-run',choices=['offline','dry-run','pilot','batch','resume',
       're-evaluate-changed','export-proposals','export-handoff','backup','restore','record-cost'])
     p.add_argument('--store',required=True);p.add_argument('--input');p.add_argument('--registry')
-    p.add_argument('--aux-index');p.add_argument('--source-index');p.add_argument('--family-context');p.add_argument('--config')
+    p.add_argument('--v5-external');p.add_argument('--aux-index');p.add_argument('--source-index');p.add_argument('--family-context');p.add_argument('--config')
     p.add_argument('--run-id',default='offline-1');p.add_argument('--output')
     p.add_argument('--receipt');p.add_argument('--max-candidates',type=int);p.add_argument('--stop-after',type=int)
     a=p.parse_args()
@@ -250,7 +288,7 @@ def main():
         elif a.mode.startswith('export-'):result=export(s,a.run_id,a.output,a.mode=='export-handoff')
         else:
             if not a.input:p.error('--input frozen cases or mass02 release required')
-            qs,identity=load_input(a.input,a.registry)
+            qs,identity=load_input(a.input,a.registry,a.v5_external)
             cfg=json.loads(Path(a.config).read_text()) if a.config else {}
             context=json.loads(Path(a.family_context).read_text()) if a.family_context else None
             result=execute(s,a.run_id,qs,identity,cfg,a.mode,a.source_index,context,a.max_candidates,a.stop_after,aux_index=a.aux_index)

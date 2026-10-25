@@ -1,6 +1,10 @@
 """Closed-scope metrics. Missing human labels and abstentions are never zero accuracy."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 from collections import Counter,defaultdict
-from gold import sha,canonical,validate_cases
+from associativvordes.pilot_evaluation.gold import sha,canonical,validate_cases
 
 CONFIGS={'A':[],'B':['uder'],'C':['uder','morphynet'],'D':['uder','morphynet','glemm'],'E':['uder','morphynet','glemm','flexor']}
 

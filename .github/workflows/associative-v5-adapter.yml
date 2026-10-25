@@ -1,0 +1,21 @@
+name: Streaming production v5 adapter
+on:
+  pull_request:
+    paths:
+      - 'associativvordes/v5_adapter/**'
+      - 'associativvordes/auto_annotation/**'
+      - 'associativvordes/mass_dry_run/worker.py'
+      - 'audit/associative-v5-adapter/**'
+      - 'tests/associative-v5-adapter.test.mjs'
+      - '.github/workflows/associative-v5-adapter.yml'
+jobs:
+  projection-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s associativvordes/v5_adapter -p 'test_*.py'
+      - run: python -m unittest discover -s associativvordes/auto_annotation -p 'test_*.py'
+      - run: python -m unittest discover -s associativvordes/mass_dry_run -p 'test_*.py'

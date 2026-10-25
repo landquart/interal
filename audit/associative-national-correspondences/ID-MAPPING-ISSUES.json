@@ -1,0 +1,68 @@
+{
+  "alias_candidate_is_not_canonical_root_identity": true,
+  "current_alias_candidates": {
+    "creat": {
+      "bucket": "2a.json.gz",
+      "targets": [
+        "surface:de:creat",
+        "surface:en:creat",
+        "surface:es:creat",
+        "surface:fr:creat",
+        "surface:it:creat"
+      ]
+    },
+    "inter": {
+      "bucket": "69.json.gz",
+      "targets": [
+        "family:inter"
+      ]
+    },
+    "liber": {
+      "bucket": "5b.json.gz",
+      "targets": [
+        "family:liber"
+      ]
+    },
+    "manu": {
+      "bucket": "ee.json.gz",
+      "targets": [
+        "family:manu"
+      ]
+    },
+    "mut": {
+      "bucket": "b9.json.gz",
+      "targets": [
+        "ety:d5aeaee89dfd",
+        "surface:de:mut",
+        "surface:en:mut",
+        "surface:es:mut",
+        "surface:fr:mut",
+        "surface:ru:mut"
+      ]
+    },
+    "ocul": {
+      "bucket": "2e.json.gz",
+      "targets": [
+        "family:ocul"
+      ]
+    },
+    "ped": {
+      "bucket": "ae.json.gz",
+      "targets": [
+        "family:pede"
+      ]
+    },
+    "regul": {
+      "bucket": "24.json.gz",
+      "targets": [
+        "family:regul"
+      ]
+    }
+  },
+  "policy": "No alias expansion into registry permissions; unresolved targets hold proposals",
+  "schema": "interal-correspondence-id-mapping/1",
+  "unmapped_legacy_ids": [
+    "family:creat",
+    "family:mut"
+  ]
+}

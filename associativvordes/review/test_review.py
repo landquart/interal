@@ -1,4 +1,8 @@
 """Integration tests of durable review and HTTP privacy boundaries."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import concurrent.futures
 import copy
 import http.client
@@ -10,8 +14,8 @@ import unittest
 from unittest.mock import patch
 import uuid
 
-from store import Ledger, Conflict, atomic, canonical, digest, restore
-from server import Application, initialize
+from associativvordes.review.store import Ledger, Conflict, atomic, canonical, digest, restore
+from associativvordes.review.server import Application, initialize
 
 ROLES = {'a': 'reviewer', 'b': 'blind', 'c': 'arbiter'}
 
@@ -140,7 +144,7 @@ class ReviewTests(unittest.TestCase):
         self.assertEqual(self.l.state(self.qs[109]['id'], 'a')['status'], 'REJECT')
 
     def test_interrupted_atomic_write_and_committed_retry(self):
-        with patch('store.os.replace', side_effect=OSError('simulated power interruption')):
+        with patch('associativvordes.review.store.os.replace', side_effect=OSError('simulated power interruption')):
             with self.assertRaises(OSError): self.save()
         self.assertEqual(len(Ledger(self.l.root).events), 0)
         self.save()
@@ -169,7 +173,7 @@ class ReviewTests(unittest.TestCase):
 
     def test_lossless_source_row_attachment_and_tamper(self):
         import gzip, base64
-        from source_rows import attach
+        from associativvordes.review.source_rows import attach
         raw = b'Word0\tword0\tNOUN\n'
         q = self.qs[0]
         q['evidence_refs'][0]['artifact'] = 'UDer:test'

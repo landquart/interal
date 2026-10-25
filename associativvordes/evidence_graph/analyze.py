@@ -1,7 +1,11 @@
 """Bounded deterministic pilot views, competing analyses and review tasks."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 from collections import Counter,defaultdict
 import json
-from graph import canonical,envelope,ref,key,sha,lookup
+from associativvordes.evidence_graph.graph import canonical,envelope,ref,key,sha,lookup
 
 def report(g,snapshot,out):
     alignments=defaultdict(list)

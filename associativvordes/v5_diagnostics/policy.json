@@ -1,0 +1,17 @@
+{
+  "schema": "v5-diagnostics-policy/1",
+  "version": "1.0.0",
+  "categories": ["EXACT_MORPHOLOGICAL", "HISTORICAL_ETYMON", "BORROWING_FAMILY", "COMPOUND_COMPONENT", "SURFACE_FRAGMENT", "INFLECTION_DERIVED", "MIXED_ORIGIN", "UNCLASSIFIED"],
+  "short_base_max_codepoints": 3,
+  "large_family_min": 1000,
+  "very_large_family_min": 10000,
+  "ending_proxy": {"max_base_length": 4, "min_members": 5, "min_distinct_prefixes": 5, "min_percent": 80},
+  "risk": {"signal_cap": 40, "impact_cap": 20, "history_cap": 10, "ambiguity_cap": 10, "complexity_cap": 10, "false_exclusion_cost_cap": 10, "bands": {"PRIORITY_1": 60, "PRIORITY_2": 35, "PRIORITY_3": 15}},
+  "production_enabled": false,
+  "semantic_verdicts_created": false,
+  "association_formulas_modified": false,
+  "identity_binding_policy": "All legacy corpus identities and sense bindings remain unresolved; native identity alternatives are not corpus identity confirmations.",
+  "correspondence_policy": "No lexical/sense-scoped normative correspondence bindings are supplied by the v5 input. UNKNOWN_NOT_EVALUATED does not mean no valid correspondence exists.",
+  "history_policy": "Exact finite decisions retain original IDs and POS/sense scopes; incomplete historical coverage blocks application globally but is not a blanket negative.",
+  "pattern_policy": "Observational mechanisms and risk flags are hypotheses for investigation, never linguistic deletion verdicts. Shared member sets do not imply synonymous or redundant families."
+}

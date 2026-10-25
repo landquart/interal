@@ -1,0 +1,33 @@
+{
+  "adapter_regression_tests": 18,
+  "code_sha256": {
+    "associativvordes/v5_diagnostics/.gitignore": "f42132059d59432d9294c9d86a1207b45adefd5d88d062ff0d1429c4c7d1500c",
+    "associativvordes/v5_diagnostics/README.md": "8b740019e0ee02fc086b54b8e6261d2abc40abc7e00385c3cf7c5e251d4257f0",
+    "associativvordes/v5_diagnostics/classify.py": "4dbf5b8fd9fec4a82671c5653a3fd2d3bc2192d74d3037fcfc219b20e8bb1e13",
+    "associativvordes/v5_diagnostics/policy.json": "fbb167614f42ae6460dabd107fd215fb886b469ef363e7e1629851ecec4c3389",
+    "associativvordes/v5_diagnostics/registry.schema.json": "fc41e3a32ed683a6dd6b6fc2f001705c620932f2e31995fc13bd007c5ea30929",
+    "associativvordes/v5_diagnostics/run.py": "823064390fc4e06c566beb62b1a2d4332613ebb62405a77c442cce3389a6c5ed",
+    "associativvordes/v5_diagnostics/test_diagnostics.py": "a956dcc949513ae52aab3dc3c12111c746a8fc99fa194539c00bf2306cdfac6e",
+    "associativvordes/v5_diagnostics/tools/backup.py": "8c83dae4ba4232ab9956b2e6a99d3cdbf65a2da7fa2c2f682125ad3957bdfa57",
+    "associativvordes/v5_diagnostics/tools/finalize.py": "8a0cf7a55a35e47397c2d17267285406bf854bdeb59116c51929cd41ed0a3e80",
+    "associativvordes/v5_diagnostics/tools/join_volumes.py": "fd4ca88f1ffa981185dffe06fd31b3a689afcb6cc81ed72358ba8f1e873e593d",
+    "associativvordes/v5_diagnostics/tools/query.py": "e982b844de95536d0315426cd88e1574421bc7766ac8d1021a170459d74f2bfd",
+    "associativvordes/v5_diagnostics/tools/suffix_exposure.py": "e663871e5e9b428a8f920dfb02b07a90ff784f38205f0edcbb8c18fa9d340e80"
+  },
+  "complete_database_byte_equality": true,
+  "complete_id_stream_coverage": true,
+  "complete_independent_runs": 2,
+  "complete_logical_table_equality": true,
+  "diagnostic_unit_tests": 13,
+  "linguistic_confirmations_created": 0,
+  "llm_annotation_requests": 0,
+  "node_test_wrapper": "PASS",
+  "old_decision_journals_unchanged": true,
+  "production_tracked_diff_empty": true,
+  "production_writes": 0,
+  "real_backup_restore": "BACKUP-RESTORE-REPORT.json",
+  "repository_npm_suite": "All tests passed",
+  "schema": "v5-diagnostic-validation/1",
+  "status": "PASS",
+  "supplementary_suffix_replay": "SUFFIX-EXPOSURE-REPLAY.json"
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "fresh_database": true,
+  "restored_input": true,
+  "byte_identical_reports": {
+    "FULL-CENSUS.json": true,
+    "INTEGRITY-REPORT.json": true
+  },
+  "code": "b1a7849f84781111181f2912d8fa75bfab4d62b95a3a2ab38fb5ed2874b27dab",
+  "evidence_retention": "Observed in previous execution before workspace maintenance; original journals were removed. Current code SHA is identical, all4306 source files have now been restored and individually reverified. No changed-code recertification is inferred.",
+  "source_inventory_sha256": "d1c09919569701edc5405969e790ef0769e15e1cbbe67679305040c5b4c9171e"
+}

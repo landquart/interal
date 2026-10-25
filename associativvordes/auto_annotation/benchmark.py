@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Reproduce four offline routes over the frozen scope; missing human/LLM data stay BLOCKED."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import gzip
@@ -7,20 +11,20 @@ import json
 from pathlib import Path
 import sys
 import time
-from contract import canonical,sha,file_hash
-from pipeline import load_input,execute,export,rows,code_version
-from storage import Store
-from providers import configuration
+from associativvordes.auto_annotation.contract import canonical,sha,file_hash
+from associativvordes.auto_annotation.pipeline import load_input,execute,export,rows,code_version
+from associativvordes.auto_annotation.storage import Store
+from associativvordes.auto_annotation.providers import configuration,now
 
 def benchmark(cases_path,store_root,output,config=None,judgments=None,roster=None,adjudications=None):
     repo=Path(__file__).resolve().parents[2];output=Path(output).resolve()
     if output.is_relative_to(repo) or output.exists():raise ValueError('fresh external report required')
     output.mkdir(parents=True)
-    pilot=repo/'associativvordes'/'pilot_evaluation';sys.path.insert(0,str(pilot))
-    from gold import compile_gold
-    from metrics04 import summary,require_study_reviews,agreement_intervals
-    from study04 import plan
-    from archive04 import pack,unpack
+    pilot=repo/'associativvordes'/'pilot_evaluation';pass
+    from associativvordes.pilot_evaluation.gold import compile_gold
+    from associativvordes.pilot_evaluation.metrics04 import summary,require_study_reviews,agreement_intervals
+    from associativvordes.pilot_evaluation.study04 import plan
+    from associativvordes.pilot_evaluation.archive04 import pack,unpack
     cases=list(rows(cases_path));questions,identity=load_input(cases_path)
     chosen,tasks,cells=plan(cases)
     human=compile_gold(cases,list(rows(judgments)) if judgments else [],
@@ -57,7 +61,7 @@ def benchmark(cases_path,store_root,output,config=None,judgments=None,roster=Non
           actual_correct_per_processing_hour=None,export=release)
         proposals.extend(dict(route=route,proposal=p) for p in pp)
     # Labels and timings are never populated by model predictions.
-    experiment=dict(schema='preannotation-experiment/1',generated_at=__import__('providers').now(),
+    experiment=dict(schema='preannotation-experiment/1',generated_at=now(),
       algorithm_sha256=code_version(),frozen=identity,cases=len(cases),double_review_cases=sum(c['double_review'] for c in cases),
       by_language=dict(sorted(Counter(c['language'] for c in cases).items())),
       families=sorted({c['family'] for c in cases}),runs=runs,gold_counts=human['counts'],

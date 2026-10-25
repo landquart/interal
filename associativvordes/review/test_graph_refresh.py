@@ -1,16 +1,20 @@
 """Rebuild the real pinned graph probes after proposal approval; no graph verdicts."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json
 from pathlib import Path
 import sys
 import tempfile
 import unittest
-from store import Ledger, atomic, canonical, digest
+from associativvordes.review.store import Ledger, atomic, canonical, digest
 
 ASSOC = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ASSOC/'candidate_search'))
-from search import Graph, Queue, build
-from build_graph import load_registry, ingest
-from records import read_json
+from associativvordes.candidate_search.search import Graph, Queue, build
+from associativvordes.evidence_graph.build_graph import load_registry, ingest
+from associativvordes.evidence_graph.records import read_json
 
 
 class GraphRefreshTests(unittest.TestCase):

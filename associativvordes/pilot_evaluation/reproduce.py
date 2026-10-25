@@ -1,16 +1,20 @@
 """One-command immutable replay; cached selection requires an externally pinned receipt."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 from pathlib import Path
 import shutil
 import time
-from gold import new_release_directory,file_hash,sha
-from prepare_inputs import prepare
-from sample import sample
-from run import run
-from graph import json_rows
-from select_pilot import select
-from build_graph import build
+from associativvordes.pilot_evaluation.gold import new_release_directory,file_hash,sha
+from associativvordes.pilot_evaluation.prepare_inputs import prepare
+from associativvordes.pilot_evaluation.sample import sample
+from associativvordes.pilot_evaluation.run import run
+from associativvordes.evidence_graph.graph import json_rows
+from associativvordes.evidence_graph.select_pilot import select
+from associativvordes.evidence_graph.build_graph import build
 
 def reproduce(cache,prior_snapshot,source_lock,output,raw_root=None,selection=None,selection_manifest_sha256=None):
     output=new_release_directory(output);start=time.perf_counter();prepare(cache,prior_snapshot,output/'inputs')

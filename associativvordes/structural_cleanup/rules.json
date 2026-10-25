@@ -1,0 +1,18 @@
+{
+  "schema": "v5-structural-rules/1",
+  "version": "1.0.0",
+  "classes": ["SAFE_STRUCTURAL_FIX", "REVIEW_REQUIRED"],
+  "safe_rules": ["FAMILY_SUPPORT", "FAMILY_LANGUAGE_SUPPORT", "REPORT_CACHED_SUPPORT", "REPORT_CACHED_LANGUAGES"],
+  "safe_scope": "Derived size fields of exact family records or their cached report views only",
+  "membership_writers": [],
+  "alias_writers": [],
+  "provenance_writers": [],
+  "requires_exact_source_hashes": true,
+  "requires_independent_derived_value_recomputation": true,
+  "requires_history_available_for_nonempty_application": true,
+  "physical_duplicate_default": "REVIEW_REQUIRED",
+  "physical_duplicate_reason": "Same family/language/lemma ID or equal surfaces do not prove identical evidence/sense. This release has no deletion rule.",
+  "unassigned_policy": "Retain all source carriers and the finite unassigned list unchanged",
+  "production_application": false,
+  "linguistic_authority_conferred": false
+}

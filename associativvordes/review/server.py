@@ -1,4 +1,8 @@
 """Loopback-only annotation application, using Interal shared UI styles."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from http.cookies import SimpleCookie
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -12,7 +16,7 @@ from urllib.parse import parse_qs, urlparse
 import zipfile
 import io
 
-from store import Ledger, Conflict, STATUSES, RELATIONS, atomic, canonical, digest, group_key, restore
+from associativvordes.review.store import Ledger, Conflict, STATUSES, RELATIONS, atomic, canonical, digest, group_key, restore
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
@@ -248,7 +252,7 @@ def main():
         print('Private reviewer tokens: ' + str(a.data/'credentials.json'))
     elif a.command == 'import': print(canonical(l.import_queue(a.queue)))
     elif a.command == 'attach-rows':
-        from source_rows import attach
+        from associativvordes.review.source_rows import attach
         print(canonical(attach(l, a.snapshot)))
     elif a.command == 'export': print(l.export())
     else:

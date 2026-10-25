@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
+assertHistoricalRepairAllowed();
 import {createHash} from 'node:crypto';import{readFile,writeFile}from'node:fs/promises';import{join}from'node:path';import{gunzipSync,gzipSync}from'node:zlib';
 import { repositoryTreeMetadata, refreshFamilySummaries } from './lib/associative-repository-materialization.mjs';
 const root=process.argv[2]||'associativvordes/family-index-v5',bytes=await readFile('audit/associative-family-v5/net-alias-routing-decision.json'),ledger=JSON.parse(bytes),assert=(v,m)=>{if(!v)throw Error(m)},bucket=s=>{let h=0x811c9dc5;for(const c of s){h^=c.codePointAt(0);h=Math.imul(h,0x01000193)}return((h>>>0)%256).toString(16).padStart(2,'0')},read=async p=>JSON.parse((p.endsWith('.gz')?gunzipSync(await readFile(p)):await readFile(p)).toString()),write=(p,v)=>writeFile(p,p.endsWith('.gz')?gzipSync(JSON.stringify(v),{level:6}):JSON.stringify(v,null,2)+'\n');

@@ -1,0 +1,1945 @@
+{
+  "compared_source_commit": "cab78d268549971e10f9771f796f2c8306140c1b",
+  "files": [
+    {
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "removed": [
+        "from contract import canonical, sha, file_hash",
+        "from pipeline import load_input, execute, export, rows, code_version",
+        "from storage import Store",
+        "from providers import configuration",
+        "from gold import compile_gold",
+        "from metrics04 import summary, require_study_reviews, agreement_intervals",
+        "from study04 import plan",
+        "from archive04 import pack, unpack"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, file_hash",
+        "from associativvordes.auto_annotation.pipeline import load_input, execute, export, rows, code_version",
+        "from associativvordes.auto_annotation.storage import Store",
+        "from associativvordes.auto_annotation.providers import configuration",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.gold import compile_gold",
+        "from associativvordes.pilot_evaluation.metrics04 import summary, require_study_reviews, agreement_intervals",
+        "from associativvordes.pilot_evaluation.study04 import plan",
+        "from associativvordes.pilot_evaluation.archive04 import pack, unpack"
+      ]
+    },
+    {
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "removed": [
+        "from contract import canonical, sha, file_hash, card_for, frozen_question, abstention",
+        "from storage import Store, atomic, backup, restore",
+        "from providers import Client, configuration, forecast, now",
+        "from source import NativeSource",
+        "from source import checked",
+        "from graph import lookup",
+        "from gold import validate_cases",
+        "from queue_input import load_queue"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, file_hash, card_for, frozen_question, abstention",
+        "from associativvordes.auto_annotation.storage import Store, atomic, backup, restore",
+        "from associativvordes.auto_annotation.providers import Client, configuration, forecast, now",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_contract.versions import implementation",
+        "from associativvordes.auto_annotation.source import NativeSource",
+        "from associativvordes.auto_annotation.source import checked",
+        "from associativvordes.evidence_graph.graph import lookup",
+        "from associativvordes.pilot_evaluation.gold import validate_cases",
+        "from associativvordes.v5_adapter.queue_input import load_queue"
+      ]
+    },
+    {
+      "path": "associativvordes/auto_annotation/providers.py",
+      "removed": [
+        "from contract import SYSTEM, canonical, sha, response_schema, validate_response, parse_json"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import SYSTEM, canonical, sha, response_schema, validate_response, parse_json",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/auto_annotation/source.py",
+      "removed": [
+        "from contract import file_hash, sha",
+        "from mass_source import Source, checked, readonly",
+        "from scale_index import bid"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import file_hash, sha",
+        "from associativvordes.candidate_search.mass_source import Source, checked, readonly",
+        "from associativvordes.importers.scale_index import bid",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/auto_annotation/storage.py",
+      "removed": [
+        "from contract import canonical, sha"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/auto_annotation/test_annotation.py",
+      "removed": [
+        "from contract import *",
+        "from storage import Store, backup, restore",
+        "from providers import Client, configuration, forecast",
+        "from pipeline import execute, export, stage_a, result_key",
+        "from source import NativeSource"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import *",
+        "from associativvordes.auto_annotation.storage import Store, backup, restore",
+        "from associativvordes.auto_annotation.providers import Client, configuration, forecast",
+        "from associativvordes.auto_annotation.pipeline import execute, export, stage_a, result_key",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.auto_annotation.source import NativeSource"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/benchmark_scale.py",
+      "removed": [
+        "from certify_corpus import atomic_json",
+        "from morphology_import import dumps, hash_file",
+        "from scale_index import Index",
+        "from search import Queue",
+        "from project_store import verified_project"
+      ],
+      "added": [
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "from associativvordes.importers.morphology_import import dumps, hash_file",
+        "from associativvordes.importers.scale_index import Index",
+        "from associativvordes.candidate_search.search import Queue",
+        "from associativvordes.candidate_search.project_store import verified_project",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "removed": [
+        "from scale_index import Index, bid",
+        "from certify_corpus import atomic_json",
+        "from morphology_import import hash_file, digest",
+        "from search import Graph, Queue, build, sha",
+        "from build_graph import load_registry, ingest, align",
+        "from project_store import verified_project"
+      ],
+      "added": [
+        "from associativvordes.importers.scale_index import Index, bid",
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "from associativvordes.importers.morphology_import import hash_file, digest",
+        "from associativvordes.candidate_search.search import Graph, Queue, build, sha",
+        "from associativvordes.evidence_graph.build_graph import load_registry, ingest, align",
+        "from associativvordes.candidate_search.project_store import verified_project",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_benchmark.py",
+      "removed": [
+        "from mass_source import file_hash",
+        "from certify_corpus import atomic_json"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.mass_source import file_hash",
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "removed": [
+        "import mass_registry",
+        "from mass_registry import prepare, LANGUAGES",
+        "from mass_source import readonly, checked",
+        "from mass_benchmark import benchmark",
+        "from mass_store import Store",
+        "from mass_recover import rollback",
+        "from morphology_import import hash_file, validate_lock",
+        "from certify_corpus import atomic_json, audit_catalog",
+        "from audit_scale_index import audit",
+        "from fetch_sources import fetch",
+        "from fetch_glemm_git import export as export_glemm",
+        "from glemm_cache import LOCK as GLEMM_LOCK, restore as restore_glemm"
+      ],
+      "added": [
+        "from associativvordes.candidate_search import mass_registry",
+        "from associativvordes.candidate_search.mass_registry import prepare, LANGUAGES",
+        "from associativvordes.candidate_search.mass_source import readonly, checked",
+        "from associativvordes.candidate_search.mass_benchmark import benchmark",
+        "from associativvordes.candidate_search.mass_store import Store",
+        "from associativvordes.candidate_search.mass_recover import rollback",
+        "from associativvordes.importers.morphology_import import hash_file, validate_lock",
+        "from associativvordes.importers.certify_corpus import atomic_json, audit_catalog",
+        "from associativvordes.importers.audit_scale_index import audit",
+        "from associativvordes.importers.fetch_sources import fetch",
+        "from associativvordes.importers.fetch_glemm_git import export as export_glemm",
+        "from associativvordes.importers.glemm_cache import LOCK as GLEMM_LOCK, restore as restore_glemm",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_discovery.py",
+      "removed": [
+        "from mass_source import Source, readonly",
+        "from mass_registry import Graph, canonical, sha, lookup"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.mass_source import Source, readonly",
+        "from associativvordes.candidate_search.mass_registry import Graph, canonical, sha, lookup",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_recover.py",
+      "removed": [
+        "from mass_source import file_hash",
+        "from certify_corpus import atomic_json"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.mass_source import file_hash",
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_registry.py",
+      "removed": [
+        "from graph import Graph, canonical, sha, lookup, file_hash",
+        "from build_graph import load_registry",
+        "from prepare_registry import COMMIT, FILES, bucket",
+        "from certify_corpus import atomic_json",
+        "from morphology_import import digest"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import Graph, canonical, sha, lookup, file_hash",
+        "from associativvordes.evidence_graph.build_graph import load_registry",
+        "from associativvordes.evidence_graph.prepare_registry import COMMIT, FILES, bucket",
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "from associativvordes.importers.morphology_import import digest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "removed": [
+        "from mass_discovery import Discovery, DEFAULTS",
+        "from mass_registry import LANGUAGES, local_content",
+        "from mass_source import checked, readonly, owner_key",
+        "from mass_store import Store",
+        "from morphology_import import digest, hash_file",
+        "from certify_corpus import atomic_json",
+        "from graph import lookup"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.mass_discovery import Discovery, DEFAULTS",
+        "from associativvordes.candidate_search.mass_registry import LANGUAGES, local_content",
+        "from associativvordes.candidate_search.mass_source import checked, readonly, owner_key",
+        "from associativvordes.candidate_search.mass_store import Store",
+        "from associativvordes.importers.morphology_import import digest, hash_file",
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.evidence_graph.graph import lookup"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_source.py",
+      "removed": [
+        "from mass_registry import canonical, sha, file_hash",
+        "import scale_index",
+        "from scale_index import Index, bid",
+        "from certify_corpus import verified, atomic_json"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.mass_registry import canonical, sha, file_hash",
+        "from associativvordes.importers import scale_index",
+        "from associativvordes.importers.scale_index import Index, bid",
+        "from associativvordes.importers.certify_corpus import verified, atomic_json",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_store.py",
+      "removed": [
+        "from search import Queue, canonical, sha, lookup"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.search import Queue, canonical, sha, lookup",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/pilot.py",
+      "removed": [
+        "from search import Graph, Queue, build, reverse, canonical, file_hash, lookup, enqueue_reverse"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.search import Graph, Queue, build, reverse, canonical, file_hash, lookup, enqueue_reverse",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/prepare_frequency.py",
+      "removed": [
+        "from search import Graph, lookup, file_hash, sha, canonical"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.search import Graph, lookup, file_hash, sha, canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/project_store.py",
+      "removed": [
+        "from scale_project import hash_file, build"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.scale_project import hash_file, build",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/scale_project.py",
+      "removed": [
+        "from morphology_import import dumps, digest, hash_file",
+        "from certify_corpus import atomic_json",
+        "from scale_index import lookup"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import dumps, digest, hash_file",
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "from associativvordes.importers.scale_index import lookup",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/search.py",
+      "removed": [
+        "from graph import Graph, canonical, sha, lookup, ref, file_hash, BLOCKING"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import Graph, canonical, sha, lookup, ref, file_hash, BLOCKING",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_contract.versions import database_binding",
+        "from associativvordes.v5_contract.policy import hypothesis"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "removed": [
+        "from mass_discovery import Discovery, path_kind, negative_context",
+        "from mass_registry import Graph, LANGUAGES, canonical, sha, local_content",
+        "from mass_source import owner_key, checked, prepare as prepare_auxiliary",
+        "from mass_run import run, parser, dependency",
+        "from mass_store import Store",
+        "from mass_recover import rollback",
+        "from scale_index import Index",
+        "from build_graph import load_registry",
+        "from prepare_registry import read",
+        "from morphology_import import hash_file, digest",
+        "from certify_corpus import atomic_json",
+        "from mass_ci import prepare_registry_input, LEGACY",
+        "import mass_registry",
+        "from mass_ci import runtime_preflight"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.mass_discovery import Discovery, path_kind, negative_context",
+        "from associativvordes.candidate_search.mass_registry import Graph, LANGUAGES, canonical, sha, local_content",
+        "from associativvordes.candidate_search.mass_source import owner_key, checked, prepare as prepare_auxiliary",
+        "from associativvordes.candidate_search.mass_run import run, parser, dependency",
+        "from associativvordes.candidate_search.mass_store import Store",
+        "from associativvordes.candidate_search.mass_recover import rollback",
+        "from associativvordes.importers.scale_index import Index",
+        "from associativvordes.evidence_graph.build_graph import load_registry",
+        "from associativvordes.evidence_graph.prepare_registry import read",
+        "from associativvordes.importers.morphology_import import hash_file, digest",
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.candidate_search.mass_ci import prepare_registry_input, LEGACY",
+        "from associativvordes.candidate_search import mass_registry",
+        "from associativvordes.candidate_search.mass_ci import runtime_preflight"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/test_scale_project.py",
+      "removed": [
+        "from scale_project import build",
+        "from project_store import verified_project, resume_project",
+        "from scale_index import Index",
+        "from morphology_import import hash_file",
+        "from benchmark_scale import benchmark"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.scale_project import build",
+        "from associativvordes.candidate_search.project_store import verified_project, resume_project",
+        "from associativvordes.importers.scale_index import Index",
+        "from associativvordes.importers.morphology_import import hash_file",
+        "from associativvordes.candidate_search.benchmark_scale import benchmark",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/candidate_search/test_search.py",
+      "removed": [
+        "from search import Graph, Queue, build, collect, reverse, priority, DEFAULT_WEIGHTS, match_real_lexeme, lookup, canonical, sha, frequency_index, enqueue_reverse",
+        "from records import read_json",
+        "from build_graph import load_registry, ingest"
+      ],
+      "added": [
+        "from associativvordes.candidate_search.search import Graph, Queue, build, collect, reverse, priority, DEFAULT_WEIGHTS, match_real_lexeme, lookup, canonical, sha, frequency_index, enqueue_reverse",
+        "from associativvordes.evidence_graph.records import read_json",
+        "from associativvordes.evidence_graph.build_graph import load_registry, ingest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "removed": [],
+      "added": [
+        "from associativvordes.v5_contract.versions import require_directory, require"
+      ]
+    },
+    {
+      "path": "associativvordes/cleanup_quality/human.py",
+      "removed": [],
+      "added": [
+        "from associativvordes.v5_contract.versions import validate as version_guard",
+        "from associativvordes.v5_contract.policy import review"
+      ]
+    },
+    {
+      "path": "associativvordes/cleanup_quality/prepare.py",
+      "removed": [],
+      "added": [
+        "from associativvordes.v5_contract.versions import require_directory"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/analyze.py",
+      "removed": [
+        "from graph import canonical, envelope, ref, key, sha, lookup"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import canonical, envelope, ref, key, sha, lookup",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/build_graph.py",
+      "removed": [
+        "from graph import Graph, canonical, sha, key, envelope, ref, file_hash, lookup, json_rows",
+        "from records import read_json, verify_record",
+        "from analyze import report"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import Graph, canonical, sha, key, envelope, ref, file_hash, lookup, json_rows",
+        "from associativvordes.evidence_graph.records import read_json, verify_record",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.evidence_graph.analyze import report"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/graph.py",
+      "removed": [],
+      "added": [
+        "from associativvordes.v5_contract.versions import database_binding",
+        "from associativvordes.v5_contract.policy import hypothesis",
+        "from associativvordes.v5_contract.versions import validate",
+        "from associativvordes.v5_contract.policy import decision"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/prepare_registry.py",
+      "removed": [
+        "from graph import canonical, file_hash, json_rows"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import canonical, file_hash, json_rows",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/query_graph.py",
+      "removed": [
+        "from graph import Graph, canonical, lookup, ref"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import Graph, canonical, lookup, ref",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/records.py",
+      "removed": [
+        "from morphology_import import parse, LANGUAGES, VERSION, SCHEMA, digest, binary_stream, validate_lock, GLEMM"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import parse, LANGUAGES, VERSION, SCHEMA, digest, binary_stream, validate_lock, GLEMM",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/select_pilot.py",
+      "removed": [
+        "from graph import canonical, file_hash, lookup",
+        "from records import binary_stream, validate_lock, LANGUAGES, make_record"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import canonical, file_hash, lookup",
+        "from associativvordes.evidence_graph.records import binary_stream, validate_lock, LANGUAGES, make_record",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/evidence_graph/test_graph.py",
+      "removed": [
+        "from graph import Graph, IntegrityConflict, canonical, envelope, ref, key, file_hash",
+        "from records import read_json",
+        "from build_graph import load_registry, ingest, align, build",
+        "from query_graph import query"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import Graph, IntegrityConflict, canonical, envelope, ref, key, file_hash",
+        "from associativvordes.evidence_graph.records import read_json",
+        "from associativvordes.evidence_graph.build_graph import load_registry, ingest, align, build",
+        "from associativvordes.evidence_graph.query_graph import query",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/family_boundary/build.py",
+      "removed": [],
+      "added": [
+        "from associativvordes.v5_contract.versions import require_directory"
+      ]
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "removed": [],
+      "added": [
+        "from associativvordes.v5_contract.versions import capture",
+        "from associativvordes.v5_contract.versions import capture"
+      ]
+    },
+    {
+      "path": "associativvordes/history_registry/build.py",
+      "removed": [
+        "from registry import SCHEMA, atomic, canonical, document, git, import_decisions, sha"
+      ],
+      "added": [
+        "from associativvordes.history_registry.registry import SCHEMA, atomic, canonical, document, git, import_decisions, sha",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/history_registry/test_registry.py",
+      "removed": [
+        "from registry import History, SCHEMA, atomic, canonical, check, import_decisions, restore, sha"
+      ],
+      "added": [
+        "from associativvordes.history_registry.registry import History, SCHEMA, atomic, canonical, check, import_decisions, restore, sha",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/audit_identity.py",
+      "removed": [
+        "from morphology_import import digest, VERSION, SCHEMA, LANGUAGES",
+        "from certify_corpus import atomic_json, verified"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import digest, VERSION, SCHEMA, LANGUAGES",
+        "from associativvordes.importers.certify_corpus import atomic_json, verified",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/audit_import.py",
+      "removed": [
+        "from morphology_import import binary_stream, hash_file, validate_lock"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import binary_stream, hash_file, validate_lock",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/audit_scale_index.py",
+      "removed": [
+        "from certify_corpus import atomic_json",
+        "from morphology_import import hash_file",
+        "from scale_index import Index, bid"
+      ],
+      "added": [
+        "from associativvordes.importers.certify_corpus import atomic_json",
+        "from associativvordes.importers.morphology_import import hash_file",
+        "from associativvordes.importers.scale_index import Index, bid",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/build_catalog.py",
+      "removed": [
+        "from morphology_import import digest, dumps, hash_file"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import digest, dumps, hash_file",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/catalog_store.py",
+      "removed": [
+        "from certify_corpus import atomic_json, verified, publish as select_catalog, ROOT"
+      ],
+      "added": [
+        "from associativvordes.importers.certify_corpus import atomic_json, verified, publish as select_catalog, ROOT",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/certify_corpus.py",
+      "removed": [
+        "from morphology_import import run, hash_file, validate_lock, dumps, digest",
+        "from audit_import import audit",
+        "from build_catalog import make_catalog"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import run, hash_file, validate_lock, dumps, digest",
+        "from associativvordes.importers.audit_import import audit",
+        "from associativvordes.importers.build_catalog import make_catalog",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/corpus_cache.py",
+      "removed": [
+        "from morphology_import import checked_path, hash_file, validate_lock",
+        "from glemm_cache import external, info, SOURCES"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import checked_path, hash_file, validate_lock",
+        "from associativvordes.importers.glemm_cache import external, info, SOURCES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/fetch_glemm_git.py",
+      "removed": [
+        "from glemm_cache import contract, external, LOCK",
+        "from morphology_import import checked_path, hash_file, validate_lock"
+      ],
+      "added": [
+        "from associativvordes.importers.glemm_cache import contract, external, LOCK",
+        "from associativvordes.importers.morphology_import import checked_path, hash_file, validate_lock",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/fetch_sources.py",
+      "removed": [
+        "from morphology_import import checked_path, hash_file, validate_lock"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import checked_path, hash_file, validate_lock",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/glemm_cache.py",
+      "removed": [
+        "from morphology_import import checked_path, hash_file, validate_lock"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import checked_path, hash_file, validate_lock",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/index_watch.py",
+      "removed": [
+        "from certify_corpus import atomic_json, verified",
+        "from morphology_import import hash_file, dumps",
+        "from scale_index import Index, build"
+      ],
+      "added": [
+        "from associativvordes.importers.certify_corpus import atomic_json, verified",
+        "from associativvordes.importers.morphology_import import hash_file, dumps",
+        "from associativvordes.importers.scale_index import Index, build",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/rebuild.py",
+      "removed": [
+        "from morphology_import import run",
+        "from audit_import import audit",
+        "from build_catalog import make_catalog"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import run",
+        "from associativvordes.importers.audit_import import audit",
+        "from associativvordes.importers.build_catalog import make_catalog",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/scale_index.py",
+      "removed": [
+        "from morphology_import import digest, dumps, hash_file",
+        "from certify_corpus import atomic_json, verified, ROOT"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import digest, dumps, hash_file",
+        "from associativvordes.importers.certify_corpus import atomic_json, verified, ROOT",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/test_acquisition.py",
+      "removed": [
+        "from fetch_sources import acquisition_urls, download"
+      ],
+      "added": [
+        "from associativvordes.importers.fetch_sources import acquisition_urls, download",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/test_certification.py",
+      "removed": [
+        "from morphology_import import run, digest, hash_file",
+        "from certify_corpus import atomic_json, verified",
+        "from scale_index import Index",
+        "from corpus_cache import pack, restore",
+        "from catalog_store import rollback, publish",
+        "from audit_identity import partition as audit_identifiers",
+        "from audit_scale_index import audit as audit_projection"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import run, digest, hash_file",
+        "from associativvordes.importers.certify_corpus import atomic_json, verified",
+        "from associativvordes.importers.scale_index import Index",
+        "from associativvordes.importers.corpus_cache import pack, restore",
+        "from associativvordes.importers.catalog_store import rollback, publish",
+        "from associativvordes.importers.audit_identity import partition as audit_identifiers",
+        "from associativvordes.importers.audit_scale_index import audit as audit_projection",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/test_glemm_cache.py",
+      "removed": [
+        "from glemm_cache import pack, restore, import_upstream",
+        "from morphology_import import validate_lock"
+      ],
+      "added": [
+        "from associativvordes.importers.glemm_cache import pack, restore, import_upstream",
+        "from associativvordes.importers.morphology_import import validate_lock",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/test_glemm_git.py",
+      "removed": [
+        "from fetch_glemm_git import export",
+        "from morphology_import import validate_lock",
+        "import test_glemm_cache as cachefixtures"
+      ],
+      "added": [
+        "from associativvordes.importers.fetch_glemm_git import export",
+        "from associativvordes.importers.morphology_import import validate_lock",
+        "from associativvordes.importers import test_glemm_cache as cachefixtures",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/test_morphology_import.py",
+      "removed": [
+        "from morphology_import import run, parse, digest, hash_file, kw",
+        "from audit_import import audit",
+        "from fetch_sources import fetch",
+        "from build_catalog import make_catalog"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import run, parse, digest, hash_file, kw",
+        "from associativvordes.importers.audit_import import audit",
+        "from associativvordes.importers.fetch_sources import fetch",
+        "from associativvordes.importers.build_catalog import make_catalog",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/validate_sources.py",
+      "removed": [
+        "from morphology_import import run, hash_file, validate_lock",
+        "from fetch_sources import fetch",
+        "from audit_import import audit",
+        "from build_catalog import make_catalog"
+      ],
+      "added": [
+        "from associativvordes.importers.morphology_import import run, hash_file, validate_lock",
+        "from associativvordes.importers.fetch_sources import fetch",
+        "from associativvordes.importers.audit_import import audit",
+        "from associativvordes.importers.build_catalog import make_catalog",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/importers/verify_replay.py",
+      "removed": [
+        "from certify_corpus import atomic_json, audit_catalog, verified, ROOT"
+      ],
+      "added": [
+        "from associativvordes.importers.certify_corpus import atomic_json, audit_catalog, verified, ROOT",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/audit.py",
+      "removed": [
+        "from contract import canonical, sha, scrub"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, scrub",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/export_snapshot.py",
+      "removed": [
+        "from contract import canonical, sha, file_hash",
+        "from storage import atomic",
+        "from store import Ledger"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, file_hash",
+        "from associativvordes.auto_annotation.storage import atomic",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.review.store import Ledger"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/finish.py",
+      "removed": [
+        "import run as cycle",
+        "from audit import compare, sha",
+        "from contract import file_hash",
+        "from storage import Store, backup, restore",
+        "from archive04 import unpack"
+      ],
+      "added": [
+        "from associativvordes.mass_dry_run import run as cycle",
+        "from associativvordes.mass_dry_run.audit import compare, sha",
+        "from associativvordes.auto_annotation.contract import file_hash",
+        "from associativvordes.auto_annotation.storage import Store, backup, restore",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.archive04 import unpack"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/run.py",
+      "removed": [
+        "from contract import canonical, sha, file_hash, scrub",
+        "from storage import Store as AnnotationStore, backup, restore, atomic",
+        "from providers import configuration",
+        "from audit import build_snapshot, compare, samples",
+        "from gold import compile_gold",
+        "from metrics04 import zero_error_requirement, summary",
+        "from archive04 import pack, unpack"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, file_hash, scrub",
+        "from associativvordes.auto_annotation.storage import Store as AnnotationStore, backup, restore, atomic",
+        "from associativvordes.auto_annotation.providers import configuration",
+        "from associativvordes.mass_dry_run.audit import build_snapshot, compare, samples",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.gold import compile_gold",
+        "from associativvordes.pilot_evaluation.metrics04 import zero_error_requirement, summary",
+        "from associativvordes.pilot_evaluation.archive04 import pack, unpack"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/test_cycle.py",
+      "removed": [
+        "from audit import build_snapshot, compare, groups_for, normalized_proposal, samples, sha",
+        "from run import measured, queue_history, PROTOCOL",
+        "from export_snapshot import export_snapshot",
+        "from export_snapshot import export_snapshot",
+        "from export_snapshot import export_snapshot",
+        "import finish",
+        "from contract import file_hash"
+      ],
+      "added": [
+        "from associativvordes.mass_dry_run.audit import build_snapshot, compare, groups_for, normalized_proposal, samples, sha",
+        "from associativvordes.mass_dry_run.run import measured, queue_history, PROTOCOL",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.mass_dry_run.export_snapshot import export_snapshot",
+        "from associativvordes.mass_dry_run.export_snapshot import export_snapshot",
+        "from associativvordes.mass_dry_run.export_snapshot import export_snapshot",
+        "from associativvordes.mass_dry_run import finish",
+        "from associativvordes.auto_annotation.contract import file_hash"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/worker.py",
+      "removed": [
+        "from storage import Store",
+        "from contract import canonical"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.storage import Store",
+        "from associativvordes.auto_annotation.contract import canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/morphology_cleanup/native.py",
+      "removed": [
+        "from common import canonical, atomic, filehash, lookup, read, connect",
+        "from external import External, make_record, LANGUAGES",
+        "from policy import BITS"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import canonical, atomic, filehash, lookup, read, connect",
+        "from associativvordes.v5_adapter.external import External, make_record, LANGUAGES",
+        "from associativvordes.morphology_cleanup.policy import BITS",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "removed": [
+        "from native import Profiles",
+        "from policy import *",
+        "from common import load, save, atomic, sha_file, verify, PREFIX, LANGS, outside_repo",
+        "from shadow import decode",
+        "from classify import member"
+      ],
+      "added": [
+        "from associativvordes.morphology_cleanup.native import Profiles",
+        "from associativvordes.morphology_cleanup.policy import *",
+        "from associativvordes.structural_cleanup.common import load, save, atomic, sha_file, verify, PREFIX, LANGS, outside_repo",
+        "from associativvordes.structural_cleanup.shadow import decode",
+        "from associativvordes.v5_diagnostics.classify import member",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/morphology_cleanup/test_policy.py",
+      "removed": [
+        "from policy import *",
+        "from native import row_mask"
+      ],
+      "added": [
+        "from associativvordes.morphology_cleanup.policy import *",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.morphology_cleanup.native import row_mask"
+      ]
+    },
+    {
+      "path": "associativvordes/morphology_review/run.py",
+      "removed": [
+        "from policy import canonical, digest, unresolved_reasons",
+        "from common import load, save, atomic, sha_file, outside_repo"
+      ],
+      "added": [
+        "from associativvordes.morphology_review.policy import canonical, digest, unresolved_reasons",
+        "from associativvordes.structural_cleanup.common import load, save, atomic, sha_file, outside_repo",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_contract.versions import require_directory"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/capture.py",
+      "removed": [
+        "from gold import sha, canonical, file_hash, json_rows, validate_cases",
+        "from graph import lookup",
+        "from run import BASELINE_COMMIT, BASELINE_HASHES"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, file_hash, json_rows, validate_cases",
+        "from associativvordes.evidence_graph.graph import lookup",
+        "from associativvordes.pilot_evaluation.run import BASELINE_COMMIT, BASELINE_HASHES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/compare04.py",
+      "removed": [
+        "from gold import sha, canonical, file_hash, json_rows, validate_cases, compile_gold, new_release_directory",
+        "from graph import Graph, lookup, ref",
+        "from metrics04 import evaluate04, efficiency, zero_error_requirement, require_study_reviews"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, file_hash, json_rows, validate_cases, compile_gold, new_release_directory",
+        "from associativvordes.evidence_graph.graph import Graph, lookup, ref",
+        "from associativvordes.pilot_evaluation.metrics04 import evaluate04, efficiency, zero_error_requirement, require_study_reviews",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/evaluate.py",
+      "removed": [
+        "from gold import sha, canonical, validate_cases"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, validate_cases",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/gold.py",
+      "removed": [
+        "from graph import canonical, sha, file_hash, json_rows"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import canonical, sha, file_hash, json_rows",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/human04.py",
+      "removed": [
+        "from gold import canonical, sha, validate_judgment, json_rows, compile_gold",
+        "from store import atomic, digest, canonical",
+        "from gold import assignments"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import canonical, sha, validate_judgment, json_rows, compile_gold",
+        "from associativvordes.review.store import atomic, digest, canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.gold import assignments"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/impact.py",
+      "removed": [
+        "from gold import file_hash",
+        "from run import BASELINE_COMMIT, BASELINE_HASHES"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import file_hash",
+        "from associativvordes.pilot_evaluation.run import BASELINE_COMMIT, BASELINE_HASHES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/metrics04.py",
+      "removed": [
+        "from gold import sha, validate_cases, validate_judgment",
+        "from evaluate import validate_predictions, agreement"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, validate_cases, validate_judgment",
+        "from associativvordes.pilot_evaluation.evaluate import validate_predictions, agreement",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "removed": [
+        "from gold import new_release_directory",
+        "from gold import canonical, file_hash, sha",
+        "from prepare_registry import FILES, COMMIT"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory",
+        "from associativvordes.pilot_evaluation.gold import canonical, file_hash, sha",
+        "from associativvordes.evidence_graph.prepare_registry import FILES, COMMIT",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/replay04.py",
+      "removed": [
+        "from gold import new_release_directory, file_hash, sha, json_rows",
+        "from prepare_inputs import prepare",
+        "from select_pilot import select",
+        "from build_graph import build",
+        "from study04 import prepare as prepare_study",
+        "from compare04 import main_run"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory, file_hash, sha, json_rows",
+        "from associativvordes.pilot_evaluation.prepare_inputs import prepare",
+        "from associativvordes.evidence_graph.select_pilot import select",
+        "from associativvordes.evidence_graph.build_graph import build",
+        "from associativvordes.pilot_evaluation.study04 import prepare as prepare_study",
+        "from associativvordes.pilot_evaluation.compare04 import main_run",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/reproduce.py",
+      "removed": [
+        "from gold import new_release_directory, file_hash, sha",
+        "from prepare_inputs import prepare",
+        "from sample import sample",
+        "from run import run",
+        "from graph import json_rows",
+        "from select_pilot import select",
+        "from build_graph import build"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory, file_hash, sha",
+        "from associativvordes.pilot_evaluation.prepare_inputs import prepare",
+        "from associativvordes.pilot_evaluation.sample import sample",
+        "from associativvordes.pilot_evaluation.run import run",
+        "from associativvordes.evidence_graph.graph import json_rows",
+        "from associativvordes.evidence_graph.select_pilot import select",
+        "from associativvordes.evidence_graph.build_graph import build",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/run.py",
+      "removed": [
+        "from gold import new_release_directory",
+        "from gold import canonical, sha, file_hash, json_rows, compile_gold, validate_cases",
+        "from evaluate import evaluate, compare, validate_predictions, CONFIGS, agreement",
+        "from graph import Graph, lookup, ref"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory",
+        "from associativvordes.pilot_evaluation.gold import canonical, sha, file_hash, json_rows, compile_gold, validate_cases",
+        "from associativvordes.pilot_evaluation.evaluate import evaluate, compare, validate_predictions, CONFIGS, agreement",
+        "from associativvordes.evidence_graph.graph import Graph, lookup, ref",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/sample.py",
+      "removed": [
+        "from gold import new_release_directory",
+        "from gold import canonical, sha, file_hash, case_hash, validate_cases, assignments",
+        "from prepare_inputs import ROOTS",
+        "from graph import Graph, lookup, ref"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory",
+        "from associativvordes.pilot_evaluation.gold import canonical, sha, file_hash, case_hash, validate_cases, assignments",
+        "from associativvordes.pilot_evaluation.prepare_inputs import ROOTS",
+        "from associativvordes.evidence_graph.graph import Graph, lookup, ref",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/study04.py",
+      "removed": [
+        "from gold import sha, canonical, file_hash, json_rows, validate_cases, assignments, new_release_directory",
+        "from compare04 import PROTOCOL",
+        "from graph import Graph, lookup"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, file_hash, json_rows, validate_cases, assignments, new_release_directory",
+        "from associativvordes.pilot_evaluation.compare04 import PROTOCOL",
+        "from associativvordes.evidence_graph.graph import Graph, lookup",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/test_pilot.py",
+      "removed": [
+        "from gold import sha, canonical, compile_gold, case_hash, assignments, validate_cases, new_release_directory",
+        "from sample import make_case",
+        "from evaluate import evaluate, counts, compare, agreement",
+        "from run import predictions_from_sources, capture_baseline, BASELINE_COMMIT, BASELINE_HASHES",
+        "from impact import diagnose",
+        "from capture import capture",
+        "from graph import Graph, lookup",
+        "from records import read_json",
+        "from build_graph import load_registry, ingest"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, compile_gold, case_hash, assignments, validate_cases, new_release_directory",
+        "from associativvordes.pilot_evaluation.sample import make_case",
+        "from associativvordes.pilot_evaluation.evaluate import evaluate, counts, compare, agreement",
+        "from associativvordes.pilot_evaluation.run import predictions_from_sources, capture_baseline, BASELINE_COMMIT, BASELINE_HASHES",
+        "from associativvordes.pilot_evaluation.impact import diagnose",
+        "from associativvordes.pilot_evaluation.capture import capture",
+        "from associativvordes.evidence_graph.graph import Graph, lookup",
+        "from associativvordes.evidence_graph.records import read_json",
+        "from associativvordes.evidence_graph.build_graph import load_registry, ingest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/test_quality04.py",
+      "removed": [
+        "from gold import compile_gold, sha, case_hash, json_rows",
+        "from metrics04 import interval, rate, zero_error_requirement, summary, evaluate04, efficiency, require_study_reviews, agreement_intervals",
+        "from study04 import plan",
+        "from compare04 import balance, combine, grouped, category, predictions, PROTOCOL",
+        "from human04 import Study, Server",
+        "from store import atomic, canonical, digest",
+        "from archive04 import pack, unpack"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import compile_gold, sha, case_hash, json_rows",
+        "from associativvordes.pilot_evaluation.metrics04 import interval, rate, zero_error_requirement, summary, evaluate04, efficiency, require_study_reviews, agreement_intervals",
+        "from associativvordes.pilot_evaluation.study04 import plan",
+        "from associativvordes.pilot_evaluation.compare04 import balance, combine, grouped, category, predictions, PROTOCOL",
+        "from associativvordes.pilot_evaluation.human04 import Study, Server",
+        "from associativvordes.review.store import atomic, canonical, digest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.archive04 import pack, unpack"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/control.py",
+      "removed": [
+        "from review_bridge import witnesses",
+        "from review_bridge import locked_witnesses"
+      ],
+      "added": [
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.release_control.review_bridge import witnesses",
+        "from associativvordes.v5_contract.policy import history_gate as integrated_history",
+        "from associativvordes.v5_contract.versions import compatible",
+        "from associativvordes.v5_contract.policy import operation_gate",
+        "from associativvordes.release_control.review_bridge import locked_witnesses",
+        "from associativvordes.v5_contract.versions import validate",
+        "from associativvordes.v5_contract.versions import compatible",
+        "from associativvordes.v5_contract.policy import operation_gate"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/exercise.py",
+      "removed": [
+        "from control import *",
+        "from inputs import ROOT, REPORT, native_state, verify_published, source_delta",
+        "from recordings import capture",
+        "from review_bridge import witnesses",
+        "from graph_view import build"
+      ],
+      "added": [
+        "from associativvordes.release_control.control import *",
+        "from associativvordes.release_control.inputs import ROOT, REPORT, native_state, verify_published, source_delta",
+        "from associativvordes.release_control.recordings import capture",
+        "from associativvordes.release_control.review_bridge import witnesses",
+        "from associativvordes.release_control.graph_view import build",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/graph_view.py",
+      "removed": [
+        "from control import *",
+        "from graph import Graph, canonical as graph_canonical",
+        "from build_graph import load_registry"
+      ],
+      "added": [
+        "from associativvordes.release_control.control import *",
+        "from associativvordes.evidence_graph.graph import Graph, canonical as graph_canonical",
+        "from associativvordes.evidence_graph.build_graph import load_registry",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/inputs.py",
+      "removed": [
+        "from control import VERSION, atomic, canonical, digest, require, validate_state",
+        "from prepare_registry import COMMIT, FILES"
+      ],
+      "added": [
+        "from associativvordes.release_control.control import VERSION, atomic, canonical, digest, require, validate_state",
+        "from associativvordes.evidence_graph.prepare_registry import COMMIT, FILES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/recordings.py",
+      "removed": [
+        "from control import atomic, canonical, digest, LANGUAGES"
+      ],
+      "added": [
+        "from associativvordes.release_control.control import atomic, canonical, digest, LANGUAGES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/registry_view.py",
+      "removed": [
+        "from control import *",
+        "from graph_view import build as graph_view, active_operations",
+        "from mass_registry import local_content",
+        "from graph import canonical as graph_canonical, lookup"
+      ],
+      "added": [
+        "from associativvordes.release_control.control import *",
+        "from associativvordes.release_control.graph_view import build as graph_view, active_operations",
+        "from associativvordes.candidate_search.mass_registry import local_content",
+        "from associativvordes.evidence_graph.graph import canonical as graph_canonical, lookup",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/test_control.py",
+      "removed": [
+        "from control import *",
+        "from inputs import source_delta",
+        "from graph_view import build",
+        "from workflow import package",
+        "from workflow import approval_request",
+        "from workflow import incremental"
+      ],
+      "added": [
+        "from associativvordes.release_control.control import *",
+        "from associativvordes.release_control.inputs import source_delta",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.release_control.graph_view import build",
+        "from associativvordes.release_control.workflow import package",
+        "from associativvordes.release_control.workflow import approval_request",
+        "from associativvordes.release_control.workflow import incremental"
+      ]
+    },
+    {
+      "path": "associativvordes/release_control/workflow.py",
+      "removed": [
+        "from control import *",
+        "from inputs import source_delta"
+      ],
+      "added": [
+        "from associativvordes.release_control.control import *",
+        "from associativvordes.release_control.inputs import source_delta",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/review/exercise.py",
+      "removed": [
+        "from store import Ledger, canonical, digest, restore"
+      ],
+      "added": [
+        "from associativvordes.review.store import Ledger, canonical, digest, restore",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/review/server.py",
+      "removed": [
+        "from store import Ledger, Conflict, STATUSES, RELATIONS, atomic, canonical, digest, group_key, restore",
+        "from source_rows import attach"
+      ],
+      "added": [
+        "from associativvordes.review.store import Ledger, Conflict, STATUSES, RELATIONS, atomic, canonical, digest, group_key, restore",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.review.source_rows import attach"
+      ]
+    },
+    {
+      "path": "associativvordes/review/source_rows.py",
+      "removed": [
+        "from store import atomic, canonical, digest"
+      ],
+      "added": [
+        "from associativvordes.review.store import atomic, canonical, digest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/review/store.py",
+      "removed": [
+        "from source_rows import lookup as source_rows"
+      ],
+      "added": [
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.review.source_rows import lookup as source_rows",
+        "from associativvordes.v5_contract.versions import validate",
+        "from associativvordes.v5_contract.versions import require",
+        "from associativvordes.v5_contract.versions import validate",
+        "from associativvordes.v5_contract.policy import review, hypothesis"
+      ]
+    },
+    {
+      "path": "associativvordes/review/test_graph_refresh.py",
+      "removed": [
+        "from store import Ledger, atomic, canonical, digest",
+        "from search import Graph, Queue, build",
+        "from build_graph import load_registry, ingest",
+        "from records import read_json"
+      ],
+      "added": [
+        "from associativvordes.review.store import Ledger, atomic, canonical, digest",
+        "from associativvordes.candidate_search.search import Graph, Queue, build",
+        "from associativvordes.evidence_graph.build_graph import load_registry, ingest",
+        "from associativvordes.evidence_graph.records import read_json",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/review/test_review.py",
+      "removed": [
+        "from store import Ledger, Conflict, atomic, canonical, digest, restore",
+        "from server import Application, initialize",
+        "from source_rows import attach"
+      ],
+      "added": [
+        "from associativvordes.review.store import Ledger, Conflict, atomic, canonical, digest, restore",
+        "from associativvordes.review.server import Application, initialize",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.review.source_rows import attach"
+      ]
+    },
+    {
+      "path": "associativvordes/semantic_cleanup/native.py",
+      "removed": [
+        "from records import make_record, parse, binary_stream, validate_lock, GLEMM, LANGUAGES"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.records import make_record, parse, binary_stream, validate_lock, GLEMM, LANGUAGES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/structural_cleanup/audit_metadata.py",
+      "removed": [
+        "from common import *",
+        "from shadow import decode"
+      ],
+      "added": [
+        "from associativvordes.structural_cleanup.common import *",
+        "from associativvordes.structural_cleanup.shadow import decode",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/structural_cleanup/capture.py",
+      "removed": [
+        "from common import *"
+      ],
+      "added": [
+        "from associativvordes.structural_cleanup.common import *",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/structural_cleanup/scan.py",
+      "removed": [
+        "from common import *",
+        "from stream import pairs"
+      ],
+      "added": [
+        "from associativvordes.structural_cleanup.common import *",
+        "from associativvordes.v5_adapter.stream import pairs",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/structural_cleanup/shadow.py",
+      "removed": [
+        "from common import *",
+        "from registry import History"
+      ],
+      "added": [
+        "from associativvordes.structural_cleanup.common import *",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.history_registry.registry import History"
+      ]
+    },
+    {
+      "path": "associativvordes/structural_cleanup/test_cleanup.py",
+      "removed": [
+        "from common import *",
+        "from shadow import apply, rollback, prove, decode, bucket"
+      ],
+      "added": [
+        "from associativvordes.structural_cleanup.common import *",
+        "from associativvordes.structural_cleanup.shadow import apply, rollback, prove, decode, bucket",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/structural_cleanup/verify.py",
+      "removed": [
+        "from common import *",
+        "from shadow import decode, tokens, at, set_at, RULES"
+      ],
+      "added": [
+        "from associativvordes.structural_cleanup.common import *",
+        "from associativvordes.structural_cleanup.shadow import decode, tokens, at, set_at, RULES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "removed": [
+        "from common import *",
+        "from capture import capture",
+        "from shadow import apply, rollback",
+        "from verify import validate",
+        "from audit_metadata import audit"
+      ],
+      "added": [
+        "from associativvordes.structural_cleanup.common import *",
+        "from associativvordes.structural_cleanup.capture import capture",
+        "from associativvordes.structural_cleanup.shadow import apply, rollback",
+        "from associativvordes.structural_cleanup.verify import validate",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_contract.versions import capture as implementation, validate as validate_implementation",
+        "from associativvordes.structural_cleanup.audit_metadata import audit"
+      ]
+    },
+    {
+      "path": "associativvordes/surface_cleanup/history.py",
+      "removed": [
+        "from registry import History",
+        "from policy import canonical"
+      ],
+      "added": [
+        "from associativvordes.history_registry.registry import History",
+        "from associativvordes.surface_cleanup.policy import canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/surface_cleanup/run.py",
+      "removed": [
+        "from policy import *",
+        "from common import load, save, atomic, sha_file, verify, MAIN, PREFIX, LANGS, outside_repo",
+        "from shadow import decode",
+        "from history import collect, build_scope_index"
+      ],
+      "added": [
+        "from associativvordes.surface_cleanup.policy import *",
+        "from associativvordes.structural_cleanup.common import load, save, atomic, sha_file, verify, MAIN, PREFIX, LANGS, outside_repo",
+        "from associativvordes.structural_cleanup.shadow import decode",
+        "from associativvordes.surface_cleanup.history import collect, build_scope_index",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/surface_cleanup/test_policy.py",
+      "removed": [
+        "from policy import *"
+      ],
+      "added": [
+        "from associativvordes.surface_cleanup.policy import *",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/adapter.py",
+      "removed": [
+        "from common import *"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/bridge.py",
+      "removed": [
+        "from common import *",
+        "from adapter import Adapter",
+        "from store import Ledger, atomic as ledger_atomic, canonical as ledger_canonical, digest",
+        "from external import External"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "from associativvordes.v5_adapter.adapter import Adapter",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.review.store import Ledger, atomic as ledger_atomic, canonical as ledger_canonical, digest",
+        "from associativvordes.v5_adapter.external import External"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/build.py",
+      "removed": [
+        "from common import *",
+        "from stream import pairs"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "from associativvordes.v5_adapter.stream import pairs",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/exercise.py",
+      "removed": [
+        "from common import *",
+        "from adapter import Adapter",
+        "from external import External",
+        "from bridge import export, history_reader, review_import",
+        "from storage import Store",
+        "from export_snapshot import export_snapshot"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "from associativvordes.v5_adapter.adapter import Adapter",
+        "from associativvordes.v5_adapter.external import External",
+        "from associativvordes.v5_adapter.bridge import export, history_reader, review_import",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.auto_annotation.storage import Store",
+        "from associativvordes.mass_dry_run.export_snapshot import export_snapshot"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/external.py",
+      "removed": [
+        "from common import *",
+        "from records import make_record",
+        "from morphology_import import binary_stream, validate_lock, GLEMM, LANGUAGES",
+        "from graph import Graph",
+        "from build_graph import ingest"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "from associativvordes.evidence_graph.records import make_record",
+        "from associativvordes.importers.morphology_import import binary_stream, validate_lock, GLEMM, LANGUAGES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.evidence_graph.graph import Graph",
+        "from associativvordes.evidence_graph.build_graph import ingest"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/queue_input.py",
+      "removed": [
+        "from common import *",
+        "from adapter import Adapter",
+        "from bridge import history_reader",
+        "from external import External"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "from associativvordes.v5_adapter.adapter import Adapter",
+        "from associativvordes.v5_adapter.bridge import history_reader",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_adapter.external import External"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "removed": [
+        "from common import *",
+        "from build import build",
+        "from adapter import Adapter",
+        "from bridge import export, history_reader, review_import",
+        "from verify import verify",
+        "from queue_input import load_queue",
+        "from contract import card_for",
+        "from queue_input import load_queue",
+        "from queue_input import load_queue",
+        "from external import External"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "from associativvordes.v5_adapter.build import build",
+        "from associativvordes.v5_adapter.adapter import Adapter",
+        "from associativvordes.v5_adapter.bridge import export, history_reader, review_import",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_adapter.verify import verify",
+        "from associativvordes.v5_adapter.queue_input import load_queue",
+        "from associativvordes.auto_annotation.contract import card_for",
+        "from associativvordes.v5_adapter.queue_input import load_queue",
+        "from associativvordes.v5_adapter.queue_input import load_queue",
+        "from associativvordes.v5_adapter.external import External"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/test_external.py",
+      "removed": [
+        "from common import ROOT, read",
+        "from external import build, External",
+        "from morphology_import import LANGUAGES",
+        "from morphology_import import LANGUAGES"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import ROOT, read",
+        "from associativvordes.v5_adapter.external import build, External",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.importers.morphology_import import LANGUAGES",
+        "from associativvordes.importers.morphology_import import LANGUAGES"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_adapter/verify.py",
+      "removed": [
+        "from common import *",
+        "from adapter import Adapter"
+      ],
+      "added": [
+        "from associativvordes.v5_adapter.common import *",
+        "from associativvordes.v5_adapter.adapter import Adapter",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_baseline/audit_ids.py",
+      "removed": [
+        "from census import atomic_json"
+      ],
+      "added": [
+        "from associativvordes.v5_baseline.census import atomic_json",
+        "import importlib.util as _util"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_baseline/audit_ledger.py",
+      "removed": [
+        "from census import verify_snapshot, load, atomic_json, PREFIX, sha_file"
+      ],
+      "added": [
+        "from associativvordes.v5_baseline.census import verify_snapshot, load, atomic_json, PREFIX, sha_file",
+        "import importlib.util as _util"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_baseline/audit_metadata.py",
+      "removed": [
+        "from census import pairs, sha_file, load, atomic_json, PREFIX"
+      ],
+      "added": [
+        "from associativvordes.v5_baseline.census import pairs, sha_file, load, atomic_json, PREFIX",
+        "import importlib.util as _util"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_baseline/certify.py",
+      "removed": [
+        "from census import prepare, run, backup, restore, load, atomic_json, sha_file, VERSION",
+        "from audit_ids import audit as ids",
+        "from audit_metadata import audit as metadata",
+        "from audit_ledger import audit as ledger"
+      ],
+      "added": [
+        "from associativvordes.v5_baseline.census import prepare, run, backup, restore, load, atomic_json, sha_file, VERSION",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_baseline.audit_ids import audit as ids",
+        "from associativvordes.v5_baseline.audit_metadata import audit as metadata",
+        "from associativvordes.v5_baseline.audit_ledger import audit as ledger"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/run.py",
+      "removed": [
+        "from classify import POLICY, canonical, digest, member, family, rank, normal",
+        "from common import atomic, filehash, connect, read, sha",
+        "from adapter import Adapter",
+        "from bridge import history_reader"
+      ],
+      "added": [
+        "from associativvordes.v5_diagnostics.classify import POLICY, canonical, digest, member, family, rank, normal",
+        "from associativvordes.v5_adapter.common import atomic, filehash, connect, read, sha",
+        "from associativvordes.v5_adapter.adapter import Adapter",
+        "from associativvordes.v5_adapter.bridge import history_reader",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "removed": [
+        "from classify import *",
+        "from run import setup, ingest, cross_family, summarize, connect, rank",
+        "from backup import backup, restore_archive",
+        "import run as driver",
+        "from finalize import finalize",
+        "from classify import digest",
+        "from backup import restore_archive",
+        "from run import publish",
+        "from finalize import finalize",
+        "from backup import backup",
+        "from run import code_lock"
+      ],
+      "added": [
+        "from associativvordes.v5_diagnostics.classify import *",
+        "from associativvordes.v5_diagnostics.run import setup, ingest, cross_family, summarize, connect, rank",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.v5_diagnostics.tools.backup import backup, restore_archive",
+        "from associativvordes.v5_diagnostics import run as driver",
+        "from associativvordes.v5_diagnostics.tools.finalize import finalize",
+        "from associativvordes.v5_diagnostics.classify import digest",
+        "from associativvordes.v5_diagnostics.tools.backup import restore_archive",
+        "from associativvordes.v5_diagnostics.run import publish",
+        "from associativvordes.v5_diagnostics.tools.finalize import finalize",
+        "from associativvordes.v5_diagnostics.tools.backup import backup",
+        "from associativvordes.v5_diagnostics.run import code_lock"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/backup.py",
+      "removed": [
+        "from query import open_registry, filehash",
+        "from classify import canonical"
+      ],
+      "added": [
+        "from associativvordes.v5_diagnostics.tools.query import open_registry, filehash",
+        "from associativvordes.v5_diagnostics.classify import canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/finalize.py",
+      "removed": [
+        "from query import open_registry, filehash",
+        "from classify import canonical, digest"
+      ],
+      "added": [
+        "from associativvordes.v5_diagnostics.tools.query import open_registry, filehash",
+        "from associativvordes.v5_diagnostics.classify import canonical, digest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/join_volumes.py",
+      "removed": [
+        "from query import filehash"
+      ],
+      "added": [
+        "from associativvordes.v5_diagnostics.tools.query import filehash",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/query.py",
+      "removed": [
+        "from classify import canonical"
+      ],
+      "added": [
+        "from associativvordes.v5_diagnostics.classify import canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/suffix_exposure.py",
+      "removed": [
+        "from query import open_registry, filehash",
+        "from classify import canonical, digest"
+      ],
+      "added": [
+        "from associativvordes.v5_diagnostics.tools.query import open_registry, filehash",
+        "from associativvordes.v5_diagnostics.classify import canonical, digest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    }
+  ]
+}

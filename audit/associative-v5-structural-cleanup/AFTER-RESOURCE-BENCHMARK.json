@@ -1,0 +1,17 @@
+{
+  "database_bytes": 972914688,
+  "disk_work_bytes": 973411770,
+  "note": "Segments include source hash revalidation on resume; intentional hard-crash segment measured separately by supervisor.",
+  "peak_rss_kib": 254688,
+  "schema_version": 1,
+  "seconds_total_completed_segments": 1265.874225965,
+  "segments": [
+    {
+      "new_tasks": 767,
+      "peak_rss_kib": 254688,
+      "resumed_tasks": 1,
+      "seconds": 1265.874225965
+    }
+  ],
+  "snapshot_bytes": 1401532272
+}

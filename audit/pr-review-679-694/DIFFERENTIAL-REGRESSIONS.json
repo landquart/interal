@@ -1,0 +1,73 @@
+{
+  "original_heads": [
+    "ad32277ab9bc4fc8cd28ba82f08eaba2ab130f05",
+    "44f1105cfe8e59d50affa08889654bfb488056c1",
+    "4b528326f230ef9dd1df968829dd253ecad9a63f"
+  ],
+  "method": "Original executable bytes, unchanged new tests, separate old-code directory; full metadata/data sources read-only",
+  "old": [
+    {
+      "command": [
+        "node",
+        "--test",
+        "--test-name-pattern",
+        "4354",
+        "tests/associative-normative.test.mjs"
+      ],
+      "exit_code": 1,
+      "log": "BEFORE-REGRESSIONS-0.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "associativvordes/v5_baseline",
+        "-p",
+        "test_census.py"
+      ],
+      "exit_code": 1,
+      "log": "BEFORE-REGRESSIONS-1.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "associativvordes/v5_adapter",
+        "-p",
+        "test_adapter.py"
+      ],
+      "exit_code": 1,
+      "log": "BEFORE-REGRESSIONS-2.log"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "associativvordes/v5_diagnostics",
+        "-p",
+        "test_diagnostics.py"
+      ],
+      "exit_code": 1,
+      "log": "BEFORE-REGRESSIONS-3.log"
+    },
+    {
+      "command": [
+        "node",
+        "--test",
+        "tests/pr-review-guards.test.mjs",
+        "tests/associative-cleanup-quality.test.mjs"
+      ],
+      "exit_code": 1,
+      "log": "BEFORE-REGRESSIONS-4.log"
+    }
+  ]
+}

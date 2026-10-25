@@ -1,0 +1,17 @@
+name: Full v5 diagnostic contracts
+on:
+  pull_request:
+    paths:
+      - 'associativvordes/v5_diagnostics/**'
+      - 'audit/associative-v5-diagnostics/**'
+      - 'tests/associative-v5-diagnostics.test.mjs'
+      - '.github/workflows/associative-v5-diagnostics.yml'
+jobs:
+  diagnostic-contracts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m unittest discover -s associativvordes/v5_diagnostics -p 'test_*.py'
