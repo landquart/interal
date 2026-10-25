@@ -101,3 +101,26 @@ with tempfile.TemporaryDirectory() as t:
  else:raise AssertionError('missing inputs silently archived')
  assert not archive.exists()
 `));
+
+test('4367043686: documentary additions share existing family clusters and rebind all cards',()=>py(String.raw`
+import tempfile,json
+from pathlib import Path
+from associativvordes.cleanup_quality.supplement import run
+from associativvordes.cleanup_quality.evaluate import release,rows
+from associativvordes.family_boundary.core import stream,save,digest,sha
+with tempfile.TemporaryDirectory() as td:
+ p=Path(td);source=p/'source';source.mkdir();cases=[]
+ for dataset,lid in [('probability','one'),('challenge','two')]:
+  c=dict(id=lid,dataset=dataset,split='holdout',family_id='family:manu',language='fr',lemma_id=lid,word='manucure',cluster='TEST_ONLY_OLD_CLUSTER',protocol_sha256='fixture',source_record=dict(word='manucure'),case_kind='EXISTING_MEMBERSHIP');c['content_sha256']=digest(c);cases.append(c)
+ for dataset,name in [('probability','PROBABILITY.ndjson.gz'),('challenge','CHALLENGE.ndjson.gz')]:stream(source/name,(c for c in cases if c['dataset']==dataset))
+ for role in ['A','B']:stream(source/f'BLIND-{role}.ndjson.gz',(dict(task_id=role+c['id'],role=role,case_id=c['id'],case_sha256=c['content_sha256'],source_record=c['source_record']) for c in cases))
+ stream(source/'PREDICTIONS.ndjson.gz',[])
+ save(source/'SAMPLING-DESIGN.json',dict(strata={'fr':dict(N=10,n=1)}));save(source/'HOLDOUT.json',dict(challenge=1,known_historical_exposure_units=0))
+ for name in ['RAW-HUMAN-REVIEWS.ndjson','RAW-ADJUDICATIONS.ndjson']:(source/name).write_text('')
+ save(source/'MANIFEST.json',dict(identity={},case_set_sha256=digest(cases),probability_cases=1,challenge_cases=1,files=[dict(path=f.name,bytes=f.stat().st_size,sha256=sha(f)) for f in sorted(source.iterdir())]))
+ out=p/'out';run(source,out);new,m=release(out);linked=[c for c in new if c['family_id']=='family:manu'];assert len(linked)>2 and len({c['cluster'] for c in linked})==1
+ index={c['id']:c for c in new}
+ for role in ['A','B']:
+  for card in rows(out/f'BLIND-{role}.ndjson.gz'):assert card['case_sha256']==index[card['case_id']]['content_sha256']
+ for pred in rows(out/'PREDICTIONS.ndjson.gz'):assert pred['case_sha256']==index[pred['case_id']]['content_sha256']
+`));

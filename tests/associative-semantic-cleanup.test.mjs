@@ -66,12 +66,13 @@ from associativvordes.semantic_cleanup.bridge import load_queue
 from associativvordes.national_correspondences.registry import filehash
 senses=json.load(open('audit/associative-v5-semantic-cleanup/LEXICAL-SENSES.json'))['senses']
 ss=[s for s in senses if s['id'] in {'dict-sense:en-sound-audio','dict-sense:en-sound-water'}]
+sources={s['id']:s for s in json.load(open('audit/associative-v5-semantic-cleanup/DICTIONARY-SOURCES.json'))['sources']}
 with tempfile.TemporaryDirectory() as td:
  root=pathlib.Path(td);cases=[];questions=[]
  for s in ss:
   scope=dict(family_id='ety:1e7afcab5044',language='en',lemma_id='lemma:fixed',word='sound',source_version='locked')
   c=dict(id=case_id(scope,s['id']),scope=scope,dictionary_sense=s,production_application_authorized=False);cases.append(c)
-  questions.append(dict(id=c['id'],source_family_id=scope['family_id'],source_lemma_id=scope['lemma_id'],language='en',lexeme_alternatives=[dict(id='lexeme:'+digest([s['language'],s['id'],s['source_refs']]),verified_senses=[dict(id=s['id'],gloss=s['gloss'],evidence_refs=['dictionary:'+r for r in s['source_refs']])])]))
+  questions.append(dict(id=c['id'],source_family_id=scope['family_id'],source_lemma_id=scope['lemma_id'],language='en',evidence_refs=[dict(id='dictionary:'+ref,source_receipt=sources[ref],meaning_status='DICTIONARY_ONLY_NOT_CORPUS_BINDING') for ref in s['source_refs']],lexeme_alternatives=[dict(id='lexeme:'+digest([s['language'],s['id'],s['source_refs']]),verified_senses=[dict(id=s['id'],gloss=s['gloss'],evidence_refs=['dictionary:'+r for r in s['source_refs']])])]))
  (root/'SEMANTIC-CASES.ndjson').write_bytes(export_cases(cases));(root/'QUESTIONS.json').write_bytes(canonical(dict(questions=questions))+b'\n')
  manifest=dict(schema='semantic-review-release/1',lexical_senses_sha256=filehash('audit/associative-v5-semantic-cleanup/LEXICAL-SENSES.json'),dictionary_sources_sha256=filehash('audit/associative-v5-semantic-cleanup/DICTIONARY-SOURCES.json'),outputs={n:filehash(root/n) for n in ['SEMANTIC-CASES.ndjson','QUESTIONS.json']});manifest['version']=digest(manifest);(root/'MANIFEST.json').write_bytes(canonical(manifest))
  qs,identity=load_queue(root);assert len(qs)==2 and qs[0]['id']!=qs[1]['id'] and identity['kind']=='semantic09'

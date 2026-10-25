@@ -108,7 +108,7 @@ class ProjectionTests(unittest.TestCase):
   with self.assertRaises(ValueError):review_import(queue,ledger)
   self.assertFalse((ledger/'CURRENT').exists())
  def test_4359323448_wrong_bucket_rejected(self):
-  fid='misplaced-family';b=next(b for b in self.buckets if bucket(fid)!=b);self.put(f'families/{b}.json.gz',{fid:dict(id=fid)});self.commit()
+  fid='misplaced-family';b=next(b for b in self.buckets if bucket(fid)!=b);data=json.loads(gzip.decompress((self.source/f'families/{b}.json.gz').read_bytes()));data[fid]=dict(id=fid);self.put(f'families/{b}.json.gz',data);self.commit()
   with self.assertRaisesRegex(ValueError,'bucket'):self.run_build()
 
 if __name__=='__main__':unittest.main()

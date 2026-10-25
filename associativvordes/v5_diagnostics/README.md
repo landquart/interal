@@ -104,3 +104,12 @@ python associativvordes/v5_diagnostics/tools/suffix_exposure.py \
 ```
 
 The 252 configured tokens are joined by exact legacy surface-family routing over the entire registry. The resulting 131 families/34,251 memberships are exposure observations, not confirmed inflection or deletion scopes. This result was repeated byte-for-byte against the real restored registry. Its finite manifest is committed alongside the archive receipt; it resolves all members through the same immutable core registry.
+
+## Retrieved archive locations (audit 2026-10-25)
+
+The five original volumes were retrieved, their complete SHA-256 and inner chunk
+hashes checked, and their concatenation matched the pinned archive hash. Exact
+Library identifiers and resolvable owner-access URLs are in
+[`ARCHIVE-AVAILABILITY.json`](../../audit/pr-review-679-694/ARCHIVE-AVAILABILITY.json).
+These authenticated owner-access locations do not claim anonymous public access.
+The old diagnostics remain historical; code changes require new full verification.

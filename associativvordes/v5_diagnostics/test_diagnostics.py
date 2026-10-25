@@ -144,4 +144,39 @@ class WholeShard(unittest.TestCase):
    z.writestr('data',b'changed');z.writestr('BACKUP-MANIFEST.json',canonical(dict(files={'data':dict(sha256='0'*64,bytes=7)})))
   with self.assertRaises(ValueError):restore_archive(archive,target)
   self.assertFalse(target.exists());self.assertFalse(target.with_name(target.name+'.partial').exists())
+
+ def test_4359927816_coverage_mismatch_cannot_be_certified(self):
+  import shutil
+  from run import publish
+  sys.path.insert(0,str(Path(__file__).with_name('tools')))
+  from finalize import finalize
+  from query import filehash
+  ingest(self.db,self.root,self.receipt);cross_family(self.db)
+  identity=dict(expected_counts=dict(families=3,aliases=1,en=11,de=0,fr=0,es=0,it=0,ru=0))
+  dirs=[]
+  for name in ['first','replay']:
+   out=self.root/name;out.mkdir();execution=dict(run_id='TEST_ONLY_'+name,output=str(out.resolve()))
+   with self.db:self.db.execute('INSERT OR REPLACE INTO state VALUES(?,?)',('execution',canonical(execution).decode()))
+   shutil.copyfile(self.root/'out.sqlite',out/'registry.sqlite');publish(self.db,out,identity);dirs.append(out)
+  first,replay=dirs;cov=json.loads((replay/'COVERAGE.json').read_bytes());cov['buckets'][0]['family_ids_sha256']='0'*64;(replay/'COVERAGE.json').write_bytes(canonical(cov))
+  m=json.loads((replay/'MANIFEST.json').read_bytes());m['outputs']['COVERAGE.json']=filehash(replay/'COVERAGE.json');m.pop('version');m['version']=digest(m);(replay/'MANIFEST.json').write_bytes(canonical(m))
+  with self.assertRaisesRegex(ValueError,'coverage'):finalize(first,replay)
+ def test_4359927871_backup_manifest_has_fixed_timestamp(self):
+  import shutil
+  from unittest.mock import patch
+  sys.path.insert(0,str(Path(__file__).with_name('tools')))
+  from backup import backup
+  from query import filehash
+  ingest(self.db,self.root,self.receipt);cross_family(self.db);self.db.commit()
+  source=self.root/'input';source.mkdir();shutil.copyfile(self.root/'out.sqlite',source/'out.sqlite')
+  m=dict(database='out.sqlite',database_sha256=filehash(source/'out.sqlite'),complete=True);m['version']=digest(m);(source/'MANIFEST.json').write_bytes(canonical(m))
+  import zipfile
+  for day in [23,24]:
+   with patch.object(zipfile.time,'localtime',lambda *args,d=day:(2026,10,d,1,0,0,0,0,0)):
+    backup(source,self.root/f'{day}.zip',self.root/f'restored-{day}')
+  self.assertEqual(filehash(self.root/'23.zip'),filehash(self.root/'24.zip'))
+ def test_4359927842_transitive_implementation_is_pinned(self):
+  from run import code_lock
+  keys=set(code_lock())
+  self.assertTrue({'associativvordes/v5_adapter/common.py','associativvordes/v5_adapter/bridge.py','associativvordes/history_registry/registry.py'}<=keys)
 if __name__=='__main__':unittest.main()

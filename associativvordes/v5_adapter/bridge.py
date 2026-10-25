@@ -68,9 +68,7 @@ def review_import(queue,ledger_root):
   if r['raw_locator']!=wanted[identifier]['raw_locator'] or sha(base64.b64decode(r['original_line_base64'],validate=True))!=r['raw_locator']['raw_sha256']:raise ValueError('raw row differs from question evidence')
  payload=ledger_canonical(rows).encode();version=digest(payload)
  ledger=Ledger(ledger_root)
- with ledger.lock():
-  folder=ledger.root/'source-rows';folder.mkdir(exist_ok=True);ledger_atomic(folder/(version+'.json'),payload)
-  result=ledger.import_queue(queue)
+ result=ledger.import_queue(queue,source_rows=raw)
  return dict(result,source_rows=len(rows),source_rows_version=version)
 
 if __name__=='__main__':

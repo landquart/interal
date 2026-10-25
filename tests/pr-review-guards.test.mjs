@@ -128,3 +128,86 @@ with tempfile.TemporaryDirectory() as td:
  result=subprocess.run(['node','associativvordes/v5_release_control/verify.mjs',str(p),str(ROOT)],capture_output=True,text=True)
  assert result.returncode!=0 and 'required source inventory' in result.stderr
 `));
+
+test('4354484829: full driver executes and compares all auxiliary audits',()=>py(String.raw`
+import sys,tempfile,sqlite3,types
+from pathlib import Path
+from unittest.mock import patch
+sys.path.insert(0,'associativvordes/v5_baseline')
+import certify,audit_ids,audit_metadata,audit_ledger
+calls=[]
+with tempfile.TemporaryDirectory() as td:
+ work=Path(td)/'work'
+ def execute(cmd,**kw):
+  if '--crash-after' in cmd:
+   (work/'run').mkdir();d=sqlite3.connect(work/'run/census.sqlite');d.execute('CREATE TABLE checkpoints(x INTEGER)');d.execute('INSERT INTO checkpoints VALUES(1)');d.commit();d.close();return types.SimpleNamespace(returncode=75)
+  for n in ['audit_ids.py','audit_metadata.py','audit_ledger.py']:
+   if any(str(x).endswith('/'+n) for x in cmd):calls.append('restored:'+n)
+  return types.SimpleNamespace(returncode=0)
+ with patch.object(certify,'prepare',lambda *args:None),patch.object(certify,'run',lambda *args:None),patch.object(certify,'backup',lambda *args:dict(archive_sha256='test')),patch.object(certify,'restore',lambda *args:dict(restore_verified=True)),patch.object(certify,'sha_file',lambda *args:'same'),patch.object(certify,'load',lambda *args:dict(verdict='TEST_ONLY')),patch.object(certify,'atomic_json',lambda *args:None),patch.object(certify.subprocess,'run',execute),patch.object(audit_ids,'audit',lambda *args:calls.append('first:audit_ids.py')),patch.object(audit_metadata,'audit',lambda *args:calls.append('first:audit_metadata.py')),patch.object(audit_ledger,'audit',lambda *args:calls.append('first:audit_ledger.py')),patch.object(sys,'argv',['certify','--repo',str(Path('.').resolve()),'--commit','a'*40,'--work',str(work)]):certify.main()
+ assert set(calls)=={side+':'+name for side in ['first','restored'] for name in ['audit_ids.py','audit_metadata.py','audit_ledger.py']},calls
+`));
+test('4359927848: suffix exposure pins normalization and morph construction',()=>py(String.raw`
+import sys,tempfile,json
+from pathlib import Path
+from unittest.mock import patch
+sys.path[:0]=['associativvordes/v5_diagnostics/tools','associativvordes/v5_diagnostics']
+import suffix_exposure as m
+class D:
+ def execute(self,*args):return self
+ def fetchone(self):return None
+ def close(self):pass
+with tempfile.TemporaryDirectory() as td:
+ p=Path(td);(p/'SUMMARY.json').write_text(json.dumps(dict(selected_signal_union=dict(families=0,memberships_in_affected_families=0))))
+ with patch.object(m,'open_registry',lambda folder:(D(),dict(version='TEST_ONLY',database_sha256='TEST_ONLY'))):r=m.audit(p)
+ assert {'associativvordes/js/search-normalizer.js','associativvordes/js/morphology/languages/base.js'}<=set(r['source_code_sha256'])
+`));
+test('4362693719: actual surface checkpoints bind imported decoding and history',()=>py(String.raw`
+import sys,contextlib,io,json
+sys.path.insert(0,'tests')
+from review_audit_fixtures import surface,ROOT
+with surface() as (t,m,snap,out):
+ with contextlib.redirect_stdout(io.StringIO()):m.scan(ROOT,snap,out)
+ identity=json.loads((out/'IDENTITY.json').read_bytes())
+ assert {'associativvordes/structural_cleanup/shadow.py','associativvordes/structural_cleanup/common.py','associativvordes/history_registry/registry.py'}<=set(identity['code'])
+`));
+test('4362693741: consistent hashes cannot hide an incorrect family disposition',()=>py(String.raw`
+import sys,contextlib,io,json,gzip,hashlib,subprocess
+sys.path.insert(0,'tests')
+from review_audit_fixtures import surface,ROOT
+with surface() as (t,m,snap,out):
+ with contextlib.redirect_stdout(io.StringIO()):m.scan(ROOT,snap,out)
+ p=next(p for p in (out/'buckets').glob('*/FAMILIES.ndjson.gz') if gzip.decompress(p.read_bytes()).strip())
+ rows=[json.loads(s) for s in gzip.decompress(p.read_bytes()).splitlines()];assert rows[0]['operation']=='RETAIN_WITH_REVIEW';rows[0]['operation']='INSUFFICIENT_EVIDENCE'
+ data=b''.join(m.canonical(x)+b'\n' for x in rows);p.write_bytes(gzip.compress(data,mtime=0))
+ r=json.loads((p.parent/'RECEIPT.json').read_bytes());r['files'][p.name]=dict(sha256=hashlib.sha256(p.read_bytes()).hexdigest(),bytes=p.stat().st_size);(p.parent/'RECEIPT.json').write_bytes(m.canonical(r))
+ manifest=json.loads((out/'MANIFEST.json').read_bytes());manifest['buckets']=[r if b['bucket']==r['bucket'] else b for b in manifest['buckets']]
+ summary=json.loads((out/'SUMMARY.json').read_bytes())
+ for prefix in ['disposition:','candidate:']:
+  summary['totals'][prefix+'RETAIN_WITH_REVIEW']-=1;summary['totals'][prefix+'INSUFFICIENT_EVIDENCE']=1
+ (out/'SUMMARY.json').write_bytes(m.canonical(summary));manifest['summary_sha256']=hashlib.sha256((out/'SUMMARY.json').read_bytes()).hexdigest();(out/'MANIFEST.json').write_bytes(m.canonical(manifest))
+ result=subprocess.run(['node',str(ROOT/'associativvordes/surface_cleanup/verify.mjs'),str(snap),str(out),str(t.root/'verified.json')],cwd=ROOT,capture_output=True,text=True)
+ assert result.returncode!=0 and 'independent family disposition mismatch' in result.stderr,(result.stdout,result.stderr)
+`));
+
+test('4363144007: morphology checkpoints include the actual selection classifier',()=>py(String.raw`
+import sys,json,sqlite3,importlib.util,contextlib,io
+from pathlib import Path
+from unittest.mock import patch
+sys.path.insert(0,'tests')
+from review_audit_fixtures import surface,ROOT
+with surface() as (t,unused,snap,unused_out):
+ for name in ['common','policy','native']:sys.modules.pop(name,None)
+ sys.path.insert(0,str(ROOT/'associativvordes/morphology_cleanup'))
+ spec=importlib.util.spec_from_file_location('TEST_ONLY_morphology_driver',ROOT/'associativvordes/morphology_cleanup/run.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+ history=t.root/'history.sqlite';d=sqlite3.connect(history);d.execute('CREATE TABLE ids(family TEXT,language TEXT,lemma TEXT,decision TEXT)');d.close()
+ profiles=t.root/'profiles';profiles.mkdir();(profiles/'MANIFEST.json').write_text('{}')
+ class Profiles:
+  def lookup(self,*args):return 0,0
+  def close(self):pass
+ original=m.load
+ def load(path):return dict(sha256=m.sha_file(history)) if Path(path).name=='HISTORY-INDEX.json' else original(path)
+ out=t.root/'morphology'
+ with patch.object(m,'Profiles',lambda *args:Profiles()),patch.object(m,'load',load),contextlib.redirect_stdout(io.StringIO()):m.scan(snap,profiles,history,out)
+ assert 'associativvordes/v5_diagnostics/classify.py' in json.loads((out/'IDENTITY.json').read_bytes())['code']
+`));
