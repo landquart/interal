@@ -1,0 +1,460 @@
+{
+  "schema": "interal-evidence-source-provenance/1",
+  "source_lock_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad",
+  "artifacts": [
+    {
+      "id": "GLeMM:deu:defs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "c22cb69cfdf677d78e25d806079f0768b65382e5d34ce9cce26e41811fc92f54",
+      "bytes": 1636674,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/deu/defs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:deu:pairs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "2463ba12123fabb48542327ea241ca4bdb26a5acb1d6c864cac4e828eb7d8d40",
+      "bytes": 1067083,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/deu/pairs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:eng:defs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "8dc73d48dfe8f687c3686230371d0e3218719852f9e3f924cbe9bb6f8ba6a09e",
+      "bytes": 7094764,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/defs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:eng:pairs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "67073ab267768413b9e407080743d4e4e2aa36fed932600fc18fcd80f35b15db",
+      "bytes": 5578736,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/eng/pairs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:esp:defs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "388e44640608d0b7ca31bf08f6f1ec30fa5517864182e75efabdeabfc5d18266",
+      "bytes": 666727,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/esp/defs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:esp:pairs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "033a3e8679e49d0788f39c10e7e1bc641250290a6fbae8877df0653f10b81754",
+      "bytes": 537465,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/esp/pairs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:fra:defs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "d18c771f78332d03c8e2717a7a140ed541462f57de3d1262e616e7c69d00a6b4",
+      "bytes": 2653817,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/fra/defs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:fra:pairs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "d88e7d532994f6b03f09e6dc2913c7a2ae92b91749e476c54b75074a69dfc8b2",
+      "bytes": 1960093,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/fra/pairs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:ita:defs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "be2fac7b7be3147ce004be6cf5f8a26524983c6744e669f293b36f6007e85491",
+      "bytes": 315630,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/ita/defs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:ita:pairs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "d536c3d310f95d367ac7446f5e7fb6a16c9e49c5d14f95bbc4094cdc8abf38cc",
+      "bytes": 903092,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/ita/pairs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:rus:defs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "45faa636451ec9021e96e3c281aafdb24eb0e03cf4d7051fbe69dc9b04da58e4",
+      "bytes": 5082025,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/rus/defs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "GLeMM:rus:pairs.tsv.bz2",
+      "source": "GLeMM",
+      "resource": "2.0",
+      "revision": "395020177a96a81177582fb59664509ff015f934",
+      "sha256": "ceb1e57f137c808ba677dbe70115b36570a15109e8ba8e19b2b6e7a034f69f92",
+      "bytes": 4796104,
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm/-/raw/395020177a96a81177582fb59664509ff015f934/GLeMM_2.0/output/rus/pairs.tsv.bz2",
+      "license": "CC-BY-4.0",
+      "lineage": {
+        "exact_record_mapping": null,
+        "status": "possible_dataset_dependency",
+        "upstream": "MorphyNet"
+      }
+    },
+    {
+      "id": "MorphyNet:deu.derivational.v1",
+      "source": "MorphyNet",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "21a5fb2432e14fd995cc3ce1b44fef0f975c25c2e8368232df006395cf97033c",
+      "bytes": 1057628,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/deu/deu.derivational.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:deu.inflectional.v1",
+      "source": "MorphyNet",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "a5715136406aa37e2b8aa7e1ad4e5f228bc4d9885fd0abe4f29950c4aa020c86",
+      "bytes": 23258436,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/deu/deu.inflectional.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:eng.derivational.v1",
+      "source": "MorphyNet",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "5920edacc1888b14464fc5cd96beea0a721221d56d1dc0e49de22f4c7c537c50",
+      "bytes": 8169109,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/eng/eng.derivational.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:eng.inflectional.v1",
+      "source": "MorphyNet",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "6295cd9a0e72e260298d8d80dc1e512e5d37ea44617dd2df6fbeef02f50bcc3f",
+      "bytes": 21455254,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/eng/eng.inflectional.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:fra.derivational.v1",
+      "source": "MorphyNet",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "eaf40688e3175f21d05ee89fe3669d6f3b224e6a99b43260e24e0e1744563447",
+      "bytes": 2683375,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/fra/fra.derivational.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:fra.inflectional.v1",
+      "source": "MorphyNet",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "191f644875cd64cb0de7d5bf020dc1e4fa6fb7d4fb820c9c06bb8a24810b99b8",
+      "bytes": 22293532,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/fra/fra.inflectional.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:ita.derivational.v1",
+      "source": "MorphyNet",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "b0988c57afdaef185bf6d9e557f994d9c960b634eb6cf9f5040c1de02f66ed99",
+      "bytes": 2209996,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/ita/ita.derivational.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:ita.inflectional.v1",
+      "source": "MorphyNet",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "06fda3d9db2d0884e4aa2bccf6e1efcb1578cc2bb42bd3a90afe64bde5441b74",
+      "bytes": 36471316,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/ita/ita.inflectional.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:rus.derivational.v1",
+      "source": "MorphyNet",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "ad3c778df01ee168cb5fbebc25ef9d02195ce2337feb29e8b70405af4a6419a0",
+      "bytes": 5389104,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/rus/rus.derivational.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:rus.inflectional.v1",
+      "source": "MorphyNet",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "80b2c608f220a25049d632340377a5c06282c4de1db39e35277591951445f9d9",
+      "bytes": 10279691,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/rus/rus.inflectional.v1.zip",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:spa.derivational.v1",
+      "source": "MorphyNet",
+      "resource": "derivation",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "1f1d98ec6ffa7ba1ef55dcae1db3d98931f749db5390c810887c71f80a20d519",
+      "bytes": 1097625,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/spa/spa.derivational.v1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:spa.inflectional.v1.part1",
+      "source": "MorphyNet",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "135afd6bfad6c1e2774349cde2eba052a35c5d697e89ae92a526521ede83a057",
+      "bytes": 45309915,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/spa/spa.inflectional.v1.part1.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "MorphyNet:spa.inflectional.v1.part2",
+      "source": "MorphyNet",
+      "resource": "inflection",
+      "revision": "378144f64df58c78db5245af19d16a511ccecf3a",
+      "sha256": "accad9db6e5f9b8a4691fc3aefc6af06ef30fbfc6a1b8d42950c8a08ce211f6a",
+      "bytes": 29299778,
+      "url": "https://raw.githubusercontent.com/kbatsuren/MorphyNet/378144f64df58c78db5245af19d16a511ccecf3a/spa/spa.inflectional.v1.part2.tsv",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:de-DErivBase",
+      "source": "UDer",
+      "resource": "de-DErivBase",
+      "revision": "1.1",
+      "sha256": "b541cc6a120dcc0741cbb3ca638a778753d682c61a77d129f07caea0507871f6",
+      "bytes": 3438963,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:en-CatVar",
+      "source": "UDer",
+      "resource": "en-CatVar",
+      "revision": "1.1",
+      "sha256": "48a2a1c4a6e5123a811ff6d968ff4308703b566a19bfd3714cb4191143a1e344",
+      "bytes": 940651,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "OSL-1.1",
+      "lineage": null
+    },
+    {
+      "id": "UDer:en-WordNet",
+      "source": "UDer",
+      "resource": "en-WordNet",
+      "revision": "1.1",
+      "sha256": "5f8d01d65bb2bdde94a60a05d52e245bdaf4ba5a28d63923296430d99d42c5be",
+      "bytes": 163431,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-NC-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:es-DeriNetES",
+      "source": "UDer",
+      "resource": "es-DeriNetES",
+      "revision": "1.1",
+      "sha256": "cf68c43f6c52f490c4a517d394a7197ff99e429f34e5a6edb58f890da45ab7d4",
+      "bytes": 1958525,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-NC-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:fr-Demonette",
+      "source": "UDer",
+      "resource": "fr-Demonette",
+      "revision": "1.1",
+      "sha256": "1271bef98f1d1fc37546471d6d950d78e3e77cf612d56073b9f265c1e0f47cee",
+      "bytes": 290806,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-NC-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:it-DerIvaTario",
+      "source": "UDer",
+      "resource": "it-DerIvaTario",
+      "revision": "1.1",
+      "sha256": "055badea929d67c76e8011d7b3e0444db325a865d87443fd0c376413e39e2d1c",
+      "bytes": 182012,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-SA-4.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:ru-DeriNetRU",
+      "source": "UDer",
+      "resource": "ru-DeriNetRU",
+      "revision": "1.1",
+      "sha256": "5c769d95a2e49caa7f50f75fdacb1db1f1d2a23aa06a9d3de0364b03ca92ac55",
+      "bytes": 3839157,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-NC-SA-4.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:ru-DerivBaseRU",
+      "source": "UDer",
+      "resource": "ru-DerivBaseRU",
+      "revision": "1.1",
+      "sha256": "960c5f5ca0af8410223722ec9a34007d59c7ab3caf34c2cfbdbc3efadbbb7bed",
+      "bytes": 8807305,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "Apache-2.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:ru-EtymWordNetRU",
+      "source": "UDer",
+      "resource": "ru-EtymWordNetRU",
+      "revision": "1.1",
+      "sha256": "c3f5bd75ed34a9f92150aca1c164b60ee626c23b74df4296129231af62f4418b",
+      "bytes": 43588,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-SA-3.0",
+      "lineage": null
+    },
+    {
+      "id": "UDer:ru-GoldenCompoundAnalyses",
+      "source": "UDer",
+      "resource": "ru-GoldenCompoundAnalyses",
+      "revision": "1.1",
+      "sha256": "004965acd2a4b7f2405a30af9ec6d4be2140dfae6b5e0f3673b67f1f2ca24782",
+      "bytes": 60597,
+      "url": "http://lindat.mff.cuni.cz/repository/server/api/core/bitstreams/b988724d-8aef-4614-900d-563e4f1e49b5/content",
+      "license": "CC-BY-NC-4.0",
+      "lineage": null
+    }
+  ],
+  "independence": "GLeMM and MorphyNet are potentially dependent. UDer harmonizes distinct resources, some with Wiktionary-derived lineage. No row-level independence certified; no majority vote used.",
+  "license_scope": "Pinned per-artifact declarations retained; derivative redistribution permissions are not generalized from software licenses. Publisher dictionary material is not declared open licensed.",
+  "fresh_checks": [
+    {
+      "url": "https://ufal.mff.cuni.cz/universal-derivations",
+      "result": "Official page states licenses are per resource; not one universal license"
+    },
+    {
+      "url": "https://github.com/kbatsuren/MorphyNet",
+      "result": "Official README declares Wiktionary sources and CC BY-SA 3.0"
+    },
+    {
+      "url": "https://src.koda.cnrs.fr/nabil.hathout.1/glemm",
+      "result": "Fresh web access failed HTTP 502; pinned local README and LICENSE available, not a fresh availability certification"
+    }
+  ],
+  "raw_license_files": [
+    "data/morphology-evidence/sources/GLeMM-LICENSE.txt",
+    "data/morphology-evidence/sources/MorphyNet-README.md"
+  ],
+  "legal_clearance_for_new_public_bulk_data": false
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "interal-evidence-coverage/1",
+  "memberships": 10078319,
+  "languages": {
+    "en": {
+      "total": 2619261,
+      "statuses": {
+        "UNRESOLVED_EVIDENCE": 2619261
+      },
+      "supported_member": 0,
+      "supported_nonmember": 0,
+      "independent_corpus_gold": 0
+    },
+    "de": {
+      "total": 2205038,
+      "statuses": {
+        "UNRESOLVED_EVIDENCE": 2205038
+      },
+      "supported_member": 0,
+      "supported_nonmember": 0,
+      "independent_corpus_gold": 0
+    },
+    "fr": {
+      "total": 1143061,
+      "statuses": {
+        "UNRESOLVED_EVIDENCE": 1143061
+      },
+      "supported_member": 0,
+      "supported_nonmember": 0,
+      "independent_corpus_gold": 0
+    },
+    "es": {
+      "total": 1796516,
+      "statuses": {
+        "UNRESOLVED_EVIDENCE": 1796516
+      },
+      "supported_member": 0,
+      "supported_nonmember": 0,
+      "independent_corpus_gold": 0
+    },
+    "it": {
+      "total": 1187709,
+      "statuses": {
+        "UNRESOLVED_EVIDENCE": 1187709
+      },
+      "supported_member": 0,
+      "supported_nonmember": 0,
+      "independent_corpus_gold": 0
+    },
+    "ru": {
+      "total": 1126734,
+      "statuses": {
+        "UNRESOLVED_EVIDENCE": 1126734
+      },
+      "supported_member": 0,
+      "supported_nonmember": 0,
+      "independent_corpus_gold": 0
+    }
+  },
+  "finite_prior_cases_by_language": {
+    "en": 41,
+    "it": 5,
+    "fr": 15,
+    "de": 6
+  },
+  "finite_cases": 67,
+  "hypothesis_templates": 23,
+  "fresh_primary_assertions": 5,
+  "verified_corpus_hypotheses": 0,
+  "semantic_false_positive_rate": null,
+  "semantic_false_negative_rate": null,
+  "reason_rates_unknown": "No independent corpus-bound linguistic gold; contract tests do not measure linguistic accuracy",
+  "stage_06_to_10_full_queue_replay": false
+}
