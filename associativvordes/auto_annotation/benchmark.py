@@ -14,7 +14,7 @@ import time
 from associativvordes.auto_annotation.contract import canonical,sha,file_hash
 from associativvordes.auto_annotation.pipeline import load_input,execute,export,rows,code_version
 from associativvordes.auto_annotation.storage import Store
-from associativvordes.auto_annotation.providers import configuration
+from associativvordes.auto_annotation.providers import configuration,now
 
 def benchmark(cases_path,store_root,output,config=None,judgments=None,roster=None,adjudications=None):
     repo=Path(__file__).resolve().parents[2];output=Path(output).resolve()
@@ -61,7 +61,7 @@ def benchmark(cases_path,store_root,output,config=None,judgments=None,roster=Non
           actual_correct_per_processing_hour=None,export=release)
         proposals.extend(dict(route=route,proposal=p) for p in pp)
     # Labels and timings are never populated by model predictions.
-    experiment=dict(schema='preannotation-experiment/1',generated_at=__import__('providers').now(),
+    experiment=dict(schema='preannotation-experiment/1',generated_at=now(),
       algorithm_sha256=code_version(),frozen=identity,cases=len(cases),double_review_cases=sum(c['double_review'] for c in cases),
       by_language=dict(sorted(Counter(c['language'] for c in cases).items())),
       families=sorted({c['family'] for c in cases}),runs=runs,gold_counts=human['counts'],

@@ -17,7 +17,7 @@ from associativvordes.mass_dry_run import run as cycle
 from associativvordes.mass_dry_run.audit import compare,sha
 from associativvordes.auto_annotation.contract import file_hash
 from associativvordes.auto_annotation.storage import Store,backup,restore
-from pipeline import export
+from associativvordes.auto_annotation.pipeline import export
 
 def verify_modules(frozen):
     for name,expected in frozen['algorithm_modules'].items():

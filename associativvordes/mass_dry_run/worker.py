@@ -8,7 +8,7 @@ import argparse,json,os,signal,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
 None
-from pipeline import load_input,execute
+from associativvordes.auto_annotation.pipeline import load_input,execute
 from associativvordes.auto_annotation.storage import Store
 from associativvordes.auto_annotation.contract import canonical
 

@@ -111,6 +111,22 @@ class IntegrationTests(unittest.TestCase):
   path=self.w/'legacy.sqlite';q=Queue(path);q.upsert(dict(family='family:TEST_ONLY:manu',language='fr',lemma='manucure',pos=None),'TEST_ONLY');q.db.commit();q.close();before=path.read_bytes()
   with self.assertRaises(Blocked):Queue(path,version_contract=self.c)
   self.assertEqual(before,path.read_bytes())
+ def test_project_imports_do_not_depend_on_flat_sys_path_aliases(self):
+  import ast
+  from associativvordes.v5_contract.versions import COMPONENTS
+  project={p.stem for p in (ROOT/'associativvordes').rglob('*.py')}
+  failures=[]
+  for folder in COMPONENTS.values():
+   for p in (ROOT/'associativvordes'/folder).rglob('*.py'):
+    if '__pycache__' in p.parts or p.name.startswith('test_'):continue
+    for n in ast.walk(ast.parse(p.read_text())):
+     names=[]
+     if isinstance(n,ast.ImportFrom) and n.level==0:names=[n.module]
+     elif isinstance(n,ast.Import):names=[a.name for a in n.names]
+     elif isinstance(n,ast.Call) and isinstance(n.func,ast.Name) and n.func.id=='__import__' and n.args and isinstance(n.args[0],ast.Constant):names=[n.args[0].value]
+     for name in names:
+      if isinstance(name,str) and '.' not in name and name in project and name not in sys.stdlib_module_names:failures.append((str(p.relative_to(ROOT)),n.lineno,name))
+  self.assertEqual(failures,[])
  def test_all_components_import_in_both_orders_without_flat_module_aliases(self):
   modules=['pilot_evaluation.metrics04','pilot_evaluation.study04','mass_dry_run.run','mass_dry_run.worker','v5_baseline.census','history_registry.registry','v5_adapter.bridge','v5_diagnostics.run','structural_cleanup.workflow','surface_cleanup.run','morphology_cleanup.run','morphology_review.run','national_correspondences.registry','semantic_cleanup.bridge','family_boundary.build','cleanup_quality.evaluate','full_v5_dry_run.census','release_control.workflow','v5_release_control.package','evidence_graph.build_graph','candidate_search.search','review.server','auto_annotation.pipeline']
   for order in [modules,list(reversed(modules))]:

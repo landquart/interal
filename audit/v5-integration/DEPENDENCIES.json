@@ -790,6 +790,14 @@
     },
     {
       "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 20,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
       "target": "pilot_quality",
       "file": "associativvordes/mass_dry_run/finish.py",
       "line": 116,
@@ -810,6 +818,14 @@
       "file": "associativvordes/mass_dry_run/run.py",
       "line": 27,
       "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 28,
+      "import_name": "associativvordes.auto_annotation.pipeline",
       "kind": "python"
     },
     {
@@ -846,10 +862,34 @@
     },
     {
       "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 287,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
       "target": "pilot_quality",
       "file": "associativvordes/mass_dry_run/run.py",
       "line": 303,
       "import_name": "associativvordes.pilot_evaluation.archive04",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 157,
+      "import_name": "associativvordes.auto_annotation.pipeline",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/worker.py",
+      "line": 11,
+      "import_name": "associativvordes.auto_annotation.pipeline",
       "kind": "python"
     },
     {
@@ -3429,9 +3469,9 @@
     "associativvordes/pilot_evaluation/study04.py": "37e84adcf5e3dcd11706b6f383cb82ebbad5ec8ca629a058d0b70ca0d35e7954",
     "associativvordes/mass_dry_run/audit.py": "3aa59f52a552c51a38459691eaeae17a6fe6ba96707c678d4637ad08a1cf5d3e",
     "associativvordes/mass_dry_run/export_snapshot.py": "d9a998cce98d2fd25cca5487aed8f3520b5704369ceadc0d12cb38c6ff0e0d86",
-    "associativvordes/mass_dry_run/finish.py": "9803b5b51d61fd0a75729ab25035a4c3214e1500036d1f1ce8350ecbf0fe3057",
-    "associativvordes/mass_dry_run/run.py": "86362a5a2e61ca7e7cd6b33fa017152abd85c83d83cff06f08cc1e1a4d27c0e9",
-    "associativvordes/mass_dry_run/worker.py": "f5da254b784cfc0335b8174e0fae6727d9664989c4247b16129476d4893e7a15",
+    "associativvordes/mass_dry_run/finish.py": "0c2f5544946745609de051aabebf16cb371167c5f38b4031994be9604ef8c6b7",
+    "associativvordes/mass_dry_run/run.py": "6eeca2806a0f070757cb26f09957fad8ba230c89d3d6ca7a82d2f43b9eaa7f8d",
+    "associativvordes/mass_dry_run/worker.py": "d845241b595ef62a64fd6eceb8e522b0c43e540a80fbfeaf0e712f8e3610ea13",
     "associativvordes/v5_baseline/audit_ids.py": "d416247f4d29d3d1aa011dd29a46451e094e75000a34783de7d7e4fdf2210c01",
     "associativvordes/v5_baseline/audit_ledger.py": "5f89ca149bc0e266eb4e1c915855b5ca0c4a44fca26b28818cd587219811328e",
     "associativvordes/v5_baseline/audit_metadata.py": "184165e83a087890c6c263b9752ba7bc0111fc873460d948fafad066c2fed67c",
@@ -3539,7 +3579,7 @@
     "associativvordes/review/source_rows.py": "3cee767ea9c1dc2592ef16c8be13c8f9b151faf13a3b07c129f2a11b162ece3f",
     "associativvordes/review/store.py": "ecc765eb5566cc8a48670e63b525c0fbee4cb3d65cb3532ea4fb9ef6b4a2f09f",
     "associativvordes/auto_annotation/__init__.py": "1f0108af3f61a4fab884bff74bf391ec387fc08c00ee90153ba2fdc9d719b9bc",
-    "associativvordes/auto_annotation/benchmark.py": "ddc09ed7bdf5908941ad356c6de807b522e181ff3761e87a24b2c0212984f826",
+    "associativvordes/auto_annotation/benchmark.py": "a7cc8bf8e14f0d3ee465909c8d690f7fae2ef961fa1c6ffa3cf0a99d5d17f645",
     "associativvordes/auto_annotation/contract.py": "8f2798fe754fbd9b064d9a1ba7f0765eb148f0080215639915a3479c45da40d0",
     "associativvordes/auto_annotation/pipeline.py": "38e82e4c622e9214d5179c84bb9d43bd330cf6be45e54299b6d960470ba92d92",
     "associativvordes/auto_annotation/providers.py": "82a23bead8002e46db2af5b269c87d9cd1c507e29b5c5fa6e81797442d66542f",

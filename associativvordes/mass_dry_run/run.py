@@ -25,7 +25,7 @@ for name in ('auto_annotation','candidate_search','evidence_graph','importers','
 None
 from associativvordes.auto_annotation.contract import canonical,sha,file_hash,scrub
 from associativvordes.auto_annotation.storage import Store as AnnotationStore,backup,restore,atomic
-from pipeline import code_version,rows
+from associativvordes.auto_annotation.pipeline import code_version,rows
 from associativvordes.auto_annotation.providers import configuration
 None
 from associativvordes.mass_dry_run.audit import build_snapshot,compare,samples
@@ -154,7 +154,7 @@ def collect(store,questions,identity):
     with s.lease():
         plan=s.get(s.runs['mass06'])
         cs={k:s.get(v)['card'] for k,v in s.cards.items() if k in set(plan['cards'])}
-        from pipeline import result_key
+        from associativvordes.auto_annotation.pipeline import result_key
         ps=[s.latest(result_key(cs[k],plan['recipe_sha256'])) for k in plan['cards']]
         if any(p is None for p in ps):raise ValueError('incomplete annotations')
         snapshot,stats=build_snapshot(questions,ps,cs,identity)
@@ -284,7 +284,7 @@ def run(a):
        backup_bytes=(output/'ANNOTATION-BACKUP.zip').stat().st_size,restored=restored))
     # Reuse human review interface in a fresh research ledger, never the frozen live ledger.
     s=AnnotationStore(output/'stages/all/annotation')
-    from pipeline import export
+    from associativvordes.auto_annotation.pipeline import export
     with s.lease():handoff=export(s,'mass06',output/'review-handoff',True)
     import importlib.util
     spec=importlib.util.spec_from_file_location('phase06_review_store',ROOT/'associativvordes/review/store.py')
