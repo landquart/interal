@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { performance } from 'node:perf_hooks';
 import { readFile, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';

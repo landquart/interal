@@ -38,6 +38,9 @@ jobs:
           node-version: '22'
           cache: npm
 
+      - name: Block uncertified historical materialization
+        run: node --input-type=module -e "import { assertHistoricalRepairAllowed } from './scripts/lib/assert-historical-repair.mjs'; assertHistoricalRepairAllowed();"
+
       - name: Download and verify immutable v5 artifacts
         shell: bash
         run: |

@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 // Bounded manual decisions recovered on 2026-09-30. No source-index regeneration.
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';

@@ -1,0 +1,551 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node scripts/run-tests.mjs
+
+Discovered 116 test files; running 116.
+
+> node tests/altervordes-multilingual-conclusion.test.mjs
+Alter vordes multilingual conclusion tests passed.
+
+> node tests/altervordes-prompts.test.mjs
+Alter vordes binary derivational potential tests passed.
+
+> node tests/association-demographic-weighting.test.mjs
+association demographic weighting tests passed
+
+> node tests/associative-affix-boundary.test.mjs
+Associative affix boundary tests passed.
+
+> node tests/associative-atomic-pipeline.test.mjs
+Associative production pipeline integration tests passed.
+
+> node tests/associative-auto-annotation.test.mjs
+test_cited_axes_do_not_establish_other_axes (test_annotation.ContractTests.test_cited_axes_do_not_establish_other_axes) ... ok
+test_compounds_retained (test_annotation.ContractTests.test_compounds_retained) ... ok
+test_conflicting_source_assertions_are_retained (test_annotation.ContractTests.test_conflicting_source_assertions_are_retained) ... ok
+test_cross_language_and_direction (test_annotation.ContractTests.test_cross_language_and_direction) ... ok
+test_exclusion_requires_scoped_contradiction (test_annotation.ContractTests.test_exclusion_requires_scoped_contradiction) ... ok
+test_inflection_is_not_derivation (test_annotation.ContractTests.test_inflection_is_not_derivation) ... ok
+test_language_mismatch (test_annotation.ContractTests.test_language_mismatch) ... ok
+test_model_invented_reference_rejected (test_annotation.ContractTests.test_model_invented_reference_rejected) ... ok
+test_model_invented_sense_and_confidence_rejected (test_annotation.ContractTests.test_model_invented_sense_and_confidence_rejected) ... ok
+test_negative_scope_and_privacy (test_annotation.ContractTests.test_negative_scope_and_privacy) ... ok
+test_orthographic_identity_not_derivation (test_annotation.ContractTests.test_orthographic_identity_not_derivation) ... ok
+test_pos_and_frequency_unknown (test_annotation.ContractTests.test_pos_and_frequency_unknown) ... ok
+test_prompt_injection_retained_only_as_data (test_annotation.ContractTests.test_prompt_injection_retained_only_as_data) ... ok
+test_same_form_multiple_native_senses_not_merged (test_annotation.ContractTests.test_same_form_multiple_native_senses_not_merged) ... ok
+test_same_spelling_alternative_path_cannot_support_this_native_lexeme (test_annotation.ContractTests.test_same_spelling_alternative_path_cannot_support_this_native_lexeme) ... ok
+test_separate_axes_and_stable_native_ids (test_annotation.ContractTests.test_separate_axes_and_stable_native_ids) ... ok
+test_strict_json (test_annotation.ContractTests.test_strict_json) ... ok
+test_substring_without_path_remains_unknown (test_annotation.ContractTests.test_substring_without_path_remains_unknown) ... ok
+test_inflection_only_native_identity_is_verified_in_auxiliary (test_annotation.NativeSourceTests.test_inflection_only_native_identity_is_verified_in_auxiliary) ... ok
+test_algorithm_change_cannot_silently_resume (test_annotation.PipelineTests.test_algorithm_change_cannot_silently_resume) ... ok
+test_balanced_budget_does_not_drop_language (test_annotation.PipelineTests.test_balanced_budget_does_not_drop_language) ... ok
+test_export_repeat_is_identical (test_annotation.PipelineTests.test_export_repeat_is_identical) ... ok
+test_handoff_preserves_questions_and_blind_boundary (test_annotation.PipelineTests.test_handoff_preserves_questions_and_blind_boundary) ... ok
+test_multi_same_model_not_independent (test_annotation.PipelineTests.test_multi_same_model_not_independent) ... ok
+test_offline_result_does_not_prevent_explicit_pilot (test_annotation.PipelineTests.test_offline_result_does_not_prevent_explicit_pilot) ... ok
+test_resume_rejection_and_changed_input (test_annotation.PipelineTests.test_resume_rejection_and_changed_input) ... ok
+test_concurrent_admission_respects_global_limit (test_annotation.ProviderTests.test_concurrent_admission_respects_global_limit) ... ok
+test_cost_forecast_unknown_without_provider (test_annotation.ProviderTests.test_cost_forecast_unknown_without_provider) ... ok
+test_default_does_not_call_transport (test_annotation.ProviderTests.test_default_does_not_call_transport) ... ok
+test_durable_invalid_attempt_limit (test_annotation.ProviderTests.test_durable_invalid_attempt_limit) ... ok
+test_endpoint_and_inline_key_guards (test_annotation.ProviderTests.test_endpoint_and_inline_key_guards) ... ok
+test_local_cloud_rejected (test_annotation.ProviderTests.test_local_cloud_rejected) ... ok
+test_ollama_digest_required (test_annotation.ProviderTests.test_ollama_digest_required) ... ok
+test_paid_no_authorization (test_annotation.ProviderTests.test_paid_no_authorization) ... ok
+test_paid_parallel_reservations_are_not_crash_outcomes (test_annotation.ProviderTests.test_paid_parallel_reservations_are_not_crash_outcomes) ... ok
+test_request_limit_survives_new_client (test_annotation.ProviderTests.test_request_limit_survives_new_client) ... ok
+test_secret_echo_is_not_persisted (test_annotation.ProviderTests.test_secret_echo_is_not_persisted) ... ok
+test_token_contract_violation_blocks_paid_continuation (test_annotation.ProviderTests.test_token_contract_violation_blocks_paid_continuation) ... ok
+test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt (test_annotation.ProviderTests.test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt) ... ok
+test_valid_response_cache_across_roles_and_prices (test_annotation.ProviderTests.test_valid_response_cache_across_roles_and_prices) ... ok
+test_backup_restores_full_history (test_annotation.StoreTests.test_backup_restores_full_history) ... ok
+test_backup_traversal (test_annotation.StoreTests.test_backup_traversal) ... ok
+test_concurrent_writers_excluded (test_annotation.StoreTests.test_concurrent_writers_excluded) ... ok
+test_corrupt_object_detected (test_annotation.StoreTests.test_corrupt_object_detected) ... ok
+test_partial_write_and_head_recovery (test_annotation.StoreTests.test_partial_write_and_head_recovery) ... ok
+test_repeat_and_history (test_annotation.StoreTests.test_repeat_and_history) ... ok
+test_tail_loss_detected (test_annotation.StoreTests.test_tail_loss_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.958s
+
+OK
+
+> node tests/associative-calculation-lifecycle.test.mjs
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (1.527799ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (1.316146ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.672813ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (3.594155ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (2.614987ms)
+✔ AC-006: actual page analyzeItem discards a late response after candidate edit (6.828586ms)
+✔ V-003: abort during index loading terminalizes language status (0.586988ms)
+✔ V-002: actual page deselection cancels late manual analysis (2.568477ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 26.675513
+
+> node tests/associative-calculation-numeric.test.mjs
+✔ AC-003: maximum P and same representative A; missing A and required review remain distinct (3.618791ms)
+✔ AC-002/003/010 regul fixed fixture: five derivatives per language, positive P and pending review (26.187072ms)
+✔ AC-002/010: complete regul fixture uses unchanged direct demographic formulas (0.829036ms)
+✔ AC-003/010: partial languages and exact acceptance boundaries (0.89269ms)
+✔ AC-002: supported empty rows have N; unknown represented language throws (2.33977ms)
+✔ AC-005: numeric persistence keeps absence, zero and review diagnostics (1.97476ms)
+✔ AC-010/015: actual page adapter counts all found rows without changing five-model scoring (8.890216ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52.392179
+
+> node tests/associative-calculation-services.test.mjs
+✔ AC-008: deadline includes an unresponsive response body and cancellation wins late results (14.722119ms)
+✔ AC-009: backend rejects incomplete scores, preserves true zero and upstream 403 (6.529084ms)
+✔ AC-008: backend timeout also covers upstream body (5.705095ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35.033982
+
+> node tests/associative-calculation-transport.test.mjs
+AC-001/AC-012 page transport regressions passed
+
+> node tests/associative-candidate-finder.test.mjs
+associative candidate finder family tests passed
+
+> node tests/associative-candidate-index-loader-missing-shards.test.mjs
+associative candidate-index missing shard tests passed
+
+> node tests/associative-candidate-index-loader.test.mjs
+ok - manifest loads once and repeated calls share cache
+ok - concurrent manifest calls use one promise
+ok - loads only needed shard for root and not the whole language
+ok - repeat shard request uses cache
+ok - different languages have different shard cache keys
+ok - missing language returns LANGUAGE_NOT_INDEXED
+ok - missing shard returns SHARD_NOT_LISTED
+ok - manifest HTTP error returns MANIFEST_FETCH_FAILED
+ok - damaged manifest is rejected
+ok - incompatible version is rejected
+ok - incompatible normalizer_version is rejected
+ok - shard HTTP error returns SHARD_FETCH_FAILED
+ok - damaged shard is rejected and not returned as empty array
+ok - normalizes legacy fixture source metadata without deriving category from id
+ok - source category is required even when legacy id contains one
+ok - entry without sources is rejected
+ok - non-finite frequency_score is rejected
+ok - AbortSignal stops operation without poisoning cache
+ok - passes AbortSignal to fetch options
+ok - abort cancels the mock shard request and returns ABORTED
+ok - aborted shard is not cached and retry performs a new fetch
+ok - completed shard cache survives an aborted consumer
+ok - completed manifest cache is shared after successful load
+ok - diagnostics count fetches and cache hits
+ok - special roots add _other only when needed and skip if not listed
+ok - production base URL is relative and overridable
+
+> node tests/associative-candidate-integrity.test.mjs
+Associative deterministic candidate-integrity tests passed.
+
+> node tests/associative-candidate-search.test.mjs
+✔ isolated candidate search preserves provenance, history and prohibitions (6018.455135ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6024.174651
+
+> node tests/associative-cleanup-quality.test.mjs
+✔ empty gold and no removals produce null precision, not perfect safety (29.477548ms)
+✔ removal precision, correct-link false-removal risk and detection recall have different denominators (22.342067ms)
+✔ linked dependence clusters cross languages and cases; they never become family merges (31.986363ms)
+✔ human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review (26.984771ms)
+✔ a qualified exact structural scope never grants semantic or production authority (31.705647ms)
+✔ 4367043681: NOT_RUN has no performance estimates even with complete gold (29.011779ms)
+✔ 4367043683: resolved human answers require an explicit relation (30.467431ms)
+✔ 4367043688: missing required bundle sources fail before publication (35.624297ms)
+✔ 4367043686: documentary additions share existing family clusters and rebind all cards (68.123212ms)
+✔ 4367062598: verifier rejects 1599 per language before opening the population index (185.014406ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 499.575808
+
+> node tests/associative-evidence-graph.test.mjs
+✔ isolated evidence graph: real probes, negative guards and finite paths (1956.314899ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1961.053716
+
+> node tests/associative-external-import.test.mjs
+✔ isolated external morphology importer: real excerpts and adversarial controls (1951.701778ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1956.340087
+
+> node tests/associative-family-annotation-scoring.test.mjs
+✔ Wilson interval is finite and contains the observed precision (1.46768ms)
+✔ agreement statistics preserve uncertain as its own category (0.379831ms)
+✔ weighted precision reports resolved, conservative and optimistic estimates (0.275528ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7.170282
+
+> node tests/associative-family-boundary.test.mjs
+✔ exact overlap groups never imply transitive or semantic family identity (75.584514ms)
+✔ historical negatives retain the exact original family, language, lemma, POS and sense (26.147784ms)
+✔ transaction checkpoints are atomic and legacy exact records cannot become productive heads (60.782438ms)
+✔ independent membership checks recompute stored IDs instead of trusting copied fingerprints (39.953999ms)
+✔ v6 source proofs retain JavaScript insertion-order hashing and exact source forms (180.577965ms)
+✔ immutable backups reject corruption, unfinished data and path escape (46.69348ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 435.979054
+
+> node tests/associative-family-corrective-v5.test.mjs
+✔ corrective build accepts an immutable input-lock artifact (0.915614ms)
+✔ structured expansion never pairs lang and term from adjacent nodes (3.128856ms)
+✔ malformed and unknown expansion data are review-only (0.605735ms)
+✔ etymon ancestry is typed, depth-aware, and cannot merge (0.238102ms)
+✔ direct templates use an explicit typed policy (0.483275ms)
+✔ etymologyPairs preserves uncertain evidence instead of inventing equivalence (0.258392ms)
+✔ exact seed claims do not absorb an automatic family transitively (1.025977ms)
+✔ short accidental prefix cannot anchor valkyrie and walkure equivalence (0.282358ms)
+✔ automatic canonical scoring rejects a two-letter accidental anchor (0.583403ms)
+✔ known audit noise and generic markup are rejected deterministically (1.466298ms)
+✔ etymon-key distribution is deterministic and exposes the long tail (4.888338ms)
+✔ wide etymon keys are review-only and never create automatic families (0.268347ms)
+✔ exact language-aware controls replace stale automatic memberships before materialization (0.36534ms)
+✔ verified control families cover every runtime language (0.226395ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20.154502
+
+> node tests/associative-family-manual-cases.test.mjs
+✔ individually rejected etymologies are absent from repository-backed runtime (1929.451873ms)
+✔ sense-ambiguous enm:net is quarantined without deleting its member data (97.021666ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2055.199783
+
+> node tests/associative-family-production.test.mjs
+✔ discovers every compound component (10.251047ms)
+✔ surface fallback preserves complete coverage (3.689905ms)
+✔ compound containment never merges families (0.553358ms)
+✔ proto relation never merges families (0.136662ms)
+✔ equivalence requires linguistic evidence (0.372091ms)
+✔ lemma IDs are stable and language scoped (0.254777ms)
+✔ lexical aliases cannot collide with JavaScript object prototypes (0.177543ms)
+✔ runtime resolves alias to materialized family members (2.513086ms)
+✔ candidate loader prefers the exhaustive family index over literal static search (0.758141ms)
+✔ family runtime fails closed before fetching an excessive alias fan-out (0.951477ms)
+✔ manual override is language-aware and never exposes stale non-manual members (0.765181ms)
+✔ blocked, rejected, and split-required families never reach runtime candidates (0.421594ms)
+✔ v5 runtime excludes rejected corpus members while remaining v4-compatible (0.694327ms)
+✔ manual family with no language-specific overrides fails closed (0.55162ms)
+✔ authoritative empty family result never falls back to the static index (0.293714ms)
+✔ curated nitidus aliases return only reviewed members and never use broad fallback (1918.136268ms)
+✔ Russian curated short aliases preserve complete ordinary results in other languages (10571.860167ms)
+✔ empty, rejected or malformed curated members never suppress ordinary language results (1.229758ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12520.851912
+
+> node tests/associative-family-routing-repairs.test.mjs
+✔ val routing retains member arrays, alternate roots, exact full results and no fallback (9000.500494ms)
+✔ Russian short batch has only reviewed members, without cross-language suppression or fallback (11383.111609ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20402.919693
+
+> node tests/associative-family-runtime-benchmark.test.mjs
+✔ runtime benchmark percentiles are deterministic nearest-rank values (0.64903ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7.043045
+
+> node tests/associative-family-semantic-sampling.test.mjs
+✔ semantic sample locks its input and requested size (0.769928ms)
+✔ stratified selection is deterministic and visits distinct strata first (6.690984ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.412232
+
+> node tests/associative-flexor-research.test.mjs
+✔ Flexor research: attested bounded plan, unknown measurements and reproducible preparation (192.18495ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 197.618615
+
+> node tests/associative-frequency-top-five.test.mjs
+Associative match-quality-first top-five tests passed.
+
+> node tests/associative-full-v5-completion.test.mjs
+✔ completed copy evidence is required, input-bound and independently rechecked (311.305953ms)
+✔ bundle rejects a stale PASS when completion evidence is absent (151.958443ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 469.666793
+
+> node tests/associative-full-v5-dry-run.test.mjs
+✔ blocked and nonempty plans cannot become a production or shadow modification (38.815616ms)
+✔ complete shadow publication is idempotent and five empty layers preserve exact bytes (118.642499ms)
+✔ strict bounded decoder rejects duplicate keys and verifies complete JSON (47.754659ms)
+✔ snapshot validation rejects unexpected records and symbolic links (37.302113ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 250.512873
+
+> node tests/associative-history-registry.test.mjs
+✔ historical constraints: finite scopes, corruption, supersession, and restore (1535.024888ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1540.258106
+
+> node tests/associative-index-builder.test.mjs
+
+> node tests/associative-index-core.test.mjs
+
+> node tests/associative-index-empty-search-form.test.mjs
+associative index empty search_form tests passed
+
+> node tests/associative-index-large-range.test.mjs
+associative index large numeric range tests passed
+
+> node tests/associative-index-memory-audit.test.mjs
+associative index memory audit tests passed
+
+> node tests/associative-index-merge.test.mjs
+ok - six valid artifacts merge into one separated candidate-index manifest
+ok - rejects five artifacts when ru is missing
+ok - rejects incompatible version
+ok - rejects incompatible normalizer_version
+ok - rejects missing shard
+ok - rejects incorrect entries metadata
+ok - rejects candidate without sources
+ok - rejects damaged non-finite number value
+ok - rejects language mismatch between directory and manifest
+ok - error keeps existing output and removes temp directory
+ok - rerun is deterministic, does not duplicate, and removes stale shards
+ok - input directory order does not change manifest
+ok - one artifact cannot silently overwrite another language
+ok - rejects incompatible global_config_hash
+
+> node tests/associative-index-russian-normalization.test.mjs
+
+> node tests/associative-index-validator.test.mjs
+
+> node tests/associative-index-workflow.test.mjs
+
+> node tests/associative-mass-dry-run.test.mjs
+test_abstain_is_not_semantic_rejection (test_cycle.AuditTests.test_abstain_is_not_semantic_rejection) ... ok
+test_cross_language_productive_path_fails (test_cycle.AuditTests.test_cross_language_productive_path_fails) ... ok
+test_duplicates_fatal (test_cycle.AuditTests.test_duplicates_fatal) ... ok
+test_existing_exclusion_is_only_an_audit (test_cycle.AuditTests.test_existing_exclusion_is_only_an_audit) ... ok
+test_family_conflict_does_not_merge (test_cycle.AuditTests.test_family_conflict_does_not_merge) ... ok
+test_independent_clone_matches (test_cycle.AuditTests.test_independent_clone_matches) ... ok
+test_inflection_not_derivation (test_cycle.AuditTests.test_inflection_not_derivation) ... ok
+test_manual_counts_not_doubled (test_cycle.AuditTests.test_manual_counts_not_doubled) ... ok
+test_no_invented_zero_frequency (test_cycle.AuditTests.test_no_invented_zero_frequency) ... ok
+test_original_sense_and_spelling_preserved (test_cycle.AuditTests.test_original_sense_and_spelling_preserved) ... ok
+test_other_native_same_spelling_cannot_provide_path (test_cycle.AuditTests.test_other_native_same_spelling_cannot_provide_path) ... ok
+test_preserving_decision_is_not_confirmation (test_cycle.AuditTests.test_preserving_decision_is_not_confirmation) ... ok
+test_random_and_risk_sampling_stable (test_cycle.AuditTests.test_random_and_risk_sampling_stable) ... ok
+test_replay_compares_evidence_and_relations (test_cycle.AuditTests.test_replay_compares_evidence_and_relations) ... ok
+test_replay_compares_groups_and_history (test_cycle.AuditTests.test_replay_compares_groups_and_history) ... ok
+test_source_groups_not_counted_as_independent (test_cycle.AuditTests.test_source_groups_not_counted_as_independent) ... ok
+test_stable_normalization_only_removes_volatile_fields (test_cycle.AuditTests.test_stable_normalization_only_removes_volatile_fields) ... ok
+test_uncalibrated_probability_fails (test_cycle.AuditTests.test_uncalibrated_probability_fails) ... ok
+test_wrong_family_negative_is_not_global (test_cycle.AuditTests.test_wrong_family_negative_is_not_global) ... ok
+test_history_read_does_not_write (test_cycle.ExecutionTests.test_history_read_does_not_write) ... ok
+test_protocol_disables_network_and_production (test_cycle.ExecutionTests.test_protocol_disables_network_and_production) ... ok
+test_real_signal_is_reported (test_cycle.ExecutionTests.test_real_signal_is_reported) ... ok
+test_resource_measurement_is_real_child_usage (test_cycle.ExecutionTests.test_resource_measurement_is_real_child_usage) ... ok
+test_export_checksum_guard (test_cycle.PublicationTests.test_export_checksum_guard) ... ok
+test_export_refuses_existing_ledger (test_cycle.PublicationTests.test_export_refuses_existing_ledger) ... ok
+test_export_to_fresh_review_ledger (test_cycle.PublicationTests.test_export_to_fresh_review_ledger) ... ok
+test_resume_rejects_changed_pinned_algorithm (test_cycle.PublicationTests.test_resume_rejects_changed_pinned_algorithm) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.097s
+
+OK
+
+> node tests/associative-model-family.test.mjs
+Associative lexical model family tests passed.
+
+> node tests/associative-model-selection-policy.test.mjs
+Associative model-selection and threshold policy tests passed.
+
+> node tests/associative-morpheme-model-parser-v2.test.mjs
+Associative morpheme model parser v2 tests passed. 1000 words: 7.68ms, avg 0.0077ms, cache 71
+
+> node tests/associative-morpheme-model-parser.test.mjs
+Associative morpheme model parser tests passed.
+
+> node tests/associative-morphology-review-v2.test.mjs
+✔ exact native scope and independent authority are required for semantic verdicts (28.721594ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 33.731552
+
+> node tests/associative-national-correspondences.test.mjs
+✔ finite documentary registry protects exact senses without promoting legacy membership (94.46457ms)
+✖ independent JavaScript verifies the locked registry and every proposal manifest (69.468829ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 170.199926
+
+✖ failing tests:
+
+test at tests/associative-national-correspondences.test.mjs:107:1
+✖ independent JavaScript verifies the locked registry and every proposal manifest (69.468829ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + '05270cafdcfd43a0254e8b38f7f0e9c7fff9761dfd9d94b1e278cc16d10c9afe'
+  - '9ed458d253332e78b4f184070bbb9fa95a136d50a38ece042f78ac7b79e5f138'
+
+      at file:///workspace/scratch/26989df269a1/interal/associativvordes/national_correspondences/verify.mjs:44:60
+      at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+      at async node:internal/modules/esm/loader:647:26
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '05270cafdcfd43a0254e8b38f7f0e9c7fff9761dfd9d94b1e278cc16d10c9afe',
+    expected: '9ed458d253332e78b4f184070bbb9fa95a136d50a38ece042f78ac7b79e5f138',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+  Node.js v24.22.1
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/26989df269a1/interal/tests/associative-national-correspondences.test.mjs:109:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+Test failed: tests/associative-national-correspondences.test.mjs exited with code 1
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice

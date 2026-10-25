@@ -1,4 +1,13 @@
 """Read-only, fail-closed historical constraints. Never grants a production change."""
+
+# Installed writer boundary; isolated restored tools retain self-contained replay.
+from pathlib import Path as _HistoryFencePath
+import sys as _history_fence_sys
+_history_fence_root=next((p for p in _HistoryFencePath(__file__).resolve().parents if (p/'associativvordes/mutation_guard.py').is_file()),None)
+if _history_fence_root is not None:
+    _history_fence_sys.path.insert(0,str(_history_fence_root))
+    from associativvordes.mutation_guard import install as _install_history_fence
+    _install_history_fence()
 import argparse
 import gzip
 import hashlib
@@ -224,7 +233,19 @@ def active_check(proposal, repo=None):
         if current.get('schema') != SCHEMA: raise ValueError('history pointer schema')
         name = Path(current['snapshot'])
         if name.is_absolute() or '..' in name.parts: raise ValueError('unsafe snapshot path')
-        return check(repo, root / name, current['sha256'], proposal)
+        result=check(repo, root / name, current['sha256'], proposal)
+        overlay=root/'ADJUDICATION-CURRENT.json'
+        if overlay.exists():
+            pointer=json.loads(overlay.read_bytes());relative=Path(pointer['registry'])
+            if relative.is_absolute() or '..' in relative.parts or not (repo/relative).resolve().is_relative_to(repo.resolve()):raise ValueError('unsafe adjudication path')
+            if pointer.get('schema')!='interal-history-adjudication/1':raise ValueError('adjudication pointer schema')
+            from associativvordes.history_adjudication.query import explain
+            h=History(repo,root/name,current['sha256'])
+            detail=explain(repo/relative,pointer['sha256'],h,dict(proposal,data_version=proposal.get('data_version','UNSPECIFIED_LEGACY_CORPUS')))
+            result['adjudication']=detail
+            # The overlay cannot create authority or override an existing hold.
+            result['allowed']=False
+        return result
     except (OSError, ValueError, KeyError, TypeError) as e:
         return dict(status='HISTORY_UNAVAILABLE', allowed=False, reasons=[str(e)])
 

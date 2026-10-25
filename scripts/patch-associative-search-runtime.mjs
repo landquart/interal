@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 
 const RUNTIME_MARKER = '// Static associative search runtime v2';

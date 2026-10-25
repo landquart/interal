@@ -1,0 +1,59 @@
+test_claimed_newer_authority_never_supersedes (associativvordes.history_adjudication.test_guards.Guards.test_claimed_newer_authority_never_supersedes) ... ok
+test_engineering_measurement_is_not_decision (associativvordes.history_adjudication.test_guards.Guards.test_engineering_measurement_is_not_decision) ... ok
+test_js_dotdot_name_inside_protected (associativvordes.history_adjudication.test_guards.Guards.test_js_dotdot_name_inside_protected) ... ok
+test_js_open_handle (associativvordes.history_adjudication.test_guards.Guards.test_js_open_handle) ... ok
+test_js_parent_delete (associativvordes.history_adjudication.test_guards.Guards.test_js_parent_delete) ... ok
+test_js_promises_write (associativvordes.history_adjudication.test_guards.Guards.test_js_promises_write) ... ok
+test_js_stream (associativvordes.history_adjudication.test_guards.Guards.test_js_stream) ... ok
+test_js_symlink_alias (associativvordes.history_adjudication.test_guards.Guards.test_js_symlink_alias) ... ok
+test_js_sync_write (associativvordes.history_adjudication.test_guards.Guards.test_js_sync_write) ... ok
+test_python_copy (associativvordes.history_adjudication.test_guards.Guards.test_python_copy) ... ok
+test_python_directory_fd (associativvordes.history_adjudication.test_guards.Guards.test_python_directory_fd) ... ok
+test_python_neighbor_research (associativvordes.history_adjudication.test_guards.Guards.test_python_neighbor_research) ... ok
+test_python_open (associativvordes.history_adjudication.test_guards.Guards.test_python_open) ... ok
+test_python_os_open (associativvordes.history_adjudication.test_guards.Guards.test_python_os_open) ... ok
+test_python_parent_delete (associativvordes.history_adjudication.test_guards.Guards.test_python_parent_delete) ... ok
+test_python_posix_directory_fd (associativvordes.history_adjudication.test_guards.Guards.test_python_posix_directory_fd) ... ok
+test_python_sqlite_target (associativvordes.history_adjudication.test_guards.Guards.test_python_sqlite_target) ... ok
+test_unknown_native_scope_quarantined (associativvordes.history_adjudication.test_guards.Guards.test_unknown_native_scope_quarantined) ... ok
+test_different_family_and_language_do_not_expand_scope (associativvordes.history_adjudication.test_scope.ScopedQuery.test_different_family_and_language_do_not_expand_scope) ... ok
+test_distinct_known_sense (associativvordes.history_adjudication.test_scope.ScopedQuery.test_distinct_known_sense) ... ok
+test_missing_corpus_and_merge_fail (associativvordes.history_adjudication.test_scope.ScopedQuery.test_missing_corpus_and_merge_fail) ... ok
+test_missing_sense_still_intersects (associativvordes.history_adjudication.test_scope.ScopedQuery.test_missing_sense_still_intersects) ... ok
+test_newer_opposite_claim_does_not_erase_old (associativvordes.history_adjudication.test_scope.ScopedQuery.test_newer_opposite_claim_does_not_erase_old) ... ok
+test_omitted_old_restriction_is_rejected (associativvordes.history_adjudication.test_scope.ScopedQuery.test_omitted_old_restriction_is_rejected) ... ok
+test_quarantine_applies_only_to_potential_family (associativvordes.history_adjudication.test_scope.ScopedQuery.test_quarantine_applies_only_to_potential_family) ... ok
+test_rehashed_scope_change_rejected (associativvordes.history_adjudication.test_scope.ScopedQuery.test_rehashed_scope_change_rejected) ... ok
+test_removed_record_never_automatically_restored (associativvordes.history_adjudication.test_scope.ScopedQuery.test_removed_record_never_automatically_restored) ... ok
+test_same_identity_record_update_is_retained (associativvordes.history_adjudication.test_scope.ScopedQuery.test_same_identity_record_update_is_retained) ... ok
+test_same_spelling_different_native_identity (associativvordes.history_adjudication.test_scope.ScopedQuery.test_same_spelling_different_native_identity) ... ok
+test_unobservable_source_retains_global_potential_hold (associativvordes.history_adjudication.test_scope.ScopedQuery.test_unobservable_source_retains_global_potential_hold) ... ok
+test_alias_negative_is_not_membership_negative (associativvordes.history_registry.test_registry.RegistryTests.test_alias_negative_is_not_membership_negative) ... ok
+test_conflicting_id_not_last_wins (associativvordes.history_registry.test_registry.RegistryTests.test_conflicting_id_not_last_wins) ... ok
+test_contradiction_not_last_wins (associativvordes.history_registry.test_registry.RegistryTests.test_contradiction_not_last_wins) ... ok
+test_corrupt_selector_count (associativvordes.history_registry.test_registry.RegistryTests.test_corrupt_selector_count) ... ok
+test_corrupt_source_hash (associativvordes.history_registry.test_registry.RegistryTests.test_corrupt_source_hash) ... ok
+test_coverage_flag_cannot_bypass_conflicts (associativvordes.history_registry.test_registry.RegistryTests.test_coverage_flag_cannot_bypass_conflicts) ... ok
+test_every_retired_repair_is_fenced (associativvordes.history_registry.test_registry.RegistryTests.test_every_retired_repair_is_fenced) ... ok
+test_idempotent_import (associativvordes.history_registry.test_registry.RegistryTests.test_idempotent_import) ... ok
+test_incomplete_coverage (associativvordes.history_registry.test_registry.RegistryTests.test_incomplete_coverage) ... ok
+test_known_sense_is_not_other_homonym (associativvordes.history_registry.test_registry.RegistryTests.test_known_sense_is_not_other_homonym) ... ok
+test_lexeme_is_not_corpus_lemma (associativvordes.history_registry.test_registry.RegistryTests.test_lexeme_is_not_corpus_lemma) ... ok
+test_merge_requires_finite_scope (associativvordes.history_registry.test_registry.RegistryTests.test_merge_requires_finite_scope) ... ok
+test_missing_snapshot (associativvordes.history_registry.test_registry.RegistryTests.test_missing_snapshot) ... ok
+test_missing_source (associativvordes.history_registry.test_registry.RegistryTests.test_missing_source) ... fatal: git cat-file 65e3a7cf6d96b92d18001cb7380e988437961c74: bad file
+ok
+test_other_family (associativvordes.history_registry.test_registry.RegistryTests.test_other_family) ... ok
+test_other_language (associativvordes.history_registry.test_registry.RegistryTests.test_other_language) ... ok
+test_other_lemma_no_substring_expansion (associativvordes.history_registry.test_registry.RegistryTests.test_other_lemma_no_substring_expansion) ... ok
+test_partial_journal (associativvordes.history_registry.test_registry.RegistryTests.test_partial_journal) ... ok
+test_real_restore_idempotent_destination_protection (associativvordes.history_registry.test_registry.RegistryTests.test_real_restore_idempotent_destination_protection) ... ok
+test_scoped_negative (associativvordes.history_registry.test_registry.RegistryTests.test_scoped_negative) ... ok
+test_snapshot_changed_requires_new_pin (associativvordes.history_registry.test_registry.RegistryTests.test_snapshot_changed_requires_new_pin) ... ok
+test_supersession_is_not_automatic (associativvordes.history_registry.test_registry.RegistryTests.test_supersession_is_not_automatic) ... ok
+test_unknown_scope_requires_review_not_all_senses_negative (associativvordes.history_registry.test_registry.RegistryTests.test_unknown_scope_requires_review_not_all_senses_negative) ... ok
+
+----------------------------------------------------------------------
+Ran 53 tests in 2.016s
+
+OK

@@ -1,4 +1,13 @@
 """Independent stable-ID check over disk census tables; never repairs IDs."""
+
+# Installed writer boundary; isolated restored tools retain self-contained replay.
+from pathlib import Path as _HistoryFencePath
+import sys as _history_fence_sys
+_history_fence_root=next((p for p in _HistoryFencePath(__file__).resolve().parents if (p/'associativvordes/mutation_guard.py').is_file()),None)
+if _history_fence_root is not None:
+    _history_fence_sys.path.insert(0,str(_history_fence_root))
+    from associativvordes.mutation_guard import install as _install_history_fence
+    _install_history_fence()
 import argparse,hashlib,json,pathlib,sqlite3,unicodedata
 if __package__:
  from associativvordes.v5_baseline.census import atomic_json

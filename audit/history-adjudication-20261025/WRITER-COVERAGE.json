@@ -1,0 +1,1192 @@
+{
+  "schema": "interal-writer-coverage/1",
+  "method": "Tracked source scan and explicit imports; candidate inventory is not proof of arbitrary syscall containment",
+  "paths": [
+    {
+      "path": ".github/scripts/verify-pages-output.py",
+      "sha256": "41835583b3ba46dda27d167b2161ee98af7799d2451091cc847f3a292231aa79",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": ".github/workflows/audit-production-associative-family-v5.yml",
+      "sha256": "ae5ce405c04cd9b0817364f7bd1b274d8ba6360b114a67bdc8c85cb8bc26b72c",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": ".github/workflows/audit-repository-associative-family-v5.yml",
+      "sha256": "43a8898c6b62b74af43496978a7280afe14c39a3722dccd465546835f9102082",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": ".github/workflows/build-and-publish-associative-search-index.yml",
+      "sha256": "6f1dd02257584c8ce6244a51bd4e3ca38b78ca2eee82e7cfca8e52b609effad7",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": ".github/workflows/lexical-card-registry.yml",
+      "sha256": "4c091bb8f7d48cd93f7c9f3e993df9202e023d7d01a98969b9bfd1bf6cbc63b1",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": ".github/workflows/materialize-associative-family-v5-repository.yml",
+      "sha256": "d7a48d0d78686dc05eef5527b0ef2903980665c31a112fb9d8ab59527b2741fc",
+      "guard": "WORKFLOW_UNCONDITIONAL_BLOCK",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "sha256": "49f842248d8415fe158d7acd7e2c14734d903797dcb4b346c9993e9a043a0078",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "sha256": "324c9e2c5c91aee8f85e7ee027a7dc9f0ab922b63e29e96e48d3a93817244b3e",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/auto_annotation/test_annotation.py",
+      "sha256": "138e08a91c7d08b8b25dd50ebabc2218451a2c368abeafc797e4a73b3de7a2da",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "sha256": "ef43d67b195c33c050e96546b9e275a7bdbd4511ffa1ffaf6810729015bf9f01",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "sha256": "fdb517331b18471d974f63dc19a2d2709b3b80fae59d73893abc93226946ba5f",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "sha256": "692626c77b8eec8470db93f13fd936e34030a58887e1e7c0d591afdbc6d400bd",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_source.py",
+      "sha256": "b546fdf5738ce588aa2e843b32a5bd1bd29e58274c38c994bd8b97557e3799cf",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_store.py",
+      "sha256": "7ffbcc86162fef22d6505cf691df1bfd30452bc410fee1715e4b7fb95698c614",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/pilot.py",
+      "sha256": "161145035f084ac61c91efd36974d752b0cc8b5ed8da72021e53dd51937f3ccc",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/prepare_frequency.py",
+      "sha256": "9336f87463ea047d792ab894732d2fd82ee585be6a8befc30271e3b79976e1e3",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/candidate_search/scale_project.py",
+      "sha256": "10c5392bffcfc9d57623b85b46d541971d695b505aa7ab56b509e98dd6c71e0b",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/candidate_search/search.py",
+      "sha256": "719276b0cefec79bd542252a16ad2683a53cec5113cd4140862c7acd58e7311f",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "sha256": "406441e116279e6c0490bc057f9de065301b770eff8e1e8ec5ddb98d182619ae",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/candidate_search/test_scale_project.py",
+      "sha256": "fad0bbc49030d3e00174e7cf12ec6166af78a3824f8639e7f5fb4dec20929761",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "sha256": "0e19685bc328575c9e4e703dc0766a79f11de3bad55316e35a59b32b95c2f8af",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/cleanup_quality/prepare.py",
+      "sha256": "52fbb1b0eafa0c518512ca2fa8263a5a1a5c1958d032046c7bd39ecb11fa8112",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/cleanup_quality/supplement.py",
+      "sha256": "f4aa900e54245c8a8e33f0d62e97f6778974703b516b75d7a304e00c044ef273",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/cleanup_quality/verify.py",
+      "sha256": "f598783165d3053aecd2f89dd73a0816fd80ba67fd57bc720e2e7cf71460900b",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/evidence_graph/analyze.py",
+      "sha256": "4ae4343d022f2099bc664a0e75142dc725860ad49f09e186b0dcdb3fd0415b54",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/evidence_graph/build_graph.py",
+      "sha256": "ee3bd767c9c32675bbcc73c66ebd4c545c9e33a70090afb69f3182298b444f34",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/evidence_graph/graph.py",
+      "sha256": "e3636bd35a61baa82a558a52079624ada1049beeff3d2a73476606d91fa24554",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/evidence_graph/prepare_registry.py",
+      "sha256": "7a116e4a6741be7303cc3729197387f7bf6f6ca3b7ba055b95c9a32159782139",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/evidence_graph/select_pilot.py",
+      "sha256": "176b70192788111e88c2b1089675f3f67fdcdbcfe67b57bc51ad8f31154a0a02",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/evidence_graph/test_graph.py",
+      "sha256": "bf76bd760a6cea77504f5fa96bf01ce6053d0ed3a90cb39b0409717d3f06fec3",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/family_boundary/archive.py",
+      "sha256": "e0224510e906779ed5baba424c85bbf7dc61e0af4b34cfc2c00161616217edee",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/family_boundary/core.py",
+      "sha256": "31b1305ad612405a04bde212ac5cabde5a24c2233cca5c523bb4ab79fbb9d210",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/family_boundary/restore_prior.py",
+      "sha256": "bcdbbd4a95141994eb7e4a562c7b721d6e2446d21db889968f84f735c5863340",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/family_boundary/v6_proofs.mjs",
+      "sha256": "353b9ce17da92e33d45ef95630c5c70cdaebc4dcf19bab3297f273b082e2b938",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/family_boundary/verify.mjs",
+      "sha256": "99497d49bb832ddfad26d250891925471cb6d9f46c57ea96c5175acb80df210e",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/flexor_research/hanta_probe.py",
+      "sha256": "1efcd3ff7e160d0cd3c368c0c1f1d8be36d4a64ecfd9c9bd679d1b68ea5c48aa",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/flexor_research/prepare.py",
+      "sha256": "980dafbab1329c3eeb015d3ebd1a9066a9829da2bf6db3d04cba66b96502933a",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/flexor_research/test_prepare.py",
+      "sha256": "b9c8f370a5270e336f568860671854d5c9b8388d4b5a065fded843c23f01ee37",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/raw_replay.mjs",
+      "sha256": "af92064b574898e5525a32929bd27b09ff7723092ed0bbc93a401e888c62df82",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/runtime.mjs",
+      "sha256": "a70250edad71e60224e3a5ccc212bb15eb7654d680068ad1985b3aacd0f65dd2",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/store.py",
+      "sha256": "191cbacd919442b1a5e8198b762f7c7a0f96409e9d4a8221a442fd4a5665d639",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/history_adjudication/build.py",
+      "sha256": "d4ae9d5e771b7850772b1fc4840fceaa3b4cc5d4dcc38ce231aab7f964310bdf",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/history_adjudication/coverage.py",
+      "sha256": "04e3ac4c2827cd293daca6182532bece4bdba1603fce7984d6b22cfcddd69f01",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/history_adjudication/diff_audit.py",
+      "sha256": "46f9634cbc498042a3e786edfc8aaef5ba53ddb16a38a5efa5256e63fd022420",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/history_adjudication/finalize.py",
+      "sha256": "d8300c519a6f46b4b7cfc3a1ca1649476269757cffc9499ac9c154f303434627",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/history_adjudication/test_guards.py",
+      "sha256": "1eb30a1aa2ad82869fcd66b65a160d220f6dd2c93751120510e1a00d357a4294",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/history_adjudication/test_scope.py",
+      "sha256": "ba3f3cbd5b9fa3edacb3e6c87b75b4819e5e7c3aa544236f9bf9191cee900666",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/history_adjudication/verify.py",
+      "sha256": "cda8a0a7af1d58b96b1f3c0a49f7e5aec51543dc1d7b402523a83fa5a42faf19",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/history_registry/registry.py",
+      "sha256": "f0834ab6d80ab20fcd2a882cb603c1b6eff2d27fbc0fca96df4d173334576656",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/history_registry/test_registry.py",
+      "sha256": "183a6c0d67ee553412600bccf4b284974c24b290ba57bf8fcf941bd3c81303c2",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/build_catalog.py",
+      "sha256": "afee9a2bfa91276e6bd88909db90fad99ce0762477fe05fbc4c208b234c7b482",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/corpus_cache.py",
+      "sha256": "dc1952f3fe0a417926ac65f04891b92498efdc71c39ce0a70d4b13afaeefd0b1",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/fetch_glemm_git.py",
+      "sha256": "3e1f55de21cace25a7dbe06e7a10fd59bd533f2bdb2a64afe84c8c97e1298204",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/fetch_sources.py",
+      "sha256": "1770f713aba05d935897ebeffd34467989108e381ecb7236cfac0037a1f42e0f",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/glemm_cache.py",
+      "sha256": "88e0c57fe02fe47cd0dba5eb07f7d47cf85148a9ef550820a97570de808b3d0a",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/morphology_import.py",
+      "sha256": "06717b9f51c6defb90613386d0833dde68f9bb865d0eb729135c5b106099ee33",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/scale_index.py",
+      "sha256": "363ebb60b25b5eb0975049aac2c33b23c4c44867345fa3d3b2c49c1fb4901e07",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/test_acquisition.py",
+      "sha256": "938c1b0322c07e02959b7905baba6f0e211cf22053083b6247429de6eb3af622",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/test_certification.py",
+      "sha256": "9207c30162f1163712c628ba94e8057059a0a5f5db73bb89ac69f2d585c5d2de",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/test_glemm_cache.py",
+      "sha256": "c1dcf1ea30798c96958893116ad15ff72a6c4d36083e17bced8cbb9588982b86",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/test_glemm_git.py",
+      "sha256": "b3174e5180860d40bbb74b208e46a68b4a09d353f9ccacd3aa1c4b3f7f464ac1",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/test_morphology_import.py",
+      "sha256": "efac5397a608795d31bdd1f21f67d8b1255fb1c7eefc391517a7cae7dd78fe3f",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/importers/validate_sources.py",
+      "sha256": "e47502d9e6eb3b36a29704f78b40b746850717db4949b4a55213f1c31bdbe954",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/mass_dry_run/run.py",
+      "sha256": "6c4b73d299cec897209358e4edf9b86282964538e34288195210dd5c11fda43d",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/mass_dry_run/test_cycle.py",
+      "sha256": "919de9ebbea2d24b625b18cc379728491a12fbe3f648b475217d2fe91485c728",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "sha256": "6bbedcb8d3d6c32c47f73ec14e745b4d85f273ce1ae5f8aea9aa79a3d37db95d",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/morphology_cleanup/verify.mjs",
+      "sha256": "5fd53d8c45cae915e9b3c694c9c6c8819f7bf17e72b974e0305f9f0a0f518679",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/morphology_review/run.py",
+      "sha256": "8f90988cf17e533edc7abebb9a46c8023563d922c46dba6179edb52b388a257f",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/morphology_review/verify.mjs",
+      "sha256": "2876a8e1075b402da6da52180e1656c9c3ba815a3a4f454c066a4b4a8916e09a",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/mutation_guard.py",
+      "sha256": "a819ff45682c99c301c9990cae944aff1db91b93a3f6465477a3eac340a0b4d2",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/national_correspondences/audit.py",
+      "sha256": "05270cafdcfd43a0254e8b38f7f0e9c7fff9761dfd9d94b1e278cc16d10c9afe",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/national_correspondences/registry.py",
+      "sha256": "f33e8f8f82127f466af5702bd778f3f53d38511ab17e22a158a433edb46bd0b2",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/archive04.py",
+      "sha256": "515dbc4ff7d2b2fd8593f96497a6925af17b235c740e88ba9592af6a36dd553c",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/capture.py",
+      "sha256": "367b44ba9ea854fe334c265a95ed8bade65bcdc8721bb4b25a5cb9e2f5b25d71",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/compare04.py",
+      "sha256": "3c838f8f0217c979eb5b7c697927f4fd716496faa9e7a755ef33dfebb7f5d554",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/impact.py",
+      "sha256": "d47f6993c15cbe9e9b2210c4fc1450700afb3896e7bc2b2927c8f640f335a0e9",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "sha256": "575fafa4d35ac542c60da24eb807befa142aad89f220ac01a64e8c861e7c113c",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/replay04.py",
+      "sha256": "f47bfb372c1b63e4f8ce8e7d32151c997afdd66ca2a30ebe53cc11f630220aa9",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/reproduce.py",
+      "sha256": "e2a01d42644c43c1e73a77c2507ae955e9ee1f8f43ca63717998d863aeaf0221",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/run.py",
+      "sha256": "17e752ef2d176947fd8e7659122f2b35fe34a6c2892061a5c398e77da4b46deb",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/runtime04.mjs",
+      "sha256": "10518c14fc58e19184f08d44459aa2418275491f00e1df191d835bc192c04818",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/sample.py",
+      "sha256": "034a3edb640b843592f5358bccf3bf986cd9bd27f179824834fa5ac6af5f95b5",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/study04.py",
+      "sha256": "e1667c76d905252e2eaeb824b19be587a70db79b7905db841283cea0570fb8b6",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/test_pilot.py",
+      "sha256": "eb18c978d99870ba5247733c6f07bb7bfe0e873d471b1bfa25de5ab491eb8a78",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/test_quality04.py",
+      "sha256": "089c10a0cda3aba1aac4c7d24dbd93db82a9c18cc8f8c6fa7e71beb25c49edab",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/release_control/baseline.mjs",
+      "sha256": "7a5d175196fe59341fcfdf37bf92c843cf7f221b10ee69efd67667cf2ca75f86",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/release_control/calculator.mjs",
+      "sha256": "ef0dd812789121250cc9bea5c2f8c49b6322593b2d594934bbeaf3917cf1daa5",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/release_control/control.py",
+      "sha256": "c296456ae0d1c13fa3e6350a6acca5469994b65ea2b10c46c5c060a25556bc8c",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/release_control/graph_view.py",
+      "sha256": "29d45ec491f390267ccbfd6f4024b3fd4b4e0f3b711f27883d49012429c65c65",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/release_control/inputs.py",
+      "sha256": "f4b2928770061fa98cf032433f213ba40f5ffbf8f8782210a8c08216db7a55a1",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/release_control/registry_view.py",
+      "sha256": "75f9daee70ce693d3391e248efaea1292b8a767afd5b9ca54c49407f2848b734",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/release_control/test_control.py",
+      "sha256": "f348167696ef7221d1f239959fde057d5c31ca984c3694773cd19c38f37f5461",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/review/exercise.py",
+      "sha256": "d5b894cd6a4b478a975b7154fc16d870fd85085f6fec25b5a32b19b8dab85c2c",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/review/server.py",
+      "sha256": "e686e0a66c5b1d67a179f42830682a710187507ee5af1644d7c479f28998392e",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/review/store.py",
+      "sha256": "69146752395b71d52604a715d986877d8d44fb3cea5a1b4a154d66696828abeb",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/semantic_cleanup/bundle.mjs",
+      "sha256": "e4e5c376543580a9490763008adc7da7cb62d2d496fb660d3f43e65f497de5d1",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/semantic_cleanup/native.py",
+      "sha256": "d170c91e46f107a0ebebacd6243fd84b0bad2e3ff41f532af1d55b8934200d52",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/source_recovery/catalog.py",
+      "sha256": "aafb20959ef99c42cab663fda847f9c2073e57b6012fdad76905a8799c7ce653",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/source_recovery/restore.py",
+      "sha256": "ba41fae8f330355ab20ef13d34a5ccebaff0d588c8fc9ad29fd8b91c4c47adb7",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/source_recovery/test_restore.py",
+      "sha256": "b4a3f64f996e669e0080038054c9e959ba3302b04a1cd78ff3257d64e78220d4",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/structural_cleanup/scan.py",
+      "sha256": "a9894c574b689799168b6fa9e911914236042db906bf7747aa1f7ed307f06586",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/structural_cleanup/shadow.py",
+      "sha256": "88cb0d7b6f3672eb0b69d9e7c71261f4f6ac470abb88c6cf99d062aaea7def75",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/structural_cleanup/test_cleanup.py",
+      "sha256": "0b5de65a0080e484b8974cfb34f75c38f1694b931e991e2310911b1371ca171e",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "sha256": "df4220d4983a66a6fd9bc076507c02ef8a757edab445519bdb92a94c77be6bcb",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/surface_cleanup/controls.mjs",
+      "sha256": "8ed7029950c3e85a628a06b04533994b429c436c479b394977b546bd22eb76de",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/surface_cleanup/exceptions.mjs",
+      "sha256": "8f63596ec54fef79a22ec63a4a891c738503c0e4f08ce18f1802e964d74a5f39",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/surface_cleanup/historical_scope.mjs",
+      "sha256": "41fc76296efb091ced833328f3b38b78a096d498c8602b7653395a4f94313099",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/surface_cleanup/history.py",
+      "sha256": "6c64067c2349bae84adff6c208d2ce64cc0bfca42af488a9ab8115943104c018",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/surface_cleanup/run.py",
+      "sha256": "b45676d454f6365e30e89068871efee1601ae43ece185868eb933e4ff1474e84",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/surface_cleanup/verify.mjs",
+      "sha256": "0054448963ecee94f82da097bdf04a9f2bb21f60480fb644715be7dbe4d0acfb",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/v5_adapter/common.py",
+      "sha256": "2b7198350e7cf22a77872359d430a4a030058380bf560032e62f58cf1ad8d045",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "sha256": "03d5230b8a4c3b9024f2a893fd8cea6ad4c43d3183cc69dcfddd559f6ef25dcf",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/v5_adapter/test_external.py",
+      "sha256": "7c816b3e8e5b24e7d3fc9a10c14b44cb32b47932b0eb8df7c56bba90c0f92074",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_baseline/audit_ids.py",
+      "sha256": "51be30769f0e6d7a7f782538443c34545030bca0316fca282f3f21d7c3b811ae",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_baseline/census.py",
+      "sha256": "6ebedc3e1b250f47aa54c3d61dd6d86fd1527e90a5d585f40a0ef39847128029",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/v5_baseline/certify.py",
+      "sha256": "3788e76ef66d02d128e7fb18b931e8f0d649f9965c0e4d24ac835b52a2462180",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_baseline/test_census.py",
+      "sha256": "ce2e7cdb1db1abe14a990039d06a58124e1177ab1f0e8f52ec8c0e662b4c2458",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_contract/versions.py",
+      "sha256": "055c6dd392d034065f9ff1b18899900d5db0be2aa1d842844eb04dafd3784328",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "sha256": "c9fa8fed5c850128d2f42b4b5193046ff52adec8cebab08ddc3163d66f4f0677",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/backup.py",
+      "sha256": "505701530913727c8484079d311374ff676b50f7b495968af8b40f8dfa74c612",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/finalize.py",
+      "sha256": "b78cbbe217ce20b1512e529125a98f4bb245f8ceedcf14abae1aff57e7d6b286",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/query.py",
+      "sha256": "6be0a3e8a449b3cfb345e01ad90a35f340112e0b68d73f0544ab90169e1d4593",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/suffix_exposure.py",
+      "sha256": "e5137493933a0cf6e257693c6abeb3a7c8ecd51cd6bea0898c3c4aa75d7e86b1",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "sha256": "4c90d4d9f2a7d5ccd49b7df72a9a052f80d538d87cfdd077d6f53db40d7ae414",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "associativvordes/v5_release_control/package.py",
+      "sha256": "fad1050d0e4a5688c4aff2f7162c1374968cd2c00fd7d4608cc587b99fbb0cee",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "audit/associative-external-preparation/verification08/verify.py",
+      "sha256": "9f6bb04a1191218ba89e4baae97fe8df9e355c5eac7871eb1b097679657d029e",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "audit/pr-review-679-694/reproduce_completion_gate.py",
+      "sha256": "8c7edb82018ed080b0265f78318298c700133c5608478012bfc5d81a764e1aa6",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "audit/pr-review-679-694/verify_blind_whitelist.py",
+      "sha256": "80493ddad3e9e4e2f74ddf31bdd70b99981e89f75fd80b0a8d6200952807eeb5",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "audit/pr-review-679-694/verify_native_quality.py",
+      "sha256": "7aa476a1b6234c24205606702bbe7d8932bede5c17a1013339fb7d8631b546b1",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/add-pie-roots.mjs",
+      "sha256": "aa1c561eed7d69acd7d6d0f178ca2435e9bb0be42d516f1690b032f7e9987db1",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/apply-associative-family-v5-manual-cases.mjs",
+      "sha256": "7616af4aeab116e4ca0c87ba4c66f54c25e49a36e058d6ec9cff4afc541a515b",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/apply-associative-family-v5-surface-decisions.mjs",
+      "sha256": "aefc8bd73c08c622c63dfffa6cedda5b4a0be731fd42460213ee79306454b98e",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/archive-v5-morphology.py",
+      "sha256": "74057746a64e7ca382b48b8a091b66c1a9fbbe100853777f20ae1d34e1d3e134",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/audit-associative-family-regressions.mjs",
+      "sha256": "f4f35fddb835ea8a7d78c8bd23b7053884acdff6031e0938a83ebfabd82f7a46",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/audit-associative-index-memory.mjs",
+      "sha256": "372c78c5a608a77f1293da7618b6ffe6313519917cfd727801879df352183676",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/audit-repository-associative-family-v5.mjs",
+      "sha256": "09b6d6c725f90ebb8e5cbf3d42b257afca3a9e1a02e8f7498d80bb9559fde8f3",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/benchmark-associative-family-runtime.mjs",
+      "sha256": "e043d66f615373adb0750b196af0e893f05350a6d6116648f06f38909e2a8650",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/build-associative-candidate-index.mjs",
+      "sha256": "c2c68487ac94591d4ec86469bbc2080981db1fc37caeeae2c955be010b2ae218",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/build-associative-exhaustive-family-index.mjs",
+      "sha256": "a4fabdd45cb5e669181dcd1995ad0715992b54fc9c2eca2e2142c4c87c4bcf27",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/build-associative-static-search-index.mjs",
+      "sha256": "d38e51b994c2d34d45fb3f223fe81ff062803d2ae1f06d5469d1199ff123535d",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/build-global-card-registry.mjs",
+      "sha256": "2683278d8a5006c9cbbdfd34469f925136e5bcf023a4f4097f404b5bbc013c7e",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/check-v5-morphology-history.py",
+      "sha256": "c71a68b243a1ea73f5ec5fc891da5dffde2e4f48efc3b7b94a4b2538365b1c27",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/finalize-associative-family-repository-v5.mjs",
+      "sha256": "384575cb7b111d569aa1d5eda47a3fa58da1277b7da85f37a399133d78ff4433",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/lib/installed-history-fence.mjs",
+      "sha256": "3023be2b65d4e42a38bc8dade68a61c29a211cfad74e9273797d7e00c5cabe67",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/merge-associative-index-artifacts.mjs",
+      "sha256": "30a4f8c5132fc1c2710b2b0f9fca239993a64c2348237310ce14f60fa068fe6c",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/merge-associative-static-search-artifacts.mjs",
+      "sha256": "038a320bfdb403a1e0d25558c212aafb8b2242902489dd75d0c5dac487d4c9ac",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/patch-associative-search-runtime.mjs",
+      "sha256": "a39ea2025c556d77592a830a6b250335b5b66a95e9cc63b6fe84ddf833792aee",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/prune-associative-family-actus-cases-v5.mjs",
+      "sha256": "a2385c452c56fdd26f47b10bb52ed67a5b1fc7103790522147863c13609ad643",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/prune-associative-family-genea-german-v5.mjs",
+      "sha256": "bd6904834b98ad14c53a7131173696e645f6159fe363a7f075b179c8ac0d59ab",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/prune-associative-family-genea-other-v5.mjs",
+      "sha256": "ee5427add0bd4bc993ffa50ff562e25ba6c86cc47d366689b11b06b089bd279f",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/prune-associative-family-illas-v5.mjs",
+      "sha256": "2b074d161a3509d2a2f2ca1b8fb372df364d54cd2191c5213e76f9de45f84f36",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/prune-associative-family-illos-illis-v5.mjs",
+      "sha256": "0b9ffe714f4a9545f91004704170ce97e6d86ee9fd1d05b668c4baded9d3c6e1",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/prune-associative-family-nitidus-v5.mjs",
+      "sha256": "2c52186c21d604950887dcfab43b2bd203c599b7b63ca7533f426d472424975c",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/prune-associative-family-ru-two-letter-v5.mjs",
+      "sha256": "9bd0d91450c19ecd2638a43f0bdf9590a2fc91844741b74f5ca34001f208b553",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/prune-associative-family-sonus-v5.mjs",
+      "sha256": "4771726dd04cfb3f86e24b70d1109215caf2982eb5476f7f1c36c902a61537ed",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/quarantine-associative-family-net-alias-v5.mjs",
+      "sha256": "a02ae3fdc97f4c85568f9becdba27fd66f66993493352abe15fed14965c88c8f",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/reconcile-associative-family-pronoun-metadata-v5.mjs",
+      "sha256": "4096149a8c092adcf0c4e528e60af43402b8364d07aa303b18445b4362515d06",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/refresh-associative-family-v5-report.mjs",
+      "sha256": "92d4727b2a4bad79b9a628e6e3a6e85fd940c6f644af4c11ab632a82b7bd55ec",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-incoherent-ending-families-v5.mjs",
+      "sha256": "572782ff549f6161a94da85b859afbd43ac0c1e7a5007353e2ffccb8c6b530d6",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-incoherent-inflection-families-v5.mjs",
+      "sha256": "7671201444649d1016752f1a13d951d73a2a8a053d68be2e6d62a3ef8801325f",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-incoherent-surface-family-v5.mjs",
+      "sha256": "bc8d6d3b240e1c1c8fb39785dd51dbe1926387ce7f6b889037a9e7c088529093",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-ru-ka-v5.mjs",
+      "sha256": "c3e9463c5acf4c97b31dd7d908a0087b3a6e0a3dde68c46f7c15faccefd4367c",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-10.mjs",
+      "sha256": "67687cbb8cbf4962ba226f82eb2d06101ab61d470bc4919ad53769d3354463d0",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-11.mjs",
+      "sha256": "b876390a5bafb8bef0e75bd06ddffb091b1996868f91cb5979b8dddcaa80ef9a",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-12.mjs",
+      "sha256": "0598d92c66409212afc93d4e609bacc142a3dbc695f021fb9c0ebf9228ddcbbb",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-5.mjs",
+      "sha256": "7e1ab0796894be407a073bfef697f2a73b2afae1e5f4e48c865f404575fe9570",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-6.mjs",
+      "sha256": "72967bfc2ecead10cf22412b5cf51407f5f97716552168b774fb27251dd328d7",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-7.mjs",
+      "sha256": "9e36609d4e943d245c3ce58b620863d45a585c82badcbf6a34b0adeee3c4b3b2",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-8.mjs",
+      "sha256": "00d2bb0c237bd492c86f1de1c8e3a56df4da1a44f5bda692395f89d5667b33f2",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-9.mjs",
+      "sha256": "960e4660c5be5311eb695b9985f54eca974c0c33c714ab7ca42caa658e27c770",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/repair-associative-family-controls.mjs",
+      "sha256": "3d68dc33aff3bf27077c230d622c13e583a168ec287a9d71e70851ece9f26672",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/repair-associative-family-val-ru-20260930.mjs",
+      "sha256": "e21a0c5bae2c8b4f485141dba4bee47e1d0197f11804775365e4eeb7b342c9bb",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/repair-repository-associative-family-v5-noise.mjs",
+      "sha256": "2fae541b584e4a1fc089d3d629ecfe5e7a76e1e1c4c6da29ec2aa96e6457d290",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "scripts/sample-associative-family-memberships.mjs",
+      "sha256": "d30200d7053c2341ce88428beb54b9f306b081384cbcdee123545bb0f14c1d7e",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/score-associative-family-annotations.mjs",
+      "sha256": "ed909ef344fc621ec2a33ebc6801f08dc32c978cdf33436f1de66d71b53e2107",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/stamp-accepted-at.mjs",
+      "sha256": "c83a5cd57311032fff48de23d9a474d83130852f4a1b57e6b9acbed8d20922ef",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/summarize-v5-morphology.py",
+      "sha256": "891e53b851a014368018105f0e6200bb4b137ec543565f53b7aa1b42eb84054a",
+      "guard": "PYTHON_PACKAGE_AND_BOOTSTRAP",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/validate-associative-index.mjs",
+      "sha256": "0111e35168fb7561614df61e0b3cae18c4300d867366eb4551f7d907418a2074",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "scripts/validate-associative-static-search-index.mjs",
+      "sha256": "09b9cd2090723fb19130c0e53fc703e03f0db0da6cdf5d8c0488d451aa2892d6",
+      "guard": "NODE_INSTALLED_FENCE",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-cleanup-quality.test.mjs",
+      "sha256": "51312f9379253cd616a0294847aa62b2cce43cdced46f269077f1eb36c559b29",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-family-boundary.test.mjs",
+      "sha256": "8b59a71959194897eb8c8615e14ab0584c5f1f31b58dcf1d0d9fb32609ef2847",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "tests/associative-full-v5-completion.test.mjs",
+      "sha256": "bfa7a03babe3b8e39dc5e23559322b112f38c74f31af0d58764cf0b6068e8833",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-full-v5-dry-run.test.mjs",
+      "sha256": "7aa6d458ece59f2ce3281af4159c73883b1ffe465ebd55258de8bda86250a84d",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-index-builder.test.mjs",
+      "sha256": "62c57eb1b11078a8bbbea4b391484c2326d91f0e855d3f0a7143f88f99b413fe",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-index-empty-search-form.test.mjs",
+      "sha256": "8c67f555978db34896e4aa88a67d93e56dd7dd508118efebcb7fd90d466c3add",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-index-merge.test.mjs",
+      "sha256": "d5d9f478c761ef689e6d2641fdaf2fdec99dafa74645cadeba8fa088e92b02b9",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-index-validator.test.mjs",
+      "sha256": "894f5fc7ad027e8994da89d94f9fad2ea41917cb1695f02c32b4fb1d357ee683",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-national-correspondences.test.mjs",
+      "sha256": "08a01f71d5cdce3338ec40212b578a347281efe2eee1dd196576425a22b0e26c",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-repository-materialization.test.mjs",
+      "sha256": "2bd52f3c136891004eb1237722b0de5ecb4531ee1678acfdaf87000f1a555fcd",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-search-runtime-patch.test.mjs",
+      "sha256": "5d70abf5e84e86d0b0ac98323906e7f6eb5be2e2a126fa7cf6f751a8c62cdf31",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-static-search-index.test.mjs",
+      "sha256": "e24691c25439bd1b1b67990af2efdcbc8c346853642922f483eb47e8d3e9c462",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/associative-v5-release-readiness.test.mjs",
+      "sha256": "9e21b59a673716831b652c713792c6814821db5f8c2fadfd3ea1b006d752c1f9",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/browser/associative-family-v5-artifacts.playwright.mjs",
+      "sha256": "f30a7011c7f26daf24dabb00498d0b500e711a54fc7b39038d813bd0ddb9f396",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/browser/associative-family-v5-production.playwright.mjs",
+      "sha256": "0b16c33e272ff3564febbae1a7add7c9ea6c47b5df3fc2a01f54ff20d55f745a",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": true
+    },
+    {
+      "path": "tests/browser/associative-review.playwright.mjs",
+      "sha256": "74769a670f4a0be719e8e7c28608316c388510fc97704a9cc2a20c5f3b05a0cf",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/pr-review-guards.test.mjs",
+      "sha256": "c301a225864676b5955c4cd5f11fa2b85347229dfb22e11cd761bdd98aaad0b2",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    },
+    {
+      "path": "tests/review_audit_fixtures.py",
+      "sha256": "a4ee92e1f5d346d08097618f561ddefcff0c363e64b41a54c8da4ffa5f8bc7a9",
+      "guard": "REVIEW_REQUIRED_OR_RESEARCH_ONLY",
+      "production_path_mentioned": false
+    }
+  ],
+  "unclassified_paths_require_review": true,
+  "arbitrary_native_processes_fenced": false,
+  "certified_production_materializer_available": false,
+  "status": "BLOCKED_PENDING_COMPLETE_MUTATION_PATH_REVIEW"
+}

@@ -1,4 +1,13 @@
 """One implementation, immutable input versions and explicit research namespaces."""
+
+# Installed writer boundary; isolated restored tools retain self-contained replay.
+from pathlib import Path as _HistoryFencePath
+import sys as _history_fence_sys
+_history_fence_root=next((p for p in _HistoryFencePath(__file__).resolve().parents if (p/'associativvordes/mutation_guard.py').is_file()),None)
+if _history_fence_root is not None:
+    _history_fence_sys.path.insert(0,str(_history_fence_root))
+    from associativvordes.mutation_guard import install as _install_history_fence
+    _install_history_fence()
 import hashlib,json,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
@@ -60,6 +69,12 @@ def capture(namespace='research-v5',fixture_history=None):
   require(all(r['family_id'].startswith('family:TEST_ONLY:') for r in fixture_history.get('constraints',[])),'foreign fixture history scope')
   history=dict(snapshot_sha256=digest(fixture_history),coverage_complete=True,conflicts=0,fixture=fixture_history)
  else:history=dict(snapshot_sha256=cur['sha256'],coverage_complete=hist['coverage_complete'],conflicts=len(hist['conflicts']),mode='RESEARCH_ONLY; incomplete coverage blocks every nonempty production operation')
+ overlay=hp/'ADJUDICATION-CURRENT.json'
+ if overlay.exists():
+  pointer=read(overlay);relative=Path(pointer['registry'])
+  require(not relative.is_absolute() and '..' not in relative.parts and (ROOT/relative).resolve().is_relative_to(ROOT),'unsafe adjudication contract path')
+  require(file_sha(ROOT/relative)==pointer['sha256'],'adjudication snapshot hash')
+  history['adjudication']=dict(pointer_sha256=file_sha(overlay),registry_sha256=pointer['sha256'],schema=pointer['schema'],mutation_authorization=False)
  norm=ROOT/'associativvordes/normative';baseline_path=ROOT/'audit/pr-review-679-694/FRESH-SHADOW-MANIFEST.json';base=read(baseline_path);source=ROOT/'data/morphology-evidence/sources/source-lock.json';algorithms=implementation()
  sha=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD'],text=True).strip()
  current_tree=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD:associativvordes/family-index-v5'],text=True).strip()

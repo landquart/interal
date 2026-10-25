@@ -1,0 +1,47 @@
+{
+  "schema": "interal-history-test-report/1",
+  "python_regressions": {
+    "tests": 53,
+    "status": "PASS"
+  },
+  "targeted_node_suites": [
+    {
+      "test": "history-adjudication",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-history-registry",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-release-control",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-v5-integration",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-cleanup-quality",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-semantic-cleanup",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-v5-release-readiness",
+      "exit_code": 0
+    }
+  ],
+  "whole_npm_suite": {
+    "status": "FAIL_STOPPED_AT_FIRST_FAILURE",
+    "test": "tests/associative-national-correspondences.test.mjs",
+    "reason": "Historical CODE-LOCK differs from installed code after write-fence insertion; old receipt preserved, independent stage rerun and new receipt required"
+  },
+  "independent_replay": "INDEPENDENT-VERIFICATION.json",
+  "complete_git_diff": "COMPLETE-DIFF.json",
+  "finalizer_exact_byte_replay": true,
+  "production_data_diff": [],
+  "all_tests_green": false
+}
