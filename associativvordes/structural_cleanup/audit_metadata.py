@@ -1,7 +1,11 @@
 """Read-only full audit of materialized report counters; historical units stay distinct."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,collections,pathlib
-from common import *
-from shadow import decode
+from associativvordes.structural_cleanup.common import *
+from associativvordes.structural_cleanup.shadow import decode
 
 def audit(snapshot, census, output):
     root=pathlib.Path(snapshot)/'current'/PREFIX; counts=collections.Counter()

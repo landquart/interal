@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Bounded real source selection by finite v6 lookups and native UDer neighborhoods."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 from pathlib import Path
 import sqlite3
 import tempfile
-from graph import canonical,file_hash,lookup
-from records import binary_stream,validate_lock,LANGUAGES,make_record
+from associativvordes.evidence_graph.graph import canonical,file_hash,lookup
+from associativvordes.evidence_graph.records import binary_stream,validate_lock,LANGUAGES,make_record
 
 def select(lock_path,raw_root,seeds_path,output,limit=2000,radius=2):
     if not 1<=limit<=10000 or not 0<=radius<=3:raise ValueError('finite limits required')

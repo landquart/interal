@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 """Reassemble checksum-pinned ZIP volumes using a 1 MiB buffer."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,hashlib,json,os,zipfile
 from pathlib import Path
-from query import filehash
+from associativvordes.v5_diagnostics.tools.query import filehash
 
 def join(manifest,directory,output):
  m=json.loads(Path(manifest).read_bytes());directory=Path(directory);output=Path(output)

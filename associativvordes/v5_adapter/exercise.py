@@ -1,10 +1,14 @@
 """Real six-language research windows through existing review/graph/dry-run APIs."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,json,os,subprocess,sys,time
 from pathlib import Path
-from common import *
-from adapter import Adapter
-from external import External
-from bridge import export,history_reader,review_import
+from associativvordes.v5_adapter.common import *
+from associativvordes.v5_adapter.adapter import Adapter
+from associativvordes.v5_adapter.external import External
+from associativvordes.v5_adapter.bridge import export,history_reader,review_import
 
 def exercise(projection,external,output):
  output=Path(output).resolve()
@@ -54,7 +58,7 @@ def exercise(projection,external,output):
   repeated=json.loads(repeat.stdout.strip().splitlines()[-1])
   if repeated['counts'].get('processed',0):raise ValueError('unchanged questions were regenerated')
   if result['accounting'].get('requests',0) or result['production_writes']:raise ValueError('unexpected paid/generative/production action')
-  sys.path.insert(0,str(ROOT/'associativvordes/auto_annotation'));from storage import Store
+  pass;from associativvordes.auto_annotation.storage import Store
   store=Store(output/'annotation')
   with store.lease():proposals=[store.get(refs[-1]) for refs in store.proposal_index.values()]
   if len(proposals)!=len(questions) or any(p['proposed_decision']!='ABSTAIN' or p['production_writes'] for p in proposals):raise ValueError('legacy observations became semantic decisions')
@@ -62,8 +66,8 @@ def exercise(projection,external,output):
   snapshot=dict(schema='mass-proposed-annotation-snapshot/1',questions=questions,proposals=proposals,
    raw_source_rows=read(queue/'source-rows.json'),scope_kind='finite_v5_window',full_v5_annotation_complete=False,production_writes=0)
   atomic(output/'PROPOSALS.json',canonical(snapshot)+b'\n')
-  sys.path.insert(0,str(ROOT/'associativvordes/mass_dry_run'))
-  from export_snapshot import export_snapshot
+  pass
+  from associativvordes.mass_dry_run.export_snapshot import export_snapshot
   handoff=export_snapshot(output/'PROPOSALS.json',output/'mass-review',output/'mass-review-ledger')
   # Guard a known deleted membership without restoring it into the projection.
   ledger=read(ROOT/'audit/associative-family-v5/actus-false-memberships.json');negative=ledger['rejected_memberships'][0]

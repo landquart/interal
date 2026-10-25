@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Read-only, streaming recovery of full affected sets from the immutable registry."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,hashlib,json,sqlite3,sys
 from pathlib import Path
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from classify import canonical
+pass
+from associativvordes.v5_diagnostics.classify import canonical
 ROOT=Path(__file__).resolve().parents[3]
 def filehash(p):
  h=hashlib.sha256()

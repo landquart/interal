@@ -3,6 +3,10 @@
 No dependency on production storage, and no membership writer. POSIX flock and
 atomic rename require a local filesystem (not an object-store/FUSE mount).
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import contextlib
 import copy
 from datetime import datetime, timezone
@@ -165,8 +169,15 @@ class Ledger:
                 if row.get('raw_text') != raw_row.decode('utf-8') or any(row.get(k) != evidence.get(k) for k in ('revision','artifact')):
                     raise ValueError('source row metadata mismatch')
             attachment = canonical(rows).encode()
+        if manifest.get('version_contract'):
+            from associativvordes.v5_contract.versions import validate
+            validate(manifest['version_contract'])
         snap = digest(manifest)
         with self.lock():
+            prior=getattr(self,'manifest',{}).get('version_contract')
+            if prior or manifest.get('version_contract'):
+                from associativvordes.v5_contract.versions import require
+                require(not self.questions or prior==manifest.get('version_contract'),'review ledger requires a fresh namespace for a new version')
             if attachment is not None:
                 row_folder = self.root/'source-rows';row_folder.mkdir(exist_ok=True)
                 atomic(row_folder/(digest(attachment)+'.json'), attachment)
@@ -206,7 +217,7 @@ class Ledger:
             # verdict, proposed base/path, score, grouping, or competing-family hint.
             q = {k: q[k] for k in ('id', 'family', 'language', 'lemma', 'pos',
                  'pos_status', 'sense_status', 'lexeme_alternatives', 'frequency', 'evidence_refs') if k in q}
-        from source_rows import lookup as source_rows
+        from associativvordes.review.source_rows import lookup as source_rows
         raw_rows = source_rows(self, q)
         own = self.state(qid, actor)
         primary, blind = self.pair(qid, accounts)
@@ -262,6 +273,10 @@ class Ledger:
                 return old_request
             if snapshot != self.snapshot: raise Conflict('sources changed; reopen card')
             decisions = []
+            version_contract=self.manifest.get('version_contract')
+            if version_contract:
+                from associativvordes.v5_contract.versions import validate
+                validate(version_contract)
             for item in items:
                 qid = item['question_id']
                 q = self.questions[qid]
@@ -288,6 +303,12 @@ class Ledger:
                     status, lexeme, relation = item['status'], item['lexeme_id'], item['relation']
                     if status not in STATUSES or relation not in RELATIONS: raise ValueError('invalid status/relation')
                     if lexeme not in {x['id'] for x in q['lexeme_alternatives']}: raise ValueError('select concrete native lexeme')
+                normative_evaluation=None
+                if version_contract:
+                    from associativvordes.v5_contract.policy import review,hypothesis
+                    if not undo and status in ('ACCEPT_PROPOSED','REJECT'):
+                        normative_evaluation=review(q,item,version_contract)
+                    else:normative_evaluation=hypothesis({'question_id':qid,'status':status},version_contract)
                 decisions.append({'question_id': qid, 'family_id': q['family'], 'language': q['language'],
                     'lexeme_id': lexeme, 'lemma': q['lemma'], 'status': status, 'reason': item['reason'].strip(),
                     'relation': relation, 'previous_status': old['status'] if old else None,
@@ -298,6 +319,9 @@ class Ledger:
                     'review_version': VERSION, 'review_code': {name: digest((Path(__file__).parent/name).read_bytes()) for name in ('store.py', 'server.py', 'app.js', 'source_rows.py')}, 'action': 'undo' if undo else 'arbitrate' if arbitration else 'decide',
                     'arbitration_basis': pair_hash if role == 'arbiter' else None,
                     'establishes_membership': False})
+                if version_contract:
+                    decisions[-1]['normative_evaluation']=normative_evaluation
+                    decisions[-1]['normative_decision']=copy.deepcopy(item.get('normative_decision'))
             t = {'sequence': self.loaded+1, 'previous': self.head, 'actor': actor, 'role': role,
                  'timestamp': datetime.now(timezone.utc).isoformat(), 'request_id': request_id,
                  'request_hash': request_hash, 'decisions': decisions, 'version': VERSION}

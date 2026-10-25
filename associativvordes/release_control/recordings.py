@@ -3,13 +3,17 @@
 No LLM analyses are available in mass06: neither A nor P is invented. Resulting
 calculator runs can demonstrate missing inputs, never certify semantic safety.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import gzip
 import json
 from pathlib import Path
 import subprocess
 from collections import OrderedDict
-from control import atomic, canonical, digest, LANGUAGES
+from associativvordes.release_control.control import atomic, canonical, digest, LANGUAGES
 
 
 def capture(state, repo, destination):

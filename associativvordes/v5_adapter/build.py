@@ -1,10 +1,14 @@
 """Immutable per-bucket research projections; transaction checkpoints per language."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,fcntl,json,os,resource,subprocess,time,zlib
 from collections import Counter
 from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
-from common import *
-from stream import pairs
+from associativvordes.v5_adapter.common import *
+from associativvordes.v5_adapter.stream import pairs
 PREFIX='associativvordes/family-index-v5/'
 def code_lock():return {p.name:filehash(p) for p in [Path(__file__),Path(__file__).with_name('common.py'),Path(__file__).with_name('stream.py')]}
 def git_inventory(repo,commit):

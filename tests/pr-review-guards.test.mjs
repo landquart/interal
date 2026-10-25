@@ -135,8 +135,7 @@ test('4354484829: full driver executes and compares all auxiliary audits',()=>py
 import sys,tempfile,sqlite3,types
 from pathlib import Path
 from unittest.mock import patch
-sys.path.insert(0,'associativvordes/v5_baseline')
-import certify,audit_ids,audit_metadata,audit_ledger
+from associativvordes.v5_baseline import certify,audit_ids,audit_metadata,audit_ledger
 calls=[]
 with tempfile.TemporaryDirectory() as td:
  work=Path(td)/'work'

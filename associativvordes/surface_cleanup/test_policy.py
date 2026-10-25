@@ -1,6 +1,10 @@
 """Independent regression examples: formal strings never decide lexical membership."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import unittest
-from policy import *
+from associativvordes.surface_cleanup.policy import *
 
 class PolicyTests(unittest.TestCase):
     def family(self,base='tion',source='surface_singleton',n=50):return dict(id='surface:en:'+base,canonical=base,source=source,support=n)

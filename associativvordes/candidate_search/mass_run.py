@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Mass review proposals for all actual v6 families. Dry-run is the default."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import fcntl
@@ -10,17 +14,17 @@ import resource
 import shutil
 import tempfile
 import time
-from mass_discovery import Discovery, DEFAULTS
-from mass_registry import LANGUAGES, local_content
-from mass_source import checked, readonly, owner_key
-from mass_store import Store
-from morphology_import import digest, hash_file
-from certify_corpus import atomic_json
+from associativvordes.candidate_search.mass_discovery import Discovery, DEFAULTS
+from associativvordes.candidate_search.mass_registry import LANGUAGES, local_content
+from associativvordes.candidate_search.mass_source import checked, readonly, owner_key
+from associativvordes.candidate_search.mass_store import Store
+from associativvordes.importers.morphology_import import digest, hash_file
+from associativvordes.importers.certify_corpus import atomic_json
 
 
 def resolve(registry, families):
     if not families: return [r[0] for r in registry.execute('SELECT family FROM family_fingerprints ORDER BY family')]
-    from graph import lookup
+    from associativvordes.evidence_graph.graph import lookup
     result = set()
     for name in families:
         rows = [r[0] for r in registry.execute('SELECT DISTINCT family FROM aliases WHERE alias=? ORDER BY family', (lookup(name.removeprefix('family:')),))]

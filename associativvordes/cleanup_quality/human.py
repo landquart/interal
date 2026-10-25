@@ -3,7 +3,7 @@ from datetime import datetime
 from associativvordes.family_boundary.core import digest
 
 LABELS={'VALID','INVALID','UNCERTAIN'}
-def validate(j,case,roster,role):
+def validate(j,case,roster,role,normative_context=None):
     person=roster.get(j.get('actor_id'),{})
     if person.get('kind')!='human' or not person.get('authorization_ref') or case['language'] not in person.get('qualified_languages',[]):raise ValueError('qualified authorized human required')
     if role not in person.get('roles',[]):raise ValueError('wrong human role')
@@ -14,21 +14,31 @@ def validate(j,case,roster,role):
     date=datetime.fromisoformat(j['reviewed_at'].replace('Z','+00:00'))
     if date.tzinfo is None:raise ValueError('timezone required')
     if j['verdict']!='UNCERTAIN' and (not isinstance(j.get('relation'),str) or not j['relation'].strip() or not j.get('pos') or not j.get('sense') or not any(s.get('locator') and s.get('finding') and s.get('publisher') for s in j['sources'])):raise ValueError('independent POS/sense/source evidence required')
+    if case.get('version_contract'):
+        from associativvordes.v5_contract.versions import validate as version_guard
+        version_guard(case['version_contract'])
+        from associativvordes.v5_contract.policy import review
+        if j['verdict']!='UNCERTAIN':
+            if not all(case.get(k) for k in ('lexeme_id','sense_id','context_id','pos')):raise ValueError('BLOCKED: resolve and freeze lexical/POS/sense/context identities before gold')
+            if j['sense']!=case['sense_id'] or j['pos']!=case['pos']:raise ValueError('BLOCKED: human answer differs from frozen POS/sense scope')
+            result=review(case,j,case['version_contract'],normative_context,confirmed=True)
+            expected='CONFIRMED_MEMBER' if j['verdict']=='VALID' else 'CONFIRMED_NONMEMBER'
+            if result['decision']!=expected:raise ValueError('BLOCKED: human label differs from normative conclusion')
     return j
 
-def compile_gold(cases,reviews,arbitrations,roster):
+def compile_gold(cases,reviews,arbitrations,roster,normative_context=None):
     index={c['id']:c for c in cases};by={};adjs={}
     if len(index)!=len(cases) or any(c['content_sha256']!=digest({k:v for k,v in c.items() if k!='content_sha256'}) for c in cases):raise ValueError('case checksum/duplicate')
     for j in reviews:
         if j.get('case_id') not in index:raise ValueError('unknown review case')
-        validate(j,index[j['case_id']],roster,j.get('role'))
+        validate(j,index[j['case_id']],roster,j.get('role'),normative_context)
         if j.get('role') not in ('A','B'):raise ValueError('two reviewer slots only')
         k=(j['case_id'],j['role'])
         if k in by:raise ValueError('immutable review slot duplicate')
         by[k]=j
     for j in arbitrations:
         if j.get('case_id') not in index or j['case_id'] in adjs:raise ValueError('adjudication identity')
-        validate(j,index[j['case_id']],roster,'arbiter');adjs[j['case_id']]=j
+        validate(j,index[j['case_id']],roster,'arbiter',normative_context);adjs[j['case_id']]=j
     rows=[];pairs=[];logs=[]
     for c in cases:
         a,b=by.get((c['id'],'A')),by.get((c['id'],'B'));gold=None;state='UNANNOTATED'

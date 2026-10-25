@@ -4,6 +4,10 @@
 Full inventory is a performance workload, not approved morphological gold.
 No family acceptance or new lexical identity is inferred by this module.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import gzip
 import hashlib
@@ -15,10 +19,10 @@ import subprocess
 import sys
 import time
 import zlib
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'importers'))
-from morphology_import import dumps, digest, hash_file
-from certify_corpus import atomic_json
-from scale_index import lookup
+pass
+from associativvordes.importers.morphology_import import dumps, digest, hash_file
+from associativvordes.importers.certify_corpus import atomic_json
+from associativvordes.importers.scale_index import lookup
 
 
 def build(repo,revision,destination,stop_after=None):

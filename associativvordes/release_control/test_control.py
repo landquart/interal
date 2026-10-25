@@ -1,4 +1,8 @@
 """TEST_ONLY engineering fixtures; not human gold or owner authorization."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import copy
 import json
 import os
@@ -10,8 +14,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).parent))
-from control import *
-from inputs import source_delta
+from associativvordes.release_control.control import *
+from associativvordes.release_control.inputs import source_delta
 
 
 def fixture():
@@ -35,7 +39,7 @@ class Releases(unittest.TestCase):
     def setUp(self):
         # Signed-release fixtures test that protocol independently of the blocked
         # real historical registry. No runtime bypass or configuration flag exists.
-        history_patch = patch('control.history_gate', return_value=None)
+        history_patch = patch('associativvordes.release_control.control.history_gate', return_value=None)
         history_patch.start(); self.addCleanup(history_patch.stop)
         self.tmp = tempfile.TemporaryDirectory(); self.root = Path(self.tmp.name)
         self.state = fixture(); self.op = operation()
@@ -95,7 +99,7 @@ class Releases(unittest.TestCase):
                          snapshot='current-snapshot', action='decide') for n in ('first', 'second')})
 
     def apply(self, **extra):
-        with patch('review_bridge.locked_witnesses', return_value=contextlib.nullcontext(self.view())):
+        with patch('associativvordes.release_control.review_bridge.locked_witnesses', return_value=contextlib.nullcontext(self.view())):
             return self.store.apply(self.plan, self.inputs, self.checks, self.approval, self.trust, 'TEST_ONLY', **extra)
 
     def test_signed_apply_and_retry(self):
@@ -150,23 +154,23 @@ class Releases(unittest.TestCase):
     def test_two_models_not_two_humans(self):
         self.plan['verdicts'][self.op['id']] *= 2
         with self.assertRaises(ValueError):
-            with patch('review_bridge.witnesses', return_value=self.view()): check_verdicts(self.plan, self.trust, 'x')
+            with patch('associativvordes.release_control.review_bridge.witnesses', return_value=self.view()): check_verdicts(self.plan, self.trust, 'x')
 
     def test_one_reviewer_not_independent(self):
         self.plan['verdicts'][self.op['id']] = [self.plan['verdicts'][self.op['id']][0]]*2
         with self.assertRaises(ValueError):
-            with patch('review_bridge.witnesses', return_value=self.view()): check_verdicts(self.plan, self.trust, 'x')
+            with patch('associativvordes.release_control.review_bridge.witnesses', return_value=self.view()): check_verdicts(self.plan, self.trust, 'x')
 
     def test_wrong_family_review(self):
         view = self.view(); view['current'][(self.op['question_id'], 'first')]['family_id'] = 'family:b'
         with self.assertRaises(ValueError):
-            with patch('review_bridge.witnesses', return_value=view): check_verdicts(self.plan, self.trust, 'x')
+            with patch('associativvordes.release_control.review_bridge.witnesses', return_value=view): check_verdicts(self.plan, self.trust, 'x')
 
     def test_rejected_or_stale_review(self):
         for field, value in [('status', 'REJECT'), ('snapshot', 'obsolete'), ('action', 'undo'), ('action', 'arbitrate')]:
             view = self.view(); view['current'][(self.op['question_id'], 'second')][field] = value
             with self.subTest(field=field), self.assertRaises(ValueError):
-                with patch('review_bridge.witnesses', return_value=view): check_verdicts(self.plan, self.trust, 'x')
+                with patch('associativvordes.release_control.review_bridge.witnesses', return_value=view): check_verdicts(self.plan, self.trust, 'x')
 
     def test_exact_negative_scope_preserved(self):
         state = fixture(); negative = dict(family_id='family:a', head_id='head:a', status='excluded')
@@ -307,7 +311,7 @@ class Releases(unittest.TestCase):
 
     def test_concurrent_same_release_serializes(self):
         from concurrent.futures import ThreadPoolExecutor
-        with patch('review_bridge.locked_witnesses', side_effect=lambda _: contextlib.nullcontext(self.view())):
+        with patch('associativvordes.release_control.review_bridge.locked_witnesses', side_effect=lambda _: contextlib.nullcontext(self.view())):
             def call(_):
                 return Store(self.store.root).apply(self.plan, self.inputs, self.checks,
                     self.approval, self.trust, 'TEST_ONLY')
@@ -343,7 +347,7 @@ class Releases(unittest.TestCase):
             checks=digest(checks), store=str(self.store.root), parent=self.baseline))
         self.store.apply(plan, inputs, checks, approval, self.trust, ledger.root)
         self.assertEqual(self.store.audit(self.trust)['applied_releases'], 1)
-        from graph_view import build
+        from associativvordes.release_control.graph_view import build
         graph = build(self.store, self.trust, self.root/'graph-after')
         self.assertEqual(graph['counts']['known'], 1)
         ledger.decide('second', 'blind', accounts, 'TEST_ONLY_changed', [dict(question_id=q['id'], expected_revision=1,
@@ -378,7 +382,7 @@ class Releases(unittest.TestCase):
         with self.assertRaises(ValueError): self.apply()
 
     def test_publication_requires_separate_owner_authorization(self):
-        from workflow import package
+        from associativvordes.release_control.workflow import package
         version = self.apply()['version']
         payload = dict(schema=VERSION, purpose='approve-publication-package', version=version,
                        release=digest(self.plan), store=str(self.store.root))
@@ -391,15 +395,15 @@ class Releases(unittest.TestCase):
                          digest((self.root/'package/PUBLICATION-APPROVAL.json').read_bytes()))
 
     def test_approval_request_checks_before_signing(self):
-        from workflow import approval_request
-        with patch('review_bridge.witnesses', return_value=self.view()):
+        from associativvordes.release_control.workflow import approval_request
+        with patch('associativvordes.release_control.review_bridge.witnesses', return_value=self.view()):
             payload = approval_request(self.store, self.plan, self.checks, self.inputs, self.trust, 'TEST_ONLY')
         self.assertEqual(payload, self.approval['payload'])
         self.checks['checks']['calculator_before_after'] = 'BLOCKED'
         with self.assertRaises(ValueError): approval_request(self.store, self.plan, self.checks, self.inputs, self.trust, 'TEST_ONLY')
 
     def test_incremental_uses_exact_selected_families_and_prior_queue(self):
-        from workflow import incremental
+        from associativvordes.release_control.workflow import incremental
         config = {n: 'TEST_ONLY/'+n for n in ('index', 'registry', 'aux', 'project', 'source-lock', 'output', 'prior-queue')}
         current = {'UDer/en': dict(revision='r', sha256='a', license_status='VERIFIED', license_sha256='b')}
         result = incremental({}, current, {'UDer/en': ['family:a']}, ['already-reviewed'], config)

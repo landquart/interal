@@ -1,13 +1,17 @@
 """Complete frozen-v5 hypothesis scan; deterministic bucket receipts and finite IDs."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,collections,gzip,hashlib,io,json,os,pathlib,resource,shutil,sqlite3,sys,time
-from policy import *
+from associativvordes.surface_cleanup.policy import *
 ROOT=pathlib.Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT))
+pass
 from associativvordes.research_integrity import code_lock
-sys.path.insert(0,str(ROOT/'associativvordes/structural_cleanup'))
-from common import load,save,atomic,sha_file,verify,MAIN,PREFIX,LANGS,outside_repo
-from shadow import decode
-from history import collect,build_scope_index
+pass
+from associativvordes.structural_cleanup.common import load,save,atomic,sha_file,verify,MAIN,PREFIX,LANGS,outside_repo
+from associativvordes.structural_cleanup.shadow import decode
+from associativvordes.surface_cleanup.history import collect,build_scope_index
 
 def gz(path):
     raw=open(path,'xb');stream=gzip.GzipFile(filename='',mode='wb',fileobj=raw,mtime=0,compresslevel=6)

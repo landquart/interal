@@ -6,7 +6,7 @@ import hashlib
 import json
 from pathlib import Path
 import sys
-ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+ROOT=Path(__file__).resolve().parents[2];pass
 from associativvordes.national_correspondences.registry import canonical,filehash,read,digest,Registry
 from associativvordes.national_correspondences.audit import atomic
 from associativvordes.semantic_cleanup.native import records

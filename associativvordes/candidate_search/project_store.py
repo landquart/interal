@@ -1,9 +1,13 @@
 """Verify a complete disk project projection before serving or reusing it."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json
 import argparse
 import fcntl
 from pathlib import Path
-from scale_project import hash_file, build
+from associativvordes.candidate_search.scale_project import hash_file, build
 
 
 def verified_project(database):

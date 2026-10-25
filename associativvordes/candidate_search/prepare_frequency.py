@@ -1,9 +1,13 @@
 """Extract real project measurements from individually checksum-locked member shards."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import gzip
 import json
 from pathlib import Path
-from search import Graph,lookup,file_hash,sha,canonical
+from associativvordes.candidate_search.search import Graph,lookup,file_hash,sha,canonical
 
 def prepare(original,lock,snapshot,output):
     original=Path(original);lock=json.loads(Path(lock).read_text());g=Graph.open_snapshot(snapshot)

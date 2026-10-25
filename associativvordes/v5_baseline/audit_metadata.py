@@ -1,6 +1,10 @@
 """Full metadata distributions, explicitly retaining absent relation-type declarations."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,collections,json,pathlib
-from census import pairs,sha_file,load,atomic_json,PREFIX
+from associativvordes.v5_baseline.census import pairs,sha_file,load,atomic_json,PREFIX
 
 def audit(snapshot,output):
  snapshot=pathlib.Path(snapshot);lock=load(snapshot/'SNAPSHOT.json');files={r['path']:r for r in lock['files']}

@@ -1,8 +1,12 @@
 """Finite export to existing review, annotation and evidence-graph APIs."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,base64,importlib.util,json,sys
 from pathlib import Path
-from common import *
-from adapter import Adapter
+from associativvordes.v5_adapter.common import *
+from associativvordes.v5_adapter.adapter import Adapter
 
 def history_reader():
  path=ROOT/'associativvordes/history_registry/registry.py'
@@ -54,8 +58,8 @@ def export(adapter,destination,family=None,language=None,lemma=None,limit=1000,e
  atomic(destination/'MANIFEST.json',canonical(m)+b'\n');return m
 
 def review_import(queue,ledger_root):
- sys.path.insert(0,str(ROOT/'associativvordes/review'))
- from store import Ledger,atomic as ledger_atomic,canonical as ledger_canonical,digest
+ pass
+ from associativvordes.review.store import Ledger,atomic as ledger_atomic,canonical as ledger_canonical,digest
  queue=Path(queue);m=read(queue/'MANIFEST.json');raw=(queue/'source-rows.json').read_bytes()
  if sha(raw)!=m['outputs']['source-rows.json']:raise ValueError('source rows checksum')
  questions_raw=(queue/'questions.ndjson').read_bytes()
@@ -77,7 +81,7 @@ if __name__=='__main__':
  try:
   ext=None
   if a.external:
-   from external import External
+   from associativvordes.v5_adapter.external import External
    ext=External(a.external,ROOT/'data/morphology-evidence/sources/source-lock.json')
   result=export(obj,a.output,a.family,a.language,a.lemma,a.limit,ext,read(a.cursor) if a.cursor else None)
   if a.review_ledger:result['review']=review_import(a.output,a.review_ledger)

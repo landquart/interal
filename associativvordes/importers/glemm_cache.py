@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Portable, deterministic GLeMM cache. Restore only against a trusted local lock."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 import os
@@ -8,7 +12,7 @@ import shutil
 import stat
 import tempfile
 import zipfile
-from morphology_import import checked_path, hash_file, validate_lock
+from associativvordes.importers.morphology_import import checked_path, hash_file, validate_lock
 
 ROOT=Path(__file__).resolve().parents[2]
 SOURCES=ROOT/'data/morphology-evidence/sources'

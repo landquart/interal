@@ -1,4 +1,8 @@
 """All actual v6 families; verified pinned inputs, no family creation."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import gzip
 from functools import lru_cache
@@ -9,13 +13,13 @@ import subprocess
 import sys
 import resource
 import time
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'evidence_graph'))
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'importers'))
-from graph import Graph, canonical, sha, lookup, file_hash
-from build_graph import load_registry
-from prepare_registry import COMMIT, FILES, bucket
-from certify_corpus import atomic_json
-from morphology_import import digest
+pass
+pass
+from associativvordes.evidence_graph.graph import Graph, canonical, sha, lookup, file_hash
+from associativvordes.evidence_graph.build_graph import load_registry
+from associativvordes.evidence_graph.prepare_registry import COMMIT, FILES, bucket
+from associativvordes.importers.certify_corpus import atomic_json
+from associativvordes.importers.morphology_import import digest
 
 LANGUAGES = ('de', 'en', 'es', 'fr', 'it', 'ru')
 

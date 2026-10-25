@@ -1,8 +1,12 @@
 """Full physical-record inspection. Diagnostic resemblance never authorizes deletion."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse, collections, gzip, hashlib, json, pathlib, resource, sqlite3, sys, time
-from common import *
-sys.path.insert(0, str(ROOT / 'associativvordes/v5_adapter'))
-from stream import pairs
+from associativvordes.structural_cleanup.common import *
+pass
+from associativvordes.v5_adapter.stream import pairs
 
 def issue_id(kind, scope): return hashlib.sha256(canonical([kind, scope])).hexdigest()
 

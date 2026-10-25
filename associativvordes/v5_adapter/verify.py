@@ -1,9 +1,13 @@
 """Independent full source-to-projection comparison, one decoded shard at a time."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,gzip,json,resource,time,zlib
 from collections import Counter
 from pathlib import Path
-from common import *
-from adapter import Adapter
+from associativvordes.v5_adapter.common import *
+from associativvordes.v5_adapter.adapter import Adapter
 
 def verify(folder):
  start=time.monotonic();obj=Adapter(folder);source=Path(obj.manifest['source_root']);totals=Counter();files=[]

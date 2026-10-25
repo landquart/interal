@@ -1,4 +1,8 @@
 """Immutable fsynced object/journal authority, process lease and threaded transactions."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import contextlib
 import fcntl
 import json
@@ -7,7 +11,7 @@ from pathlib import Path
 import secrets
 import threading
 import zipfile
-from contract import canonical,sha
+from associativvordes.auto_annotation.contract import canonical,sha
 
 def atomic(path,data):
     path=Path(path);tmp=path.with_name('.pending-'+secrets.token_hex(12))

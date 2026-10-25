@@ -1,12 +1,16 @@
 """Exact stage-03 extraction bridge; no normalization authority is added."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import base64
 import hashlib
 import json
 import gzip
 from pathlib import Path
 import sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'importers'))
-from morphology_import import parse,LANGUAGES,VERSION,SCHEMA,digest,binary_stream,validate_lock,GLEMM
+pass
+from associativvordes.importers.morphology_import import parse,LANGUAGES,VERSION,SCHEMA,digest,binary_stream,validate_lock,GLEMM
 
 def read_json(path):
     with (gzip.open(path,'rt',encoding='utf-8') if str(path).endswith('.gz') else open(path,encoding='utf-8')) as f:return json.load(f)

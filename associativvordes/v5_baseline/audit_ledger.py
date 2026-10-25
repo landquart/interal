@@ -1,6 +1,10 @@
 """Regenerate repair-ledger bindings from the captured current provenance."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,hashlib,json,pathlib
-from census import verify_snapshot,load,atomic_json,PREFIX,sha_file
+from associativvordes.v5_baseline.census import verify_snapshot,load,atomic_json,PREFIX,sha_file
 
 def audit(snapshot,output):
  root=pathlib.Path(snapshot);verify_snapshot(root)

@@ -1,7 +1,11 @@
 """Bounded random access to legacy observations, without v6 head creation."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json,zlib
 from pathlib import Path
-from common import *
+from associativvordes.v5_adapter.common import *
 class Adapter:
  def __init__(self,folder,verify=True,history=None):
   self.folder=Path(folder);self.manifest=read(self.folder/'MANIFEST.json');self.history=history;self.conns={}

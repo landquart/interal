@@ -1,3 +1,7 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import base64
 import bz2
 import contextlib
@@ -9,10 +13,10 @@ import tempfile
 import unittest
 import zipfile
 
-from morphology_import import run, parse, digest, hash_file, kw
-from audit_import import audit
-from fetch_sources import fetch
-from build_catalog import make_catalog
+from associativvordes.importers.morphology_import import run, parse, digest, hash_file, kw
+from associativvordes.importers.audit_import import audit
+from associativvordes.importers.fetch_sources import fetch
+from associativvordes.importers.build_catalog import make_catalog
 
 HERE = Path(__file__).parent
 

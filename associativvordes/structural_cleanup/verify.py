@@ -1,7 +1,11 @@
 """Independent decoder, byte-level preservation and finite record-delta validation."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse, collections, hashlib, pathlib, resource, time
-from common import *
-from shadow import decode, tokens, at, set_at, RULES
+from associativvordes.structural_cleanup.common import *
+from associativvordes.structural_cleanup.shadow import decode, tokens, at, set_at, RULES
 
 def validate(before, after, plan, output):
     start = time.monotonic(); before = pathlib.Path(before); after = pathlib.Path(after)

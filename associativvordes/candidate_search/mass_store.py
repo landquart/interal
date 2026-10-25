@@ -1,7 +1,11 @@
 """Transactional family/language checkpoints, review history, streaming exports."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json
 from pathlib import Path
-from search import Queue, canonical, sha, lookup
+from associativvordes.candidate_search.search import Queue, canonical, sha, lookup
 
 CATEGORIES = ('NEW_MEMBER','EXISTING_MEMBER_AUDIT','CONFLICT','POSSIBLE_BASE',
               'IDENTITY_UNRESOLVED','NEGATIVE_HISTORY','LOW_EVIDENCE')

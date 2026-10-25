@@ -1,6 +1,10 @@
 """Independent stable-ID check over disk census tables; never repairs IDs."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,hashlib,json,pathlib,sqlite3,unicodedata
-from census import atomic_json
+from associativvordes.v5_baseline.census import atomic_json
 
 def audit(database,output):
  db=sqlite3.connect('file:'+str(pathlib.Path(database).resolve())+'?mode=ro',uri=True);results={}

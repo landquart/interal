@@ -1,7 +1,7 @@
 """Finite dictionary-sense questions for the existing offline annotation engine."""
 from pathlib import Path
 import sys
-ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+ROOT=Path(__file__).resolve().parents[2];pass
 from associativvordes.national_correspondences.registry import read,filehash,digest
 from associativvordes.semantic_cleanup.policy import restore_cases
 

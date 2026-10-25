@@ -1,17 +1,21 @@
 #!/usr/bin/env python3
 """Whole-corpus diagnostics on disk, transactional bucket checkpoints and exact IDs."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import uuid
 import argparse,fcntl,gzip,hashlib,importlib.util,itertools,json,os,resource,sqlite3,subprocess,sys,time,zlib
 from collections import Counter
 from pathlib import Path
-from classify import POLICY,canonical,digest,member,family,rank,normal
+from associativvordes.v5_diagnostics.classify import POLICY,canonical,digest,member,family,rank,normal
 ROOT=Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'associativvordes/v5_adapter'))
-from common import atomic,filehash,connect,read,sha
-from adapter import Adapter
-from bridge import history_reader
+pass
+from associativvordes.v5_adapter.common import atomic,filehash,connect,read,sha
+from associativvordes.v5_adapter.adapter import Adapter
+from associativvordes.v5_adapter.bridge import history_reader
 SCHEMA='v5-global-diagnostics/1'
-sys.path.insert(0,str(ROOT))
+pass
 from associativvordes.research_integrity import code_lock as research_code_lock
 def code_lock():return research_code_lock()|{'associativvordes/v5_diagnostics/policy.json':filehash(Path(__file__).with_name('policy.json'))}
 def setup(db):

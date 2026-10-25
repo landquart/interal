@@ -1,11 +1,15 @@
 """Lossless disk lookup of the pinned importer rows; spelling is not identity."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,json,os,resource,sys,time,zlib
 from collections import Counter
 from pathlib import Path
-from common import *
-sys.path.insert(0,str(ROOT/'associativvordes/evidence_graph'))
-from records import make_record
-from morphology_import import binary_stream,validate_lock,GLEMM,LANGUAGES
+from associativvordes.v5_adapter.common import *
+pass
+from associativvordes.evidence_graph.records import make_record
+from associativvordes.importers.morphology_import import binary_stream,validate_lock,GLEMM,LANGUAGES
 
 def build(raw,lock,out,allow_unavailable=False):
  raw=Path(raw).resolve();lock=Path(lock).resolve();out=Path(out).resolve()
@@ -96,14 +100,14 @@ class External:
   q['independence']=dict(status='not_established',independent_groups=[],possible_dependencies=['GLeMM-MorphyNet'],source_count_is_not_independent_count=True)
   if records:q['evidence_completeness']='external_claims_available_alignment_and_sense_unresolved'
   return q
- def graph(self,questions,destination):
-  from graph import Graph
-  from build_graph import ingest
+ def graph(self,questions,destination,version_contract=None):
+  from associativvordes.evidence_graph.graph import Graph
+  from associativvordes.evidence_graph.build_graph import ingest
   destination=Path(destination)
   if destination.exists():raise ValueError('fresh isolated graph required')
   records={r['id']:r for q in questions for r in q.get('external_rows',[])};used={r['body']['artifact'] for r in records.values()}
   source=destination.with_suffix('.ndjson');atomic(source,b''.join(canonical(records[k])+b'\n' for k in sorted(records)))
-  g=Graph(destination)
+  g=Graph(destination,version_contract=version_contract)
   try:
    g.db.execute('CREATE TABLE IF NOT EXISTS native_nodes(artifact TEXT,native TEXT,lexeme TEXT,PRIMARY KEY(artifact,native))')
    counts=ingest(g,source,dict(self.registry,artifacts=[a for a in self.registry['artifacts'] if a['id'] in used]))
