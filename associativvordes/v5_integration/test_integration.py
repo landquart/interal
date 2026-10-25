@@ -75,7 +75,7 @@ class IntegrationTests(unittest.TestCase):
   from associativvordes.release_control.control import VERSION
   fid=q['source_family_id'];head='TEST_ONLY:head';state=dict(schema=VERSION,data=dict(catalog=dict(families=[dict(id=fid)]),heads=[dict(id=head,language='fr')],memberships=[],links=[]),history=[],version_contract=self.c)
   row=dict(family_id=fid,language='fr',lemma_id=q['source_lemma_id'],head_id=head,word=q['lemma'],relation='compound')
-  op=dict(id='operation:TEST_ONLY:add',kind='ADD_MEMBER',question_id=q['id'],candidate_id=q['source_lemma_id'],before=None,after=row,evidence_refs=['manucure'],reason='TEST_ONLY exact finite addition',supersedes=[])
+  op=dict(id='operation:TEST_ONLY:add',kind='ADD_MEMBER',question_id=q['id'],candidate_id=q['source_lemma_id'],before=None,after=row,evidence_refs=['manucure'],reason='TEST_ONLY exact finite addition',supersedes=[],source_record_ref=trust['verifiedLexicalMappings'][d['id']]['origin'],lexical_binding_sha256=digest(trust['verifiedLexicalMappings'][d['id']]))
   preview=p.preview(state,[op],{op['id']:d},trust,[decision,quality]);gate=p.release_gate(preview);self.assertEqual(gate['payload']['status'],'BLOCKED');self.assertEqual(gate['payload']['production_writes'],0)
   # Namespace and schema forgery never reach the writer.
   forged=copy.deepcopy(preview);forged['version_contract']['namespace']='production'

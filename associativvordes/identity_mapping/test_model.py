@@ -31,9 +31,28 @@ class IdentityTests(unittest.TestCase):
  def test_normalized_identity_keeps_homonyms_sources_and_contexts_separate(self):
   for field in ['pos','lexical_identity','sense','source','source_version','context']:
    self.assertNotEqual(entity_id(self.target),entity_id(dict(self.target,**{field:'different'})))
+ def test_reviewer_rejects_unknown_or_changed_source_index(self):
+  import json,sqlite3
+  from .review import MappingReviewer
+  with tempfile.TemporaryDirectory() as t:
+   p=Path(t);db=sqlite3.connect(p/'native.sqlite');db.close();h=hashlib.sha256((p/'native.sqlite').read_bytes()).hexdigest()
+   (p/'NATIVE-REPORT.json').write_text(json.dumps(dict(schema='unknown',source_lock_sha256='a'*64)))
+   with self.assertRaisesRegex(ValueError,'incompatible'):MappingReviewer(p,h,'a'*64)
+   (p/'NATIVE-REPORT.json').write_text(json.dumps(dict(schema='interal-native-identity-index/1',source_lock_sha256='a'*64)))
+   with self.assertRaisesRegex(ValueError,'fingerprint'):MappingReviewer(p,'b'*64,'a'*64)
  def test_corpus_binding_gate_is_mandatory(self):
   self.c=capture('TEST_ONLY-v5',dict(test_only=True,coverage_complete=True,constraints=[]));d,trust=fixtures.IntegrationTests.decision(self,dict(source_family_id='family:TEST_ONLY:manu',source_lemma_id='TEST_ONLY:lemma'))
   self.assertEqual(decision(d,self.c,trust,confirmed=True)['decision'],'CONFIRMED_MEMBER')
+  from associativvordes.v5_contract.policy import operation_gate,admit
+  with self.assertRaisesRegex(Blocked,'POS'):admit(d,dict(version_contract=self.c,trust=trust),expected_pos='VERB')
+  op=dict(id='TEST_ONLY:op',kind='ADD_MEMBER',before=None,after={k:d['scope'][k] for k in ('family_id','language','lemma_id')});inputs=dict(version_contract=self.c,normative_decisions={op['id']:d})
+  with self.assertRaisesRegex(Blocked,'source record'):operation_gate([op],inputs,trust)
+  binding=trust['verifiedLexicalMappings'][d['id']];op.update(source_record_ref=binding['origin'],lexical_binding_sha256=digest(binding));self.assertEqual(len(operation_gate([op],inputs,trust)),1)
+  op['after']['pos']='VERB'
+  with self.assertRaisesRegex(Blocked,'POS'):operation_gate([op],inputs,trust)
+  op['after'].pop('pos')
+  op['source_record_ref']=dict(binding['origin'],ordinal=binding['origin']['ordinal']+1)
+  with self.assertRaisesRegex(Blocked,'source record'):operation_gate([op],inputs,trust)
   for field in ['verifiedLexicalMappings','verifiedLexicalMappingDigests']:
    bad=copy.deepcopy(trust);bad.pop(field)
    with self.assertRaisesRegex(Blocked,'mapping required'):decision(d,self.c,bad,confirmed=True)

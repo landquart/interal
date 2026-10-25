@@ -1,0 +1,20 @@
+{
+  "schema": "interal-identity-consumer-compatibility/1",
+  "producer_commit": "f085ecce623f687b9e50fd9a70f481e6bffa39c6",
+  "producer_schema": "interal-native-identity-index/1",
+  "consumer_gate": "Operator-configured expected database SHA-256 and source-lock SHA-256; unknown schema or mismatched fingerprint/version blocked",
+  "consumer_proof_reader_sha256": "2cf6a8c99d239c1b1961ce3fa7cbe9c9c501f172e0ebd3db883445daecbe0023",
+  "approved_bindings": 0,
+  "old_approved_bindings_silently_converted": false,
+  "current_consumer_files": {
+    "associativvordes/identity_mapping/review.py": "2cf6a8c99d239c1b1961ce3fa7cbe9c9c501f172e0ebd3db883445daecbe0023",
+    "associativvordes/v5_contract/policy.py": "bd26d65dd42407245c2c07062ae63f9fe5fa87847ddf1f08666f9a1a92e14b91",
+    "associativvordes/release_control/control.py": "a499b56b8a0d3babc264a0002ffccb3b3a5e28da8b02f56f0dc63c859d7e3a6c",
+    "associativvordes/semantic_cleanup/policy.py": "690f3be7ef6832d0e55b8652bc81dde8d2aeabda7a19880ad42188901a8b2c17"
+  },
+  "operation_required_fields": [
+    "source_record_ref",
+    "lexical_binding_sha256"
+  ],
+  "known_POS_must_match_verified_target": true
+}

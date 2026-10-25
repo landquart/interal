@@ -48,7 +48,11 @@ def review(q,item,contract,trust=None,confirmed=False):
  for field in ('lexeme_id','sense_id','context_id'):
   if q.get(field) is not None:scope[field]=q[field]
  if item.get('lexeme_id') is not None:scope['lexeme_id']=item['lexeme_id']
- return decision(d,contract,trust,scope,confirmed)
+ result=decision(d,contract,trust,scope,confirmed)
+ if result['decision'].startswith('CONFIRMED_') and q.get('pos'):
+  from associativvordes.identity_mapping.model import require_binding
+  require(require_binding(d,contract,trust)['target']['pos']==q['pos'],'review POS differs from verified lexical binding')
+ return result
 
 def operation_gate(operations,inputs,trust=None,release_verified=False):
  contract=inputs.get('version_contract');validate(contract)
@@ -56,6 +60,11 @@ def operation_gate(operations,inputs,trust=None,release_verified=False):
  for op in operations:
   row=op['before'] or op['after'];require(op['id'] in decisions,'missing exact normative operation decision')
   d=decisions[op['id']];result=decision(d,contract,trust,dict(family_id=row['family_id'],language=row['language'],lemma_id=row['lemma_id']),True)
+  from associativvordes.identity_mapping.model import require_binding
+  binding=require_binding(d,contract,trust)
+  if row.get('pos'):require(row['pos']==binding['target']['pos'],'operation POS differs from verified lexical binding')
+  require(op.get('source_record_ref')==binding['origin'],'operation source record differs from exact identity binding')
+  require(op.get('lexical_binding_sha256')==digest(binding),'operation missing exact lexical/sense binding digest')
   expected='CONFIRMED_NONMEMBER' if op['kind']=='EXCLUDE_MEMBER' else 'CONFIRMED_MEMBER';require(result['decision']==expected,'normative conclusion incompatible with operation')
   context=dict(trust or {},operation=op['kind'],currentLocks=dict(snapshot_sha256=contract['baseline']['inventory_sha256'],source_lock_sha256=contract['sources']['sha256'],algorithm_sha256=digest(contract['algorithms']),policy_version=contract['normative']['version']),exactOperationVerified=True,releaseGatesVerified=release_verified)
   receipt=evaluate([dict(type='correction',decision=d,context=context)],contract)[0]
@@ -76,9 +85,12 @@ def history_gate(operations,contract):
     for guard in h.get('fixture',{}).get('constraints',[]):
      if all(row.get(k)==guard[k] for k in ('family_id','language','lemma_id')):raise Blocked('preserved exact test-history restriction')
 
-def admit(d,context,scope=None,expected=None):
+def admit(d,context,scope=None,expected=None,expected_pos=None):
  """Context is independently configured by the application, never read from d."""
  if not isinstance(context,dict) or not context.get('version_contract'):raise ValueError('normative version contract and external trust required')
  result=decision(d,context['version_contract'],context.get('trust'),scope,confirmed=True)
  if expected and result['decision']!=expected:raise ValueError('normative conclusion incompatible with requested membership')
+ if expected_pos:
+  from associativvordes.identity_mapping.model import require_binding
+  require(require_binding(d,context['version_contract'],context.get('trust'))['target']['pos']==expected_pos,'semantic POS differs from verified lexical binding')
  return dict(result,decision_id=d['id'],scope=d['scope'],establishes_membership=True,production_write_authorized=False)

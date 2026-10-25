@@ -1,0 +1,155 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node scripts/run-tests.mjs
+
+Discovered 120 test files; running 120.
+
+> node tests/altervordes-multilingual-conclusion.test.mjs
+Alter vordes multilingual conclusion tests passed.
+
+> node tests/altervordes-prompts.test.mjs
+Alter vordes binary derivational potential tests passed.
+
+> node tests/association-demographic-weighting.test.mjs
+association demographic weighting tests passed
+
+> node tests/associative-affix-boundary.test.mjs
+Associative affix boundary tests passed.
+
+> node tests/associative-atomic-pipeline.test.mjs
+Associative production pipeline integration tests passed.
+
+> node tests/associative-auto-annotation.test.mjs
+test_cited_axes_do_not_establish_other_axes (test_annotation.ContractTests.test_cited_axes_do_not_establish_other_axes) ... ok
+test_compounds_retained (test_annotation.ContractTests.test_compounds_retained) ... ok
+test_conflicting_source_assertions_are_retained (test_annotation.ContractTests.test_conflicting_source_assertions_are_retained) ... ok
+test_cross_language_and_direction (test_annotation.ContractTests.test_cross_language_and_direction) ... ok
+test_exclusion_requires_scoped_contradiction (test_annotation.ContractTests.test_exclusion_requires_scoped_contradiction) ... ok
+test_inflection_is_not_derivation (test_annotation.ContractTests.test_inflection_is_not_derivation) ... ok
+test_language_mismatch (test_annotation.ContractTests.test_language_mismatch) ... ok
+test_model_invented_reference_rejected (test_annotation.ContractTests.test_model_invented_reference_rejected) ... ok
+test_model_invented_sense_and_confidence_rejected (test_annotation.ContractTests.test_model_invented_sense_and_confidence_rejected) ... ok
+test_negative_scope_and_privacy (test_annotation.ContractTests.test_negative_scope_and_privacy) ... ok
+test_orthographic_identity_not_derivation (test_annotation.ContractTests.test_orthographic_identity_not_derivation) ... ok
+test_pos_and_frequency_unknown (test_annotation.ContractTests.test_pos_and_frequency_unknown) ... ok
+test_prompt_injection_retained_only_as_data (test_annotation.ContractTests.test_prompt_injection_retained_only_as_data) ... ok
+test_same_form_multiple_native_senses_not_merged (test_annotation.ContractTests.test_same_form_multiple_native_senses_not_merged) ... ok
+test_same_spelling_alternative_path_cannot_support_this_native_lexeme (test_annotation.ContractTests.test_same_spelling_alternative_path_cannot_support_this_native_lexeme) ... ok
+test_separate_axes_and_stable_native_ids (test_annotation.ContractTests.test_separate_axes_and_stable_native_ids) ... ok
+test_strict_json (test_annotation.ContractTests.test_strict_json) ... ok
+test_substring_without_path_remains_unknown (test_annotation.ContractTests.test_substring_without_path_remains_unknown) ... ok
+test_inflection_only_native_identity_is_verified_in_auxiliary (test_annotation.NativeSourceTests.test_inflection_only_native_identity_is_verified_in_auxiliary) ... ok
+test_algorithm_change_cannot_silently_resume (test_annotation.PipelineTests.test_algorithm_change_cannot_silently_resume) ... ok
+test_balanced_budget_does_not_drop_language (test_annotation.PipelineTests.test_balanced_budget_does_not_drop_language) ... ok
+test_export_repeat_is_identical (test_annotation.PipelineTests.test_export_repeat_is_identical) ... ok
+test_handoff_preserves_questions_and_blind_boundary (test_annotation.PipelineTests.test_handoff_preserves_questions_and_blind_boundary) ... ok
+test_multi_same_model_not_independent (test_annotation.PipelineTests.test_multi_same_model_not_independent) ... ok
+test_offline_result_does_not_prevent_explicit_pilot (test_annotation.PipelineTests.test_offline_result_does_not_prevent_explicit_pilot) ... ok
+test_resume_rejection_and_changed_input (test_annotation.PipelineTests.test_resume_rejection_and_changed_input) ... ok
+test_concurrent_admission_respects_global_limit (test_annotation.ProviderTests.test_concurrent_admission_respects_global_limit) ... ok
+test_cost_forecast_unknown_without_provider (test_annotation.ProviderTests.test_cost_forecast_unknown_without_provider) ... ok
+test_default_does_not_call_transport (test_annotation.ProviderTests.test_default_does_not_call_transport) ... ok
+test_durable_invalid_attempt_limit (test_annotation.ProviderTests.test_durable_invalid_attempt_limit) ... ok
+test_endpoint_and_inline_key_guards (test_annotation.ProviderTests.test_endpoint_and_inline_key_guards) ... ok
+test_local_cloud_rejected (test_annotation.ProviderTests.test_local_cloud_rejected) ... ok
+test_ollama_digest_required (test_annotation.ProviderTests.test_ollama_digest_required) ... ok
+test_paid_no_authorization (test_annotation.ProviderTests.test_paid_no_authorization) ... ok
+test_paid_parallel_reservations_are_not_crash_outcomes (test_annotation.ProviderTests.test_paid_parallel_reservations_are_not_crash_outcomes) ... ok
+test_request_limit_survives_new_client (test_annotation.ProviderTests.test_request_limit_survives_new_client) ... ok
+test_secret_echo_is_not_persisted (test_annotation.ProviderTests.test_secret_echo_is_not_persisted) ... ok
+test_token_contract_violation_blocks_paid_continuation (test_annotation.ProviderTests.test_token_contract_violation_blocks_paid_continuation) ... ok
+test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt (test_annotation.ProviderTests.test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt) ... ok
+test_valid_response_cache_across_roles_and_prices (test_annotation.ProviderTests.test_valid_response_cache_across_roles_and_prices) ... ok
+test_backup_restores_full_history (test_annotation.StoreTests.test_backup_restores_full_history) ... ok
+test_backup_traversal (test_annotation.StoreTests.test_backup_traversal) ... ok
+test_concurrent_writers_excluded (test_annotation.StoreTests.test_concurrent_writers_excluded) ... ok
+test_corrupt_object_detected (test_annotation.StoreTests.test_corrupt_object_detected) ... ok
+test_partial_write_and_head_recovery (test_annotation.StoreTests.test_partial_write_and_head_recovery) ... ok
+test_repeat_and_history (test_annotation.StoreTests.test_repeat_and_history) ... ok
+test_tail_loss_detected (test_annotation.StoreTests.test_tail_loss_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.886s
+
+OK
+
+> node tests/associative-calculation-lifecycle.test.mjs
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (1.075663ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (0.968842ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.343537ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (2.633884ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (1.065247ms)
+✔ AC-006: actual page analyzeItem discards a late response after candidate edit (6.241098ms)
+✔ V-003: abort during index loading terminalizes language status (0.460004ms)
+✔ V-002: actual page deselection cancels late manual analysis (2.185748ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20.997025
+
+> node tests/associative-calculation-numeric.test.mjs
+✔ AC-003: maximum P and same representative A; missing A and required review remain distinct (2.443928ms)
+✔ AC-002/003/010 regul fixed fixture: five derivatives per language, positive P and pending review (22.119709ms)
+✔ AC-002/010: complete regul fixture uses unchanged direct demographic formulas (0.648799ms)
+✔ AC-003/010: partial languages and exact acceptance boundaries (0.601478ms)
+✔ AC-002: supported empty rows have N; unknown represented language throws (1.434915ms)
+✔ AC-005: numeric persistence keeps absence, zero and review diagnostics (1.505512ms)
+✔ AC-010/015: actual page adapter counts all found rows without changing five-model scoring (4.282362ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 37.387727
+
+> node tests/associative-calculation-services.test.mjs
+✔ AC-008: deadline includes an unresponsive response body and cancellation wins late results (10.339593ms)
+✔ AC-009: backend rejects incomplete scores, preserves true zero and upstream 403 (4.135009ms)
+✔ AC-008: backend timeout also covers upstream body (4.556536ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23.560153
+
+> node tests/associative-calculation-transport.test.mjs
+file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:43
+function makeError(code, message, details) { return new CandidateIndexError(code, message, details); }
+                                                    ^
+
+CandidateIndexError: Candidate index request failed: ./search-index/manifest.json
+    at makeError (file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:43:53)
+    at fetchJson (file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:103:11)
+    at async file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:244:45
+    at async Object.loadCandidateEntries (file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:337:22)
+    at async file:///workspace/scratch/26989df269a1/interal/tests/associative-calculation-transport.test.mjs:16:17 {
+  code: 'MANIFEST_FETCH_FAILED',
+  cause: AssertionError [ERR_ASSERTION]: regul must not fall back to the static index
+      at fetchLocal (file:///workspace/scratch/26989df269a1/interal/tests/associative-calculation-transport.test.mjs:11:10)
+      at withRequestDeadline.signal.signal (file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:96:30)
+      at withRequestDeadline (file:///workspace/scratch/26989df269a1/interal/shared/request-deadline.mjs:23:78)
+      at fetchJson (file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:95:18)
+      at file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:244:51
+      at async Object.loadCandidateEntries (file:///workspace/scratch/26989df269a1/interal/associativvordes/js/candidate-index-loader.js:337:22)
+      at async file:///workspace/scratch/26989df269a1/interal/tests/associative-calculation-transport.test.mjs:16:17 {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+}
+
+Node.js v24.22.1
+Test failed: tests/associative-calculation-transport.test.mjs exited with code 1

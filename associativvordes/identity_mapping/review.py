@@ -4,8 +4,12 @@ from pathlib import Path
 from .model import entity,adjudicate,digest
 from .project import hash_file
 class MappingReviewer:
- def __init__(self,native):
-  self.folder=Path(native);self.path=self.folder/'native.sqlite';self.db=sqlite3.connect(self.path.resolve().as_uri()+'?mode=ro&immutable=1',uri=True);self.db.row_factory=sqlite3.Row;self.source_index_sha256=hash_file(self.path)
+ def __init__(self,native,expected_database_sha256,expected_source_lock_sha256):
+  self.folder=Path(native);self.path=self.folder/'native.sqlite';report=json.loads((self.folder/'NATIVE-REPORT.json').read_bytes())
+  if report.get('schema')!='interal-native-identity-index/1' or report.get('source_lock_sha256')!=expected_source_lock_sha256:raise ValueError('incompatible native index schema/source version')
+  self.source_index_sha256=hash_file(self.path)
+  if self.source_index_sha256!=expected_database_sha256:raise ValueError('native index differs from configured verified fingerprint')
+  self.source_lock_sha256=expected_source_lock_sha256;self.db=sqlite3.connect(self.path.resolve().as_uri()+'?mode=ro&immutable=1',uri=True);self.db.row_factory=sqlite3.Row
  def close(self):self.db.close()
  def proposal(self,origin,candidate_id,context,evidence_refs,decision_scope):
   row=self.db.execute('SELECT c.*,a.source_id,a.body artifact_body FROM candidates c JOIN artifacts a ON a.id=c.artifact WHERE c.id=?',(candidate_id,)).fetchone()
@@ -18,6 +22,7 @@ class MappingReviewer:
   if reconstructed!=proposal:raise ValueError('mapping target/source facts differ from locked index')
   return adjudicate(proposal['origin'],[proposal['target']],proposal,verify_receipt)
  def binding(self,proposal,contract,verify_receipt=None):
+  if contract['sources']['sha256']!=self.source_lock_sha256:raise ValueError('mapping source index incompatible with normative release')
   result=self.evaluate(proposal,verify_receipt)
   if result['status'] not in {'EXACT_IDENTITY','SUPPORTED_MAPPING'}:raise ValueError('mapping still requires independent confirmation')
   return dict(schema='interal-verified-identity-binding/1',status=result['status'],scope=proposal['decision_scope'],target=proposal['target'],target_source_sha256=proposal['target_source_sha256'],origin=proposal['origin'],input_version=contract['version'],evidence_refs=proposal['evidence_refs'],mapping_proof_sha256=result['proof_sha256'],source_index_sha256=self.source_index_sha256)

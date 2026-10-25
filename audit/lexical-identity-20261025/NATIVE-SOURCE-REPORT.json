@@ -1,0 +1,282 @@
+{
+  "schema": "interal-native-identity-index/1",
+  "artifacts": [
+    {
+      "id": "GLeMM:deu:defs.tsv.bz2",
+      "counts": {
+        "source_rows": 42438,
+        "endpoint_occurrences": 84876
+      }
+    },
+    {
+      "id": "GLeMM:deu:pairs.tsv.bz2",
+      "counts": {
+        "source_rows": 136248,
+        "endpoint_occurrences": 272496
+      }
+    },
+    {
+      "id": "GLeMM:eng:defs.tsv.bz2",
+      "counts": {
+        "source_rows": 271496,
+        "endpoint_occurrences": 542992
+      }
+    },
+    {
+      "id": "GLeMM:eng:pairs.tsv.bz2",
+      "counts": {
+        "source_rows": 779170,
+        "endpoint_occurrences": 1558340
+      }
+    },
+    {
+      "id": "GLeMM:esp:defs.tsv.bz2",
+      "counts": {
+        "source_rows": 19548,
+        "endpoint_occurrences": 39096
+      }
+    },
+    {
+      "id": "GLeMM:esp:pairs.tsv.bz2",
+      "counts": {
+        "source_rows": 70531,
+        "endpoint_occurrences": 141062
+      }
+    },
+    {
+      "id": "GLeMM:fra:defs.tsv.bz2",
+      "counts": {
+        "source_rows": 86526,
+        "endpoint_occurrences": 173052
+      }
+    },
+    {
+      "id": "GLeMM:fra:pairs.tsv.bz2",
+      "counts": {
+        "source_rows": 271343,
+        "endpoint_occurrences": 542686
+      }
+    },
+    {
+      "id": "GLeMM:ita:defs.tsv.bz2",
+      "counts": {
+        "source_rows": 9569,
+        "endpoint_occurrences": 19138
+      }
+    },
+    {
+      "id": "GLeMM:ita:pairs.tsv.bz2",
+      "counts": {
+        "source_rows": 121400,
+        "endpoint_occurrences": 242800
+      }
+    },
+    {
+      "id": "GLeMM:rus:defs.tsv.bz2",
+      "counts": {
+        "source_rows": 261713,
+        "endpoint_occurrences": 523426
+      }
+    },
+    {
+      "id": "GLeMM:rus:pairs.tsv.bz2",
+      "counts": {
+        "source_rows": 732633,
+        "endpoint_occurrences": 1465266
+      }
+    },
+    {
+      "id": "MorphyNet:deu.derivational.v1",
+      "counts": {
+        "source_rows": 29381,
+        "endpoint_occurrences": 58762
+      }
+    },
+    {
+      "id": "MorphyNet:deu.inflectional.v1",
+      "counts": {
+        "source_rows": 490331,
+        "endpoint_occurrences": 490331
+      }
+    },
+    {
+      "id": "MorphyNet:eng.derivational.v1",
+      "counts": {
+        "source_rows": 225131,
+        "endpoint_occurrences": 450262
+      }
+    },
+    {
+      "id": "MorphyNet:eng.inflectional.v1",
+      "counts": {
+        "source_rows": 649593,
+        "endpoint_occurrences": 649593
+      }
+    },
+    {
+      "id": "MorphyNet:fra.derivational.v1",
+      "counts": {
+        "source_rows": 72952,
+        "endpoint_occurrences": 145904
+      }
+    },
+    {
+      "id": "MorphyNet:fra.inflectional.v1",
+      "counts": {
+        "source_rows": 453228,
+        "endpoint_occurrences": 453228
+      }
+    },
+    {
+      "id": "MorphyNet:ita.derivational.v1",
+      "counts": {
+        "source_rows": 58848,
+        "endpoint_occurrences": 117696
+      }
+    },
+    {
+      "id": "MorphyNet:ita.inflectional.v1",
+      "counts": {
+        "source_rows": 712021,
+        "endpoint_occurrences": 712021
+      }
+    },
+    {
+      "id": "MorphyNet:rus.derivational.v1",
+      "counts": {
+        "source_rows": 93039,
+        "endpoint_occurrences": 186078
+      }
+    },
+    {
+      "id": "MorphyNet:rus.inflectional.v1",
+      "counts": {
+        "source_rows": 1321024,
+        "endpoint_occurrences": 1321024
+      }
+    },
+    {
+      "id": "MorphyNet:spa.derivational.v1",
+      "counts": {
+        "source_rows": 30777,
+        "endpoint_occurrences": 61554
+      }
+    },
+    {
+      "id": "MorphyNet:spa.inflectional.v1.part1",
+      "counts": {
+        "source_rows": 750000,
+        "endpoint_occurrences": 749983,
+        "rejected_rows": 17
+      }
+    },
+    {
+      "id": "MorphyNet:spa.inflectional.v1.part2",
+      "counts": {
+        "source_rows": 539324,
+        "endpoint_occurrences": 539317,
+        "rejected_rows": 7
+      }
+    },
+    {
+      "id": "UDer:de-DErivBase",
+      "counts": {
+        "source_rows": 280775,
+        "endpoint_occurrences": 280775
+      }
+    },
+    {
+      "id": "UDer:en-CatVar",
+      "counts": {
+        "source_rows": 82675,
+        "endpoint_occurrences": 82675
+      }
+    },
+    {
+      "id": "UDer:en-WordNet",
+      "counts": {
+        "source_rows": 13813,
+        "endpoint_occurrences": 13813
+      }
+    },
+    {
+      "id": "UDer:es-DeriNetES",
+      "counts": {
+        "source_rows": 151173,
+        "endpoint_occurrences": 151173
+      }
+    },
+    {
+      "id": "UDer:fr-Demonette",
+      "counts": {
+        "source_rows": 22060,
+        "endpoint_occurrences": 22060
+      }
+    },
+    {
+      "id": "UDer:it-DerIvaTario",
+      "counts": {
+        "source_rows": 8267,
+        "endpoint_occurrences": 8267
+      }
+    },
+    {
+      "id": "UDer:ru-DeriNetRU",
+      "counts": {
+        "source_rows": 337632,
+        "endpoint_occurrences": 337632
+      }
+    },
+    {
+      "id": "UDer:ru-DerivBaseRU",
+      "counts": {
+        "source_rows": 270473,
+        "endpoint_occurrences": 270473
+      }
+    },
+    {
+      "id": "UDer:ru-EtymWordNetRU",
+      "counts": {
+        "source_rows": 4005,
+        "endpoint_occurrences": 4005
+      }
+    },
+    {
+      "id": "UDer:ru-GoldenCompoundAnalyses",
+      "counts": {
+        "source_rows": 4931,
+        "endpoint_occurrences": 4931
+      }
+    }
+  ],
+  "totals": {
+    "source_rows": 9404068,
+    "endpoint_occurrences": 12716787,
+    "rejected_rows": 24
+  },
+  "candidate_signatures": 4156645,
+  "all_occurrences_preserved": true,
+  "senses_inferred": false,
+  "lookup_is_identity": false,
+  "source_lock_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad",
+  "seconds": 201.18005429599998,
+  "unicode_version": "15.0.0",
+  "dictionary_packet": {
+    "artifact": {
+      "id": "frozen-dictionary-senses",
+      "source": "FROZEN_DICTIONARY_PACKET",
+      "resource": "semantic-senses",
+      "revision": "0d703566c711c36a34caa29ad3f1a79484df18096e59d471dd98b3ff35d4fe8a",
+      "sha256": "0d703566c711c36a34caa29ad3f1a79484df18096e59d471dd98b3ff35d4fe8a",
+      "format": "frozen_dictionary_senses",
+      "path": "dictionary-senses.json",
+      "sources_path": "dictionary-sources.json",
+      "sources_sha256": "baec471fab3a87fdf58974a6213504c1ea95dd35726d00d89c4a9af80a4084c5",
+      "license": "Original publisher rights; documentary research retention, no unrestricted redistribution approval",
+      "scope": "Documentary source senses only, no v5 native identity"
+    },
+    "senses": 32,
+    "corpus_bindings_confirmed": 0
+  },
+  "all_input_source_artifacts": 36
+}

@@ -1,0 +1,63 @@
+{
+  "schema": "interal-identity-test-report/1",
+  "identity_model_python_tests": 11,
+  "identity_node_wrapper_passed": true,
+  "prior_normative_python_tests": 11,
+  "normative_adversarial_node_tests": 104,
+  "targeted_suites": [
+    {
+      "test": "associative-identity-mapping",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-normative-admission",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-release-control",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-semantic-cleanup",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-cleanup-quality",
+      "exit_code": 0
+    },
+    {
+      "test": "associative-v5-release-readiness",
+      "exit_code": 0
+    },
+    {
+      "test": "history-adjudication",
+      "exit_code": 0
+    }
+  ],
+  "full_normative_e2e": {
+    "status": "PASS_TEST_ONLY",
+    "includes_verified_mapping_fixture": true,
+    "production_bindings_created": 0,
+    "receipt": "E2E-RECEIPT.json"
+  },
+  "independent_source_format_endpoints": 431,
+  "independent_full_corpus_origin_sequences": 10078319,
+  "independent_full_record_hash_sample": 600,
+  "whole_npm": {
+    "status": "STOPPED_BY_ABSENT_V5_FILES_IN_SPARSE_CHECKOUT",
+    "test": "associative-calculation-transport",
+    "transport_recheck_with_locked_baseline": "PASS_IN_ISOLATED_EXACT_CODE_COPY",
+    "national_correspondence_still_blocked": "Historical CODE-LOCK mismatch reproduced separately; old receipts preserved"
+  },
+  "all_repository_tests_green": false,
+  "production_writes": 0,
+  "current_consumer_rechecks": {
+    "identity_mapping_11_python_cases": "PASS",
+    "normative_admission_11_python_cases": "PASS",
+    "full_normative_E2E": "PASS",
+    "release_control": "PASS",
+    "semantic_review": "PASS"
+  },
+  "operation_source_record_and_binding_digest_required": true,
+  "POS_checked_against_binding_when_declared": true
+}

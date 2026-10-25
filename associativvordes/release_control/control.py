@@ -171,8 +171,9 @@ def transform(state, operations):
     data = result['data']; members = {key(m): m for m in data['memberships']}
     touched = set()
     for op in operations:
-        require(set(op) == {'id', 'kind', 'question_id', 'candidate_id', 'before', 'after',
-                            'evidence_refs', 'reason', 'supersedes'}, 'invalid operation fields')
+        expected_fields={'id','kind','question_id','candidate_id','before','after','evidence_refs','reason','supersedes'}
+        if state.get('version_contract'):expected_fields|={'source_record_ref','lexical_binding_sha256'}
+        require(set(op)==expected_fields,'invalid operation fields')
         require(op['kind'] in KINDS, 'disputed cases/new bases are not applicable')
         require(op['reason'].strip() and op['evidence_refs'], 'reason and evidence required')
         require(op['question_id'] and op['candidate_id'], 'candidate identity required')

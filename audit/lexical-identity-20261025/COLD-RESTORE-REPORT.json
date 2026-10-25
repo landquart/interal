@@ -1,0 +1,61 @@
+{
+  "schema": "interal-identity-cold-restore/1",
+  "status": "ALL_PARTS_REACQUIRED_ALL_OBJECTS_PHYSICALLY_RESTORED_HASHED_SQLITE_INTEGRITY_OK",
+  "archive_sha256": "d263a7cf3c1758e27eee724148ae7faa7f4fe4eac78897d83563c18c25d2cd4a",
+  "archive_bytes": 2158059331,
+  "parts": [
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-01",
+      "bytes": 268435456,
+      "sha256": "2d6e20ed5b03c927aa87ba5932d50f91e47aa34389390c360d46fdb20e14ee82"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-02",
+      "bytes": 268435456,
+      "sha256": "9c9959ae9073b9fa438e3719fde57bf74ebff144b43a4bfeafb5d4b0e5ffe403"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-03",
+      "bytes": 268435456,
+      "sha256": "a23c6bd4de0eb3741d48c274571ebc0dea8b3e1e02afaf773c9eef194880a696"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-04",
+      "bytes": 268435456,
+      "sha256": "2392dbac8ee4dab0b5d1e75b426b406cff818471d3748cc1999f42f40f8ed162"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-05",
+      "bytes": 268435456,
+      "sha256": "919d3a7d0d9b6bf50b20dfca5a63fe01552c63be2724ebc35eaf5dcbac005457"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-06",
+      "bytes": 268435456,
+      "sha256": "50ba625d5453c64319ee6b81bdac388f9ad2a81109b2a0f28d4f5a741c537433"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-07",
+      "bytes": 268435456,
+      "sha256": "71c532fb2adfff54cbb3a03072d459016abd7422cee91660fc9d741df73f0bcd"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-08",
+      "bytes": 268435456,
+      "sha256": "09129b0e24ec86bc6302370abf761b0208145e87e3158f5c6f0d6cdd6dcd6b31"
+    },
+    {
+      "file": "interal-v5-lexical-sense-registry-20261025.zip.part-09",
+      "bytes": 10575683,
+      "sha256": "7296ea2e17c2eb63c3568fdc09c3c42f1cd4732408eb557843469217fd37110c"
+    }
+  ],
+  "files_restored": 1549,
+  "bytes_restored": 4331997978,
+  "sqlite_integrity": "ok",
+  "candidate_signatures_and_documentary_senses": 4156677,
+  "memberships": 10078319,
+  "approved_mappings": 0,
+  "independent_second_store_backup": false,
+  "production_writes": 0
+}

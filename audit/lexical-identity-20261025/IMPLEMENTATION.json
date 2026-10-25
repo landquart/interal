@@ -1,0 +1,36 @@
+{
+  "schema": "interal-identity-mapping-release/1",
+  "namespace": "research-v5-identity-candidate",
+  "implementation_git_commit": "f085ecce623f687b9e50fd9a70f481e6bffa39c6",
+  "generation_start_commit": "02f8bc99aba9de32d32dfc757d3905a1e4857099",
+  "generation_used_uncommitted_mapping_implementation": true,
+  "implementation_committed_after_data_generation": true,
+  "producer_functions_unchanged_during_generation": {
+    "canonical": "232f9b892ff11e774d9d42984eac73200701b78e41224abee81c7dd3c73824f5",
+    "digest": "746a4116b25e08044b58ee7dab9118f29684d8f4df3dcd5b393b139c2659400c",
+    "lookup": "8985c82ab57bed19f4307cf6f83dd0f10bbb1bb2fda4c91ed597b76a67b4e4cb"
+  },
+  "algorithm_files": {
+    "associativvordes/identity_mapping/__init__.py": "2dba36e7394ae78b6c601e165def2bdfc0bd605a32a63d70ec70c82bebc9c3ca",
+    "associativvordes/identity_mapping/dictionary.py": "95a7b4b6e004370e83e12443539d0c66e51fe1c9231a78ae0be96e2e8d20f0dc",
+    "associativvordes/identity_mapping/entity.schema.json": "4e07430b65745a2040cbf99635b0fd643a00b7956580b9a9edebbc3a1a6507b3",
+    "associativvordes/identity_mapping/model.py": "51b91364a22c3f5f5a85cb2a075267e7af66b5b2d70c23b300b57ca716a0d0d1",
+    "associativvordes/identity_mapping/native.py": "e926d8604ba539ecdca1f1f86c4395c09a27ab82a3a2a54f9a728e3cb9ff6589",
+    "associativvordes/identity_mapping/project.py": "4d51753c8991b65b57eeadbbbd251be8dc1f1c2ca33a27267e75af5d83f3da57",
+    "associativvordes/identity_mapping/query.py": "ca40bfa7c02a4de4e2d461c2e53459ef22af90b34be1776ddc51bea4967029d6",
+    "associativvordes/identity_mapping/registry.py": "edadd11cbfac621a84942f581d862699fb3389d1dd5fab1d159da09f70d0ed04",
+    "associativvordes/identity_mapping/review.py": "afdb0394fb4c03ecf00ba5eee9203100bcf92f9be5cb2c21be5264dbefd9a4d0",
+    "associativvordes/identity_mapping/verify.py": "952acbef47a4e725711103c48c96d038952025e08d06735660f8ba728c0340e3",
+    "associativvordes/importers/morphology_import.py": "06717b9f51c6defb90613386d0833dde68f9bb865d0eb729135c5b106099ee33",
+    "associativvordes/v5_adapter/stream.py": "84574bfb077e290e62ee2bdef5fda11f4d09b948703e4333b5e7692bc8624abe"
+  },
+  "source_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "registry_sha256": "c88e0cc9c04564b6b244ded97335bea7c7c09dbe24dbb1fbe9d3c0712250f07d",
+  "source_lock_sha256": "0ca240e9c42334e04ff188d329433b8e476d88a54a80da60d54eca9edaa2bbad",
+  "python": "3.12.14",
+  "sqlite": "3.53.1",
+  "unicode": "15.0.0",
+  "confirmed_mappings": 0,
+  "production_writes": 0,
+  "semantic_approval": false
+}
