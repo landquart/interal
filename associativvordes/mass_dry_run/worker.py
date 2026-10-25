@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Separate annotation process. Network is unconditionally disabled for phase 06."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,json,os,signal,sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'associativvordes/auto_annotation'))
+None
 from pipeline import load_input,execute
-from storage import Store
-from contract import canonical
+from associativvordes.auto_annotation.storage import Store
+from associativvordes.auto_annotation.contract import canonical
 
 def main():
     p=argparse.ArgumentParser(description=__doc__)

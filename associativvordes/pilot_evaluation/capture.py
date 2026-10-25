@@ -1,10 +1,14 @@
 """Seal recorded actual searches; do not simulate a current-algorithm baseline."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 from pathlib import Path
-from gold import sha,canonical,file_hash,json_rows,validate_cases
-from graph import lookup
-from run import BASELINE_COMMIT,BASELINE_HASHES
+from associativvordes.pilot_evaluation.gold import sha,canonical,file_hash,json_rows,validate_cases
+from associativvordes.evidence_graph.graph import lookup
+from associativvordes.pilot_evaluation.run import BASELINE_COMMIT,BASELINE_HASHES
 
 def capture(cases,recordings,operator):
     validate_cases(cases)

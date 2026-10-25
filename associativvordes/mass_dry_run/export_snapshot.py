@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Export published dry-run snapshot to fresh human queues, never an existing decision ledger."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import copy
 import json
@@ -7,9 +11,9 @@ from pathlib import Path
 import shutil
 import sys
 ROOT=Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'associativvordes/auto_annotation'))
-from contract import canonical,sha,file_hash
-from storage import atomic
+None
+from associativvordes.auto_annotation.contract import canonical,sha,file_hash
+from associativvordes.auto_annotation.storage import atomic
 
 def export_snapshot(path,output,ledger_path=None,expected_sha256=None):
     path=Path(path);output=Path(output).resolve()
@@ -40,8 +44,8 @@ def export_snapshot(path,output,ledger_path=None,expected_sha256=None):
     source_rows=snap.get('raw_source_rows',{})
     atomic(output/'SOURCE-ROWS.json',canonical(source_rows).encode())
     if ledger_path:
-        sys.path.insert(0,str(ROOT/'associativvordes/review'))
-        from store import Ledger
+        None
+        from associativvordes.review.store import Ledger
         ledger=Ledger(ledger_path);ledger.import_queue(output)
         folder=ledger.root/'source-rows';folder.mkdir(exist_ok=True)
         raw=canonical(source_rows).encode();atomic(folder/(sha(raw)+'.json'),raw)

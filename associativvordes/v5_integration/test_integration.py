@@ -112,7 +112,7 @@ class IntegrationTests(unittest.TestCase):
   with self.assertRaises(Blocked):Queue(path,version_contract=self.c)
   self.assertEqual(before,path.read_bytes())
  def test_all_components_import_in_both_orders_without_flat_module_aliases(self):
-  modules=['v5_baseline.census','history_registry.registry','v5_adapter.bridge','v5_diagnostics.run','structural_cleanup.workflow','surface_cleanup.run','morphology_cleanup.run','morphology_review.run','national_correspondences.registry','semantic_cleanup.bridge','family_boundary.build','cleanup_quality.evaluate','full_v5_dry_run.census','release_control.workflow','v5_release_control.package','evidence_graph.build_graph','candidate_search.search','review.server','auto_annotation.pipeline']
+  modules=['pilot_evaluation.metrics04','pilot_evaluation.study04','mass_dry_run.run','mass_dry_run.worker','v5_baseline.census','history_registry.registry','v5_adapter.bridge','v5_diagnostics.run','structural_cleanup.workflow','surface_cleanup.run','morphology_cleanup.run','morphology_review.run','national_correspondences.registry','semantic_cleanup.bridge','family_boundary.build','cleanup_quality.evaluate','full_v5_dry_run.census','release_control.workflow','v5_release_control.package','evidence_graph.build_graph','candidate_search.search','review.server','auto_annotation.pipeline']
   for order in [modules,list(reversed(modules))]:
    code='import importlib,sys,json; modules=json.loads(sys.argv[1]); [importlib.import_module("associativvordes."+m) for m in modules]; assert not set(["common","policy","registry","graph","store"]) & set(sys.modules)'
    r=subprocess.run([sys.executable,'-c',code,json.dumps(order)],cwd=ROOT,capture_output=True,text=True)

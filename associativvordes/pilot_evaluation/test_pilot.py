@@ -1,18 +1,22 @@
 """Real lexical carriers; all human labels/captures here are TEST-ONLY simulations."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import copy
 import json
 from pathlib import Path
 import tempfile
 import unittest
-from gold import sha,canonical,compile_gold,case_hash,assignments,validate_cases,new_release_directory
-from sample import make_case
-from evaluate import evaluate,counts,compare,agreement
-from run import predictions_from_sources,capture_baseline,BASELINE_COMMIT,BASELINE_HASHES
-from impact import diagnose
-from capture import capture
-from graph import Graph,lookup
-from records import read_json
-from build_graph import load_registry,ingest
+from associativvordes.pilot_evaluation.gold import sha,canonical,compile_gold,case_hash,assignments,validate_cases,new_release_directory
+from associativvordes.pilot_evaluation.sample import make_case
+from associativvordes.pilot_evaluation.evaluate import evaluate,counts,compare,agreement
+from associativvordes.pilot_evaluation.run import predictions_from_sources,capture_baseline,BASELINE_COMMIT,BASELINE_HASHES
+from associativvordes.pilot_evaluation.impact import diagnose
+from associativvordes.pilot_evaluation.capture import capture
+from associativvordes.evidence_graph.graph import Graph,lookup
+from associativvordes.evidence_graph.records import read_json
+from associativvordes.evidence_graph.build_graph import load_registry,ingest
 
 HERE=Path(__file__).parent;FIX=HERE.parents[0]/'candidate_search/fixtures'
 ROSTER={x:{'kind':'human','authorized_by':'TEST-ONLY','authorization_ref':'test-only:'+x} for x in ['a','b','c']}

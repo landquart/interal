@@ -1,9 +1,13 @@
 """Explicit human annotation contract. Automatic/imported labels never become gold."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json
 from pathlib import Path
 import sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'evidence_graph'))
-from graph import canonical,sha,file_hash,json_rows
+None
+from associativvordes.evidence_graph.graph import canonical,sha,file_hash,json_rows
 
 RELATIONS={'direct','indirect','compound','allomorph','homonym','orthographic_variant','substring_only','semantic_distant','unrelated','inflection','uncertain'}
 DECISIONS={'yes','no','uncertain'}

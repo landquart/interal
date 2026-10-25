@@ -1,6 +1,14 @@
 {
   "schema": "interal-v5-dependencies/1",
   "data_flow": {
+    "pilot_quality": [
+      "evidence",
+      "review"
+    ],
+    "legacy_dry_run": [
+      "annotation",
+      "pilot_quality"
+    ],
     "importers": [],
     "normative": [],
     "baseline": [
@@ -122,8 +130,10 @@
     "surface",
     "annotation",
     "morphology",
+    "pilot_quality",
     "review_event",
     "decision",
+    "legacy_dry_run",
     "morphology_review",
     "national",
     "semantic",
@@ -379,6 +389,486 @@
       "kind": "python"
     },
     {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/capture.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/capture.py",
+      "line": 10,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/capture.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.run",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/compare04.py",
+      "line": 10,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/compare04.py",
+      "line": 11,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/compare04.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.metrics04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/evaluate.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/gold.py",
+      "line": 10,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/human04.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "review",
+      "file": "associativvordes/pilot_evaluation/human04.py",
+      "line": 13,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/human04.py",
+      "line": 206,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/impact.py",
+      "line": 10,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/impact.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.run",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/metrics04.py",
+      "line": 8,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/metrics04.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.evaluate",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "line": 17,
+      "import_name": "associativvordes.evidence_graph.prepare_registry",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 8,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.prepare_inputs",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 10,
+      "import_name": "associativvordes.evidence_graph.select_pilot",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 11,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.study04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/replay04.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.compare04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 11,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.prepare_inputs",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.sample",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 14,
+      "import_name": "associativvordes.pilot_evaluation.run",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 15,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 16,
+      "import_name": "associativvordes.evidence_graph.select_pilot",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/reproduce.py",
+      "line": 17,
+      "import_name": "associativvordes.evidence_graph.build_graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 14,
+      "import_name": "associativvordes.pilot_evaluation.evaluate",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/run.py",
+      "line": 15,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 7,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 12,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 13,
+      "import_name": "associativvordes.pilot_evaluation.prepare_inputs",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/sample.py",
+      "line": 14,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/study04.py",
+      "line": 9,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "pilot_quality",
+      "file": "associativvordes/pilot_evaluation/study04.py",
+      "line": 10,
+      "import_name": "associativvordes.pilot_evaluation.compare04",
+      "kind": "python"
+    },
+    {
+      "source": "pilot_quality",
+      "target": "evidence",
+      "file": "associativvordes/pilot_evaluation/study04.py",
+      "line": 11,
+      "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/audit.py",
+      "line": 12,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/export_snapshot.py",
+      "line": 15,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/export_snapshot.py",
+      "line": 16,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "review",
+      "file": "associativvordes/mass_dry_run/export_snapshot.py",
+      "line": 48,
+      "import_name": "associativvordes.review.store",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 16,
+      "import_name": "associativvordes.mass_dry_run",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 17,
+      "import_name": "associativvordes.mass_dry_run.audit",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 18,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 19,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 116,
+      "import_name": "associativvordes.pilot_evaluation.archive04",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 26,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 27,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 29,
+      "import_name": "associativvordes.auto_annotation.providers",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 31,
+      "import_name": "associativvordes.mass_dry_run.audit",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 212,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 213,
+      "import_name": "associativvordes.pilot_evaluation.metrics04",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "pilot_quality",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 303,
+      "import_name": "associativvordes.pilot_evaluation.archive04",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/worker.py",
+      "line": 12,
+      "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "legacy_dry_run",
+      "target": "annotation",
+      "file": "associativvordes/mass_dry_run/worker.py",
+      "line": 13,
+      "import_name": "associativvordes.auto_annotation.contract",
+      "kind": "python"
+    },
+    {
       "source": "baseline",
       "target": "baseline",
       "file": "associativvordes/v5_baseline/audit_ids.py",
@@ -536,6 +1026,14 @@
       "file": "associativvordes/v5_adapter/exercise.py",
       "line": 61,
       "import_name": "associativvordes.auto_annotation.storage",
+      "kind": "python"
+    },
+    {
+      "source": "adapter",
+      "target": "legacy_dry_run",
+      "file": "associativvordes/v5_adapter/exercise.py",
+      "line": 70,
+      "import_name": "associativvordes.mass_dry_run.export_snapshot",
       "kind": "python"
     },
     {
@@ -2380,6 +2878,38 @@
     },
     {
       "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 24,
+      "import_name": "associativvordes.pilot_evaluation.gold",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 25,
+      "import_name": "associativvordes.pilot_evaluation.metrics04",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 26,
+      "import_name": "associativvordes.pilot_evaluation.study04",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/benchmark.py",
+      "line": 27,
+      "import_name": "associativvordes.pilot_evaluation.archive04",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
       "target": "annotation",
       "file": "associativvordes/auto_annotation/pipeline.py",
       "line": 17,
@@ -2432,6 +2962,14 @@
       "file": "associativvordes/auto_annotation/pipeline.py",
       "line": 59,
       "import_name": "associativvordes.evidence_graph.graph",
+      "kind": "python"
+    },
+    {
+      "source": "annotation",
+      "target": "pilot_quality",
+      "file": "associativvordes/auto_annotation/pipeline.py",
+      "line": 71,
+      "import_name": "associativvordes.pilot_evaluation.gold",
       "kind": "python"
     },
     {
@@ -2613,6 +3151,15 @@
   ],
   "physical_component_dependencies": {
     "importers": [],
+    "pilot_quality": [
+      "evidence",
+      "review"
+    ],
+    "legacy_dry_run": [
+      "annotation",
+      "pilot_quality",
+      "review"
+    ],
     "normative": [],
     "baseline": [],
     "history": [],
@@ -2620,6 +3167,7 @@
       "annotation",
       "evidence",
       "importers",
+      "legacy_dry_run",
       "review"
     ],
     "diagnostics": [
@@ -2690,6 +3238,7 @@
       "contract",
       "evidence",
       "importers",
+      "pilot_quality",
       "semantic"
     ],
     "contract": [
@@ -2708,10 +3257,35 @@
     [
       "adapter",
       "annotation",
+      "legacy_dry_run",
       "semantic"
     ]
   ],
   "dynamic_load_sites": [
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 96,
+      "call": "importlib.util.spec_from_file_location('phase06_finished_review', cycle.ROOT / 'associativvordes/review/store.py')"
+    },
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/finish.py",
+      "line": 97,
+      "call": "spec.loader.exec_module(review)"
+    },
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 290,
+      "call": "importlib.util.spec_from_file_location('phase06_review_store', ROOT / 'associativvordes/review/store.py')"
+    },
+    {
+      "component": "legacy_dry_run",
+      "file": "associativvordes/mass_dry_run/run.py",
+      "line": 291,
+      "call": "spec.loader.exec_module(review)"
+    },
     {
       "component": "baseline",
       "file": "associativvordes/v5_baseline/audit_ids.py",
@@ -2839,6 +3413,25 @@
     "associativvordes/importers/scale_index.py": "3945564a130cf93d65747cb0293919d1d0d9bdc104e09acb738d74e756d52932",
     "associativvordes/importers/validate_sources.py": "55fe021a19df22bb18f6580bad33491113b78bed29ee3184661d76995d59d96e",
     "associativvordes/importers/verify_replay.py": "7acedac10ad351ba3f96614ffb54eba5f81c5588560f596748f1f8ead3243c37",
+    "associativvordes/pilot_evaluation/archive04.py": "3f00f634ffd6a4c2cb119ba700d9ecb57269bc025c663e67135280dda1bf225f",
+    "associativvordes/pilot_evaluation/capture.py": "e9d3c5987d3815e3d1dde5dd48558f42f8ef98dac65e068f364a274bc7bf5433",
+    "associativvordes/pilot_evaluation/compare04.py": "836a5c0ac3160a1c5bbc15fb8df5fd7273626a84483588aae01fe557c45473d9",
+    "associativvordes/pilot_evaluation/evaluate.py": "aeff1009d6881f27ced761a957b60342d71bf4fcd4d37aa334bd8495344269d6",
+    "associativvordes/pilot_evaluation/gold.py": "d68e9d8f34d069267eb4a14d97db7de9682131743c4c93348a8cd0d2bf4c27a9",
+    "associativvordes/pilot_evaluation/human04.py": "5626857d87196cb03a6e3a904ba6883424f26ff2dfc51999639399ae0a1cd314",
+    "associativvordes/pilot_evaluation/impact.py": "a7c68f5a7c56c585c3ffbc792d3a9b87c80b414faf00543102fee84d78dc1088",
+    "associativvordes/pilot_evaluation/metrics04.py": "d20ea18ad1cc868ede5934d30a0fc43ab039e4ef578e97016051f505f5a75555",
+    "associativvordes/pilot_evaluation/prepare_inputs.py": "41971719e75656db8450d5e9d85df08bc745a332ec564d1b45bca7455ebd88e0",
+    "associativvordes/pilot_evaluation/replay04.py": "7c25ca009c96477e549b579ddedb7502b2e368b49c251c0b4e0b1858d5a110d4",
+    "associativvordes/pilot_evaluation/reproduce.py": "9c7314197f5999d2242c237c343942ffae1c889825a6ea98e41ca5f886f5ee52",
+    "associativvordes/pilot_evaluation/run.py": "b7a0bf34c3887d90a34cdfb9b7e58ecd3be3e0f2c4a41487c913eddc70dbb76a",
+    "associativvordes/pilot_evaluation/sample.py": "ef285fb6c9a10345e80ff7d13f32ccc8dee9cd7e0340f3239b0c8fd6ac1033cb",
+    "associativvordes/pilot_evaluation/study04.py": "37e84adcf5e3dcd11706b6f383cb82ebbad5ec8ca629a058d0b70ca0d35e7954",
+    "associativvordes/mass_dry_run/audit.py": "3aa59f52a552c51a38459691eaeae17a6fe6ba96707c678d4637ad08a1cf5d3e",
+    "associativvordes/mass_dry_run/export_snapshot.py": "d9a998cce98d2fd25cca5487aed8f3520b5704369ceadc0d12cb38c6ff0e0d86",
+    "associativvordes/mass_dry_run/finish.py": "9803b5b51d61fd0a75729ab25035a4c3214e1500036d1f1ce8350ecbf0fe3057",
+    "associativvordes/mass_dry_run/run.py": "86362a5a2e61ca7e7cd6b33fa017152abd85c83d83cff06f08cc1e1a4d27c0e9",
+    "associativvordes/mass_dry_run/worker.py": "f5da254b784cfc0335b8174e0fae6727d9664989c4247b16129476d4893e7a15",
     "associativvordes/v5_baseline/audit_ids.py": "d416247f4d29d3d1aa011dd29a46451e094e75000a34783de7d7e4fdf2210c01",
     "associativvordes/v5_baseline/audit_ledger.py": "5f89ca149bc0e266eb4e1c915855b5ca0c4a44fca26b28818cd587219811328e",
     "associativvordes/v5_baseline/audit_metadata.py": "184165e83a087890c6c263b9752ba7bc0111fc873460d948fafad066c2fed67c",
@@ -2954,7 +3547,7 @@
     "associativvordes/auto_annotation/storage.py": "b26b09ac6c7e6b5543950fa6779fc8e3d937144bfe88e4c9953b2579ed8e331a",
     "associativvordes/v5_contract/__init__.py": "c1a6eac11fcb66d19fa9846d665cb0d82d9ef34b81da941f77b0727d49825f47",
     "associativvordes/v5_contract/policy.py": "2a6c663ac74c7f3d3fb148d2aed6e3e50882800b26b5a591bc702d0320111ffb",
-    "associativvordes/v5_contract/versions.py": "0badb06af747ff6d235c7f523f89ec1abf7b06e76600032afe8e44189846b444",
+    "associativvordes/v5_contract/versions.py": "02baddddd7aa147910504736f859655d0a94cd40ebadb482740b70b1497be3a2",
     "associativvordes/v5_integration/__init__.py": "f7826cb84966ea2789bf1e990a6cfb2f7310e8c96afac373624f0f63ddd505ce",
     "associativvordes/v5_integration/__main__.py": "6a1864846027df7c7441dcb165ab955a90d455ac29396a67afdbc0536c7cbae7",
     "associativvordes/v5_integration/dependencies.py": "ae4fa407646679575bad16352ff755f0b87e3216b24cb5e715f418f4bd8b34ee",

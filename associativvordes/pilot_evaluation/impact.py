@@ -1,10 +1,14 @@
 """Compare immutable actual calculator captures; never implement or alter its formulas."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 import math
 from pathlib import Path
-from gold import file_hash
-from run import BASELINE_COMMIT,BASELINE_HASHES
+from associativvordes.pilot_evaluation.gold import file_hash
+from associativvordes.pilot_evaluation.run import BASELINE_COMMIT,BASELINE_HASHES
 
 LANGUAGES={'en','de','fr','es','it','ru'}
 

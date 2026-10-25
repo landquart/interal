@@ -1,4 +1,8 @@
 """TEST_ONLY engineering fixtures, never human gold or lexical truth."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import copy
 import json
 from pathlib import Path
@@ -8,8 +12,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
-from audit import build_snapshot,compare,groups_for,normalized_proposal,samples,sha
-from run import measured,queue_history,PROTOCOL
+from associativvordes.mass_dry_run.audit import build_snapshot,compare,groups_for,normalized_proposal,samples,sha
+from associativvordes.mass_dry_run.run import measured,queue_history,PROTOCOL
 
 def fixture(n=0):
     lid='lexeme:'+sha(['TEST_ONLY_LEXEME',n]);qid='TEST_ONLY_QUESTION:'+str(n)
@@ -131,7 +135,7 @@ class ExecutionTests(unittest.TestCase):
 
 class PublicationTests(unittest.TestCase):
     def test_export_to_fresh_review_ledger(self):
-        from export_snapshot import export_snapshot
+        from associativvordes.mass_dry_run.export_snapshot import export_snapshot
         snap,_=snapshot();snap['questions'][0]['lemma']='TEST_ONLY'
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);path=root/'snapshot.json';path.write_text(json.dumps(snap))
@@ -140,22 +144,22 @@ class PublicationTests(unittest.TestCase):
             self.assertEqual(manifest['human_decision_events'],0)
             self.assertTrue((root/'ledger/source-rows').is_dir())
     def test_export_refuses_existing_ledger(self):
-        from export_snapshot import export_snapshot
+        from associativvordes.mass_dry_run.export_snapshot import export_snapshot
         snap,_=snapshot()
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);path=root/'snapshot.json';path.write_text(json.dumps(snap));(root/'ledger').mkdir()
             with self.assertRaises(ValueError):export_snapshot(path,root/'queue',root/'ledger')
             self.assertFalse((root/'queue').exists())
     def test_export_checksum_guard(self):
-        from export_snapshot import export_snapshot
+        from associativvordes.mass_dry_run.export_snapshot import export_snapshot
         snap,_=snapshot()
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);path=root/'snapshot.json';path.write_text(json.dumps(snap))
             with self.assertRaises(ValueError):export_snapshot(path,root/'queue',expected_sha256='wrong')
     def test_resume_rejects_changed_pinned_algorithm(self):
-        import finish
+        from associativvordes.mass_dry_run import finish
         from unittest.mock import patch
-        from contract import file_hash
+        from associativvordes.auto_annotation.contract import file_hash
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);p=root/'a.py';p.write_text('TEST_ONLY')
             frozen={'algorithm_modules':{'a.py':file_hash(p)}}

@@ -1,11 +1,15 @@
 """Deterministic proposal groups and structural checks; never linguistic gold."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 from collections import Counter,defaultdict
 import copy
 from pathlib import Path
 import sys
 ROOT=Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'associativvordes/auto_annotation'))
-from contract import canonical,sha,scrub
+None
+from associativvordes.auto_annotation.contract import canonical,sha,scrub
 
 GROUPS=('potential_additions','potential_exclusions','relation_type_audit','identity_unresolved',
  'interfamily_conflicts','possible_bases','confirmed_existing_decisions','manual_review',

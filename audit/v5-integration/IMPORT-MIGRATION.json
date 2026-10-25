@@ -855,6 +855,110 @@
       ]
     },
     {
+      "path": "associativvordes/mass_dry_run/audit.py",
+      "removed": [
+        "from contract import canonical, sha, scrub"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, scrub",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/export_snapshot.py",
+      "removed": [
+        "from contract import canonical, sha, file_hash",
+        "from storage import atomic",
+        "from store import Ledger"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, file_hash",
+        "from associativvordes.auto_annotation.storage import atomic",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.review.store import Ledger"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/finish.py",
+      "removed": [
+        "import run as cycle",
+        "from audit import compare, sha",
+        "from contract import file_hash",
+        "from storage import Store, backup, restore",
+        "from archive04 import unpack"
+      ],
+      "added": [
+        "from associativvordes.mass_dry_run import run as cycle",
+        "from associativvordes.mass_dry_run.audit import compare, sha",
+        "from associativvordes.auto_annotation.contract import file_hash",
+        "from associativvordes.auto_annotation.storage import Store, backup, restore",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.archive04 import unpack"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/run.py",
+      "removed": [
+        "from contract import canonical, sha, file_hash, scrub",
+        "from storage import Store as AnnotationStore, backup, restore, atomic",
+        "from providers import configuration",
+        "from audit import build_snapshot, compare, samples",
+        "from gold import compile_gold",
+        "from metrics04 import zero_error_requirement, summary",
+        "from archive04 import pack, unpack"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.contract import canonical, sha, file_hash, scrub",
+        "from associativvordes.auto_annotation.storage import Store as AnnotationStore, backup, restore, atomic",
+        "from associativvordes.auto_annotation.providers import configuration",
+        "from associativvordes.mass_dry_run.audit import build_snapshot, compare, samples",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.gold import compile_gold",
+        "from associativvordes.pilot_evaluation.metrics04 import zero_error_requirement, summary",
+        "from associativvordes.pilot_evaluation.archive04 import pack, unpack"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/test_cycle.py",
+      "removed": [
+        "from audit import build_snapshot, compare, groups_for, normalized_proposal, samples, sha",
+        "from run import measured, queue_history, PROTOCOL",
+        "from export_snapshot import export_snapshot",
+        "from export_snapshot import export_snapshot",
+        "from export_snapshot import export_snapshot",
+        "import finish",
+        "from contract import file_hash"
+      ],
+      "added": [
+        "from associativvordes.mass_dry_run.audit import build_snapshot, compare, groups_for, normalized_proposal, samples, sha",
+        "from associativvordes.mass_dry_run.run import measured, queue_history, PROTOCOL",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.mass_dry_run.export_snapshot import export_snapshot",
+        "from associativvordes.mass_dry_run.export_snapshot import export_snapshot",
+        "from associativvordes.mass_dry_run.export_snapshot import export_snapshot",
+        "from associativvordes.mass_dry_run import finish",
+        "from associativvordes.auto_annotation.contract import file_hash"
+      ]
+    },
+    {
+      "path": "associativvordes/mass_dry_run/worker.py",
+      "removed": [
+        "from storage import Store",
+        "from contract import canonical"
+      ],
+      "added": [
+        "from associativvordes.auto_annotation.storage import Store",
+        "from associativvordes.auto_annotation.contract import canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
       "path": "associativvordes/morphology_cleanup/native.py",
       "removed": [
         "from common import canonical, atomic, filehash, lookup, read, connect",
@@ -913,6 +1017,257 @@
         "import sys as _bootstrap_sys",
         "from pathlib import Path as _BootstrapPath",
         "from associativvordes.v5_contract.versions import require_directory"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/capture.py",
+      "removed": [
+        "from gold import sha, canonical, file_hash, json_rows, validate_cases",
+        "from graph import lookup",
+        "from run import BASELINE_COMMIT, BASELINE_HASHES"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, file_hash, json_rows, validate_cases",
+        "from associativvordes.evidence_graph.graph import lookup",
+        "from associativvordes.pilot_evaluation.run import BASELINE_COMMIT, BASELINE_HASHES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/compare04.py",
+      "removed": [
+        "from gold import sha, canonical, file_hash, json_rows, validate_cases, compile_gold, new_release_directory",
+        "from graph import Graph, lookup, ref",
+        "from metrics04 import evaluate04, efficiency, zero_error_requirement, require_study_reviews"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, file_hash, json_rows, validate_cases, compile_gold, new_release_directory",
+        "from associativvordes.evidence_graph.graph import Graph, lookup, ref",
+        "from associativvordes.pilot_evaluation.metrics04 import evaluate04, efficiency, zero_error_requirement, require_study_reviews",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/evaluate.py",
+      "removed": [
+        "from gold import sha, canonical, validate_cases"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, validate_cases",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/gold.py",
+      "removed": [
+        "from graph import canonical, sha, file_hash, json_rows"
+      ],
+      "added": [
+        "from associativvordes.evidence_graph.graph import canonical, sha, file_hash, json_rows",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/human04.py",
+      "removed": [
+        "from gold import canonical, sha, validate_judgment, json_rows, compile_gold",
+        "from store import atomic, digest, canonical",
+        "from gold import assignments"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import canonical, sha, validate_judgment, json_rows, compile_gold",
+        "from associativvordes.review.store import atomic, digest, canonical",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.gold import assignments"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/impact.py",
+      "removed": [
+        "from gold import file_hash",
+        "from run import BASELINE_COMMIT, BASELINE_HASHES"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import file_hash",
+        "from associativvordes.pilot_evaluation.run import BASELINE_COMMIT, BASELINE_HASHES",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/metrics04.py",
+      "removed": [
+        "from gold import sha, validate_cases, validate_judgment",
+        "from evaluate import validate_predictions, agreement"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, validate_cases, validate_judgment",
+        "from associativvordes.pilot_evaluation.evaluate import validate_predictions, agreement",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "removed": [
+        "from gold import new_release_directory",
+        "from gold import canonical, file_hash, sha",
+        "from prepare_registry import FILES, COMMIT"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory",
+        "from associativvordes.pilot_evaluation.gold import canonical, file_hash, sha",
+        "from associativvordes.evidence_graph.prepare_registry import FILES, COMMIT",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/replay04.py",
+      "removed": [
+        "from gold import new_release_directory, file_hash, sha, json_rows",
+        "from prepare_inputs import prepare",
+        "from select_pilot import select",
+        "from build_graph import build",
+        "from study04 import prepare as prepare_study",
+        "from compare04 import main_run"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory, file_hash, sha, json_rows",
+        "from associativvordes.pilot_evaluation.prepare_inputs import prepare",
+        "from associativvordes.evidence_graph.select_pilot import select",
+        "from associativvordes.evidence_graph.build_graph import build",
+        "from associativvordes.pilot_evaluation.study04 import prepare as prepare_study",
+        "from associativvordes.pilot_evaluation.compare04 import main_run",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/reproduce.py",
+      "removed": [
+        "from gold import new_release_directory, file_hash, sha",
+        "from prepare_inputs import prepare",
+        "from sample import sample",
+        "from run import run",
+        "from graph import json_rows",
+        "from select_pilot import select",
+        "from build_graph import build"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory, file_hash, sha",
+        "from associativvordes.pilot_evaluation.prepare_inputs import prepare",
+        "from associativvordes.pilot_evaluation.sample import sample",
+        "from associativvordes.pilot_evaluation.run import run",
+        "from associativvordes.evidence_graph.graph import json_rows",
+        "from associativvordes.evidence_graph.select_pilot import select",
+        "from associativvordes.evidence_graph.build_graph import build",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/run.py",
+      "removed": [
+        "from gold import new_release_directory",
+        "from gold import canonical, sha, file_hash, json_rows, compile_gold, validate_cases",
+        "from evaluate import evaluate, compare, validate_predictions, CONFIGS, agreement",
+        "from graph import Graph, lookup, ref"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory",
+        "from associativvordes.pilot_evaluation.gold import canonical, sha, file_hash, json_rows, compile_gold, validate_cases",
+        "from associativvordes.pilot_evaluation.evaluate import evaluate, compare, validate_predictions, CONFIGS, agreement",
+        "from associativvordes.evidence_graph.graph import Graph, lookup, ref",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/sample.py",
+      "removed": [
+        "from gold import new_release_directory",
+        "from gold import canonical, sha, file_hash, case_hash, validate_cases, assignments",
+        "from prepare_inputs import ROOTS",
+        "from graph import Graph, lookup, ref"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import new_release_directory",
+        "from associativvordes.pilot_evaluation.gold import canonical, sha, file_hash, case_hash, validate_cases, assignments",
+        "from associativvordes.pilot_evaluation.prepare_inputs import ROOTS",
+        "from associativvordes.evidence_graph.graph import Graph, lookup, ref",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/study04.py",
+      "removed": [
+        "from gold import sha, canonical, file_hash, json_rows, validate_cases, assignments, new_release_directory",
+        "from compare04 import PROTOCOL",
+        "from graph import Graph, lookup"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, file_hash, json_rows, validate_cases, assignments, new_release_directory",
+        "from associativvordes.pilot_evaluation.compare04 import PROTOCOL",
+        "from associativvordes.evidence_graph.graph import Graph, lookup",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/test_pilot.py",
+      "removed": [
+        "from gold import sha, canonical, compile_gold, case_hash, assignments, validate_cases, new_release_directory",
+        "from sample import make_case",
+        "from evaluate import evaluate, counts, compare, agreement",
+        "from run import predictions_from_sources, capture_baseline, BASELINE_COMMIT, BASELINE_HASHES",
+        "from impact import diagnose",
+        "from capture import capture",
+        "from graph import Graph, lookup",
+        "from records import read_json",
+        "from build_graph import load_registry, ingest"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import sha, canonical, compile_gold, case_hash, assignments, validate_cases, new_release_directory",
+        "from associativvordes.pilot_evaluation.sample import make_case",
+        "from associativvordes.pilot_evaluation.evaluate import evaluate, counts, compare, agreement",
+        "from associativvordes.pilot_evaluation.run import predictions_from_sources, capture_baseline, BASELINE_COMMIT, BASELINE_HASHES",
+        "from associativvordes.pilot_evaluation.impact import diagnose",
+        "from associativvordes.pilot_evaluation.capture import capture",
+        "from associativvordes.evidence_graph.graph import Graph, lookup",
+        "from associativvordes.evidence_graph.records import read_json",
+        "from associativvordes.evidence_graph.build_graph import load_registry, ingest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath"
+      ]
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/test_quality04.py",
+      "removed": [
+        "from gold import compile_gold, sha, case_hash, json_rows",
+        "from metrics04 import interval, rate, zero_error_requirement, summary, evaluate04, efficiency, require_study_reviews, agreement_intervals",
+        "from study04 import plan",
+        "from compare04 import balance, combine, grouped, category, predictions, PROTOCOL",
+        "from human04 import Study, Server",
+        "from store import atomic, canonical, digest",
+        "from archive04 import pack, unpack"
+      ],
+      "added": [
+        "from associativvordes.pilot_evaluation.gold import compile_gold, sha, case_hash, json_rows",
+        "from associativvordes.pilot_evaluation.metrics04 import interval, rate, zero_error_requirement, summary, evaluate04, efficiency, require_study_reviews, agreement_intervals",
+        "from associativvordes.pilot_evaluation.study04 import plan",
+        "from associativvordes.pilot_evaluation.compare04 import balance, combine, grouped, category, predictions, PROTOCOL",
+        "from associativvordes.pilot_evaluation.human04 import Study, Server",
+        "from associativvordes.review.store import atomic, canonical, digest",
+        "import sys as _bootstrap_sys",
+        "from pathlib import Path as _BootstrapPath",
+        "from associativvordes.pilot_evaluation.archive04 import pack, unpack"
       ]
     },
     {

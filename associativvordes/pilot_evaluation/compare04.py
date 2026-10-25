@@ -1,11 +1,15 @@
 """Current frozen pilot execution. Never use these predictions as human gold."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import defaultdict,deque,Counter
 import gzip,json,platform,subprocess,tempfile,time
 from pathlib import Path
-from gold import sha,canonical,file_hash,json_rows,validate_cases,compile_gold,new_release_directory
-from graph import Graph,lookup,ref
-from metrics04 import evaluate04,efficiency,zero_error_requirement,require_study_reviews
+from associativvordes.pilot_evaluation.gold import sha,canonical,file_hash,json_rows,validate_cases,compile_gold,new_release_directory
+from associativvordes.evidence_graph.graph import Graph,lookup,ref
+from associativvordes.pilot_evaluation.metrics04 import evaluate04,efficiency,zero_error_requirement,require_study_reviews
 
 HERE=Path(__file__).resolve().parent
 PROTOCOL=json.loads((HERE/'protocol04.json').read_text())

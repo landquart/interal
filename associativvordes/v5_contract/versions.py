@@ -5,7 +5,7 @@ ROOT=Path(__file__).resolve().parents[2]
 SCHEMA='interal-v5-contract/1'
 NAMESPACES={'research-v5','TEST_ONLY-v5'}
 COMPONENTS={
- 'importers':'importers',
+ 'importers':'importers','pilot_quality':'pilot_evaluation','legacy_dry_run':'mass_dry_run',
  'normative':'normative','baseline':'v5_baseline','history':'history_registry',
  'adapter':'v5_adapter','diagnostics':'v5_diagnostics','structural':'structural_cleanup',
  'surface':'surface_cleanup','morphology':'morphology_cleanup','morphology_review':'morphology_review',
@@ -14,7 +14,7 @@ COMPONENTS={
  'release_package':'v5_release_control','evidence':'evidence_graph','candidates':'candidate_search',
  'review':'review','annotation':'auto_annotation','contract':'v5_contract','integration':'v5_integration'}
 # Data-flow dependencies, separate from the mechanically collected Python/JS imports.
-DAG={'importers':[],'normative':[],'baseline':['normative'],'history':['baseline','normative'],
+DAG={'pilot_quality':['evidence','review'],'legacy_dry_run':['annotation','pilot_quality'],'importers':[],'normative':[],'baseline':['normative'],'history':['baseline','normative'],
  'adapter':['baseline','history'],'diagnostics':['adapter','history'],
  'structural':['baseline','diagnostics','history'],'surface':['diagnostics','structural','history'],
  'morphology':['adapter','surface'],'morphology_review':['morphology','history'],

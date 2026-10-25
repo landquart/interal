@@ -1,16 +1,20 @@
 """Verified read-only 12-family registry projection. No labels inferred from status."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
-from gold import new_release_directory
+from associativvordes.pilot_evaluation.gold import new_release_directory
 from collections import Counter
 import gzip
 import hashlib
 import json
 from pathlib import Path
-from gold import canonical,file_hash,sha
+from associativvordes.pilot_evaluation.gold import canonical,file_hash,sha
 sys_path=Path(__file__).resolve().parents[1]/'evidence_graph'
 import sys
-sys.path.insert(0,str(sys_path))
-from prepare_registry import FILES,COMMIT
+None
+from associativvordes.evidence_graph.prepare_registry import FILES,COMMIT
 
 ROOTS=['ocul','ped','manu','liber','alter','regul','creat','nat','relat','oper','mut','inter']
 REQUESTED=['OCUL','PEDE','MANU','LIBER','ALTER','REGUL','CREAT','NAT','RELAT','OPER','MUT','INTER']

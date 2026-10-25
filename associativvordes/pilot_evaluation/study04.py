@@ -1,10 +1,14 @@
 """Deterministic blind human study allocation; empty rosters stay BLOCKED."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,gzip,json,contextlib
 from collections import Counter,defaultdict
 from pathlib import Path
-from gold import sha,canonical,file_hash,json_rows,validate_cases,assignments,new_release_directory
-from compare04 import PROTOCOL
-from graph import Graph,lookup
+from associativvordes.pilot_evaluation.gold import sha,canonical,file_hash,json_rows,validate_cases,assignments,new_release_directory
+from associativvordes.pilot_evaluation.compare04 import PROTOCOL
+from associativvordes.evidence_graph.graph import Graph,lookup
 
 def plan(cases,n=180):
     validate_cases(cases)

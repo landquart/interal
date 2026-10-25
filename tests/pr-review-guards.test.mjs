@@ -14,8 +14,8 @@ test('4359927831: diagnostic reader checks every output pinned by manifest',()=>
 import sys,tempfile,json,sqlite3
 from pathlib import Path
 sys.path[:0]=['associativvordes/v5_diagnostics/tools','associativvordes/v5_diagnostics']
-from query import open_registry,filehash
-from classify import canonical,digest
+from associativvordes.v5_diagnostics.tools.query import open_registry,filehash
+from associativvordes.v5_diagnostics.classify import canonical,digest
 with tempfile.TemporaryDirectory() as td:
  p=Path(td);sqlite3.connect(p/'registry.sqlite').close();(p/'SUMMARY.json').write_text('{}')
  m=dict(database='registry.sqlite',database_sha256=filehash(p/'registry.sqlite'),complete=True,outputs={'SUMMARY.json':filehash(p/'SUMMARY.json')});m['version']=digest(m);(p/'MANIFEST.json').write_bytes(canonical(m))
@@ -54,7 +54,7 @@ test('4362693732: scanner refuses output inside its immutable snapshot before wr
 import sys,tempfile,importlib.util
 from pathlib import Path
 sys.path[:0]=['associativvordes/surface_cleanup','associativvordes/structural_cleanup']
-import run
+from associativvordes.surface_cleanup import run
 with tempfile.TemporaryDirectory() as td:
  snap=Path(td)/'snapshot';snap.mkdir();out=snap/'output'
  try:run.scan(Path('.'),snap,out)
@@ -136,7 +136,7 @@ import sys,tempfile,sqlite3,types
 from pathlib import Path
 from unittest.mock import patch
 sys.path.insert(0,'associativvordes/v5_baseline')
-import certify,audit_ids,audit_metadata,audit_ledger
+from associativvordes.v5_baseline import certify,audit_ids,audit_metadata,audit_ledger
 calls=[]
 with tempfile.TemporaryDirectory() as td:
  work=Path(td)/'work'
@@ -154,7 +154,7 @@ import sys,tempfile,json
 from pathlib import Path
 from unittest.mock import patch
 sys.path[:0]=['associativvordes/v5_diagnostics/tools','associativvordes/v5_diagnostics']
-import suffix_exposure as m
+from associativvordes.v5_diagnostics.tools import suffix_exposure as m
 class D:
  def execute(self,*args):return self
  def fetchone(self):return None

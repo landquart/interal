@@ -1,12 +1,16 @@
 """Human-only loopback collection with blinded tasks and server-side active timing."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,base64,fcntl,hashlib,json,mimetypes,re,secrets,sys,threading,time
 from datetime import datetime,timezone
 from http.server import ThreadingHTTPServer,BaseHTTPRequestHandler
 from http.cookies import SimpleCookie
 from pathlib import Path
-from gold import canonical,sha,validate_judgment,json_rows,compile_gold
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'review'))
-from store import atomic,digest,canonical
+from associativvordes.pilot_evaluation.gold import canonical,sha,validate_judgment,json_rows,compile_gold
+None
+from associativvordes.review.store import atomic,digest,canonical
 HERE=Path(__file__).resolve().parent
 
 class Study:
@@ -199,7 +203,7 @@ def main():
         missing=[t['task_id'] for t in study.plan['tasks'] if t['slot'] not in byslot or t['language'] not in byslot[t['slot']]['languages']]
         print(canonical({'status':'BLOCKED' if missing else 'READY_FOR_HUMAN_COLLECTION','verified_humans':len(study.roster),'unassigned_tasks':len(missing),'completed_events':len(study.events)}))
     elif a.command=='adjudication-tasks':
-        from gold import assignments
+        from associativvordes.pilot_evaluation.gold import assignments
         judgments=[e['judgment'] for e in study.events if e['purpose']=='gold']
         gold=compile_gold(list(study.cases.values()),judgments,study.roster)
         already={t['case_id'] for t in study.plan['tasks'] if t['purpose']=='adjudication'}

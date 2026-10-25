@@ -1,14 +1,18 @@
 """TEST-ONLY labels and people: never publish these as human observations."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import copy,gzip,json,math,tempfile,unittest,uuid
 from pathlib import Path
-from gold import compile_gold,sha,case_hash,json_rows
-from metrics04 import interval,rate,zero_error_requirement,summary,evaluate04,efficiency,require_study_reviews,agreement_intervals
-from study04 import plan
-from compare04 import balance,combine,grouped,category,predictions,PROTOCOL
-from human04 import Study,Server
+from associativvordes.pilot_evaluation.gold import compile_gold,sha,case_hash,json_rows
+from associativvordes.pilot_evaluation.metrics04 import interval,rate,zero_error_requirement,summary,evaluate04,efficiency,require_study_reviews,agreement_intervals
+from associativvordes.pilot_evaluation.study04 import plan
+from associativvordes.pilot_evaluation.compare04 import balance,combine,grouped,category,predictions,PROTOCOL
+from associativvordes.pilot_evaluation.human04 import Study,Server
 import sys
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'review'))
-from store import atomic,canonical,digest
+None
+from associativvordes.review.store import atomic,canonical,digest
 
 def case(i=0):
     c={'schema':'pilot-case/1','id':'test-case:'+str(i),'family':'family:test','language':'en',
@@ -197,7 +201,7 @@ class Study04Tests(unittest.TestCase):
         finally:server.shutdown();server.server_close()
 
     def test_lossless_archive_restores_raw_capture_bytes(self):
-        from archive04 import pack,unpack
+        from associativvordes.pilot_evaluation.archive04 import pack,unpack
         raw=b'{"a": 1.0, "b": "unicode"}'
         source=self.root/'capture.json';source.write_bytes(raw)
         pack({'capture.json':source},self.root/'packed.gz')

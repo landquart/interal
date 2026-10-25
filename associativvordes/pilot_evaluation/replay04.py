@@ -1,12 +1,16 @@
 """Fresh full-source replay of Prompt 04, retaining the original frozen cases."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,gzip,json,shutil,subprocess,sys
 from pathlib import Path
-from gold import new_release_directory,file_hash,sha,json_rows
-from prepare_inputs import prepare
-from select_pilot import select
-from build_graph import build
-from study04 import prepare as prepare_study
-from compare04 import main_run
+from associativvordes.pilot_evaluation.gold import new_release_directory,file_hash,sha,json_rows
+from associativvordes.pilot_evaluation.prepare_inputs import prepare
+from associativvordes.evidence_graph.select_pilot import select
+from associativvordes.evidence_graph.build_graph import build
+from associativvordes.pilot_evaluation.study04 import prepare as prepare_study
+from associativvordes.pilot_evaluation.compare04 import main_run
 
 HERE=Path(__file__).resolve().parent;REPO=HERE.parents[1]
 
