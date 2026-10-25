@@ -1,0 +1,59 @@
+.......FFFFFF.....
+======================================================================
+FAIL: test_4359927816_coverage_mismatch_cannot_be_certified (test_diagnostics.WholeShard.test_4359927816_coverage_mismatch_cannot_be_certified)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_diagnostics/test_diagnostics.py", line 163, in test_4359927816_coverage_mismatch_cannot_be_certified
+    with self.assertRaisesRegex(ValueError,'coverage'):finalize(first,replay)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_4359927842_transitive_implementation_is_pinned (test_diagnostics.WholeShard.test_4359927842_transitive_implementation_is_pinned)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_diagnostics/test_diagnostics.py", line 181, in test_4359927842_transitive_implementation_is_pinned
+    self.assertTrue({'associativvordes/v5_adapter/common.py','associativvordes/v5_adapter/bridge.py','associativvordes/history_registry/registry.py'}<=keys)
+AssertionError: False is not true
+
+======================================================================
+FAIL: test_4359927853_failed_restore_has_no_published_or_partial_target (test_diagnostics.WholeShard.test_4359927853_failed_restore_has_no_published_or_partial_target)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_diagnostics/test_diagnostics.py", line 146, in test_4359927853_failed_restore_has_no_published_or_partial_target
+    self.assertFalse(target.exists());self.assertFalse(target.with_name(target.name+'.partial').exists())
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_4359927862_russian_ending_uses_search_representation (test_diagnostics.WholeShard.test_4359927862_russian_ending_uses_search_representation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_diagnostics/test_diagnostics.py", line 137, in test_4359927862_russian_ending_uses_search_representation
+    self.assertEqual(self.db.execute("SELECT COUNT(*) FROM flags WHERE flag='ENDING_PREFIX_DIVERSITY_PROXY'").fetchone()[0],2)
+AssertionError: 0 != 2
+
+======================================================================
+FAIL: test_4359927871_backup_manifest_has_fixed_timestamp (test_diagnostics.WholeShard.test_4359927871_backup_manifest_has_fixed_timestamp)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_diagnostics/test_diagnostics.py", line 177, in test_4359927871_backup_manifest_has_fixed_timestamp
+    self.assertEqual(filehash(self.root/'23.zip'),filehash(self.root/'24.zip'))
+AssertionError: '1b6e06bfdc326ec0e3053fa17592e91ea3eacf11834545fa107e4b9100c5fa86' != '68bd712c8e486f76e7a884460bea5b4cc9b700e811908db4d9d13a55985d2c7c'
+- 1b6e06bfdc326ec0e3053fa17592e91ea3eacf11834545fa107e4b9100c5fa86
++ 68bd712c8e486f76e7a884460bea5b4cc9b700e811908db4d9d13a55985d2c7c
+
+
+======================================================================
+FAIL: test_driver_resumes_committed_buckets_after_interruption (test_diagnostics.WholeShard.test_driver_resumes_committed_buckets_after_interruption)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_diagnostics/test_diagnostics.py", line 114, in test_driver_resumes_committed_buckets_after_interruption
+    with self.assertRaisesRegex(ValueError,'fresh execution'):finalize(out,copied)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 18 tests in 0.621s
+
+FAILED (failures=6)

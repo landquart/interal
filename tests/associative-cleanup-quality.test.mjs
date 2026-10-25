@@ -124,3 +124,25 @@ with tempfile.TemporaryDirectory() as td:
   for card in rows(out/f'BLIND-{role}.ndjson.gz'):assert card['case_sha256']==index[card['case_id']]['content_sha256']
  for pred in rows(out/'PREDICTIONS.ndjson.gz'):assert pred['case_sha256']==index[pred['case_id']]['content_sha256']
 `));
+
+test('4367062598: verifier rejects 1599 per language before opening the population index',()=>py(String.raw`
+from unittest.mock import patch
+from pathlib import Path
+from associativvordes.cleanup_quality import verify as v
+from associativvordes.family_boundary.core import digest,read
+protocol=read(v.HERE/'protocol.json');cases=[]
+for lang in protocol['probability_design']['languages']:
+ for i in range(1599):
+  raw={'TEST_ONLY':i};key=(lang+str(i),lang,str(i),digest(raw))
+  cases.append(dict(dataset='probability',family_id=key[0],language=lang,lemma_id=key[2],record_sha256=key[3],source_record=raw,selection_hash=digest([protocol['seed'],*key])))
+manifest=dict(case_set_sha256='TEST',identity=dict(index_version='TEST'))
+def fixture_read(p):
+ if Path(p).name=='protocol.json':return protocol
+ if Path(p).name=='METRICS.json':return dict(release_sha256='TEST_HASH')
+ if Path(p).name=='MANIFEST.json':return dict(version='TEST',database_sha256='TEST_HASH')
+ raise AssertionError(str(p))
+with patch.object(v,'release',return_value=(cases,manifest)),patch.object(v,'sha',return_value='TEST_HASH'),patch.object(v,'read',side_effect=fixture_read),patch.object(v.sqlite3,'connect',side_effect=AssertionError('undersized sample reached population index')):
+ try:v.verify('/TEST/a','/TEST/b','/TEST/index','/TEST/ea','/TEST/eb','/TEST/out')
+ except ValueError as e:assert str(e)=='preregistered per-language sample size mismatch'
+ else:raise AssertionError('1599/lang admitted')
+`));

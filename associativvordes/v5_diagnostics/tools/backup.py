@@ -52,7 +52,7 @@ def restore_archive(archive,restore,expected_sha256=None):
  except BaseException:
   shutil.rmtree(stage,ignore_errors=True)
   raise
- report=dict(schema='v5-diagnostic-backup-restore/1',status='PASS',archive=archive.name,archive_sha256=filehash(archive),archive_bytes=archive.stat().st_size,restored_file_count=len(inventory),restored_bytes=sum(x['bytes'] for x in inventory.values()),all_exact_file_hashes_verified=True,restored_registry_version=restored['version'],restored_counts=counts,sqlite_integrity='ok',sqlite_verification='quick_check after exact byte hashes; original full integrity check certified in both complete runs',source_directory_required=False,production_writes=0,seconds=time.monotonic()-start)
+ report=dict(schema='v5-diagnostic-backup-restore/1',status='PASS',archive=archive.name,archive_sha256=filehash(archive),archive_bytes=archive.stat().st_size,restored_file_count=len(inventory),restored_bytes=sum(x['bytes'] for x in inventory.values()),all_exact_file_hashes_verified=True,restored_registry_version=restored['version'],restored_counts=counts,sqlite_integrity='ok',sqlite_verification='quick_check after exact byte hashes; full source-registry integrity is a separate prerequisite, not established by restore',source_directory_required=False,production_writes=0,seconds=time.monotonic()-start)
  return report
 if __name__=='__main__':
  p=argparse.ArgumentParser();group=p.add_mutually_exclusive_group(required=True);group.add_argument('--registry');group.add_argument('--restore-archive');p.add_argument('--archive');p.add_argument('--expected-sha256');p.add_argument('--restore-target',required=True);p.add_argument('--receipt',required=True);a=p.parse_args()

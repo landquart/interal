@@ -266,3 +266,19 @@ with tempfile.TemporaryDirectory() as td:
  assert not (p/'ledger/CURRENT').exists()
  rows['TEST_ONLY_ROW']['record_id']='TEST_ONLY_ROW';freeze();assert ledger.import_queue(qdir)['questions']==1
 `));
+
+test('4359927879: saved source and replay volumes have complete authenticated recovery locators',()=>py(String.raw`
+import json
+from pathlib import Path
+root=Path('audit/pr-review-679-694');catalog=json.loads((root/'ARCHIVE-AVAILABILITY.json').read_bytes());items={r['file']:r for r in catalog['available_items']}
+required=['v5-baseline-47723611.tar.part'+str(i).zfill(3) for i in range(6)]+['pinned-morphology-originals.zip','interal-history-sources-fe87153c.tar.gz']
+assert len(items)>=61
+for name in required:
+ r=items[name];assert r['library_file_id'].startswith('libfile_') and r['library_file_id'] in r['url'] and r['bytes']>0
+new=json.loads((root/'NEW-RESEARCH-ARCHIVES.json').read_bytes());assert len(new['archives'])==2
+parts=[p for a in new['archives'] for p in a['parts']];assert len(parts)==8
+for a in new['archives']:
+ assert a['part_reassembly_verified'] and sum(p['bytes'] for p in a['parts'])==a['bytes']
+ for p in a['parts']:assert len(p['sha256'])==64 and p['library_file_id'] in p['url']
+assert json.loads((root/'ARCHIVE-RECOVERY-PROOF.json').read_bytes())['all_research_files_restored']==1978
+`));

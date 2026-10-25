@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "production_reference": "47723611112610945cb09b34e18588b7bd151911",
+  "normative_reference": "ad32277ab9bc4fc8cd28ba82f08eaba2ab130f05",
+  "production_paths": [
+    "data",
+    "associativvordes/family-index-v5"
+  ],
+  "normative_paths": [
+    "associativvordes/normative/rules.json",
+    "associativvordes/normative/NORMATIVE-DEFINITIONS.md",
+    "associativvordes/normative/NATIONAL-CORRESPONDENCES.md"
+  ],
+  "changed_paths": [],
+  "additional_check": "Protected calculation/formula/negative-policy blob tests pass in full npm suite",
+  "production_writes": 0
+}

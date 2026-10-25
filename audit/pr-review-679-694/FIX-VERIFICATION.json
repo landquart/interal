@@ -1,0 +1,200 @@
+{
+  "schema": "interal-fix-verification/2",
+  "main_sha": "47723611112610945cb09b34e18588b7bd151911",
+  "candidate_branch": "audit/pr-679-694-20261025",
+  "reviews": {
+    "total": 47,
+    "P1": 8,
+    "OPEN": 0,
+    "FIXED_VERIFIED": 46,
+    "NOT_APPLICABLE_WITH_PROOF": 1,
+    "BLOCKED": 0
+  },
+  "additional_findings": [
+    {
+      "id": "AUDIT-RESTORE-CLAIM",
+      "severity": "P2",
+      "status": "FIXED_VERIFIED",
+      "file": "associativvordes/v5_diagnostics/tools/backup.py",
+      "cause": "Standalone restore text claimed two source runs it had not established",
+      "fix": "Report now states only actually checked byte hashes and SQLite quick_check; full cold restore repeated",
+      "independent_recheck": "DIAGNOSTIC-COLD-RESTORE.json"
+    }
+  ],
+  "source_code_sha256_file": "EXECUTABLE-SHA256.json",
+  "protected_data": "PROTECTED-INVARIANCE.json",
+  "proofs": {
+    "ADAPTER-INDEPENDENT-VERIFICATION.json": {
+      "bytes": 646,
+      "sha256": "daa0453a44f5affba1347d35e4b9f6bfc79cec2152425be77bfe46c68bf08ebd"
+    },
+    "APPLY-REPLAY-VERIFICATION.json": {
+      "bytes": 667,
+      "sha256": "07cddbacc396b24dc4ac9e35d11f05e22699d5dad8868b874fba3e5beb5ddf9d"
+    },
+    "ARCHIVE-AVAILABILITY.json": {
+      "bytes": 35199,
+      "sha256": "076065496efe4a033ccd1bb632718b817de2665f65d42e9e875de8f3fca89e83"
+    },
+    "ARCHIVE-RECOVERY-PROOF.json": {
+      "bytes": 2312,
+      "sha256": "8bbb24162c3e1a5d5d15826094f74268f7f2c881d0f748285655625acbefbecf"
+    },
+    "BASELINE-RECOVERY-VERIFICATION.json": {
+      "bytes": 618,
+      "sha256": "8e5f86fd8f720d15ece8e2e18e9d3fc2246c087fe62d45598ae2fe3913615ece"
+    },
+    "BASELINE-SOURCE-REVERIFICATION.json": {
+      "bytes": 193,
+      "sha256": "0cd3cf18b3f1244b795b2f41bec4b79ab0fc1476738ed9a42a6f4395a322c45a"
+    },
+    "COMPLETION-GATE-REPRODUCTION.json": {
+      "bytes": 477,
+      "sha256": "fc786e63b86243b7a11854852779d02809becdbeb36b71244c8c6eb44dc19055"
+    },
+    "DIAGNOSTIC-COLD-RESTORE.json": {
+      "bytes": 707,
+      "sha256": "c719373e10410f8346720bedea3a6ac851e6736b420b3e0d971c0cfcd5de76cc"
+    },
+    "DIAGNOSTIC-COVERAGE.json": {
+      "bytes": 105369,
+      "sha256": "35765e1a8ccb4ae44fab407c927db4883fb9ea6ce0d4bdd4c090d1390fbb5237"
+    },
+    "DIAGNOSTIC-MANIFEST.json": {
+      "bytes": 37275,
+      "sha256": "4d957d03342b66ef7069460e03f3e80750479b7accee34f0d4f75116048eae27"
+    },
+    "DIAGNOSTIC-SUMMARY.json": {
+      "bytes": 39331,
+      "sha256": "4f16cbbdb8d7dc600bdacdcec86268dc9dc1ecb6f7523358690262505fa9a145"
+    },
+    "DIFFERENTIAL-REGRESSIONS.json": {
+      "bytes": 1596,
+      "sha256": "192256524f9785d9c8e5805e3d84f33dd9733163a341ae9f43191680ca743156"
+    },
+    "EXECUTABLE-SHA256.json": {
+      "bytes": 36513,
+      "sha256": "45706ff7003ea9934a388b26a0fe8afb52f4d235c8fd453d1bd86c03ad972fa7"
+    },
+    "EXTERNAL-ROW-INDEX.json": {
+      "bytes": 46158,
+      "sha256": "b5af6fee92870ce1f5808e2209e6747e068e9dd28390e2a31ec9a0809c832292"
+    },
+    "FRESH-SHADOW-MANIFEST.json": {
+      "bytes": 854482,
+      "sha256": "efc61f91632a25f49930fcd284cccdcffb2cf2711f268e21bdcac31d8fddea80"
+    },
+    "GENERATION-ACQUISITION.json": {
+      "bytes": 24097,
+      "sha256": "251cf73b136bf94afec067d6e33f9ebee101aedfabf017480004054f89ca76a0"
+    },
+    "GITHUB-SNAPSHOT.json": {
+      "bytes": 264510,
+      "sha256": "10bdc68e22a4c985e4aad3518c5004693d98d72acd0e4a23059ccd789d26bcf8"
+    },
+    "HISTORICAL-SCOPE-VERIFICATION.json": {
+      "bytes": 40401,
+      "sha256": "a2d25dde6ee19052afa597b731e42278eb9c1752626134a4a68f553719fb5a61"
+    },
+    "HISTORY-SOURCE-VERIFICATION.json": {
+      "bytes": 498,
+      "sha256": "6f9e1056efba36e2ee82b9984140fff420f014f5bbdd457e209e62751ce88048"
+    },
+    "INDEPENDENT-ENDING-AND-PRIORITY.json": {
+      "bytes": 764,
+      "sha256": "02d5cb9bb2fe4538737dd1eca735bebc1d545e7724e1737814ad272eb97cc420"
+    },
+    "MORPHOLOGY-REVERIFICATION.json": {
+      "bytes": 581,
+      "sha256": "ba13b68f60489c2a0716c32b9be0f1947d7656f9d3c40c98dbe52942ca8b6bb2"
+    },
+    "MORPHOLOGY-SUMMARY.json": {
+      "bytes": 3298,
+      "sha256": "ce60c353054a7544efa17228a5606e91f9fa79d55a82ad8c90076c356287cf1f"
+    },
+    "MORPHOLOGY-V2-MANIFEST.json": {
+      "bytes": 155155,
+      "sha256": "19cfc3c928dc69b33f10db344c6e38e1adef433c10842d1d43f6b816e44b6365"
+    },
+    "MORPHOLOGY-V2-SUMMARY.json": {
+      "bytes": 1709,
+      "sha256": "33b57930494cc5709b23b82c9de00f3597137637093235d716735e3772833d2f"
+    },
+    "NATIONAL-INDEPENDENT-VERIFICATION.json": {
+      "bytes": 218,
+      "sha256": "eaa3d6ad687a1b2010b7be29838c321d5b2c515146b8d68e35a6c1ffca8611c9"
+    },
+    "NEW-RESEARCH-ARCHIVES.json": {
+      "bytes": 3634,
+      "sha256": "f4569c47564c3248b79dba9711f6d21dd647a34536d88048ec4f813721c95daf"
+    },
+    "ORIGINAL-APPLY-RECEIPT.json": {
+      "bytes": 48,
+      "sha256": "ff0b1d590c544f6532975e2c2df9918191bbe94e79fd9996c284778e190016e8"
+    },
+    "PROFILES-INDEPENDENT-VERIFICATION.json": {
+      "bytes": 12017,
+      "sha256": "d23cc1a5fc5a78ca8c20beb15ed7b414f71f073cef644b87285c3f1f62f3c415"
+    },
+    "PROTECTED-INVARIANCE.json": {
+      "bytes": 589,
+      "sha256": "785e59172110e33fac0360bc4cf804a3c319b4963815ccfc60f69645e654fe66"
+    },
+    "QUALITY-CONTEXT-REQUALIFICATION.json": {
+      "bytes": 799,
+      "sha256": "837c9b41bd57b19bc6980f7e7ff52b1d2b26f053c9be43aa89b1c8409f975ac3"
+    },
+    "QUALITY-INDEPENDENT-VERIFICATION.json": {
+      "bytes": 983,
+      "sha256": "01485d946134291e7536da1ae1c2dbb5520159aa02938e2bae9d81c478079c0e"
+    },
+    "REVIEW-FINDINGS.json": {
+      "bytes": 114257,
+      "sha256": "d0dcf215efa77050d4d2d71bed31a0224761b91f33b829311f45240fd680ff19"
+    },
+    "SURFACE-INDEPENDENT-VERIFICATION.json": {
+      "bytes": 330,
+      "sha256": "bfe163f748aa49d22df1a9e95c7215aa61f8b88c5acc1f106bbbd35f080c3797"
+    }
+  },
+  "tests": {
+    "npm_test": {
+      "status": "PASS",
+      "log": "NPM-TEST.log"
+    },
+    "additional_final_tests": {
+      "status": "PASS",
+      "sample_size": "SAMPLE-SIZE-REGRESSION.log",
+      "archive_contract": "ARCHIVE-REGRESSION.log"
+    },
+    "browser": {
+      "status": "FINAL_CANDIDATE_CI_PENDING"
+    }
+  },
+  "evidence_retention": {
+    "maintenance": "Temporary checkout and intermediate journals were removed by workspace maintenance. Code recovered from immutable Git commit92f7421; exact research files cold-restored and independently rechecked.",
+    "recovered_original_Git_blobs": [
+      "a071aa5302ab4e63a55ea9087bfaf66282c9016a",
+      "9cf7860afd70b04bbe132bee308f63610ab3660e",
+      "cd3d3c3473d78a5d3c0e5f10db48a0acc36c891d",
+      "a65e510447ec5829f4e0ef2aabf47b4e7f0b4be7",
+      "7d3ce07bd0cabdf8373a3ff8e80f01ebf81abbda",
+      "dababc25a155e7d13122a3343eef26654d326ad8",
+      "8c2177656823d76ee8d29a5c21f9fc53205c9311"
+    ],
+    "baseline": "Previously observed full census/restored replay retained explicitly as a previous observation; exact executableSHA unchanged, all4306 input files reverified,111 generation blobs independently matched to newly fetched Git tree. No missing journal fabricated.",
+    "fresh_rechecks": [
+      "old-code adversarial tests",
+      "full256-bucket surface verifier",
+      "all2578 historical source blobs",
+      "full native10078319-row sampling cutoff",
+      "all19524 blind cards and7 original contexts",
+      "real9639982982-byte diagnostic cold restore",
+      "npm suite",
+      "national documentary audit and independent verifier"
+    ]
+  },
+  "release_status": "BLOCKED",
+  "production_writes": 0,
+  "merges_performed": 0
+}
