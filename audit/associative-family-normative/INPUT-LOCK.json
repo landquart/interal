@@ -1,0 +1,251 @@
+{
+  "schema_version": "1.0.0",
+  "baseline_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "v6_commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+  "methodology": {
+    "name": "Metodologiya_Interalya_updated.docx",
+    "version": "4",
+    "pages": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      46,
+      47
+    ],
+    "byte_hash_available": false
+  },
+  "protected_files": [
+    {
+      "path": "associativvordes/js/association-analyzer.js",
+      "git_blob": "e2c4dd07204c993ab654634270be100c3c82af72"
+    },
+    {
+      "path": "associativvordes/js/qwen-client.js",
+      "git_blob": "df0983c822119958c201b762d060918433d9939e"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-case-decisions.json",
+      "git_blob": "7eb58730f088d7a583d53ac52867b89647150e22"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions.json",
+      "git_blob": "92bb8ef2f9da89bb0b31781936cbcdf9b5a4db2f"
+    },
+    {
+      "path": "audit/associative-family-v5/relation-policy.json",
+      "git_blob": "60de2db4f847cd7b5f89e5becf3c16eff7eba4c4"
+    },
+    {
+      "path": "shared/methodology-calculation.mjs",
+      "git_blob": "f2a7b55afda8c29ebec22998c3c9bb4123ecccd2"
+    }
+  ],
+  "audited_files": [
+    {
+      "path": "associativvordes/auto_annotation/contract.py",
+      "git_blob": "73f24d89fc1eaf9ff3b201bc85dd78bf97be2204"
+    },
+    {
+      "path": "associativvordes/evidence_graph/README.md",
+      "git_blob": "09da252c279ffe2116b99ec3d8e5c21c487b1c67"
+    },
+    {
+      "path": "associativvordes/evidence_graph/fixtures/v6-lock.json",
+      "git_blob": "ae1224d7f3511b7e9aa0b2d65ed69827698b6cfb"
+    },
+    {
+      "path": "associativvordes/js/association-analyzer.js",
+      "git_blob": "e2c4dd07204c993ab654634270be100c3c82af72"
+    },
+    {
+      "path": "associativvordes/js/morphology/data/root-allomorphs.js",
+      "git_blob": "205fe86b1e465723f1a3be056f09785ef9ad034f"
+    },
+    {
+      "path": "associativvordes/js/qwen-client.js",
+      "git_blob": "df0983c822119958c201b762d060918433d9939e"
+    },
+    {
+      "path": "associativvordes/release_control/README.md",
+      "git_blob": "08918247ee5e117ed0dee1843ea9716d10fbccf0"
+    },
+    {
+      "path": "audit/associative-external-preparation/ANNOTATION-GUIDELINES.md",
+      "git_blob": "329d6c8f10c14fc3f48bdfaf74326ae50e46837f"
+    },
+    {
+      "path": "audit/associative-external-preparation/CONFLICT-HANDLING.md",
+      "git_blob": "132d71849016473eea34b865a03a38befe47a931"
+    },
+    {
+      "path": "audit/associative-external-preparation/CURRENT-ARCHITECTURE.md",
+      "git_blob": "1360d40655782c497f6195738186a1391eebba30"
+    },
+    {
+      "path": "audit/associative-external-preparation/EVIDENCE-AND-VERDICTS.md",
+      "git_blob": "80407e3c2d77bbe5b40e8841e9216b7650329753"
+    },
+    {
+      "path": "audit/associative-external-preparation/REGRESSION-CASES.md",
+      "git_blob": "c8643e729016a896b98d946df55b54ea94267a7c"
+    },
+    {
+      "path": "audit/associative-family-v5/annotation-protocol.md",
+      "git_blob": "2d172950542147e5100523f8b3e7a3787921374e"
+    },
+    {
+      "path": "audit/associative-family-v5/audit-summary.md",
+      "git_blob": "26dfbc5664d90ff3a09a6391ae95f843dd682dfd"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-case-decisions.json",
+      "git_blob": "7eb58730f088d7a583d53ac52867b89647150e22"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions-2.json",
+      "git_blob": "c14de3c56fb6c611057f59cf6c5484bed2c8486b"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions-3.json",
+      "git_blob": "2faa6141115cc7ab7ea84f1ea87d971ec1a6157b"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions-4.json",
+      "git_blob": "664555f40d93550b0e19a233f0c384e856b56020"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions.json",
+      "git_blob": "92bb8ef2f9da89bb0b31781936cbcdf9b5a4db2f"
+    },
+    {
+      "path": "audit/associative-family-v5/relation-policy.json",
+      "git_blob": "60de2db4f847cd7b5f89e5becf3c16eff7eba4c4"
+    },
+    {
+      "path": "package.json",
+      "git_blob": "80c3cce84e7c7e661209463e88135f082287bb4e"
+    },
+    {
+      "path": "scripts/lib/associative-etymology-policy.mjs",
+      "git_blob": "8c33a6dd0885764942f54182ebd83013e1fde3ae"
+    },
+    {
+      "path": "scripts/run-tests.mjs",
+      "git_blob": "f638fa2b6ce37f11a5fbf8ac935cdc574067e2db"
+    },
+    {
+      "path": "shared/methodology-calculation.mjs",
+      "git_blob": "f2a7b55afda8c29ebec22998c3c9bb4123ecccd2"
+    }
+  ],
+  "historical_decision_files": [
+    {
+      "path": "audit/associative-family-v5/genea-german-decision.json",
+      "git_blob": "9e4d55c80eea7cd660d6fc9d63e7518a831c5a60"
+    },
+    {
+      "path": "audit/associative-family-v5/genea-other-languages-decision.json",
+      "git_blob": "4bad1bc8f9acb8a0e37af1385b32294252b8c347"
+    },
+    {
+      "path": "audit/associative-family-v5/illas-family-decision.json",
+      "git_blob": "23da17c9f669ffb041bee88d4bb574ae7219ec1f"
+    },
+    {
+      "path": "audit/associative-family-v5/illos-illis-family-decisions.json",
+      "git_blob": "42e0cc094a7ba3b82c579840905a7ab805d423d7"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-case-decisions.json",
+      "git_blob": "7eb58730f088d7a583d53ac52867b89647150e22"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions-2.json",
+      "git_blob": "c14de3c56fb6c611057f59cf6c5484bed2c8486b"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions-3.json",
+      "git_blob": "2faa6141115cc7ab7ea84f1ea87d971ec1a6157b"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions-4.json",
+      "git_blob": "664555f40d93550b0e19a233f0c384e856b56020"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions.json",
+      "git_blob": "92bb8ef2f9da89bb0b31781936cbcdf9b5a4db2f"
+    },
+    {
+      "path": "audit/associative-family-v5/net-alias-routing-decision.json",
+      "git_blob": "035882e9cb7cb48905c4a6246dc93e7fb1300e6e"
+    },
+    {
+      "path": "audit/associative-family-v5/nitidus-family-decisions.json",
+      "git_blob": "ee7e8d893537b71c8422af5dfe0fda6e1874d798"
+    },
+    {
+      "path": "audit/associative-family-v5/sonus-language-decisions.json",
+      "git_blob": "ac450006755914ca1d9a40476e96b7e2a18a7f73"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-ending-decisions.json",
+      "git_blob": "82db0b8270fb7f85679a0cb2a1a3bf6a3bda59a0"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-inflection-decisions.json",
+      "git_blob": "e076a04b1afc7792847d089fe48a1cec2a47b9c6"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-ru-ka-decision.json",
+      "git_blob": "b34d3d412bf1a71d628dbf25ef91f1bd2cab5ca1"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-ru-two-letter-decisions.json",
+      "git_blob": "34c689a2e2b7c01946835cb89b431140a6ff37c1"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-10.json",
+      "git_blob": "d8dc4be203e2e485f2eed75963809e290bbdc7b6"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-11.json",
+      "git_blob": "bc9d3e77043e79f9df17a5ce9d785d5e598f9838"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-12.json",
+      "git_blob": "8abcd4326d0695e4b022f6b589d6690ec2440ab8"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-5.json",
+      "git_blob": "cc18842f6fe50383dda978ca580a9e714219f60e"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-6.json",
+      "git_blob": "707cf130663535b596a2dd2fa713a59e9259c518"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-7.json",
+      "git_blob": "b60b89d5f475165882248781384282f50d06af4b"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-8.json",
+      "git_blob": "11b754383183e40107da60a30ba0049cfbf9cd81"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-suffix-decisions-9.json",
+      "git_blob": "675bec9e65e15b814a3838f0faa40126327cc5dc"
+    },
+    {
+      "path": "audit/associative-family-v5/surface-ten-decision.json",
+      "git_blob": "2e63208166995340770680902544e60ce23af45e"
+    },
+    {
+      "path": "audit/associative-family-v5/val-and-ru-short-decisions-20260930.json",
+      "git_blob": "6e8264475b7de8c0e510689b6c0934813bc09d95"
+    }
+  ]
+}
