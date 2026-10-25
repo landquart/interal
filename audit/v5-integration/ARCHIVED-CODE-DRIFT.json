@@ -1,0 +1,222 @@
+{
+  "status": "BLOCKED_FOR_CURRENT_RELEASE",
+  "mismatches": [
+    {
+      "lock": "audit/associative-national-correspondences/CODE-LOCK.json",
+      "path": "associativvordes/surface_cleanup/test_policy.py",
+      "expected": "faa1a99f2a091082b2ee63d3fed5fd01965c1a85720c31efab16bdd7990c93a2",
+      "actual": "8e318250d824fae39442a84da252a28f522db84c8a4168849934db49fbbc07cb"
+    },
+    {
+      "lock": "audit/associative-v5-cleanup-quality/CODE-LOCK.json",
+      "path": "associativvordes/cleanup_quality/bundle.py",
+      "expected": "f3f4c4e06926e57ab675befbe28482b83b6f736c2abc7bd0d63d4485bc762f6c",
+      "actual": "b3c869294e263ab6478a99c944d455d23546c70ac8c20a1141846fd715c14079"
+    },
+    {
+      "lock": "audit/associative-v5-cleanup-quality/CODE-LOCK.json",
+      "path": "associativvordes/cleanup_quality/human.py",
+      "expected": "abac8d7343a577f671402d67931a5c29b334f3afc8129b26d4b6253b557ea468",
+      "actual": "6c28cb5ba0597d16884cf4df83768fbe6a789675b07d741117cc8e5b3565a21d"
+    },
+    {
+      "lock": "audit/associative-v5-cleanup-quality/CODE-LOCK.json",
+      "path": "associativvordes/cleanup_quality/prepare.py",
+      "expected": "011de4e6266a45b4b4ff34836db45f57b6875943e12fe9f6942c68d1b2f2d7b6",
+      "actual": "45298c0b6ca37250b57d55bcb3700a02eec36c91e487d058daf8f3e884e642c5"
+    },
+    {
+      "lock": "audit/associative-v5-cleanup-quality/CODE-LOCK.json",
+      "path": "associativvordes/cleanup_quality/statistics.py",
+      "expected": "0c10e0544a8b1769b96ea7a226fc01f5d0e72e32900cb2eb33ceac6cd30bc0d0",
+      "actual": "a13dbd43e50099de53706ffe41f977adc7485e338e232f1735e1b0a868525c65"
+    },
+    {
+      "lock": "audit/associative-v5-cleanup-quality/CODE-LOCK.json",
+      "path": "associativvordes/cleanup_quality/supplement.py",
+      "expected": "3c4479ccafd67ea6b185fd28a4abb389ac746f02aa35ce14a132d19ed4d61f9b",
+      "actual": "0c156785fcbb505061b8a1dfbb3b513cf515075e3c1d22e26ae58472b7c6001d"
+    },
+    {
+      "lock": "audit/associative-v5-cleanup-quality/CODE-LOCK.json",
+      "path": "associativvordes/cleanup_quality/verify.py",
+      "expected": "cc1668a48eded917ed1bd014476b0a0f3992cc2d94b69c54b169e08d340272f0",
+      "actual": "d68c9813e331b8506c8cb6ef64a76c80b9965187bbd5603120991c8ea9b02c92"
+    },
+    {
+      "lock": "audit/associative-v5-cleanup-quality/CODE-LOCK.json",
+      "path": "tests/associative-cleanup-quality.test.mjs",
+      "expected": "ab07ccacd878b3470755578b05c75cfb382ffd362e922e61c1e93d2af144f31e",
+      "actual": "51312f9379253cd616a0294847aa62b2cce43cdced46f269077f1eb36c559b29"
+    },
+    {
+      "lock": "audit/associative-v5-family-boundary/CODE-LOCK.json",
+      "path": "associativvordes/family_boundary/build.py",
+      "expected": "42da74147c9b117be32c724ff649445bf87c154e09df0d2f87603aef394865ee",
+      "actual": "3b9a3696b53b836bd63f30b187cb0b3574133bb5bfe2a4fa1787affc0278fcce"
+    },
+    {
+      "lock": "audit/associative-v5-full-dry-run/CODE-LOCK.json",
+      "path": "associativvordes/full_v5_dry_run/bundle.mjs",
+      "expected": "ef648c21084d6d8e0b782f60ceb65f053ae5099e6a8b3a1972ec0b7db80d93d2",
+      "actual": "d3856a9e8545a336149ead94354c69fce737a74608e9e3e8070f3b2bdef497fc"
+    },
+    {
+      "lock": "audit/associative-v5-full-dry-run/CODE-LOCK.json",
+      "path": "associativvordes/full_v5_dry_run/census.py",
+      "expected": "25261c427ba9788831eb5fd467e9cc8f08fc713735094a14e6f793e6924f735f",
+      "actual": "cccf82a4b799e21bfc33f8b57a44287b9566dbfe42167a035b88f5fb3f4cb849"
+    },
+    {
+      "lock": "audit/associative-v5-full-dry-run/CODE-LOCK.json",
+      "path": "associativvordes/full_v5_dry_run/checks.py",
+      "expected": "415350ab41f5343aa5abb37162a5ef13ec6a122b8d9cdbbf5c0ea05d81dd30f3",
+      "actual": "c440f83c36998350ba3660060a96e17892ae6007fede18e47fdb0716166d9172"
+    },
+    {
+      "lock": "audit/associative-v5-full-dry-run/CODE-LOCK.json",
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "expected": "582e3db2b9aa180db2e426abe3da65e2edc96b1c7a9e8b96844443a00cb47c68",
+      "actual": "acce0f6bf8f90bc328a6cfb15eee4bc03436c8e6db506a6d60643619bbba4f53"
+    },
+    {
+      "lock": "audit/associative-v5-full-dry-run/CODE-LOCK.json",
+      "path": "associativvordes/full_v5_dry_run/exercise.py",
+      "expected": "bd797cd560064ded335b8c778d5207a220e5aa254dd336cd07ea1304c6b185ea",
+      "actual": "63f536caccfff3e9a7621f8dd7f99a441ea1949141d8cf4e360dbb02e18cd612"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/evidence_graph/build_graph.py",
+      "expected": "e5236e7d7281d801503345b95236c051f9d98e8ffd6bd054e88875de9dfcf6a7",
+      "actual": "e896d0ee5cbe8ca0160992dac4e55b4620e1ab87c2a50e4918945e5a3e91d3e6"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/evidence_graph/records.py",
+      "expected": "7e9a4b2f71b2ab758c706f06bb21943f0d18eb317896c85950232fd545475d28",
+      "actual": "490c58c62d5adbc3336cce1cee7460dbd2d787da37bf814ee9a3afb788e7a3a7"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/morphology_cleanup/native.py",
+      "expected": "3db0d6193942627ed16392e6844e7e45af1b431c405b2893e70a3e06de3deaf2",
+      "actual": "1698f2115555f667c1e2bc6f102ab47e9c4cd848ce80ed598a5da0cebf19caaf"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "expected": "233c6be8e51930e3db95a3c6d5ae93bc768bdb3803b4ddf166d451f3d03b33d9",
+      "actual": "9492eb09a6491288b894c72e4752c3190e66f9dbc1ba7d5a05d6c12eaec0d1f4"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/morphology_cleanup/test_policy.py",
+      "expected": "8e4f5a8a9d375c5dbb4e2351cfd97547e238f08ec44a0e9a0960bb37eb9aa7e0",
+      "actual": "cf65d83c12e8c256fbc7a8b0699d88cc54122b0ec7d4c7655cba7f85ad24a58f"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/structural_cleanup/common.py",
+      "expected": "d6cabeade4121911f8bc5e71a847e1d3a196b71f664a9e122c2389fe4ef45ac3",
+      "actual": "4c0669e18476ceae4196e27895f8c8fadf090cccb11ff932a271903171cfbbac"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/structural_cleanup/shadow.py",
+      "expected": "9bf4c586c50775a92465570e82c5c34b162e8c6f8b38f6641badc61117d5efe9",
+      "actual": "6c45585d4bcf71e5fccfce467a00b942b396e7e4e4cb5fcd297211e10d8f242a"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/v5_adapter/external.py",
+      "expected": "664a4e3aa070361b513f8594a913dc6a2a80cb4ea29736c41dc3bd1b32ab9486",
+      "actual": "8f3779642599bc2aa2b303093bc1080c6ffae14fe5d6a9ab8167616883699f28"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "scripts/archive-v5-morphology.py",
+      "expected": "3ac416ad9518035a610829b49344a832af2bc02a9675b8f34402f6d29da9fd77",
+      "actual": "25439078febb341f9a649d9eb4aee638cba500ad0b2b61f699daa270be71c016"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "scripts/verify-v5-morphology-profiles.py",
+      "expected": "a8c0e47d69e22ac2550cef43f8d0264f7a2425b347d300651b59251503f599da",
+      "actual": "f248d8ed00b5072e55cd8247889f4395cf0c151676b7ccc22073eff91357e378"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/CODE-LOCK.json",
+      "path": "tests/associative-v5-morphology-cleanup.test.mjs",
+      "expected": "30a8b55c233454c29245671af8416d7cabe8c5a52db09f87c3a516019be58da6",
+      "actual": "df745fe0f3973ca6f9c2392b27588dd1423702e008a6d2f4bb6dfb7b3f880636"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/semantic-review-v2/CODE-LOCK.json",
+      "path": "associativvordes/morphology_review/policy.py",
+      "expected": "ec28b1a1b3c9d7977d10cb4bf56420cc3dab305314b7e36b3496504ae52feb1d",
+      "actual": "0400b51fe64bc4b5169890663165de55b1aed1c34e7c8791d50e26a92d2393e7"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/semantic-review-v2/CODE-LOCK.json",
+      "path": "associativvordes/morphology_review/run.py",
+      "expected": "86ae61f9bc2f495a9e4a2d0b91bab2415cbbed2489fa39c5a7ec49e6147e7b29",
+      "actual": "ce979893e0394c22cf93e714e3714804c82c88f88a4ee50aeff19c4fd68d10e3"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/semantic-review-v2/CODE-LOCK.json",
+      "path": "scripts/archive-v5-morphology.py",
+      "expected": "3ac416ad9518035a610829b49344a832af2bc02a9675b8f34402f6d29da9fd77",
+      "actual": "25439078febb341f9a649d9eb4aee638cba500ad0b2b61f699daa270be71c016"
+    },
+    {
+      "lock": "audit/associative-v5-morphology-cleanup/semantic-review-v2/CODE-LOCK.json",
+      "path": "tests/associative-morphology-review-v2.test.mjs",
+      "expected": "4201ef7db3a00e25c00809e1394de6197fda6903c2ebceffae326fae9b1083a9",
+      "actual": "c5fc5a36497456b9354e0e5a7cc3d96b19cbe573dfa552daf90ef19e0742b453"
+    },
+    {
+      "lock": "audit/associative-v5-semantic-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "expected": "2e67f7ba07add14eb4d7846d8ea9158f2ad13a6fd35654df03978d89603ecd9d",
+      "actual": "38e82e4c622e9214d5179c84bb9d43bd330cf6be45e54299b6d960470ba92d92"
+    },
+    {
+      "lock": "audit/associative-v5-semantic-cleanup/CODE-LOCK.json",
+      "path": "tests/associative-semantic-cleanup.test.mjs",
+      "expected": "9ef80f78842c6339ab32281338682f497f521bdad03ecf90a8716dd2d5ed4315",
+      "actual": "4a261763b564500ed07928e99425172baf7c5dd1283b28ff739ab24f83d6829f"
+    },
+    {
+      "lock": "audit/associative-v5-semantic-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/semantic_cleanup/bridge.py",
+      "expected": "1f10b86d55d6bada347a2cbea936bdce1f9cf18d7228a39d66ace1cecf3f2347",
+      "actual": "0bd06176b4c4e73021ccbac8dd0226698549ab319e5d11bc2fb401b49bc59f86"
+    },
+    {
+      "lock": "audit/associative-v5-semantic-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/semantic_cleanup/history.py",
+      "expected": "d2cf0b020f581f8a776437ef4b20d3419934182d1c93bb3da44eac86a525d15f",
+      "actual": "7534f49ee2fc53b2cb1743559d6a1df1e04a5c365f5ed6aca615512d5c5fd0e3"
+    },
+    {
+      "lock": "audit/associative-v5-semantic-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/semantic_cleanup/native.py",
+      "expected": "fe495077c24d03127688caff7b9f0f853bcf4d51023f9fed63577c4b0f2d70e1",
+      "actual": "7fbd1997ddba1fe9e42f4d5db5a21b92535f18cab3568690be382c5ffb41f9e7"
+    },
+    {
+      "lock": "audit/associative-v5-semantic-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "expected": "7b89e9f4e47f79a3b18d2f1b6d923b0b3c701489dc4b5f718dfe5330437ddce9",
+      "actual": "389e6be577c211d52949b691d8dbc28cdeb218856207169aa9fe012523781390"
+    },
+    {
+      "lock": "audit/associative-v5-semantic-cleanup/CODE-LOCK.json",
+      "path": "associativvordes/semantic_cleanup/scan.py",
+      "expected": "99670ff8c7d571504e8cab81bc714c397b5cf19f09a5e684a5f0db4b23d82085",
+      "actual": "3f0f458bfcd671810c9131430ddf1ded9c945ee8cd0c05a08df8e4598d3d003f"
+    }
+  ],
+  "rewrite_old_receipts": false
+}

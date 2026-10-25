@@ -1,0 +1,873 @@
+
+> tests/associative-normative.test.mjs
+✔ explainable case: manu-full (4.235889ms)
+✔ explainable case: manu-mani (2.141656ms)
+✔ explainable case: manu-foreign-mani (0.454807ms)
+✔ explainable case: manu-many (0.402588ms)
+✔ explainable case: manu-manifest (0.365663ms)
+✔ explainable case: regul-full (0.975253ms)
+✔ explainable case: regul-regl (1.649532ms)
+✔ explainable case: regul-russian (1.938599ms)
+✔ explainable case: regul-homonym (0.714349ms)
+✔ explainable case: regul-regolith (0.481347ms)
+✔ explainable case: creat-fr-short (0.576031ms)
+✔ explainable case: creat-fr-full (0.870415ms)
+✔ explainable case: creat-de (0.97271ms)
+✔ explainable case: creat-es (0.571133ms)
+✔ explainable case: creat-it (1.101645ms)
+✔ explainable case: creat-en-unlocked (0.335947ms)
+✔ explainable case: creat-opaque (0.336288ms)
+✔ explainable case: ocul-adj (0.473645ms)
+✔ explainable case: ocul-noun (0.437001ms)
+✔ explainable case: ocul-opaque (0.535159ms)
+✔ explainable case: ocul-monokel (0.215515ms)
+✔ explainable case: inter-component (0.455789ms)
+✔ explainable case: inter-opaque (0.244079ms)
+✔ explainable case: inter-substring (0.540196ms)
+✔ explainable case: ending-ten (0.260554ms)
+✔ explainable case: liber-unknown (0.368127ms)
+✔ explainable case: same-lemma-unknown-sense (0.393134ms)
+✔ word/lexeme ID cannot be normative root ID (0.667288ms)
+✔ single-language membership survives failure of three-language threshold (1.247756ms)
+✔ national form differs from normative form (0.539285ms)
+✔ no transfer of correspondence across family_id (0.457762ms)
+✔ no transfer of correspondence across element_id (0.303639ms)
+✔ no transfer of correspondence across language (0.26425ms)
+✔ no transfer of correspondence across lemma_id (0.184589ms)
+✔ no transfer of correspondence across lexeme_id (0.230909ms)
+✔ no transfer of correspondence across sense_id (0.237129ms)
+✔ no transfer of correspondence across context_id (0.60205ms)
+✔ unknown is not a negative decision (0.309858ms)
+✔ confirmed member requires independently evidenced national correspondence (0.230759ms)
+✔ historical membership gives no association score (0.463069ms)
+✔ separate senses retain separate scopes (0.360014ms)
+✔ modern association needs a separate verified assessment (1.458604ms)
+✔ unknown homonym sense blocks confirmation (0.384161ms)
+✔ model confidence/consensus is never an authority (0.582179ms)
+✔ source dataset alone cannot confirm linguistic membership (0.347375ms)
+✔ test fixture authority is disabled outside explicit test mode (0.685346ms)
+✔ trusted IDs cannot be reused after changing decision or evidence content (0.591554ms)
+✔ tampered assertion fails hash validation (0.273513ms)
+✔ contradictory trusted evidence cannot be hidden behind documented status (0.522389ms)
+✔ negative polarity cannot support a positive verdict (0.308386ms)
+✔ indirect path must be complete, sense-continuous and terminate at exact target (1.150559ms)
+✔ pending/excluded v6 guards cannot be promoted implicitly (1.823325ms)
+✔ supersedes input alone cannot erase a negative; verified explicit supersession can (0.688901ms)
+✔ old negative remains active on a later unknown proposal (0.300954ms)
+✔ old exclusions with no semantic certification remain guards, not new confirmations (0.23205ms)
+✔ preserve actual legacy exclusion: surface:de:ten/gelten (0.873139ms)
+✔ preserve actual legacy exclusion: surface:de:ten/retten (0.590432ms)
+✔ preserve actual legacy exclusion: surface:de:ten/erwarten (0.47674ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/liegen (0.845247ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/fragen (0.498964ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/abänderungen (0.62253ms)
+✔ preserve actual legacy exclusion: ety:5bed7c192e10/contact (0.497231ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/network (0.524583ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/internet (0.548038ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/planet (0.945759ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/network (0.465793ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/internet (0.484452ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/planet (0.504622ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/network (0.480926ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/internet (0.495168ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/planet (0.74782ms)
+✔ preserve actual legacy exclusion: family:liber/liber (0.512635ms)
+✔ preserve actual legacy exclusion: family:liber/calliber (0.478483ms)
+✔ preserve actual legacy exclusion: family:liber/liberhaupt (0.459424ms)
+✔ preserve actual legacy exclusion: family:liber/liber (0.444883ms)
+✔ preserve actual legacy exclusion: family:liber/líber (0.847991ms)
+✔ preserve actual legacy exclusion: family:liber/avenidalibertad (0.56932ms)
+✔ legacy quarantine covers narrower lemma scope (0.421878ms)
+✔ root recognition boundaries and immutable necessary thresholds (0.184979ms)
+✔ preposition recognition boundaries and immutable necessary thresholds (0.054222ms)
+✔ suffix preserves FAa 15 and >=3 IPM in EACH language (0.785798ms)
+✔ automatic correction is scoped, locked, externally authorized and never writes (2.008444ms)
+✔ closed schema rejects unknown fields and nonmatching versions (0.328446ms)
+✔ protected calculation and negative-policy files keep baseline Git blob hashes (1.657504ms)
+✔ 4354127381: correspondence rebuttal cannot establish membership (0.448248ms)
+✔ 4354127391: untrusted declared conflicts have no normative authority (0.566246ms)
+✔ 4354127396: verified nonmembership survives compatible legacy guards (0.546655ms)
+✔ 4354127406: indirect evidence retains exact intermediate endpoint scopes (0.985929ms)
+✔ 4354127406: intermediate contexts remain distinct and cannot replace final identity proof (1.44305ms)
+ℹ tests 89
+ℹ suites 0
+ℹ pass 89
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 71.698145
+
+> tests/associative-paint-wait.test.mjs
+Associative paint wait tests passed.
+
+> tests/associative-persistence-loader.test.mjs
+associative persistence loader tests passed
+
+> tests/associative-pilot-evaluation.test.mjs
+✔ pilot evaluation: frozen cases, human-gold contract, source ablations and diagnostics (1456.634828ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1461.644998
+
+> tests/associative-pilot-quality.test.mjs
+test_B_has_real_additions_and_displacement (test_quality04.Quality04Tests.test_B_has_real_additions_and_displacement) ... ok
+test_budget_balances_classes_and_keeps_unknown_frequency (test_quality04.Quality04Tests.test_budget_balances_classes_and_keeps_unknown_frequency) ... ok
+test_current_case_lock_rejects_changed_prediction (test_quality04.Quality04Tests.test_current_case_lock_rejects_changed_prediction) ... ok
+test_efficiency_requires_humans_and_does_not_erase_false_candidate_time (test_quality04.Quality04Tests.test_efficiency_requires_humans_and_does_not_erase_false_candidate_time) ... ok
+test_frozen_real_subset_is_balanced_and_reproducible (test_quality04.Quality04Tests.test_frozen_real_subset_is_balanced_and_reproducible) ... ok
+test_interrupted_human_time_is_unknown (test_quality04.Quality04Tests.test_interrupted_human_time_is_unknown) ... ok
+test_merge_missing_is_not_observed_zero (test_quality04.Quality04Tests.test_merge_missing_is_not_observed_zero) ... ok
+test_no_gold_is_null_not_zero_accuracy (test_quality04.Quality04Tests.test_no_gold_is_null_not_zero_accuracy) ... ok
+test_rater_agreement_intervals_and_constant_kappa (test_quality04.Quality04Tests.test_rater_agreement_intervals_and_constant_kappa) ... ok
+test_relation_error_distinct_from_membership (test_quality04.Quality04Tests.test_relation_error_distinct_from_membership) ... ok
+test_sparse_zero_errors_have_nonzero_upper_bound (test_quality04.Quality04Tests.test_sparse_zero_errors_have_nonzero_upper_bound) ... ok
+test_spelling_group_does_not_resolve_native_identity (test_quality04.Quality04Tests.test_spelling_group_does_not_resolve_native_identity) ... ok
+test_tp_fp_fn_denominators_and_abstention (test_quality04.Quality04Tests.test_tp_fp_fn_denominators_and_abstention) ... ok
+test_two_reviews_required_in_initial_cohort_without_case_mutation (test_quality04.Quality04Tests.test_two_reviews_required_in_initial_cohort_without_case_mutation) ... ok
+test_uncertain_gold_not_forced_into_confusion (test_quality04.Quality04Tests.test_uncertain_gold_not_forced_into_confusion) ... ok
+test_control_allowlist_has_no_cues_or_other_answers (test_quality04.Study04Tests.test_control_allowlist_has_no_cues_or_other_answers) ... ok
+test_http_collects_blind_task_and_idempotent_human_record (test_quality04.Study04Tests.test_http_collects_blind_task_and_idempotent_human_record) ... ok
+test_interruption_marks_timing_unknown (test_quality04.Study04Tests.test_interruption_marks_timing_unknown) ... ok
+test_lossless_archive_restores_raw_capture_bytes (test_quality04.Study04Tests.test_lossless_archive_restores_raw_capture_bytes) ... ok
+test_missing_verified_humans_blocks_collection (test_quality04.Study04Tests.test_missing_verified_humans_blocks_collection) ... ok
+test_save_idempotency_and_recovery_with_full_labels (test_quality04.Study04Tests.test_save_idempotency_and_recovery_with_full_labels) ... ok
+test_source_evidence_cannot_change_silently (test_quality04.Study04Tests.test_source_evidence_cannot_change_silently) ... ok
+test_study_tail_corruption_is_detected (test_quality04.Study04Tests.test_study_tail_corruption_is_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.058s
+
+OK
+
+> tests/associative-postverification.test.mjs
+✔ V-001: actual page final calculation retains selected missing-P diagnostics and blocks acceptance (4.823037ms)
+✔ V-004: actual page candidate analysis returns terminal states for success and failure (1.068134ms)
+✔ V-005: actual page preposition path forwards element type to loader (1.069676ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12.071318
+
+> tests/associative-production-hardening.test.mjs
+Associative hardening regression tests passed.
+
+> tests/associative-qwen-backend-model-routing.test.mjs
+associative qwen backend model routing tests passed
+
+> tests/associative-qwen-candidate-generation.test.mjs
+Associative Qwen top-five refinement tests passed.
+
+> tests/associative-qwen-local-index.test.mjs
+Associative Qwen local-index verification tests passed.
+
+> tests/associative-qwen-runtime-finalization.test.mjs
+Associative Qwen runtime finalization tests passed.
+
+> tests/associative-readiness-regression.test.mjs
+✔ independent readiness controls: exact identities, scoped reverse history, language and path types (1862.774891ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1870.221531
+
+> tests/associative-release-control.test.mjs
+✔ controlled release signatures, atomicity, history and incremental contracts (3434.304406ms)
+✔ real calculator preserves unknown inputs and does not certify empty before/after (5.966774ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3447.025779
+
+> tests/associative-repository-materialization.test.mjs
+✔ recount observes last-membership loss and multi-family to single-family transitions (9.666122ms)
+✔ provenance excludes itself, survives root relocation and detects content changes (9.626772ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23.71159
+
+> tests/associative-russian-model-family.test.mjs
+Russian associative model-family deduplication tests passed
+
+> tests/associative-search-runtime-patch.test.mjs
+Associative search runtime patch tests passed.
+
+> tests/associative-semantic-cleanup.test.mjs
+✔ sense-specific semantic decisions require exact independent authority and both guards (29.56327ms)
+✔ semantic release bridge preserves separate senses and fails on changed manifests (31.04657ms)
+✔ frozen semantic inventory keeps documentary facts, old IDs and unresolved senses separate (27.285148ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 95.043938
+
+> tests/associative-static-index-load-control.test.mjs
+Associative static index load-control tests passed.
+
+> tests/associative-static-search-index.test.mjs
+Static associative family search tests passed.
+
+> tests/associative-surface-proof.test.mjs
+Surface proof and historical-correspondence guards passed
+
+> tests/associative-tab-width-restore.test.mjs
+Associative restored tab-width tests passed
+
+> tests/associative-target-translation-backend.test.mjs
+
+> tests/associative-v5-adapter.test.mjs
+✔ v5 projection: exact source locks, scoped IDs, history, recovery and modern bridges (2388.2818ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2393.123322
+
+> tests/associative-v5-baseline.test.mjs
+test_4354484825_fetch_exact_unreachable_generation (test_census.CensusTests.test_4354484825_fetch_exact_unreachable_generation) ... ok
+test_4354484833_nested_snapshot_is_hashed (test_census.CensusTests.test_4354484833_nested_snapshot_is_hashed) ... ok
+test_4354484841_standalone_census_checks_nonshard_files (test_census.CensusTests.test_4354484841_standalone_census_checks_nonshard_files) ... ok
+test_4354484848_tar_aliases_are_duplicates (test_census.CensusTests.test_4354484848_tar_aliases_are_duplicates) ... ok
+test_4354484852_malformed_components_reported (test_census.CensusTests.test_4354484852_malformed_components_reported) ... ok
+test_4354484861_existing_database_needs_identity (test_census.CensusTests.test_4354484861_existing_database_needs_identity) ... ok
+test_4354484873_archive_fsynced_before_receipt (test_census.CensusTests.test_4354484873_archive_fsynced_before_receipt) ... ok
+test_atomic_replace_and_verify (test_census.CensusTests.test_atomic_replace_and_verify) ... ok
+test_backup_restore_exact_bytes_and_no_overwrite (test_census.CensusTests.test_backup_restore_exact_bytes_and_no_overwrite) ... ok
+test_bucket_utf16_known_vectors (test_census.CensusTests.test_bucket_utf16_known_vectors) ... ok
+test_duplicates_orphans_and_corrupt_shards_recorded_not_fixed (test_census.CensusTests.test_duplicates_orphans_and_corrupt_shards_recorded_not_fixed) ... ok
+test_gzip_crc_and_truncation (test_census.CensusTests.test_gzip_crc_and_truncation) ... ok
+test_parser_preserves_duplicate_top_level_keys (test_census.CensusTests.test_parser_preserves_duplicate_top_level_keys) ... ok
+test_parser_rejects_trailing_json (test_census.CensusTests.test_parser_rejects_trailing_json) ... ok
+test_parser_unicode_and_large_value (test_census.CensusTests.test_parser_unicode_and_large_value) ... ok
+test_real_hard_crash_resume_and_full_accounting (test_census.CensusTests.test_real_hard_crash_resume_and_full_accounting) ... ok
+test_restore_rejects_links (test_census.CensusTests.test_restore_rejects_links) ... ok
+test_restore_rejects_path_traversal (test_census.CensusTests.test_restore_rejects_path_traversal) ... ok
+test_snapshot_tampering_detected (test_census.CensusTests.test_snapshot_tampering_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 24.357s
+
+OK
+
+> tests/associative-v5-diagnostics.test.mjs
+✔ full-v5 diagnostics retain observations, exact scopes and independent flags (1540.599877ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1545.427168
+
+> tests/associative-v5-integration.test.mjs
+✔ one installed v5 implementation: real module end-to-end and incompatible inputs (39674.146643ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39679.257423
+
+> tests/associative-v5-morphology-cleanup.test.mjs
+✖ morphology policy adversarial cases and lossless native analysis (39.605645ms)
+✔ native profile corruption fails before any lookup (39.395587ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 85.125022
+
+✖ failing tests:
+
+test at tests/associative-v5-morphology-cleanup.test.mjs:4:1
+✖ morphology policy adversarial cases and lossless native analysis (39.605645ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 6, in <module>
+  ModuleNotFoundError: No module named 'morphology_import'
+  
+  
+  1 !== 0
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/26989df269a1/candidate/tests/associative-v5-morphology-cleanup.test.mjs:38:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+> tests/associative-v5-release-readiness.test.mjs
+✔ real pinned inputs yield only a blocked package; separate-process replay is exact (301.687111ms)
+✔ missing, changed, additional and self-qualified package artifacts fail closed (73.287632ms)
+✔ input corruption, missing history, repeated paths and malformed JSON are rejected (40.243869ms)
+✔ stale production HEAD and historical risk acceptance cannot authorize a release (49.140467ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 471.314195
+
+> tests/associative-v5-structural-cleanup.test.mjs
+Structural cleanup contracts passed
+
+> tests/associativvordes-card-compat.test.mjs
+associativvordes browser card compatibility tests passed
+
+> tests/associativvordes-card-metadata.test.mjs
+associativvordes card metadata tests passed
+
+> tests/associativvordes-card-normalization.test.mjs
+associativvordes card normalization tests passed
+
+> tests/associativvordes-error-handling.test.mjs
+associativvordes error-handling tests passed
+
+> tests/associativvordes-language-statuses.test.mjs
+associativvordes language-status tests passed
+
+> tests/associativvordes-no-data.test.mjs
+associativvordes no-data tests passed
+
+> tests/associativvordes-persistence.test.mjs
+associativvordes persistence tests passed
+
+> tests/associativvordes-qwen-review.test.mjs
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 1,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes qwen review tests passed
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 0
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+
+> tests/associativvordes-render-sources.test.mjs
+
+> tests/associativvordes-root-matcher.test.mjs
+
+> tests/associativvordes-runtime-index.test.mjs
+
+> tests/associativvordes-sources-diagnostics.test.mjs
+associativvordes sources diagnostics tests passed
+
+> tests/associativvordes-state-invalidation.test.mjs
+associativvordes state behavior tests passed
+
+> tests/associativvordes-target-language-cache.test.mjs
+associativvordes target language and cache tests passed
+
+> tests/associativvordes-target-translation-batch.test.mjs
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 0,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes target translation batch tests passed
+
+> tests/associativvordes-thresholds.test.mjs
+
+> tests/button-status-controller.test.mjs
+button status controller tests passed
+
+> tests/button-status-success.test.mjs
+button status success tests passed
+
+> tests/card-schema.test.mjs
+card-schema tests passed
+
+> tests/four-tools-regression.test.mjs
+tool regression tests passed
+
+> tests/frequency-loader-source-descriptors.test.mjs
+frequency-loader source descriptor tests passed
+
+> tests/frequency-record-stream.test.mjs
+
+> tests/i18n-and-assets.test.mjs
+i18n/assets tests passed
+
+> tests/indoeuropan-hindi-persian.test.mjs
+Indo-European Hindi/Persian tests passed
+
+> tests/instrumentes-lexeme-goal.test.mjs
+instrumentes lexeme goal tests passed
+
+> tests/interal-ipa.test.mjs
+Interal IPA generation tests passed.
+
+> tests/json-author-autosave.test.mjs
+JSON author autosave wiring tests passed.
+
+> tests/json-card-utils.test.mjs
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+
+> tests/liquid-glass-theme-parity.test.mjs
+liquid glass theme parity tests passed
+
+> tests/mater-reference.test.mjs
+Exhaustive mater oracle agrees with PH v4; no production formulas changed.
+
+> tests/methodology-20260909.test.mjs
+Methodology controls passed
+Missing-data and uncertainty controls passed
+
+> tests/modal-motion-runtime.test.mjs
+Modal motion runtime tests passed
+
+> tests/modal-motion.test.mjs
+Modal motion tests passed
+
+> tests/persistence-helper.test.mjs
+Saved page state is invalid: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at Object.restoreDraft [as restore] (evalmachine.<anonymous>:931:22)
+    at file:///workspace/scratch/26989df269a1/candidate/tests/persistence-helper.test.mjs:50:44
+persistence-helper tests passed
+
+> tests/pr-review-guards.test.mjs
+✔ 4362693699: native structured membership scopes reach the proof gate (21.57085ms)
+✔ 4359927831: diagnostic reader checks every output pinned by manifest (33.742823ms)
+✔ 4363144017: archive rejects a missing configured source (63.471152ms)
+✔ 4363143999: cached profile verification hashes the current SQLite bytes (76.848966ms)
+✔ 4362693732: scanner refuses output inside its immutable snapshot before writing (35.358677ms)
+✔ 4367043678: historical blind tasks retain observed word and locked locator (52.229944ms)
+✔ 4365260804: rehashed dictionary receipts are rejected (30.728724ms)
+✔ 4362693707: historical evidence-count mismatch is fatal (112.300062ms)
+✔ 4368023514: changed production tree has unknown current counts (45.863098ms)
+✔ 4368023519: rehashed package cannot omit required source inventory (117.682289ms)
+✖ 4354484829: full driver executes and compares all auxiliary audits (80.147951ms)
+✔ 4359927848: suffix exposure pins normalization and morph construction (140.506986ms)
+✔ 4362693719: actual surface checkpoints bind imported decoding and history (2572.586084ms)
+✔ 4362693741: consistent hashes cannot hide an incorrect family disposition (2489.313888ms)
+✔ 4363144007: morphology checkpoints include the actual selection classifier (2444.546192ms)
+✔ 4363656925: structural JSON plan bytes are verified with NDJSON inputs (60.555344ms)
+✔ 4362455083: fresh apply and idempotence receipts substantiate different operations (31.987038ms)
+✔ 4362455091: both complete issue exports resolve and match their report counts (29.731689ms)
+✔ 4359323435: source-row body identity cannot differ from its evidence key (33.782022ms)
+✔ 4359927879: saved source and replay volumes have complete authenticated recovery locators (23.471137ms)
+ℹ tests 20
+ℹ suites 0
+ℹ pass 19
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8505.161785
+
+✖ failing tests:
+
+test at tests/pr-review-guards.test.mjs:134:1
+✖ 4354484829: full driver executes and compares all auxiliary audits (80.147951ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 16, in <module>
+    File "/workspace/scratch/26989df269a1/candidate/associativvordes/v5_baseline/certify.py", line 29, in main
+      ids(work/'run/census.sqlite',work/'run/STABLE-ID-AUDIT.json')
+    File "/workspace/scratch/26989df269a1/candidate/associativvordes/v5_baseline/audit_ids.py", line 13, in audit
+      for language,lid,normalized in db.execute('select language,id,normalized from '+table):
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  sqlite3.OperationalError: no such table: current_lemmas
+  
+  
+  1 !== 0
+  
+      at py (file:///workspace/scratch/26989df269a1/candidate/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///workspace/scratch/26989df269a1/candidate/tests/pr-review-guards.test.mjs:134:79)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+> tests/registry-altervordes-ui.test.mjs
+Alter vordes registry UI test passed.
+
+> tests/target-meaning-translator.test.mjs
+
+> tests/ui-motion-components.test.mjs
+UI motion components tests passed
+
+> tests/vercel-associative-index-gate.test.mjs
+Vercel associative index deployment gate tests passed
