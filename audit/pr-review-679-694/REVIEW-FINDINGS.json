@@ -564,8 +564,8 @@
         "implementation_file": "associativvordes/v5_adapter/bridge.py"
       },
       "regression_tests": [
-        "tests/pr-review-guards.test.mjs:251",
-        "associativvordes/v5_adapter/test_adapter.py:104"
+        "associativvordes/v5_adapter/test_adapter.py:104",
+        "tests/pr-review-guards.test.mjs:254"
       ],
       "independent_recheck": {
         "status": "PASS",
@@ -943,8 +943,8 @@
         "implementation_file": "associativvordes/v5_diagnostics/README.md"
       },
       "regression_tests": [
-        "ARCHIVE-AVAILABILITY.json::actual archived-volume retrieval/reassembly and all1978 file hashes",
-        "tests/pr-review-guards.test.mjs:270"
+        "tests/pr-review-guards.test.mjs:273",
+        "ARCHIVE-AVAILABILITY.json::actual archived-volume retrieval/reassembly and all1978 file hashes"
       ],
       "independent_recheck": {
         "status": "PASS",
@@ -1022,7 +1022,7 @@
         "implementation_file": "audit/associative-v5-structural-cleanup/AFTER-INTEGRITY.json"
       },
       "regression_tests": [
-        "tests/pr-review-guards.test.mjs:242"
+        "tests/pr-review-guards.test.mjs:245"
       ],
       "independent_recheck": {
         "status": "PASS",

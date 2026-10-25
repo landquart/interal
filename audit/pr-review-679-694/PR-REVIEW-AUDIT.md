@@ -114,3 +114,7 @@ PR остаётся draft. Merge не выполнен. Production families/memb
 Влияние на старые исследования: [RESEARCH-IMPACT.md](RESEARCH-IMPACT.md). Старые code locks/архивы не переписаны задним числом; ни один старый PASS не используется как проверка изменённого исполняемого кода.
 
 Финальный browser job40167424530 на32420f1 прошёл с реальным Chromium. Общий CI этого head обнаружил зависимость одного regression test от historical commit в shallow checkout. Исправление сохраняет точные оригинальные bytes и проверяет Git blob bfaa842fa921aca82b72a288d179f1bd53797c58; защитные условия не ослаблены. Все30 review regressions после правки проходят. Последующий полный CI фиксируется отдельно.
+
+## Окончательная CI-проверка
+
+Все13 workflows на `adf2d158e3b23649a120b994b8884228062905e0` завершились SUCCESS: полный npm test, все специализированные contracts и реальные Chromium browser regressions. [CI-FINAL.json](CI-FINAL.json) содержит точный tested commit, run/job IDs и шаги. Последний commit меняет только отчёты и ссылки на тесты; production executable bytes и сами тесты после этого проверенного head не изменены. Merge0, production writes0; release остаётся BLOCKED по перечисленным prerequisites.

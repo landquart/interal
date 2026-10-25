@@ -150,25 +150,32 @@
     },
     "REVIEW-FINDINGS.json": {
       "bytes": 114257,
-      "sha256": "d0dcf215efa77050d4d2d71bed31a0224761b91f33b829311f45240fd680ff19"
+      "sha256": "bd59bbe05f21648d91cc7ae13d4214f4949f6d9f14985c509ebae74e386b5576"
     },
     "SURFACE-INDEPENDENT-VERIFICATION.json": {
       "bytes": 330,
       "sha256": "bfe163f748aa49d22df1a9e95c7215aa61f8b88c5acc1f106bbbd35f080c3797"
     },
     "CI-FIRST-AUDIT-ATTEMPT.json": {
-      "bytes": 5524,
-      "sha256": "dc83aa226c00bacfb9f5a04ad11e2ad6dfa8fbabe7ef3c370bda2a844b75e2dc"
+      "bytes": 5527,
+      "sha256": "2c77586bbb869493def9ba73692e65fb1fd212300e4458ea853ba1216adf1242"
     },
     "BLIND-WHITELIST-VERIFICATION.json": {
       "bytes": 392,
       "sha256": "5a35cb0bbc8a364861aae74dff0187b435840807f4b8c557438b72ec2bd5b2e9"
+    },
+    "CI-FINAL.json": {
+      "bytes": 9455,
+      "sha256": "a8a8ca94e8e06cbfe02c401e54837b137a4c36a8b8d01012a872f4b5c14b0e42"
     }
   },
   "tests": {
     "npm_test": {
-      "status": "PASS",
-      "log": "NPM-TEST.log"
+      "status": "PASS_CI",
+      "tested_commit": "adf2d158e3b23649a120b994b8884228062905e0",
+      "run_id": 40167834541,
+      "local_log": "NPM-TEST.log",
+      "url": "https://github.com/landquart/interal/actions/runs/40167834541"
     },
     "additional_final_tests": {
       "status": "PASS",
@@ -178,12 +185,17 @@
     },
     "browser": {
       "status": "PASS_CI",
-      "tested_commit": "32420f1a722672360c99083fe363590d8f13eb88",
-      "run_id": 40167424530,
-      "job_id": 121091226387,
-      "scope": "Actual Chromium browser regression passed. Subsequent fix changes only source-receipt fixture transport in a separate test; browser/runtime code unchanged."
+      "tested_commit": "adf2d158e3b23649a120b994b8884228062905e0",
+      "run_id": 40167834400,
+      "url": "https://github.com/landquart/interal/actions/runs/40167834400"
     },
-    "final_head_ci": "RERUN_REQUIRED_AFTER_SHALLOW_FIXTURE_CORRECTION"
+    "final_head_ci": {
+      "status": "PASS",
+      "tested_commit": "adf2d158e3b23649a120b994b8884228062905e0",
+      "successful_workflows": 13,
+      "evidence": "CI-FINAL.json",
+      "final_report_changes": "No production executable or test changes after tested head"
+    }
   },
   "evidence_retention": {
     "maintenance": "Temporary checkout and intermediate journals were removed by workspace maintenance. Code recovered from immutable Git commit92f7421; exact research files cold-restored and independently rechecked.",
