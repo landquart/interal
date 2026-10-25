@@ -1,0 +1,92 @@
+associative-identity-mapping 0
+✔ legacy stable ID encodes spelling and language, never POS or sense (1.944865ms)
+✔ verified lexical/sense bindings are mandatory for membership admission (5607.526166ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5618.096772
+
+associative-normative-admission 0
+✔ installed normative admission and approved registry reject every tested bypass (12513.680213ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12519.306263
+
+associative-release-control 0
+✔ controlled release signatures, atomicity, history and incremental contracts (3672.482685ms)
+✔ real calculator preserves unknown inputs and does not certify empty before/after (5.857559ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3683.931801
+
+associative-semantic-cleanup 0
+✔ sense-specific semantic decisions require exact independent authority and both guards (39.322846ms)
+✔ semantic release bridge preserves separate senses and fails on changed manifests (37.550537ms)
+✔ frozen semantic inventory keeps documentary facts, old IDs and unresolved senses separate (39.191839ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.869558
+
+associative-cleanup-quality 0
+✔ empty gold and no removals produce null precision, not perfect safety (31.153869ms)
+✔ removal precision, correct-link false-removal risk and detection recall have different denominators (22.644199ms)
+✔ linked dependence clusters cross languages and cases; they never become family merges (32.507052ms)
+✔ human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review (28.895021ms)
+✔ a qualified exact structural scope never grants semantic or production authority (35.493378ms)
+✔ 4367043681: NOT_RUN has no performance estimates even with complete gold (25.311193ms)
+✔ 4367043683: resolved human answers require an explicit relation (36.960161ms)
+✔ 4367043688: missing required bundle sources fail before publication (39.389952ms)
+✔ 4367043686: documentary additions share existing family clusters and rebind all cards (128.387646ms)
+✔ 4367062598: verifier rejects 1599 per language before opening the population index (183.371368ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 571.383721
+
+associative-v5-release-readiness 0
+✔ real pinned inputs yield only a blocked package; separate-process replay is exact (347.988078ms)
+✔ missing, changed, additional and self-qualified package artifacts fail closed (90.292141ms)
+✔ input corruption, missing history, repeated paths and malformed JSON are rejected (37.199768ms)
+✔ stale production HEAD and historical risk acceptance cannot authorize a release (60.868468ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 543.353275
+
+history-adjudication 0
+✔ historical scope and installed mutation fences fail closed (778.183974ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 782.959932

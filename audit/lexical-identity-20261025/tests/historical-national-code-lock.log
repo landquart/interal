@@ -1,0 +1,56 @@
+✔ finite documentary registry protects exact senses without promoting legacy membership (168.150246ms)
+✖ independent JavaScript verifies the locked registry and every proposal manifest (63.796954ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 1
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 239.68611
+
+✖ failing tests:
+
+test at tests/associative-national-correspondences.test.mjs:107:1
+✖ independent JavaScript verifies the locked registry and every proposal manifest (63.796954ms)
+  AssertionError [ERR_ASSERTION]: node:internal/modules/run_main:107
+      triggerUncaughtException(
+      ^
+
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'a9cc3d79e08dc153a87bfc15d33b22596d58a4f408c95c14ccf49cced8f34e0c'
+  - '0400b51fe64bc4b5169890663165de55b1aed1c34e7c8791d50e26a92d2393e7'
+
+      at file:///workspace/scratch/26989df269a1/interal/associativvordes/national_correspondences/verify.mjs:44:60
+      at ModuleJob.run (node:internal/modules/esm/module_job:561:25)
+      at async node:internal/modules/esm/loader:647:26
+      at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'a9cc3d79e08dc153a87bfc15d33b22596d58a4f408c95c14ccf49cced8f34e0c',
+    expected: '0400b51fe64bc4b5169890663165de55b1aed1c34e7c8791d50e26a92d2393e7',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+  Node.js v24.22.1
+
+
+  1 !== 0
+
+      at TestContext.<anonymous> (file:///workspace/scratch/26989df269a1/interal/tests/associative-national-correspondences.test.mjs:109:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

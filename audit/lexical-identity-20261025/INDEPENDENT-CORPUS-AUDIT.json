@@ -1,0 +1,23 @@
+{
+  "schema": "interal-independent-corpus-mapping-audit/1",
+  "status": "ALL_MEMBERSHIP_STATUSES_AND_SAMPLED_ORIGINS_VERIFIED",
+  "memberships": 10078319,
+  "by_language": {
+    "en": 2619261,
+    "de": 2205038,
+    "fr": 1143061,
+    "es": 1796516,
+    "it": 1187709,
+    "ru": 1126734
+  },
+  "statuses": {
+    "MULTIPLE_POSSIBLE_IDENTITIES": 816045,
+    "UNRESOLVED": 9262274
+  },
+  "source_origin_sample": 600,
+  "all_output_and_input_part_hashes_verified": true,
+  "all_physical_origin_identity_sequences_independently_replayed": true,
+  "unconfirmed_mappings_authorized": 0,
+  "producer_imported": false,
+  "semantic_identity_gold": false
+}

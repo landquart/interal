@@ -1,0 +1,149 @@
+{
+  "schema": "interal-source-language-audit/1",
+  "status": "PASS_DECLARED_LANGUAGE_ALIGNMENT",
+  "candidate_signatures_checked": 4156645,
+  "by_artifact": {
+    "GLeMM:deu:defs.tsv.bz2": {
+      "language": "de",
+      "candidates": 39883
+    },
+    "GLeMM:deu:pairs.tsv.bz2": {
+      "language": "de",
+      "candidates": 63275
+    },
+    "GLeMM:eng:defs.tsv.bz2": {
+      "language": "en",
+      "candidates": 267587
+    },
+    "GLeMM:eng:pairs.tsv.bz2": {
+      "language": "en",
+      "candidates": 335917
+    },
+    "GLeMM:esp:defs.tsv.bz2": {
+      "language": "es",
+      "candidates": 23369
+    },
+    "GLeMM:esp:pairs.tsv.bz2": {
+      "language": "es",
+      "candidates": 43270
+    },
+    "GLeMM:fra:defs.tsv.bz2": {
+      "language": "fr",
+      "candidates": 88373
+    },
+    "GLeMM:fra:pairs.tsv.bz2": {
+      "language": "fr",
+      "candidates": 123861
+    },
+    "GLeMM:ita:defs.tsv.bz2": {
+      "language": "it",
+      "candidates": 13643
+    },
+    "GLeMM:ita:pairs.tsv.bz2": {
+      "language": "it",
+      "candidates": 71260
+    },
+    "GLeMM:rus:defs.tsv.bz2": {
+      "language": "ru",
+      "candidates": 266288
+    },
+    "GLeMM:rus:pairs.tsv.bz2": {
+      "language": "ru",
+      "candidates": 298231
+    },
+    "MorphyNet:deu.derivational.v1": {
+      "language": "de",
+      "candidates": 40155
+    },
+    "MorphyNet:deu.inflectional.v1": {
+      "language": "de",
+      "candidates": 44113
+    },
+    "MorphyNet:eng.derivational.v1": {
+      "language": "en",
+      "candidates": 264690
+    },
+    "MorphyNet:eng.inflectional.v1": {
+      "language": "en",
+      "candidates": 424658
+    },
+    "MorphyNet:fra.derivational.v1": {
+      "language": "fr",
+      "candidates": 92470
+    },
+    "MorphyNet:fra.inflectional.v1": {
+      "language": "fr",
+      "candidates": 55406
+    },
+    "MorphyNet:ita.derivational.v1": {
+      "language": "it",
+      "candidates": 72664
+    },
+    "MorphyNet:ita.inflectional.v1": {
+      "language": "it",
+      "candidates": 95810
+    },
+    "MorphyNet:rus.derivational.v1": {
+      "language": "ru",
+      "candidates": 104585
+    },
+    "MorphyNet:rus.inflectional.v1": {
+      "language": "ru",
+      "candidates": 36637
+    },
+    "MorphyNet:spa.derivational.v1": {
+      "language": "es",
+      "candidates": 42152
+    },
+    "MorphyNet:spa.inflectional.v1.part1": {
+      "language": "es",
+      "candidates": 4776
+    },
+    "MorphyNet:spa.inflectional.v1.part2": {
+      "language": "es",
+      "candidates": 67768
+    },
+    "UDer:de-DErivBase": {
+      "language": "de",
+      "candidates": 280775
+    },
+    "UDer:en-CatVar": {
+      "language": "en",
+      "candidates": 82675
+    },
+    "UDer:en-WordNet": {
+      "language": "en",
+      "candidates": 13813
+    },
+    "UDer:es-DeriNetES": {
+      "language": "es",
+      "candidates": 151173
+    },
+    "UDer:fr-Demonette": {
+      "language": "fr",
+      "candidates": 22060
+    },
+    "UDer:it-DerIvaTario": {
+      "language": "it",
+      "candidates": 8267
+    },
+    "UDer:ru-DeriNetRU": {
+      "language": "ru",
+      "candidates": 337632
+    },
+    "UDer:ru-DerivBaseRU": {
+      "language": "ru",
+      "candidates": 270473
+    },
+    "UDer:ru-EtymWordNetRU": {
+      "language": "ru",
+      "candidates": 4005
+    },
+    "UDer:ru-GoldenCompoundAnalyses": {
+      "language": "ru",
+      "candidates": 4931
+    }
+  },
+  "conflicting_native_keys": 0,
+  "linguistic_language_or_sense_gold": false
+}

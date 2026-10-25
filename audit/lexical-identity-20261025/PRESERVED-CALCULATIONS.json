@@ -1,0 +1,47 @@
+{
+  "status": "EXACT_PROTECTED_BYTES_PRESERVED",
+  "files": [
+    {
+      "path": "associativvordes/js/association-analyzer.js",
+      "sha256": "d1d15be5d67c5039d4e6a2a62dd208c4d7713337de02be7047d0595110ac2e00",
+      "baseline_git_blob": "e2c4dd07204c993ab654634270be100c3c82af72"
+    },
+    {
+      "path": "associativvordes/js/qwen-client.js",
+      "sha256": "0a74ab24a10a47796cdcde644a6aa0d7f7f04ef3fa6e9ffbbbe306b1145ec16c",
+      "baseline_git_blob": "df0983c822119958c201b762d060918433d9939e"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-case-decisions.json",
+      "sha256": "0b1dac6949f2dfdc89ee20b2907dd4724297a9b66603e04e1b860ded94f8cbc1",
+      "baseline_git_blob": "7eb58730f088d7a583d53ac52867b89647150e22"
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions.json",
+      "sha256": "143973a4ca187a5155282884413d80e4dd8395b945b7f3b3f89655ca6a5e79ba",
+      "baseline_git_blob": "92bb8ef2f9da89bb0b31781936cbcdf9b5a4db2f"
+    },
+    {
+      "path": "audit/associative-family-v5/relation-policy.json",
+      "sha256": "d998f93b59ccde9ade11a9473c33f890a412e86bd116b0100dee93cdd70888be",
+      "baseline_git_blob": "60de2db4f847cd7b5f89e5becf3c16eff7eba4c4"
+    },
+    {
+      "path": "shared/methodology-calculation.mjs",
+      "sha256": "93226d39526df319ab1f45cf74a9dea835ba061ea57279b62290e56a2034c17a",
+      "baseline_git_blob": "f2a7b55afda8c29ebec22998c3c9bb4123ecccd2"
+    },
+    {
+      "path": "associativvordes/normative/NORMATIVE-DEFINITIONS.md",
+      "sha256": "d7467809cb609cc131f67a138812a8e91da1161801e33942baad8a88cfc017e3",
+      "identical_to_prompt18": true
+    },
+    {
+      "path": "associativvordes/normative/rules.json",
+      "sha256": "050065577f4ae4387b753d783e5e4760d4406fd5b85c18b15b6243e1b4a2018b",
+      "identical_to_prompt18": true
+    }
+  ],
+  "metrics_changed": false,
+  "production_data_diff": []
+}

@@ -51,6 +51,9 @@ class IntegrationTests(unittest.TestCase):
   e=dict(source,id='manucure',scope=copy.deepcopy(scope),polarity='supports',origin='dictionary');ids=['manucure']
   d=dict(schema_version='1.0.0',id='TEST_ONLY:manucure',element=dict(id='element:root:manu',kind='root',normative_form='manu',target_meaning='hand'),scope=scope,decision='CONFIRMED_MEMBER',evidence_status='documented',lexical_identity_status='resolved',sense_status='resolved',relation_status='supported',association_status='unknown',relation_type='compound_component',correspondence=dict(form='manu',scope=copy.deepcopy(scope),evidence_ids=ids,steps=[]),axis_evidence={k:[] if k=='association_status' else ids for k in ['evidence_status','lexical_identity_status','sense_status','relation_status','association_status']},evidence=[e],reason='TEST_ONLY independent scoped dictionary fixture',supersedes=[],provenance=dict(snapshot_sha256=self.c['baseline']['inventory_sha256'],source_lock_sha256=self.c['sources']['sha256'],algorithm_sha256=digest(self.c['algorithms']),policy_version=self.c['normative']['version'],origin='test_fixture'))
   trust=dict(verifiedEvidenceIds=ids,verifiedEvidenceDigests={'manucure':digest(e)},authorizedDecisionIds=[d['id']],authorizedDecisionDigests={d['id']:digest(d)})
+  # TEST_ONLY mapping-verifier simulation: never production linguistic evidence.
+  binding=dict(schema='interal-verified-identity-binding/1',status='SUPPORTED_MAPPING',scope=copy.deepcopy(scope),target=dict(language=scope['language'],source='TEST_ONLY:dictionary',source_version='TEST_ONLY:dictionary-version',lemma='manucure',pos='NOUN',lexical_identity=scope['lexeme_id'],sense=scope['sense_id'],context=scope['context_id']),origin=dict(q.get('original_record_ref') or dict(record_sha256=digest('TEST_ONLY:original'),family_id=scope['family_id'],language=scope['language'],lemma_id=scope['lemma_id'],path='TEST_ONLY:source-record',ordinal=0,source_commit='TEST_ONLY:source-version')),input_version=self.c['version'],target_source_sha256=digest('TEST_ONLY:dictionary-source-bytes'),evidence_refs=['TEST_ONLY:separate-content-bound-mapping-proof'])
+  trust['verifiedLexicalMappings']={d['id']:binding};trust['verifiedLexicalMappingDigests']={d['id']:digest(binding)}
   return d,trust
  def test_real_end_to_end_and_fail_closed_release(self):
   adapter=self.native();p=Pipeline(self.w/'work',self.c)
@@ -72,7 +75,7 @@ class IntegrationTests(unittest.TestCase):
   from associativvordes.release_control.control import VERSION
   fid=q['source_family_id'];head='TEST_ONLY:head';state=dict(schema=VERSION,data=dict(catalog=dict(families=[dict(id=fid)]),heads=[dict(id=head,language='fr')],memberships=[],links=[]),history=[],version_contract=self.c)
   row=dict(family_id=fid,language='fr',lemma_id=q['source_lemma_id'],head_id=head,word=q['lemma'],relation='compound')
-  op=dict(id='operation:TEST_ONLY:add',kind='ADD_MEMBER',question_id=q['id'],candidate_id=q['source_lemma_id'],before=None,after=row,evidence_refs=['manucure'],reason='TEST_ONLY exact finite addition',supersedes=[])
+  op=dict(id='operation:TEST_ONLY:add',kind='ADD_MEMBER',question_id=q['id'],candidate_id=q['source_lemma_id'],before=None,after=row,evidence_refs=['manucure'],reason='TEST_ONLY exact finite addition',supersedes=[],source_record_ref=trust['verifiedLexicalMappings'][d['id']]['origin'],lexical_binding_sha256=digest(trust['verifiedLexicalMappings'][d['id']]))
   preview=p.preview(state,[op],{op['id']:d},trust,[decision,quality]);gate=p.release_gate(preview);self.assertEqual(gate['payload']['status'],'BLOCKED');self.assertEqual(gate['payload']['production_writes'],0)
   # Namespace and schema forgery never reach the writer.
   forged=copy.deepcopy(preview);forged['version_contract']['namespace']='production'

@@ -1,0 +1,261 @@
+{
+  "baseline": {
+    "name": "v5-baseline-47723611.tar",
+    "format": "tar",
+    "bytes": 1475102720,
+    "sha256": "d4fbe8ba383ceab712881e70152102e51c78e4493b84c59828ad06da50f23b81",
+    "parts": [
+      {
+        "file": "v5-baseline-47723611.tar.part000",
+        "sha256": "895e1e3956128485f2202d416ebcf7152f1dd0bc90d00d9f6c5e3b7b300216f6",
+        "bytes": 268435456,
+        "status": "EXACT_PINNED_BYTES_VERIFIED",
+        "library_file_id": "libfile_9773d976f8fc819182e369a8c2a62284",
+        "url": "https://chatgpt.com/library?file_id=libfile_9773d976f8fc819182e369a8c2a62284&account_id=personal"
+      },
+      {
+        "file": "v5-baseline-47723611.tar.part001",
+        "sha256": "8348b980519c003c14cb3084f9a21d2cc51d0af877f4b3614ce71cdabf4de5b6",
+        "bytes": 268435456,
+        "status": "EXACT_PINNED_BYTES_VERIFIED",
+        "library_file_id": "libfile_d8488f7dabd08191ba66daf4c6503786",
+        "url": "https://chatgpt.com/library?file_id=libfile_d8488f7dabd08191ba66daf4c6503786&account_id=personal"
+      },
+      {
+        "file": "v5-baseline-47723611.tar.part002",
+        "sha256": "cff06345d3bbacec9a06041b4eecd1fa76b6532da542f7cb07486130ebd404cf",
+        "bytes": 268435456,
+        "status": "EXACT_PINNED_BYTES_VERIFIED",
+        "library_file_id": "libfile_b5ae88d8c8988191927604f786d72ccf",
+        "url": "https://chatgpt.com/library?file_id=libfile_b5ae88d8c8988191927604f786d72ccf&account_id=personal"
+      },
+      {
+        "file": "v5-baseline-47723611.tar.part003",
+        "sha256": "b206632226e4c81eaa894fc4ea623c15a0fa4bcb9a5453948b7e3010908e9510",
+        "bytes": 268435456,
+        "status": "EXACT_PINNED_BYTES_VERIFIED",
+        "library_file_id": "libfile_0c33539f925c8191926d273c50391409",
+        "url": "https://chatgpt.com/library?file_id=libfile_0c33539f925c8191926d273c50391409&account_id=personal"
+      },
+      {
+        "file": "v5-baseline-47723611.tar.part004",
+        "sha256": "be5da762694b9b337062984197ccfcff1a2451f209f8c8e28231819a845b7e29",
+        "bytes": 268435456,
+        "status": "EXACT_PINNED_BYTES_VERIFIED",
+        "library_file_id": "libfile_c1eb6b09366081919cde322fa8aecdb9",
+        "url": "https://chatgpt.com/library?file_id=libfile_c1eb6b09366081919cde322fa8aecdb9&account_id=personal"
+      },
+      {
+        "file": "v5-baseline-47723611.tar.part005",
+        "sha256": "e2e490a03bbccee40d27f4e3e316757a2f52b6bb6eec1bb0abc9d14ca81ceef2",
+        "bytes": 132925440,
+        "status": "EXACT_PINNED_BYTES_VERIFIED",
+        "library_file_id": "libfile_e92782421e148191a463fe3f7ea0e347",
+        "url": "https://chatgpt.com/library?file_id=libfile_e92782421e148191a463fe3f7ea0e347&account_id=personal"
+      }
+    ]
+  },
+  "morphology_raw": {
+    "name": "pinned-morphology-originals.zip",
+    "format": "zip",
+    "bytes": 92453026,
+    "sha256": "b0b27f47a7fe28d799eebb0c54525921e6e68522cadf41fa46a318d228b9054b",
+    "parts": [
+      {
+        "file": "pinned-morphology-originals.zip",
+        "library_file_id": "libfile_0dc4585cb55c8191b4773ec8df725b66",
+        "bytes": 92453026,
+        "url": "https://chatgpt.com/library?file_id=libfile_0dc4585cb55c8191b4773ec8df725b66&account_id=personal",
+        "sha256": "b0b27f47a7fe28d799eebb0c54525921e6e68522cadf41fa46a318d228b9054b"
+      }
+    ],
+    "expected_members": {
+      "raw/GLeMM/deu/defs.tsv.bz2": {
+        "bytes": 1636674,
+        "sha256": "c22cb69cfdf677d78e25d806079f0768b65382e5d34ce9cce26e41811fc92f54"
+      },
+      "raw/GLeMM/deu/pairs.tsv.bz2": {
+        "bytes": 1067083,
+        "sha256": "2463ba12123fabb48542327ea241ca4bdb26a5acb1d6c864cac4e828eb7d8d40"
+      },
+      "raw/GLeMM/eng/defs.tsv.bz2": {
+        "bytes": 7094764,
+        "sha256": "8dc73d48dfe8f687c3686230371d0e3218719852f9e3f924cbe9bb6f8ba6a09e"
+      },
+      "raw/GLeMM/eng/pairs.tsv.bz2": {
+        "bytes": 5578736,
+        "sha256": "67073ab267768413b9e407080743d4e4e2aa36fed932600fc18fcd80f35b15db"
+      },
+      "raw/GLeMM/esp/defs.tsv.bz2": {
+        "bytes": 666727,
+        "sha256": "388e44640608d0b7ca31bf08f6f1ec30fa5517864182e75efabdeabfc5d18266"
+      },
+      "raw/GLeMM/esp/pairs.tsv.bz2": {
+        "bytes": 537465,
+        "sha256": "033a3e8679e49d0788f39c10e7e1bc641250290a6fbae8877df0653f10b81754"
+      },
+      "raw/GLeMM/fra/defs.tsv.bz2": {
+        "bytes": 2653817,
+        "sha256": "d18c771f78332d03c8e2717a7a140ed541462f57de3d1262e616e7c69d00a6b4"
+      },
+      "raw/GLeMM/fra/pairs.tsv.bz2": {
+        "bytes": 1960093,
+        "sha256": "d88e7d532994f6b03f09e6dc2913c7a2ae92b91749e476c54b75074a69dfc8b2"
+      },
+      "raw/GLeMM/ita/defs.tsv.bz2": {
+        "bytes": 315630,
+        "sha256": "be2fac7b7be3147ce004be6cf5f8a26524983c6744e669f293b36f6007e85491"
+      },
+      "raw/GLeMM/ita/pairs.tsv.bz2": {
+        "bytes": 903092,
+        "sha256": "d536c3d310f95d367ac7446f5e7fb6a16c9e49c5d14f95bbc4094cdc8abf38cc"
+      },
+      "raw/GLeMM/rus/defs.tsv.bz2": {
+        "bytes": 5082025,
+        "sha256": "45faa636451ec9021e96e3c281aafdb24eb0e03cf4d7051fbe69dc9b04da58e4"
+      },
+      "raw/GLeMM/rus/pairs.tsv.bz2": {
+        "bytes": 4796104,
+        "sha256": "ceb1e57f137c808ba677dbe70115b36570a15109e8ba8e19b2b6e7a034f69f92"
+      },
+      "raw/MorphyNet/deu/deu.derivational.v1.tsv": {
+        "bytes": 1057628,
+        "sha256": "21a5fb2432e14fd995cc3ce1b44fef0f975c25c2e8368232df006395cf97033c"
+      },
+      "raw/MorphyNet/deu/deu.inflectional.v1.tsv": {
+        "bytes": 23258436,
+        "sha256": "a5715136406aa37e2b8aa7e1ad4e5f228bc4d9885fd0abe4f29950c4aa020c86"
+      },
+      "raw/MorphyNet/eng/eng.derivational.v1.tsv": {
+        "bytes": 8169109,
+        "sha256": "5920edacc1888b14464fc5cd96beea0a721221d56d1dc0e49de22f4c7c537c50"
+      },
+      "raw/MorphyNet/eng/eng.inflectional.v1.tsv": {
+        "bytes": 21455254,
+        "sha256": "6295cd9a0e72e260298d8d80dc1e512e5d37ea44617dd2df6fbeef02f50bcc3f"
+      },
+      "raw/MorphyNet/fra/fra.derivational.v1.tsv": {
+        "bytes": 2683375,
+        "sha256": "eaf40688e3175f21d05ee89fe3669d6f3b224e6a99b43260e24e0e1744563447"
+      },
+      "raw/MorphyNet/fra/fra.inflectional.v1.tsv": {
+        "bytes": 22293532,
+        "sha256": "191f644875cd64cb0de7d5bf020dc1e4fa6fb7d4fb820c9c06bb8a24810b99b8"
+      },
+      "raw/MorphyNet/ita/ita.derivational.v1.tsv": {
+        "bytes": 2209996,
+        "sha256": "b0988c57afdaef185bf6d9e557f994d9c960b634eb6cf9f5040c1de02f66ed99"
+      },
+      "raw/MorphyNet/ita/ita.inflectional.v1.tsv": {
+        "bytes": 36471316,
+        "sha256": "06fda3d9db2d0884e4aa2bccf6e1efcb1578cc2bb42bd3a90afe64bde5441b74"
+      },
+      "raw/MorphyNet/rus/rus.derivational.v1.tsv": {
+        "bytes": 5389104,
+        "sha256": "ad3c778df01ee168cb5fbebc25ef9d02195ce2337feb29e8b70405af4a6419a0"
+      },
+      "raw/MorphyNet/rus/rus.inflectional.v1.zip": {
+        "bytes": 10279691,
+        "sha256": "80b2c608f220a25049d632340377a5c06282c4de1db39e35277591951445f9d9"
+      },
+      "raw/MorphyNet/spa/spa.derivational.v1.tsv": {
+        "bytes": 1097625,
+        "sha256": "1f1d98ec6ffa7ba1ef55dcae1db3d98931f749db5390c810887c71f80a20d519"
+      },
+      "raw/MorphyNet/spa/spa.inflectional.v1.part1.tsv": {
+        "bytes": 45309915,
+        "sha256": "135afd6bfad6c1e2774349cde2eba052a35c5d697e89ae92a526521ede83a057"
+      },
+      "raw/MorphyNet/spa/spa.inflectional.v1.part2.tsv": {
+        "bytes": 29299778,
+        "sha256": "accad9db6e5f9b8a4691fc3aefc6af06ef30fbfc6a1b8d42950c8a08ce211f6a"
+      },
+      "raw/UDer/de-DErivBase/UDer-1.1-de-DErivBase.tsv.gz": {
+        "bytes": 3438963,
+        "sha256": "b541cc6a120dcc0741cbb3ca638a778753d682c61a77d129f07caea0507871f6"
+      },
+      "raw/UDer/en-CatVar/UDer-1.1-en-CatVar.tsv.gz": {
+        "bytes": 940651,
+        "sha256": "48a2a1c4a6e5123a811ff6d968ff4308703b566a19bfd3714cb4191143a1e344"
+      },
+      "raw/UDer/en-WordNet/UDer-1.1-en-WordNet.tsv.gz": {
+        "bytes": 163431,
+        "sha256": "5f8d01d65bb2bdde94a60a05d52e245bdaf4ba5a28d63923296430d99d42c5be"
+      },
+      "raw/UDer/es-DeriNetES/UDer-1.1-es-DeriNetES.tsv.gz": {
+        "bytes": 1958525,
+        "sha256": "cf68c43f6c52f490c4a517d394a7197ff99e429f34e5a6edb58f890da45ab7d4"
+      },
+      "raw/UDer/fr-Demonette/UDer-1.1-fr-Demonette.tsv.gz": {
+        "bytes": 290806,
+        "sha256": "1271bef98f1d1fc37546471d6d950d78e3e77cf612d56073b9f265c1e0f47cee"
+      },
+      "raw/UDer/it-DerIvaTario/UDer-1.1-it-DerIvaTario.tsv.gz": {
+        "bytes": 182012,
+        "sha256": "055badea929d67c76e8011d7b3e0444db325a865d87443fd0c376413e39e2d1c"
+      },
+      "raw/UDer/ru-DeriNetRU/UDer-1.1-ru-DeriNetRU.tsv.gz": {
+        "bytes": 3839157,
+        "sha256": "5c769d95a2e49caa7f50f75fdacb1db1f1d2a23aa06a9d3de0364b03ca92ac55"
+      },
+      "raw/UDer/ru-DerivBaseRU/UDer-1.1-ru-DerivBaseRU.tsv.gz": {
+        "bytes": 8807305,
+        "sha256": "960c5f5ca0af8410223722ec9a34007d59c7ab3caf34c2cfbdbc3efadbbb7bed"
+      },
+      "raw/UDer/ru-EtymWordNetRU/UDer-1.1-ru-EtymWordNetRU.tsv.gz": {
+        "bytes": 43588,
+        "sha256": "c3f5bd75ed34a9f92150aca1c164b60ee626c23b74df4296129231af62f4418b"
+      },
+      "raw/UDer/ru-GoldenCompoundAnalyses/UDer-1.1-ru-GoldenCompoundAnalyses.tsv.gz": {
+        "bytes": 60597,
+        "sha256": "004965acd2a4b7f2405a30af9ec6d4be2140dfae6b5e0f3673b67f1f2ca24782"
+      }
+    }
+  },
+  "history": {
+    "schema": "interal-historical-archive/1",
+    "file": "history-adjudication-final-20261025.zip",
+    "bytes": 305593933,
+    "sha256": "d092eb072afabebeb3d8ade17c10b26e563a23b27e4a135d6d7e40a363e41fa7",
+    "primary_library_file_id": "libfile_af91af9ea9c48191bf964f2c1893507e",
+    "private_archive": true,
+    "license": "Underlying-source rights unchanged; public redistribution not certified",
+    "backup": {
+      "status": "ALL_PARTS_REDOWNLOADED_SHA256_VERIFIED_REASSEMBLED_ZIP_CRC_AND_SQLITE_INTEGRITY_OK",
+      "parts": [
+        {
+          "file": "history-adjudication-final-20261025.zip.part-01",
+          "bytes": 83886080,
+          "sha256": "7c8c716034925826da3d402952b44ab33383a235e71d011abb23a7e02aaed51d",
+          "drive_id": "1cnv8HADNh0gNB1jPrbxJtf9QN1oPqs4y"
+        },
+        {
+          "file": "history-adjudication-final-20261025.zip.part-02",
+          "bytes": 83886080,
+          "sha256": "5e45f5fc299555af7ce6c1243df82f86e7368d370f2a1f16c54308781af73830",
+          "drive_id": "1-lVH1qQdTC5840OQFdO4GbG3PQLMrKAp"
+        },
+        {
+          "file": "history-adjudication-final-20261025.zip.part-03",
+          "bytes": 83886080,
+          "sha256": "6f2bc7380ff530ae4dd6d05dc77eba78faeec7fb5e7fd85fb0c73781963e317b",
+          "drive_id": "1uToRHIrNsIaWKXZU1wGvgRjUawHzsmYV"
+        },
+        {
+          "file": "history-adjudication-final-20261025.zip.part-04",
+          "bytes": 53935693,
+          "sha256": "27da556bae2d70d7999b287802facd01b4a8b3b01b66a90b5581ab89b94d9f39",
+          "drive_id": "1XW1eqqtutTLlreuZNhhbxI5iiAkyZBCj"
+        }
+      ]
+    },
+    "original_source_archive_ref": "../associative-history-registry/SOURCE-ARCHIVE.json",
+    "contents_scope": "Derived SQLite, exact tombstone/event stream, initial and final registry, coverage and independent member/alias replay reports; implementation source and later validation logs are in Git",
+    "cold_restore": "Acquire parts by their exact IDs in order, verify each SHA-256 and size, concatenate in listed order, verify full archive SHA-256, verify ZIP CRC, extract to a new private directory; open SQLite with mode=ro and run PRAGMA integrity_check; run the source-based independent verifier separately. Never install historical memberships as current data.",
+    "production_data_restored": false
+  },
+  "dictionary": {
+    "senses": "native/dictionary-senses.json",
+    "sources": "native/dictionary-sources.json"
+  }
+}

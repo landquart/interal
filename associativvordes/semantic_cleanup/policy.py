@@ -53,7 +53,7 @@ def adjudicate(case,requested,verify_receipt=None,history_checker=None,correspon
         scope={k:case['scope'][k] for k in ('family_id','language','lemma_id')}
         scope.update(lexeme_id=binding['corpus_lexeme_id'],sense_id=binding['corpus_sense_id'],context_id=binding['context_id'])
         expected='CONFIRMED_MEMBER' if requested=='MEMBERSHIP_CONFIRMED' else 'CONFIRMED_NONMEMBER' if requested=='MEMBERSHIP_REJECT_PROPOSED' else None
-        normative=admit(case.get('normative_decision'),normative_context,scope,expected)
+        normative=admit(case.get('normative_decision'),normative_context,scope,expected,expected_pos=binding['pos'])
         return dict(result,status=requested,proof_sha256=hsh,normative_evaluation=normative)
     except (ValueError,KeyError,TypeError,AttributeError,OSError) as error:
         return dict(result,reason=str(error))

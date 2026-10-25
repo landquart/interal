@@ -1,0 +1,110 @@
+{
+  "schema": "interal-lexical-source-model-audit/1",
+  "v5": {
+    "stableLemmaId": {
+      "source": "scripts/lib/associative-family-graph.mjs",
+      "source_sha256": "31bd56acb85e92fdf3e78a6863d18fb8b51c2b28cfbdd6fc34f725cbf41f5b12",
+      "formula": "lemma: first 20 hexadecimal SHA256 characters over NFC(lowercase(language)) NUL NFC(toLocaleLowerCase(und, normalized spelling))",
+      "fields_present": [
+        "language",
+        "normalized spelling"
+      ],
+      "fields_absent": [
+        "source identity",
+        "POS",
+        "lexical head",
+        "sense",
+        "usage context"
+      ],
+      "classification": "LANGUAGE_SPELLING_KEY_NOT_SENSE_ID",
+      "original_ids_preserved": true
+    },
+    "frequency_source_ids": "Frequency-file/category identifiers and ranks are retained as corpus provenance; not native dictionary lexical/sense identifiers"
+  },
+  "v6": {
+    "commit": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+    "path": "associativvordes/family-index-v6/generated/heads.json.gz",
+    "sha256": "98604a1510bb1c8b25bd02e5fbc0a8f56fad4f58a3926b6bf78c2bbad496d151",
+    "heads": 18602,
+    "identity_kinds": {
+      "historically_reviewed_lexical_head": 124,
+      "lexical_head": 118,
+      "legacy_exact_record": 18360
+    },
+    "sense_labels": {
+      "historical_review": 124,
+      "musical_work_performance_institution_common_nominal_base": 1,
+      "associative_loc": 6,
+      "regula_line_bounded_component": 20,
+      "editorial_activity_staff_office_or_edition_common_nominal_base": 1,
+      "associative_inform": 10,
+      "deliberate_action_or_campaign": 1,
+      "pertaining_to_or_forming_a_fraction": 1,
+      "parliamentary_or_organizational_group": 1,
+      "broadcast_serial_metaphorical_opera_compound": 1,
+      "structured_assembly_or_scheme_noun": 5,
+      "associative_creat": 7,
+      "hat_or_cap_lexical_base": 1,
+      "computer_display_component": 1,
+      "split_into_groups_or_fractions_common_derived_base": 1,
+      "extinct_elephant_component": 1,
+      "shared_between_factions": 1,
+      "attractiveness_nominal_lexical_base": 1,
+      "information_bureau_short_compound": 1,
+      "atomic_particle_lexical_row": 3,
+      "financial_equity_share": 1,
+      "german_courage_or_temperament_nominal_base": 1,
+      "augmentative_combining_form": 1,
+      "local_place_compound_base": 1,
+      "physical_wave_diffraction": 1,
+      "incomplete_bone_fracture": 1,
+      "botanical_aromatic_plant_and_lexical_metonymies": 6,
+      "sequoia_tree_component": 1,
+      "optical_refraction": 1,
+      "chemical_or_material_fraction_product": 1,
+      "fractionating_process_noun": 1,
+      "railway_engine_compound_base": 1,
+      "systematic_medical_exam_component": 1,
+      "documentary_case_file": 1,
+      "relativity_nominal_lexical_base": 1,
+      "action_activity_or_effectiveness_common_nominal_base": 1,
+      "cellular_protein_microfilament": 1,
+      "associative_act": 5,
+      "military_person_component": 1,
+      "associative_nat": 2,
+      "associative_inter": 3,
+      "associative_observ": 8,
+      "associative_ped": 2,
+      "repeat_lacing": 2,
+      "organize_according_to_system": 1,
+      "informing_agent_inclusive_plural": 1,
+      "communist_information_bureau_acronym": 1,
+      "international_system_lexical_base": 1,
+      "querela_complaint": 1,
+      "unresolved_lexical_identity": 18360,
+      "shooter_compound_base": 1,
+      "old_english_personal_name": 1,
+      "slavic_settlement": 1,
+      "hair_curl": 1
+    },
+    "conclusion": "Legacy exact-record heads are corpus carriers, not certified dictionary senses. Lexical-head and historical-review labels require their own finite evidence; no old head is automatically promoted to a corpus sense binding."
+  },
+  "morphology": {
+    "UDer": "Pinned source/resource/native key and POS are preserved. The harmonized en-WordNet probe uses lemma#POS, without a synset/sense identifier in the inspected rows; dataset naming alone supplies no v5 sense link.",
+    "GLeMM": "Endpoint roles, original POS, all raw rows and definition2 values retained. Definitions are source observations; neither a row hash nor matching spelling establishes a native lexeme or v5 sense.",
+    "MorphyNet": "Inflection and derivation rows retain line/endpoint IDs and source features. Generated row-role IDs are observation keys; forms are not silently reclassified as separate lexemes.",
+    "source_model_native_identification": "UDer source-identified keys and unbound morphology signatures are different kinds; duplicate native IDs with incompatible lemma/POS retain separate alternatives"
+  },
+  "dictionary": {
+    "packet": "audit/associative-v5-semantic-cleanup/LEXICAL-SENSES.json",
+    "senses": 32,
+    "source_senses_preserved": true,
+    "corpus_bindings_created": 0
+  },
+  "unrecoverable_generation": [
+    "original assignments",
+    "original Kaikki snapshot",
+    "generation-specific candidate index"
+  ],
+  "production_writes": 0
+}
