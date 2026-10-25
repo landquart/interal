@@ -1,9 +1,13 @@
 """End-to-end offline shadow certification, including real restoration and inverse."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse, collections, hashlib, pathlib, resource, shutil, sqlite3, subprocess, sys, time
-from common import *
-from capture import capture
-from shadow import apply, rollback
-from verify import validate
+from associativvordes.structural_cleanup.common import *
+from associativvordes.structural_cleanup.capture import capture
+from associativvordes.structural_cleanup.shadow import apply, rollback
+from associativvordes.structural_cleanup.verify import validate
 
 def checked(cmd, logfile, expected=0):
     with open(logfile, 'ab') as out:
@@ -14,12 +18,14 @@ def checked(cmd, logfile, expected=0):
 def run(repo, work):
     repo = pathlib.Path(repo).resolve(); work = outside_repo(repo, work); started = time.monotonic()
     code = {p.name:sha_file(p) for p in sorted(pathlib.Path(__file__).parent.glob('*.py'))}
-    identity = dict(schema='v5-structural-run/1', code=code, main=MAIN, baseline=BASELINE, diagnostics=DIAGNOSTICS)
+    from associativvordes.v5_contract.versions import capture as implementation,validate as validate_implementation
+    installed=implementation();validate_implementation(installed)
+    identity = dict(schema='v5-structural-run/2', code=code, main=MAIN, version_contract=installed)
     if (work / 'IDENTITY.json').exists() and load(work/'IDENTITY.json') != identity:
         raise ValueError('changed code/source dependency; use new external work directory')
     save(work/'IDENTITY.json', identity)
     capture(repo, work)
-    tool = pinned_baseline(repo, work); script = work/'pinned-tool/census.py'
+    tool = pinned_baseline(repo, work); script = pathlib.Path(tool.__file__)
     if not (work/'before-census/FULL-CENSUS.json').exists():
         checked([sys.executable,script,'census','--snapshot',work/'before','--work',work/'before-census'], work/'before-census.log')
     if not (work/'scan/SCAN.json').exists():
@@ -67,14 +73,13 @@ def run(repo, work):
         restored = tool.restore(archive,work/'restored',receipt['archive_sha256']); save(work/'RESTORE.json',restored)
     verify(work/'restored',load(work/'after/SNAPSHOT.json'))
     # Baseline source SHA pins and actual finite unassigned set survive independently of old caches.
-    baseline_census = json.loads(git(repo,'show',BASELINE+':audit/associative-family-v5-baseline/FULL-CENSUS.json'))
+    baseline_census = load(ROOT/'audit/associative-family-v5-baseline/FULL-CENSUS.json')
     if before['counts'] != baseline_census['counts']: raise ValueError('baseline counts differ; review rather than normalize')
-    audit_script=work/'pinned-tool/audit_ids.py'
-    atomic(audit_script,git(repo,'show',BASELINE+':associativvordes/v5_baseline/audit_ids.py'))
+    audit_script=ROOT/'associativvordes/v5_baseline/audit_ids.py'
     if not (work/'STABLE-ID-AUDIT.json').exists():
         checked([sys.executable,audit_script,'--database',work/'after-census/census.sqlite','--output',work/'STABLE-ID-AUDIT.json'],work/'stable-id-audit.log')
     if load(work/'STABLE-ID-AUDIT.json')['verdict']!='PASS': raise ValueError('stable ID disagreement requires review')
-    from audit_metadata import audit
+    from associativvordes.structural_cleanup.audit_metadata import audit
     metadata=audit(work/'after',work/'after-census/FULL-CENSUS.json',work/'METADATA-CHECK.json')
     if metadata['status']!='PASS': raise ValueError('materialized report counters require review')
     meta = load(work/'after/current'/PREFIX/'manifest.json'); report=load(work/'after/current'/PREFIX/'report.json')

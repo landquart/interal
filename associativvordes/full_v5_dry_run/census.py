@@ -16,7 +16,7 @@ def pairs(path):
  yield from data.items()
 def run(work,snapshot,output,crash_after=None):
  work=outside(work);output=outside(output);snapshot=Path(snapshot).resolve();tool=pinned(work);output.mkdir(parents=True,exist_ok=True)
- ident=dict(core_sha256=TOOL_SHA,adapter_sha256=sha(__file__),snapshot_sha256=sha(snapshot/'SNAPSHOT.json'),decoder='strict_one_gzip_bucket')
+ ident=dict(core_sha256=sha(tool.__file__),adapter_sha256=sha(__file__),snapshot_sha256=sha(snapshot/'SNAPSHOT.json'),decoder='strict_one_gzip_bucket')
  p=output/'ADAPTER-IDENTITY.json'
  if p.exists() and load(p)!=ident:raise ValueError('census adapter/source changed')
  save(p,ident);tool.pairs=pairs;start=time.monotonic();cpu=time.process_time()

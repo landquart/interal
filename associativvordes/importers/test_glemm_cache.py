@@ -1,11 +1,15 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json
 from pathlib import Path
 import shutil
 import tempfile
 import unittest
 import zipfile
-from glemm_cache import pack,restore,import_upstream
-from morphology_import import validate_lock
+from associativvordes.importers.glemm_cache import pack,restore,import_upstream
+from associativvordes.importers.morphology_import import validate_lock
 
 FIXTURES=Path(__file__).with_name('fixtures')
 

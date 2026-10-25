@@ -1,7 +1,11 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import contextlib,io,json,sqlite3,sys,tempfile,unittest,zlib
 from pathlib import Path
-from classify import *
-from run import setup,ingest,cross_family,summarize,connect,rank
+from associativvordes.v5_diagnostics.classify import *
+from associativvordes.v5_diagnostics.run import setup,ingest,cross_family,summarize,connect,rank
 class Rules(unittest.TestCase):
  def test_origin_is_not_a_linguistic_verdict(self):
   self.assertEqual(origin(dict(source='surface_singleton'),{'morphological_parse':1}),'SURFACE_FRAGMENT')
@@ -70,7 +74,7 @@ class WholeShard(unittest.TestCase):
   ingest(self.db,self.root,self.receipt);cross_family(self.db);self.db.commit()
   sys.path.insert(0,str(Path(__file__).with_name('tools')))
   from query import filehash
-  from backup import backup,restore_archive
+  from associativvordes.v5_diagnostics.tools.backup import backup,restore_archive
   m=dict(database='out.sqlite',database_sha256=filehash(self.root/'out.sqlite'),complete=True);m['version']=digest(m);(self.root/'MANIFEST.json').write_bytes(canonical(m))
   r=backup(self.root,self.root/'archive.zip',self.root/'restored')
   self.assertTrue(r['all_exact_file_hashes_verified']);self.assertEqual(r['restored_counts'],dict(families=3,memberships=11))
@@ -84,7 +88,7 @@ class WholeShard(unittest.TestCase):
  def test_driver_resumes_committed_buckets_after_interruption(self):
   import shutil
   from unittest.mock import patch
-  import run as driver
+  from associativvordes.v5_diagnostics import run as driver
   sys.path.insert(0,str(Path(__file__).with_name('tools')))
   projection=self.root/'projection';projection.mkdir();shutil.copyfile(self.root/'source.sqlite',projection/'00.sqlite');shutil.copyfile(self.root/'source.sqlite',projection/'empty.sqlite')
   empty=sqlite3.connect(projection/'empty.sqlite');empty.executescript('DELETE FROM families;DELETE FROM members;DELETE FROM aliases;');empty.close()
@@ -109,7 +113,7 @@ class WholeShard(unittest.TestCase):
    def resumed(db,source,receipt,crash):calls.append(receipt['identity']['bucket']);return original(db,source,receipt,crash)
    with patch.object(driver,'ingest',resumed):result=driver.run(projection,out)
   self.assertNotIn('00',calls);self.assertEqual(len(calls),255);self.assertEqual(result['counts']['memberships'],11)
-  from finalize import finalize
+  from associativvordes.v5_diagnostics.tools.finalize import finalize
   copied=self.root/'copied';shutil.copytree(out,copied)
   with self.assertRaisesRegex(ValueError,'fresh execution'):finalize(out,copied)
   with self.assertRaisesRegex(ValueError,'fresh execution'):finalize(out,out)
@@ -118,7 +122,7 @@ class WholeShard(unittest.TestCase):
   finalize(out,replay)
   coverage=(replay/'COVERAGE.json').read_bytes();cov=json.loads(coverage);cov['buckets'][0]['family_ids_sha256']='0'*64
   (replay/'COVERAGE.json').write_bytes(canonical(cov)+b'\n')
-  from classify import digest
+  from associativvordes.v5_diagnostics.classify import digest
   changed=json.loads((replay/'MANIFEST.json').read_bytes());changed['outputs']['COVERAGE.json']=filehash(replay/'COVERAGE.json');changed.pop('version');changed['version']=digest(changed);(replay/'MANIFEST.json').write_bytes(canonical(changed))
   with self.assertRaisesRegex(ValueError,'coverage'):finalize(out,replay)
   self.assertEqual(json.loads((out/'MECHANISM-COHORTS.json').read_bytes())['memberships'],11)
@@ -138,7 +142,7 @@ class WholeShard(unittest.TestCase):
  def test_4359927853_failed_restore_has_no_published_or_partial_target(self):
   import zipfile
   sys.path.insert(0,str(Path(__file__).with_name('tools')))
-  from backup import restore_archive
+  from associativvordes.v5_diagnostics.tools.backup import restore_archive
   archive=self.root/'bad.zip';target=self.root/'restored'
   with zipfile.ZipFile(archive,'w') as z:
    z.writestr('data',b'changed');z.writestr('BACKUP-MANIFEST.json',canonical(dict(files={'data':dict(sha256='0'*64,bytes=7)})))
@@ -147,9 +151,9 @@ class WholeShard(unittest.TestCase):
 
  def test_4359927816_coverage_mismatch_cannot_be_certified(self):
   import shutil
-  from run import publish
+  from associativvordes.v5_diagnostics.run import publish
   sys.path.insert(0,str(Path(__file__).with_name('tools')))
-  from finalize import finalize
+  from associativvordes.v5_diagnostics.tools.finalize import finalize
   from query import filehash
   ingest(self.db,self.root,self.receipt);cross_family(self.db)
   identity=dict(expected_counts=dict(families=3,aliases=1,en=11,de=0,fr=0,es=0,it=0,ru=0))
@@ -165,7 +169,7 @@ class WholeShard(unittest.TestCase):
   import shutil
   from unittest.mock import patch
   sys.path.insert(0,str(Path(__file__).with_name('tools')))
-  from backup import backup
+  from associativvordes.v5_diagnostics.tools.backup import backup
   from query import filehash
   ingest(self.db,self.root,self.receipt);cross_family(self.db);self.db.commit()
   source=self.root/'input';source.mkdir();shutil.copyfile(self.root/'out.sqlite',source/'out.sqlite')
@@ -176,7 +180,7 @@ class WholeShard(unittest.TestCase):
     backup(source,self.root/f'{day}.zip',self.root/f'restored-{day}')
   self.assertEqual(filehash(self.root/'23.zip'),filehash(self.root/'24.zip'))
  def test_4359927842_transitive_implementation_is_pinned(self):
-  from run import code_lock
+  from associativvordes.v5_diagnostics.run import code_lock
   keys=set(code_lock())
   self.assertTrue({'associativvordes/v5_adapter/common.py','associativvordes/v5_adapter/bridge.py','associativvordes/history_registry/registry.py'}<=keys)
 if __name__=='__main__':unittest.main()

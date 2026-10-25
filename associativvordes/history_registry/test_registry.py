@@ -1,3 +1,7 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import copy
 import gzip
 import json
@@ -5,7 +9,7 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
-from registry import History, SCHEMA, atomic, canonical, check, import_decisions, restore, sha
+from associativvordes.history_registry.registry import History, SCHEMA, atomic, canonical, check, import_decisions, restore, sha
 
 
 class RegistryTests(unittest.TestCase):

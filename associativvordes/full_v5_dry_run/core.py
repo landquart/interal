@@ -5,9 +5,6 @@ ROOT=Path(__file__).resolve().parents[2]
 PREFIX='associativvordes/family-index-v5'
 MAIN='47723611112610945cb09b34e18588b7bd151911'
 PARENT='4a13ffe867e5b9d2a11ecc761e00179ea61625b1'
-BASELINE='44f1105cfe8e59d50affa08889654bfb488056c1'
-NORMATIVE='ad32277ab9bc4fc8cd28ba82f08eaba2ab130f05'
-TOOL_SHA='388502638fab3cdbcbbe63620e4b8731d0da1b66573e7b2c4e847e27542e78fa'
 LANGS=['en','de','fr','es','it','ru']
 CATEGORIES=['STRUCTURAL','SCOPED_EXCLUSION','RELATION_CORRECTION','LEXICAL_IDENTITY','FAMILY_SPLIT','ALIAS_CHANGE','UNRESOLVED']
 LAYERS=['STRUCTURAL_PILOT','SCOPED_FAMILY_EXCLUSIONS','MORPHOLOGY_CORRECTIONS','AUTHORIZED_LINGUISTIC','FULL_APPLICABLE_SET']
@@ -32,12 +29,13 @@ def outside(p):
  if p==ROOT or p.is_relative_to(ROOT):raise ValueError('research-only destination outside checkout required')
  return p
 def pinned(work):
- p=outside(work)/'pinned-tool/census.py';p.parent.mkdir(parents=True,exist_ok=True)
- raw=subprocess.check_output(['git','-C',str(ROOT),'show',BASELINE+':associativvordes/v5_baseline/census.py'])
- if hashlib.sha256(raw).hexdigest()!=TOOL_SHA:raise ValueError('baseline tool checksum')
- if p.exists() and p.read_bytes()!=raw:raise ValueError('changed pinned tool')
- if not p.exists():atomic(p,raw)
- spec=importlib.util.spec_from_file_location('q12_baseline',p);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+ p=ROOT/'associativvordes/v5_baseline/census.py'
+ from associativvordes.v5_contract.versions import capture
+ contract=capture()
+ target=outside(work);target.mkdir(parents=True,exist_ok=True)
+ save(target/'INSTALLED-IMPLEMENTATION.json',contract)
+ spec=importlib.util.spec_from_file_location('q12_installed_baseline',p)
+ m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
 def verify_files(root,lock):
  root=Path(root);expected={r['path'] for r in lock['files']}
  if digest(lock['files'])!=lock['inventory_sha256']:raise ValueError('inventory hash')
@@ -69,13 +67,15 @@ def inputs(work):
  hp=ROOT/'audit/associative-history-registry';current=load(hp/'CURRENT.json');h=History(ROOT,hp/current['snapshot'],current['sha256'])
  for r in load(quality/'CODE-LOCK.json')['files']:
   if sha(ROOT/r['path'])!=r['sha256']:raise ValueError('stale quality code '+r['path'])
- norm=load(quality/'NORMATIVE-SOURCE-LOCK.json')
+ from associativvordes.v5_contract.versions import capture
+ installed=capture()
+ norm=dict(files=[dict(path=p,sha256=h) for p,h in installed['normative']['files'].items()])
  for r in norm['files']:
-  b=subprocess.check_output(['git','-C',str(ROOT),'show',NORMATIVE+':'+r['path']])
+  b=(ROOT/r['path']).read_bytes()
   if hashlib.sha256(b).hexdigest()!=r['sha256']:raise ValueError('normative source mismatch')
   atomic(work/'pinned-normative'/Path(r['path']).name,b)
  paths=[quality/n for n in ['METRICS.json','OPERATION-GATES.json','FROZEN-GOLD-MANIFEST.json','FROZEN-SAMPLE-MANIFEST.json','HOLDOUT.json','VALIDATION.json','CODE-LOCK.json']]+[hp/'CURRENT.json',hp/current['snapshot'],ROOT/'audit/associative-national-correspondences/CURRENT.json',ROOT/'audit/associative-national-correspondences/NATIONAL-CORRESPONDENCE-REGISTRY.json',ROOT/'audit/associative-v5-morphology-cleanup/CURRENT.json',ROOT/'audit/associative-v5-structural-cleanup/BEFORE-MANIFEST.json']
- lock=dict(schema='full-v5-dry-run-inputs/1',main_commit=MAIN,parent_commit=PARENT,baseline_commit=BASELINE,normative_commit=NORMATIVE,proposals=records,quality_gate='BLOCKED',history_snapshot_sha256=current['sha256'],history_coverage_complete=h.snapshot['coverage_complete'],history_decisions=len(h.decisions),history_conflicts=len(h.snapshot['conflicts']),qualified_operation_count=0,files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p),bytes=p.stat().st_size) for p in paths],normative_sources=norm,code={p.name:sha(p) for p in Path(__file__).parent.glob('*.py')})
+ lock=dict(schema='full-v5-dry-run-inputs/1',implementation_commit=installed['git_commit'],baseline_source_commit=MAIN,baseline_commit=installed['git_commit'],normative_commit=installed['git_commit'],version_contract=installed,proposals=records,quality_gate='BLOCKED',history_snapshot_sha256=current['sha256'],history_coverage_complete=h.snapshot['coverage_complete'],history_decisions=len(h.decisions),history_conflicts=len(h.snapshot['conflicts']),qualified_operation_count=0,files=[dict(path=str(p.relative_to(ROOT)),sha256=sha(p),bytes=p.stat().st_size) for p in paths],normative_sources=norm,code={p.name:sha(p) for p in Path(__file__).parent.glob('*.py')})
  path=work/'SOURCE-LOCK.json'
  if path.exists() and load(path)!=lock:raise ValueError('input/code changed since checkpoint')
  save(path,lock)

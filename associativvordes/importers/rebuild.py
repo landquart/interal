@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Reproduce the published isolated partitions, audit each, then merge claim views."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
-from morphology_import import run
-from audit_import import audit
-from build_catalog import make_catalog
+from associativvordes.importers.morphology_import import run
+from associativvordes.importers.audit_import import audit
+from associativvordes.importers.build_catalog import make_catalog
 
 
 def rebuild(sources,raw_root,output_root,workers=2):

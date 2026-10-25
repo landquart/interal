@@ -1,4 +1,8 @@
 """Read verified phase-06 artifacts and native v6 objects, without extending scope."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import gzip
 import json
@@ -6,12 +10,12 @@ from pathlib import Path
 import subprocess
 import sqlite3
 import sys
-from control import VERSION, atomic, canonical, digest, require, validate_state
+from associativvordes.release_control.control import VERSION, atomic, canonical, digest, require, validate_state
 
 ROOT = Path(__file__).resolve().parents[2]
 REPORT = ROOT/'audit/associative-external-preparation/mass06-dry-run'
-sys.path.insert(0, str(ROOT/'associativvordes/evidence_graph'))
-from prepare_registry import COMMIT, FILES
+pass
+from associativvordes.evidence_graph.prepare_registry import COMMIT, FILES
 
 
 def verify_published(directory=REPORT):

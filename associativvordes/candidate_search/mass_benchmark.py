@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
 """Independent-process search/replay/recovery measurements against full inputs."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 from pathlib import Path
 import shutil
 import subprocess
 import sys
-from mass_source import file_hash
-from certify_corpus import atomic_json
+from associativvordes.candidate_search.mass_source import file_hash
+from associativvordes.importers.certify_corpus import atomic_json
 
 DIFFICULT=('OCUL','PEDE','MANU','LIBER','ALTER','REGUL','CREAT','NAT','RELAT','OPER','MUT','INTER')
 

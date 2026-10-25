@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 """Bounded read-only validation of the full resumed source projection."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import hashlib
 import json
 from pathlib import Path
 import resource
 import time
-from certify_corpus import atomic_json
-from morphology_import import hash_file
-from scale_index import Index, bid
+from associativvordes.importers.certify_corpus import atomic_json
+from associativvordes.importers.morphology_import import hash_file
+from associativvordes.importers.scale_index import Index, bid
 
 
 def audit(database,release,receipt):

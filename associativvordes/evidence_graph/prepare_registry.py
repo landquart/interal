@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Acquire exact approved v6 objects and read-only v5 controls; prepare finite probes."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from concurrent.futures import ThreadPoolExecutor
 import gzip
@@ -8,7 +12,7 @@ import json
 from pathlib import Path
 import subprocess
 import urllib.request
-from graph import canonical,file_hash,json_rows
+from associativvordes.evidence_graph.graph import canonical,file_hash,json_rows
 
 COMMIT='9fff76431a86a06df6db69b64d7f2ca4c871f1b7'
 BASE='d6780ebc693837cc4560a40672eb7ee39e8fa6f7'

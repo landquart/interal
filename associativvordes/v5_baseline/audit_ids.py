@@ -1,6 +1,13 @@
 """Independent stable-ID check over disk census tables; never repairs IDs."""
 import argparse,hashlib,json,pathlib,sqlite3,unicodedata
-from census import atomic_json
+if __package__:
+ from associativvordes.v5_baseline.census import atomic_json
+else:
+ # Frozen archives contain a standalone tool directory, without this checkout.
+ import importlib.util as _util
+ _spec=_util.spec_from_file_location('_restored_baseline_census',pathlib.Path(__file__).with_name('census.py'))
+ _census=_util.module_from_spec(_spec);_spec.loader.exec_module(_census)
+ atomic_json=_census.atomic_json
 
 def audit(database,output):
  db=sqlite3.connect('file:'+str(pathlib.Path(database).resolve())+'?mode=ro',uri=True);results={}

@@ -35,11 +35,9 @@ def load(path): return json.loads(pathlib.Path(path).read_bytes())
 def git(repo, *args): return subprocess.check_output(['git', '-C', str(repo), *args])
 
 def pinned_baseline(repo, work):
-    path = pathlib.Path(work) / 'pinned-tool' / 'census.py'
-    data = git(repo, 'show', BASELINE + ':associativvordes/v5_baseline/census.py')
-    if path.exists() and path.read_bytes() != data: raise ValueError('pinned baseline code changed')
-    atomic(path, data)
-    spec = importlib.util.spec_from_file_location('pinned_v5_baseline', path)
+    # Historical commits identify DATA only. Execute the installed audited scanner.
+    path = ROOT / 'associativvordes/v5_baseline/census.py'
+    spec = importlib.util.spec_from_file_location('installed_v5_baseline', path)
     module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
     return module
 

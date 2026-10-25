@@ -1,6 +1,13 @@
 """Regenerate repair-ledger bindings from the captured current provenance."""
 import argparse,hashlib,json,pathlib
-from census import verify_snapshot,load,atomic_json,PREFIX,sha_file
+if __package__:
+ from associativvordes.v5_baseline.census import verify_snapshot,load,atomic_json,PREFIX,sha_file
+else:
+ # Frozen archives contain a standalone tool directory, without this checkout.
+ import importlib.util as _util
+ _spec=_util.spec_from_file_location('_restored_baseline_census',pathlib.Path(__file__).with_name('census.py'))
+ _census=_util.module_from_spec(_spec);_spec.loader.exec_module(_census)
+ verify_snapshot=_census.verify_snapshot;load=_census.load;atomic_json=_census.atomic_json;PREFIX=_census.PREFIX;sha_file=_census.sha_file
 
 def audit(snapshot,output):
  root=pathlib.Path(snapshot);verify_snapshot(root)

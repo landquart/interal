@@ -4,6 +4,10 @@
 This audit does not call the adapter parser. It verifies byte preservation,
 column preservation and counts, not linguistic truth.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import base64
 from collections import Counter
@@ -13,7 +17,7 @@ import json
 from pathlib import Path
 import resource
 import time
-from morphology_import import binary_stream, hash_file, validate_lock
+from associativvordes.importers.morphology_import import binary_stream, hash_file, validate_lock
 
 COLUMNS = {
  'derinet2':['id','lemid','lemma','pos','feats','segmentation','parent_id','reltype','otherrels','annotations'],

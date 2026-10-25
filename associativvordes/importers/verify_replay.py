@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Compare two fresh complete releases and audit the global evidence union."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 from pathlib import Path
 import resource
 import time
-from certify_corpus import atomic_json, audit_catalog, verified, ROOT
+from associativvordes.importers.certify_corpus import atomic_json, audit_catalog, verified, ROOT
 
 
 def compare(first,replay,plan,receipt):

@@ -8,7 +8,7 @@ import sys
 @contextlib.contextmanager
 def locked_witnesses(root):
     path = Path(__file__).resolve().parents[1]/'review'
-    sys.path.insert(0, str(path))
+    pass
     spec = importlib.util.spec_from_file_location('release07_human_ledger', path/'store.py')
     module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
     ledger = module.Ledger(root)

@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Export the same pinned GLeMM bytes through its official Git transport."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 import os
@@ -7,8 +11,8 @@ from pathlib import Path
 import re
 import subprocess
 import tempfile
-from glemm_cache import contract,external,LOCK
-from morphology_import import checked_path,hash_file,validate_lock
+from associativvordes.importers.glemm_cache import contract,external,LOCK
+from associativvordes.importers.morphology_import import checked_path,hash_file,validate_lock
 
 OFFICIAL='https://src.koda.cnrs.fr/nabil.hathout.1/glemm.git'
 

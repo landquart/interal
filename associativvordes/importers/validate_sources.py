@@ -4,6 +4,10 @@
 Accepts only the committed registry/partition plan. No family or production writes.
 Each completed receipt is saved immediately, including when later work fails.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 from pathlib import Path
@@ -13,10 +17,10 @@ import sqlite3
 import time
 import unicodedata
 import zlib
-from morphology_import import run,hash_file,validate_lock
-from fetch_sources import fetch
-from audit_import import audit
-from build_catalog import make_catalog
+from associativvordes.importers.morphology_import import run,hash_file,validate_lock
+from associativvordes.importers.fetch_sources import fetch
+from associativvordes.importers.audit_import import audit
+from associativvordes.importers.build_catalog import make_catalog
 
 ROOT=Path(__file__).resolve().parents[2]
 

@@ -1,8 +1,12 @@
 """Validate finite v5 questions against actual projection and native source rows."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 from pathlib import Path
-from common import *
-from adapter import Adapter
-from bridge import history_reader
+from associativvordes.v5_adapter.common import *
+from associativvordes.v5_adapter.adapter import Adapter
+from associativvordes.v5_adapter.bridge import history_reader
 
 def load_queue(path,projection,external_folder=None):
  path=Path(path);m=read(path/'MANIFEST.json')
@@ -20,7 +24,7 @@ def load_queue(path,projection,external_folder=None):
   external=None
   if m['identity']['external']:
    if not external_folder:raise ValueError('--v5-external index required for source-enriched v5 questions')
-   from external import External
+   from associativvordes.v5_adapter.external import External
    external=External(external_folder,ROOT/'data/morphology-evidence/sources/source-lock.json')
    if external.identity!=m['identity']['external']:raise ValueError('external index dependency mismatch')
   qs=[]

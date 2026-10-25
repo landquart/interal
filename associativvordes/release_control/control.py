@@ -3,6 +3,10 @@
 POSIX local filesystem only. The operator owns trust.json; classifiers must not
 have write access to it, its public keys, this code, or the version store.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import base64
 import contextlib
@@ -209,7 +213,7 @@ def transform(state, operations):
 
 def check_verdicts(plan, trust, ledger, view=None):
     """Current human ledger witnesses plus separately signed operation verdicts."""
-    from review_bridge import witnesses
+    from associativvordes.release_control.review_bridge import witnesses
     view = witnesses(ledger) if view is None else view
     require(view['head'] == plan['inputs']['review_head'], 'manual decisions changed')
     for op in plan['operations']:
@@ -248,8 +252,12 @@ def operation_summary(operations):
                 unresolved='all unselected questions remain in review')
 
 
-def history_gate(operations):
+def history_gate(operations,version_contract=None):
     """Recheck the committed historical registry before preview and atomic apply."""
+    if version_contract:
+        from associativvordes.v5_contract.policy import history_gate as integrated_history
+        integrated_history(operations,version_contract)
+        if version_contract['namespace']=='TEST_ONLY-v5':return
     import importlib.util
     module_path = Path(__file__).resolve().parents[1]/'history_registry'/'registry.py'
     spec = importlib.util.spec_from_file_location('release_historical_constraints', module_path)
@@ -263,14 +271,21 @@ def history_gate(operations):
             require(result['allowed'], result['status']+': '+str(result.get('reasons', result.get('decision_ids', []))))
 
 
-def preview(state, operations, inputs, verdicts=None):
-    history_gate(operations)
+def preview(state, operations, inputs, verdicts=None, normative_context=None):
+    contract=state.get('version_contract')
+    if contract or inputs.get('version_contract'):
+        from associativvordes.v5_contract.versions import compatible
+        from associativvordes.v5_contract.policy import operation_gate
+        compatible(contract,inputs.get('version_contract'))
+        correction_receipts=operation_gate(operations,inputs,normative_context)
+    history_gate(operations,contract)
     require(inputs['base'] == digest(state), 'wrong release base')
     require(len({o['id'] for o in operations}) == len(operations), 'duplicate operation ID')
     after = transform(state, operations)
-    return dict(schema=VERSION, inputs=inputs, operations=operations, verdicts=verdicts or {},
-                after=digest(after), summary=operation_summary(operations),
-                production_writes=0)
+    result=dict(schema=VERSION, inputs=inputs, operations=operations, verdicts=verdicts or {},
+                after=digest(after), summary=operation_summary(operations),production_writes=0)
+    if contract:result['normative_correction_checks']=correction_receipts
+    return result
 
 
 def evidence_gate(plan, current, checks, trust):
@@ -343,9 +358,14 @@ class Store:
                                     release=None, approvals=[]))
 
     def apply(self, plan, current, checks, approval, trust, ledger, fault=None):
-        from review_bridge import locked_witnesses
+        from associativvordes.release_control.review_bridge import locked_witnesses
         with self.lock(), locked_witnesses(ledger) as view:
-            history_gate(plan['operations'])
+            contract=plan['inputs'].get('version_contract')
+            if contract:
+                from associativvordes.v5_contract.versions import validate
+                validate(contract)
+                require(contract['namespace']=='research-v5','test namespace cannot apply or publish a release')
+            history_gate(plan['operations'],contract)
             parent, old = self.current()
             # Retry after committed write: return the same version, but never roll a later state back.
             release_id = digest(plan)
@@ -356,6 +376,12 @@ class Store:
             require(plan.get('summary') == operation_summary(plan['operations']),
                     'release summary does not match signed operations')
             evidence_gate(plan, current, checks, trust)
+            if contract:
+                from associativvordes.v5_contract.versions import compatible
+                from associativvordes.v5_contract.policy import operation_gate
+                compatible(old['state'].get('version_contract'),contract)
+                # Only the externally signed verifier attestation may supply this trust.
+                operation_gate(plan['operations'],plan['inputs'],checks.get('normative_trust'),release_verified=True)
             provenance = check_verdicts(plan, trust, ledger, view)
             verify(approval, trust, 'owner', dict(schema=VERSION, purpose='approve-release',
                 release=release_id, checks=digest(checks), store=str(self.root), parent=parent))

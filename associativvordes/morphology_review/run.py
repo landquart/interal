@@ -1,14 +1,20 @@
 """Full-scope v2 semantic status pass over the certified v1 census (no source edits)."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,collections,gzip,hashlib,json,os,pathlib,resource,shutil,sys,time
-from policy import canonical,digest,unresolved_reasons
+from associativvordes.morphology_review.policy import canonical,digest,unresolved_reasons
 ROOT=pathlib.Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'associativvordes/structural_cleanup'))
-from common import load,save,atomic,sha_file,outside_repo
-PINNED_V1='76e061c4e292a1bb293423ca092c042014e09e05b9bd8088f726ab0d5d90033f'
+pass
+from associativvordes.structural_cleanup.common import load,save,atomic,sha_file,outside_repo
+
 def run(source,output,crash=None):
     start=time.monotonic();source=pathlib.Path(source);out=outside_repo(ROOT,output);out.mkdir(parents=True,exist_ok=True)
-    if sha_file(source/'MANIFEST.json')!=PINNED_V1:raise ValueError('unlocked v1 census')
-    manifest=load(source/'MANIFEST.json');identity=dict(schema='v5-morphology-semantic-review/2',input_manifest_sha256=PINNED_V1,code={p.name:sha_file(p) for p in pathlib.Path(__file__).parent.glob('*.py')},source_identity=manifest['identity'])
+    from associativvordes.v5_contract.versions import require_directory
+    installed_input=require_directory(source,'morphology')
+    input_sha=sha_file(source/'MANIFEST.json')
+    manifest=load(source/'MANIFEST.json');identity=dict(schema='v5-morphology-semantic-review/2',input_manifest_sha256=input_sha,version_contract=installed_input['version_contract'],code={p.name:sha_file(p) for p in pathlib.Path(__file__).parent.glob('*.py')},source_identity=manifest['identity'])
     if (out/'IDENTITY.json').exists() and load(out/'IDENTITY.json')!=identity:raise ValueError('stale resume')
     save(out/'IDENTITY.json',identity);receipts=[];totals=collections.Counter();languages={};reasons=collections.Counter()
     for part in manifest['buckets']:

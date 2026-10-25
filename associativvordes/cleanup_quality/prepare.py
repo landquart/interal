@@ -179,13 +179,15 @@ def linked_clusters(cases):
 
 def run(index,output,kit,stop_after=None):
     start=time.monotonic();out=Path(output).resolve();index=Path(index).resolve();protocol=read(HERE/'protocol.json');ph=digest(protocol)
+    from associativvordes.v5_contract.versions import require_directory
+    binding=require_directory(index,'boundary');contract=binding['version_contract']
     if out.is_relative_to(ROOT):raise ValueError('research packets outside Git')
     out.mkdir(parents=True,exist_ok=True)
     if (out/'MANIFEST.json').exists():raise ValueError('immutable completed release exists')
     m=read(index/'MANIFEST.json')
     if sha(index/'index.sqlite')!=m['database_sha256']:raise ValueError('index checksum')
     verify_sources();d=sqlite3.connect('file:'+str(index/'index.sqlite')+'?mode=ro',uri=True);d.execute('PRAGMA cache_size=-32768');d.execute('PRAGMA temp_store=FILE')
-    identity=dict(protocol_sha256=ph,index_version=m['version'],index_sha256=m['database_sha256'],old_kit_sha256=sha(kit),code_sha256=sha(__file__))
+    identity=dict(version_contract=contract,protocol_sha256=ph,index_version=m['version'],index_sha256=m['database_sha256'],old_kit_sha256=sha(kit),code_sha256=sha(__file__))
     ip=out/'INPUTS.json'
     if ip.exists() and read(ip)!=identity:raise ValueError('stale checkpoint inputs')
     save(ip,identity);proposals=proposal_lock();old,exposure=audit_old(d,kit);sample=lowest(d,protocol,out/'SAMPLING-CHECKPOINT.json',stop_after)
@@ -193,7 +195,7 @@ def run(index,output,kit,stop_after=None):
     challenge,historical=challenges(d);enrich(sample+challenge,d,ph);allcases=[]
     for name,rs in [('probability',sample),('challenge',challenge+historical)]:
         for r in rs:
-            c=dict(r,dataset=name,split='holdout',protocol_sha256=ph)
+            c=dict(r,dataset=name,split='holdout',protocol_sha256=ph,version_contract=contract)
             c['id']='quality-case:'+digest([name,c['family_id'],c['language'],c['lemma_id'],c.get('record_sha256'),c.get('history_ref')]);allcases.append(c)
     contexts={}
     for c in allcases:

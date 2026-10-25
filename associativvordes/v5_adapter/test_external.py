@@ -1,7 +1,11 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json,sqlite3,tempfile,unittest
 from pathlib import Path
-from common import ROOT,read
-from external import build,External
+from associativvordes.v5_adapter.common import ROOT,read
+from associativvordes.v5_adapter.external import build,External
 class ExternalTests(unittest.TestCase):
  @classmethod
  def setUpClass(cls):
@@ -15,14 +19,14 @@ class ExternalTests(unittest.TestCase):
  def test_native_identity_and_unknown_independence(self):
   e=External(self.folder,self.lock);part=next(p for p in e.parts if p['artifact']['source']=='GLeMM')
   db=sqlite3.connect(self.folder/part['database']);word=db.execute('SELECT word FROM words LIMIT 1').fetchone()[0];db.close()
-  from morphology_import import LANGUAGES
+  from associativvordes.importers.morphology_import import LANGUAGES
   q=e.enrich(dict(language=LANGUAGES[part['artifact']['language']],lemma=word))
   self.assertTrue(q['external_rows']);self.assertEqual(q['independence']['independent_groups'],[])
   self.assertEqual(q['external_alignment_status'],'same_language_spelling_only_not_identity')
   self.assertTrue(all(not r['body']['establishes_membership'] for r in q['external_rows']))
  def test_existing_graph_ingest_creates_no_memberships(self):
   e=External(self.folder,self.lock);part=next(p for p in e.parts if p['artifact']['source']=='GLeMM');db=sqlite3.connect(self.folder/part['database']);word=db.execute('SELECT word FROM words LIMIT 1').fetchone()[0];db.close()
-  from morphology_import import LANGUAGES
+  from associativvordes.importers.morphology_import import LANGUAGES
   q=e.enrich(dict(language=LANGUAGES[part['artifact']['language']],lemma=word));path=Path(self.t.name)/'graph.sqlite';r=e.graph([q],path)
   db=sqlite3.connect(path);self.assertEqual(db.execute('SELECT COUNT(*) FROM known').fetchone()[0],0);self.assertEqual(db.execute('SELECT COUNT(*) FROM bindings').fetchone()[0],0);db.close();self.assertGreater(r['records'],0)
 if __name__=='__main__':unittest.main()

@@ -1,14 +1,18 @@
 """Real official probes plus explicitly test-only adversarial controls."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import base64
 import copy
 import json
 from pathlib import Path
 import tempfile
 import unittest
-from graph import Graph,IntegrityConflict,canonical,envelope,ref,key,file_hash
-from records import read_json
-from build_graph import load_registry,ingest,align,build
-from query_graph import query
+from associativvordes.evidence_graph.graph import Graph,IntegrityConflict,canonical,envelope,ref,key,file_hash
+from associativvordes.evidence_graph.records import read_json
+from associativvordes.evidence_graph.build_graph import load_registry,ingest,align,build
+from associativvordes.evidence_graph.query_graph import query
 
 HERE=Path(__file__).parent
 REGISTRY=HERE.parents[1]/'data/morphology-evidence/sources/source-lock.json'

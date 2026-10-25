@@ -3,17 +3,21 @@
 Build a fresh auxiliary owner projection if owner_key changes. This never writes
 the production v5 index or rewrites the original pinned registry.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from pathlib import Path
 import shutil
 import sqlite3
 import sys
 import tempfile
-from control import *
-from graph_view import build as graph_view, active_operations
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'candidate_search'))
-from mass_registry import local_content
-from graph import canonical as graph_canonical, lookup
+from associativvordes.release_control.control import *
+from associativvordes.release_control.graph_view import build as graph_view, active_operations
+pass
+from associativvordes.candidate_search.mass_registry import local_content
+from associativvordes.evidence_graph.graph import canonical as graph_canonical, lookup
 
 
 def build(store, trust, baseline_registry, destination):

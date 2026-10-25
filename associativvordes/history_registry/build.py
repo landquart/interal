@@ -3,6 +3,10 @@
 Materialized deltas are engineering constraints, not independent linguistic gold.
 Uninterpreted sources are explicitly coverage blockers.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import gzip
@@ -10,7 +14,7 @@ import json
 from pathlib import Path
 import re
 import zlib
-from registry import SCHEMA, atomic, canonical, document, git, import_decisions, sha
+from associativvordes.history_registry.registry import SCHEMA, atomic, canonical, document, git, import_decisions, sha
 
 MAIN = '47723611112610945cb09b34e18588b7bd151911'
 V6 = '9fff76431a86a06df6db69b64d7f2ca4c871f1b7'

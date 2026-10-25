@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
 """Immutable archive, streamed real restore and exact byte verification."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,hashlib,json,os,shutil,sqlite3,sys,time,zipfile
 from pathlib import Path
-from query import open_registry,filehash
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from classify import canonical
+from associativvordes.v5_diagnostics.tools.query import open_registry,filehash
+pass
+from associativvordes.v5_diagnostics.classify import canonical
 
 def backup(registry,archive,restore):
  start=time.monotonic();registry=Path(registry);archive=Path(archive);restore=Path(restore)

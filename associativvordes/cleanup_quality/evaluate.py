@@ -22,8 +22,11 @@ def release(folder):
 
 def run(folder,output,review_path=None,adjudication_path=None,roster_path=None):
     folder=Path(folder);out=Path(output)
+    from associativvordes.v5_contract.versions import require_directory,require
+    binding=require_directory(folder,'quality_sample');contract=binding['version_contract']
+    require(not out.resolve().is_relative_to(Path(__file__).resolve().parents[2]),'research evaluation outside checkout required')
     if out.exists():raise ValueError('new immutable evaluation directory required')
-    cases,m=release(folder);require_final_blinding(folder);protocol=read(HERE/'protocol.json')
+    cases,m=release(folder);require(m['identity'].get('version_contract')==contract and all(c.get('version_contract')==contract for c in cases),'mixed/unversioned quality cases');require_final_blinding(folder);protocol=read(HERE/'protocol.json')
     if m['identity']['protocol_sha256']!=digest(protocol):raise ValueError('protocol changed; new preregistration and untouched sample required')
     review_path=Path(review_path) if review_path else folder/'RAW-HUMAN-REVIEWS.ndjson';adjudication_path=Path(adjudication_path) if adjudication_path else folder/'RAW-ADJUDICATIONS.ndjson';roster_path=Path(roster_path) if roster_path else folder/'ROSTER.json'
     gold=compile_gold(cases,rows(review_path),rows(adjudication_path),read(roster_path));gg={r['case_id']:r for r in gold['rows']};pp=rows(folder/'PREDICTIONS.ndjson.gz');index={c['id']:c for c in cases};seen=set()
@@ -58,7 +61,7 @@ def run(folder,output,review_path=None,adjudication_path=None,roster_path=None):
     (out/'DISAGREEMENTS.ndjson').write_text(''.join(json.dumps(r,sort_keys=True)+'\n' for r in gold['disagreement_log']))
     metrics=dict(schema='cleanup-quality-metrics/1',release_sha256=sha(folder/'MANIFEST.json'),gold_sha256=digest(gold),configurations=results,agreement=agreement(gold['agreement_pairs']),conflict_rate=ratio(len(gold['disagreement_log']),len(gold['agreement_pairs'])),human_review_count=gold['completed_human_reviews'],human_adjudication_count=gold['completed_arbitrations'],semantic_gate='BLOCKED',human_time_and_speedup=None,warning='Challenge estimates never pooled with probability sample. Weighted descriptive ratios cannot certify automatic operation safety; zero actions is not zero risk.')
     save(out/'METRICS.json',metrics);save(out/'OPERATION-GATES.json',gates)
-    save(out/'MANIFEST.json',dict(schema='cleanup-quality-evaluation/1',case_set_sha256=m['case_set_sha256'],code_sha256={n:sha(HERE/n) for n in ['evaluate.py','human.py','statistics.py']},files=[dict(path=p.name,bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(out.iterdir()) if p.is_file()],production_writes=0,semantic_gate='BLOCKED'))
+    save(out/'MANIFEST.json',dict(schema='cleanup-quality-evaluation/1',version_contract=contract,case_set_sha256=m['case_set_sha256'],code_sha256={n:sha(HERE/n) for n in ['evaluate.py','human.py','statistics.py']},files=[dict(path=p.name,bytes=p.stat().st_size,sha256=sha(p)) for p in sorted(out.iterdir()) if p.is_file()],production_writes=0,semantic_gate='BLOCKED'))
     return dict(status='ENGINEERING_PREPARED_SEMANTIC_GATE_BLOCKED',human_reviews=gold['completed_human_reviews'],human_gold=sum(r['gold'] in ('VALID','INVALID') for r in gold['rows']),probability=m['probability_cases'],challenge=m['challenge_cases'])
 
 if __name__=='__main__':

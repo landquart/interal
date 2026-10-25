@@ -1,6 +1,10 @@
 """Reversible metadata-only trial. There is deliberately no production/apply mode."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse, gzip, hashlib, io, pathlib, re, shutil, sys
-from common import *
+from associativvordes.structural_cleanup.common import *
 
 RULES = {'FAMILY_SUPPORT', 'FAMILY_LANGUAGE_SUPPORT', 'REPORT_CACHED_SUPPORT', 'REPORT_CACHED_LANGUAGES'}
 
@@ -83,8 +87,8 @@ def apply(before, plan, destination, repo=ROOT):
     digest = sha_file(plan)
     if len({x['id'] for x in fixes}) != len(fixes): raise ValueError('duplicate fix IDs')
     # Even empty runs lock the available history; missing/corrupt history cannot grant a write.
-    sys.path.insert(0, str(ROOT / 'associativvordes/history_registry'))
-    from registry import History
+    pass
+    from associativvordes.history_registry.registry import History
     current = load(pathlib.Path(repo) / 'audit/associative-history-registry/CURRENT.json')
     history_path = pathlib.Path(repo) / 'audit/associative-history-registry' / current['snapshot']
     h = History(repo, history_path, current['sha256'])

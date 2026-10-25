@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Fetch only checksum-locked artifacts into an external raw directory."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import hashlib
 import http.client
@@ -12,7 +16,7 @@ import tarfile
 import tempfile
 from urllib.request import Request, urlopen
 from urllib.parse import urlsplit, quote
-from morphology_import import checked_path, hash_file, validate_lock
+from associativvordes.importers.morphology_import import checked_path, hash_file, validate_lock
 
 
 def acquisition_urls(url):

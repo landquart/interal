@@ -5,11 +5,15 @@ This detects exposure to a generation mechanism, never linguistic inflection or
 an invalid family. Normalization reproduces legacy routing, not a permitted
 national correspondence.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,json,subprocess,sys
 from pathlib import Path
-from query import open_registry,filehash
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from classify import canonical,digest
+from associativvordes.v5_diagnostics.tools.query import open_registry,filehash
+pass
+from associativvordes.v5_diagnostics.classify import canonical,digest
 ROOT=Path(__file__).resolve().parents[3]
 JS="""
 import {getLanguageConfig} from './associativvordes/js/morphology/languages/index.js';

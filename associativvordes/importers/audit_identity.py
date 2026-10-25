@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Stream every staging identifier, independently of source adapter parsing."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import gzip
@@ -7,8 +11,8 @@ import json
 from pathlib import Path
 import resource
 import time
-from morphology_import import digest, VERSION, SCHEMA, LANGUAGES
-from certify_corpus import atomic_json, verified
+from associativvordes.importers.morphology_import import digest, VERSION, SCHEMA, LANGUAGES
+from associativvordes.importers.certify_corpus import atomic_json, verified
 
 
 def partition(snapshot,artifacts):

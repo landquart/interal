@@ -10,7 +10,7 @@ import resource
 import sys
 import time
 ROOT=Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT))
+pass
 from associativvordes.national_correspondences.registry import canonical,filehash,read
 from associativvordes.national_correspondences.audit import atomic
 

@@ -1,6 +1,10 @@
 """Pin current v5 and historical source carriers without changing the checkout."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse, hashlib, os, pathlib
-from common import *
+from associativvordes.structural_cleanup.common import *
 
 def capture(repo, work, commit=MAIN):
     work = outside_repo(repo, work); work.mkdir(parents=True, exist_ok=True)
@@ -18,7 +22,7 @@ def capture(repo, work, commit=MAIN):
     tool.extract_git(repo, ORIGINAL, [PREFIX + '/members'], partial / 'original')
     files = inventory(partial)
     lock = dict(schema='v5-structural-snapshot/1', production_commit=commit,
-                original_materialization_commit=ORIGINAL, baseline_code_commit=BASELINE,
+                original_materialization_commit=ORIGINAL, baseline_code_commit=git(ROOT,'rev-parse','HEAD').decode().strip(),baseline_code_sha256=sha_file(ROOT/'associativvordes/v5_baseline/census.py'),
                 files=files, inventory_sha256=hashlib.sha256(canonical(files)).hexdigest(),
                 source_assignments_available=False, original_memberships_are_source_carriers_only=True)
     save(partial / 'SNAPSHOT.json', lock)

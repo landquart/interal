@@ -3,7 +3,7 @@ import argparse
 from collections import Counter
 from pathlib import Path
 import sys
-ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
+ROOT=Path(__file__).resolve().parents[2];pass
 from associativvordes.history_registry.registry import History
 from associativvordes.national_correspondences.registry import read,canonical,filehash,digest
 from associativvordes.national_correspondences.audit import atomic

@@ -1,10 +1,14 @@
 """Compact disk profiles; full alternatives remain in hash-locked raw SQLite parts."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,collections,json,os,pathlib,sqlite3,sys,time,zlib,resource
 ROOT=pathlib.Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'associativvordes/v5_adapter'))
-from common import canonical,atomic,filehash,lookup,read,connect
-from external import External,make_record,LANGUAGES
-from policy import BITS
+pass
+from associativvordes.v5_adapter.common import canonical,atomic,filehash,lookup,read,connect
+from associativvordes.v5_adapter.external import External,make_record,LANGUAGES
+from associativvordes.morphology_cleanup.policy import BITS
 
 def row_mask(a,data):
     f=data.decode().rstrip('\r\n').split('\t');fmt=a['format']

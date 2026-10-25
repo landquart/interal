@@ -1,9 +1,13 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import gzip,json,subprocess,sys,tempfile,unittest
 from pathlib import Path
-from common import *
-from build import build
-from adapter import Adapter
-from bridge import export,history_reader,review_import
+from associativvordes.v5_adapter.common import *
+from associativvordes.v5_adapter.build import build
+from associativvordes.v5_adapter.adapter import Adapter
+from associativvordes.v5_adapter.bridge import export,history_reader,review_import
 class ProjectionTests(unittest.TestCase):
  def setUp(self):
   self.t=tempfile.TemporaryDirectory();self.addCleanup(self.t.cleanup);self.base=Path(self.t.name);self.repo=self.base/'repo';self.source=self.repo/'associativvordes/family-index-v5';self.out=self.base/'out'
@@ -52,7 +56,7 @@ class ProjectionTests(unittest.TestCase):
   self.run_build();m=read(self.out/'MANIFEST.json');(self.out/m['shards'][0]['database']).write_bytes(b'partial')
   with self.assertRaises(ValueError):Adapter(self.out)
  def test_full_independent_comparison(self):
-  self.run_build();from verify import verify
+  self.run_build();from associativvordes.v5_adapter.verify import verify
   r=verify(self.out);self.assertEqual(r['memberships'],7);self.assertTrue(r['every_source_and_projected_record_compared'])
  def test_cursor_no_loss_no_duplicate_and_review_compatibility(self):
   self.run_build();h,_=history_reader();a=self.obj(h.check);cursor=None;ids=[]
@@ -67,16 +71,16 @@ class ProjectionTests(unittest.TestCase):
   self.assertNotEqual(qid(self.fid,'de','lemma:first'),qid(self.fid,'de','lemma:second'))
  def test_annotation_load_and_legacy_risk(self):
   self.run_build();h,_=history_reader();a=self.obj(h.check);queue=self.base/'q';export(a,queue,limit=6)
-  from queue_input import load_queue
+  from associativvordes.v5_adapter.queue_input import load_queue
   qs,identity=load_queue(queue,self.out)
-  sys.path.insert(0,str(ROOT/'associativvordes/auto_annotation'));from contract import card_for
+  sys.path.insert(0,str(ROOT/'associativvordes/auto_annotation'));from associativvordes.auto_annotation.contract import card_for
   q=qs[0];c=card_for(q,q['lexeme_alternatives'][0],identity)
   self.assertIn('legacy_exact_record_is_not_a_reviewed_lexical_head',c['risk_flags']);self.assertEqual(c['legacy_scope']['family_id'],q['source_family_id'])
  def test_forged_sense_with_rehashed_queue_is_rejected(self):
   self.run_build();h,_=history_reader();a=self.obj(h.check);queue=self.base/'q';export(a,queue,limit=1)
   q=json.loads((queue/'questions.ndjson').read_bytes());q['lexeme_alternatives'][0]['verified_senses']=[dict(id='FAKE')]
   data=canonical(q)+b'\n';atomic(queue/'questions.ndjson',data);m=read(queue/'MANIFEST.json');m['outputs']['questions.ndjson']=sha(data);atomic(queue/'MANIFEST.json',canonical(m))
-  from queue_input import load_queue
+  from associativvordes.v5_adapter.queue_input import load_queue
   with self.assertRaisesRegex(ValueError,'differs'):load_queue(queue,self.out)
 
  def test_byte_budget_cursor_and_explicit_scope_fail_closed(self):
@@ -90,13 +94,13 @@ class ProjectionTests(unittest.TestCase):
 
  def test_4359323416_entire_question_is_locked(self):
   self.run_build();h,_=history_reader();a=self.obj(h.check)
-  from queue_input import load_queue
+  from associativvordes.v5_adapter.queue_input import load_queue
   for field in ['discovery_paths','prior_scoped_decisions','existing_memberships','unexpected']:
    queue=self.base/field;export(a,queue,limit=1);q=json.loads((queue/'questions.ndjson').read_bytes());q[field]=[dict(id='fabricated',evidence_refs=[dict(id='fake')])]
    data=canonical(q)+b'\n';atomic(queue/'questions.ndjson',data);m=read(queue/'MANIFEST.json');m['outputs']['questions.ndjson']=sha(data);atomic(queue/'MANIFEST.json',canonical(m))
    with self.assertRaisesRegex(ValueError,'differs'):load_queue(queue,self.out)
  def test_4359323422_external_manifest_identity(self):
-  from external import External
+  from associativvordes.v5_adapter.external import External
   lock=self.base/'lock.json';atomic(lock,canonical(dict(artifacts=[])));folder=self.base/'external';folder.mkdir()
   m=dict(identity=dict(source_lock_sha256=filehash(lock)),complete=True,parts=[],missing=[]);m['version']=sha(canonical(m));atomic(folder/'EXTERNAL.json',canonical(m));External(folder,lock)
   m['injected']='changed';atomic(folder/'EXTERNAL.json',canonical(m))

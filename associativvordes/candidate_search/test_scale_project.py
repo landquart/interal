@@ -1,3 +1,7 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import gzip
 import json
 from pathlib import Path
@@ -6,11 +10,11 @@ import subprocess
 import tempfile
 import unittest
 import zlib
-from scale_project import build
-from project_store import verified_project, resume_project
-from scale_index import Index
-from morphology_import import hash_file
-from benchmark_scale import benchmark
+from associativvordes.candidate_search.scale_project import build
+from associativvordes.candidate_search.project_store import verified_project, resume_project
+from associativvordes.importers.scale_index import Index
+from associativvordes.importers.morphology_import import hash_file
+from associativvordes.candidate_search.benchmark_scale import benchmark
 
 
 class ProjectScaleTests(unittest.TestCase):

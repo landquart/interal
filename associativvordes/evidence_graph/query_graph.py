@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """Query immutable graph snapshots without source corpora or production writes."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from pathlib import Path
 import tempfile
-from graph import Graph,canonical,lookup,ref
+from associativvordes.evidence_graph.graph import Graph,canonical,lookup,ref
 
 def query(snapshot,family,language,word,max_depth=3,manifest_sha256=None):
     with tempfile.TemporaryDirectory(prefix='graph-query-') as tmp:

@@ -1,8 +1,12 @@
 """Reproduce capture, forced interruption, recovery and complete restored recount.
 Large work/backup files must be outside the Git checkout.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,hashlib,json,pathlib,resource,sqlite3,subprocess,sys,time
-from census import prepare,run,backup,restore,load,atomic_json,sha_file,VERSION
+from associativvordes.v5_baseline.census import prepare,run,backup,restore,load,atomic_json,sha_file,VERSION
 
 def main():
  ap=argparse.ArgumentParser();ap.add_argument('--repo',required=True);ap.add_argument('--commit',required=True);ap.add_argument('--work',required=True)
@@ -19,9 +23,9 @@ def main():
  if not interruption['rollback_verified']:raise ValueError('Interrupted transaction did not roll back')
  # Same implementation and immutable inputs: resume rechecks completed source hashes.
  run(snapshot,work/'run')
- from audit_ids import audit as ids
- from audit_metadata import audit as metadata
- from audit_ledger import audit as ledger
+ from associativvordes.v5_baseline.audit_ids import audit as ids
+ from associativvordes.v5_baseline.audit_metadata import audit as metadata
+ from associativvordes.v5_baseline.audit_ledger import audit as ledger
  ids(work/'run/census.sqlite',work/'run/STABLE-ID-AUDIT.json')
  metadata(snapshot,work/'run/METADATA-DISTRIBUTIONS.json')
  ledger(snapshot,work/'run/REPAIR-LEDGER-CHECK.json')

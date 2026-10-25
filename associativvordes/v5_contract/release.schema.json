@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Installed v5 release contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "namespace",
+    "git_commit",
+    "uncommitted_source_files",
+    "declared_schema_versions",
+    "normative",
+    "baseline",
+    "history",
+    "sources",
+    "algorithms",
+    "schemas",
+    "capabilities",
+    "version"
+  ],
+  "properties": {
+    "schema": {
+      "const": "interal-v5-contract/1"
+    },
+    "namespace": {
+      "enum": [
+        "research-v5",
+        "TEST_ONLY-v5"
+      ]
+    },
+    "git_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "uncommitted_source_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "declared_schema_versions": {
+      "type": "object"
+    },
+    "normative": {
+      "type": "object"
+    },
+    "baseline": {
+      "type": "object"
+    },
+    "history": {
+      "type": "object"
+    },
+    "sources": {
+      "type": "object"
+    },
+    "algorithms": {
+      "type": "object"
+    },
+    "schemas": {
+      "type": "object"
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "production_write",
+        "research_preview",
+        "semantic_release"
+      ],
+      "properties": {
+        "production_write": {
+          "const": false
+        },
+        "research_preview": {
+          "const": true
+        },
+        "semantic_release": {
+          "const": false
+        }
+      }
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "$comment": "Structural contract. Runtime validate() additionally verifies every field, source byte hash and installed Git HEAD exactly. Schema validity conveys no authority."
+}

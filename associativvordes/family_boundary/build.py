@@ -9,7 +9,9 @@ def build(prior,output,stop_after=None):
  out.mkdir(parents=True,exist_ok=True);start=time.monotonic()
  with (out/'LOCK').open('a') as lock:
   fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-  pinned=read(ROOT/'audit/associative-v5-diagnostics/REGISTRY-MANIFEST.json');p=read(prior/'MANIFEST.json')
+  from associativvordes.v5_contract.versions import require_directory
+  versioned=require_directory(prior,'diagnostics')
+  p=read(prior/'MANIFEST.json');pinned=p
   if p['version']!=pinned['version'] or p['database_sha256']!=pinned['database_sha256'] or sha(prior/p['database'])!=pinned['database_sha256']:raise ValueError('uncertified structural source index')
   sourcefiles=verify_sources();db=dbopen(out/'index.sqlite')
   db.executescript('''CREATE TABLE IF NOT EXISTS state(k TEXT PRIMARY KEY,v TEXT);
@@ -19,7 +21,7 @@ def build(prior,output,stop_after=None):
   CREATE TABLE IF NOT EXISTS refs(kind TEXT,key TEXT,f INTEGER,PRIMARY KEY(kind,key,f)) WITHOUT ROWID;
   CREATE TABLE IF NOT EXISTS aliases(alias TEXT,fid TEXT,PRIMARY KEY(alias,fid)) WITHOUT ROWID;
   CREATE TABLE IF NOT EXISTS declared_aliases(alias TEXT,fid TEXT,PRIMARY KEY(alias,fid)) WITHOUT ROWID;''')
-  identity=dict(schema='boundary-source-index/2',baseline_sha256=sha(ROOT/'audit/associative-v5-structural-cleanup/BEFORE-MANIFEST.json'),certified_diagnostic_version=pinned['version'],certified_diagnostic_database_sha256=pinned['database_sha256'],code={name:sha(Path(__file__).with_name(name)) for name in ['core.py','build.py']})
+  identity=dict(schema='boundary-source-index/2',baseline_sha256=sha(ROOT/'audit/associative-v5-structural-cleanup/BEFORE-MANIFEST.json'),version_contract=versioned['version_contract'],certified_diagnostic_version=pinned['version'],certified_diagnostic_database_sha256=pinned['database_sha256'],code={name:sha(Path(__file__).with_name(name)) for name in ['core.py','build.py']})
   existing=db.execute("SELECT v FROM state WHERE k='identity'").fetchone()
   if existing and json.loads(existing[0])!=identity:raise ValueError('source/code checkpoint mismatch')
   with db:db.execute('INSERT OR IGNORE INTO state VALUES(?,?)',('identity',canonical(identity).decode()))

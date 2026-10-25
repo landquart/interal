@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 """Finite mechanism cohorts, complete priority queues and independent replay receipts."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse,gzip,hashlib,json,os,sys,time,zipfile
 from collections import Counter
 from pathlib import Path
-from query import open_registry,filehash
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from classify import canonical,digest
+from associativvordes.v5_diagnostics.tools.query import open_registry,filehash
+pass
+from associativvordes.v5_diagnostics.classify import canonical,digest
 
 def save(p,x):
  p=Path(p);p.parent.mkdir(parents=True,exist_ok=True);t=p.with_suffix(p.suffix+'.partial');t.write_bytes(canonical(x)+b'\n');os.replace(t,p)

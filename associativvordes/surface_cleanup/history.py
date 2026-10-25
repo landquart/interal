@@ -1,9 +1,13 @@
 """Locked historical mechanisms, finite exclusions and explicit retained exceptions."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import collections,hashlib,json,pathlib,sqlite3,sys
 ROOT=pathlib.Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(ROOT/'associativvordes/history_registry'))
-from registry import History
-from policy import canonical
+pass
+from associativvordes.history_registry.registry import History
+from associativvordes.surface_cleanup.policy import canonical
 
 def collect(repo):
     repo=pathlib.Path(repo);root=repo/'audit/associative-history-registry';c=json.loads((root/'CURRENT.json').read_bytes())

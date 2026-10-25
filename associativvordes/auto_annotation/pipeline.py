@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Offline-first research preannotation. No production mutation capability."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter,defaultdict,deque
 from concurrent.futures import ThreadPoolExecutor,wait,FIRST_COMPLETED
@@ -10,17 +14,15 @@ from pathlib import Path
 import re
 import sys
 import time
-from contract import canonical,sha,file_hash,card_for,frozen_question,abstention
-from storage import Store,atomic,backup,restore
-from providers import Client,configuration,forecast,now
+from associativvordes.auto_annotation.contract import canonical,sha,file_hash,card_for,frozen_question,abstention
+from associativvordes.auto_annotation.storage import Store,atomic,backup,restore
+from associativvordes.auto_annotation.providers import Client,configuration,forecast,now
 
 REPO=Path(__file__).resolve().parents[2]
-sys.path.insert(0,str(REPO))
+pass
 def code_version():
-    paths=[]
-    for d in ('auto_annotation','candidate_search','evidence_graph','importers','review','pilot_evaluation','history_registry','v5_adapter','semantic_cleanup'):
-        paths.extend(p for p in (REPO/'associativvordes'/d).glob('*.py') if not p.name.startswith('test_'))
-    return sha({p.relative_to(REPO).as_posix():file_hash(p) for p in sorted(paths)})
+    from associativvordes.v5_contract.versions import implementation
+    return sha(implementation())
 
 def rows(path):
     opener=gzip.open if str(path).endswith('.gz') else open
@@ -36,15 +38,15 @@ def load_input(path,registry=None,v5_external=None):
             from associativvordes.semantic_cleanup.bridge import load_queue
             return load_queue(path)
         if m.get('schema')=='v5-review-projection/1':
-            sys.path.insert(0,str(REPO/'associativvordes'/'v5_adapter'))
-            from queue_input import load_queue
+            pass
+            from associativvordes.v5_adapter.queue_input import load_queue
             return load_queue(path,registry,v5_external)
         if m.get('schema')!='mass-candidate-release/1' or m.get('version')!=sha({k:v for k,v in m.items() if k!='version'}):
             raise ValueError('mass manifest integrity')
         qpath=path/'questions.ndjson'
         if file_hash(qpath)!=m['outputs']['questions.ndjson']:raise ValueError('questions checksum')
         if not registry:raise ValueError('actual --registry required for mass queue')
-        from source import checked
+        from associativvordes.auto_annotation.source import checked
         import sqlite3
         r=checked(registry,Path(registry).parent/'REGISTRY.json')
         if r['database_sha256']!=m['identity']['registry']:raise ValueError('registry dependency mismatch')
@@ -54,7 +56,7 @@ def load_input(path,registry=None,v5_external=None):
         if set(m['identity']['families'])-known:raise ValueError('unknown canonical family')
         qs=list(rows(qpath))
         if len(qs)!=m['counts']['questions']:raise ValueError('question count')
-        from graph import lookup
+        from associativvordes.evidence_graph.graph import lookup
         for q in qs:
             if q['family'] not in m['identity']['families'] or q['language'] not in m['identity']['languages']:
                 raise ValueError('question outside actual family/language scope')
@@ -65,8 +67,8 @@ def load_input(path,registry=None,v5_external=None):
                       source_version=m['version'],search_parameters=m['identity'])
     else:
         pilot=REPO/'associativvordes'/'pilot_evaluation'
-        sys.path.insert(0,str(pilot))
-        from gold import validate_cases
+        pass
+        from associativvordes.pilot_evaluation.gold import validate_cases
         cases=list(rows(path));validate_cases(cases)
         protocol=json.loads(Path(__file__).with_name('protocol05.json').read_text())
         if len(cases)!=protocol['cases'] or sha(cases)!=protocol['frozen_case_set_sha256']:
@@ -87,7 +89,7 @@ def fair_order(cards):
             if lanes[lane]:yield lanes[lane].popleft()
 
 def prepare(store,questions,identity,source_index=None,family_context=None,aux_index=None):
-    from source import NativeSource
+    from associativvordes.auto_annotation.source import NativeSource
     source=None
     if source_index:
         if identity['kind']!='mass02':raise ValueError('native index only with mass02 manifest; frozen graph refs are separate')

@@ -1,4 +1,8 @@
 """Full pinned-source pass; keep every alternative for finite exact search forms."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import hashlib
@@ -10,7 +14,7 @@ import sys
 import time
 ROOT=Path(__file__).resolve().parents[2]
 sys.path[:0]=[str(ROOT),str(ROOT/'associativvordes/evidence_graph')]
-from records import make_record,parse,binary_stream,validate_lock,GLEMM,LANGUAGES
+from associativvordes.evidence_graph.records import make_record,parse,binary_stream,validate_lock,GLEMM,LANGUAGES
 from associativvordes.national_correspondences.registry import canonical,filehash,read
 from associativvordes.national_correspondences.audit import atomic
 import unicodedata

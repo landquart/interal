@@ -1,8 +1,12 @@
 """Explicit release requests and incremental jobs; no background scheduler."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from pathlib import Path
-from control import *
-from inputs import source_delta
+from associativvordes.release_control.control import *
+from associativvordes.release_control.inputs import source_delta
 
 
 def incremental(previous, current, dependencies, reviewed, config):
