@@ -2,16 +2,20 @@
 
 No owner key or real approval is created. No proposed semantic change is applied.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import gzip
 import resource
 import subprocess
 import time
-from control import *
-from inputs import ROOT, REPORT, native_state, verify_published, source_delta
-from recordings import capture
-from review_bridge import witnesses
-from graph_view import build
+from associativvordes.release_control.control import *
+from associativvordes.release_control.inputs import ROOT, REPORT, native_state, verify_published, source_delta
+from associativvordes.release_control.recordings import capture
+from associativvordes.release_control.review_bridge import witnesses
+from associativvordes.release_control.graph_view import build
 
 
 def run(a):

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "fresh_apply": {
+    "status": "SHADOW_ONLY",
+    "changed_files": [],
+    "inventory_sha256": "d1c09919569701edc5405969e790ef0769e15e1cbbe67679305040c5b4c9171e"
+  },
+  "idempotence": {
+    "status": "ALREADY_APPLIED",
+    "changed_files": []
+  },
+  "rollback": {
+    "status": "ROLLBACK_VERIFIED",
+    "exact_original_inventory_sha256": "d1c09919569701edc5405969e790ef0769e15e1cbbe67679305040c5b4c9171e"
+  },
+  "plan_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "implementation_sha256": "9bf4c586c50775a92465570e82c5c34b162e8c6f8b38f6641badc61117d5efe9",
+  "historical_first_apply_not_reconstructed": true
+}

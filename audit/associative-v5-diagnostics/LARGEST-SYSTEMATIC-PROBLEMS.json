@@ -1,0 +1,172 @@
+{
+  "overlap_union": {
+    "families": 809296,
+    "flags": [
+      "ENDING_PREFIX_DIVERSITY_PROXY",
+      "SURFACE_ONLY_LINK_CLAIM",
+      "MIXED_DERIVATION_INFLECTION_CLAIMS",
+      "ALLOMORPH_SCOPE_UNVERIFIED",
+      "EXACT_DUPLICATE_MEMBER_SET",
+      "ALIAS_FANOUT",
+      "LARGE_FAMILY",
+      "HISTORICAL_EXCLUSION_OVERLAP"
+    ],
+    "memberships_in_affected_families": 7453655
+  },
+  "overlapping_counts_not_additive": true,
+  "problems": [
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag ENDING_PREFIX_DIVERSITY_PROXY --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "ENDING_PREFIX_DIVERSITY_PROXY"
+        }
+      },
+      "description": "Common ending plus at least five different language/prefix contexts; linguistic unrelatedness remains unknown",
+      "direct_flagged_memberships": null,
+      "families": 4975,
+      "flag": "ENDING_PREFIX_DIVERSITY_PROXY",
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 815300,
+      "memberships_matching_ending_condition": 732786
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag EXACT_DUPLICATE_MEMBER_SET --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "EXACT_DUPLICATE_MEMBER_SET"
+        }
+      },
+      "complete_group_stream": "EXACT_DUPLICATE_MEMBER_SET.ndjson.gz",
+      "description": "Exact legacy language+lemma sets, verified by SQL set difference; meaning equivalence is not established",
+      "direct_flagged_memberships": null,
+      "families": 12612,
+      "flag": "EXACT_DUPLICATE_MEMBER_SET",
+      "groups": 5982,
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 669191
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag ALIAS_FANOUT --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "ALIAS_FANOUT"
+        }
+      },
+      "complete_group_stream": "ALIAS_FANOUT.ndjson.gz",
+      "description": "One alias routes to multiple original families; semantic conflict is not established",
+      "direct_flagged_memberships": null,
+      "direct_membership_edges_applicable": false,
+      "families": 806269,
+      "flag": "ALIAS_FANOUT",
+      "groups": 281198,
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 7422275,
+      "summary_zero_means": "Alias patterns store alias-to-family edges, not direct membership edges; use the family membership envelope for impact."
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag LARGE_FAMILY --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "LARGE_FAMILY"
+        }
+      },
+      "description": "At least 1000 materialized memberships; size is not an error verdict",
+      "direct_flagged_memberships": null,
+      "families": 448,
+      "flag": "LARGE_FAMILY",
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 816308
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag SHORT_BASE --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "SHORT_BASE"
+        }
+      },
+      "description": "Canonical source string at most three Unicode codepoints; not a normative root decision",
+      "direct_flagged_memberships": null,
+      "families": 57661,
+      "flag": "SHORT_BASE",
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 2045606
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag SURFACE_ONLY_LINK_CLAIM --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "SURFACE_ONLY_LINK_CLAIM"
+        }
+      },
+      "description": "Recorded relation types are surface-only; no new nonmembership verdict",
+      "direct_flagged_memberships": 4238,
+      "families": 3460,
+      "flag": "SURFACE_ONLY_LINK_CLAIM",
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 7594
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag COMPOUND_CLAIM_UNVERIFIED --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "COMPOUND_CLAIM_UNVERIFIED"
+        }
+      },
+      "description": "Recorded compound labels, whose generation used boundary heuristics",
+      "direct_flagged_memberships": 7042551,
+      "families": 590740,
+      "flag": "COMPOUND_CLAIM_UNVERIFIED",
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 7832208
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag HISTORICAL_DIRECTION_SENSE_UNRESOLVED --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "HISTORICAL_DIRECTION_SENSE_UNRESOLVED"
+        }
+      },
+      "description": "Family-level etymology claims lack reviewed corpus sense bindings",
+      "direct_flagged_memberships": null,
+      "families": 20767,
+      "flag": "HISTORICAL_DIRECTION_SENSE_UNRESOLVED",
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 2070073
+    },
+    {
+      "affected_ids": {
+        "membership_envelope": "join flags.family to members.family",
+        "recovery_command": "python associativvordes/v5_diagnostics/tools/query.py --registry /external/v5-diagnostics --flag HISTORICAL_EXCLUSION_OVERLAP --members",
+        "registry_table": "flags",
+        "selector": {
+          "flag": "HISTORICAL_EXCLUSION_OVERLAP"
+        }
+      },
+      "description": "Exact raw-ID overlap with historical outcome, authority and scope retained; not necessarily a confirmed negative",
+      "direct_flagged_memberships": 7,
+      "families": 1,
+      "flag": "HISTORICAL_EXCLUSION_OVERLAP",
+      "linguistic_verdict": "UNRESOLVED",
+      "memberships_in_affected_families": 764
+    }
+  ],
+  "production_writes": 0,
+  "schema": "v5-systematic-observations/1"
+}

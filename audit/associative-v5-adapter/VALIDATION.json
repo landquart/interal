@@ -1,0 +1,31 @@
+{
+  "adapter_unit_tests": 18,
+  "all_records_independently_compared": true,
+  "annotation_regression_tests": 47,
+  "code_sha256": {
+    "associativvordes/auto_annotation/contract.py": "012ee02c19e51b0e69c0c00ef7a27187f04aebb8444d72aa31f4392ca4eb4de6",
+    "associativvordes/auto_annotation/pipeline.py": "9333738509547613025a21aa152dabceef4f28432e5ee0adf2e7a9d7cb8aae13",
+    "associativvordes/mass_dry_run/worker.py": "69f3451da8de4d16317cc760ea45f2970bbc77162f24d06b390079c477be6cb0",
+    "associativvordes/v5_adapter/adapter.py": "e615f89802a6e44aed229c5389ff2580cc3f22b12d7512cc163c2bc2f2473a35",
+    "associativvordes/v5_adapter/bridge.py": "822eab6a05da2565015acef167decc001028bceec07efc9fc2d1dd440c947ae3",
+    "associativvordes/v5_adapter/build.py": "3cf3228564992a1ea9c9b065447ca2829d2aa3889a667582402a18d9fa609473",
+    "associativvordes/v5_adapter/common.py": "7075c4799e8201f2fdec73baf3ee506a4cc260ae38463083a10575561c928278",
+    "associativvordes/v5_adapter/exercise.py": "b49b8e294c96e39a6ff52e0db01545caa605ca76a6b28af422fd4eac611d6945",
+    "associativvordes/v5_adapter/external.py": "664a4e3aa070361b513f8594a913dc6a2a80cb4ea29736c41dc3bd1b32ab9486",
+    "associativvordes/v5_adapter/queue_input.py": "08bb16227117fa4ecf0a794d5ce5d30425b403d30b753391f792161778e57ca9",
+    "associativvordes/v5_adapter/stream.py": "84574bfb077e290e62ee2bdef5fda11f4d09b948703e4333b5e7692bc8624abe",
+    "associativvordes/v5_adapter/test_adapter.py": "1c51d8ee0dd59c8427aad69a58f891b23ca01d07bcd72d055fd81999f00f4b0f",
+    "associativvordes/v5_adapter/test_external.py": "3823f92e5fe61763a2cc82841c89570ee3ed00e579b06938ae2af6f0f0d15db0",
+    "associativvordes/v5_adapter/verify.py": "34ebd0b4a851c6d7c702c83120abc9579d230b0909c7489996bd91b66bf20e20"
+  },
+  "fresh_full_replay_identical": true,
+  "full_materialized_v5_read": true,
+  "history_regression_tests": 23,
+  "mass_dry_run_regression_tests": 27,
+  "node_repository_suite": "npm test: all tests passed; final wrapper rerun after finite-byte-budget regression",
+  "production_tracked_diff_empty": true,
+  "real_six_language_exercise": "E2E-REPORT.json",
+  "release_control_regression_tests": 43,
+  "schema": "v5-adapter-validation/1",
+  "status": "PASS"
+}

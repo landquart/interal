@@ -1,0 +1,24 @@
+name: PR 679–694 independent audit regressions
+on:
+  push:
+    branches: ['audit/pr-679-694-20261025']
+  pull_request:
+    paths:
+      - '.github/workflows/pr-review-audit.yml'
+      - 'associativvordes/**'
+      - 'tests/**'
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser

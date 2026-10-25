@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Checkpointed full certification; original pinned importer stays unchanged."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from concurrent.futures import ProcessPoolExecutor, as_completed
 import fcntl
@@ -11,9 +15,9 @@ import resource
 import tempfile
 import time
 from itertools import zip_longest
-from morphology_import import run, hash_file, validate_lock, dumps, digest
-from audit_import import audit
-from build_catalog import make_catalog
+from associativvordes.importers.morphology_import import run, hash_file, validate_lock, dumps, digest
+from associativvordes.importers.audit_import import audit
+from associativvordes.importers.build_catalog import make_catalog
 
 ROOT = Path(__file__).resolve().parents[2]
 

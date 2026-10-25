@@ -1,0 +1,162 @@
+{
+  "schema": "cleanup-quality-preregistration/1",
+  "protocol_id": "v5-cleanup-quality-20261024-v1",
+  "baseline_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "parent_commit": "7bee3d975e972f673ae9dbfb28475783032a4121",
+  "seed": "interal-cleanup-quality11-probability-20261024-v1",
+  "unit": [
+    "family_id",
+    "language",
+    "lemma_id",
+    "source_record_sha256"
+  ],
+  "probability_design": {
+    "per_language": 1600,
+    "languages": [
+      "en",
+      "de",
+      "fr",
+      "es",
+      "it",
+      "ru"
+    ],
+    "frame": "All current materialized v5 memberships, not only proposed exclusions",
+    "selection": "Smallest seeded SHA256 keys within each language; fixed seed randomized-design convention",
+    "inclusion_probability": "n_h/N_h",
+    "weight": "N_h/n_h",
+    "purpose": "Paired exclusion precision, correct-link false-removal risk and erroneous-link detection recall within existing materialized v5; not missing-member discovery recall"
+  },
+  "splits": {
+    "training": 0,
+    "calibration": 0,
+    "holdout": "all newly sampled units",
+    "challenge": "separate nonprobability evaluation; never pooled into estimator"
+  },
+  "independence": "No release training/calibration exists. Historical exposure audit is required; incomplete native/sense/evidence mappings block independent-holdout certification. Do not replace exposed sampled rows or change design weights.",
+  "human_reviews": 2,
+  "arbitration": "Third qualified human, bound exact independent judgments; every uncertain/conflict plus prespecified 10% agreement audit",
+  "v5_thresholds": {
+    "version": 1,
+    "locked_before_annotation": true,
+    "membership_precision": {
+      "overall_minimum": 0.97,
+      "per_language_minimum": 0.95,
+      "lower_95ci_minimum": 0.95
+    },
+    "false_negative_recall": {
+      "overall_minimum": 0.92,
+      "per_language_minimum": 0.88,
+      "lower_95ci_minimum": 0.88
+    },
+    "high_risk_precision": {
+      "needs_review_minimum": 0.9,
+      "large_family_minimum": 0.94,
+      "high_fanout_minimum": 0.94
+    },
+    "agreement": {
+      "cohens_kappa_minimum": 0.8,
+      "raw_agreement_minimum": 0.9
+    },
+    "hard_gates": {
+      "known_false_merge_true_positives": 0,
+      "known_corpus_noise_in_control_top5": 0,
+      "unadjudicated_disagreements": 0,
+      "single_evaluator_rows": 0
+    },
+    "membership_verdicts": [
+      "true_positive",
+      "false_positive",
+      "uncertain"
+    ],
+    "error_categories": [
+      "normalization_error",
+      "morphology_error",
+      "etymology_error",
+      "homonymy",
+      "distant_relation",
+      "corpus_noise",
+      "wrong_language",
+      "wrong_sense",
+      "unsupported_evidence",
+      "policy_error",
+      "other"
+    ],
+    "precision_definitions": {
+      "resolved": "TP / (TP + FP)",
+      "conservative": "TP / (TP + FP + U)",
+      "optimistic": "(TP + U) / (TP + FP + U)"
+    },
+    "confidence_interval": {
+      "method": "stratified_family_cluster_bootstrap",
+      "repetitions": 2000,
+      "seed": "associative-family-v5-bootstrap-2026-09-20",
+      "minimum_reportable_subgroup_n": 30
+    }
+  },
+  "v6_gates": {
+    "familywise_alpha": 0.05,
+    "predeclared_strata": 12,
+    "precision_lower_bound": 0.99,
+    "false_merge_upper_bound": 0.001,
+    "minimum_independent_gold_per_stratum": "calculated exact one-sided binomial zero-error requirement, adjusted for 12 strata",
+    "eligible_future_classes": [
+      "direct derivation with verified sense/POS/direction",
+      "orthographic variant with verified identity"
+    ],
+    "automatic_positive_membership": false,
+    "automatic_family_merge": false,
+    "always_manual": [
+      "homonym",
+      "compound",
+      "mixed path",
+      "unknown direction",
+      "unknown POS/sense",
+      "negative history",
+      "competing families"
+    ],
+    "permitted_now": [
+      "checksums",
+      "source import",
+      "native-ID deduplication",
+      "candidate proposals",
+      "task scheduling"
+    ],
+    "threshold_changes": "new protocol ID and untouched held-out sample required"
+  },
+  "new_semantic_safety": {
+    "precision_lower_bound": 0.99,
+    "false_merge_upper_bound": 0.001,
+    "false_removal_upper_bound": 0.001,
+    "scope": "Additional conservative proposed-removal gate; does not redefine inherited false-merge endpoint",
+    "alpha_familywise": 0.05,
+    "comparison_policy": "Bonferroni across all predeclared 5 configurations x 10 views x 3 safety endpoints = 150; never fewer than inherited12",
+    "comparisons": 150
+  },
+  "views": [
+    "overall",
+    "en",
+    "de",
+    "fr",
+    "es",
+    "it",
+    "ru",
+    "high_risk",
+    "family_operations",
+    "membership_operations"
+  ],
+  "configurations": [
+    "original_v5",
+    "deterministic_filters",
+    "morphology_verification",
+    "llm_assisted",
+    "hybrid"
+  ],
+  "cluster_policy": "Use linked family/lemma/evidence groups, never expand family operations into independent observations; cross-language dependence retained. Unknown dependence blocks exact-binomial gate.",
+  "confidence_intervals": {
+    "descriptive": "weighted linked-cluster bootstrap, 2000 repetitions, fixed seed; unresolved/full-frame sensitivity bounds",
+    "safety": "one-sided exact binomial only with independently verified independent Bernoulli units; simultaneous alpha .05/150",
+    "minimum_clusters": 30
+  },
+  "status": "PREREGISTERED_BEFORE_NEW_SAMPLE_AND_HUMAN_LABELS",
+  "production_writes": false
+}

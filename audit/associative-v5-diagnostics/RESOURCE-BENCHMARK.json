@@ -1,0 +1,24 @@
+{
+  "first_resumed_run": {
+    "disk_bytes": 9638577121,
+    "max_rss_kib": 47624,
+    "memory_policy": "one source family at a time; SQLite 8 MiB cache; disk sorts",
+    "production_writes": 0,
+    "seconds": 2211.335303791
+  },
+  "first_run_timing_scope": "After forced exit 75 and restart; initial historical-selector checkpoint already committed. Not a cold-start history-import RAM figure.",
+  "fresh_independent_run": {
+    "disk_bytes": 9638577121,
+    "max_rss_kib": 339316,
+    "memory_policy": "one source family at a time; SQLite 8 MiB cache; disk sorts",
+    "production_writes": 0,
+    "seconds": 2161.9661407450003
+  },
+  "fresh_run_timing_scope": "Complete independent cold run, including historical-selector import, all 256 buckets, cross-family indexes, full SQLite integrity check, original-input rechecks and exact ID/logical-table verification.",
+  "peak_memory_explanation": "Cold historical-selector decompression/import dominates peak; subsequent family processing retains one source family and disk indexes.",
+  "production_bucket_bytes": 720542711,
+  "production_writes": 0,
+  "projection_input_bytes": 6749650944,
+  "schema": "v5-diagnostics-resource-comparison/1",
+  "temporary_outputs_kept_outside_git": true
+}

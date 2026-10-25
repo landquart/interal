@@ -1,0 +1,49 @@
+{
+  "status": "BLOCKED",
+  "integration_complete": false,
+  "merge_performed_by_this_task": false,
+  "production_writes": 0,
+  "blockers": [
+    {
+      "id": "I15-01",
+      "kind": "IMPLEMENTATION_CERTIFICATION",
+      "status": "OPEN",
+      "scope": "seven archived code-lock reports",
+      "evidence": "ARCHIVED-CODE-DRIFT.json",
+      "reason": "36 current code hashes differ from immutable archived receipts. The independent national-correspondence verifier refuses the current checkout.",
+      "required": "Generate and independently verify fresh outputs under the installed contract; keep old receipts immutable."
+    },
+    {
+      "id": "I15-02",
+      "kind": "FULL_CHAIN_CERTIFICATION",
+      "status": "OPEN",
+      "scope": "diagnostics through quality and dry-run",
+      "reason": "The positive integration run uses native TEST_ONLY fixtures. Fresh complete-corpus producers/consumers have not been executed and certified under this exact contract. require_directory rejects unversioned archives; existing bind_directory helper is not evidence that every producer emitted and every consumer checked its binding.",
+      "required": "Run every full-chain stage in fresh external research directories; bind and verify all exact inputs and outputs, including source databases and quality code locks."
+    },
+    {
+      "id": "I15-03",
+      "kind": "MERGE_COORDINATION",
+      "status": "OPEN",
+      "scope": "main and original implementation PRs",
+      "reason": "main moved during this work. PR679 was merged externally; PR680 received a new head. This candidate has not been reconciled or tested against that new main.",
+      "required": "Reconcile against the current main, verify review fixes at each exact original head, then merge eligible implementation PRs in dependency order with post-merge checks."
+    },
+    {
+      "id": "R15-HISTORY",
+      "kind": "DATA_RELEASE_ONLY",
+      "status": "BLOCKED",
+      "scope": "every nonempty real membership operation",
+      "reason": "Historical coverage is incomplete and 358 conflicts remain. Test-only history does not authorize real scopes.",
+      "required": "Independent exact-scope historical adjudication; no grants inferred from fixture tests."
+    },
+    {
+      "id": "R15-QUALITY",
+      "kind": "DATA_RELEASE_ONLY",
+      "status": "BLOCKED",
+      "scope": "semantic release and production materialization",
+      "reason": "No independent human gold/holdout, exact owner/verifier approvals or certified nonempty full-v5 materializer/rollback.",
+      "required": "Independent human quality evaluation and signed release-specific grants; production remains unchanged."
+    }
+  ]
+}

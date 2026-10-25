@@ -1,0 +1,19 @@
+name: V5 baseline tooling
+on:
+  pull_request:
+    paths:
+      - 'associativvordes/v5_baseline/**'
+      - 'audit/associative-family-v5-baseline/**'
+      - 'tests/associative-v5-baseline.test.mjs'
+      - '.github/workflows/associative-v5-baseline.yml'
+permissions:
+  contents: read
+jobs:
+  baseline-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -m unittest discover -s associativvordes/v5_baseline -p 'test_*.py' -v

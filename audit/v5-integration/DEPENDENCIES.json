@@ -1,0 +1,2621 @@
+{
+  "data_flow_dag": {
+    "importers": [],
+    "normative": [],
+    "baseline": [
+      "normative"
+    ],
+    "history": [
+      "baseline",
+      "normative"
+    ],
+    "adapter": [
+      "baseline",
+      "history"
+    ],
+    "diagnostics": [
+      "adapter",
+      "history"
+    ],
+    "structural": [
+      "baseline",
+      "diagnostics",
+      "history"
+    ],
+    "surface": [
+      "diagnostics",
+      "structural",
+      "history"
+    ],
+    "morphology": [
+      "adapter",
+      "surface"
+    ],
+    "morphology_review": [
+      "morphology",
+      "history"
+    ],
+    "national": [
+      "normative",
+      "morphology_review"
+    ],
+    "semantic": [
+      "national",
+      "adapter"
+    ],
+    "boundary": [
+      "semantic",
+      "diagnostics"
+    ],
+    "quality": [
+      "boundary",
+      "national",
+      "semantic"
+    ],
+    "dry_run": [
+      "quality",
+      "structural",
+      "baseline"
+    ],
+    "release": [
+      "dry_run",
+      "quality",
+      "history",
+      "normative"
+    ],
+    "release_package": [
+      "release"
+    ],
+    "evidence": [
+      "adapter",
+      "importers"
+    ],
+    "candidates": [
+      "evidence"
+    ],
+    "review": [
+      "adapter",
+      "evidence",
+      "candidates"
+    ],
+    "review_event": [
+      "review"
+    ],
+    "decision": [
+      "review_event",
+      "normative"
+    ],
+    "preview": [
+      "decision",
+      "quality"
+    ],
+    "release_gate": [
+      "preview",
+      "release"
+    ],
+    "annotation": [
+      "review"
+    ],
+    "contract": [],
+    "integration": [
+      "contract",
+      "release"
+    ]
+  },
+  "topological_order": [
+    "importers",
+    "normative",
+    "baseline",
+    "history",
+    "adapter",
+    "diagnostics",
+    "structural",
+    "surface",
+    "morphology",
+    "morphology_review",
+    "national",
+    "semantic",
+    "boundary",
+    "quality",
+    "dry_run",
+    "release",
+    "release_package",
+    "evidence",
+    "candidates",
+    "review",
+    "review_event",
+    "decision",
+    "preview",
+    "release_gate",
+    "annotation",
+    "contract",
+    "integration"
+  ],
+  "python_imports": [
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/audit_identity.py",
+      "line": 14,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/audit_identity.py",
+      "line": 15,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/audit_import.py",
+      "line": 20,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/audit_scale_index.py",
+      "line": 13,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/audit_scale_index.py",
+      "line": 14,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/audit_scale_index.py",
+      "line": 15,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/build_catalog.py",
+      "line": 16,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/catalog_store.py",
+      "line": 12,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/certify_corpus.py",
+      "line": 18,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/certify_corpus.py",
+      "line": 19,
+      "target": "associativvordes.importers.audit_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/certify_corpus.py",
+      "line": 20,
+      "target": "associativvordes.importers.build_catalog"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/corpus_cache.py",
+      "line": 15,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/corpus_cache.py",
+      "line": 16,
+      "target": "associativvordes.importers.glemm_cache"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/fetch_glemm_git.py",
+      "line": 14,
+      "target": "associativvordes.importers.glemm_cache"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/fetch_glemm_git.py",
+      "line": 15,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/fetch_sources.py",
+      "line": 19,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/glemm_cache.py",
+      "line": 15,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/index_watch.py",
+      "line": 12,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/index_watch.py",
+      "line": 13,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/index_watch.py",
+      "line": 14,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/rebuild.py",
+      "line": 11,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/rebuild.py",
+      "line": 12,
+      "target": "associativvordes.importers.audit_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/rebuild.py",
+      "line": 13,
+      "target": "associativvordes.importers.build_catalog"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/scale_index.py",
+      "line": 24,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/scale_index.py",
+      "line": 25,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_acquisition.py",
+      "line": 13,
+      "target": "associativvordes.importers.fetch_sources"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_certification.py",
+      "line": 13,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_certification.py",
+      "line": 14,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_certification.py",
+      "line": 15,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_certification.py",
+      "line": 16,
+      "target": "associativvordes.importers.corpus_cache"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_certification.py",
+      "line": 17,
+      "target": "associativvordes.importers.catalog_store"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_certification.py",
+      "line": 18,
+      "target": "associativvordes.importers.audit_identity"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_certification.py",
+      "line": 19,
+      "target": "associativvordes.importers.audit_scale_index"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_glemm_cache.py",
+      "line": 11,
+      "target": "associativvordes.importers.glemm_cache"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_glemm_cache.py",
+      "line": 12,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_glemm_git.py",
+      "line": 10,
+      "target": "associativvordes.importers.fetch_glemm_git"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_glemm_git.py",
+      "line": 11,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_glemm_git.py",
+      "line": 12,
+      "target": "associativvordes.importers"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_morphology_import.py",
+      "line": 16,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_morphology_import.py",
+      "line": 17,
+      "target": "associativvordes.importers.audit_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_morphology_import.py",
+      "line": 18,
+      "target": "associativvordes.importers.fetch_sources"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/test_morphology_import.py",
+      "line": 19,
+      "target": "associativvordes.importers.build_catalog"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/validate_sources.py",
+      "line": 20,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/validate_sources.py",
+      "line": 21,
+      "target": "associativvordes.importers.fetch_sources"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/validate_sources.py",
+      "line": 22,
+      "target": "associativvordes.importers.audit_import"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/validate_sources.py",
+      "line": 23,
+      "target": "associativvordes.importers.build_catalog"
+    },
+    {
+      "component": "importers",
+      "path": "associativvordes/importers/verify_replay.py",
+      "line": 12,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "baseline",
+      "path": "associativvordes/v5_baseline/audit_ids.py",
+      "line": 7,
+      "target": "associativvordes.v5_baseline.census"
+    },
+    {
+      "component": "baseline",
+      "path": "associativvordes/v5_baseline/audit_ledger.py",
+      "line": 7,
+      "target": "associativvordes.v5_baseline.census"
+    },
+    {
+      "component": "baseline",
+      "path": "associativvordes/v5_baseline/audit_metadata.py",
+      "line": 7,
+      "target": "associativvordes.v5_baseline.census"
+    },
+    {
+      "component": "baseline",
+      "path": "associativvordes/v5_baseline/certify.py",
+      "line": 9,
+      "target": "associativvordes.v5_baseline.census"
+    },
+    {
+      "component": "baseline",
+      "path": "associativvordes/v5_baseline/certify.py",
+      "line": 26,
+      "target": "associativvordes.v5_baseline.audit_ids"
+    },
+    {
+      "component": "baseline",
+      "path": "associativvordes/v5_baseline/certify.py",
+      "line": 27,
+      "target": "associativvordes.v5_baseline.audit_metadata"
+    },
+    {
+      "component": "baseline",
+      "path": "associativvordes/v5_baseline/certify.py",
+      "line": 28,
+      "target": "associativvordes.v5_baseline.audit_ledger"
+    },
+    {
+      "component": "history",
+      "path": "associativvordes/history_registry/build.py",
+      "line": 17,
+      "target": "associativvordes.history_registry.registry"
+    },
+    {
+      "component": "history",
+      "path": "associativvordes/history_registry/test_registry.py",
+      "line": 12,
+      "target": "associativvordes.history_registry.registry"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/adapter.py",
+      "line": 8,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/bridge.py",
+      "line": 8,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/bridge.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.adapter"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/bridge.py",
+      "line": 62,
+      "target": "associativvordes.review.store"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/bridge.py",
+      "line": 84,
+      "target": "associativvordes.v5_adapter.external"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/build.py",
+      "line": 10,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/build.py",
+      "line": 11,
+      "target": "associativvordes.v5_adapter.stream"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/exercise.py",
+      "line": 8,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/exercise.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.adapter"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/exercise.py",
+      "line": 10,
+      "target": "associativvordes.v5_adapter.external"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/exercise.py",
+      "line": 11,
+      "target": "associativvordes.v5_adapter.bridge"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/exercise.py",
+      "line": 61,
+      "target": "associativvordes.auto_annotation.storage"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/exercise.py",
+      "line": 70,
+      "target": "associativvordes.mass_dry_run.export_snapshot"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/external.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/external.py",
+      "line": 11,
+      "target": "associativvordes.evidence_graph.records"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/external.py",
+      "line": 12,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/external.py",
+      "line": 104,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/external.py",
+      "line": 105,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/queue_input.py",
+      "line": 7,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/queue_input.py",
+      "line": 8,
+      "target": "associativvordes.v5_adapter.adapter"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/queue_input.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.bridge"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/queue_input.py",
+      "line": 27,
+      "target": "associativvordes.v5_adapter.external"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 7,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 8,
+      "target": "associativvordes.v5_adapter.build"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.adapter"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 10,
+      "target": "associativvordes.v5_adapter.bridge"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 59,
+      "target": "associativvordes.v5_adapter.verify"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 74,
+      "target": "associativvordes.v5_adapter.queue_input"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 76,
+      "target": "associativvordes.auto_annotation.contract"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 83,
+      "target": "associativvordes.v5_adapter.queue_input"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 97,
+      "target": "associativvordes.v5_adapter.queue_input"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_adapter.py",
+      "line": 103,
+      "target": "associativvordes.v5_adapter.external"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_external.py",
+      "line": 7,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_external.py",
+      "line": 8,
+      "target": "associativvordes.v5_adapter.external"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_external.py",
+      "line": 22,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/test_external.py",
+      "line": 29,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/verify.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "adapter",
+      "path": "associativvordes/v5_adapter/verify.py",
+      "line": 10,
+      "target": "associativvordes.v5_adapter.adapter"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/run.py",
+      "line": 11,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/run.py",
+      "line": 14,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/run.py",
+      "line": 15,
+      "target": "associativvordes.v5_adapter.adapter"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/run.py",
+      "line": 16,
+      "target": "associativvordes.v5_adapter.bridge"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/run.py",
+      "line": 19,
+      "target": "associativvordes.research_integrity"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 7,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 8,
+      "target": "associativvordes.v5_diagnostics.run"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 77,
+      "target": "associativvordes.v5_diagnostics.tools.backup"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 91,
+      "target": "associativvordes.v5_diagnostics"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 116,
+      "target": "associativvordes.v5_diagnostics.tools.finalize"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 125,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 145,
+      "target": "associativvordes.v5_diagnostics.tools.backup"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 154,
+      "target": "associativvordes.v5_diagnostics.run"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 156,
+      "target": "associativvordes.v5_diagnostics.tools.finalize"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 172,
+      "target": "associativvordes.v5_diagnostics.tools.backup"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/test_diagnostics.py",
+      "line": 183,
+      "target": "associativvordes.v5_diagnostics.run"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/backup.py",
+      "line": 9,
+      "target": "associativvordes.v5_diagnostics.tools.query"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/backup.py",
+      "line": 11,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/finalize.py",
+      "line": 10,
+      "target": "associativvordes.v5_diagnostics.tools.query"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/finalize.py",
+      "line": 12,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/join_volumes.py",
+      "line": 9,
+      "target": "associativvordes.v5_diagnostics.tools.query"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/query.py",
+      "line": 10,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/suffix_exposure.py",
+      "line": 14,
+      "target": "associativvordes.v5_diagnostics.tools.query"
+    },
+    {
+      "component": "diagnostics",
+      "path": "associativvordes/v5_diagnostics/tools/suffix_exposure.py",
+      "line": 16,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/audit_metadata.py",
+      "line": 7,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/audit_metadata.py",
+      "line": 8,
+      "target": "associativvordes.structural_cleanup.shadow"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/capture.py",
+      "line": 7,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/scan.py",
+      "line": 7,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/scan.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.stream"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/shadow.py",
+      "line": 7,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/shadow.py",
+      "line": 91,
+      "target": "associativvordes.history_registry.registry"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/test_cleanup.py",
+      "line": 6,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/test_cleanup.py",
+      "line": 7,
+      "target": "associativvordes.structural_cleanup.shadow"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/verify.py",
+      "line": 7,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/verify.py",
+      "line": 8,
+      "target": "associativvordes.structural_cleanup.shadow"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "line": 7,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "line": 8,
+      "target": "associativvordes.structural_cleanup.capture"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "line": 9,
+      "target": "associativvordes.structural_cleanup.shadow"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "line": 10,
+      "target": "associativvordes.structural_cleanup.verify"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "line": 21,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "structural",
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "line": 82,
+      "target": "associativvordes.structural_cleanup.audit_metadata"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/history.py",
+      "line": 9,
+      "target": "associativvordes.history_registry.registry"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/history.py",
+      "line": 10,
+      "target": "associativvordes.surface_cleanup.policy"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/run.py",
+      "line": 7,
+      "target": "associativvordes.surface_cleanup.policy"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/run.py",
+      "line": 10,
+      "target": "associativvordes.research_integrity"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/run.py",
+      "line": 12,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/run.py",
+      "line": 13,
+      "target": "associativvordes.structural_cleanup.shadow"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/run.py",
+      "line": 14,
+      "target": "associativvordes.surface_cleanup.history"
+    },
+    {
+      "component": "surface",
+      "path": "associativvordes/surface_cleanup/test_policy.py",
+      "line": 7,
+      "target": "associativvordes.surface_cleanup.policy"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/native.py",
+      "line": 9,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/native.py",
+      "line": 10,
+      "target": "associativvordes.v5_adapter.external"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/native.py",
+      "line": 11,
+      "target": "associativvordes.morphology_cleanup.policy"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "line": 7,
+      "target": "associativvordes.morphology_cleanup.native"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "line": 8,
+      "target": "associativvordes.morphology_cleanup.policy"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "line": 11,
+      "target": "associativvordes.research_integrity"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "line": 14,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "line": 15,
+      "target": "associativvordes.structural_cleanup.shadow"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "line": 17,
+      "target": "associativvordes.v5_diagnostics.classify"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/test_policy.py",
+      "line": 6,
+      "target": "associativvordes.morphology_cleanup.policy"
+    },
+    {
+      "component": "morphology",
+      "path": "associativvordes/morphology_cleanup/test_policy.py",
+      "line": 17,
+      "target": "associativvordes.morphology_cleanup.native"
+    },
+    {
+      "component": "morphology_review",
+      "path": "associativvordes/morphology_review/run.py",
+      "line": 7,
+      "target": "associativvordes.morphology_review.policy"
+    },
+    {
+      "component": "morphology_review",
+      "path": "associativvordes/morphology_review/run.py",
+      "line": 10,
+      "target": "associativvordes.structural_cleanup.common"
+    },
+    {
+      "component": "morphology_review",
+      "path": "associativvordes/morphology_review/run.py",
+      "line": 14,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "national",
+      "path": "associativvordes/national_correspondences/__init__.py",
+      "line": 2,
+      "target": "associativvordes.national_correspondences.registry"
+    },
+    {
+      "component": "national",
+      "path": "associativvordes/national_correspondences/audit.py",
+      "line": 12,
+      "target": "associativvordes.national_correspondences.registry"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/bridge.py",
+      "line": 5,
+      "target": "associativvordes.national_correspondences.registry"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/bridge.py",
+      "line": 6,
+      "target": "associativvordes.semantic_cleanup.policy"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/history.py",
+      "line": 7,
+      "target": "associativvordes.history_registry.registry"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/history.py",
+      "line": 8,
+      "target": "associativvordes.national_correspondences.registry"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/history.py",
+      "line": 9,
+      "target": "associativvordes.national_correspondences.audit"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/native.py",
+      "line": 17,
+      "target": "associativvordes.evidence_graph.records"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/native.py",
+      "line": 18,
+      "target": "associativvordes.national_correspondences.registry"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/native.py",
+      "line": 19,
+      "target": "associativvordes.national_correspondences.audit"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "line": 10,
+      "target": "associativvordes.national_correspondences.registry"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "line": 11,
+      "target": "associativvordes.national_correspondences.audit"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "line": 12,
+      "target": "associativvordes.semantic_cleanup.native"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "line": 13,
+      "target": "associativvordes.semantic_cleanup.policy"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "line": 14,
+      "target": "associativvordes.semantic_cleanup.history"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "line": 15,
+      "target": "associativvordes.semantic_cleanup.scan"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/review.py",
+      "line": 43,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/scan.py",
+      "line": 14,
+      "target": "associativvordes.national_correspondences.registry"
+    },
+    {
+      "component": "semantic",
+      "path": "associativvordes/semantic_cleanup/scan.py",
+      "line": 15,
+      "target": "associativvordes.national_correspondences.audit"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/analyze.py",
+      "line": 4,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/archive.py",
+      "line": 3,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/build.py",
+      "line": 4,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/build.py",
+      "line": 12,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/guard.py",
+      "line": 2,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/query.py",
+      "line": 3,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/query.py",
+      "line": 4,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/replay.py",
+      "line": 4,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/replay.py",
+      "line": 5,
+      "target": "associativvordes.family_boundary.guard"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/replay.py",
+      "line": 6,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/report.py",
+      "line": 3,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "boundary",
+      "path": "associativvordes/family_boundary/restore_prior.py",
+      "line": 3,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/bundle.py",
+      "line": 4,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 5,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 6,
+      "target": "associativvordes.cleanup_quality.prepare"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 7,
+      "target": "associativvordes.cleanup_quality.human"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 8,
+      "target": "associativvordes.cleanup_quality.statistics"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "line": 9,
+      "target": "associativvordes.cleanup_quality.privacy"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/gates.py",
+      "line": 2,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/human.py",
+      "line": 3,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/human.py",
+      "line": 18,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/human.py",
+      "line": 20,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/prepare.py",
+      "line": 5,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/privacy.py",
+      "line": 13,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/supplement.py",
+      "line": 4,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/supplement.py",
+      "line": 5,
+      "target": "associativvordes.cleanup_quality.prepare"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/supplement.py",
+      "line": 6,
+      "target": "associativvordes.cleanup_quality.evaluate"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/supplement.py",
+      "line": 7,
+      "target": "associativvordes.cleanup_quality.privacy"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/verify.py",
+      "line": 5,
+      "target": "associativvordes.family_boundary.core"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/verify.py",
+      "line": 6,
+      "target": "associativvordes.cleanup_quality.evaluate"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/verify.py",
+      "line": 7,
+      "target": "associativvordes.cleanup_quality.prepare"
+    },
+    {
+      "component": "quality",
+      "path": "associativvordes/cleanup_quality/verify.py",
+      "line": 8,
+      "target": "associativvordes.cleanup_quality.privacy"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/census.py",
+      "line": 3,
+      "target": "associativvordes.full_v5_dry_run.core"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/checks.py",
+      "line": 4,
+      "target": "associativvordes.full_v5_dry_run.core"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/checks.py",
+      "line": 6,
+      "target": "associativvordes.full_v5_dry_run.completion"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/checks.py",
+      "line": 30,
+      "target": "associativvordes.history_registry.registry"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/completion.py",
+      "line": 5,
+      "target": "associativvordes.full_v5_dry_run.core"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "line": 33,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "line": 54,
+      "target": "associativvordes.cleanup_quality.prepare"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "line": 66,
+      "target": "associativvordes.history_registry.registry"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "line": 70,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/exercise.py",
+      "line": 4,
+      "target": "associativvordes.full_v5_dry_run.core"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/exercise.py",
+      "line": 5,
+      "target": "associativvordes.full_v5_dry_run.store"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/exercise.py",
+      "line": 44,
+      "target": "associativvordes.full_v5_dry_run.completion"
+    },
+    {
+      "component": "dry_run",
+      "path": "associativvordes/full_v5_dry_run/store.py",
+      "line": 4,
+      "target": "associativvordes.full_v5_dry_run.core"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 216,
+      "target": "associativvordes.release_control.review_bridge"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 258,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 277,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 278,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 361,
+      "target": "associativvordes.release_control.review_bridge"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 365,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 380,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/control.py",
+      "line": 381,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/exercise.py",
+      "line": 14,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/exercise.py",
+      "line": 15,
+      "target": "associativvordes.release_control.inputs"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/exercise.py",
+      "line": 16,
+      "target": "associativvordes.release_control.recordings"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/exercise.py",
+      "line": 17,
+      "target": "associativvordes.release_control.review_bridge"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/exercise.py",
+      "line": 18,
+      "target": "associativvordes.release_control.graph_view"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/graph_view.py",
+      "line": 15,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/graph_view.py",
+      "line": 17,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/graph_view.py",
+      "line": 18,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/inputs.py",
+      "line": 13,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/inputs.py",
+      "line": 18,
+      "target": "associativvordes.evidence_graph.prepare_registry"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/recordings.py",
+      "line": 16,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/registry_view.py",
+      "line": 16,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/registry_view.py",
+      "line": 17,
+      "target": "associativvordes.release_control.graph_view"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/registry_view.py",
+      "line": 19,
+      "target": "associativvordes.candidate_search.mass_registry"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/registry_view.py",
+      "line": 20,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/test_control.py",
+      "line": 17,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/test_control.py",
+      "line": 18,
+      "target": "associativvordes.release_control.inputs"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/test_control.py",
+      "line": 350,
+      "target": "associativvordes.release_control.graph_view"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/test_control.py",
+      "line": 385,
+      "target": "associativvordes.release_control.workflow"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/test_control.py",
+      "line": 398,
+      "target": "associativvordes.release_control.workflow"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/test_control.py",
+      "line": 406,
+      "target": "associativvordes.release_control.workflow"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/workflow.py",
+      "line": 8,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "release",
+      "path": "associativvordes/release_control/workflow.py",
+      "line": 9,
+      "target": "associativvordes.release_control.inputs"
+    },
+    {
+      "component": "release_package",
+      "path": "associativvordes/v5_release_control/package.py",
+      "line": 14,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/analyze.py",
+      "line": 8,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/build_graph.py",
+      "line": 16,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/build_graph.py",
+      "line": 17,
+      "target": "associativvordes.evidence_graph.records"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/build_graph.py",
+      "line": 151,
+      "target": "associativvordes.evidence_graph.analyze"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/graph.py",
+      "line": 72,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/graph.py",
+      "line": 77,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/graph.py",
+      "line": 96,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/graph.py",
+      "line": 104,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/prepare_registry.py",
+      "line": 15,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/query_graph.py",
+      "line": 10,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/records.py",
+      "line": 13,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/select_pilot.py",
+      "line": 12,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/select_pilot.py",
+      "line": 13,
+      "target": "associativvordes.evidence_graph.records"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/test_graph.py",
+      "line": 12,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/test_graph.py",
+      "line": 13,
+      "target": "associativvordes.evidence_graph.records"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/test_graph.py",
+      "line": 14,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "evidence",
+      "path": "associativvordes/evidence_graph/test_graph.py",
+      "line": 15,
+      "target": "associativvordes.evidence_graph.query_graph"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 21,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 22,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 23,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 24,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/benchmark_scale.py",
+      "line": 25,
+      "target": "associativvordes.candidate_search.project_store"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "line": 21,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "line": 22,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "line": 23,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "line": 24,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "line": 25,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "line": 26,
+      "target": "associativvordes.candidate_search.project_store"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_benchmark.py",
+      "line": 13,
+      "target": "associativvordes.candidate_search.mass_source"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_benchmark.py",
+      "line": 14,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 22,
+      "target": "associativvordes.candidate_search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 23,
+      "target": "associativvordes.candidate_search.mass_registry"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 24,
+      "target": "associativvordes.candidate_search.mass_source"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 25,
+      "target": "associativvordes.candidate_search.mass_benchmark"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 26,
+      "target": "associativvordes.candidate_search.mass_store"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 27,
+      "target": "associativvordes.candidate_search.mass_recover"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 28,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 29,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 30,
+      "target": "associativvordes.importers.audit_scale_index"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 31,
+      "target": "associativvordes.importers.fetch_sources"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 32,
+      "target": "associativvordes.importers.fetch_glemm_git"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "line": 33,
+      "target": "associativvordes.importers.glemm_cache"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_discovery.py",
+      "line": 10,
+      "target": "associativvordes.candidate_search.mass_source"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_discovery.py",
+      "line": 11,
+      "target": "associativvordes.candidate_search.mass_registry"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_recover.py",
+      "line": 11,
+      "target": "associativvordes.candidate_search.mass_source"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_recover.py",
+      "line": 12,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_registry.py",
+      "line": 18,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_registry.py",
+      "line": 19,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_registry.py",
+      "line": 20,
+      "target": "associativvordes.evidence_graph.prepare_registry"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_registry.py",
+      "line": 21,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_registry.py",
+      "line": 22,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "line": 17,
+      "target": "associativvordes.candidate_search.mass_discovery"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "line": 18,
+      "target": "associativvordes.candidate_search.mass_registry"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "line": 19,
+      "target": "associativvordes.candidate_search.mass_source"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "line": 20,
+      "target": "associativvordes.candidate_search.mass_store"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "line": 21,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "line": 22,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "line": 27,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_source.py",
+      "line": 17,
+      "target": "associativvordes.candidate_search.mass_registry"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_source.py",
+      "line": 18,
+      "target": "associativvordes.importers"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_source.py",
+      "line": 19,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_source.py",
+      "line": 20,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/mass_store.py",
+      "line": 8,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/pilot.py",
+      "line": 13,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/prepare_frequency.py",
+      "line": 10,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/project_store.py",
+      "line": 10,
+      "target": "associativvordes.candidate_search.scale_project"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/scale_project.py",
+      "line": 23,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/scale_project.py",
+      "line": 24,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/scale_project.py",
+      "line": 25,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/search.py",
+      "line": 14,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/search.py",
+      "line": 27,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/search.py",
+      "line": 43,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 17,
+      "target": "associativvordes.candidate_search.mass_discovery"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 18,
+      "target": "associativvordes.candidate_search.mass_registry"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 19,
+      "target": "associativvordes.candidate_search.mass_source"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 20,
+      "target": "associativvordes.candidate_search.mass_run"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 21,
+      "target": "associativvordes.candidate_search.mass_store"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 22,
+      "target": "associativvordes.candidate_search.mass_recover"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 23,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 24,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 25,
+      "target": "associativvordes.evidence_graph.prepare_registry"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 26,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 27,
+      "target": "associativvordes.importers.certify_corpus"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 257,
+      "target": "associativvordes.candidate_search.mass_ci"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 258,
+      "target": "associativvordes.candidate_search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_mass.py",
+      "line": 367,
+      "target": "associativvordes.candidate_search.mass_ci"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_scale_project.py",
+      "line": 13,
+      "target": "associativvordes.candidate_search.scale_project"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_scale_project.py",
+      "line": 14,
+      "target": "associativvordes.candidate_search.project_store"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_scale_project.py",
+      "line": 15,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_scale_project.py",
+      "line": 16,
+      "target": "associativvordes.importers.morphology_import"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_scale_project.py",
+      "line": 17,
+      "target": "associativvordes.candidate_search.benchmark_scale"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_search.py",
+      "line": 11,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_search.py",
+      "line": 12,
+      "target": "associativvordes.evidence_graph.records"
+    },
+    {
+      "component": "candidates",
+      "path": "associativvordes/candidate_search/test_search.py",
+      "line": 13,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/exercise.py",
+      "line": 16,
+      "target": "associativvordes.review.store"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/server.py",
+      "line": 19,
+      "target": "associativvordes.review.store"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/server.py",
+      "line": 255,
+      "target": "associativvordes.review.source_rows"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/source_rows.py",
+      "line": 10,
+      "target": "associativvordes.review.store"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/store.py",
+      "line": 220,
+      "target": "associativvordes.review.source_rows"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/store.py",
+      "line": 173,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/store.py",
+      "line": 179,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/store.py",
+      "line": 278,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/store.py",
+      "line": 308,
+      "target": "associativvordes.v5_contract.policy"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/test_graph_refresh.py",
+      "line": 11,
+      "target": "associativvordes.review.store"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/test_graph_refresh.py",
+      "line": 15,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/test_graph_refresh.py",
+      "line": 16,
+      "target": "associativvordes.evidence_graph.build_graph"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/test_graph_refresh.py",
+      "line": 17,
+      "target": "associativvordes.evidence_graph.records"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/test_review.py",
+      "line": 17,
+      "target": "associativvordes.review.store"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/test_review.py",
+      "line": 18,
+      "target": "associativvordes.review.server"
+    },
+    {
+      "component": "review",
+      "path": "associativvordes/review/test_review.py",
+      "line": 176,
+      "target": "associativvordes.review.source_rows"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 14,
+      "target": "associativvordes.auto_annotation.contract"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 15,
+      "target": "associativvordes.auto_annotation.pipeline"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 16,
+      "target": "associativvordes.auto_annotation.storage"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 17,
+      "target": "associativvordes.auto_annotation.providers"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 24,
+      "target": "associativvordes.pilot_evaluation.gold"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 25,
+      "target": "associativvordes.pilot_evaluation.metrics04"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 26,
+      "target": "associativvordes.pilot_evaluation.study04"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "line": 27,
+      "target": "associativvordes.pilot_evaluation.archive04"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 17,
+      "target": "associativvordes.auto_annotation.contract"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 18,
+      "target": "associativvordes.auto_annotation.storage"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 19,
+      "target": "associativvordes.auto_annotation.providers"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 24,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 92,
+      "target": "associativvordes.auto_annotation.source"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 49,
+      "target": "associativvordes.auto_annotation.source"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 59,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 71,
+      "target": "associativvordes.pilot_evaluation.gold"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 38,
+      "target": "associativvordes.semantic_cleanup.bridge"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "line": 42,
+      "target": "associativvordes.v5_adapter.queue_input"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/providers.py",
+      "line": 17,
+      "target": "associativvordes.auto_annotation.contract"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/source.py",
+      "line": 10,
+      "target": "associativvordes.auto_annotation.contract"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/source.py",
+      "line": 13,
+      "target": "associativvordes.candidate_search.mass_source"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/source.py",
+      "line": 14,
+      "target": "associativvordes.importers.scale_index"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/storage.py",
+      "line": 14,
+      "target": "associativvordes.auto_annotation.contract"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/test_annotation.py",
+      "line": 17,
+      "target": "associativvordes.auto_annotation.contract"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/test_annotation.py",
+      "line": 18,
+      "target": "associativvordes.auto_annotation.storage"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/test_annotation.py",
+      "line": 19,
+      "target": "associativvordes.auto_annotation.providers"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/test_annotation.py",
+      "line": 20,
+      "target": "associativvordes.auto_annotation.pipeline"
+    },
+    {
+      "component": "annotation",
+      "path": "associativvordes/auto_annotation/test_annotation.py",
+      "line": 363,
+      "target": "associativvordes.auto_annotation.source"
+    },
+    {
+      "component": "contract",
+      "path": "associativvordes/v5_contract/policy.py",
+      "line": 4,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "contract",
+      "path": "associativvordes/v5_contract/versions.py",
+      "line": 53,
+      "target": "associativvordes.research_integrity"
+    },
+    {
+      "component": "contract",
+      "path": "associativvordes/v5_contract/versions.py",
+      "line": 145,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 8,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 9,
+      "target": "associativvordes.v5_contract"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 13,
+      "target": "associativvordes.v5_adapter.bridge"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 23,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 42,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 49,
+      "target": "associativvordes.candidate_search.search"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 70,
+      "target": "associativvordes.review.store"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 79,
+      "target": "associativvordes.cleanup_quality.human"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 89,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "line": 32,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 8,
+      "target": "associativvordes.v5_contract.versions"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 9,
+      "target": "associativvordes.v5_contract"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 10,
+      "target": "associativvordes.v5_integration.pipeline"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 17,
+      "target": "associativvordes.v5_adapter.external"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 27,
+      "target": "associativvordes.v5_adapter.common"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 28,
+      "target": "associativvordes.v5_adapter.build"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 29,
+      "target": "associativvordes.v5_adapter.adapter"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 73,
+      "target": "associativvordes.release_control.control"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 93,
+      "target": "associativvordes.evidence_graph.graph"
+    },
+    {
+      "component": "integration",
+      "path": "associativvordes/v5_integration/test_integration.py",
+      "line": 111,
+      "target": "associativvordes.candidate_search.search"
+    }
+  ],
+  "scope": "Literal Python imports; dynamic imports and data access require the accompanying blocker report. Imports are not release grants."
+}

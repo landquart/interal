@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 """Build deterministic isolated evidence snapshots from pinned observations."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from collections import Counter
 import json
@@ -9,8 +13,8 @@ import shutil
 import sqlite3
 import tempfile
 import unicodedata
-from graph import Graph,canonical,sha,key,envelope,ref,file_hash,lookup,json_rows
-from records import read_json,verify_record
+from associativvordes.evidence_graph.graph import Graph,canonical,sha,key,envelope,ref,file_hash,lookup,json_rows
+from associativvordes.evidence_graph.records import read_json,verify_record
 
 def load_registry(g,snapshot):
     snapshot_hash=sha({'commit':snapshot['commit'],'files':snapshot['files']});g.trusted_snapshots.add(snapshot_hash)
@@ -144,7 +148,7 @@ def build(records,registry_path,v6_path,lock_path,output):
     with tempfile.TemporaryDirectory(prefix='morphology-graph-') as tmp:
         tmp=Path(tmp);g=Graph(tmp/'working.sqlite');v6_ref=load_registry(g,snapshot)
         counts=ingest(g,records,read_json(registry_path));counts.update(align(g,snapshot))
-        from analyze import report
+        from associativvordes.evidence_graph.analyze import report
         report(g,snapshot,tmp);g.export(tmp);shutil.copyfile(records,tmp/'source-observations.ndjson')
         counts['entities']=g.db.execute('SELECT COUNT(*) FROM entities').fetchone()[0];counts['relations']=g.db.execute('SELECT COUNT(*) FROM relations').fetchone()[0]
         g.close();(tmp/'working.sqlite').unlink()

@@ -1,4 +1,8 @@
 """Engineering fixtures only, never human linguistic labels or calibrated quality."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import copy
 from concurrent.futures import ThreadPoolExecutor
 import json
@@ -10,10 +14,10 @@ import threading
 import time
 import unittest
 import zipfile
-from contract import *
-from storage import Store,backup,restore
-from providers import Client,configuration,forecast
-from pipeline import execute,export,stage_a,result_key
+from associativvordes.auto_annotation.contract import *
+from associativvordes.auto_annotation.storage import Store,backup,restore
+from associativvordes.auto_annotation.providers import Client,configuration,forecast
+from associativvordes.auto_annotation.pipeline import execute,export,stage_a,result_key
 
 def question(suffix='a',language='en',family='family:ocul'):
     lid='lexeme:'+sha(['TEST_ONLY',suffix])
@@ -350,13 +354,13 @@ class PipelineTests(Fixture):
         from unittest.mock import patch
         with self.s.lease():
             execute(self.s,'one',[question()],{'fixture':'TEST_ONLY'})
-            with patch('pipeline.code_version',return_value='changed'):
+            with patch('associativvordes.auto_annotation.pipeline.code_version',return_value='changed'):
                 with self.assertRaises(ValueError):execute(self.s,'one',[question()],{'fixture':'TEST_ONLY'},mode='resume')
 
 class NativeSourceTests(Fixture):
     def test_inflection_only_native_identity_is_verified_in_auxiliary(self):
         import base64,sqlite3
-        from source import NativeSource
+        from associativvordes.auto_annotation.source import NativeSource
         q=question();lex=q['lexeme_alternatives'][0];lex.pop('verified_senses')
         eid=q['evidence_refs'][0]['id'];raw=b'TEST_ONLY_INFLECTION_ROW'
         locator={'raw_sha256':sha(raw),'line':1}

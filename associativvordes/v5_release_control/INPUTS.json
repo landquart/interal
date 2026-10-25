@@ -1,0 +1,232 @@
+{
+  "files": [
+    {
+      "bytes": 1520,
+      "path": "audit/associative-v5-cleanup-quality/PROPOSAL-INVENTORY.json",
+      "sha256": "0b46b8c3f7441fce42c4f3cf11fe71af1ff06829570abb1f0e835f52a12ea1bc"
+    },
+    {
+      "bytes": 3402,
+      "path": "audit/associative-v5-cleanup-quality/OPERATION-GATES.json",
+      "sha256": "5b637b7501149d2a980672c37981ccf8dbd175362f6aaf33596620b515e5e314"
+    },
+    {
+      "bytes": 449,
+      "path": "audit/associative-v5-cleanup-quality/GOLD-STATUS.json",
+      "sha256": "48cacfc13433021f0027e73844ea63373f12f57666833c4edaa50b1366ce3715"
+    },
+    {
+      "bytes": 561,
+      "path": "audit/associative-v5-cleanup-quality/HOLDOUT.json",
+      "sha256": "ddb581af38c258dfcb4dd3d7fa8dc4a8e1fc667f597e844afb53739c4c09a23d"
+    },
+    {
+      "bytes": 84990,
+      "path": "audit/associative-v5-cleanup-quality/METRICS.json",
+      "sha256": "fe45c14be5aeffbbf798dece1a92a70d0180bee2983b86e70155e3f994dad400"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-cleanup-quality/RAW-HUMAN-REVIEWS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-cleanup-quality/RAW-ADJUDICATIONS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 207,
+      "path": "audit/associative-history-registry/CURRENT.json",
+      "sha256": "4f2bc4b00ddab7f0b474b74a9823d13372b52c422114ba09573399ffd502d760"
+    },
+    {
+      "bytes": 835,
+      "path": "audit/associative-history-registry/COVERAGE.json",
+      "sha256": "c8f8877867bee66a981ad230ca4de58adcdaab1f253bbd5716d8c5da7fb076a7"
+    },
+    {
+      "bytes": 913,
+      "path": "audit/associative-v5-full-dry-run/RUN.json",
+      "sha256": "8fdb819b0622cb731292a73b49465a56bc93dc3c24d22bfa3e766c5758c78870"
+    },
+    {
+      "bytes": 630,
+      "path": "audit/associative-v5-full-dry-run/OPERATION-MANIFEST.json",
+      "sha256": "98ae2c33102703411d06e6be0f75f9e7c4ce6dcbd8b60e08a454eaa5124da82e"
+    },
+    {
+      "bytes": 6114,
+      "path": "audit/associative-v5-full-dry-run/SOURCE-LOCK.json",
+      "sha256": "2792155615babe4e3fefb6c28c59a3d44cc9ff79e7e2a9db9ca3c77fe38086c0"
+    },
+    {
+      "bytes": 3425,
+      "path": "audit/associative-v5-full-dry-run/CODE-LOCK.json",
+      "sha256": "41f7c12432d906ff76e7614f3ccd0c6a1abc43a48a4bc937bd21529247ed35db"
+    },
+    {
+      "bytes": 513,
+      "path": "audit/associative-v5-full-dry-run/BACKUP-RESTORE-REPORT.json",
+      "sha256": "b4f719f523aa78e324b59ec6057499145d2e5e928e270c1a9c95b3e74c6fce3c"
+    },
+    {
+      "bytes": 477,
+      "path": "audit/associative-v5-full-dry-run/ROLLBACK-VALIDATION.json",
+      "sha256": "1e2a92571742b372ae37dfe8c7cc85c4be7760e4df7a1df029a518ea34859d28"
+    },
+    {
+      "bytes": 1312,
+      "path": "audit/associative-v5-full-dry-run/BEFORE-INTEGRITY-REPORT.json",
+      "sha256": "1fed796ca7bf7b3871838706410bb8c1d1d5520224b93beecb2ea3c5d1c2bbc4"
+    },
+    {
+      "bytes": 216,
+      "path": "audit/associative-v5-full-dry-run/COPY-PHASE.json",
+      "sha256": "f32dca689e8d83124f668ef56386c2cdf75f08d87002f2f0a607d9cbb1c8b1a4"
+    },
+    {
+      "bytes": 2477,
+      "path": "audit/associative-v5-surface-cleanup/SUMMARY.json",
+      "sha256": "f5f234fd7ee3aac637e20d8cc32ee2aa75fd5d6716847e4c3322c1203905677f"
+    },
+    {
+      "bytes": 543,
+      "path": "audit/associative-v5-surface-cleanup/COMPLEX-CASE-QUEUE-MANIFEST.json",
+      "sha256": "30634f6dee56479819585119bd5bc51f2f8aa61b7a5f6e81e3d69cc71d930584"
+    },
+    {
+      "bytes": 580,
+      "path": "audit/associative-v5-morphology-cleanup/CURRENT.json",
+      "sha256": "32c9fde3b33491807dd6ac583f1697a73261990660d48a3034a91b03da5abd76"
+    },
+    {
+      "bytes": 1709,
+      "path": "audit/associative-v5-morphology-cleanup/semantic-review-v2/SUMMARY.json",
+      "sha256": "33b57930494cc5709b23b82c9de00f3597137637093235d716735e3772833d2f"
+    },
+    {
+      "bytes": 135188,
+      "path": "audit/associative-v5-morphology-cleanup/semantic-review-v2/QUEUE-MANIFEST.json",
+      "sha256": "21a9c9c1cd99f42ed498fccf9d5099c63e4411f2f94c399708b3320bc79cccf4"
+    },
+    {
+      "bytes": 1317,
+      "path": "audit/associative-v5-semantic-cleanup/COVERAGE.json",
+      "sha256": "df4a397589df90b8c48d67a164ad21b0acbee71e73012d811408c3dc8559aac2"
+    },
+    {
+      "bytes": 1554,
+      "path": "audit/associative-v5-semantic-cleanup/RELEASE-MANIFEST.json",
+      "sha256": "8210f6f7f0f4281ed0808bcf68377866eae4c66a3ef3bfbc7694e7d66341aeaf"
+    },
+    {
+      "bytes": 1330,
+      "path": "audit/associative-v5-family-boundary/SUMMARY.json",
+      "sha256": "25ee922d712eab614dc0dd5c41008362e080a084029b76072f80088f5051b3b7"
+    },
+    {
+      "bytes": 4349,
+      "path": "audit/associative-v5-family-boundary/RELEASE-MANIFEST.json",
+      "sha256": "4d21f6aff6270f2d075a394bed95c62889780a6eae0d80a29fd682fe6497c20b"
+    },
+    {
+      "bytes": 4192,
+      "path": "audit/associative-v5-diagnostics/SUMMARY.json",
+      "sha256": "1465b24081aceeb2ddec941fb6439527c0448838c63024e820ceb842d54327e0"
+    },
+    {
+      "bytes": 2684,
+      "path": "audit/associative-national-correspondences/UNRESOLVED-CONFLICTS.ndjson",
+      "sha256": "8e0506b5e2abbf4d88f2cd572810fa7eebaa9ab8ee14fc131a4953bc5414914c"
+    },
+    {
+      "bytes": 1239,
+      "path": "audit/associative-v5-cleanup-quality/NORMATIVE-SOURCE-LOCK.json",
+      "sha256": "ee008f3a6663331380c821ca11ccd1af6ab8b2503012297908d895183df8c2aa"
+    },
+    {
+      "bytes": 1131,
+      "path": "audit/associative-v5-structural-cleanup/REVIEW-REQUIRED.ndjson",
+      "sha256": "4ce7b7ca22f85d4a1530f5384f90b4232bf6050b8431f39e5f954a618e23dfbf"
+    },
+    {
+      "bytes": 2024,
+      "path": "audit/associative-v5-diagnostics/REGISTRY-MANIFEST.json",
+      "sha256": "5baef98588580438ada993508d354e92737e2eb802a26ef83a9a4abb598113ac"
+    },
+    {
+      "bytes": 338213,
+      "path": "audit/associative-v5-surface-cleanup/COMPLETE-RUN-MANIFEST.json",
+      "sha256": "106cd9682059e675ce4b61a86fbc84ac40182f10c08fc7149149450f8ef7f228"
+    },
+    {
+      "bytes": 87263,
+      "path": "audit/associative-v5-semantic-cleanup/SCOPE-MANIFEST.json",
+      "sha256": "3fdcf632f96f4a86591a67869b597aa5de9a91c19f63b36b342cdce76c5b0cc2"
+    },
+    {
+      "bytes": 205,
+      "path": "audit/associative-v5-family-boundary/RESEARCH-ARCHIVE.json",
+      "sha256": "9b5aa0f912200c0abcf2d589e19ea89b7d51574278cb788053af6c8176789c8c"
+    },
+    {
+      "bytes": 1545,
+      "path": "audit/associative-v5-family-boundary/ARCHIVE-VOLUMES.json",
+      "sha256": "0427a5a93630507d62f45d17a77e4a28ce9bb0c61f7e5937cc61923837022227"
+    },
+    {
+      "bytes": 150,
+      "path": "audit/associative-v5-full-dry-run/RESEARCH-BUNDLE.json",
+      "sha256": "a6f0da074ab50b4536e1ff1c1062d0c9c84b7c99b58ea56c17dd2934541ad35f"
+    },
+    {
+      "bytes": 4971,
+      "path": "audit/associative-v5-full-dry-run/RESEARCH-PARTS.json",
+      "sha256": "7b49c6b506b14306839831fdf9c626e96b8dde5743c620cd5897d3d557c9397a"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-structural-cleanup/SAFE-FIXES.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-surface-cleanup/PROPOSED-EXCLUSIONS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-morphology-cleanup/semantic-review-v2/VERIFIED-RELATION-CORRECTIONS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-morphology-cleanup/semantic-review-v2/PROPOSED-MEMBERSHIP-EXCLUSIONS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-semantic-cleanup/PROPOSED-RELATION-CORRECTIONS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-semantic-cleanup/PROPOSED-MEMBERSHIP-CORRECTIONS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-family-boundary/SPLIT-MERGE-PROPOSALS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "audit/associative-v5-family-boundary/WRONG-ASSIGNMENT-PROPOSALS.ndjson",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "production_baseline_commit": "47723611112610945cb09b34e18588b7bd151911",
+  "schema": "v5-release-readiness-inputs/1",
+  "source_commit": "69fc414fe5cfbed470779b6ee1454578b1f00a99"
+}

@@ -1,4 +1,8 @@
 """Bounded proposal discovery; persistent review questions, never membership writes."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import json
 import math
@@ -6,8 +10,8 @@ from pathlib import Path
 import sqlite3
 import sys
 import tempfile
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'evidence_graph'))
-from graph import Graph, canonical, sha, lookup, ref, file_hash, BLOCKING
+pass
+from associativvordes.evidence_graph.graph import Graph, canonical, sha, lookup, ref, file_hash, BLOCKING
 
 DEFAULT_WEIGHTS={'frequency':2,'uncertainty':3,'merge_risk':4,'independent_evidence':2,'model_impact':1,'calculation_impact':1}
 STATES={'open','rejected','reviewed','split_required','deferred'}
@@ -18,7 +22,10 @@ def priority(features,weights=None):
     return {'score':sum(features[k]*weights[k] for k in weights),'components':features,'weights':weights,'experimental':True,'methodology_score':False}
 
 class Queue:
-    def __init__(self,path):
+    def __init__(self,path,version_contract=None):
+        self.version_contract=version_contract
+        from associativvordes.v5_contract.versions import database_binding
+        database_binding(path,version_contract,'questions')
         self.db=sqlite3.connect(path)
         self.db.executescript('''PRAGMA cache_size=-8192;PRAGMA temp_store=FILE;
         CREATE TABLE IF NOT EXISTS questions(id TEXT PRIMARY KEY,body TEXT,fingerprint TEXT,state TEXT,changed INTEGER);
@@ -26,9 +33,15 @@ class Queue:
         CREATE TABLE IF NOT EXISTS scopes(scope TEXT,candidate TEXT,PRIMARY KEY(scope,candidate));
         CREATE INDEX IF NOT EXISTS question_scope ON questions(json_extract(body,'$.family'),json_extract(body,'$.language'),state);
         ''')
+        if version_contract:
+            self.db.execute('CREATE TABLE IF NOT EXISTS v5_version_meta(k TEXT PRIMARY KEY,v TEXT)')
+            self.db.execute('INSERT OR IGNORE INTO v5_version_meta VALUES(?,?)',('contract',json.dumps(version_contract,sort_keys=True)))
     def upsert(self,body,scope):
         # A review question groups spelling alternatives, NOT lexeme identities.
         cid='candidate:'+sha([body['family'],body['language'],lookup(body['lemma']),body['pos']])
+        if self.version_contract:
+            from associativvordes.v5_contract.policy import hypothesis
+            body=dict(body,normative=hypothesis(body,self.version_contract),version_contract_sha256=self.version_contract['version'])
         body=dict(body,id=cid);fp=sha(body)
         old=self.db.execute('SELECT fingerprint,state,changed FROM questions WHERE id=?',(cid,)).fetchone()
         if old and old[0]==fp:changed=old[2]

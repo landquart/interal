@@ -3,15 +3,19 @@
 This is not the production family index or a replacement mass-registry receipt.
 Historical evidence stays present; explicit grants are finite operation proofs.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from pathlib import Path
 import shutil
 import sys
 import tempfile
-from control import *
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]/'evidence_graph'))
-from graph import Graph, canonical as graph_canonical
-from build_graph import load_registry
+from associativvordes.release_control.control import *
+pass
+from associativvordes.evidence_graph.graph import Graph, canonical as graph_canonical
+from associativvordes.evidence_graph.build_graph import load_registry
 
 
 def active_operations(store, version):

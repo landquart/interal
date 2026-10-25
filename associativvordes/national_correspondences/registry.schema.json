@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "interal-national-correspondences/1",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "production_enabled",
+    "roots",
+    "entries",
+    "global_rules",
+    "sources_sha256",
+    "authority",
+    "production_source_commit",
+    "normative_spec_commit",
+    "root_catalog_sha256",
+    "legacy_carriers"
+  ],
+  "properties": {
+    "schema": {
+      "const": "interal-national-correspondences/1"
+    },
+    "version": {
+      "const": "1.0.0"
+    },
+    "production_enabled": {
+      "const": false
+    },
+    "global_rules": {
+      "const": []
+    },
+    "sources_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "roots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "canonical_root_id",
+          "normative_form",
+          "element_kind",
+          "legacy_family_ids",
+          "root_catalog_commit",
+          "target_binding"
+        ]
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "canonical_root_id",
+          "normative_form",
+          "language",
+          "national_form",
+          "lexeme",
+          "context",
+          "scope",
+          "path",
+          "evidence_refs",
+          "evidence_status",
+          "verification_status",
+          "membership_status",
+          "association_status"
+        ],
+        "properties": {
+          "evidence_status": {
+            "enum": [
+              "SOURCE_DOCUMENTED",
+              "DIFFERENT_ETYMON",
+              "UNRESOLVED",
+              "CONFLICT"
+            ]
+          },
+          "membership_status": {
+            "const": "UNRESOLVED"
+          },
+          "association_status": {
+            "const": "NOT_ASSESSED"
+          },
+          "scope": {
+            "const": {
+              "kind": "EXACT_LEXEME_SENSE_CONTEXT",
+              "propagation": "FORBIDDEN",
+              "regular_language_rule": false
+            }
+          }
+        }
+      }
+    },
+    "authority": {
+      "const": "DOCUMENTARY_RESEARCH_NOT_LINGUISTIC_GOLD"
+    },
+    "production_source_commit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "legacy_carriers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "entry_id",
+          "family_id",
+          "language",
+          "lemma_id",
+          "word",
+          "record_sha256",
+          "source_version",
+          "lexical_identity_status",
+          "scope"
+        ],
+        "properties": {
+          "lexical_identity_status": {
+            "const": "UNRESOLVED"
+          },
+          "scope": {
+            "const": "EXACT_LEGACY_RECORD_ONLY"
+          }
+        }
+      }
+    }
+  }
+}

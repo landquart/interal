@@ -1,0 +1,101 @@
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "verified": true}
+{"bucket": "4a", "verified": true}
+{"bucket": "6f", "verified": true}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": true}
+{"bucket": "4a", "reused": true}
+{"bucket": "6f", "reused": true}
+{"bucket": "23", "reused": true}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": true}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+{"bucket": "23", "reused": true}
+{"bucket": "23", "reused": false}
+{"bucket": "4a", "reused": false}
+{"bucket": "6f", "reused": false}
+FFFF...............
+======================================================================
+FAIL: test_4359323416_entire_question_is_locked (test_adapter.ProjectionTests.test_4359323416_entire_question_is_locked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_adapter/test_adapter.py", line 97, in test_4359323416_entire_question_is_locked
+    with self.assertRaisesRegex(ValueError,'differs'):load_queue(queue,self.out)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_4359323422_external_manifest_identity (test_adapter.ProjectionTests.test_4359323422_external_manifest_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_adapter/test_adapter.py", line 103, in test_4359323422_external_manifest_identity
+    with self.assertRaisesRegex(ValueError,'manifest'):External(folder,lock)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_4359323435_invalid_rows_cannot_publish_current (test_adapter.ProjectionTests.test_4359323435_invalid_rows_cannot_publish_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_adapter/test_adapter.py", line 109, in test_4359323435_invalid_rows_cannot_publish_current
+    self.assertFalse((ledger/'CURRENT').exists())
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_4359323448_wrong_bucket_rejected (test_adapter.ProjectionTests.test_4359323448_wrong_bucket_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/interal-audit-old/associativvordes/v5_adapter/test_adapter.py", line 112, in test_4359323448_wrong_bucket_rejected
+    with self.assertRaisesRegex(ValueError,'bucket'):self.run_build()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 19 tests in 1.401s
+
+FAILED (failures=4)

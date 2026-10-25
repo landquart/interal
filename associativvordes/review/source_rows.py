@@ -1,9 +1,13 @@
 """Attach lossless rows from existing certified importer snapshots, never fetch URLs."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import base64
 import gzip
 import json
 from pathlib import Path
-from store import atomic, canonical, digest
+from associativvordes.review.store import atomic, canonical, digest
 
 
 def attach(ledger, snapshots):

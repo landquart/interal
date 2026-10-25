@@ -1,0 +1,21 @@
+{
+  "data_release_pr": "NOT_CREATED_NO_RELEASE_CANDIDATE",
+  "fresh_backup_restore_this_stage": false,
+  "full_corpus_recount_this_stage": false,
+  "full_repository_tests": "PENDING_CI",
+  "independent_human_audit": false,
+  "independent_node_check": "PASS_BLOCKED_PACKAGE_BYTE_INTEGRITY",
+  "nonempty_stage": false,
+  "post_publication_audit": "NOT_RUN",
+  "production_publication": false,
+  "production_writes": 0,
+  "python_replay": "PASS_BLOCKED_PACKAGE_REPLAY",
+  "schema": "v5-controlled-release-validation/1",
+  "semantic_gate": "BLOCKED",
+  "status": "ENGINEERING_PREPARATION_BLOCKED",
+  "targeted_tests": {
+    "command": "node --test tests/associative-v5-release-readiness.test.mjs tests/associative-full-v5-completion.test.mjs tests/associative-full-v5-dry-run.test.mjs",
+    "failed": 0,
+    "passed": 10
+  }
+}

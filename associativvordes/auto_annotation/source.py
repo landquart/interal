@@ -1,13 +1,17 @@
 """Reuse the certified native index without spelling bridges or new morphology rules."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import base64
 import copy
 from pathlib import Path
 import sys
-from contract import file_hash,sha
+from associativvordes.auto_annotation.contract import file_hash,sha
 HERE=Path(__file__).resolve().parents[1]
-for n in ('candidate_search','evidence_graph','importers'):sys.path.insert(0,str(HERE/n))
-from mass_source import Source,checked,readonly
-from scale_index import bid
+for n in ('candidate_search','evidence_graph','importers'):pass
+from associativvordes.candidate_search.mass_source import Source,checked,readonly
+from associativvordes.importers.scale_index import bid
 
 class NativeSource:
     def __init__(self,path,expected,auxiliary=None):

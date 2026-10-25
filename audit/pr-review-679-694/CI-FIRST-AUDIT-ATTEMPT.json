@@ -1,0 +1,138 @@
+{
+  "commit_sha": "32420f1a722672360c99083fe363590d8f13eb88",
+  "workflow_runs": [
+    {
+      "id": 40167424544,
+      "name": "Structural v5 shadow contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 7,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424544/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424544/logs",
+      "workflow_id": 394311058
+    },
+    {
+      "id": 40167424526,
+      "name": "Surface proof guards",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 11,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424526/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424526/logs",
+      "workflow_id": 394361009
+    },
+    {
+      "id": 40167424568,
+      "name": "Controlled release contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 42,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424568/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424568/logs",
+      "workflow_id": 393096805
+    },
+    {
+      "id": 40167424615,
+      "name": "Pages validation",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 91,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424615/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424615/logs",
+      "workflow_id": 389961625
+    },
+    {
+      "id": 40167424566,
+      "name": "Annotation review integrity",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 15,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424566/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424566/logs",
+      "workflow_id": 391845251
+    },
+    {
+      "id": 40167424534,
+      "name": "V5 baseline tooling",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 6,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424534/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424534/logs",
+      "workflow_id": 393450568
+    },
+    {
+      "id": 40167424567,
+      "name": "Streaming production v5 adapter",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 9,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424567/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424567/logs",
+      "workflow_id": 393988248
+    },
+    {
+      "id": 40167424542,
+      "name": "Associative normative specification",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 7,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424542/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424542/logs",
+      "workflow_id": 393419752
+    },
+    {
+      "id": 40167424563,
+      "name": "Full v5 diagnostic contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 6,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424563/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424563/logs",
+      "workflow_id": 394052179
+    },
+    {
+      "id": 40167424553,
+      "name": "Tests",
+      "status": "completed",
+      "conclusion": "failure",
+      "run_number": 1194,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424553/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424553/logs",
+      "workflow_id": 315247986
+    },
+    {
+      "id": 40167424530,
+      "name": "PR 679\u2013694 independent audit regressions",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 8,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424530/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424530/logs",
+      "workflow_id": 395549084
+    },
+    {
+      "id": 40167424522,
+      "name": "Associative Verification",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 112,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424522/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424522/logs",
+      "workflow_id": 380051022
+    },
+    {
+      "id": 40167424525,
+      "name": "Preliminary annotation safety and replay",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 23,
+      "jobs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424525/jobs",
+      "logs_url": "https://api.github.com/repos/landquart/interal/actions/runs/40167424525/logs",
+      "workflow_id": 392761552
+    }
+  ],
+  "failed_test": "4362455083 required historical commit unavailable in shallow checkout",
+  "correction": "Pin exact original receipt bytes to Git blob bfaa842fa921aca82b72a288d179f1bd53797c58, without requiring historical checkout",
+  "local_recheck": "All30 final review regressions pass; source/proof checks unchanged"
+}

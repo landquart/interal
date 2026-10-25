@@ -1,4 +1,8 @@
 """Read-only disk source graph and resumable bounded-owner auxiliary projection."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 import fcntl
 from functools import lru_cache
@@ -10,10 +14,10 @@ import resource
 import sqlite3
 import time
 import zlib
-from mass_registry import canonical, sha, file_hash
-import scale_index
-from scale_index import Index, bid
-from certify_corpus import verified, atomic_json
+from associativvordes.candidate_search.mass_registry import canonical, sha, file_hash
+from associativvordes.importers import scale_index
+from associativvordes.importers.scale_index import Index, bid
+from associativvordes.importers.certify_corpus import verified, atomic_json
 
 
 def readonly(path):

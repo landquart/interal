@@ -1,0 +1,167 @@
+[
+  {
+    "file": "associativvordes/v5_adapter/exercise.py",
+    "old": "storage",
+    "new": "associativvordes.auto_annotation.storage"
+  },
+  {
+    "file": "associativvordes/v5_adapter/exercise.py",
+    "old": "export_snapshot",
+    "new": "associativvordes.mass_dry_run.export_snapshot"
+  },
+  {
+    "file": "associativvordes/v5_diagnostics/test_diagnostics.py",
+    "old": "backup",
+    "new": "associativvordes.v5_diagnostics.tools.backup"
+  },
+  {
+    "file": "associativvordes/v5_diagnostics/test_diagnostics.py",
+    "old": "finalize",
+    "new": "associativvordes.v5_diagnostics.tools.finalize"
+  },
+  {
+    "file": "associativvordes/v5_diagnostics/test_diagnostics.py",
+    "old": "backup",
+    "new": "associativvordes.v5_diagnostics.tools.backup"
+  },
+  {
+    "file": "associativvordes/v5_diagnostics/test_diagnostics.py",
+    "old": "finalize",
+    "new": "associativvordes.v5_diagnostics.tools.finalize"
+  },
+  {
+    "file": "associativvordes/v5_diagnostics/test_diagnostics.py",
+    "old": "backup",
+    "new": "associativvordes.v5_diagnostics.tools.backup"
+  },
+  {
+    "file": "associativvordes/structural_cleanup/scan.py",
+    "old": "stream",
+    "new": "associativvordes.v5_adapter.stream"
+  },
+  {
+    "file": "associativvordes/surface_cleanup/run.py",
+    "old": "shadow",
+    "new": "associativvordes.structural_cleanup.shadow"
+  },
+  {
+    "file": "associativvordes/morphology_cleanup/run.py",
+    "old": "shadow",
+    "new": "associativvordes.structural_cleanup.shadow"
+  },
+  {
+    "file": "associativvordes/release_control/inputs.py",
+    "old": "prepare_registry",
+    "new": "associativvordes.evidence_graph.prepare_registry"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_recover.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_benchmark.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/scale_project.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_ci.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_ci.py",
+    "old": "audit_scale_index",
+    "new": "associativvordes.importers.audit_scale_index"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_ci.py",
+    "old": "fetch_sources",
+    "new": "associativvordes.importers.fetch_sources"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_ci.py",
+    "old": "fetch_glemm_git",
+    "new": "associativvordes.importers.fetch_glemm_git"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_ci.py",
+    "old": "glemm_cache",
+    "new": "associativvordes.importers.glemm_cache"
+  },
+  {
+    "file": "associativvordes/candidate_search/index_pilot.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_source.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_run.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/test_mass.py",
+    "old": "prepare_registry",
+    "new": "associativvordes.evidence_graph.prepare_registry"
+  },
+  {
+    "file": "associativvordes/candidate_search/test_mass.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/benchmark_scale.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_registry.py",
+    "old": "prepare_registry",
+    "new": "associativvordes.evidence_graph.prepare_registry"
+  },
+  {
+    "file": "associativvordes/candidate_search/mass_registry.py",
+    "old": "certify_corpus",
+    "new": "associativvordes.importers.certify_corpus"
+  },
+  {
+    "file": "associativvordes/auto_annotation/pipeline.py",
+    "old": "gold",
+    "new": "associativvordes.pilot_evaluation.gold"
+  },
+  {
+    "file": "associativvordes/auto_annotation/pipeline.py",
+    "old": "queue_input",
+    "new": "associativvordes.v5_adapter.queue_input"
+  },
+  {
+    "file": "associativvordes/auto_annotation/benchmark.py",
+    "old": "gold",
+    "new": "associativvordes.pilot_evaluation.gold"
+  },
+  {
+    "file": "associativvordes/auto_annotation/benchmark.py",
+    "old": "metrics04",
+    "new": "associativvordes.pilot_evaluation.metrics04"
+  },
+  {
+    "file": "associativvordes/auto_annotation/benchmark.py",
+    "old": "study04",
+    "new": "associativvordes.pilot_evaluation.study04"
+  },
+  {
+    "file": "associativvordes/auto_annotation/benchmark.py",
+    "old": "archive04",
+    "new": "associativvordes.pilot_evaluation.archive04"
+  }
+]

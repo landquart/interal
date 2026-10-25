@@ -1,0 +1,11 @@
+{
+  "comment_id": 4367844081,
+  "status": "FIXED_VERIFIED",
+  "original_pr": 692,
+  "original_head_sha": "2395e9f6ce2b424089759b67193559c8cea6a929",
+  "fix_introduced_in_pr": 693,
+  "fix_head_sha": "69fc414fe5cfbed470779b6ee1454578b1f00a99",
+  "old_result": "REACHED_CENSUS_WITHOUT_COMPLETION",
+  "new_result": "REJECTED_BEFORE_CENSUS",
+  "scope": "Actual missing-prerequisite gate; next expensive census replaced by a marker. No current full stage12 certification claimed."
+}

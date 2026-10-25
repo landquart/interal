@@ -1,0 +1,137 @@
+✖ 4354127381: correspondence rebuttal cannot establish membership (4.427431ms)
+✖ 4354127391: untrusted declared conflicts have no normative authority (0.847599ms)
+✖ 4354127396: verified nonmembership survives compatible legacy guards (0.596821ms)
+✖ 4354127406: indirect evidence retains exact intermediate endpoint scopes (0.606776ms)
+✖ 4354127406: intermediate contexts remain distinct and cannot replace final identity proof (0.483649ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 0
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.269781
+
+✖ failing tests:
+
+test at tests/associative-normative.test.mjs:200:1
+✖ 4354127381: correspondence rebuttal cannot establish membership (4.427431ms)
+  AssertionError [ERR_ASSERTION]: Expected "actual" to be strictly unequal to:
+  
+  'CONFIRMED_MEMBER'
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:203:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'CONFIRMED_MEMBER',
+    expected: 'CONFIRMED_MEMBER',
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/associative-normative.test.mjs:205:1
+✖ 4354127391: untrusted declared conflicts have no normative authority (0.847599ms)
+  AssertionError [ERR_ASSERTION]: decision
+  + actual - expected
+  
+  + 'CONFLICT'
+  - 'UNRESOLVED'
+  
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:208:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'CONFLICT',
+    expected: 'UNRESOLVED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/associative-normative.test.mjs:211:1
+✖ 4354127396: verified nonmembership survives compatible legacy guards (0.596821ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'UNRESOLVED'
+  - 'CONFIRMED_NONMEMBER'
+  
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:213:54)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'UNRESOLVED',
+    expected: 'CONFIRMED_NONMEMBER',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/associative-normative.test.mjs:215:1
+✖ 4354127406: indirect evidence retains exact intermediate endpoint scopes (0.606776ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "evidence scope mismatch"
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:221:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: evidence scope mismatch
+        at demand (file:///tmp/interal-audit-old/associativvordes/normative/validator.mjs:11:50)
+        at validateDecision (file:///tmp/interal-audit-old/associativvordes/normative/validator.mjs:50:5)
+        at file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:221:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:221:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tests/associative-normative.test.mjs:226:1
+✖ 4354127406: intermediate contexts remain distinct and cannot replace final identity proof (0.483649ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "evidence scope mismatch"
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:232:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: evidence scope mismatch
+        at demand (file:///tmp/interal-audit-old/associativvordes/normative/validator.mjs:11:50)
+        at validateDecision (file:///tmp/interal-audit-old/associativvordes/normative/validator.mjs:50:5)
+        at file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:232:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-normative.test.mjs:232:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+        at Test.postRun (node:internal/test_runner/test:1542:19),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }

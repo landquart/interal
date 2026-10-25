@@ -1,0 +1,15 @@
+{
+  "snapshot_sha256": "fe87153c07976f8b4ae02fffee778b5213303cd01d5f8e1f380b08f2d0882374",
+  "second_build_exact_match": true,
+  "tests": {
+    "history": 23,
+    "preannotation": 47,
+    "release": 43
+  },
+  "test_total": 113,
+  "selector_validation": "SELECTOR-VALIDATION.json",
+  "restore": "RESTORE-REPORT.json",
+  "production_diff_empty": true,
+  "retired_mutation_fences_verified": 17,
+  "observation_replay": "SOURCE-OBSERVATION-REPLAY.json"
+}

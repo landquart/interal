@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
+assertHistoricalRepairAllowed();
 // Reconcile the repository-backed materialization after the illas/illos/illis repairs.
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';

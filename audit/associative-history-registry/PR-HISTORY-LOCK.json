@@ -1,0 +1,455 @@
+{
+  "purpose": "PR provenance only; decisions are taken from locked Git source blobs and exact operation deltas, never PR titles.",
+  "pull_requests": [
+    {
+      "number": 629,
+      "url": "https://github.com/landquart/interal/pull/629",
+      "state": "closed",
+      "merged_at": "2026-09-22T01:46:27Z",
+      "merge_commit_sha": "8fe1449c6a1e0cfe7786c61407911c7177dafbf2",
+      "head": "ee6637b266f4bbb4acd77cccf597ed75b2b44aef",
+      "base": "7fa0e68150e327e176adeb617a09b39df1a478ec"
+    },
+    {
+      "number": 630,
+      "url": "https://github.com/landquart/interal/pull/630",
+      "state": "closed",
+      "merged_at": "2026-09-22T08:25:16Z",
+      "merge_commit_sha": "f27ea1fc00e567dbd51a7aa7f2d854780b91b2d8",
+      "head": "9b3ab1d0e58c4b4fadf7487d942c3ac78889b5cf",
+      "base": "8fe1449c6a1e0cfe7786c61407911c7177dafbf2"
+    },
+    {
+      "number": 631,
+      "url": "https://github.com/landquart/interal/pull/631",
+      "state": "closed",
+      "merged_at": "2026-09-22T11:21:34Z",
+      "merge_commit_sha": "850d8d2b5b235cc6ac133c90d128a2ae9c284f45",
+      "head": "86e50220b7fe8d1008cfa81da4d54afcac18b317",
+      "base": "f27ea1fc00e567dbd51a7aa7f2d854780b91b2d8"
+    },
+    {
+      "number": 632,
+      "url": "https://github.com/landquart/interal/pull/632",
+      "state": "closed",
+      "merged_at": "2026-09-22T11:35:17Z",
+      "merge_commit_sha": "fe17ed236a5e0824147bd6b624ed950effdc15c6",
+      "head": "47af446c7f4753c218b5e0b6494a57facb91ef7b",
+      "base": "850d8d2b5b235cc6ac133c90d128a2ae9c284f45"
+    },
+    {
+      "number": 633,
+      "url": "https://github.com/landquart/interal/pull/633",
+      "state": "closed",
+      "merged_at": "2026-09-22T14:11:26Z",
+      "merge_commit_sha": "c31b500ec22196833aa1d97285842e6727b1b831",
+      "head": "fc84ee52fe63097f070c367ebca02ed825966861",
+      "base": "fe17ed236a5e0824147bd6b624ed950effdc15c6"
+    },
+    {
+      "number": 634,
+      "url": "https://github.com/landquart/interal/pull/634",
+      "state": "closed",
+      "merged_at": "2026-09-23T13:35:11Z",
+      "merge_commit_sha": "343bcd20fd9e55573402f7e4a80d80577754e804",
+      "head": "28c341b5173fd54c73337bd37917a8baa14a17d2",
+      "base": "c31b500ec22196833aa1d97285842e6727b1b831"
+    },
+    {
+      "number": 635,
+      "url": "https://github.com/landquart/interal/pull/635",
+      "state": "closed",
+      "merged_at": "2026-09-24T16:10:41Z",
+      "merge_commit_sha": "5cfad7192626717fff04afa71cf8f644d0a5cdff",
+      "head": "17c77afbb27df29f1d255cec1f4a6344a92e01d4",
+      "base": "343bcd20fd9e55573402f7e4a80d80577754e804"
+    },
+    {
+      "number": 636,
+      "url": "https://github.com/landquart/interal/pull/636",
+      "state": "closed",
+      "merged_at": "2026-09-24T16:28:21Z",
+      "merge_commit_sha": "69698e492ef41dc717c9311ecf30033d0bff3eaf",
+      "head": "944fa1a11f5429a666853ba4f226447fd18f7b10",
+      "base": "5cfad7192626717fff04afa71cf8f644d0a5cdff"
+    },
+    {
+      "number": 637,
+      "url": "https://github.com/landquart/interal/pull/637",
+      "state": "closed",
+      "merged_at": "2026-09-26T14:21:25Z",
+      "merge_commit_sha": "65272eff5bd09255a712da01ab2ce34166c1a937",
+      "head": "e859a1f1d65aea42c4a52253beb4370e60fd463a",
+      "base": "69698e492ef41dc717c9311ecf30033d0bff3eaf"
+    },
+    {
+      "number": 638,
+      "url": "https://github.com/landquart/interal/pull/638",
+      "state": "closed",
+      "merged_at": "2026-09-26T14:34:07Z",
+      "merge_commit_sha": "d953f0662a35410bf9ad62efaf29883356f0aab7",
+      "head": "0de30d988f2132d1f7d8e3ef585fba27202391e5",
+      "base": "65272eff5bd09255a712da01ab2ce34166c1a937"
+    },
+    {
+      "number": 639,
+      "url": "https://github.com/landquart/interal/pull/639",
+      "state": "closed",
+      "merged_at": "2026-09-26T14:43:06Z",
+      "merge_commit_sha": "a0f0e32800f43fc6660377dc391da916722f6eae",
+      "head": "61ebfc676c3d3c8f214418941b35562df3f0ec09",
+      "base": "d953f0662a35410bf9ad62efaf29883356f0aab7"
+    },
+    {
+      "number": 640,
+      "url": "https://github.com/landquart/interal/pull/640",
+      "state": "closed",
+      "merged_at": "2026-09-27T21:56:13Z",
+      "merge_commit_sha": "97916afdef719ff140df2baf4fa5075a7b784941",
+      "head": "6d2ceca5ea2e0c8ef85b55a156d22e1c2c6d6a54",
+      "base": "a0f0e32800f43fc6660377dc391da916722f6eae"
+    },
+    {
+      "number": 641,
+      "url": "https://github.com/landquart/interal/pull/641",
+      "state": "closed",
+      "merged_at": "2026-09-27T22:19:19Z",
+      "merge_commit_sha": "c36c764a17211d0fe26852e2c48c8601331a3a7d",
+      "head": "f8d2a6ff8349aae87969d5494ede17e5718f23c0",
+      "base": "97916afdef719ff140df2baf4fa5075a7b784941"
+    },
+    {
+      "number": 642,
+      "url": "https://github.com/landquart/interal/pull/642",
+      "state": "closed",
+      "merged_at": "2026-09-27T22:27:34Z",
+      "merge_commit_sha": "f08b42a0f42ba44246095ab7d3f675ea3c38a0d8",
+      "head": "e39c962bc689267d484e54672a09ae04a3302359",
+      "base": "c36c764a17211d0fe26852e2c48c8601331a3a7d"
+    },
+    {
+      "number": 643,
+      "url": "https://github.com/landquart/interal/pull/643",
+      "state": "closed",
+      "merged_at": "2026-09-27T22:38:16Z",
+      "merge_commit_sha": "b0f10e819e7ea1204664d3892ec91956ccc7b632",
+      "head": "d94710acf89ebc295e5bdfbba9a68ffedff04449",
+      "base": "f08b42a0f42ba44246095ab7d3f675ea3c38a0d8"
+    },
+    {
+      "number": 644,
+      "url": "https://github.com/landquart/interal/pull/644",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": null,
+      "head": "9c9b75b7eb3a77565fa5ba9f6be7bc1892d53962",
+      "base": "b0f10e819e7ea1204664d3892ec91956ccc7b632"
+    },
+    {
+      "number": 645,
+      "url": "https://github.com/landquart/interal/pull/645",
+      "state": "closed",
+      "merged_at": "2026-09-28T15:33:03Z",
+      "merge_commit_sha": "289466b901664ebfe4c3422746d504504872ada9",
+      "head": "81cbc095266c01196af8905f305d867c292f1992",
+      "base": "b0f10e819e7ea1204664d3892ec91956ccc7b632"
+    },
+    {
+      "number": 646,
+      "url": "https://github.com/landquart/interal/pull/646",
+      "state": "closed",
+      "merged_at": "2026-09-28T15:44:55Z",
+      "merge_commit_sha": "1b7716f3056ef5ee11d5429be7dc43c1711fddd7",
+      "head": "fc3d4147b3d28bfcd5427e8c6f78a83a1306dca8",
+      "base": "289466b901664ebfe4c3422746d504504872ada9"
+    },
+    {
+      "number": 647,
+      "url": "https://github.com/landquart/interal/pull/647",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": null,
+      "head": "da937bd042ab1c7108d7281fc119e9269efb1c2e",
+      "base": "1b7716f3056ef5ee11d5429be7dc43c1711fddd7"
+    },
+    {
+      "number": 648,
+      "url": "https://github.com/landquart/interal/pull/648",
+      "state": "closed",
+      "merged_at": "2026-09-28T21:38:47Z",
+      "merge_commit_sha": "7d09632761eb6c1c818d82833c139c5785e71099",
+      "head": "acb6b472775757e9c674ab03a6a3ea111c251257",
+      "base": "1b7716f3056ef5ee11d5429be7dc43c1711fddd7"
+    },
+    {
+      "number": 649,
+      "url": "https://github.com/landquart/interal/pull/649",
+      "state": "closed",
+      "merged_at": "2026-09-30T16:44:25Z",
+      "merge_commit_sha": "78182754c4254b6c26aba42e556cb67158bb8c14",
+      "head": "b7df1249077f94fc60218f00454c457623ca250b",
+      "base": "7d09632761eb6c1c818d82833c139c5785e71099"
+    },
+    {
+      "number": 650,
+      "url": "https://github.com/landquart/interal/pull/650",
+      "state": "open",
+      "merged_at": null,
+      "merge_commit_sha": "324da46c7ee314800c7a6f8d7956aa92d1b7b5d5",
+      "head": "3da2717f7de702f68cf465c7434e15ff7abd2d50",
+      "base": "78182754c4254b6c26aba42e556cb67158bb8c14"
+    },
+    {
+      "number": 651,
+      "url": "https://github.com/landquart/interal/pull/651",
+      "state": "open",
+      "merged_at": null,
+      "merge_commit_sha": "c15252b77d4cd29f31bb54890b829c98945f67cf",
+      "head": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "base": "3da2717f7de702f68cf465c7434e15ff7abd2d50"
+    },
+    {
+      "number": 652,
+      "url": "https://github.com/landquart/interal/pull/652",
+      "state": "closed",
+      "merged_at": "2026-10-08T01:29:33Z",
+      "merge_commit_sha": "9fff76431a86a06df6db69b64d7f2ca4c871f1b7",
+      "head": "1c04d9ae48d079b56b6c37f854f96280b1915a10",
+      "base": "22e6293f72a22e80e364079d83031a1f8f2a36d6"
+    },
+    {
+      "number": 653,
+      "url": "https://github.com/landquart/interal/pull/653",
+      "state": "closed",
+      "merged_at": "2026-10-06T13:49:24Z",
+      "merge_commit_sha": "c07779e16eae70ecd3aa63e9ef9f241448dad342",
+      "head": "2683a113783a04598b200eb02f182ecba9f98158",
+      "base": "de52c9da457073b4edfaa64807dfcd5618d19d12"
+    },
+    {
+      "number": 654,
+      "url": "https://github.com/landquart/interal/pull/654",
+      "state": "closed",
+      "merged_at": "2026-10-06T21:14:22Z",
+      "merge_commit_sha": "4f058845a0fc00936a1568df98b6fbfbffd4ecc0",
+      "head": "9d982a3424d5533cf1b3dc2792277dcabcadfdef",
+      "base": "c07779e16eae70ecd3aa63e9ef9f241448dad342"
+    },
+    {
+      "number": 655,
+      "url": "https://github.com/landquart/interal/pull/655",
+      "state": "closed",
+      "merged_at": "2026-10-07T00:38:39Z",
+      "merge_commit_sha": "5b94370d522c2d612db40173bce0b0042441119a",
+      "head": "ebec211958bb9b0afd8ef9c19947c68f900094ff",
+      "base": "4f058845a0fc00936a1568df98b6fbfbffd4ecc0"
+    },
+    {
+      "number": 656,
+      "url": "https://github.com/landquart/interal/pull/656",
+      "state": "closed",
+      "merged_at": "2026-10-07T10:32:42Z",
+      "merge_commit_sha": "7a09a9701d7c6a5c947acbbed4561b7c49976a67",
+      "head": "42926f84b7ae5f47dd6131b19e01479ce8e7214f",
+      "base": "5b94370d522c2d612db40173bce0b0042441119a"
+    },
+    {
+      "number": 657,
+      "url": "https://github.com/landquart/interal/pull/657",
+      "state": "closed",
+      "merged_at": "2026-10-07T10:35:06Z",
+      "merge_commit_sha": "b266c92f00d111c1df53da05221fefac0db1dc3a",
+      "head": "fa8a701aef641b0a975f75e47975ba6c4b0e95d5",
+      "base": "7a09a9701d7c6a5c947acbbed4561b7c49976a67"
+    },
+    {
+      "number": 658,
+      "url": "https://github.com/landquart/interal/pull/658",
+      "state": "closed",
+      "merged_at": "2026-10-09T21:38:00Z",
+      "merge_commit_sha": "bb2ccdbe203f8472b67b8610cd73f3be421c6d00",
+      "head": "bb2ccdbe203f8472b67b8610cd73f3be421c6d00",
+      "base": "b266c92f00d111c1df53da05221fefac0db1dc3a"
+    },
+    {
+      "number": 659,
+      "url": "https://github.com/landquart/interal/pull/659",
+      "state": "closed",
+      "merged_at": "2026-10-09T21:37:58Z",
+      "merge_commit_sha": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73",
+      "head": "bdc24d2a5ab377b1bfd4278909f76edb337ed965",
+      "base": "b266c92f00d111c1df53da05221fefac0db1dc3a"
+    },
+    {
+      "number": 660,
+      "url": "https://github.com/landquart/interal/pull/660",
+      "state": "open",
+      "merged_at": null,
+      "merge_commit_sha": "221cae25416c4d7e9a45110dc526c9b42add4919",
+      "head": "9665db17d5e7971c2198fefc546b4e591b4f1676",
+      "base": "aac1ef8da3baf06e3e00ca2bffb18cccd40d8c73"
+    },
+    {
+      "number": 661,
+      "url": "https://github.com/landquart/interal/pull/661",
+      "state": "closed",
+      "merged_at": "2026-10-09T21:37:31Z",
+      "merge_commit_sha": "bdc24d2a5ab377b1bfd4278909f76edb337ed965",
+      "head": "4c84442f528ba3b6c3203246ebe70f0c66b01494",
+      "base": "aac1ef8da3baf06e3e00ca2bffb18cccd40d8c73"
+    },
+    {
+      "number": 662,
+      "url": "https://github.com/landquart/interal/pull/662",
+      "state": "closed",
+      "merged_at": "2026-10-19T22:59:55Z",
+      "merge_commit_sha": "0a6ad505e422983b2a05fa0edb1e03e12bdf7bee",
+      "head": "0a6ad505e422983b2a05fa0edb1e03e12bdf7bee",
+      "base": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73"
+    },
+    {
+      "number": 663,
+      "url": "https://github.com/landquart/interal/pull/663",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": "fd342a9ee666f3a5377924afe8a965e208e4816b",
+      "head": "d6780ebc693837cc4560a40672eb7ee39e8fa6f7",
+      "base": "0a6ad505e422983b2a05fa0edb1e03e12bdf7bee"
+    },
+    {
+      "number": 664,
+      "url": "https://github.com/landquart/interal/pull/664",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": "9439fdd4b0eb6affac1e0b2f25e636af37194bd2",
+      "head": "dbc180b391dc199cdfd82f3c0a45f803996468db",
+      "base": "d6780ebc693837cc4560a40672eb7ee39e8fa6f7"
+    },
+    {
+      "number": 665,
+      "url": "https://github.com/landquart/interal/pull/665",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": "f27b3bf12a08caee8ad6c8f9026bff785078483d",
+      "head": "156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49",
+      "base": "dbc180b391dc199cdfd82f3c0a45f803996468db"
+    },
+    {
+      "number": 666,
+      "url": "https://github.com/landquart/interal/pull/666",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": "7866943e6e100df3bb0b27afb1d05b69b7afd4f8",
+      "head": "216e56b4d19ad94a8a881b0ee978212a30691d3b",
+      "base": "156083cb5a631f3e5dd2d6f85d2abdc5d53ecc49"
+    },
+    {
+      "number": 667,
+      "url": "https://github.com/landquart/interal/pull/667",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": "11d2ac13a186b8dfe3bdbaaab3f22bdeaf462852",
+      "head": "cb2d009bebe29147cdecc62f228f5ffe70451fcb",
+      "base": "216e56b4d19ad94a8a881b0ee978212a30691d3b"
+    },
+    {
+      "number": 668,
+      "url": "https://github.com/landquart/interal/pull/668",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": "19d4500ac2e4d6f47391266968643204e2840cee",
+      "head": "7dba211f41d1252529ad823529b2095ebfa317ad",
+      "base": "cb2d009bebe29147cdecc62f228f5ffe70451fcb"
+    },
+    {
+      "number": 669,
+      "url": "https://github.com/landquart/interal/pull/669",
+      "state": "closed",
+      "merged_at": null,
+      "merge_commit_sha": "b4ff651e385ea3aa53252441714b05566750a2ef",
+      "head": "a5f4f92efc356b1ccdc9749a449d25574f674d3f",
+      "base": "7dba211f41d1252529ad823529b2095ebfa317ad"
+    },
+    {
+      "number": 670,
+      "url": "https://github.com/landquart/interal/pull/670",
+      "state": "closed",
+      "merged_at": "2026-10-19T22:59:53Z",
+      "merge_commit_sha": "0b3faf2215d2008be5abc0ac7fe66f7eb03e0891",
+      "head": "a5f4f92efc356b1ccdc9749a449d25574f674d3f",
+      "base": "39d8a47d2588b55c4c750cdd9985b5d6ba26ec73"
+    },
+    {
+      "number": 671,
+      "url": "https://github.com/landquart/interal/pull/671",
+      "state": "closed",
+      "merged_at": "2026-10-19T23:33:25Z",
+      "merge_commit_sha": "a3afb7dad56ba951cc9044591f0236731d35dbbe",
+      "head": "5fd2535e189c678bd4975712f4f02d02d54ee635",
+      "base": "0b3faf2215d2008be5abc0ac7fe66f7eb03e0891"
+    },
+    {
+      "number": 672,
+      "url": "https://github.com/landquart/interal/pull/672",
+      "state": "closed",
+      "merged_at": "2026-10-20T11:34:56Z",
+      "merge_commit_sha": "0c167fcd8a17cfaf433c37f68e89ba7f2ee0ceae",
+      "head": "1bdcded30f6c437585ef7ccf2ddc79c22fcc637b",
+      "base": "a3afb7dad56ba951cc9044591f0236731d35dbbe"
+    },
+    {
+      "number": 673,
+      "url": "https://github.com/landquart/interal/pull/673",
+      "state": "closed",
+      "merged_at": "2026-10-21T14:33:18Z",
+      "merge_commit_sha": "a0b47069ab3570ecb8b11d9571eb94b49570833e",
+      "head": "c62b9f7201f7380d03398b0e85d3461241993f83",
+      "base": "0c167fcd8a17cfaf433c37f68e89ba7f2ee0ceae"
+    },
+    {
+      "number": 674,
+      "url": "https://github.com/landquart/interal/pull/674",
+      "state": "closed",
+      "merged_at": "2026-10-21T15:10:18Z",
+      "merge_commit_sha": "f8b399c835dca054fe8f43d735a97a85df734e29",
+      "head": "598ed8e508acdea47df4e63605cfd9d865da8851",
+      "base": "a0b47069ab3570ecb8b11d9571eb94b49570833e"
+    },
+    {
+      "number": 675,
+      "url": "https://github.com/landquart/interal/pull/675",
+      "state": "closed",
+      "merged_at": "2026-10-21T19:42:23Z",
+      "merge_commit_sha": "8f5d6e280d2252c4d8e9b5a69bc84b9d34824aff",
+      "head": "057d6e0d1eb2b527b29eb5803be535b133ba0e62",
+      "base": "f8b399c835dca054fe8f43d735a97a85df734e29"
+    },
+    {
+      "number": 676,
+      "url": "https://github.com/landquart/interal/pull/676",
+      "state": "closed",
+      "merged_at": "2026-10-22T10:56:09Z",
+      "merge_commit_sha": "e66543fea9a95f50faf265aa6493680c9f99822a",
+      "head": "7563ca59f9a7cb47426eef5949b0b0e598755ef7",
+      "base": "8f5d6e280d2252c4d8e9b5a69bc84b9d34824aff"
+    },
+    {
+      "number": 677,
+      "url": "https://github.com/landquart/interal/pull/677",
+      "state": "closed",
+      "merged_at": "2026-10-22T13:04:11Z",
+      "merge_commit_sha": "e10ba3a2616ac9c114a396c4153e27bfb13339cb",
+      "head": "bd0cd92431b1116ca6101369ca638edad900448b",
+      "base": "e66543fea9a95f50faf265aa6493680c9f99822a"
+    },
+    {
+      "number": 678,
+      "url": "https://github.com/landquart/interal/pull/678",
+      "state": "closed",
+      "merged_at": "2026-10-22T18:08:28Z",
+      "merge_commit_sha": "47723611112610945cb09b34e18588b7bd151911",
+      "head": "31c28e7dfd15bb6213236e3c45355c2d60d3adfc",
+      "base": "e10ba3a2616ac9c114a396c4153e27bfb13339cb"
+    }
+  ]
+}

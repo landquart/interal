@@ -1,4 +1,8 @@
 """Real source excerpts; explicit adversarial registry edits are never corpus data."""
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import gzip
 import json
 from pathlib import Path
@@ -10,17 +14,17 @@ import tempfile
 import unittest
 from unittest.mock import patch
 import zlib
-from mass_discovery import Discovery, path_kind, negative_context
-from mass_registry import Graph, LANGUAGES, canonical, sha, local_content
-from mass_source import owner_key, checked, prepare as prepare_auxiliary
-from mass_run import run, parser, dependency
-from mass_store import Store
-from mass_recover import rollback
-from scale_index import Index
-from build_graph import load_registry
-from prepare_registry import read
-from morphology_import import hash_file, digest
-from certify_corpus import atomic_json
+from associativvordes.candidate_search.mass_discovery import Discovery, path_kind, negative_context
+from associativvordes.candidate_search.mass_registry import Graph, LANGUAGES, canonical, sha, local_content
+from associativvordes.candidate_search.mass_source import owner_key, checked, prepare as prepare_auxiliary
+from associativvordes.candidate_search.mass_run import run, parser, dependency
+from associativvordes.candidate_search.mass_store import Store
+from associativvordes.candidate_search.mass_recover import rollback
+from associativvordes.importers.scale_index import Index
+from associativvordes.evidence_graph.build_graph import load_registry
+from associativvordes.evidence_graph.prepare_registry import read
+from associativvordes.importers.morphology_import import hash_file, digest
+from associativvordes.importers.certify_corpus import atomic_json
 
 HERE = Path(__file__).parent
 LOCK = HERE.parents[1]/'data/morphology-evidence/sources/source-lock.json'
@@ -203,7 +207,7 @@ class MassTests(unittest.TestCase):
         atomic_json(release/'CHECKPOINT.json',dict(status='PASS',catalog=dict(build_id='TEST-EXCERPTS-NOT-FULL-CORPUS'),
             partitions={'REAL-EXCERPTS-TEST-ONLY':dict(build_id='test-only-excerpts',manifest_sha256=hash_file(snapshot/'manifest.json'))}))
         destination=self.root/'built-aux'
-        with patch('mass_source.gzip.open',side_effect=RuntimeError('injected interruption after native transaction')):
+        with patch('associativvordes.candidate_search.mass_source.gzip.open',side_effect=RuntimeError('injected interruption after native transaction')):
             with self.assertRaises(RuntimeError):
                 prepare_auxiliary(self.inputs.source,release,self.inputs.registry,LOCK,destination)
         db=sqlite3.connect(destination/'aux.sqlite')
@@ -250,8 +254,8 @@ class MassTests(unittest.TestCase):
         self.assertTrue(any(e['reason']=='negative_seed_not_expanded' for e in events))
 
     def test_preparation_registry_reuse_checks_policy_and_database(self):
-        from mass_ci import prepare_registry_input, LEGACY
-        import mass_registry
+        from associativvordes.candidate_search.mass_ci import prepare_registry_input, LEGACY
+        from associativvordes.candidate_search import mass_registry
         path=self.inputs.registry.parent/'REGISTRY.json'
         receipt=json.loads(path.read_text())
         receipt.update(commit=mass_registry.COMMIT,legacy_revision=LEGACY,
@@ -360,8 +364,8 @@ class MassTests(unittest.TestCase):
 
 class StoreTests(unittest.TestCase):
     def test_full_runner_rejects_incompatible_runtime_before_build(self):
-        from mass_ci import runtime_preflight
-        with patch('mass_ci.platform.python_version',return_value='0.0.0-test-only'):
+        from associativvordes.candidate_search.mass_ci import runtime_preflight
+        with patch('associativvordes.candidate_search.mass_ci.platform.python_version',return_value='0.0.0-test-only'):
             with self.assertRaisesRegex(ValueError,'certified runtime mismatch'):
                 runtime_preflight()
 

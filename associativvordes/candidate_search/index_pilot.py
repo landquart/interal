@@ -4,6 +4,10 @@
 The existing seven-family bound and manual decision guards remain authoritative.
 No new spelling join is inserted into the morphological graph.
 """
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import argparse
 from functools import lru_cache
 import gzip
@@ -13,13 +17,13 @@ from pathlib import Path
 import sqlite3
 import sys
 import time
-sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'importers'))
-from scale_index import Index, bid
-from certify_corpus import atomic_json
-from morphology_import import hash_file, digest
-from search import Graph, Queue, build, sha
-from build_graph import load_registry, ingest, align
-from project_store import verified_project
+pass
+from associativvordes.importers.scale_index import Index, bid
+from associativvordes.importers.certify_corpus import atomic_json
+from associativvordes.importers.morphology_import import hash_file, digest
+from associativvordes.candidate_search.search import Graph, Queue, build, sha
+from associativvordes.evidence_graph.build_graph import load_registry, ingest, align
+from associativvordes.candidate_search.project_store import verified_project
 
 FAMILIES=['family:ocul','family:ped','family:alter','family:regul','family:creat','family:nat','family:inter']
 

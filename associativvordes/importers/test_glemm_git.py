@@ -1,11 +1,15 @@
+if not __package__:
+    import sys as _bootstrap_sys
+    from pathlib import Path as _BootstrapPath
+    _bootstrap_sys.path.insert(0,str(next(p for p in _BootstrapPath(__file__).resolve().parents if p.name=='associativvordes').parent))
 import json
 from pathlib import Path
 import subprocess
 import tempfile
 import unittest
-from fetch_glemm_git import export
-from morphology_import import validate_lock
-import test_glemm_cache as cachefixtures
+from associativvordes.importers.fetch_glemm_git import export
+from associativvordes.importers.morphology_import import validate_lock
+from associativvordes.importers import test_glemm_cache as cachefixtures
 
 class GitExportTests(unittest.TestCase):
     def make_upstream(self,root,raw,path,lock):

@@ -1,0 +1,592 @@
+✔ empty gold and no removals produce null precision, not perfect safety (20.014287ms)
+✔ removal precision, correct-link false-removal risk and detection recall have different denominators (14.11368ms)
+✔ linked dependence clusters cross languages and cases; they never become family merges (27.694517ms)
+✔ human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review (27.362266ms)
+✔ a qualified exact structural scope never grants semantic or production authority (25.369742ms)
+✖ 4367043681: NOT_RUN has no performance estimates even with complete gold (22.397621ms)
+✖ 4367043683: resolved human answers require an explicit relation (33.088349ms)
+✖ 4367043688: missing required bundle sources fail before publication (32.643067ms)
+✖ 4367043686: documentary additions share existing family clusters and rebind all cards (53.70765ms)
+✖ 4362693699: native structured membership scopes reach the proof gate (20.338646ms)
+✖ 4359927831: diagnostic reader checks every output pinned by manifest (29.046355ms)
+✖ 4363144017: archive rejects a missing configured source (58.788971ms)
+✖ 4363143999: cached profile verification hashes the current SQLite bytes (82.794876ms)
+✖ 4362693732: scanner refuses output inside its immutable snapshot before writing (37.171997ms)
+✖ 4367043678: historical blind tasks retain observed word and locked locator (45.505111ms)
+✖ 4365260804: rehashed dictionary receipts are rejected (34.279896ms)
+✖ 4362693707: historical evidence-count mismatch is fatal (114.297129ms)
+✖ 4368023514: changed production tree has unknown current counts (38.63288ms)
+✖ 4368023519: rehashed package cannot omit required source inventory (31.33753ms)
+✖ 4354484829: full driver executes and compares all auxiliary audits (77.070274ms)
+✖ 4359927848: suffix exposure pins normalization and morph construction (121.379077ms)
+✖ 4362693719: actual surface checkpoints bind imported decoding and history (2384.572762ms)
+✖ 4362693741: consistent hashes cannot hide an incorrect family disposition (2270.922319ms)
+✖ 4363144007: morphology checkpoints include the actual selection classifier (1986.187066ms)
+✖ 4363656925: structural JSON plan bytes are verified with NDJSON inputs (66.490852ms)
+✔ 4362455083: fresh apply and idempotence receipts substantiate different operations (33.469899ms)
+✔ 4362455091: both complete issue exports resolve and match their report counts (25.420797ms)
+✖ 4359323435: source-row body identity cannot differ from its evidence key (34.325696ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 7
+ℹ fail 21
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7584.612758
+
+✖ failing tests:
+
+test at tests/associative-cleanup-quality.test.mjs:75:1
+✖ 4367043681: NOT_RUN has no performance estimates even with complete gold (22.397621ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 6, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:2:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:75:85)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/associative-cleanup-quality.test.mjs:82:1
+✖ 4367043683: resolved human answers require an explicit relation (33.088349ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 9, in <module>
+  AssertionError: missing relation accepted
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:2:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:82:76)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/associative-cleanup-quality.test.mjs:93:1
+✖ 4367043688: missing required bundle sources fail before publication (32.643067ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 9, in <module>
+  AssertionError: missing inputs silently archived
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:2:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:93:80)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/associative-cleanup-quality.test.mjs:105:1
+✖ 4367043686: documentary additions share existing family clusters and rebind all cards (53.70765ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 17, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:2:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/associative-cleanup-quality.test.mjs:105:98)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:4:1
+✖ 4362693699: native structured membership scopes reach the proof gate (20.338646ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 6, in <module>
+    File "/tmp/interal-audit-old/associativvordes/surface_cleanup/policy.py", line 28, in authorize
+      if not proposed_ids or len(set(proposed_ids))!=len(proposed_ids):return False
+                                 ^^^^^^^^^^^^^^^^^
+  TypeError: unhashable type: 'list'
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:4:81)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:13:1
+✖ 4359927831: diagnostic reader checks every output pinned by manifest (29.046355ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 13, in <module>
+  AssertionError: unpinned summary accepted
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:13:81)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:27:1
+✖ 4363144017: archive rejects a missing configured source (58.788971ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 7, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:27:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:36:1
+✖ 4363143999: cached profile verification hashes the current SQLite bytes (82.794876ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 16, in <module>
+  AssertionError: corrupt profile accepted through cached verification
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:36:84)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:53:1
+✖ 4362693732: scanner refuses output inside its immutable snapshot before writing (37.171997ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 8, in <module>
+    File "/tmp/interal-audit-old/associativvordes/surface_cleanup/run.py", line 16, in scan
+      output.mkdir(parents=True,exist_ok=True);lock=load(snapshot/'SNAPSHOT.json');verify(snapshot,lock)
+                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/tmp/interal-audit-old/associativvordes/structural_cleanup/common.py", line 34, in load
+      def load(path): return json.loads(pathlib.Path(path).read_bytes())
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1019, in read_bytes
+      with self.open(mode='rb') as f:
+           ^^^^^^^^^^^^^^^^^^^^
+    File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+      return io.open(self, mode, buffering, encoding, errors, newline)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  FileNotFoundError: [Errno 2] No such file or directory: '/tmp/tmpem3i3iey/snapshot/SNAPSHOT.json'
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:53:92)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:65:1
+✖ 4367043678: historical blind tasks retain observed word and locked locator (45.505111ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 9, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:65:87)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:78:1
+✖ 4365260804: rehashed dictionary receipts are rejected (34.279896ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 21, in <module>
+  AssertionError: fabricated dictionary statement accepted
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:78:66)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:100:1
+✖ 4362693707: historical evidence-count mismatch is fatal (114.297129ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 13, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:100:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:114:1
+✖ 4368023514: changed production tree has unknown current counts (38.63288ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 4, in <module>
+    File "/tmp/interal-audit-old/associativvordes/v5_release_control/package.py", line 74, in compile_package
+      config=loads(cp.read_bytes());records=inventory(repo,config)
+                                            ^^^^^^^^^^^^^^^^^^^^^^
+    File "/tmp/interal-audit-old/associativvordes/v5_release_control/package.py", line 55, in inventory
+      p=safe_file(repo,name);row=dict(path=name,bytes=p.stat().st_size,sha256=file_sha(p))
+        ^^^^^^^^^^^^^^^^^^^^
+    File "/tmp/interal-audit-old/associativvordes/v5_release_control/package.py", line 46, in safe_file
+      require(target.resolve().is_relative_to(root),'input outside repository')
+    File "/tmp/interal-audit-old/associativvordes/release_control/control.py", line 58, in require
+      if not ok: raise ValueError(reason)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  ValueError: input outside repository
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:114:75)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:121:1
+✖ 4368023519: rehashed package cannot omit required source inventory (31.33753ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 5, in <module>
+    File "/tmp/interal-audit-old/associativvordes/v5_release_control/package.py", line 74, in compile_package
+      config=loads(cp.read_bytes());records=inventory(repo,config)
+                                            ^^^^^^^^^^^^^^^^^^^^^^
+    File "/tmp/interal-audit-old/associativvordes/v5_release_control/package.py", line 55, in inventory
+      p=safe_file(repo,name);row=dict(path=name,bytes=p.stat().st_size,sha256=file_sha(p))
+        ^^^^^^^^^^^^^^^^^^^^
+    File "/tmp/interal-audit-old/associativvordes/v5_release_control/package.py", line 46, in safe_file
+      require(target.resolve().is_relative_to(root),'input outside repository')
+    File "/tmp/interal-audit-old/associativvordes/release_control/control.py", line 58, in require
+      if not ok: raise ValueError(reason)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^
+  ValueError: input outside repository
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:121:79)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:134:1
+✖ 4354484829: full driver executes and compares all auxiliary audits (77.070274ms)
+  AssertionError [ERR_ASSERTION]: {"reproduced": true, "census_sha256": "same", "verdict": "TEST_ONLY"}
+  Traceback (most recent call last):
+    File "<string>", line 17, in <module>
+  AssertionError: []
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:134:79)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:152:1
+✖ 4359927848: suffix exposure pins normalization and morph construction (121.379077ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 14, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:152:82)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:167:1
+✖ 4362693719: actual surface checkpoints bind imported decoding and history (2384.572762ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 8, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:167:86)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:176:1
+✖ 4362693741: consistent hashes cannot hide an incorrect family disposition (2270.922319ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 17, in <module>
+  AssertionError: ('{"bucket":"1f","families":2,"memberships":2}\n{"bucket":"3f","families":2,"memberships":2}\n{"bucket":"5f","families":2,"memberships":2}\n{"bucket":"7f","families":2,"memberships":2}\n{"bucket":"9f","families":2,"memberships":2}\n{"bucket":"bf","families":2,"memberships":2}\n{"bucket":"df","families":2,"memberships":2}\n{"bucket":"ff","families":2,"memberships":2}\n{"schema":"v5-surface-independent-verification/1","status":"PASS","buckets":256,"families":2,"memberships":2,"candidate_families":2,"candidate_memberships":2,"every_affected_id_checked":true,"every_candidate_full_scope_sha256_checked":true,"production_writes":0}\n', '')
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:176:86)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:195:1
+✖ 4363144007: morphology checkpoints include the actual selection classifier (1986.187066ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 20, in <module>
+  AssertionError
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:195:87)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:217:1
+✖ 4363656925: structural JSON plan bytes are verified with NDJSON inputs (66.490852ms)
+  AssertionError [ERR_ASSERTION]: a changed structural JSON plan was accepted
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:230:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 0,
+    operator: 'notStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/pr-review-guards.test.mjs:251:1
+✖ 4359323435: source-row body identity cannot differ from its evidence key (34.325696ms)
+  AssertionError [ERR_ASSERTION]: Traceback (most recent call last):
+    File "<string>", line 15, in <module>
+  AssertionError: forged raw-row identity accepted
+  
+  
+  1 !== 0
+  
+      at py (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:3:83)
+      at TestContext.<anonymous> (file:///tmp/interal-audit-old/tests/pr-review-guards.test.mjs:251:85)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 1,
+    expected: 0,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
