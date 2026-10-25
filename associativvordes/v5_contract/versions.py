@@ -15,7 +15,7 @@ SCHEMA='interal-v5-contract/1'
 NAMESPACES={'research-v5','TEST_ONLY-v5'}
 COMPONENTS={
  'importers':'importers','pilot_quality':'pilot_evaluation','legacy_dry_run':'mass_dry_run',
- 'normative':'normative','baseline':'v5_baseline','history':'history_registry',
+ 'identity_mapping':'identity_mapping','normative':'normative','baseline':'v5_baseline','history':'history_registry',
  'adapter':'v5_adapter','diagnostics':'v5_diagnostics','structural':'structural_cleanup',
  'surface':'surface_cleanup','morphology':'morphology_cleanup','morphology_review':'morphology_review',
  'national':'national_correspondences','semantic':'semantic_cleanup','boundary':'family_boundary',
@@ -24,14 +24,14 @@ COMPONENTS={
  'review':'review','annotation':'auto_annotation','contract':'v5_contract','integration':'v5_integration'}
 # Data-flow dependencies, separate from the mechanically collected Python/JS imports.
 DAG={'pilot_quality':['evidence','review'],'legacy_dry_run':['annotation','pilot_quality'],'importers':[],'normative':[],'baseline':['normative'],'history':['baseline','normative'],
- 'adapter':['baseline','history'],'diagnostics':['adapter','history'],
+ 'identity_mapping':['adapter','importers'],'adapter':['baseline','history'],'diagnostics':['adapter','history'],
  'structural':['baseline','diagnostics','history'],'surface':['diagnostics','structural','history'],
  'morphology':['adapter','surface'],'morphology_review':['morphology','history'],
  'national':['normative','morphology_review'],'semantic':['national','adapter'],
  'boundary':['semantic','diagnostics'],'quality_sample':['boundary','national','semantic'],'quality':['quality_sample','decision'],
  'dry_run':['quality','structural','baseline'],'release':['dry_run','quality','history','normative'],
  'release_package':['release'],'evidence':['adapter','importers'],'candidates':['evidence'],
- 'review':['adapter','evidence','candidates'],'review_event':['review'],'decision':['review_event','normative'],'preview':['decision','quality'],'release_gate':['preview','release'],'annotation':['review'],'contract':[],'integration':['contract','release']}
+ 'review':['adapter','evidence','candidates'],'review_event':['review'],'decision':['review_event','normative','identity_mapping'],'preview':['decision','quality'],'release_gate':['preview','release'],'annotation':['review'],'contract':[],'integration':['contract','release']}
 def canonical(x):return json.dumps(x,ensure_ascii=False,sort_keys=True,separators=(',',':'),allow_nan=False).encode()
 def digest(x):return hashlib.sha256(canonical(x)).hexdigest()
 def file_sha(p):

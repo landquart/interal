@@ -33,6 +33,10 @@ def decision(d,contract,trust=None,scope=None,confirmed=False):
   h=contract['history']
   blocked=not h['coverage_complete'] or h['conflicts']>0 or any(all(d['scope'].get(k)==r[k] for k in ('family_id','language','lemma_id')) for r in h.get('fixture',{}).get('constraints',[]))
   if blocked:result=dict(decision='UNRESOLVED',reason='HISTORY_SCOPE_OR_COVERAGE_BLOCKED')
+ if confirmed or result['decision'].startswith('CONFIRMED_'):
+  from associativvordes.identity_mapping.model import require_binding
+  try:require_binding(d,contract,trust)
+  except ValueError as error:raise Blocked(str(error))
  if confirmed:require(result['decision']==d['decision'] and result['decision'] in {'CONFIRMED_MEMBER','CONFIRMED_NONMEMBER'},'normative evidence/authority not confirmed')
  return result
 
