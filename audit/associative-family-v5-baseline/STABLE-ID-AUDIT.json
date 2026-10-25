@@ -1,0 +1,18 @@
+{
+  "algorithm": "stableLemmaId: lowercase und-equivalent normalized inputs, NFC fields, NUL separator, SHA256 first 20 hex",
+  "schema_version": 1,
+  "tables": {
+    "current_lemmas": {
+      "checked": 4924281,
+      "mismatches": 0,
+      "samples": []
+    },
+    "source_lemmas": {
+      "checked": 4924980,
+      "mismatches": 0,
+      "samples": []
+    }
+  },
+  "unicode_version": "15.0.0",
+  "verdict": "PASS"
+}
