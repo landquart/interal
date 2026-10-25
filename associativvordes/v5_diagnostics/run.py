@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Whole-corpus diagnostics on disk, transactional bucket checkpoints and exact IDs."""
+import uuid
 import argparse,fcntl,gzip,hashlib,importlib.util,itertools,json,os,resource,sqlite3,subprocess,sys,time,zlib
 from collections import Counter
 from pathlib import Path
@@ -10,7 +11,9 @@ from common import atomic,filehash,connect,read,sha
 from adapter import Adapter
 from bridge import history_reader
 SCHEMA='v5-global-diagnostics/1'
-def code_lock():return {p.name:filehash(p) for p in Path(__file__).parent.glob('*.py') if not p.name.startswith('test') }|{'policy.json':filehash(Path(__file__).with_name('policy.json'))}
+sys.path.insert(0,str(ROOT))
+from associativvordes.research_integrity import code_lock as research_code_lock
+def code_lock():return research_code_lock()|{'associativvordes/v5_diagnostics/policy.json':filehash(Path(__file__).with_name('policy.json'))}
 def setup(db):
  db.executescript('''CREATE TABLE IF NOT EXISTS state(key TEXT PRIMARY KEY,value TEXT);
  CREATE TABLE IF NOT EXISTS checkpoints(bucket TEXT PRIMARY KEY,receipt TEXT);
@@ -51,7 +54,7 @@ def ingest(db,projection,receipt,crash=0):
     mf.update(flags);unknown_types+=int(not view['types']);identity=canonical([fid,lang,lid]);memberids.update(identity+b'\n');fp.update(canonical([lang,lid])+b'\n')
     rows.append((fid,lang,lid,ordinal,canonical(view['types']).decode(),canonical(flags).decode(),sha(canonical(r))))
     if base and len(base)<=POLICY['ending_proxy']['max_base_length']:
-     word=normal(r.get('normalized',r.get('word','')))
+     word=normal(r.get('search_form',r.get('normalized',r.get('word',''))))
      if word.endswith(base) and len(word)>len(base):ending_counts[lang]+=1;prefixes.add((lang,word[:-len(base)]))
     n+=1
     if crash and n>=crash:os._exit(75)
@@ -141,7 +144,7 @@ def publish(db,out,identity):
  for t,cols,order in [('families','*','id'),('members','*','family,language,lemma'),('flags','*','flag,family'),('patterns','*','kind,key'),('priority','*','family'),('alias_targets','*','alias,family'),('history','*','id'),('history_ids','*','family,language,lemma,decision')]:logical[t]=row_hash(db,t,cols,order)
  coverage=dict(schema='v5-diagnostic-coverage/1',status='PASS',counts=actual,each_family_one_primary_category=sum(v['families'] for v in summary['categories'].values())==actual['families'],each_membership_classified_or_explicitly_unknown=True,exact_id_stream_comparison=True,buckets=receipts,logical_tables=logical,overlapping_flags_not_additive=True,production_writes=0)
  atomic(out/'COVERAGE.json',canonical(coverage)+b'\n')
- manifest=dict(schema=SCHEMA,complete=True,identity=identity,outputs={n:filehash(out/n) for n in ['SUMMARY.json','COVERAGE.json']},database='registry.sqlite',database_sha256=filehash(out/'registry.sqlite'),logical_tables=logical,authoritative=False)
+ manifest=dict(schema=SCHEMA,complete=True,identity=identity,execution=json.loads(db.execute("SELECT value FROM state WHERE key='execution'").fetchone()[0]),outputs={n:filehash(out/n) for n in ['SUMMARY.json','COVERAGE.json']},database='registry.sqlite',database_sha256=filehash(out/'registry.sqlite'),logical_tables=logical,authoritative=False)
  manifest['version']=digest(manifest);atomic(out/'MANIFEST.json',canonical(manifest)+b'\n');return summary
 
 def run(projection,out,crash=0):
@@ -154,6 +157,14 @@ def run(projection,out,crash=0):
   if not m['complete'] or len(m['shards'])!=256:raise ValueError('full certified projection required')
   h,history_sha=history_reader();identity=dict(projection_version=m['version'],projection_manifest_sha256=filehash(projection/'MANIFEST.json'),source_commit=m['source_commit'],history_snapshot_sha256=history_sha,code=frozen,expected_counts=m['counts'])
   db=connect(out/'registry.sqlite');setup(db)
+  instance=db.execute("SELECT value FROM state WHERE key='execution'").fetchone()
+  if instance:
+   execution=json.loads(instance[0])
+   if execution['output']!=str(out):raise ValueError('copied execution is not a fresh run')
+  else:
+   if db.execute('SELECT 1 FROM checkpoints LIMIT 1').fetchone():raise ValueError('legacy checkpoints lack execution provenance; fresh output required')
+   execution=dict(run_id=str(uuid.uuid4()),output=str(out))
+   with db:db.execute('INSERT INTO state VALUES(?,?)',('execution',canonical(execution).decode()))
   prior=db.execute("SELECT value FROM state WHERE key='identity'").fetchone()
   if prior and json.loads(prior[0])!=identity:raise ValueError('dependency change requires fresh output')
   with db:db.execute('INSERT OR IGNORE INTO state VALUES(?,?)',('identity',canonical(identity).decode()))

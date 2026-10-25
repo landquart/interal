@@ -25,9 +25,12 @@ def authorize(operation,actual_ids,proposed_ids,proof,history_result,trusted_ver
     """Rejection proof gate. This module cannot create trusted proof receipts."""
     if operation not in OPERATIONS:raise ValueError('unsupported operation')
     if operation not in {'REJECT_ENTIRE_FAMILY','REMOVE_EXACT_MEMBERSHIPS'}:return False
-    if not proposed_ids or len(set(proposed_ids))!=len(proposed_ids):return False
-    if operation=='REJECT_ENTIRE_FAMILY' and set(actual_ids)!=set(proposed_ids):return False
-    if not set(proposed_ids)<=set(actual_ids):return False
+    try:
+        actual={canonical(i) for i in actual_ids};proposed={canonical(i) for i in proposed_ids}
+    except (ValueError,TypeError):return False
+    if not proposed_ids or len(proposed)!=len(proposed_ids):return False
+    if operation=='REJECT_ENTIRE_FAMILY' and actual!=proposed:return False
+    if not proposed<=actual:return False
     # National correspondence protection is mandatory for the entire exact scope.
     # The configured checker, never an input flag, must bind the complete ID set.
     if not callable(correspondence_checker):return False

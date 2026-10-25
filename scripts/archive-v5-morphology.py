@@ -18,6 +18,7 @@ if out.is_relative_to(ROOT) or restore.is_relative_to(ROOT) or out.exists() or r
 files={}
 for entry in json.loads(pathlib.Path(a.config).read_text())['entries']:
  source=pathlib.Path(entry['source']).resolve();prefix=safe_name(entry['prefix'])
+ if not source.exists() or not (source.is_file() or source.is_dir()):raise ValueError('missing or unsupported required archive source')
  for f in sorted(source.rglob('*')) if source.is_dir() else [source]:
   if not f.is_file():continue
   if f.is_symlink() or '.partial' in f.parts or '.partial' in f.name:raise ValueError('unpublished or linked input')

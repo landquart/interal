@@ -26,6 +26,7 @@ for(const pattern of catalog.patterns){
   }
   if(h.digest('hex')!==pattern.member_list_sha256)continue;
   const evidenceEqual=Object.keys(evidence).length===Object.keys(pattern.expected_evidence||{}).length&&Object.entries(pattern.expected_evidence||{}).every(([k,n])=>evidence[k]===n);
+  if(!evidenceEqual)throw Error('historical evidence counts mismatch');
   verified={family_id:pattern.family_id,language:pattern.language,source_path:pattern.source_path,source_pointer:pattern.pointer,verified_complete_rows:rows.length,before_blob:blob,member_list_sha256:pattern.member_list_sha256,evidence_counts_match:evidenceEqual,historical_decision_id:d.id,authority:d.authority,current_scope_transfer_allowed:false,independent_linguistic_gold:false};
   break;
  }
