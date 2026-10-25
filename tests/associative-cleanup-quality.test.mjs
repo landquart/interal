@@ -70,3 +70,79 @@ assert qualify(p)['status']=='INSUFFICIENT_EVIDENCE'
 assert qualify(dict(p,operation_class='SEMANTIC_EXCLUSION'),receipt)['status']=='HUMAN_REVIEW_REQUIRED'
 assert qualify(dict(p,basis='MODEL_CONFIDENCE_ONLY'),receipt)['status']=='REJECTED_POLICY'
 `));
+
+
+test('4367043681: NOT_RUN has no performance estimates even with complete gold',()=>py(String.raw`
+from associativvordes.cleanup_quality.statistics import evaluate
+rows=[dict(weight=1,cluster=str(i),prediction='NOT_RUN',gold='VALID' if i%2 else 'INVALID') for i in range(40)]
+s=evaluate(rows,repetitions=50)
+for k in ['precision_exclusions','false_removal_rate','recall_erroneous_existing_links']:
+ assert s[k]['value'] is None and s[k]['ci95_linked_cluster_bootstrap'] is None
+`));
+test('4367043683: resolved human answers require an explicit relation',()=>py(String.raw`
+from associativvordes.cleanup_quality.human import validate
+c=dict(id='c',content_sha256='h',protocol_sha256='p',language='en')
+r=dict(a=dict(kind='human',authorization_ref='TEST_ONLY',qualified_languages=['en'],roles=['A','arbiter']))
+for role in ['A','arbiter']:
+ j=dict(actor_id='a',action='arbitrate' if role=='arbiter' else 'independent_review',case_id='c',case_sha256='h',protocol_sha256='p',blind_to_predictions=True,blind_to_other_review=True,verdict='VALID',pos='NOUN',sense='x',reason='TEST_ONLY',sources=[dict(locator='fixture',finding='x',publisher='fixture')],reviewed_at='2026-10-25T00:00:00Z')
+ try:validate(j,c,r,role)
+ except ValueError:pass
+ else:raise AssertionError('missing relation accepted')
+ j['relation']='derivation';assert validate(j,c,r,role)==j
+`));
+test('4367043688: missing required bundle sources fail before publication',()=>py(String.raw`
+import tempfile
+from pathlib import Path
+from associativvordes.cleanup_quality.bundle import pack
+with tempfile.TemporaryDirectory() as t:
+ p=Path(t);missing=p/'missing';archive=p/'archive.zip'
+ try:pack(archive,missing,missing,missing,missing,missing)
+ except (ValueError,FileNotFoundError):pass
+ else:raise AssertionError('missing inputs silently archived')
+ assert not archive.exists()
+`));
+
+test('4367043686: documentary additions share existing family clusters and rebind all cards',()=>py(String.raw`
+import tempfile,json
+from pathlib import Path
+from associativvordes.cleanup_quality.supplement import run
+from associativvordes.cleanup_quality.evaluate import release,rows
+from associativvordes.family_boundary.core import stream,save,digest,sha
+with tempfile.TemporaryDirectory() as td:
+ p=Path(td);source=p/'source';source.mkdir();cases=[]
+ for dataset,lid in [('probability','one'),('challenge','two')]:
+  c=dict(id=lid,dataset=dataset,split='holdout',family_id='family:manu',language='fr',lemma_id=lid,word='manucure',cluster='TEST_ONLY_OLD_CLUSTER',protocol_sha256='fixture',source_record=dict(word='manucure'),case_kind='EXISTING_MEMBERSHIP');c['content_sha256']=digest(c);cases.append(c)
+ for dataset,name in [('probability','PROBABILITY.ndjson.gz'),('challenge','CHALLENGE.ndjson.gz')]:stream(source/name,(c for c in cases if c['dataset']==dataset))
+ for role in ['A','B']:stream(source/f'BLIND-{role}.ndjson.gz',(dict(task_id=role+c['id'],role=role,case_id=c['id'],case_sha256=c['content_sha256'],source_record=c['source_record']) for c in cases))
+ stream(source/'PREDICTIONS.ndjson.gz',[])
+ save(source/'SAMPLING-DESIGN.json',dict(strata={'fr':dict(N=10,n=1)}));save(source/'HOLDOUT.json',dict(challenge=1,known_historical_exposure_units=0))
+ for name in ['RAW-HUMAN-REVIEWS.ndjson','RAW-ADJUDICATIONS.ndjson']:(source/name).write_text('')
+ save(source/'MANIFEST.json',dict(identity={},case_set_sha256=digest(cases),probability_cases=1,challenge_cases=1,files=[dict(path=f.name,bytes=f.stat().st_size,sha256=sha(f)) for f in sorted(source.iterdir())]))
+ out=p/'out';run(source,out);new,m=release(out);linked=[c for c in new if c['family_id']=='family:manu'];assert len(linked)>2 and len({c['cluster'] for c in linked})==1
+ index={c['id']:c for c in new}
+ for role in ['A','B']:
+  for card in rows(out/f'BLIND-{role}.ndjson.gz'):assert card['case_sha256']==index[card['case_id']]['content_sha256']
+ for pred in rows(out/'PREDICTIONS.ndjson.gz'):assert pred['case_sha256']==index[pred['case_id']]['content_sha256']
+`));
+
+test('4367062598: verifier rejects 1599 per language before opening the population index',()=>py(String.raw`
+from unittest.mock import patch
+from pathlib import Path
+from associativvordes.cleanup_quality import verify as v
+from associativvordes.family_boundary.core import digest,read
+protocol=read(v.HERE/'protocol.json');cases=[]
+for lang in protocol['probability_design']['languages']:
+ for i in range(1599):
+  raw={'TEST_ONLY':i};key=(lang+str(i),lang,str(i),digest(raw))
+  cases.append(dict(dataset='probability',family_id=key[0],language=lang,lemma_id=key[2],record_sha256=key[3],source_record=raw,selection_hash=digest([protocol['seed'],*key])))
+manifest=dict(case_set_sha256='TEST',identity=dict(index_version='TEST'))
+def fixture_read(p):
+ if Path(p).name=='protocol.json':return protocol
+ if Path(p).name=='METRICS.json':return dict(release_sha256='TEST_HASH')
+ if Path(p).name=='MANIFEST.json':return dict(version='TEST',database_sha256='TEST_HASH')
+ raise AssertionError(str(p))
+with patch.object(v,'release',return_value=(cases,manifest)),patch.object(v,'sha',return_value='TEST_HASH'),patch.object(v,'read',side_effect=fixture_read),patch.object(v.sqlite3,'connect',side_effect=AssertionError('undersized sample reached population index')):
+ try:v.verify('/TEST/a','/TEST/b','/TEST/index','/TEST/ea','/TEST/eb','/TEST/out')
+ except ValueError as e:assert str(e)=='preregistered per-language sample size mismatch'
+ else:raise AssertionError('1599/lang admitted')
+`));

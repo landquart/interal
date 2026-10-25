@@ -1,0 +1,563 @@
+{
+  "status": "PASS",
+  "fetched_commit": "3d71828f9bfa7ce6ea5f1814442a6604cb180c96",
+  "command": "git fetch --no-tags origin 3d71828f9bfa7ce6ea5f1814442a6604cb180c96",
+  "captured_generation_files_independently_matched_to_fetched_git_tree": 111,
+  "files": [
+    {
+      "path": ".github/workflows/build-associative-exhaustive-families.yml",
+      "git_blob": "3afbbf256b1f5d95941b495c14e93d2464ced6ac",
+      "sha256": "c3faae72d453074b911833e46a0f23533510091fb9fdf9eae5669a95ad0a31af"
+    },
+    {
+      "path": "associativvordes/js/affix-boundary-index.js",
+      "git_blob": "0121132c4d8f3ec1dd056ad2c89ca6647a63da88",
+      "sha256": "621533ce11c7208fe1e57d249a498d303f09fa318795fb15c725f5bfd7a46cd1"
+    },
+    {
+      "path": "associativvordes/js/affix-search-config.js",
+      "git_blob": "93ae625444eacf268d9a04986f7f0f828bb81473",
+      "sha256": "ca1b6d3b4a025c0557aaab51eaa247aae018df00c3ea3ebdcb7029d3a16d6c59"
+    },
+    {
+      "path": "associativvordes/js/association-analyzer.js",
+      "git_blob": "c09f97d893b195ac3bc29439d6269b42b2c056a1",
+      "sha256": "1e3b0b47812b67aba0fec3f0deba56f0efe3f867b858c22905f1fdbf4c81b24d"
+    },
+    {
+      "path": "associativvordes/js/associative-calculation-runner.js",
+      "git_blob": "d4528da344a76b4fb7f3e44bac1b54827920d464",
+      "sha256": "c550f8559d9c861ef59c151dc017c587ce1e5e873b5dacdc73cb30da2181fd0b"
+    },
+    {
+      "path": "associativvordes/js/associative-family-registry.js",
+      "git_blob": "042e2bdf9582acf7d2d9c33a832d178e26147446",
+      "sha256": "64e1849c5798d0798421eedcd959481b17d8dc98855bbff3bb6cd19ba975c313"
+    },
+    {
+      "path": "associativvordes/js/associative-state.js",
+      "git_blob": "c9bd88284300e9dfb96c18756a93880425a152e0",
+      "sha256": "765e5f423858268f3711638e2a12f272ded26c98aab22dc0f6650912a2169fcf"
+    },
+    {
+      "path": "associativvordes/js/candidate-finder.js",
+      "git_blob": "204cba4a100212bd7073da61c0d5dad176555475",
+      "sha256": "bf5ced82c282a7b4e38bf832359f74609872d037bdc5101a1c5627c612d9b126"
+    },
+    {
+      "path": "associativvordes/js/candidate-index-loader.js",
+      "git_blob": "c3e8fe8bc4c437d3c4671cb557ec7547be92ab77",
+      "sha256": "7dc36fd7f4ec425ae30dd2d57939584c45d3160ff043f49245618b22a62c4c7b"
+    },
+    {
+      "path": "associativvordes/js/candidate-integrity.js",
+      "git_blob": "a01a0cb7dde5e949fa482cb7fd3e657b4b7fbd7d",
+      "sha256": "451b339e331025d2130cc2e540939e1b61e3a1277d42681399c04d003d7a69d9"
+    },
+    {
+      "path": "associativvordes/js/candidate-model-family.js",
+      "git_blob": "7afa511ab01bce2c6c64133917510a66f034693b",
+      "sha256": "64b37bc9c4d1b4e2d359809a07d4f68b450e150804a3786e53742e8f9e4d6964"
+    },
+    {
+      "path": "associativvordes/js/candidate-static-search.js",
+      "git_blob": "14eb6a7507851dd2be1043b2d4f912dcb7170276",
+      "sha256": "6d3b0159a5b664440f1f75cf550764ce6f31012805cccbd874b5764c3a5402c1"
+    },
+    {
+      "path": "associativvordes/js/card-metadata.js",
+      "git_blob": "db2607fcfd60de3cdcdee27f4f3ef045bae49ecf",
+      "sha256": "e14fc3661169bb02f95ce402118badcf94969e97c3d9437359aff0350d47ed81"
+    },
+    {
+      "path": "associativvordes/js/config-frequency-sources.js",
+      "git_blob": "eb8c022ecc3d4add45cfb985d63ddf0c503d30e6",
+      "sha256": "275da159e7790297704d7fc33ccf44a48b655a8110407a8cb81068dfe024b22a"
+    },
+    {
+      "path": "associativvordes/js/family-index-loader.js",
+      "git_blob": "ecfd004f805d33001a00363569525082e05c2cfe",
+      "sha256": "ea3c33502086f2d2470abf8f24dd929a0d51c45675c5408b3010e191403867b4"
+    },
+    {
+      "path": "associativvordes/js/frequency-loader.js",
+      "git_blob": "c8b5d12b75918f3d8f9bb5c967f86f41139267b8",
+      "sha256": "fd4642980829546fda663602b8436c1045225133c57bd3d0f5c719190b34a9a5"
+    },
+    {
+      "path": "associativvordes/js/language-source-descriptor.js",
+      "git_blob": "0c79c5f7fc9942b961ce411f5c5b50e1aa80a004",
+      "sha256": "d3d3b8bd92f2303e315dbe7d2b8a4187f673e9a33e0b05af015edaba32bb7ac1"
+    },
+    {
+      "path": "associativvordes/js/morpheme-model-parser.js",
+      "git_blob": "dc3bb96d5619b30743994945bb2634b4498fccc6",
+      "sha256": "bdd77d100cd6a57c1b6c74544833d1ecbe99d4e10013ffa71aab5354af1d6f17"
+    },
+    {
+      "path": "associativvordes/js/morphology/analysis-ranker.js",
+      "git_blob": "a941e8193a96e7479862364fac4f72011d760fc5",
+      "sha256": "bfb0606052a847fe13ea97d61ef7af02603d09fab50af4de9af078a428cf5fbe"
+    },
+    {
+      "path": "associativvordes/js/morphology/analyzer.js",
+      "git_blob": "ad6b1b2b75d6a0e8c003ebe406e7dc9cbe4b29eb",
+      "sha256": "b92c011ebd92fe0b9b76f3548cd82bb3f961d98f76286813f160d75ef72305db"
+    },
+    {
+      "path": "associativvordes/js/morphology/data/contextual-sequences.js",
+      "git_blob": "1090fefbb4ef8c8bbd6d2b33f1158bcab0a7ad31",
+      "sha256": "b074f62c602a48a65086ee6cb62f58de6015f89b9f9ece46cb9ce353d4dc09e1"
+    },
+    {
+      "path": "associativvordes/js/morphology/data/manually-verified-roots.js",
+      "git_blob": "bb092a400fc473de3e0142d3c62db7e43291c2fa",
+      "sha256": "660cbf8cbe5cd5e29ea10168b28132392a98dd5b3da15a26b626a6053e236e9c"
+    },
+    {
+      "path": "associativvordes/js/morphology/data/root-allomorphs.js",
+      "git_blob": "205fe86b1e465723f1a3be056f09785ef9ad034f",
+      "sha256": "1425b4d0c5ff5b3d7508f90ff9f20436e08463c025ad86a6f6eb52743aca883f"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/base.js",
+      "git_blob": "9183f4aaceb420d5823d4a2e653b67205838089d",
+      "sha256": "3b5c4a8e23b67db0a3c651a4cd918da51e76d324ad2dd43827ca3dc351148ff9"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/de.js",
+      "git_blob": "0da5a1594b58d56bcd86d8efc13a0216daa13601",
+      "sha256": "ff52cc947dc7f6c838c3e3dff83d710eb81b6baf812f9d330ef23f95976bf66a"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/en.js",
+      "git_blob": "5ffd9421e6010da9143a8e0548c5cbf2cdd2914f",
+      "sha256": "5c1cf6ef86339cc111edf5402779d00ec4875d55d0d6b0f9ffa5ec9330bedaed"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/es.js",
+      "git_blob": "f05d4b20128c2bb0bf8d2b82c3f36feb4b624d0f",
+      "sha256": "336631d329f9d30f9d79405fcf6f3290f5c00e6187e349857427878d776dc504"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/fr.js",
+      "git_blob": "41f8a1b0ef2b37133c163790746a2ad0cdf2aa24",
+      "sha256": "ab3a4234132eb8a056add75d475c44f7e19024b76e6b29145051779256fece3e"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/index.js",
+      "git_blob": "3a606d9cb3a951cd234b355d437be2f829d4bac9",
+      "sha256": "35cb960a9b1578895d73bb7246b552061ca67ad0419edaa91f800ee82c119031"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/it.js",
+      "git_blob": "48c37eb62924b01118a61d1c8e7dc174cca45362",
+      "sha256": "4582415477fc857a25293b036e183f8b333e12df226e5efeb90eaaa1fbf79d68"
+    },
+    {
+      "path": "associativvordes/js/morphology/languages/ru.js",
+      "git_blob": "b05fb0dc5349403e49284c57fa5e4dce3d2e53b1",
+      "sha256": "043991d9480363933b730f1aaf22ba8ff0a18c9dd8850deb99daf6ae357f128f"
+    },
+    {
+      "path": "associativvordes/js/morphology/lexical-root-index.js",
+      "git_blob": "841cfe53b8c23aa8d90eb607c8f548c62776b79e",
+      "sha256": "e0881e95d9bd7a03206d1c8054ceff0071f516ed85737adfbb8a03be744506e0"
+    },
+    {
+      "path": "associativvordes/js/morphology/model-key.js",
+      "git_blob": "5c6269e9c4d6d083c999e2deca0f4520ba2e7f48",
+      "sha256": "4d3ccec25ec32ed9842152e18e900b5c1316586765916f072579c7654a4f7ab0"
+    },
+    {
+      "path": "associativvordes/js/morphology/morphotactics.js",
+      "git_blob": "1de7ce425e84c078c88b6d7642803d98e084d5e5",
+      "sha256": "39c1d2759cb97f2f6eb17a444de8df11b43df8f0155b810fbd48d9876b312b7d"
+    },
+    {
+      "path": "associativvordes/js/morphology/normalizer.js",
+      "git_blob": "bf3760d308f16721c97265fb782e9d939b72e409",
+      "sha256": "a0ae8e5a300ad85bd53d744900de90e1bb0c8a707c54b9a0ed73269b5b03d94d"
+    },
+    {
+      "path": "associativvordes/js/morphology/segmentation-engine.js",
+      "git_blob": "acf76d28df2c4e3ee97c2cc27048686b718072ad",
+      "sha256": "518a3782bd055b197d9955e39038f6db6b8fa1c195e3931bcc20363db1d0e06c"
+    },
+    {
+      "path": "associativvordes/js/morphology/types.js",
+      "git_blob": "a24cec180aa966ab42fa459b7e3797836c2a4025",
+      "sha256": "9cfc137a176dec178e29e19383af1585f14b55a1c1fb4e2f69d24b801e26a0ff"
+    },
+    {
+      "path": "associativvordes/js/qwen-checkbox-hook.js",
+      "git_blob": "3044360bbe64293d213234b0ffa68a5d5121ac31",
+      "sha256": "80cbedace924416c20a474e44eb563ba02f11e30919463aa3958f42202644c40"
+    },
+    {
+      "path": "associativvordes/js/qwen-client.js",
+      "git_blob": "5c10de45a221c886ec013f9b697c81c91b990f98",
+      "sha256": "6140ecfe68282c752d2bf2f9c633fc84597c66d30a8e0f841b4e0285ea23dc77"
+    },
+    {
+      "path": "associativvordes/js/render-results.js",
+      "git_blob": "ae93c586892d92cdd3911ad1dc74da3b318b96b8",
+      "sha256": "3e38e027441e1cb789e6f9b2f7b593e79b632d752436152cb69c29e7e3daee1c"
+    },
+    {
+      "path": "associativvordes/js/root-matcher.js",
+      "git_blob": "452523ce1b2f6474f49f6ada70eb8706520d2709",
+      "sha256": "25caa0174273e252b7b371e25cddf269872c8b728d1fd10e5e09cb3509884728"
+    },
+    {
+      "path": "associativvordes/js/search-normalizer.js",
+      "git_blob": "a41919333147e378d8aa667f69e6e346a61ebd8b",
+      "sha256": "1a1347389cc6a855d6bda2c83e00fce0ae171991e8b5e3a6b95b124b5de96587"
+    },
+    {
+      "path": "associativvordes/js/swow-client.js",
+      "git_blob": "c645addff9473ba7e442af06c758bbcda043cc17",
+      "sha256": "4c0116fca8555f47b02f779ed8fb345ac59d532d0794d2f82de9d3117e427c9c"
+    },
+    {
+      "path": "associativvordes/js/target-meaning-translator.js",
+      "git_blob": "27cb8bd35803036721947e9fb586c4e3cb08e467",
+      "sha256": "6bfa1be7888a6c35eaa0dd7b7ef8ef0727bc7314ba855969a297d347a4eb3b3f"
+    },
+    {
+      "path": "package-lock.json",
+      "git_blob": "35b87322de182df61fd4a8f580ccaebe0cbc1325",
+      "sha256": "40d8fdd1180ce87517b32569921f1283e7b12ad9724af8a79d299864f3cbcd04"
+    },
+    {
+      "path": "package.json",
+      "git_blob": "80c3cce84e7c7e661209463e88135f082287bb4e",
+      "sha256": "bc9c3bf63635a094aa5aed0da2748213bb8aa8e553e910acc10264cb8ca1e4f5"
+    },
+    {
+      "path": "scripts/add-pie-roots.mjs",
+      "git_blob": "375263e1412e1ca67c8dc2e20c5248285249e04f",
+      "sha256": "f729bcff3fbbe53e1e9e879dd6536e178c9db7caaef918b2fd88ae9cb60877b8"
+    },
+    {
+      "path": "scripts/audit-associative-family-output.mjs",
+      "git_blob": "4271ea836b7501dd8dd9d6e2ee94016841a345f9",
+      "sha256": "7d2a6b1da9528e415c5de7d15f0affa0ed38502bb1dbf73583a255c828d7bd6a"
+    },
+    {
+      "path": "scripts/audit-associative-family-regressions.mjs",
+      "git_blob": "94e0b2c7cc6f0427d88e4edf4ea90e06bb0293f7",
+      "sha256": "04e8473d2ad1f9fc645d51321f543e68339c7cc62308b4acc9efcb3a9b7b1e8e"
+    },
+    {
+      "path": "scripts/audit-associative-family-semantic-sample.mjs",
+      "git_blob": "c195d940969ddae414555246a99f6f1b752af7c8",
+      "sha256": "ca8e0b0a8846656099b884c77be42851805dda1314f11231c8441d0f36712d7b"
+    },
+    {
+      "path": "scripts/audit-associative-index-memory.mjs",
+      "git_blob": "03851c3519ab50dd052aebaeda94c57d19ec4881",
+      "sha256": "bf68bf15219b5f479a0aa869c145efb0dc77cb18d850cef51ced270b69ca4573"
+    },
+    {
+      "path": "scripts/benchmark-associative-family-runtime.mjs",
+      "git_blob": "462f209a41ccaa39092d56ae41a9098bc5bd500d",
+      "sha256": "f2f933cb86ed0316357c4779e4b13f150e00fbf02c439d86492773e6a574fd49"
+    },
+    {
+      "path": "scripts/build-associative-candidate-index.mjs",
+      "git_blob": "09b06abeaa75f89e0750115290fff912ee08e3e3",
+      "sha256": "062da9f722371a683c1dbff47326c9aa7e8219f21871efa02c4c2c54b88d2ad3"
+    },
+    {
+      "path": "scripts/build-associative-exhaustive-family-index.mjs",
+      "git_blob": "bdeecee132e93491cdb8eec475b04b28920cfaa5",
+      "sha256": "b71e26901a26da50421f9cb3f41ebbda864b76e24303a5ad26ef606bdfed13fa"
+    },
+    {
+      "path": "scripts/build-associative-static-search-index.mjs",
+      "git_blob": "6abd57e8e289415148536c9644e4a0c19187c187",
+      "sha256": "c9d2b4ccf91472f7e9a0498b26d75a5f89112bcb0d2d742269308dca778da546"
+    },
+    {
+      "path": "scripts/build-global-card-registry.mjs",
+      "git_blob": "479589323b492f50a8eabe3dcb272ef8b4d68423",
+      "sha256": "f1f2e5e9ae558dc5d6fb3993aff2e3ccfa4942ffbe1f7cad77bd33947bb8748c"
+    },
+    {
+      "path": "scripts/check-associative-index-deployment.mjs",
+      "git_blob": "67a1a844f93d10f62a1a741f9dbc384d2c792aa6",
+      "sha256": "beaa1e9dac81674f1c2a231f8923c0a858df213ec71402ef294650ae1fe4dbf9"
+    },
+    {
+      "path": "scripts/check-associative-static-search-index-deployment.mjs",
+      "git_blob": "b8fc9349bcbdb78146c1be5c836832cb62e3a59f",
+      "sha256": "442e27e4b57c8194e5bbe0d8f9d5d641e6290c8d91f6c79111b8532dff21479f"
+    },
+    {
+      "path": "scripts/lib/associative-annotation-stats.mjs",
+      "git_blob": "2182a9141edeafb9479c0116de613da1be4961f1",
+      "sha256": "d548b2c299020963f639d4b5f7e7600560425fa90465bf9dc9af66320083d83a"
+    },
+    {
+      "path": "scripts/lib/associative-corpus-quality.mjs",
+      "git_blob": "ef4d8ca66b9ed4259eeb2c9cfd64de74c4a94b36",
+      "sha256": "d64c333adb8dae6a8dd77234b17de92811dc06df0e356752d1bdc9accffbbd59"
+    },
+    {
+      "path": "scripts/lib/associative-etymology-policy.mjs",
+      "git_blob": "8c33a6dd0885764942f54182ebd83013e1fde3ae",
+      "sha256": "3641a41604bc1a021d1dcdd14e459d536b9920440ef6317f5acee4d6a18dca43"
+    },
+    {
+      "path": "scripts/lib/associative-family-graph.mjs",
+      "git_blob": "85c79a033667fb55a5bf949fb3264e4c55afcc18",
+      "sha256": "31bd56acb85e92fdf3e78a6863d18fb8b51c2b28cfbdd6fc34f725cbf41f5b12"
+    },
+    {
+      "path": "scripts/lib/associative-index-core.mjs",
+      "git_blob": "1ff4780e44e51250fa1066e3a3ebb9a51f47502c",
+      "sha256": "3b291fe34ba09a543b28866e55ada56b7ecbf4de388e218859aa173c82df5a20"
+    },
+    {
+      "path": "scripts/lib/frequency-record-stream.mjs",
+      "git_blob": "02b1b6048b0ab756a0a573b8f5d3fe534b3bc11f",
+      "sha256": "f636691de5a111efff204e41ebb082e16cf0c9366728559c0aef209462d8db3d"
+    },
+    {
+      "path": "scripts/lib/registry-translations.mjs",
+      "git_blob": "972328c8d708f7f9026fa6d163991ba2672488b5",
+      "sha256": "61838fb3cb3c5adf20f9a05ab8bf2d064455c2af0383b9d81d89222d8d2a93d5"
+    },
+    {
+      "path": "scripts/merge-associative-index-artifacts.mjs",
+      "git_blob": "64db9b3ce3cb97a17e3a41f92698ac035d0baca1",
+      "sha256": "dadcb3b54f2e723ddf373c3f396670c6c663d976ffe460993a139ac10fc864ee"
+    },
+    {
+      "path": "scripts/merge-associative-static-search-artifacts.mjs",
+      "git_blob": "d43bfc486c9652d10e691691f2660270231830d8",
+      "sha256": "5217c83d79a755da4c3c69686ab845e53ff7c7dade6a1a517bfec4bcd73ede27"
+    },
+    {
+      "path": "scripts/patch-associative-search-runtime.mjs",
+      "git_blob": "40baade04a888badd17b3f56b2f65665faa4b847",
+      "sha256": "e19bc941c77798a4f76f023730d668622405f7e57ee5e41099d8c861eefda95a"
+    },
+    {
+      "path": "scripts/repair-associative-family-controls.mjs",
+      "git_blob": "6fbd3805ead61641069a7242ea21b9fa3e6a6246",
+      "sha256": "f82c898bb9d622a822204345a1911b53d94f4635829992243fbaae6913a59b9c"
+    },
+    {
+      "path": "scripts/run-tests.mjs",
+      "git_blob": "f638fa2b6ce37f11a5fbf8ac935cdc574067e2db",
+      "sha256": "6f92af10acf3524296869c34e54dc26fcb87995006d6c6165e306ed477465a04"
+    },
+    {
+      "path": "scripts/sample-associative-family-memberships.mjs",
+      "git_blob": "f625dd95ee778ac40b57e9043623874416b8775c",
+      "sha256": "0f72e514a763480eb87b592a813908a7aab19b8c6c32cc65c8a60eec69af03f0"
+    },
+    {
+      "path": "scripts/score-associative-family-annotations.mjs",
+      "git_blob": "e3308ad998bb16bc1b876914f40af774faaebd07",
+      "sha256": "0aac4efca7bf5167676b87f4df1a0dc46e5cb6b0cabf55598759fffa21e88387"
+    },
+    {
+      "path": "scripts/stamp-accepted-at.mjs",
+      "git_blob": "5041923ea22ea9bc5052ea37d7b82a9b90fb8a06",
+      "sha256": "615952b3a6443495b08e93446a6e43be0d71867a0b47d47d6ad556625cda6b63"
+    },
+    {
+      "path": "scripts/test-cards-schema.mjs",
+      "git_blob": "1f1d5cb71778c35ab57dbe5b8c0cfef84d83c7e9",
+      "sha256": "56511298c1c3b93797f53f782f05f26e50ba0a14d968e1eff5c2531f17b2f185"
+    },
+    {
+      "path": "scripts/upload-associative-family-blobs.mjs",
+      "git_blob": "257ed28e2c01e375a3ba16938d1936311508b280",
+      "sha256": "2d3dd305374d2c89dde908e9dce1940ec6e4d4dbadcfa81b244fa18b66c6b1f5"
+    },
+    {
+      "path": "scripts/validate-associative-candidate-index.mjs",
+      "git_blob": "ec5b1e049de6b5eea11ab342291b741f2d1175f7",
+      "sha256": "7c886337631a85ff30cf9666f9c565c31ba84bbbdbc285be49210fc17ec04b8c"
+    },
+    {
+      "path": "scripts/validate-associative-family-output.mjs",
+      "git_blob": "14d8c385499802e488f46b0171277b043740a43e",
+      "sha256": "350aae73bb26101d3ca461497443729ecfaeaa1725716d1a6783c27f28d70d7b"
+    },
+    {
+      "path": "scripts/validate-associative-index.mjs",
+      "git_blob": "a1873130912e5b4bab64f72a8143021ab1a7ab53",
+      "sha256": "c603ec9f2bc28074c1d25580ac7395b5e10941c1b5cc815b6373d84296f3946c"
+    },
+    {
+      "path": "scripts/validate-associative-static-search-index.mjs",
+      "git_blob": "8d36488baee212277737e5e81402ade14a1873d7",
+      "sha256": "ecf3b7cf0c581614eefb1b487970867f9faf36bd1126352c70120a47170de1cc"
+    },
+    {
+      "path": "shared/altervordes-ipa-hook.js",
+      "git_blob": "9cddb49d0383cd72820b520c8faf122a076be3a2",
+      "sha256": "e6b794ca8f3c51b715c7855c4411968e7b9aed82f66b5ec91df515e8f68e1a5e"
+    },
+    {
+      "path": "shared/associative-affix-calculation.mjs",
+      "git_blob": "37a08d6491113031a5317e89958c32a1a7de3929",
+      "sha256": "2d787fc0e50f2fe68fe6fe904c28e1e7dbb56e9f63b3a8725a402ef9b0c3b1c1"
+    },
+    {
+      "path": "shared/button-status.js",
+      "git_blob": "31f7522b660daf46f09c26d40212e6c170e9ef2f",
+      "sha256": "6f2c12f5b73b67461ce6682bb8e82d68c8388aadf16347106b889015a68144d4"
+    },
+    {
+      "path": "shared/card-schema.mjs",
+      "git_blob": "c5446cdaa3e4b24f06f3f1f070d039c1fddd68ff",
+      "sha256": "4212331cb47f373f5fc9cbeacda7b85c86bc7580a04482c39d84348744898269"
+    },
+    {
+      "path": "shared/control-language-demographics.mjs",
+      "git_blob": "2916fb3522ebcfe83db19e6bff6bb2747343c882",
+      "sha256": "0c91670d4f028bf5a0053034748fd7c011285835fd528a622ee0d20fa351c6c6"
+    },
+    {
+      "path": "shared/copy-plain.js",
+      "git_blob": "491e845d697c02cb6c3cec19466351c7fbbaa870",
+      "sha256": "d015714075ad962df12d04edfd3899210cef248d8ea6043a59da297127fb0b17"
+    },
+    {
+      "path": "shared/design-refinements.css",
+      "git_blob": "fe1796ab168ce59c07b75492ae02b160b07a1471",
+      "sha256": "60c3664542fd53d8a81e63fe3e68cb39fc0b0d5923322e168cdb3e3ee687dd97"
+    },
+    {
+      "path": "shared/form-draft.js",
+      "git_blob": "2f73bcc22890bf93537e80cbef2d0d70e07110ae",
+      "sha256": "d7630bd6f7711f463a26a3cee141c8280905eb520335d52cae96e5f111e3785e"
+    },
+    {
+      "path": "shared/home-scroll-reveal.css",
+      "git_blob": "6793fc67c4efb8abf2b71c98e431e24b99f63642",
+      "sha256": "ecccdf80f14372d53693307e9f63697965666b9075a94812cdd3d4eb02fb3e6b"
+    },
+    {
+      "path": "shared/instrument-glass-cubes.css",
+      "git_blob": "ac6d02f134443cb8d830ed809e527cb9236eebc5",
+      "sha256": "4a938d7a97232cab84e3f36e03221883ebcc276f516bfb8938b37aebdead2085"
+    },
+    {
+      "path": "shared/instrument-glass-cubes.js",
+      "git_blob": "9bc9b53453ab81fb494806da0f07f65f29769d14",
+      "sha256": "cdc092b3f40da99f4fcb30db4c94eea4eb409331c7995021ad84f95aadd79e93"
+    },
+    {
+      "path": "shared/instrumentes-carousel.js",
+      "git_blob": "f01c2e06fd7e2e4e9eb507223c10758d0578912c",
+      "sha256": "cc55d12456f44eb75099ce96933cae7a8a3d85acdb76703125c2140f2758dbd7"
+    },
+    {
+      "path": "shared/instrumentes-nav.js",
+      "git_blob": "e874b897d8a7906164f7406af020339f7c7b11db",
+      "sha256": "10b497a46fa9ac27fb67ed9d73c2088d12c6c0fbc7e2c96fca86ebdb1c3fedf7"
+    },
+    {
+      "path": "shared/instrumentes-page.js",
+      "git_blob": "c4f132cd792fefaaa0513dedd306c05cda9c5c3a",
+      "sha256": "b250de77976acf60cd10fe7022a6d13db9ddd892b3615138d24da17cd6ef80d4"
+    },
+    {
+      "path": "shared/instrumentes.css",
+      "git_blob": "1eb9dd9d5814b9e825bd8fb0e5594656444fbbeb",
+      "sha256": "cdfc5de3cd0fef3137cb86cba70a0d151ff1bb98bdb759ce5bbec9f0bb796973"
+    },
+    {
+      "path": "shared/interal-ipa.mjs",
+      "git_blob": "23096140b1116912069d170c0b8bda5595f3a098",
+      "sha256": "b33c9c1ef952a9418ef68673cbd51429ee8fd43e5a39f4fbb9e9c429aabad2ec"
+    },
+    {
+      "path": "shared/json-author-autosave.js",
+      "git_blob": "29d3e4251eeb61d5f4e85ff22be154432d10c4bc",
+      "sha256": "8e8054b248630e954d4bd3511e3b514dcbbc9eb3cca6cbfeef6d2d8d75521a55"
+    },
+    {
+      "path": "shared/liquid-glass-isolation.js",
+      "git_blob": "fd876a4eacf56afadab8d72a726cad34a6f2835d",
+      "sha256": "41fe713a9a97118ae03bfa930b205b27f5371ddfee58378ff889e5ce4814d0d6"
+    },
+    {
+      "path": "shared/liquid-glass-layout-fix.css",
+      "git_blob": "3a89f07ca21542227ac48aa59ea1b04c940762de",
+      "sha256": "d485c852c6c0428c9befd27955749db5e1e61a22e54029739b38c14c5d4ec55c"
+    },
+    {
+      "path": "shared/liquid-glass-tuning.css",
+      "git_blob": "3a89f07ca21542227ac48aa59ea1b04c940762de",
+      "sha256": "d485c852c6c0428c9befd27955749db5e1e61a22e54029739b38c14c5d4ec55c"
+    },
+    {
+      "path": "shared/liquid-glass-tuning.js",
+      "git_blob": "fd876a4eacf56afadab8d72a726cad34a6f2835d",
+      "sha256": "41fe713a9a97118ae03bfa930b205b27f5371ddfee58378ff889e5ce4814d0d6"
+    },
+    {
+      "path": "shared/liquid-glass.css",
+      "git_blob": "adb3f783651f6c7639bbaf714039a56b61d38fc1",
+      "sha256": "28d8f9078246922d599c5092b4367139c8435b46de7e14f7cebf521c01312d33"
+    },
+    {
+      "path": "shared/liquid-glass.js",
+      "git_blob": "1760f1e8b34e062ceb9fe14e8276f0ae802d0014",
+      "sha256": "bb092c0e599854986a0cea185f1f913480aa284cbf9dc7be7b1c54aa093ec4bf"
+    },
+    {
+      "path": "shared/loader-paint-fix.js",
+      "git_blob": "c221ccb8060c753973f942a8d2a33aab45f11e5a",
+      "sha256": "aeab1e1f5c46aac7441cd9ee4774d73cde4372050f8224501c7173972f6509d3"
+    },
+    {
+      "path": "shared/methodology-calculation.mjs",
+      "git_blob": "f2a7b55afda8c29ebec22998c3c9bb4123ecccd2",
+      "sha256": "93226d39526df319ab1f45cf74a9dea835ba061ea57279b62290e56a2034c17a"
+    },
+    {
+      "path": "shared/modal-motion.css",
+      "git_blob": "d597e7cce38914feaa02008e7d1ff0433acb85cb",
+      "sha256": "b2a0bbbd0341fcfc244353130d6d2c08c0f67fe8d15a9484695154dea2e0d0e8"
+    },
+    {
+      "path": "shared/modal-motion.js",
+      "git_blob": "0010817d1a265032c4621e1067e4fa220ab4f416",
+      "sha256": "0037864fc7cb8310594787a3f47875c4d9b0903aa1ffb01d972333f7e056946c"
+    },
+    {
+      "path": "shared/registry-altervordes-fields.js",
+      "git_blob": "8b103e2a124a0cae728678557d1cce9adc0ac0ba",
+      "sha256": "556d36dbf42840085b8123530d55cf5db52cbf40c502b0bedbfbe23daa0584ca"
+    },
+    {
+      "path": "shared/site-motion.js",
+      "git_blob": "735a04589dc4ab2826d753290a279be82a819155",
+      "sha256": "84349f7063c97a562faf43f892c1f543be86cb41ea614109a5fda17654826ee4"
+    },
+    {
+      "path": "shared/ui-core.js",
+      "git_blob": "9c3bb134a1f065ce4c4fed2f3301188585010ecd",
+      "sha256": "978bcc90af7dd4f7c45c520d3c0acdc5f9737ead1b06a198dac8a5e82ebe476f"
+    },
+    {
+      "path": "shared/ui.css",
+      "git_blob": "443a217428b4f3f590ad4bb8e8ef9ae78dbeeb29",
+      "sha256": "aa069bbe1681771410578ab27f93ea918b841e830a993def473a10bd82dbc9ad"
+    },
+    {
+      "path": "shared/ui.js",
+      "git_blob": "09dd5c10c8c6177b5343ceee68ea8deca02ab68d",
+      "sha256": "deecb5aa6383f8709408ad9ba68c667b61b116e8c52a83b347171749cc5a0565"
+    }
+  ]
+}

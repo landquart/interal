@@ -110,8 +110,73 @@ class WholeShard(unittest.TestCase):
    with patch.object(driver,'ingest',resumed):result=driver.run(projection,out)
   self.assertNotIn('00',calls);self.assertEqual(len(calls),255);self.assertEqual(result['counts']['memberships'],11)
   from finalize import finalize
-  replay=self.root/'driver-replay';shutil.copytree(out,replay);finalize(out,replay)
+  copied=self.root/'copied';shutil.copytree(out,copied)
+  with self.assertRaisesRegex(ValueError,'fresh execution'):finalize(out,copied)
+  with self.assertRaisesRegex(ValueError,'fresh execution'):finalize(out,out)
+  replay=self.root/'driver-replay'
+  with patch.object(driver,'Adapter',FixtureAdapter),patch.object(driver,'history_reader',lambda:(FixtureHistory(),'TEST_ONLY')),contextlib.redirect_stdout(io.StringIO()):driver.run(projection,replay)
+  finalize(out,replay)
+  coverage=(replay/'COVERAGE.json').read_bytes();cov=json.loads(coverage);cov['buckets'][0]['family_ids_sha256']='0'*64
+  (replay/'COVERAGE.json').write_bytes(canonical(cov)+b'\n')
+  from classify import digest
+  changed=json.loads((replay/'MANIFEST.json').read_bytes());changed['outputs']['COVERAGE.json']=filehash(replay/'COVERAGE.json');changed.pop('version');changed['version']=digest(changed);(replay/'MANIFEST.json').write_bytes(canonical(changed))
+  with self.assertRaisesRegex(ValueError,'coverage'):finalize(out,replay)
   self.assertEqual(json.loads((out/'MECHANISM-COHORTS.json').read_bytes())['memberships'],11)
   self.assertEqual(json.loads((out/'PRIORITY-QUEUES/MANIFEST.json').read_bytes())['outputs']['PRIORITY_2.ndjson.gz']['families']+sum(v['families'] for k,v in json.loads((out/'PRIORITY-QUEUES/MANIFEST.json').read_bytes())['outputs'].items() if k!='PRIORITY_2.ndjson.gz'),3)
 
+
+ def test_4359927862_russian_ending_uses_search_representation(self):
+  src=sqlite3.connect(self.root/'source.sqlite')
+  with src:
+   for fid,body in list(src.execute('SELECT id,body FROM families')):
+    f=json.loads(zlib.decompress(body));f['canonical']='iks';src.execute('UPDATE families SET body=? WHERE id=?',(zlib.compress(canonical(f)),fid))
+   for fid,lang,lid,ordinal,body in list(src.execute('SELECT * FROM members')):
+    r=json.loads(zlib.decompress(body));r.update(word='префикс'+str(ordinal)+'икс',normalized='префикс'+str(ordinal)+'икс',search_form='prefiks'+str(ordinal)+'iks')
+    src.execute('UPDATE members SET language=?,body=? WHERE family=? AND lemma=?',('ru',zlib.compress(canonical(r)),fid,lid))
+  src.close();ingest(self.db,self.root,self.receipt);cross_family(self.db)
+  self.assertEqual(self.db.execute("SELECT COUNT(*) FROM flags WHERE flag='ENDING_PREFIX_DIVERSITY_PROXY'").fetchone()[0],2)
+ def test_4359927853_failed_restore_has_no_published_or_partial_target(self):
+  import zipfile
+  sys.path.insert(0,str(Path(__file__).with_name('tools')))
+  from backup import restore_archive
+  archive=self.root/'bad.zip';target=self.root/'restored'
+  with zipfile.ZipFile(archive,'w') as z:
+   z.writestr('data',b'changed');z.writestr('BACKUP-MANIFEST.json',canonical(dict(files={'data':dict(sha256='0'*64,bytes=7)})))
+  with self.assertRaises(ValueError):restore_archive(archive,target)
+  self.assertFalse(target.exists());self.assertFalse(target.with_name(target.name+'.partial').exists())
+
+ def test_4359927816_coverage_mismatch_cannot_be_certified(self):
+  import shutil
+  from run import publish
+  sys.path.insert(0,str(Path(__file__).with_name('tools')))
+  from finalize import finalize
+  from query import filehash
+  ingest(self.db,self.root,self.receipt);cross_family(self.db)
+  identity=dict(expected_counts=dict(families=3,aliases=1,en=11,de=0,fr=0,es=0,it=0,ru=0))
+  dirs=[]
+  for name in ['first','replay']:
+   out=self.root/name;out.mkdir();execution=dict(run_id='TEST_ONLY_'+name,output=str(out.resolve()))
+   with self.db:self.db.execute('INSERT OR REPLACE INTO state VALUES(?,?)',('execution',canonical(execution).decode()))
+   shutil.copyfile(self.root/'out.sqlite',out/'registry.sqlite');publish(self.db,out,identity);dirs.append(out)
+  first,replay=dirs;cov=json.loads((replay/'COVERAGE.json').read_bytes());cov['buckets'][0]['family_ids_sha256']='0'*64;(replay/'COVERAGE.json').write_bytes(canonical(cov))
+  m=json.loads((replay/'MANIFEST.json').read_bytes());m['outputs']['COVERAGE.json']=filehash(replay/'COVERAGE.json');m.pop('version');m['version']=digest(m);(replay/'MANIFEST.json').write_bytes(canonical(m))
+  with self.assertRaisesRegex(ValueError,'coverage'):finalize(first,replay)
+ def test_4359927871_backup_manifest_has_fixed_timestamp(self):
+  import shutil
+  from unittest.mock import patch
+  sys.path.insert(0,str(Path(__file__).with_name('tools')))
+  from backup import backup
+  from query import filehash
+  ingest(self.db,self.root,self.receipt);cross_family(self.db);self.db.commit()
+  source=self.root/'input';source.mkdir();shutil.copyfile(self.root/'out.sqlite',source/'out.sqlite')
+  m=dict(database='out.sqlite',database_sha256=filehash(source/'out.sqlite'),complete=True);m['version']=digest(m);(source/'MANIFEST.json').write_bytes(canonical(m))
+  import zipfile
+  for day in [23,24]:
+   with patch.object(zipfile.time,'localtime',lambda *args,d=day:(2026,10,d,1,0,0,0,0,0)):
+    backup(source,self.root/f'{day}.zip',self.root/f'restored-{day}')
+  self.assertEqual(filehash(self.root/'23.zip'),filehash(self.root/'24.zip'))
+ def test_4359927842_transitive_implementation_is_pinned(self):
+  from run import code_lock
+  keys=set(code_lock())
+  self.assertTrue({'associativvordes/v5_adapter/common.py','associativvordes/v5_adapter/bridge.py','associativvordes/history_registry/registry.py'}<=keys)
 if __name__=='__main__':unittest.main()

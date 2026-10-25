@@ -87,4 +87,28 @@ class ProjectionTests(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'byte budget'):export(a,self.base/'explicit',selections=keys,max_bytes=max(1024,size+100))
   self.assertFalse((self.base/'explicit'/'MANIFEST.json').exists())
 
+
+ def test_4359323416_entire_question_is_locked(self):
+  self.run_build();h,_=history_reader();a=self.obj(h.check)
+  from queue_input import load_queue
+  for field in ['discovery_paths','prior_scoped_decisions','existing_memberships','unexpected']:
+   queue=self.base/field;export(a,queue,limit=1);q=json.loads((queue/'questions.ndjson').read_bytes());q[field]=[dict(id='fabricated',evidence_refs=[dict(id='fake')])]
+   data=canonical(q)+b'\n';atomic(queue/'questions.ndjson',data);m=read(queue/'MANIFEST.json');m['outputs']['questions.ndjson']=sha(data);atomic(queue/'MANIFEST.json',canonical(m))
+   with self.assertRaisesRegex(ValueError,'differs'):load_queue(queue,self.out)
+ def test_4359323422_external_manifest_identity(self):
+  from external import External
+  lock=self.base/'lock.json';atomic(lock,canonical(dict(artifacts=[])));folder=self.base/'external';folder.mkdir()
+  m=dict(identity=dict(source_lock_sha256=filehash(lock)),complete=True,parts=[],missing=[]);m['version']=sha(canonical(m));atomic(folder/'EXTERNAL.json',canonical(m));External(folder,lock)
+  m['injected']='changed';atomic(folder/'EXTERNAL.json',canonical(m))
+  with self.assertRaisesRegex(ValueError,'manifest'):External(folder,lock)
+ def test_4359323435_invalid_rows_cannot_publish_current(self):
+  self.run_build();a=self.obj();queue=self.base/'queue';export(a,queue,limit=1)
+  m=read(queue/'MANIFEST.json');data=canonical({'injected':{}});atomic(queue/'source-rows.json',data);m['outputs']['source-rows.json']=sha(data);atomic(queue/'MANIFEST.json',canonical(m))
+  ledger=self.base/'ledger'
+  with self.assertRaises(ValueError):review_import(queue,ledger)
+  self.assertFalse((ledger/'CURRENT').exists())
+ def test_4359323448_wrong_bucket_rejected(self):
+  fid='misplaced-family';b=next(b for b in self.buckets if bucket(fid)!=b);data=json.loads(gzip.decompress((self.source/f'families/{b}.json.gz').read_bytes()));data[fid]=dict(id=fid);self.put(f'families/{b}.json.gz',data);self.commit()
+  with self.assertRaisesRegex(ValueError,'bucket'):self.run_build()
+
 if __name__=='__main__':unittest.main()

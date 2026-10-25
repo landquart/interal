@@ -1,0 +1,1305 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> test
+> node scripts/run-tests.mjs
+
+Discovered 114 test files; running 114.
+
+> node tests/altervordes-multilingual-conclusion.test.mjs
+Alter vordes multilingual conclusion tests passed.
+
+> node tests/altervordes-prompts.test.mjs
+Alter vordes binary derivational potential tests passed.
+
+> node tests/association-demographic-weighting.test.mjs
+association demographic weighting tests passed
+
+> node tests/associative-affix-boundary.test.mjs
+Associative affix boundary tests passed.
+
+> node tests/associative-atomic-pipeline.test.mjs
+Associative production pipeline integration tests passed.
+
+> node tests/associative-auto-annotation.test.mjs
+test_cited_axes_do_not_establish_other_axes (test_annotation.ContractTests.test_cited_axes_do_not_establish_other_axes) ... ok
+test_compounds_retained (test_annotation.ContractTests.test_compounds_retained) ... ok
+test_conflicting_source_assertions_are_retained (test_annotation.ContractTests.test_conflicting_source_assertions_are_retained) ... ok
+test_cross_language_and_direction (test_annotation.ContractTests.test_cross_language_and_direction) ... ok
+test_exclusion_requires_scoped_contradiction (test_annotation.ContractTests.test_exclusion_requires_scoped_contradiction) ... ok
+test_inflection_is_not_derivation (test_annotation.ContractTests.test_inflection_is_not_derivation) ... ok
+test_language_mismatch (test_annotation.ContractTests.test_language_mismatch) ... ok
+test_model_invented_reference_rejected (test_annotation.ContractTests.test_model_invented_reference_rejected) ... ok
+test_model_invented_sense_and_confidence_rejected (test_annotation.ContractTests.test_model_invented_sense_and_confidence_rejected) ... ok
+test_negative_scope_and_privacy (test_annotation.ContractTests.test_negative_scope_and_privacy) ... ok
+test_orthographic_identity_not_derivation (test_annotation.ContractTests.test_orthographic_identity_not_derivation) ... ok
+test_pos_and_frequency_unknown (test_annotation.ContractTests.test_pos_and_frequency_unknown) ... ok
+test_prompt_injection_retained_only_as_data (test_annotation.ContractTests.test_prompt_injection_retained_only_as_data) ... ok
+test_same_form_multiple_native_senses_not_merged (test_annotation.ContractTests.test_same_form_multiple_native_senses_not_merged) ... ok
+test_same_spelling_alternative_path_cannot_support_this_native_lexeme (test_annotation.ContractTests.test_same_spelling_alternative_path_cannot_support_this_native_lexeme) ... ok
+test_separate_axes_and_stable_native_ids (test_annotation.ContractTests.test_separate_axes_and_stable_native_ids) ... ok
+test_strict_json (test_annotation.ContractTests.test_strict_json) ... ok
+test_substring_without_path_remains_unknown (test_annotation.ContractTests.test_substring_without_path_remains_unknown) ... ok
+test_inflection_only_native_identity_is_verified_in_auxiliary (test_annotation.NativeSourceTests.test_inflection_only_native_identity_is_verified_in_auxiliary) ... ok
+test_algorithm_change_cannot_silently_resume (test_annotation.PipelineTests.test_algorithm_change_cannot_silently_resume) ... ok
+test_balanced_budget_does_not_drop_language (test_annotation.PipelineTests.test_balanced_budget_does_not_drop_language) ... ok
+test_export_repeat_is_identical (test_annotation.PipelineTests.test_export_repeat_is_identical) ... ok
+test_handoff_preserves_questions_and_blind_boundary (test_annotation.PipelineTests.test_handoff_preserves_questions_and_blind_boundary) ... ok
+test_multi_same_model_not_independent (test_annotation.PipelineTests.test_multi_same_model_not_independent) ... ok
+test_offline_result_does_not_prevent_explicit_pilot (test_annotation.PipelineTests.test_offline_result_does_not_prevent_explicit_pilot) ... ok
+test_resume_rejection_and_changed_input (test_annotation.PipelineTests.test_resume_rejection_and_changed_input) ... ok
+test_concurrent_admission_respects_global_limit (test_annotation.ProviderTests.test_concurrent_admission_respects_global_limit) ... ok
+test_cost_forecast_unknown_without_provider (test_annotation.ProviderTests.test_cost_forecast_unknown_without_provider) ... ok
+test_default_does_not_call_transport (test_annotation.ProviderTests.test_default_does_not_call_transport) ... ok
+test_durable_invalid_attempt_limit (test_annotation.ProviderTests.test_durable_invalid_attempt_limit) ... ok
+test_endpoint_and_inline_key_guards (test_annotation.ProviderTests.test_endpoint_and_inline_key_guards) ... ok
+test_local_cloud_rejected (test_annotation.ProviderTests.test_local_cloud_rejected) ... ok
+test_ollama_digest_required (test_annotation.ProviderTests.test_ollama_digest_required) ... ok
+test_paid_no_authorization (test_annotation.ProviderTests.test_paid_no_authorization) ... ok
+test_paid_parallel_reservations_are_not_crash_outcomes (test_annotation.ProviderTests.test_paid_parallel_reservations_are_not_crash_outcomes) ... ok
+test_request_limit_survives_new_client (test_annotation.ProviderTests.test_request_limit_survives_new_client) ... ok
+test_secret_echo_is_not_persisted (test_annotation.ProviderTests.test_secret_echo_is_not_persisted) ... ok
+test_token_contract_violation_blocks_paid_continuation (test_annotation.ProviderTests.test_token_contract_violation_blocks_paid_continuation) ... ok
+test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt (test_annotation.ProviderTests.test_unknown_paid_usage_blocks_and_no_semantic_retry_after_receipt) ... ok
+test_valid_response_cache_across_roles_and_prices (test_annotation.ProviderTests.test_valid_response_cache_across_roles_and_prices) ... ok
+test_backup_restores_full_history (test_annotation.StoreTests.test_backup_restores_full_history) ... ok
+test_backup_traversal (test_annotation.StoreTests.test_backup_traversal) ... ok
+test_concurrent_writers_excluded (test_annotation.StoreTests.test_concurrent_writers_excluded) ... ok
+test_corrupt_object_detected (test_annotation.StoreTests.test_corrupt_object_detected) ... ok
+test_partial_write_and_head_recovery (test_annotation.StoreTests.test_partial_write_and_head_recovery) ... ok
+test_repeat_and_history (test_annotation.StoreTests.test_repeat_and_history) ... ok
+test_tail_loss_detected (test_annotation.StoreTests.test_tail_loss_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.720s
+
+OK
+
+> node tests/associative-calculation-lifecycle.test.mjs
+✔ AC-006: cancellation, restart and changed candidate reject late manual responses (0.975024ms)
+✔ AC-007: family requests with distinct signals do not inherit earlier cancellation (0.917307ms)
+✔ AC-007: stale runner catch cannot overwrite fresh shared state or abort its button (1.214706ms)
+✔ AC-004: review callbacks bracket active review and return to analyzing (2.515212ms)
+✔ AC-004: index failure, all Qwen failures and no candidates remain distinct (1.015645ms)
+✔ AC-006: actual page analyzeItem discards a late response after candidate edit (5.594767ms)
+✔ V-003: abort during index loading terminalizes language status (0.440105ms)
+✔ V-002: actual page deselection cancels late manual analysis (1.808734ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18.666729
+
+> node tests/associative-calculation-numeric.test.mjs
+✔ AC-003: maximum P and same representative A; missing A and required review remain distinct (2.445628ms)
+✔ AC-002/003/010 regul fixed fixture: five derivatives per language, positive P and pending review (16.657581ms)
+✔ AC-002/010: complete regul fixture uses unchanged direct demographic formulas (0.561028ms)
+✔ AC-003/010: partial languages and exact acceptance boundaries (0.610903ms)
+✔ AC-002: supported empty rows have N; unknown represented language throws (2.050425ms)
+✔ AC-005: numeric persistence keeps absence, zero and review diagnostics (1.771478ms)
+✔ AC-010/015: actual page adapter counts all found rows without changing five-model scoring (5.006027ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 38.480846
+
+> node tests/associative-calculation-services.test.mjs
+✔ AC-008: deadline includes an unresponsive response body and cancellation wins late results (12.484062ms)
+✔ AC-009: backend rejects incomplete scores, preserves true zero and upstream 403 (4.940794ms)
+✔ AC-008: backend timeout also covers upstream body (5.166846ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 27.852139
+
+> node tests/associative-calculation-transport.test.mjs
+AC-001/AC-012 page transport regressions passed
+
+> node tests/associative-candidate-finder.test.mjs
+associative candidate finder family tests passed
+
+> node tests/associative-candidate-index-loader-missing-shards.test.mjs
+associative candidate-index missing shard tests passed
+
+> node tests/associative-candidate-index-loader.test.mjs
+ok - manifest loads once and repeated calls share cache
+ok - concurrent manifest calls use one promise
+ok - loads only needed shard for root and not the whole language
+ok - repeat shard request uses cache
+ok - different languages have different shard cache keys
+ok - missing language returns LANGUAGE_NOT_INDEXED
+ok - missing shard returns SHARD_NOT_LISTED
+ok - manifest HTTP error returns MANIFEST_FETCH_FAILED
+ok - damaged manifest is rejected
+ok - incompatible version is rejected
+ok - incompatible normalizer_version is rejected
+ok - shard HTTP error returns SHARD_FETCH_FAILED
+ok - damaged shard is rejected and not returned as empty array
+ok - normalizes legacy fixture source metadata without deriving category from id
+ok - source category is required even when legacy id contains one
+ok - entry without sources is rejected
+ok - non-finite frequency_score is rejected
+ok - AbortSignal stops operation without poisoning cache
+ok - passes AbortSignal to fetch options
+ok - abort cancels the mock shard request and returns ABORTED
+ok - aborted shard is not cached and retry performs a new fetch
+ok - completed shard cache survives an aborted consumer
+ok - completed manifest cache is shared after successful load
+ok - diagnostics count fetches and cache hits
+ok - special roots add _other only when needed and skip if not listed
+ok - production base URL is relative and overridable
+
+> node tests/associative-candidate-integrity.test.mjs
+Associative deterministic candidate-integrity tests passed.
+
+> node tests/associative-candidate-search.test.mjs
+✔ isolated candidate search preserves provenance, history and prohibitions (6317.616337ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6322.402313
+
+> node tests/associative-cleanup-quality.test.mjs
+✔ empty gold and no removals produce null precision, not perfect safety (27.128678ms)
+✔ removal precision, correct-link false-removal risk and detection recall have different denominators (16.103517ms)
+✔ linked dependence clusters cross languages and cases; they never become family merges (45.887748ms)
+✔ human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review (34.65376ms)
+✔ a qualified exact structural scope never grants semantic or production authority (33.483321ms)
+✔ 4367043681: NOT_RUN has no performance estimates even with complete gold (15.591182ms)
+✔ 4367043683: resolved human answers require an explicit relation (31.918947ms)
+✔ 4367043688: missing required bundle sources fail before publication (36.234759ms)
+✔ 4367043686: documentary additions share existing family clusters and rebind all cards (55.693937ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 303.766204
+
+> node tests/associative-evidence-graph.test.mjs
+✔ isolated evidence graph: real probes, negative guards and finite paths (2171.094336ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2175.713857
+
+> node tests/associative-external-import.test.mjs
+✔ isolated external morphology importer: real excerpts and adversarial controls (1909.55208ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1916.316742
+
+> node tests/associative-family-annotation-scoring.test.mjs
+✔ Wilson interval is finite and contains the observed precision (1.231401ms)
+✔ agreement statistics preserve uncertain as its own category (0.245361ms)
+✔ weighted precision reports resolved, conservative and optimistic estimates (0.197338ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 6.4985
+
+> node tests/associative-family-boundary.test.mjs
+✔ exact overlap groups never imply transitive or semantic family identity (58.838664ms)
+✔ historical negatives retain the exact original family, language, lemma, POS and sense (26.868773ms)
+✔ transaction checkpoints are atomic and legacy exact records cannot become productive heads (64.518758ms)
+✔ independent membership checks recompute stored IDs instead of trusting copied fingerprints (46.699299ms)
+✔ v6 source proofs retain JavaScript insertion-order hashing and exact source forms (164.809983ms)
+✔ immutable backups reject corruption, unfinished data and path escape (40.044563ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 408.237667
+
+> node tests/associative-family-corrective-v5.test.mjs
+✔ corrective build accepts an immutable input-lock artifact (0.977166ms)
+✔ structured expansion never pairs lang and term from adjacent nodes (3.197622ms)
+✔ malformed and unknown expansion data are review-only (0.688ms)
+✔ etymon ancestry is typed, depth-aware, and cannot merge (0.360074ms)
+✔ direct templates use an explicit typed policy (0.439744ms)
+✔ etymologyPairs preserves uncertain evidence instead of inventing equivalence (0.365573ms)
+✔ exact seed claims do not absorb an automatic family transitively (0.974062ms)
+✔ short accidental prefix cannot anchor valkyrie and walkure equivalence (0.318291ms)
+✔ automatic canonical scoring rejects a two-letter accidental anchor (0.450261ms)
+✔ known audit noise and generic markup are rejected deterministically (5.670549ms)
+✔ etymon-key distribution is deterministic and exposes the long tail (6.370116ms)
+✔ wide etymon keys are review-only and never create automatic families (0.336969ms)
+✔ exact language-aware controls replace stale automatic memberships before materialization (0.545194ms)
+✔ verified control families cover every runtime language (1.473036ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 28.011719
+
+> node tests/associative-family-manual-cases.test.mjs
+✔ individually rejected etymologies are absent from repository-backed runtime (2054.494365ms)
+✔ sense-ambiguous enm:net is quarantined without deleting its member data (75.54521ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2281.549048
+
+> node tests/associative-family-production.test.mjs
+✔ discovers every compound component (10.542491ms)
+✔ surface fallback preserves complete coverage (3.801615ms)
+✔ compound containment never merges families (0.587458ms)
+✔ proto relation never merges families (0.234474ms)
+✔ equivalence requires linguistic evidence (0.315577ms)
+✔ lemma IDs are stable and language scoped (0.260404ms)
+✔ lexical aliases cannot collide with JavaScript object prototypes (0.324921ms)
+✔ runtime resolves alias to materialized family members (2.193225ms)
+✔ candidate loader prefers the exhaustive family index over literal static search (0.506165ms)
+✔ family runtime fails closed before fetching an excessive alias fan-out (0.719327ms)
+✔ manual override is language-aware and never exposes stale non-manual members (0.693819ms)
+✔ blocked, rejected, and split-required families never reach runtime candidates (0.426384ms)
+✔ v5 runtime excludes rejected corpus members while remaining v4-compatible (0.581769ms)
+✔ manual family with no language-specific overrides fails closed (0.399674ms)
+✔ authoritative empty family result never falls back to the static index (0.287254ms)
+✔ curated nitidus aliases return only reviewed members and never use broad fallback (2214.289108ms)
+✔ Russian curated short aliases preserve complete ordinary results in other languages (11183.544734ms)
+✔ empty, rejected or malformed curated members never suppress ordinary language results (1.10026ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13427.023216
+
+> node tests/associative-family-routing-repairs.test.mjs
+✔ val routing retains member arrays, alternate roots, exact full results and no fallback (9207.513659ms)
+✔ Russian short batch has only reviewed members, without cross-language suppression or fallback (10077.618397ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19293.800915
+
+> node tests/associative-family-runtime-benchmark.test.mjs
+✔ runtime benchmark percentiles are deterministic nearest-rank values (0.642922ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5.647372
+
+> node tests/associative-family-semantic-sampling.test.mjs
+✔ semantic sample locks its input and requested size (0.803724ms)
+✔ stratified selection is deterministic and visits distinct strata first (6.747984ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13.463398
+
+> node tests/associative-flexor-research.test.mjs
+✔ Flexor research: attested bounded plan, unknown measurements and reproducible preparation (153.585521ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 158.606005
+
+> node tests/associative-frequency-top-five.test.mjs
+Associative match-quality-first top-five tests passed.
+
+> node tests/associative-full-v5-completion.test.mjs
+✔ completed copy evidence is required, input-bound and independently rechecked (213.580304ms)
+✔ bundle rejects a stale PASS when completion evidence is absent (123.898565ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 343.473751
+
+> node tests/associative-full-v5-dry-run.test.mjs
+✔ blocked and nonempty plans cannot become a production or shadow modification (32.74167ms)
+✔ complete shadow publication is idempotent and five empty layers preserve exact bytes (92.844867ms)
+✔ strict bounded decoder rejects duplicate keys and verifies complete JSON (36.497446ms)
+✔ snapshot validation rejects unexpected records and symbolic links (30.908309ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 199.49393
+
+> node tests/associative-history-registry.test.mjs
+✔ historical constraints: finite scopes, corruption, supersession, and restore (1359.669004ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1364.34316
+
+> node tests/associative-index-builder.test.mjs
+
+> node tests/associative-index-core.test.mjs
+
+> node tests/associative-index-empty-search-form.test.mjs
+associative index empty search_form tests passed
+
+> node tests/associative-index-large-range.test.mjs
+associative index large numeric range tests passed
+
+> node tests/associative-index-memory-audit.test.mjs
+associative index memory audit tests passed
+
+> node tests/associative-index-merge.test.mjs
+ok - six valid artifacts merge into one separated candidate-index manifest
+ok - rejects five artifacts when ru is missing
+ok - rejects incompatible version
+ok - rejects incompatible normalizer_version
+ok - rejects missing shard
+ok - rejects incorrect entries metadata
+ok - rejects candidate without sources
+ok - rejects damaged non-finite number value
+ok - rejects language mismatch between directory and manifest
+ok - error keeps existing output and removes temp directory
+ok - rerun is deterministic, does not duplicate, and removes stale shards
+ok - input directory order does not change manifest
+ok - one artifact cannot silently overwrite another language
+ok - rejects incompatible global_config_hash
+
+> node tests/associative-index-russian-normalization.test.mjs
+
+> node tests/associative-index-validator.test.mjs
+
+> node tests/associative-index-workflow.test.mjs
+
+> node tests/associative-mass-dry-run.test.mjs
+test_abstain_is_not_semantic_rejection (test_cycle.AuditTests.test_abstain_is_not_semantic_rejection) ... ok
+test_cross_language_productive_path_fails (test_cycle.AuditTests.test_cross_language_productive_path_fails) ... ok
+test_duplicates_fatal (test_cycle.AuditTests.test_duplicates_fatal) ... ok
+test_existing_exclusion_is_only_an_audit (test_cycle.AuditTests.test_existing_exclusion_is_only_an_audit) ... ok
+test_family_conflict_does_not_merge (test_cycle.AuditTests.test_family_conflict_does_not_merge) ... ok
+test_independent_clone_matches (test_cycle.AuditTests.test_independent_clone_matches) ... ok
+test_inflection_not_derivation (test_cycle.AuditTests.test_inflection_not_derivation) ... ok
+test_manual_counts_not_doubled (test_cycle.AuditTests.test_manual_counts_not_doubled) ... ok
+test_no_invented_zero_frequency (test_cycle.AuditTests.test_no_invented_zero_frequency) ... ok
+test_original_sense_and_spelling_preserved (test_cycle.AuditTests.test_original_sense_and_spelling_preserved) ... ok
+test_other_native_same_spelling_cannot_provide_path (test_cycle.AuditTests.test_other_native_same_spelling_cannot_provide_path) ... ok
+test_preserving_decision_is_not_confirmation (test_cycle.AuditTests.test_preserving_decision_is_not_confirmation) ... ok
+test_random_and_risk_sampling_stable (test_cycle.AuditTests.test_random_and_risk_sampling_stable) ... ok
+test_replay_compares_evidence_and_relations (test_cycle.AuditTests.test_replay_compares_evidence_and_relations) ... ok
+test_replay_compares_groups_and_history (test_cycle.AuditTests.test_replay_compares_groups_and_history) ... ok
+test_source_groups_not_counted_as_independent (test_cycle.AuditTests.test_source_groups_not_counted_as_independent) ... ok
+test_stable_normalization_only_removes_volatile_fields (test_cycle.AuditTests.test_stable_normalization_only_removes_volatile_fields) ... ok
+test_uncalibrated_probability_fails (test_cycle.AuditTests.test_uncalibrated_probability_fails) ... ok
+test_wrong_family_negative_is_not_global (test_cycle.AuditTests.test_wrong_family_negative_is_not_global) ... ok
+test_history_read_does_not_write (test_cycle.ExecutionTests.test_history_read_does_not_write) ... ok
+test_protocol_disables_network_and_production (test_cycle.ExecutionTests.test_protocol_disables_network_and_production) ... ok
+test_real_signal_is_reported (test_cycle.ExecutionTests.test_real_signal_is_reported) ... ok
+test_resource_measurement_is_real_child_usage (test_cycle.ExecutionTests.test_resource_measurement_is_real_child_usage) ... ok
+test_export_checksum_guard (test_cycle.PublicationTests.test_export_checksum_guard) ... ok
+test_export_refuses_existing_ledger (test_cycle.PublicationTests.test_export_refuses_existing_ledger) ... ok
+test_export_to_fresh_review_ledger (test_cycle.PublicationTests.test_export_to_fresh_review_ledger) ... ok
+test_resume_rejects_changed_pinned_algorithm (test_cycle.PublicationTests.test_resume_rejects_changed_pinned_algorithm) ... ok
+
+----------------------------------------------------------------------
+Ran 27 tests in 0.082s
+
+OK
+
+> node tests/associative-model-family.test.mjs
+Associative lexical model family tests passed.
+
+> node tests/associative-model-selection-policy.test.mjs
+Associative model-selection and threshold policy tests passed.
+
+> node tests/associative-morpheme-model-parser-v2.test.mjs
+Associative morpheme model parser v2 tests passed. 1000 words: 8.79ms, avg 0.0088ms, cache 71
+
+> node tests/associative-morpheme-model-parser.test.mjs
+Associative morpheme model parser tests passed.
+
+> node tests/associative-morphology-review-v2.test.mjs
+✔ exact native scope and independent authority are required for semantic verdicts (24.520793ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29.648893
+
+> node tests/associative-national-correspondences.test.mjs
+✔ finite documentary registry protects exact senses without promoting legacy membership (70.55729ms)
+✔ independent JavaScript verifies the locked registry and every proposal manifest (66.577206ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 143.365502
+
+> node tests/associative-normative.test.mjs
+✔ explainable case: manu-full (3.997911ms)
+✔ explainable case: manu-mani (2.522622ms)
+✔ explainable case: manu-foreign-mani (0.538353ms)
+✔ explainable case: manu-many (0.449969ms)
+✔ explainable case: manu-manifest (0.506085ms)
+✔ explainable case: regul-full (0.721961ms)
+✔ explainable case: regul-regl (1.582521ms)
+✔ explainable case: regul-russian (1.997028ms)
+✔ explainable case: regul-homonym (0.831747ms)
+✔ explainable case: regul-regolith (0.457001ms)
+✔ explainable case: creat-fr-short (0.617453ms)
+✔ explainable case: creat-fr-full (0.654619ms)
+✔ explainable case: creat-de (0.886309ms)
+✔ explainable case: creat-es (0.565244ms)
+✔ explainable case: creat-it (0.870987ms)
+✔ explainable case: creat-en-unlocked (0.475829ms)
+✔ explainable case: creat-opaque (0.377139ms)
+✔ explainable case: ocul-adj (0.471562ms)
+✔ explainable case: ocul-noun (0.448598ms)
+✔ explainable case: ocul-opaque (0.526405ms)
+✔ explainable case: ocul-monokel (0.247144ms)
+✔ explainable case: inter-component (0.442869ms)
+✔ explainable case: inter-opaque (0.209968ms)
+✔ explainable case: inter-substring (0.623573ms)
+✔ explainable case: ending-ten (0.269277ms)
+✔ explainable case: liber-unknown (0.372713ms)
+✔ explainable case: same-lemma-unknown-sense (0.429409ms)
+✔ word/lexeme ID cannot be normative root ID (0.600258ms)
+✔ single-language membership survives failure of three-language threshold (0.996135ms)
+✔ national form differs from normative form (0.777234ms)
+✔ no transfer of correspondence across family_id (0.438302ms)
+✔ no transfer of correspondence across element_id (0.309988ms)
+✔ no transfer of correspondence across language (0.212001ms)
+✔ no transfer of correspondence across lemma_id (0.397921ms)
+✔ no transfer of correspondence across lexeme_id (0.180913ms)
+✔ no transfer of correspondence across sense_id (0.192741ms)
+✔ no transfer of correspondence across context_id (0.339643ms)
+✔ unknown is not a negative decision (0.904476ms)
+✔ confirmed member requires independently evidenced national correspondence (0.229427ms)
+✔ historical membership gives no association score (0.503932ms)
+✔ separate senses retain separate scopes (0.567628ms)
+✔ modern association needs a separate verified assessment (1.95918ms)
+✔ unknown homonym sense blocks confirmation (0.28422ms)
+✔ model confidence/consensus is never an authority (0.624754ms)
+✔ source dataset alone cannot confirm linguistic membership (0.38345ms)
+✔ test fixture authority is disabled outside explicit test mode (0.786388ms)
+✔ trusted IDs cannot be reused after changing decision or evidence content (0.765617ms)
+✔ tampered assertion fails hash validation (0.232851ms)
+✔ contradictory trusted evidence cannot be hidden behind documented status (0.459174ms)
+✔ negative polarity cannot support a positive verdict (0.305352ms)
+✔ indirect path must be complete, sense-continuous and terminate at exact target (1.141314ms)
+✔ pending/excluded v6 guards cannot be promoted implicitly (1.675171ms)
+✔ supersedes input alone cannot erase a negative; verified explicit supersession can (0.71459ms)
+✔ old negative remains active on a later unknown proposal (0.253753ms)
+✔ old exclusions with no semantic certification remain guards, not new confirmations (0.239992ms)
+✔ preserve actual legacy exclusion: surface:de:ten/gelten (0.725777ms)
+✔ preserve actual legacy exclusion: surface:de:ten/retten (0.761871ms)
+✔ preserve actual legacy exclusion: surface:de:ten/erwarten (0.548238ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/liegen (1.067233ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/fragen (0.911288ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/abänderungen (0.518083ms)
+✔ preserve actual legacy exclusion: ety:5bed7c192e10/contact (0.468437ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/network (0.827721ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/internet (0.656361ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/planet (1.112461ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/network (0.501038ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/internet (0.452764ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/planet (0.556431ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/network (0.509089ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/internet (0.525845ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/planet (0.91345ms)
+✔ preserve actual legacy exclusion: family:liber/liber (0.451683ms)
+✔ preserve actual legacy exclusion: family:liber/calliber (0.558584ms)
+✔ preserve actual legacy exclusion: family:liber/liberhaupt (0.484452ms)
+✔ preserve actual legacy exclusion: family:liber/liber (0.469409ms)
+✔ preserve actual legacy exclusion: family:liber/líber (0.430951ms)
+✔ preserve actual legacy exclusion: family:liber/avenidalibertad (0.579285ms)
+✔ legacy quarantine covers narrower lemma scope (0.527817ms)
+✔ root recognition boundaries and immutable necessary thresholds (0.341606ms)
+✔ preposition recognition boundaries and immutable necessary thresholds (0.05946ms)
+✔ suffix preserves FAa 15 and >=3 IPM in EACH language (0.736062ms)
+✔ automatic correction is scoped, locked, externally authorized and never writes (1.876756ms)
+✔ closed schema rejects unknown fields and nonmatching versions (0.352613ms)
+✔ protected calculation and negative-policy files keep baseline Git blob hashes (5.474813ms)
+✔ 4354127381: correspondence rebuttal cannot establish membership (0.866239ms)
+✔ 4354127391: untrusted declared conflicts have no normative authority (0.574328ms)
+✔ 4354127396: verified nonmembership survives compatible legacy guards (0.539375ms)
+✔ 4354127406: indirect evidence retains exact intermediate endpoint scopes (1.051459ms)
+✔ 4354127406: intermediate contexts remain distinct and cannot replace final identity proof (1.410041ms)
+ℹ tests 89
+ℹ suites 0
+ℹ pass 89
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 78.745444
+
+> node tests/associative-paint-wait.test.mjs
+Associative paint wait tests passed.
+
+> node tests/associative-persistence-loader.test.mjs
+associative persistence loader tests passed
+
+> node tests/associative-pilot-evaluation.test.mjs
+✔ pilot evaluation: frozen cases, human-gold contract, source ablations and diagnostics (1445.538098ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1450.277691
+
+> node tests/associative-pilot-quality.test.mjs
+test_B_has_real_additions_and_displacement (test_quality04.Quality04Tests.test_B_has_real_additions_and_displacement) ... ok
+test_budget_balances_classes_and_keeps_unknown_frequency (test_quality04.Quality04Tests.test_budget_balances_classes_and_keeps_unknown_frequency) ... ok
+test_current_case_lock_rejects_changed_prediction (test_quality04.Quality04Tests.test_current_case_lock_rejects_changed_prediction) ... ok
+test_efficiency_requires_humans_and_does_not_erase_false_candidate_time (test_quality04.Quality04Tests.test_efficiency_requires_humans_and_does_not_erase_false_candidate_time) ... ok
+test_frozen_real_subset_is_balanced_and_reproducible (test_quality04.Quality04Tests.test_frozen_real_subset_is_balanced_and_reproducible) ... ok
+test_interrupted_human_time_is_unknown (test_quality04.Quality04Tests.test_interrupted_human_time_is_unknown) ... ok
+test_merge_missing_is_not_observed_zero (test_quality04.Quality04Tests.test_merge_missing_is_not_observed_zero) ... ok
+test_no_gold_is_null_not_zero_accuracy (test_quality04.Quality04Tests.test_no_gold_is_null_not_zero_accuracy) ... ok
+test_rater_agreement_intervals_and_constant_kappa (test_quality04.Quality04Tests.test_rater_agreement_intervals_and_constant_kappa) ... ok
+test_relation_error_distinct_from_membership (test_quality04.Quality04Tests.test_relation_error_distinct_from_membership) ... ok
+test_sparse_zero_errors_have_nonzero_upper_bound (test_quality04.Quality04Tests.test_sparse_zero_errors_have_nonzero_upper_bound) ... ok
+test_spelling_group_does_not_resolve_native_identity (test_quality04.Quality04Tests.test_spelling_group_does_not_resolve_native_identity) ... ok
+test_tp_fp_fn_denominators_and_abstention (test_quality04.Quality04Tests.test_tp_fp_fn_denominators_and_abstention) ... ok
+test_two_reviews_required_in_initial_cohort_without_case_mutation (test_quality04.Quality04Tests.test_two_reviews_required_in_initial_cohort_without_case_mutation) ... ok
+test_uncertain_gold_not_forced_into_confusion (test_quality04.Quality04Tests.test_uncertain_gold_not_forced_into_confusion) ... ok
+test_control_allowlist_has_no_cues_or_other_answers (test_quality04.Study04Tests.test_control_allowlist_has_no_cues_or_other_answers) ... ok
+test_http_collects_blind_task_and_idempotent_human_record (test_quality04.Study04Tests.test_http_collects_blind_task_and_idempotent_human_record) ... ok
+test_interruption_marks_timing_unknown (test_quality04.Study04Tests.test_interruption_marks_timing_unknown) ... ok
+test_lossless_archive_restores_raw_capture_bytes (test_quality04.Study04Tests.test_lossless_archive_restores_raw_capture_bytes) ... ok
+test_missing_verified_humans_blocks_collection (test_quality04.Study04Tests.test_missing_verified_humans_blocks_collection) ... ok
+test_save_idempotency_and_recovery_with_full_labels (test_quality04.Study04Tests.test_save_idempotency_and_recovery_with_full_labels) ... ok
+test_source_evidence_cannot_change_silently (test_quality04.Study04Tests.test_source_evidence_cannot_change_silently) ... ok
+test_study_tail_corruption_is_detected (test_quality04.Study04Tests.test_study_tail_corruption_is_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.014s
+
+OK
+
+> node tests/associative-postverification.test.mjs
+✔ V-001: actual page final calculation retains selected missing-P diagnostics and blocks acceptance (4.460991ms)
+✔ V-004: actual page candidate analysis returns terminal states for success and failure (0.983196ms)
+✔ V-005: actual page preposition path forwards element type to loader (1.073081ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11.498245
+
+> node tests/associative-production-hardening.test.mjs
+Associative hardening regression tests passed.
+
+> node tests/associative-qwen-backend-model-routing.test.mjs
+associative qwen backend model routing tests passed
+
+> node tests/associative-qwen-candidate-generation.test.mjs
+Associative Qwen top-five refinement tests passed.
+
+> node tests/associative-qwen-local-index.test.mjs
+Associative Qwen local-index verification tests passed.
+
+> node tests/associative-qwen-runtime-finalization.test.mjs
+Associative Qwen runtime finalization tests passed.
+
+> node tests/associative-readiness-regression.test.mjs
+✔ independent readiness controls: exact identities, scoped reverse history, language and path types (1818.680254ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1825.676527
+
+> node tests/associative-release-control.test.mjs
+✔ controlled release signatures, atomicity, history and incremental contracts (3437.255271ms)
+✔ real calculator preserves unknown inputs and does not certify empty before/after (4.444104ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3448.852234
+
+> node tests/associative-repository-materialization.test.mjs
+✔ recount observes last-membership loss and multi-family to single-family transitions (8.659183ms)
+✔ provenance excludes itself, survives root relocation and detects content changes (8.338638ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21.312441
+
+> node tests/associative-russian-model-family.test.mjs
+Russian associative model-family deduplication tests passed
+
+> node tests/associative-search-runtime-patch.test.mjs
+Associative search runtime patch tests passed.
+
+> node tests/associative-semantic-cleanup.test.mjs
+✔ sense-specific semantic decisions require exact independent authority and both guards (30.642018ms)
+✔ semantic release bridge preserves separate senses and fails on changed manifests (32.804305ms)
+✔ frozen semantic inventory keeps documentary facts, old IDs and unresolved senses separate (26.095138ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 98.170167
+
+> node tests/associative-static-index-load-control.test.mjs
+Associative static index load-control tests passed.
+
+> node tests/associative-static-search-index.test.mjs
+Static associative family search tests passed.
+
+> node tests/associative-surface-proof.test.mjs
+Surface proof and historical-correspondence guards passed
+
+> node tests/associative-tab-width-restore.test.mjs
+Associative restored tab-width tests passed
+
+> node tests/associative-target-translation-backend.test.mjs
+
+> node tests/associative-v5-adapter.test.mjs
+✔ v5 projection: exact source locks, scoped IDs, history, recovery and modern bridges (2121.650852ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2126.372868
+
+> node tests/associative-v5-baseline.test.mjs
+test_4354484825_fetch_exact_unreachable_generation (test_census.CensusTests.test_4354484825_fetch_exact_unreachable_generation) ... ok
+test_4354484833_nested_snapshot_is_hashed (test_census.CensusTests.test_4354484833_nested_snapshot_is_hashed) ... ok
+test_4354484841_standalone_census_checks_nonshard_files (test_census.CensusTests.test_4354484841_standalone_census_checks_nonshard_files) ... ok
+test_4354484848_tar_aliases_are_duplicates (test_census.CensusTests.test_4354484848_tar_aliases_are_duplicates) ... ok
+test_4354484852_malformed_components_reported (test_census.CensusTests.test_4354484852_malformed_components_reported) ... ok
+test_4354484861_existing_database_needs_identity (test_census.CensusTests.test_4354484861_existing_database_needs_identity) ... ok
+test_4354484873_archive_fsynced_before_receipt (test_census.CensusTests.test_4354484873_archive_fsynced_before_receipt) ... ok
+test_atomic_replace_and_verify (test_census.CensusTests.test_atomic_replace_and_verify) ... ok
+test_backup_restore_exact_bytes_and_no_overwrite (test_census.CensusTests.test_backup_restore_exact_bytes_and_no_overwrite) ... ok
+test_bucket_utf16_known_vectors (test_census.CensusTests.test_bucket_utf16_known_vectors) ... ok
+test_duplicates_orphans_and_corrupt_shards_recorded_not_fixed (test_census.CensusTests.test_duplicates_orphans_and_corrupt_shards_recorded_not_fixed) ... ok
+test_gzip_crc_and_truncation (test_census.CensusTests.test_gzip_crc_and_truncation) ... ok
+test_parser_preserves_duplicate_top_level_keys (test_census.CensusTests.test_parser_preserves_duplicate_top_level_keys) ... ok
+test_parser_rejects_trailing_json (test_census.CensusTests.test_parser_rejects_trailing_json) ... ok
+test_parser_unicode_and_large_value (test_census.CensusTests.test_parser_unicode_and_large_value) ... ok
+test_real_hard_crash_resume_and_full_accounting (test_census.CensusTests.test_real_hard_crash_resume_and_full_accounting) ... ok
+test_restore_rejects_links (test_census.CensusTests.test_restore_rejects_links) ... ok
+test_restore_rejects_path_traversal (test_census.CensusTests.test_restore_rejects_path_traversal) ... ok
+test_snapshot_tampering_detected (test_census.CensusTests.test_snapshot_tampering_detected) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 22.008s
+
+OK
+
+> node tests/associative-v5-diagnostics.test.mjs
+✔ full-v5 diagnostics retain observations, exact scopes and independent flags (1644.853236ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1649.823845
+
+> node tests/associative-v5-morphology-cleanup.test.mjs
+✔ morphology policy adversarial cases and lossless native analysis (41.663086ms)
+✔ native profile corruption fails before any lookup (34.172885ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.581562
+
+> node tests/associative-v5-release-readiness.test.mjs
+✔ real pinned inputs yield only a blocked package; separate-process replay is exact (311.984407ms)
+✔ missing, changed, additional and self-qualified package artifacts fail closed (72.71775ms)
+✔ input corruption, missing history, repeated paths and malformed JSON are rejected (35.190623ms)
+✔ stale production HEAD and historical risk acceptance cannot authorize a release (41.363518ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 473.404711
+
+> node tests/associative-v5-structural-cleanup.test.mjs
+Structural cleanup contracts passed
+
+> node tests/associativvordes-card-compat.test.mjs
+associativvordes browser card compatibility tests passed
+
+> node tests/associativvordes-card-metadata.test.mjs
+associativvordes card metadata tests passed
+
+> node tests/associativvordes-card-normalization.test.mjs
+associativvordes card normalization tests passed
+
+> node tests/associativvordes-error-handling.test.mjs
+associativvordes error-handling tests passed
+
+> node tests/associativvordes-language-statuses.test.mjs
+associativvordes language-status tests passed
+
+> node tests/associativvordes-no-data.test.mjs
+associativvordes no-data tests passed
+
+> node tests/associativvordes-persistence.test.mjs
+associativvordes persistence tests passed
+
+> node tests/associativvordes-qwen-review.test.mjs
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 1,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes qwen review tests passed
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 1,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 0
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 1,
+    reviewBudgetLimit: 2
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 1,
+    reviewStartedCount: 1,
+    reviewCompletedCount: 1,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: 1
+  }
+}
+
+> node tests/associativvordes-render-sources.test.mjs
+
+> node tests/associativvordes-root-matcher.test.mjs
+
+> node tests/associativvordes-runtime-index.test.mjs
+
+> node tests/associativvordes-sources-diagnostics.test.mjs
+associativvordes sources diagnostics tests passed
+
+> node tests/associativvordes-state-invalidation.test.mjs
+associativvordes state behavior tests passed
+
+> node tests/associativvordes-target-language-cache.test.mjs
+associativvordes target language and cache tests passed
+
+> node tests/associativvordes-target-translation-batch.test.mjs
+Associativ vordes SWOW diagnostics {
+  swowPath: null,
+  swowFileLoaded: false,
+  swowPairFound: false,
+  swowTargetMeaning: '',
+  targetToWord: null,
+  wordToTarget: null,
+  review: {
+    reviewEligibleCount: 0,
+    reviewStartedCount: 0,
+    reviewCompletedCount: 0,
+    reviewFailedCount: 0,
+    reviewAbortedCount: 0,
+    reviewSkippedDisabledCount: 0,
+    reviewSkippedBudgetCount: 0,
+    reviewBudgetLimit: Infinity
+  }
+}
+associativvordes target translation batch tests passed
+
+> node tests/associativvordes-thresholds.test.mjs
+
+> node tests/button-status-controller.test.mjs
+button status controller tests passed
+
+> node tests/button-status-success.test.mjs
+button status success tests passed
+
+> node tests/card-schema.test.mjs
+card-schema tests passed
+
+> node tests/four-tools-regression.test.mjs
+tool regression tests passed
+
+> node tests/frequency-loader-source-descriptors.test.mjs
+frequency-loader source descriptor tests passed
+
+> node tests/frequency-record-stream.test.mjs
+
+> node tests/i18n-and-assets.test.mjs
+i18n/assets tests passed
+
+> node tests/indoeuropan-hindi-persian.test.mjs
+Indo-European Hindi/Persian tests passed
+
+> node tests/instrumentes-lexeme-goal.test.mjs
+instrumentes lexeme goal tests passed
+
+> node tests/interal-ipa.test.mjs
+Interal IPA generation tests passed.
+
+> node tests/json-author-autosave.test.mjs
+JSON author autosave wiring tests passed.
+
+> node tests/json-card-utils.test.mjs
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+JSON card payload size { section: 'internationalismes', payloadBytes: 58 }
+
+> node tests/liquid-glass-theme-parity.test.mjs
+liquid glass theme parity tests passed
+
+> node tests/mater-reference.test.mjs
+Exhaustive mater oracle agrees with PH v4; no production formulas changed.
+
+> node tests/methodology-20260909.test.mjs
+Methodology controls passed
+Missing-data and uncertainty controls passed
+
+> node tests/modal-motion-runtime.test.mjs
+Modal motion runtime tests passed
+
+> node tests/modal-motion.test.mjs
+Modal motion tests passed
+
+> node tests/persistence-helper.test.mjs
+Saved page state is invalid: SyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)
+    at JSON.parse (<anonymous>)
+    at Object.restoreDraft [as restore] (evalmachine.<anonymous>:931:22)
+    at file:///workspace/scratch/e6a8c34934ac/interal/tests/persistence-helper.test.mjs:50:44
+persistence-helper tests passed
+
+> node tests/pr-review-guards.test.mjs
+✔ 4362693699: native structured membership scopes reach the proof gate (20.655626ms)
+✔ 4359927831: diagnostic reader checks every output pinned by manifest (29.439583ms)
+✔ 4363144017: archive rejects a missing configured source (80.918066ms)
+✔ 4363143999: cached profile verification hashes the current SQLite bytes (71.103357ms)
+✔ 4362693732: scanner refuses output inside its immutable snapshot before writing (36.920542ms)
+✔ 4367043678: historical blind tasks retain observed word and locked locator (4956.551116ms)
+✔ 4365260804: rehashed dictionary receipts are rejected (34.900628ms)
+✔ 4362693707: historical evidence-count mismatch is fatal (102.482555ms)
+✔ 4368023514: changed production tree has unknown current counts (47.904457ms)
+✔ 4368023519: rehashed package cannot omit required source inventory (130.33048ms)
+✔ 4354484829: full driver executes and compares all auxiliary audits (77.951215ms)
+✔ 4359927848: suffix exposure pins normalization and morph construction (151.063708ms)
+✔ 4362693719: actual surface checkpoints bind imported decoding and history (2379.05203ms)
+✔ 4362693741: consistent hashes cannot hide an incorrect family disposition (2486.585802ms)
+✔ 4363144007: morphology checkpoints include the actual selection classifier (2050.101298ms)
+✔ 4363656925: structural JSON plan bytes are verified with NDJSON inputs (72.914128ms)
+✔ 4362455083: fresh apply and idempotence receipts substantiate different operations (32.71409ms)
+✔ 4362455091: both complete issue exports resolve and match their report counts (23.592124ms)
+✔ 4359323435: source-row body identity cannot differ from its evidence key (35.560115ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12829.221234
+
+> node tests/registry-altervordes-ui.test.mjs
+Alter vordes registry UI test passed.
+
+> node tests/target-meaning-translator.test.mjs
+
+> node tests/ui-motion-components.test.mjs
+UI motion components tests passed
+
+> node tests/vercel-associative-index-gate.test.mjs
+Vercel associative index deployment gate tests passed
+
+All tests passed.

@@ -11,6 +11,7 @@ def verify(folder,lock,profiles,out):
  start=time.monotonic();out=pathlib.Path(out);out.mkdir(parents=True,exist_ok=True);e=External(folder,lock);manifest=read(pathlib.Path(profiles)/'MANIFEST.json');parts=[]
  for i,p in enumerate(e.parts):
   artifact=p['artifact'];target=out/f'{i:02d}.json'
+  if filehash(pathlib.Path(profiles)/f'{i:02d}.sqlite')!=manifest['parts'][i]['sha256']:raise ValueError('profile checksum mismatch')
   if target.exists():
    r=read(target)
    if r['raw_sha256']!=p['database_sha256'] or r['profile_sha256']!=manifest['parts'][i]['sha256']:raise ValueError('stale verification')

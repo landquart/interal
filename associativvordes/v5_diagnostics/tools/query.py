@@ -14,6 +14,9 @@ def open_registry(folder):
  folder=Path(folder);m=json.loads((folder/'MANIFEST.json').read_bytes());db=folder/m['database']
  expected=hashlib.sha256(canonical({k:v for k,v in m.items() if k!='version'})).hexdigest()
  if m['version']!=expected or not m['complete'] or filehash(db)!=m['database_sha256']:raise ValueError('immutable diagnostic input checksum')
+ for name,h in m.get('outputs',{}).items():
+  p=(folder/name).resolve()
+  if p.parent!=folder.resolve() or filehash(p)!=h:raise ValueError('immutable diagnostic output checksum')
  c=sqlite3.connect(db.resolve().as_uri()+'?mode=ro',uri=True);c.executescript('PRAGMA query_only=ON;PRAGMA cache_size=-8192;PRAGMA temp_store=FILE;');return c,m
 
 def query(db,family=None,flag=None,category=None,band=None,pattern=None,members=False,cohort=None):

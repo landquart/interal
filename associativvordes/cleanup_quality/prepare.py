@@ -95,6 +95,27 @@ def row_for(d,fid,l=None,lid=None):
     r=d.execute(q+' ORDER BY m.lang,m.lid LIMIT 1',a).fetchone()
     return dict(zip(['family_id','language','lemma_id','ordinal','record_sha256','bucket'],r)) if r else None
 
+def historical_context(h):
+    """Recover observed lexical context from the exact locked source pointer."""
+    import subprocess,hashlib
+    source=h['source'];raw=subprocess.check_output(['git','-C',str(ROOT),'cat-file','blob',source['blob']])
+    if hashlib.sha256(raw).hexdigest()!=source['sha256']:raise ValueError('historical lexical source checksum')
+    data=json.loads(gzip.decompress(raw) if source['path'].endswith('.gz') else raw)
+    for token in source.get('pointer','').split('/')[1:]:
+        token=token.replace('~1','/').replace('~0','~');data=data[int(token)] if isinstance(data,list) else data[token]
+    native=data.get('source_record') if isinstance(data.get('source_record'),dict) else data
+    word=native.get('word') or native.get('lemma')
+    if not isinstance(word,str) or not word:raise ValueError('historical task lacks a documented lexical form')
+    # A historical decision filename itself can disclose the previous verdict.
+    # Reviewers get a neutral, sanitized context object; the original history
+    # locator stays coordinator-only in history_ref/history_sha256.
+    observed={k:native[k] for k in ('word','normalized','search_form','context') if k in native}
+    observed['word']=word
+    if 'sources' in native:observed['sources']=[{k:r[k] for k in ('id','file','category') if k in r} for r in native['sources']]
+    key=digest(observed)
+    observed['source_refs']=[dict(artifact='HISTORICAL-LEXICAL-CONTEXTS.json',pointer='/contexts/'+key,sha256=key)]
+    return word,observed
+
 def challenges(d):
     result={}
     def add(r,tag):
@@ -114,7 +135,10 @@ def challenges(d):
         if h.get('decision')=='CONFIRMED_NONMEMBER' and s.get('language') and ids:
             for lid in ids[:1]:
                 add(row_for(d,s['family_id'],s['language'],lid),'SCOPED_NEGATIVE_HISTORY')
-                historical.append(dict(case_kind='HISTORICAL_SCOPE_NOT_POPULATION_MEMBERSHIP',family_id=s['family_id'],language=s['language'],lemma_id=lid,word=None,pos=s.get('pos'),sense_id=s.get('sense_id'),history_ref=h['id'],history_sha256=digest(h),risk_flags=['SCOPED_NEGATIVE_HISTORY'],source_record_status='HISTORICAL_SCOPE_ONLY_NOT_RESTORED'))
+                word,context=historical_context(h)
+                family_row=d.execute('SELECT meta FROM families WHERE fid=?',(s['family_id'],)).fetchone()
+                family_canonical=json.loads(family_row[0]).get('canonical') if family_row else None
+                historical.append(dict(family_canonical=family_canonical,source_record=context,case_kind='HISTORICAL_SCOPE_NOT_POPULATION_MEMBERSHIP',family_id=s['family_id'],language=s['language'],lemma_id=lid,word=word,pos=s.get('pos'),sense_id=s.get('sense_id'),history_ref=h['id'],history_sha256=digest(h),risk_flags=['SCOPED_NEGATIVE_HISTORY'],source_record_status='HISTORICAL_SCOPE_ONLY_NOT_RESTORED'))
         if len(historical)>=12:break
     return list(result.values()),historical
 
@@ -171,6 +195,11 @@ def run(index,output,kit,stop_after=None):
         for r in rs:
             c=dict(r,dataset=name,split='holdout',protocol_sha256=ph)
             c['id']='quality-case:'+digest([name,c['family_id'],c['language'],c['lemma_id'],c.get('record_sha256'),c.get('history_ref')]);allcases.append(c)
+    contexts={}
+    for c in allcases:
+        if c['case_kind']=='HISTORICAL_SCOPE_NOT_POPULATION_MEMBERSHIP':
+            context={k:v for k,v in c['source_record'].items() if k!='source_refs'};contexts[digest(context)]=context
+    save(out/'HISTORICAL-LEXICAL-CONTEXTS.json',dict(schema='blind-historical-contexts/1',contexts=contexts))
     clusters=linked_clusters(allcases)
     for c in allcases:
         c['cluster']=clusters[c['id']];c['historical_exposure_flags']=[t for t in ['family:'+c['family_id'],'lemma:'+c['language']+':'+c['lemma_id'],'record:'+str(c.get('record_sha256'))] if t in exposure]

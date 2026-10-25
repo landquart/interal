@@ -12,6 +12,12 @@ def save(p,x):
 def finalize(first,replay):
  start=time.monotonic();out=Path(first);db,m=open_registry(out);other,rm=open_registry(replay)
  try:
+  a,b=m.get('execution',{}),rm.get('execution',{})
+  if out.resolve()==Path(replay).resolve() or a.get('output')!=str(out.resolve()) or b.get('output')!=str(Path(replay).resolve()) or not a.get('run_id') or a.get('run_id')==b.get('run_id'):raise ValueError('independent replay requires distinct fresh execution provenance')
+  for conn,manifest in ((db,m),(other,rm)):
+   execution=conn.execute("SELECT value FROM state WHERE key='execution'").fetchone()
+   if not execution or json.loads(execution[0])!=manifest['execution']:raise ValueError('execution receipt differs from database')
+  if (out/'COVERAGE.json').read_bytes()!=(Path(replay)/'COVERAGE.json').read_bytes():raise ValueError('coverage replay differs')
   if m['identity']!=rm['identity'] or m['logical_tables']!=rm['logical_tables']:raise ValueError('independent replay differs')
   if (out/'SUMMARY.json').read_bytes()!=(Path(replay)/'SUMMARY.json').read_bytes():raise ValueError('summary replay differs')
   coverage=json.loads((out/'COVERAGE.json').read_bytes())

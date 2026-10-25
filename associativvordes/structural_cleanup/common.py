@@ -46,7 +46,7 @@ def pinned_baseline(repo, work):
 def inventory(root):
     root = pathlib.Path(root)
     return [dict(path=p.relative_to(root).as_posix(), bytes=p.stat().st_size, sha256=sha_file(p))
-            for p in sorted(root.rglob('*')) if p.is_file() and p.name != 'SNAPSHOT.json']
+            for p in sorted(root.rglob('*')) if p.is_file() and p != root / 'SNAPSHOT.json']
 
 def verify(root, manifest):
     root = pathlib.Path(root)

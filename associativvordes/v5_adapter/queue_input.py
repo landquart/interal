@@ -34,7 +34,7 @@ def load_queue(path,projection,external_folder=None):
     fields=['id','family','source_family_id','language','lemma','pos','sense_scope','source_lemma_id',
       'lexeme_alternatives','original_record_ref','independence','history_check','evidence_refs']
     if external:fields+=['external_rows','external_rows_omitted','native_lexeme_alternatives','source_availability','external_alignment_status']
-    if any(q.get(k)!=expected.get(k) for k in fields):raise ValueError('question differs from locked source or legacy identity scope')
+    if q!=expected:raise ValueError('question differs from locked source or legacy identity scope')
     qs.append(q)
   if len(qs)!=m['counts']['questions'] or len({q['id'] for q in qs})!=len(qs):raise ValueError('v5 question count/IDs')
   return qs,dict(kind='v5',manifest_sha256=filehash(path/'MANIFEST.json'),input_sha256=m['outputs']['questions.ndjson'],

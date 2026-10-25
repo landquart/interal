@@ -122,11 +122,11 @@ def compile_package(repo,observations,config_path=None):
    publication_allowed=False,owner_approval=None,verifier_attestation=None,materializer_implemented=False,
    data_release_pr_created=False,data_release_pr_reason='No approved operations or staged changed v5; an empty PR would imply a nonexistent release',
    production_writes=0,blockers=blocked)
- counts=run['counts']
- summary=dict(schema='v5-cleanup-before-after/1',counts_kind='Historical full census, linked to equal Git v5 trees; no new full recount',
-   before=counts,current_unchanged=counts,after_cleaned_release=None,families_before=counts['canonical_families'],
-   families_remaining_unchanged=counts['canonical_families'],memberships_removed=0,memberships_corrected=0,
-   families_split=0,families_merged=0,unassigned_lemmas_preserved=counts['unassigned_lemmas'],
+ counts=run['counts'];tree_equal=observations['production_v5_tree']==observations['research_v5_tree']
+ summary=dict(schema='v5-cleanup-before-after/1',counts_kind='Historical full census, linked to equal Git v5 trees; no new full recount' if tree_equal else 'Historical baseline counts only; current production tree differs and current counts are unknown',
+   before=counts,current_unchanged=counts if tree_equal else None,after_cleaned_release=None,families_before=counts['canonical_families'],
+   families_remaining_unchanged=counts['canonical_families'] if tree_equal else None,memberships_removed=0,memberships_corrected=0,
+   families_split=0,families_merged=0,unassigned_lemmas_before=counts['unassigned_lemmas'],unassigned_lemmas_preserved=counts['unassigned_lemmas'] if tree_equal else None,
    concrete_proposed_operations=n,concrete_blocked_operations=n,blocked_gates=len(blocked),
    hypothetical_candidate_operations_not_counted=True,production_writes=0)
  qreport=dict(schema='v5-final-quality/1',status='BLOCKED',human_gold=gold,holdout=holdout,admission=admission,
@@ -182,18 +182,19 @@ gate в PR №693 текущий код не прошёл новый полны�
 
 | Показатель | Значение |
 |---|---:|
-| Семьи до / текущий неизменённый реестр | {s['families_before']} |
-| Memberships текущего реестра | {s['before']['memberships']} |
+| Семьи исторического baseline | {s['families_before']} |
+| Семьи текущего неизменённого реестра | {s['families_remaining_unchanged']} |
+| Memberships исторического baseline | {s['before']['memberships']} |
 | Aliases | {s['before']['aliases']} |
 | Удалено memberships | 0 |
 | Исправлено memberships | 0 |
 | Разделено / объединено семей | 0 / 0 |
-| Сохранено лексем без семьи | {s['unassigned_lemmas_preserved']} |
+| Лексемы без семьи в историческом baseline | {s['unassigned_lemmas_before']} |
+| Подтверждённо сохранено лексем без семьи | {s['unassigned_lemmas_preserved']} |
 | Конкретных proposed / blocked операций | {s['concrete_proposed_operations']} / {s['concrete_blocked_operations']} |
 | Не пройдено gates | {s['blocked_gates']} |
 
-Числа корпуса взяты из прежнего полного census и связаны с наблюдаемым равным
-Git subtree. Новый recount и проверка фактических CDN bytes здесь не выполнены.
+{s['counts_kind']}. Новый recount и проверка фактических CDN bytes здесь не выполнены.
 Нулевое число blocked операций означает отсутствие конкретных proposed operations,
 а не отсутствие рисков или разрешение будущих исключений.
 

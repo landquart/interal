@@ -31,6 +31,7 @@ def exact_bounds(k, n, alpha):
 def ratio(k,n): return dict(value=k/n if n else None,numerator=k,denominator=n)
 
 def summary(rows):
+    rows=[r for r in rows if r['prediction']!='NOT_RUN']
     c=Counter(); all_weight=sum(r['weight'] for r in rows)
     for r in rows:
         w=r['weight']; gold=r.get('gold'); prediction=r['prediction']
@@ -50,7 +51,9 @@ def summary(rows):
         status='DESCRIPTIVE_PARTIAL_GOLD' if c['labeled'] else 'INSUFFICIENT_EVIDENCE')
 
 def evaluate(rows, repetitions=2000, seed='quality11-cluster-bootstrap'):
-    out=summary(rows); clusters=defaultdict(list)
+    not_run=sum(r['prediction']=='NOT_RUN' for r in rows)
+    rows=[r for r in rows if r['prediction']!='NOT_RUN']
+    out=summary(rows);out['not_run_units']=not_run; clusters=defaultdict(list)
     for r in rows:
         if not math.isfinite(r['weight']) or r['weight']<=0 or not r.get('cluster'): raise ValueError('weight/cluster')
         clusters[r['cluster']].append(r)

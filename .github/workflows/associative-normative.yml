@@ -1,0 +1,25 @@
+name: Associative normative specification
+on:
+  pull_request:
+    paths:
+      - 'associativvordes/normative/**'
+      - 'audit/associative-family-normative/**'
+      - 'tests/associative-normative.test.mjs'
+      - '.github/workflows/associative-normative.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'associativvordes/normative/**'
+      - 'audit/associative-family-normative/**'
+      - 'tests/associative-normative.test.mjs'
+permissions:
+  contents: read
+jobs:
+  normative:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/associative-normative.test.mjs
