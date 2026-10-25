@@ -1,0 +1,134 @@
+{
+  "schema": "interal-normative-implementation-lock/1",
+  "parent_commit": "6fddd712395fd1a9bcd45b78cd25b45cd9511368",
+  "integrated_ancestor": "78f73c0b4e151088c5ce2e7daab6dcd4472de52e",
+  "files": [
+    {
+      "path": "associativvordes/candidate_search/search.py",
+      "bytes": 23005,
+      "sha256": "f67e74940b6a8e046fb313502e94faa2a6fdc9962d75225544f61ea28ebd9643"
+    },
+    {
+      "path": "associativvordes/evidence_graph/graph.py",
+      "bytes": 30011,
+      "sha256": "5472b8f92a41982b49d080cc3251d2ea3de8aeb01202c593694383ad3812f1e8"
+    },
+    {
+      "path": "associativvordes/evidence_graph/test_graph.py",
+      "bytes": 14702,
+      "sha256": "0f7ae463270d6d0fb27865e920f47d221787d8eef97a9044454ae9d5603dacd3"
+    },
+    {
+      "path": "associativvordes/morphology_review/policy.py",
+      "bytes": 6395,
+      "sha256": "a9cc3d79e08dc153a87bfc15d33b22596d58a4f408c95c14ccf49cced8f34e0c"
+    },
+    {
+      "path": "associativvordes/national_correspondences/registry.py",
+      "bytes": 14173,
+      "sha256": "f3ddc3a82bd9c554b500012237f230728fb801ab23e1d1e58cec911a89991185"
+    },
+    {
+      "path": "associativvordes/normative/__init__.py",
+      "bytes": 77,
+      "sha256": "3530febd707f55bf2a37485a278028cd03dbdfc7b0c39a61754f6a1e33aafc55"
+    },
+    {
+      "path": "associativvordes/normative/decision.schema.json",
+      "bytes": 18296,
+      "sha256": "60f38ae7a7bac3bea8ab01df109f45d909b8c8c0bec85779ecf9d81e83b08c7a"
+    },
+    {
+      "path": "associativvordes/normative/national-correspondence.schema.json",
+      "bytes": 6657,
+      "sha256": "70c44f047b1d3d0bf05acdf96e203b6442eb05ee390c827c6dde0c8a9aa67e14"
+    },
+    {
+      "path": "associativvordes/normative/resolver.mjs",
+      "bytes": 517,
+      "sha256": "860cdd1eb80103424637d9ffec7ae6ea6dcf345d8c4d95701b9b52c3ff7e0fad"
+    },
+    {
+      "path": "associativvordes/normative/resolver.py",
+      "bytes": 993,
+      "sha256": "c0ffca1c8fec63990bb23188a2da36b73028f75a5a22b912d9fc983db9e02515"
+    },
+    {
+      "path": "associativvordes/normative/test_resolver.py",
+      "bytes": 5118,
+      "sha256": "3707cfd75865a00e816f3a6c4db3d078d74fb57bae53ceba1e8ce91f1c8ddb8a"
+    },
+    {
+      "path": "associativvordes/normative/validator.mjs",
+      "bytes": 14040,
+      "sha256": "90fc02c48de992064e5f0c5656a7fede567318172a8c7082448681b33eec5ef3"
+    },
+    {
+      "path": "associativvordes/release_control/control.py",
+      "bytes": 33994,
+      "sha256": "721bf5f079638744e8c6803f52e9470d21372888d2770d58afd68bea4a25cd47"
+    },
+    {
+      "path": "associativvordes/release_control/test_control.py",
+      "bytes": 26759,
+      "sha256": "6a7469bc26fd861c683ca6dee5313d64d982c3d5036281d938986cbac05b4837"
+    },
+    {
+      "path": "associativvordes/review/store.py",
+      "bytes": 22387,
+      "sha256": "062043baeea684fb42d48bd9b3ac3a5e0206307fd006ab57b8be8f28246c7e03"
+    },
+    {
+      "path": "associativvordes/semantic_cleanup/policy.py",
+      "bytes": 5149,
+      "sha256": "4739afc778dca7c836531e96e592baec9625939350e78c7fb564b0347317770b"
+    },
+    {
+      "path": "associativvordes/v5_adapter/adapter.py",
+      "bytes": 4886,
+      "sha256": "c95aadb80f339ebfb1097593d680f0f00211b1542477feeed12f140e20102f80"
+    },
+    {
+      "path": "associativvordes/v5_contract/approved.py",
+      "bytes": 1983,
+      "sha256": "cdcf2c76215ad6f0ed5a335faea13a3881e7edfca770071c43dce049d64856bd"
+    },
+    {
+      "path": "associativvordes/v5_contract/normative.mjs",
+      "bytes": 1473,
+      "sha256": "624476494c2e25e84735f2ec30218e2f00b42081ce9d95b298b0f8a14a107b43"
+    },
+    {
+      "path": "associativvordes/v5_contract/policy.py",
+      "bytes": 6010,
+      "sha256": "2b432a4e1bd4afc465f96bf6546c38b610ec61fe3e23f188a2f8c0c3e974579e"
+    },
+    {
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "bytes": 9052,
+      "sha256": "9da1dbe8cb724997ca20edb5728cf42f668b883252deb8e226227474e987674c"
+    },
+    {
+      "path": "tests/associative-normative-admission.test.mjs",
+      "bytes": 436,
+      "sha256": "9db4c6e9eb88f2a3fc9e7dc9cd19877214ec019cc674400b7562fef1b96ce68f"
+    },
+    {
+      "path": "tests/associative-normative-resolver.test.mjs",
+      "bytes": 3799,
+      "sha256": "2d092a6b7a3b0b9a1716c1e9fe709c523555c9ecdf2f3644a43bf00bdda59f59"
+    },
+    {
+      "path": "tests/associative-normative.test.mjs",
+      "bytes": 16010,
+      "sha256": "5c9e06f5ea396cda08aa6c5da630d0206818fb3f9d65c412ce963bcc794ef816"
+    },
+    {
+      "path": "tests/associative-semantic-cleanup.test.mjs",
+      "bytes": 9836,
+      "sha256": "45d8cd2b062f927b7f40220f3ff70c9260a00384e0f6c6c5f4e3467e03dba712"
+    }
+  ],
+  "production_data_diff": [],
+  "historical_receipts_rewritten": false
+}

@@ -2,8 +2,9 @@ import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { createHash } from 'node:crypto';
 
-export const rules = JSON.parse(readFileSync(new URL('./rules.json', import.meta.url)));
-export const schema = JSON.parse(readFileSync(new URL('./decision.schema.json', import.meta.url)));
+const immutable = value => {if(value && typeof value==='object'){Object.values(value).forEach(immutable);Object.freeze(value);}return value;};
+export const rules = immutable(JSON.parse(readFileSync(new URL('./rules.json', import.meta.url))));
+export const schema = immutable(JSON.parse(readFileSync(new URL('./decision.schema.json', import.meta.url))));
 const canonical = x => Array.isArray(x) ? `[${x.map(canonical).join(',')}]` :
   x !== null && typeof x === 'object' ? `{${Object.keys(x).sort().map(k => `${JSON.stringify(k)}:${canonical(x[k])}`).join(',')}}` : JSON.stringify(x);
 export const digest = x => createHash('sha256').update(canonical(x)).digest('hex');
@@ -48,10 +49,7 @@ export function validateDecision(d) {
   demand(refs.size === d.evidence.length, 'duplicate evidence ID');
   for (const e of d.evidence) {
     const intermediate=d.relation_type==='indirect' && d.correspondence?.steps.some(step=>
-      step.evidence_ids.includes(e.id) && e.scope.family_id===d.scope.family_id && e.scope.element_id===d.scope.element_id &&
-      e.scope.language && e.scope.lemma_id &&
-      ((e.scope.lexeme_id===step.from && e.scope.sense_id===step.from_sense) ||
-       (e.scope.lexeme_id===step.to && e.scope.sense_id===step.to_sense)));
+      step.evidence_ids.includes(e.id) && [step.from_scope,step.to_scope].some(scope=>scope && sameScope(e.scope,scope)));
     demand(sameScope(e.scope,d.scope) || intermediate, 'evidence scope mismatch');
     demand(e.assertion_sha256 === digest({source:e.source,version:e.version,locator:e.locator,finding:e.finding}), 'assertion digest mismatch');
   }
@@ -61,14 +59,22 @@ export function validateDecision(d) {
     demand(sameScope(d.correspondence.scope,d.scope), 'national correspondence scope mismatch');
     checkRefs(d.correspondence.evidence_ids);
     for (const step of d.correspondence.steps) checkRefs(step.evidence_ids);
+    for (const step of d.correspondence.steps) {
+      for (const [side,lexeme,sense] of [['from',step.from,step.from_sense],['to',step.to,step.to_sense]]) {
+        const endpoint=step[side+'_scope'];
+        if(endpoint) demand(Object.values(endpoint).every(x=>typeof x==='string' && x.length>0) &&
+          endpoint.family_id===d.scope.family_id && endpoint.element_id===d.scope.element_id &&
+          endpoint.lexeme_id===lexeme && endpoint.sense_id===sense, 'indirect endpoint scope mismatch');
+      }
+    }
     if (d.relation_type === 'indirect') {
       demand(d.correspondence.steps.length > 0, 'indirect path missing');
       for (let i=1;i<d.correspondence.steps.length;i++) {
         const a=d.correspondence.steps[i-1],b=d.correspondence.steps[i];
-        demand(a.to===b.from && a.to_sense===b.from_sense, 'discontinuous indirect path');
+        demand(a.to===b.from && a.to_sense===b.from_sense && (!a.to_scope || !b.from_scope || sameScope(a.to_scope,b.from_scope)), 'discontinuous indirect path');
       }
       const end=d.correspondence.steps.at(-1);
-      demand(end.to===d.scope.lexeme_id && end.to_sense===d.scope.sense_id, 'indirect endpoint mismatch');
+      demand(end.to===d.scope.lexeme_id && end.to_sense===d.scope.sense_id && (!end.to_scope || sameScope(end.to_scope,d.scope)), 'indirect endpoint mismatch');
     }
   }
   if (d.decision.startsWith('CONFIRMED_')) {
@@ -85,6 +91,8 @@ export function validateDecision(d) {
   return true;
 }
 
+export const stepDigest = step => digest(Object.fromEntries(Object.entries(step).filter(([k])=>k!=='evidence_ids')));
+
 function proofTrusted(d,trust) {
   if (!trust.authorizedDecisionIds?.has(d.id) || trust.authorizedDecisionDigests?.get(d.id)!==digest(d) ||
     !(d.provenance.origin==='human_review' || d.provenance.origin==='test_fixture' && trust.allowTestFixtures===true)) return false;
@@ -96,13 +104,15 @@ function proofTrusted(d,trust) {
   return axes.every(axis=>d.axis_evidence[axis].some(id=>valid(id) && sameScope(byId.get(id).scope,d.scope) && (axis!=='relation_status'||byId.get(id).polarity===polarity))) &&
     (d.decision!=='CONFIRMED_MEMBER' || d.correspondence.evidence_ids.some(id=>valid(id) && sameScope(byId.get(id).scope,d.scope) && byId.get(id).polarity==='supports') &&
       d.correspondence.evidence_ids.every(id=>!valid(id) || byId.get(id).polarity==='supports') &&
-      d.correspondence.steps.every(step=>step.evidence_ids.some(id=>valid(id) && byId.get(id).polarity==='supports') &&
+      d.correspondence.steps.every(step=>step.from_scope && step.to_scope && step.evidence_ids.some(id=>valid(id) && byId.get(id).polarity==='supports' &&
+          [step.from_scope,step.to_scope].some(scope=>sameScope(byId.get(id).scope,scope)) &&
+          byId.get(id).relation_step_sha256===stepDigest(step)) &&
         step.evidence_ids.every(id=>!valid(id) || byId.get(id).polarity==='supports')));
 }
 
-// A null legacy discriminator covers all narrower scopes; never treats unknown as false.
+// Unknown discriminators retain potential intersection; they never grant permission.
 export function scopeCovers(prior,scope) {
-  return Object.keys(scope).every(k=>prior[k]===null || prior[k]===scope[k]);
+  return Object.keys(scope).every(k=>prior[k]===undefined || prior[k]===null || scope[k]===null || prior[k]===scope[k]);
 }
 export function evaluateMembership(d,{history=[],verifiedEvidenceIds=new Set(),authorizedDecisionIds=new Set(),verifiedEvidenceDigests=new Map(),authorizedDecisionDigests=new Map(),authorizedSupersessions=new Set(),allowTestFixtures=false}={}) {
   validateDecision(d);
@@ -112,8 +122,8 @@ export function evaluateMembership(d,{history=[],verifiedEvidenceIds=new Set(),a
   const active=relevant.filter(h=>!superseded(h));
   const negative=active.filter(h=>h.decision==='CONFIRMED_NONMEMBER' || h.guard==='excluded' || h.guard==='quarantine');
   const hold=active.some(h=>h.guard==='uncertain' || h.guard==='pending');
-  const relationPolarities=new Set(d.axis_evidence.relation_status.filter(id=>verifiedEvidenceIds.has(id) &&
-    verifiedEvidenceDigests.get(id)===digest(d.evidence.find(e=>e.id===id))).map(id=>d.evidence.find(e=>e.id===id).polarity));
+  const relationIds=[...d.axis_evidence.relation_status,...(d.correspondence?.evidence_ids||[]),...(d.correspondence?.steps.flatMap(step=>step.evidence_ids)||[])];
+  const relationPolarities=new Set(relationIds.filter(id=>{const e=d.evidence.find(e=>e.id===id);return verifiedEvidenceIds.has(id) && verifiedEvidenceDigests.get(id)===digest(e) && ['dictionary','grammar','reviewed_document'].includes(e?.origin);}).map(id=>d.evidence.find(e=>e.id===id).polarity));
   const authorized=authorizedDecisionIds.has(d.id) && authorizedDecisionDigests.get(d.id)===digest(d) &&
     (d.provenance.origin==='human_review' || d.provenance.origin==='test_fixture' && allowTestFixtures);
   const confirmed=d.decision.startsWith('CONFIRMED_') && proofTrusted(d,trust);
@@ -146,11 +156,11 @@ export function assessRecognition(kind, result) {
 
 export function evaluateAssociation(d,context={}) {
   const membership=evaluateMembership(d,context);
-  if (d.association_status==='conflict') return {status:'conflict',reason:'association_disagreement'};
+  if (d.association_status==='conflict' && context.verifiedAssociationDecisionIds?.has(d.id) && context.authorizedDecisionDigests?.get(d.id)===digest(d)) return {status:'conflict',reason:'association_disagreement'};
   if (membership.decision!=='CONFIRMED_MEMBER') return {status:'unknown',reason:'membership_not_confirmed'};
   const evidence=d.axis_evidence.association_status;
   const verified=context.verifiedAssociationDecisionIds?.has(d.id) && evidence.length>0 &&
-    evidence.every(id=>context.verifiedEvidenceIds?.has(id) && d.evidence.find(e=>e.id===id)?.origin!=='model');
+    context.authorizedDecisionDigests?.get(d.id)===digest(d) && evidence.every(id=>{const e=d.evidence.find(e=>e.id===id);return context.verifiedEvidenceIds?.has(id) && context.verifiedEvidenceDigests?.get(id)===digest(e) && ['dictionary','grammar','reviewed_document'].includes(e?.origin) && sameScope(e.scope,d.scope) && e.polarity==='supports';});
   return verified && ['supported','weak'].includes(d.association_status) ?
     {status:d.association_status,reason:'separately_verified_contemporary_association'} :
     {status:'unknown',reason:'contemporary_association_not_verified'};

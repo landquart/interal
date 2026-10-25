@@ -1,0 +1,227 @@
+associative-normative-resolver 0
+✔ explainable case: manu-full (7.650333ms)
+✔ explainable case: manu-mani (1.842815ms)
+✔ explainable case: manu-foreign-mani (0.494561ms)
+✔ explainable case: manu-many (0.573238ms)
+✔ explainable case: manu-manifest (0.602671ms)
+✔ explainable case: regul-full (1.726834ms)
+✔ explainable case: regul-regl (4.53076ms)
+✔ explainable case: regul-russian (3.091982ms)
+✔ explainable case: regul-homonym (1.225923ms)
+✔ explainable case: regul-regolith (1.155118ms)
+✔ explainable case: creat-fr-short (1.728215ms)
+✔ explainable case: creat-fr-full (1.430876ms)
+✔ explainable case: creat-de (0.578986ms)
+✔ explainable case: creat-es (0.440011ms)
+✔ explainable case: creat-it (0.535111ms)
+✔ explainable case: creat-en-unlocked (0.272303ms)
+✔ explainable case: creat-opaque (0.341705ms)
+✔ explainable case: ocul-adj (0.511156ms)
+✔ explainable case: ocul-noun (0.775497ms)
+✔ explainable case: ocul-opaque (1.101108ms)
+✔ explainable case: ocul-monokel (0.35207ms)
+✔ explainable case: inter-component (0.643252ms)
+✔ explainable case: inter-opaque (0.309958ms)
+✔ explainable case: inter-substring (0.276609ms)
+✔ explainable case: ending-ten (0.436536ms)
+✔ explainable case: liber-unknown (0.591795ms)
+✔ explainable case: same-lemma-unknown-sense (0.492298ms)
+✔ word/lexeme ID cannot be normative root ID (0.763869ms)
+✔ single-language membership survives failure of three-language threshold (1.253573ms)
+✔ national form differs from normative form (0.570343ms)
+✔ no transfer of correspondence across family_id (0.302067ms)
+✔ no transfer of correspondence across element_id (0.398419ms)
+✔ no transfer of correspondence across language (0.255398ms)
+✔ no transfer of correspondence across lemma_id (0.242509ms)
+✔ no transfer of correspondence across lexeme_id (0.170682ms)
+✔ no transfer of correspondence across sense_id (0.262919ms)
+✔ no transfer of correspondence across context_id (0.188328ms)
+✔ unknown is not a negative decision (0.243289ms)
+✔ confirmed member requires independently evidenced national correspondence (0.340583ms)
+✔ historical membership gives no association score (0.58133ms)
+✔ separate senses retain separate scopes (0.439409ms)
+✔ modern association needs a separate verified assessment (2.103841ms)
+✔ unknown homonym sense blocks confirmation (0.293053ms)
+✔ model confidence/consensus is never an authority (0.731521ms)
+✔ source dataset alone cannot confirm linguistic membership (0.335867ms)
+✔ test fixture authority is disabled outside explicit test mode (0.429625ms)
+✔ trusted IDs cannot be reused after changing decision or evidence content (0.603842ms)
+✔ tampered assertion fails hash validation (0.264371ms)
+✔ contradictory trusted evidence cannot be hidden behind documented status (0.453991ms)
+✔ negative polarity cannot support a positive verdict (0.722609ms)
+✔ indirect path must be complete, sense-continuous and terminate at exact target (1.961871ms)
+✔ pending/excluded v6 guards cannot be promoted implicitly (1.374502ms)
+✔ supersedes input alone cannot erase a negative; verified explicit supersession can (0.75705ms)
+✔ old negative remains active on a later unknown proposal (0.630582ms)
+✔ old exclusions with no semantic certification remain guards, not new confirmations (0.241216ms)
+✔ preserve actual legacy exclusion: surface:de:ten/gelten (0.753944ms)
+✔ preserve actual legacy exclusion: surface:de:ten/retten (0.539318ms)
+✔ preserve actual legacy exclusion: surface:de:ten/erwarten (0.523814ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/liegen (0.559297ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/fragen (0.738802ms)
+✔ preserve actual legacy exclusion: ety:cf2897b18b16/abänderungen (0.927761ms)
+✔ preserve actual legacy exclusion: ety:5bed7c192e10/contact (0.770159ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/network (0.506079ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/internet (0.986849ms)
+✔ preserve actual legacy exclusion: ety:03193cddd861/planet (0.67605ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/network (0.785722ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/internet (0.837177ms)
+✔ preserve actual legacy exclusion: ety:de121cd2e13a/planet (0.670091ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/network (0.636622ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/internet (0.635609ms)
+✔ preserve actual legacy exclusion: ety:94c776d13c76/planet (0.679184ms)
+✔ preserve actual legacy exclusion: family:liber/liber (0.909595ms)
+✔ preserve actual legacy exclusion: family:liber/calliber (0.639625ms)
+✔ preserve actual legacy exclusion: family:liber/liberhaupt (0.532447ms)
+✔ preserve actual legacy exclusion: family:liber/liber (0.568511ms)
+✔ preserve actual legacy exclusion: family:liber/líber (0.670982ms)
+✔ preserve actual legacy exclusion: family:liber/avenidalibertad (0.620257ms)
+✔ legacy quarantine covers narrower lemma scope (0.738412ms)
+✔ root recognition boundaries and immutable necessary thresholds (0.214707ms)
+✔ preposition recognition boundaries and immutable necessary thresholds (0.058957ms)
+✔ suffix preserves FAa 15 and >=3 IPM in EACH language (1.04848ms)
+✔ automatic correction is scoped, locked, externally authorized and never writes (2.614376ms)
+✔ closed schema rejects unknown fields and nonmatching versions (0.536503ms)
+✔ protected calculation and negative-policy files keep baseline Git blob hashes (2.17084ms)
+✔ 4354127381: correspondence rebuttal cannot establish membership (0.600608ms)
+✔ 4354127391: untrusted declared conflicts have no normative authority (1.036803ms)
+✔ 4354127396: verified nonmembership survives compatible legacy guards (0.705674ms)
+✔ 4354127406: indirect evidence retains exact intermediate endpoint scopes (1.418278ms)
+✔ 4354127406: intermediate contexts remain distinct and cannot replace final identity proof (2.06233ms)
+✔ step cannot borrow another language (0.529914ms)
+✔ step cannot borrow another lemma_id (0.30434ms)
+✔ step cannot borrow another context_id (0.289107ms)
+✔ step cannot borrow another lexeme_id (0.4529ms)
+✔ step cannot borrow another sense_id (0.254988ms)
+✔ indirect step proof is bound to the complete directed transition (0.915053ms)
+✔ historical unscoped steps remain readable without confirmation (1.346511ms)
+✔ full continuity includes language, lemma and application context (0.408203ms)
+✔ trusted rebuttal attached only to correspondence creates a conflict (0.492098ms)
+✔ untrusted correspondence disagreement cannot create a normative conflict (0.695529ms)
+✔ partial historical scope never permits a narrower conflicting restoration (0.442714ms)
+✔ current unknown sense cannot evade an old narrower prohibition (0.33779ms)
+✔ modern support requires current content-bound proof independent of membership (0.764851ms)
+✔ a model cannot declare a verified association conflict (0.240726ms)
+✔ runtime callers cannot mutate normative thresholds or the closed schema (0.655118ms)
+ℹ tests 104
+ℹ suites 0
+ℹ pass 104
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.381096
+
+associative-normative-admission 0
+✔ installed normative admission and approved registry reject every tested bypass (12208.253281ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 12213.455654
+
+associative-v5-integration 0
+✔ one installed v5 implementation: real module end-to-end and incompatible inputs (65033.654819ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 65038.774239
+
+associative-v5-release-readiness 0
+✔ real pinned inputs yield only a blocked package; separate-process replay is exact (377.105017ms)
+✔ missing, changed, additional and self-qualified package artifacts fail closed (86.472639ms)
+✔ input corruption, missing history, repeated paths and malformed JSON are rejected (40.409415ms)
+✔ stale production HEAD and historical risk acceptance cannot authorize a release (52.698998ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 568.020266
+
+associative-morphology-review-v2 0
+✔ exact native scope and independent authority are required for semantic verdicts (96.706302ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 101.939472
+
+associative-semantic-cleanup 0
+✔ sense-specific semantic decisions require exact independent authority and both guards (41.362599ms)
+✔ semantic release bridge preserves separate senses and fails on changed manifests (44.681472ms)
+✔ frozen semantic inventory keeps documentary facts, old IDs and unresolved senses separate (30.000215ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 122.652428
+
+associative-evidence-graph 0
+✔ isolated evidence graph: real probes, negative guards and finite paths (2129.834211ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2134.711332
+
+associative-release-control 0
+✔ controlled release signatures, atomicity, history and incremental contracts (3660.593764ms)
+✔ real calculator preserves unknown inputs and does not certify empty before/after (5.81678ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3671.964474
+
+associative-cleanup-quality 0
+✔ empty gold and no removals produce null precision, not perfect safety (28.161674ms)
+✔ removal precision, correct-link false-removal risk and detection recall have different denominators (22.730304ms)
+✔ linked dependence clusters cross languages and cases; they never become family merges (36.093129ms)
+✔ human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review (27.344046ms)
+✔ a qualified exact structural scope never grants semantic or production authority (30.626017ms)
+✔ 4367043681: NOT_RUN has no performance estimates even with complete gold (22.809342ms)
+✔ 4367043683: resolved human answers require an explicit relation (27.826669ms)
+✔ 4367043688: missing required bundle sources fail before publication (33.286561ms)
+✔ 4367043686: documentary additions share existing family clusters and rebind all cards (64.603389ms)
+✔ 4367062598: verifier rejects 1599 per language before opening the population index (180.696345ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 481.108072
+
+history-adjudication 0
+✔ historical scope and installed mutation fences fail closed (723.477842ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 728.511555

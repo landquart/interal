@@ -1,0 +1,96 @@
+{
+  "schema": "interal-normative-compatibility/1",
+  "modules": [
+    {
+      "module": "v5 adapter",
+      "path": "associativvordes/v5_adapter/adapter.py",
+      "boundary": "Adapter.question",
+      "resolver": "observe + versioned hypothesis",
+      "invariant": "Legacy membership remains an observation; no lexical head or approved membership",
+      "sha256": "c95aadb80f339ebfb1097593d680f0f00211b1542477feeed12f140e20102f80"
+    },
+    {
+      "module": "evidence graph",
+      "path": "associativvordes/evidence_graph/graph.py",
+      "boundary": "Graph.put / review_relation",
+      "resolver": "observe; membership Verdict rejected",
+      "invariant": "Relation facts are separate from family membership; a graph grant cannot admit membership",
+      "sha256": "5472b8f92a41982b49d080cc3251d2ea3de8aeb01202c593694383ad3812f1e8"
+    },
+    {
+      "module": "candidate search",
+      "path": "associativvordes/candidate_search/search.py",
+      "boundary": "Queue.upsert",
+      "resolver": "observe or versioned hypothesis",
+      "invariant": "Queue decisions remain proposal states",
+      "sha256": "f67e74940b6a8e046fb313502e94faa2a6fdc9962d75225544f61ea28ebd9643"
+    },
+    {
+      "module": "semantic review",
+      "path": "associativvordes/semantic_cleanup/policy.py",
+      "boundary": "adjudicate",
+      "resolver": "v5_contract.policy.admit -> decision -> installed JS",
+      "invariant": "Generic receipt alone cannot return confirmed membership; finite corpus lexeme/sense/context required",
+      "sha256": "4739afc778dca7c836531e96e592baec9625939350e78c7fb564b0347317770b"
+    },
+    {
+      "module": "morphology review",
+      "path": "associativvordes/morphology_review/policy.py",
+      "boundary": "adjudicate",
+      "resolver": "observe; relation-only result",
+      "invariant": "Confirmed morphological relation is not family membership; application still requires operation_gate",
+      "sha256": "a9cc3d79e08dc153a87bfc15d33b22596d58a4f408c95c14ccf49cced8f34e0c"
+    },
+    {
+      "module": "national correspondence guard",
+      "path": "associativvordes/national_correspondences/registry.py",
+      "boundary": "Registry.check",
+      "resolver": "observe; finite preflight only",
+      "invariant": "CLEAR is preflight only, never membership authorization; exact guard matches remain intact",
+      "sha256": "f3ddc3a82bd9c554b500012237f230728fb801ab23e1d1e58cec911a89991185"
+    },
+    {
+      "module": "human ledger",
+      "path": "associativvordes/review/store.py",
+      "boundary": "Ledger.decide",
+      "resolver": "observe or policy.review -> installed JS",
+      "invariant": "ACCEPT_PROPOSED is a research answer, establishes_membership=False; trust never loaded from answer",
+      "sha256": "062043baeea684fb42d48bd9b3ac3a5e0206307fd006ab57b8be8f28246c7e03"
+    },
+    {
+      "module": "approved registry",
+      "path": "associativvordes/v5_contract/approved.py",
+      "boundary": "ApprovedRegistry.approve / verify / read",
+      "resolver": "policy.admit on both write and read",
+      "invariant": "Content checksum alone is insufficient; context and external trust are revalidated",
+      "sha256": "cdcf2c76215ad6f0ed5a335faea13a3881e7edfca770071c43dce049d64856bd"
+    },
+    {
+      "module": "quality / decision pipeline",
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "boundary": "Pipeline.decision / quality",
+      "resolver": "approved registry + policy.review",
+      "invariant": "Typed decision publication requires persisted exact approval and external normative trust",
+      "sha256": "9da1dbe8cb724997ca20edb5728cf42f668b883252deb8e226227474e987674c"
+    },
+    {
+      "module": "operation preparation",
+      "path": "associativvordes/release_control/control.py",
+      "boundary": "preview / normative_gate",
+      "resolver": "compatible + operation_gate",
+      "invariant": "Nonempty unversioned plans blocked; every operation has an exact normative decision",
+      "sha256": "721bf5f079638744e8c6803f52e9470d21372888d2770d58afd68bea4a25cd47"
+    },
+    {
+      "module": "release control",
+      "path": "associativvordes/release_control/control.py",
+      "boundary": "Store.apply",
+      "resolver": "normative_gate + operation_gate at signed apply",
+      "invariant": "History, signatures, quality and namespace gates remain additional independent requirements",
+      "sha256": "721bf5f079638744e8c6803f52e9470d21372888d2770d58afd68bea4a25cd47"
+    }
+  ],
+  "all_listed_modules_use_installed_resolver": true,
+  "observation_checks_do_not_confirm_membership": true,
+  "production_enabled": false
+}

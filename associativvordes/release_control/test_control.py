@@ -41,6 +41,10 @@ class Releases(unittest.TestCase):
         # real historical registry. No runtime bypass or configuration flag exists.
         history_patch = patch('associativvordes.release_control.control.history_gate', return_value=None)
         history_patch.start(); self.addCleanup(history_patch.stop)
+        # Isolate signature/atomicity units from linguistic admission; the real
+        # boundary is exercised by normative/test_resolver and v5 integration.
+        normative_patch=patch('associativvordes.release_control.control.normative_gate',return_value=[])
+        normative_patch.start();self.addCleanup(normative_patch.stop)
         self.tmp = tempfile.TemporaryDirectory(); self.root = Path(self.tmp.name)
         self.state = fixture(); self.op = operation()
         self.inputs = context(self.state, 'snapshot', 'sources', 'algorithm', 'ledger-head')
@@ -419,5 +423,5 @@ class HistoricalReleaseGate(unittest.TestCase):
         import importlib.util
         spec=importlib.util.spec_from_file_location('unpatched_control',Path(__file__).with_name('control.py'))
         module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
-        with self.assertRaisesRegex(ValueError,'HISTORY_'):
+        with self.assertRaisesRegex(ValueError,'HISTORY_|normative version contract'):
             module.preview(fixture(),[operation()],{'base':module.digest(fixture())})

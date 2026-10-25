@@ -301,6 +301,148 @@
                     },
                     "uniqueItems": true,
                     "minItems": 1
+                  },
+                  "from_scope": {
+                    "type": "object",
+                    "properties": {
+                      "family_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "element_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "language": {
+                        "type": "string",
+                        "minLength": 2
+                      },
+                      "lemma_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "lexeme_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sense_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "context_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "family_id",
+                      "element_id",
+                      "language",
+                      "lemma_id",
+                      "lexeme_id",
+                      "sense_id",
+                      "context_id"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "to_scope": {
+                    "type": "object",
+                    "properties": {
+                      "family_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "element_id": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "language": {
+                        "type": "string",
+                        "minLength": 2
+                      },
+                      "lemma_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "lexeme_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "sense_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      },
+                      "context_id": {
+                        "anyOf": [
+                          {
+                            "type": "string",
+                            "minLength": 1
+                          },
+                          {
+                            "type": "null"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "family_id",
+                      "element_id",
+                      "language",
+                      "lemma_id",
+                      "lexeme_id",
+                      "sense_id",
+                      "context_id"
+                    ],
+                    "additionalProperties": false
                   }
                 },
                 "required": [
@@ -422,14 +564,8 @@
                 "minLength": 1
               },
               "language": {
-                "enum": [
-                  "en",
-                  "de",
-                  "fr",
-                  "es",
-                  "it",
-                  "ru"
-                ]
+                "type": "string",
+                "minLength": 2
               },
               "lemma_id": {
                 "anyOf": [
@@ -501,6 +637,10 @@
               "source_dataset",
               "model"
             ]
+          },
+          "relation_step_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
           }
         },
         "required": [

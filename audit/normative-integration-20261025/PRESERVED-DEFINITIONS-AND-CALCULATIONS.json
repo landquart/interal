@@ -1,0 +1,75 @@
+{
+  "base_commit": "6fddd712395fd1a9bcd45b78cd25b45cd9511368",
+  "rules_version": "1.0.0",
+  "thresholds": {
+    "root": {
+      "languages": 3,
+      "groups": 2,
+      "FAv": 35
+    },
+    "preposition": {
+      "languages": 3,
+      "groups": 2,
+      "FAv": 35
+    },
+    "suffix": {
+      "languages": 3,
+      "groups": 2,
+      "ipm_each": 3,
+      "FAa": 15
+    }
+  },
+  "files": [
+    {
+      "path": "associativvordes/js/association-analyzer.js",
+      "sha256": "d1d15be5d67c5039d4e6a2a62dd208c4d7713337de02be7047d0595110ac2e00",
+      "identical_to_base": true
+    },
+    {
+      "path": "associativvordes/js/qwen-client.js",
+      "sha256": "0a74ab24a10a47796cdcde644a6aa0d7f7f04ef3fa6e9ffbbbe306b1145ec16c",
+      "identical_to_base": true
+    },
+    {
+      "path": "associativvordes/normative/FAMILY-MEMBERSHIP-POLICY.md",
+      "sha256": "ed3a4ec5f462b28123fc640a563ee675016e83288b57f6f359087a3be7c8170b",
+      "identical_to_base": true
+    },
+    {
+      "path": "associativvordes/normative/NATIONAL-CORRESPONDENCES.md",
+      "sha256": "01add47aecee9fafdc820f11bf6e0e14a147a022e9793d686f20a1ae7dce27b0",
+      "identical_to_base": true
+    },
+    {
+      "path": "associativvordes/normative/NORMATIVE-DEFINITIONS.md",
+      "sha256": "d7467809cb609cc131f67a138812a8e91da1161801e33942baad8a88cfc017e3",
+      "identical_to_base": true
+    },
+    {
+      "path": "associativvordes/normative/rules.json",
+      "sha256": "050065577f4ae4387b753d783e5e4760d4406fd5b85c18b15b6243e1b4a2018b",
+      "identical_to_base": true
+    },
+    {
+      "path": "audit/associative-family-v5/manual-case-decisions.json",
+      "sha256": "0b1dac6949f2dfdc89ee20b2907dd4724297a9b66603e04e1b860ded94f8cbc1",
+      "identical_to_base": true
+    },
+    {
+      "path": "audit/associative-family-v5/manual-surface-family-decisions.json",
+      "sha256": "143973a4ca187a5155282884413d80e4dd8395b945b7f3b3f89655ca6a5e79ba",
+      "identical_to_base": true
+    },
+    {
+      "path": "audit/associative-family-v5/relation-policy.json",
+      "sha256": "d998f93b59ccde9ade11a9473c33f890a412e86bd116b0100dee93cdd70888be",
+      "identical_to_base": true
+    },
+    {
+      "path": "shared/methodology-calculation.mjs",
+      "sha256": "93226d39526df319ab1f45cf74a9dea835ba061ea57279b62290e56a2034c17a",
+      "identical_to_base": true
+    }
+  ],
+  "status": "EXACT_BYTES_PRESERVED"
+}

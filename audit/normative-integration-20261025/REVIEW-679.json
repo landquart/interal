@@ -1,0 +1,30 @@
+{
+  "pr": 679,
+  "observed_threads": "open and outdated; no resolution messages or review states changed",
+  "findings": [
+    {
+      "comment_id": 4354127381,
+      "concern": "supporting correspondence polarity",
+      "implementation": "retained and expanded to verified correspondence/step contradictions",
+      "regression_suite": "tests/associative-normative-resolver.test.mjs"
+    },
+    {
+      "comment_id": 4354127391,
+      "concern": "externally authorized conflict status",
+      "implementation": "retained; untrusted source/model conflicts tested",
+      "regression_suite": "tests/associative-normative-resolver.test.mjs"
+    },
+    {
+      "comment_id": 4354127396,
+      "concern": "fresh negative proof with legacy guard",
+      "implementation": "retained; guards remain separate from new linguistic confirmation",
+      "regression_suite": "tests/associative-normative-resolver.test.mjs"
+    },
+    {
+      "comment_id": 4354127406,
+      "concern": "per-step historical scope",
+      "implementation": "full endpoints/context/directed-step evidence binding now required",
+      "regression_suite": "tests/associative-normative-resolver.test.mjs"
+    }
+  ]
+}

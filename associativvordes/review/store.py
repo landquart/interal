@@ -312,7 +312,8 @@ class Ledger:
                     status, lexeme, relation = item['status'], item['lexeme_id'], item['relation']
                     if status not in STATUSES or relation not in RELATIONS: raise ValueError('invalid status/relation')
                     if lexeme not in {x['id'] for x in q['lexeme_alternatives']}: raise ValueError('select concrete native lexeme')
-                normative_evaluation=None
+                from associativvordes.normative.resolver import observe
+                normative_evaluation=observe('human_ledger')
                 if version_contract:
                     from associativvordes.v5_contract.policy import review,hypothesis
                     if not undo and status in ('ACCEPT_PROPOSED','REJECT'):
@@ -327,7 +328,7 @@ class Ledger:
                     'evidence_refs': q.get('evidence_refs', []), 'algorithm_versions': self.manifest.get('identity', {}).get('code', {}),
                     'review_version': VERSION, 'review_code': {name: digest((Path(__file__).parent/name).read_bytes()) for name in ('store.py', 'server.py', 'app.js', 'source_rows.py')}, 'action': 'undo' if undo else 'arbitrate' if arbitration else 'decide',
                     'arbitration_basis': pair_hash if role == 'arbiter' else None,
-                    'establishes_membership': False})
+                    'establishes_membership': False, 'normative_evaluation': normative_evaluation})
                 if version_contract:
                     decisions[-1]['normative_evaluation']=normative_evaluation
                     decisions[-1]['normative_decision']=copy.deepcopy(item.get('normative_decision'))

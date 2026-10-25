@@ -25,7 +25,7 @@ def triage(case,alternatives):
         return 'HISTORICAL_BUT_SEMANTICALLY_UNRESOLVED'
     return 'INSUFFICIENT_EVIDENCE'
 
-def adjudicate(case,requested,verify_receipt=None,history_checker=None,correspondence_checker=None):
+def adjudicate(case,requested,verify_receipt=None,history_checker=None,correspondence_checker=None,normative_context=None):
     result=dict(status='INSUFFICIENT_EVIDENCE',membership_operation='NONE',production_application_authorized=False)
     try:
         validate_case(case)
@@ -49,7 +49,12 @@ def adjudicate(case,requested,verify_receipt=None,history_checker=None,correspon
         hsh=digest(payload);receipt=verify_receipt(hsh) if verify_receipt else None
         if not isinstance(receipt,dict) or receipt.get('payload_sha256')!=hsh or receipt.get('authority') not in {'CONFIRMED_MANUAL','INDEPENDENT_GOLD'} or receipt.get('status')!='APPROVED':
             raise ValueError('no exact independent authority receipt')
-        return dict(result,status=requested,proof_sha256=hsh)
+        from associativvordes.v5_contract.policy import admit
+        scope={k:case['scope'][k] for k in ('family_id','language','lemma_id')}
+        scope.update(lexeme_id=binding['corpus_lexeme_id'],sense_id=binding['corpus_sense_id'],context_id=binding['context_id'])
+        expected='CONFIRMED_MEMBER' if requested=='MEMBERSHIP_CONFIRMED' else 'CONFIRMED_NONMEMBER' if requested=='MEMBERSHIP_REJECT_PROPOSED' else None
+        normative=admit(case.get('normative_decision'),normative_context,scope,expected)
+        return dict(result,status=requested,proof_sha256=hsh,normative_evaluation=normative)
     except (ValueError,KeyError,TypeError,AttributeError,OSError) as error:
         return dict(result,reason=str(error))
 
