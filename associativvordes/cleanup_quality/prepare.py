@@ -1,4 +1,13 @@
 """Frozen prospective language-stratified sample, separate challenge, blind tasks."""
+
+# Installed writer boundary; isolated restored tools retain self-contained replay.
+from pathlib import Path as _HistoryFencePath
+import sys as _history_fence_sys
+_history_fence_root=next((p for p in _HistoryFencePath(__file__).resolve().parents if (p/'associativvordes/mutation_guard.py').is_file()),None)
+if _history_fence_root is not None:
+    _history_fence_sys.path.insert(0,str(_history_fence_root))
+    from associativvordes.mutation_guard import install as _install_history_fence
+    _install_history_fence()
 import argparse, gzip, heapq, json, math, resource, sqlite3, time
 from collections import Counter, defaultdict
 from pathlib import Path

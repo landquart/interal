@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { access, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { buildSearchForm, SEARCH_NORMALIZER_VERSION } from '../associativvordes/js/search-normalizer.js';

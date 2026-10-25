@@ -1,0 +1,643 @@
+{
+  "parent_commit": "64b0798c802ddc5b1353945f3044f83ffc28aae8",
+  "original_history_snapshot_sha256": "fe87153c07976f8b4ae02fffee778b5213303cd01d5f8e1f380b08f2d0882374",
+  "files": [
+    {
+      "path": ".github/workflows/materialize-associative-family-v5-repository.yml",
+      "sha256": "d7a48d0d78686dc05eef5527b0ef2903980665c31a112fb9d8ab59527b2741fc"
+    },
+    {
+      "path": "associativvordes/__init__.py",
+      "sha256": "3600b497d0f1d858de54892e6fb257909e8fb407a7408c7d53b3ea480cb5c8cd"
+    },
+    {
+      "path": "associativvordes/auto_annotation/benchmark.py",
+      "sha256": "49f842248d8415fe158d7acd7e2c14734d903797dcb4b346c9993e9a043a0078"
+    },
+    {
+      "path": "associativvordes/auto_annotation/pipeline.py",
+      "sha256": "324c9e2c5c91aee8f85e7ee027a7dc9f0ab922b63e29e96e48d3a93817244b3e"
+    },
+    {
+      "path": "associativvordes/auto_annotation/storage.py",
+      "sha256": "dbd35c4dcd9c27c24ae153b844599c0e6e769e636c5129f78692de3b1c6bde8b"
+    },
+    {
+      "path": "associativvordes/candidate_search/index_pilot.py",
+      "sha256": "ef43d67b195c33c050e96546b9e275a7bdbd4511ffa1ffaf6810729015bf9f01"
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_ci.py",
+      "sha256": "fdb517331b18471d974f63dc19a2d2709b3b80fae59d73893abc93226946ba5f"
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_recover.py",
+      "sha256": "13b3e7c7cfa77ae4dbce3d2ff3f6bef6774b0102264d16ef66bd8e635634d289"
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_run.py",
+      "sha256": "692626c77b8eec8470db93f13fd936e34030a58887e1e7c0d591afdbc6d400bd"
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_source.py",
+      "sha256": "b546fdf5738ce588aa2e843b32a5bd1bd29e58274c38c994bd8b97557e3799cf"
+    },
+    {
+      "path": "associativvordes/candidate_search/mass_store.py",
+      "sha256": "7ffbcc86162fef22d6505cf691df1bfd30452bc410fee1715e4b7fb95698c614"
+    },
+    {
+      "path": "associativvordes/candidate_search/pilot.py",
+      "sha256": "161145035f084ac61c91efd36974d752b0cc8b5ed8da72021e53dd51937f3ccc"
+    },
+    {
+      "path": "associativvordes/candidate_search/prepare_frequency.py",
+      "sha256": "9336f87463ea047d792ab894732d2fd82ee585be6a8befc30271e3b79976e1e3"
+    },
+    {
+      "path": "associativvordes/candidate_search/project_store.py",
+      "sha256": "af8ef4546f1658babb0b48a690eac48de5539701903be7e35433df20d68ff44f"
+    },
+    {
+      "path": "associativvordes/candidate_search/scale_project.py",
+      "sha256": "10c5392bffcfc9d57623b85b46d541971d695b505aa7ab56b509e98dd6c71e0b"
+    },
+    {
+      "path": "associativvordes/candidate_search/search.py",
+      "sha256": "719276b0cefec79bd542252a16ad2683a53cec5113cd4140862c7acd58e7311f"
+    },
+    {
+      "path": "associativvordes/cleanup_quality/bundle.py",
+      "sha256": "75e170aea391b8fed93be74e6f3c0c180aad6f6f5120a62bfca7f6088820b001"
+    },
+    {
+      "path": "associativvordes/cleanup_quality/evaluate.py",
+      "sha256": "0e19685bc328575c9e4e703dc0766a79f11de3bad55316e35a59b32b95c2f8af"
+    },
+    {
+      "path": "associativvordes/cleanup_quality/prepare.py",
+      "sha256": "52fbb1b0eafa0c518512ca2fa8263a5a1a5c1958d032046c7bd39ecb11fa8112"
+    },
+    {
+      "path": "associativvordes/cleanup_quality/supplement.py",
+      "sha256": "f4aa900e54245c8a8e33f0d62e97f6778974703b516b75d7a304e00c044ef273"
+    },
+    {
+      "path": "associativvordes/cleanup_quality/verify.py",
+      "sha256": "f598783165d3053aecd2f89dd73a0816fd80ba67fd57bc720e2e7cf71460900b"
+    },
+    {
+      "path": "associativvordes/evidence_graph/analyze.py",
+      "sha256": "4ae4343d022f2099bc664a0e75142dc725860ad49f09e186b0dcdb3fd0415b54"
+    },
+    {
+      "path": "associativvordes/evidence_graph/build_graph.py",
+      "sha256": "ee3bd767c9c32675bbcc73c66ebd4c545c9e33a70090afb69f3182298b444f34"
+    },
+    {
+      "path": "associativvordes/evidence_graph/graph.py",
+      "sha256": "e3636bd35a61baa82a558a52079624ada1049beeff3d2a73476606d91fa24554"
+    },
+    {
+      "path": "associativvordes/evidence_graph/prepare_registry.py",
+      "sha256": "7a116e4a6741be7303cc3729197387f7bf6f6ca3b7ba055b95c9a32159782139"
+    },
+    {
+      "path": "associativvordes/evidence_graph/select_pilot.py",
+      "sha256": "176b70192788111e88c2b1089675f3f67fdcdbcfe67b57bc51ad8f31154a0a02"
+    },
+    {
+      "path": "associativvordes/family_boundary/analyze.py",
+      "sha256": "324ef40bf35f222f74e0f57441dc0cb6937a1978a4411344780596c01713edd1"
+    },
+    {
+      "path": "associativvordes/family_boundary/archive.py",
+      "sha256": "e0224510e906779ed5baba424c85bbf7dc61e0af4b34cfc2c00161616217edee"
+    },
+    {
+      "path": "associativvordes/family_boundary/build.py",
+      "sha256": "86293d171caa68a3e8ef12c2b07bd09171283ff7295728bfa4095b7e63fb81ed"
+    },
+    {
+      "path": "associativvordes/family_boundary/core.py",
+      "sha256": "31b1305ad612405a04bde212ac5cabde5a24c2233cca5c523bb4ab79fbb9d210"
+    },
+    {
+      "path": "associativvordes/family_boundary/restore_prior.py",
+      "sha256": "bcdbbd4a95141994eb7e4a562c7b721d6e2446d21db889968f84f735c5863340"
+    },
+    {
+      "path": "associativvordes/flexor_research/hanta_probe.py",
+      "sha256": "1efcd3ff7e160d0cd3c368c0c1f1d8be36d4a64ecfd9c9bd679d1b68ea5c48aa"
+    },
+    {
+      "path": "associativvordes/flexor_research/prepare.py",
+      "sha256": "980dafbab1329c3eeb015d3ebd1a9066a9829da2bf6db3d04cba66b96502933a"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/checks.py",
+      "sha256": "eb7ebf93ec91bd3cba3194883489a75f97261df83d06580b4075b2261f8fbb56"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/core.py",
+      "sha256": "3e0d11e130eee660d188c810bfd7bf49946c10cdec32d18c4ee9bb260ba84dff"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/exercise.py",
+      "sha256": "bce210162acc547e009598d202ac9f5af01c674adae633f4d887f67b37b73cdf"
+    },
+    {
+      "path": "associativvordes/full_v5_dry_run/store.py",
+      "sha256": "191cbacd919442b1a5e8198b762f7c7a0f96409e9d4a8221a442fd4a5665d639"
+    },
+    {
+      "path": "associativvordes/history_adjudication/__init__.py",
+      "sha256": "40f646f47f08a8e5228adbe9a9da76579e613e99e555c13d490dbf80ef8b181b"
+    },
+    {
+      "path": "associativvordes/history_adjudication/build.py",
+      "sha256": "d4ae9d5e771b7850772b1fc4840fceaa3b4cc5d4dcc38ce231aab7f964310bdf"
+    },
+    {
+      "path": "associativvordes/history_adjudication/coverage.py",
+      "sha256": "04e3ac4c2827cd293daca6182532bece4bdba1603fce7984d6b22cfcddd69f01"
+    },
+    {
+      "path": "associativvordes/history_adjudication/diff_audit.py",
+      "sha256": "46f9634cbc498042a3e786edfc8aaef5ba53ddb16a38a5efa5256e63fd022420"
+    },
+    {
+      "path": "associativvordes/history_adjudication/finalize.py",
+      "sha256": "d8300c519a6f46b4b7cfc3a1ca1649476269757cffc9499ac9c154f303434627"
+    },
+    {
+      "path": "associativvordes/history_adjudication/query.py",
+      "sha256": "5f4d7ee1217876f7178fa4e0ca284a8446f9e97ecb264c416d69e95712e9c0fe"
+    },
+    {
+      "path": "associativvordes/history_adjudication/test_guards.py",
+      "sha256": "1eb30a1aa2ad82869fcd66b65a160d220f6dd2c93751120510e1a00d357a4294"
+    },
+    {
+      "path": "associativvordes/history_adjudication/test_scope.py",
+      "sha256": "ba3f3cbd5b9fa3edacb3e6c87b75b4819e5e7c3aa544236f9bf9191cee900666"
+    },
+    {
+      "path": "associativvordes/history_adjudication/verify.py",
+      "sha256": "cda8a0a7af1d58b96b1f3c0a49f7e5aec51543dc1d7b402523a83fa5a42faf19"
+    },
+    {
+      "path": "associativvordes/history_registry/registry.py",
+      "sha256": "f0834ab6d80ab20fcd2a882cb603c1b6eff2d27fbc0fca96df4d173334576656"
+    },
+    {
+      "path": "associativvordes/importers/build_catalog.py",
+      "sha256": "afee9a2bfa91276e6bd88909db90fad99ce0762477fe05fbc4c208b234c7b482"
+    },
+    {
+      "path": "associativvordes/importers/catalog_store.py",
+      "sha256": "dbc4a5ef5216f8f70a962f9ea3e12fd0112959d4cb36cde7e1d592bf3febdb70"
+    },
+    {
+      "path": "associativvordes/importers/certify_corpus.py",
+      "sha256": "b79874f259c7b57036042938602b43da1ba0ae165fb386fb4f3c16fbdf8b94aa"
+    },
+    {
+      "path": "associativvordes/importers/corpus_cache.py",
+      "sha256": "dc1952f3fe0a417926ac65f04891b92498efdc71c39ce0a70d4b13afaeefd0b1"
+    },
+    {
+      "path": "associativvordes/importers/fetch_glemm_git.py",
+      "sha256": "3e1f55de21cace25a7dbe06e7a10fd59bd533f2bdb2a64afe84c8c97e1298204"
+    },
+    {
+      "path": "associativvordes/importers/fetch_sources.py",
+      "sha256": "1770f713aba05d935897ebeffd34467989108e381ecb7236cfac0037a1f42e0f"
+    },
+    {
+      "path": "associativvordes/importers/glemm_cache.py",
+      "sha256": "88e0c57fe02fe47cd0dba5eb07f7d47cf85148a9ef550820a97570de808b3d0a"
+    },
+    {
+      "path": "associativvordes/importers/index_watch.py",
+      "sha256": "fb6af4d398568585d31ee261d10a49372191bdf424a0526a6e5488db20671e52"
+    },
+    {
+      "path": "associativvordes/importers/morphology_import.py",
+      "sha256": "06717b9f51c6defb90613386d0833dde68f9bb865d0eb729135c5b106099ee33"
+    },
+    {
+      "path": "associativvordes/importers/scale_index.py",
+      "sha256": "363ebb60b25b5eb0975049aac2c33b23c4c44867345fa3d3b2c49c1fb4901e07"
+    },
+    {
+      "path": "associativvordes/importers/validate_sources.py",
+      "sha256": "e47502d9e6eb3b36a29704f78b40b746850717db4949b4a55213f1c31bdbe954"
+    },
+    {
+      "path": "associativvordes/mass_dry_run/finish.py",
+      "sha256": "57e63f757c0330e1ed90e275091f4b0ddd5a92897e817c16e7102e3df2162e0f"
+    },
+    {
+      "path": "associativvordes/mass_dry_run/run.py",
+      "sha256": "6c4b73d299cec897209358e4edf9b86282964538e34288195210dd5c11fda43d"
+    },
+    {
+      "path": "associativvordes/morphology_cleanup/native.py",
+      "sha256": "930bd46be1965dd85de785c1e105a1f24522425e9240088371c0b82785a2a094"
+    },
+    {
+      "path": "associativvordes/morphology_cleanup/run.py",
+      "sha256": "6bbedcb8d3d6c32c47f73ec14e745b4d85f273ce1ae5f8aea9aa79a3d37db95d"
+    },
+    {
+      "path": "associativvordes/morphology_review/run.py",
+      "sha256": "8f90988cf17e533edc7abebb9a46c8023563d922c46dba6179edb52b388a257f"
+    },
+    {
+      "path": "associativvordes/mutation_guard.py",
+      "sha256": "a819ff45682c99c301c9990cae944aff1db91b93a3f6465477a3eac340a0b4d2"
+    },
+    {
+      "path": "associativvordes/national_correspondences/audit.py",
+      "sha256": "05270cafdcfd43a0254e8b38f7f0e9c7fff9761dfd9d94b1e278cc16d10c9afe"
+    },
+    {
+      "path": "associativvordes/national_correspondences/registry.py",
+      "sha256": "f33e8f8f82127f466af5702bd778f3f53d38511ab17e22a158a433edb46bd0b2"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/archive04.py",
+      "sha256": "515dbc4ff7d2b2fd8593f96497a6925af17b235c740e88ba9592af6a36dd553c"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/capture.py",
+      "sha256": "367b44ba9ea854fe334c265a95ed8bade65bcdc8721bb4b25a5cb9e2f5b25d71"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/compare04.py",
+      "sha256": "3c838f8f0217c979eb5b7c697927f4fd716496faa9e7a755ef33dfebb7f5d554"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/human04.py",
+      "sha256": "a6a27d30d97cb0fc6c45a76a5dfdbc4b495ee216174301b02959dddef88565c5"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/impact.py",
+      "sha256": "d47f6993c15cbe9e9b2210c4fc1450700afb3896e7bc2b2927c8f640f335a0e9"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/prepare_inputs.py",
+      "sha256": "575fafa4d35ac542c60da24eb807befa142aad89f220ac01a64e8c861e7c113c"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/replay04.py",
+      "sha256": "f47bfb372c1b63e4f8ce8e7d32151c997afdd66ca2a30ebe53cc11f630220aa9"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/reproduce.py",
+      "sha256": "e2a01d42644c43c1e73a77c2507ae955e9ee1f8f43ca63717998d863aeaf0221"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/run.py",
+      "sha256": "17e752ef2d176947fd8e7659122f2b35fe34a6c2892061a5c398e77da4b46deb"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/sample.py",
+      "sha256": "034a3edb640b843592f5358bccf3bf986cd9bd27f179824834fa5ac6af5f95b5"
+    },
+    {
+      "path": "associativvordes/pilot_evaluation/study04.py",
+      "sha256": "e1667c76d905252e2eaeb824b19be587a70db79b7905db841283cea0570fb8b6"
+    },
+    {
+      "path": "associativvordes/release_control/control.py",
+      "sha256": "c296456ae0d1c13fa3e6350a6acca5469994b65ea2b10c46c5c060a25556bc8c"
+    },
+    {
+      "path": "associativvordes/release_control/exercise.py",
+      "sha256": "b27c87af2649ed6132b9caab2d093f56375e5af635aacbb14f29bc6515a8d26f"
+    },
+    {
+      "path": "associativvordes/release_control/inputs.py",
+      "sha256": "f4b2928770061fa98cf032433f213ba40f5ffbf8f8782210a8c08216db7a55a1"
+    },
+    {
+      "path": "associativvordes/release_control/registry_view.py",
+      "sha256": "75f9daee70ce693d3391e248efaea1292b8a767afd5b9ca54c49407f2848b734"
+    },
+    {
+      "path": "associativvordes/review/exercise.py",
+      "sha256": "d5b894cd6a4b478a975b7154fc16d870fd85085f6fec25b5a32b19b8dab85c2c"
+    },
+    {
+      "path": "associativvordes/review/server.py",
+      "sha256": "e686e0a66c5b1d67a179f42830682a710187507ee5af1644d7c479f28998392e"
+    },
+    {
+      "path": "associativvordes/review/store.py",
+      "sha256": "69146752395b71d52604a715d986877d8d44fb3cea5a1b4a154d66696828abeb"
+    },
+    {
+      "path": "associativvordes/semantic_cleanup/native.py",
+      "sha256": "d170c91e46f107a0ebebacd6243fd84b0bad2e3ff41f532af1d55b8934200d52"
+    },
+    {
+      "path": "associativvordes/structural_cleanup/capture.py",
+      "sha256": "79436a2ba2896c36cf3f015422c15be5b2f089f0a806589e3f3df13b94c73c6a"
+    },
+    {
+      "path": "associativvordes/structural_cleanup/common.py",
+      "sha256": "420a3db35186a32f2eb09ce01a21c276bc391e562c865f4d4bf3d2c6dbdacf4a"
+    },
+    {
+      "path": "associativvordes/structural_cleanup/scan.py",
+      "sha256": "a9894c574b689799168b6fa9e911914236042db906bf7747aa1f7ed307f06586"
+    },
+    {
+      "path": "associativvordes/structural_cleanup/shadow.py",
+      "sha256": "88cb0d7b6f3672eb0b69d9e7c71261f4f6ac470abb88c6cf99d062aaea7def75"
+    },
+    {
+      "path": "associativvordes/structural_cleanup/workflow.py",
+      "sha256": "df4220d4983a66a6fd9bc076507c02ef8a757edab445519bdb92a94c77be6bcb"
+    },
+    {
+      "path": "associativvordes/surface_cleanup/history.py",
+      "sha256": "6c64067c2349bae84adff6c208d2ce64cc0bfca42af488a9ab8115943104c018"
+    },
+    {
+      "path": "associativvordes/surface_cleanup/run.py",
+      "sha256": "b45676d454f6365e30e89068871efee1601ae43ece185868eb933e4ff1474e84"
+    },
+    {
+      "path": "associativvordes/v5_adapter/build.py",
+      "sha256": "94cfe4e0c16a6824e37946b6ae8962d7df65e4040cefafba5d9c9bb80832f62e"
+    },
+    {
+      "path": "associativvordes/v5_adapter/common.py",
+      "sha256": "2b7198350e7cf22a77872359d430a4a030058380bf560032e62f58cf1ad8d045"
+    },
+    {
+      "path": "associativvordes/v5_baseline/audit_ids.py",
+      "sha256": "51be30769f0e6d7a7f782538443c34545030bca0316fca282f3f21d7c3b811ae"
+    },
+    {
+      "path": "associativvordes/v5_baseline/census.py",
+      "sha256": "6ebedc3e1b250f47aa54c3d61dd6d86fd1527e90a5d585f40a0ef39847128029"
+    },
+    {
+      "path": "associativvordes/v5_baseline/certify.py",
+      "sha256": "3788e76ef66d02d128e7fb18b931e8f0d649f9965c0e4d24ac835b52a2462180"
+    },
+    {
+      "path": "associativvordes/v5_contract/versions.py",
+      "sha256": "055c6dd392d034065f9ff1b18899900d5db0be2aa1d842844eb04dafd3784328"
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/run.py",
+      "sha256": "54098701cd6843f261152edc4c28da49c848935ac51bdc597224d02abf6f2d77"
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/backup.py",
+      "sha256": "505701530913727c8484079d311374ff676b50f7b495968af8b40f8dfa74c612"
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/finalize.py",
+      "sha256": "b78cbbe217ce20b1512e529125a98f4bb245f8ceedcf14abae1aff57e7d6b286"
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/join_volumes.py",
+      "sha256": "5ae555ff338ee4aea7541505d0ee98b37e884eadbb2d5d253e0321dad923614d"
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/query.py",
+      "sha256": "6be0a3e8a449b3cfb345e01ad90a35f340112e0b68d73f0544ab90169e1d4593"
+    },
+    {
+      "path": "associativvordes/v5_diagnostics/tools/suffix_exposure.py",
+      "sha256": "e5137493933a0cf6e257693c6abeb3a7c8ecd51cd6bea0898c3c4aa75d7e86b1"
+    },
+    {
+      "path": "associativvordes/v5_integration/pipeline.py",
+      "sha256": "50f4874828b207db635d2515eb132b987da324faed1fb6b505ad60b3a1ffaf07"
+    },
+    {
+      "path": "associativvordes/v5_release_control/package.py",
+      "sha256": "fad1050d0e4a5688c4aff2f7162c1374968cd2c00fd7d4608cc587b99fbb0cee"
+    },
+    {
+      "path": "scripts/add-pie-roots.mjs",
+      "sha256": "aa1c561eed7d69acd7d6d0f178ca2435e9bb0be42d516f1690b032f7e9987db1"
+    },
+    {
+      "path": "scripts/apply-associative-family-v5-manual-cases.mjs",
+      "sha256": "7616af4aeab116e4ca0c87ba4c66f54c25e49a36e058d6ec9cff4afc541a515b"
+    },
+    {
+      "path": "scripts/apply-associative-family-v5-surface-decisions.mjs",
+      "sha256": "aefc8bd73c08c622c63dfffa6cedda5b4a0be731fd42460213ee79306454b98e"
+    },
+    {
+      "path": "scripts/archive-v5-morphology.py",
+      "sha256": "74057746a64e7ca382b48b8a091b66c1a9fbbe100853777f20ae1d34e1d3e134"
+    },
+    {
+      "path": "scripts/audit-associative-family-regressions.mjs",
+      "sha256": "f4f35fddb835ea8a7d78c8bd23b7053884acdff6031e0938a83ebfabd82f7a46"
+    },
+    {
+      "path": "scripts/audit-associative-index-memory.mjs",
+      "sha256": "372c78c5a608a77f1293da7618b6ffe6313519917cfd727801879df352183676"
+    },
+    {
+      "path": "scripts/audit-repository-associative-family-v5.mjs",
+      "sha256": "09b6d6c725f90ebb8e5cbf3d42b257afca3a9e1a02e8f7498d80bb9559fde8f3"
+    },
+    {
+      "path": "scripts/benchmark-associative-family-runtime.mjs",
+      "sha256": "e043d66f615373adb0750b196af0e893f05350a6d6116648f06f38909e2a8650"
+    },
+    {
+      "path": "scripts/build-associative-candidate-index.mjs",
+      "sha256": "c2c68487ac94591d4ec86469bbc2080981db1fc37caeeae2c955be010b2ae218"
+    },
+    {
+      "path": "scripts/build-associative-exhaustive-family-index.mjs",
+      "sha256": "a4fabdd45cb5e669181dcd1995ad0715992b54fc9c2eca2e2142c4c87c4bcf27"
+    },
+    {
+      "path": "scripts/build-associative-static-search-index.mjs",
+      "sha256": "d38e51b994c2d34d45fb3f223fe81ff062803d2ae1f06d5469d1199ff123535d"
+    },
+    {
+      "path": "scripts/build-global-card-registry.mjs",
+      "sha256": "2683278d8a5006c9cbbdfd34469f925136e5bcf023a4f4097f404b5bbc013c7e"
+    },
+    {
+      "path": "scripts/check-v5-morphology-history.py",
+      "sha256": "c71a68b243a1ea73f5ec5fc891da5dffde2e4f48efc3b7b94a4b2538365b1c27"
+    },
+    {
+      "path": "scripts/finalize-associative-family-repository-v5.mjs",
+      "sha256": "384575cb7b111d569aa1d5eda47a3fa58da1277b7da85f37a399133d78ff4433"
+    },
+    {
+      "path": "scripts/inspect-v5-morphology.py",
+      "sha256": "9fbebf80b6b6c5ae3c03f96693bc9f25d2e7574f1e5af64d2447684003750a53"
+    },
+    {
+      "path": "scripts/lib/installed-history-fence.mjs",
+      "sha256": "3023be2b65d4e42a38bc8dade68a61c29a211cfad74e9273797d7e00c5cabe67"
+    },
+    {
+      "path": "scripts/merge-associative-index-artifacts.mjs",
+      "sha256": "30a4f8c5132fc1c2710b2b0f9fca239993a64c2348237310ce14f60fa068fe6c"
+    },
+    {
+      "path": "scripts/merge-associative-static-search-artifacts.mjs",
+      "sha256": "038a320bfdb403a1e0d25558c212aafb8b2242902489dd75d0c5dac487d4c9ac"
+    },
+    {
+      "path": "scripts/patch-associative-search-runtime.mjs",
+      "sha256": "a39ea2025c556d77592a830a6b250335b5b66a95e9cc63b6fe84ddf833792aee"
+    },
+    {
+      "path": "scripts/prune-associative-family-actus-cases-v5.mjs",
+      "sha256": "a2385c452c56fdd26f47b10bb52ed67a5b1fc7103790522147863c13609ad643"
+    },
+    {
+      "path": "scripts/prune-associative-family-genea-german-v5.mjs",
+      "sha256": "bd6904834b98ad14c53a7131173696e645f6159fe363a7f075b179c8ac0d59ab"
+    },
+    {
+      "path": "scripts/prune-associative-family-genea-other-v5.mjs",
+      "sha256": "ee5427add0bd4bc993ffa50ff562e25ba6c86cc47d366689b11b06b089bd279f"
+    },
+    {
+      "path": "scripts/prune-associative-family-illas-v5.mjs",
+      "sha256": "2b074d161a3509d2a2f2ca1b8fb372df364d54cd2191c5213e76f9de45f84f36"
+    },
+    {
+      "path": "scripts/prune-associative-family-illos-illis-v5.mjs",
+      "sha256": "0b9ffe714f4a9545f91004704170ce97e6d86ee9fd1d05b668c4baded9d3c6e1"
+    },
+    {
+      "path": "scripts/prune-associative-family-nitidus-v5.mjs",
+      "sha256": "2c52186c21d604950887dcfab43b2bd203c599b7b63ca7533f426d472424975c"
+    },
+    {
+      "path": "scripts/prune-associative-family-ru-two-letter-v5.mjs",
+      "sha256": "9bd0d91450c19ecd2638a43f0bdf9590a2fc91844741b74f5ca34001f208b553"
+    },
+    {
+      "path": "scripts/prune-associative-family-sonus-v5.mjs",
+      "sha256": "4771726dd04cfb3f86e24b70d1109215caf2982eb5476f7f1c36c902a61537ed"
+    },
+    {
+      "path": "scripts/quarantine-associative-family-net-alias-v5.mjs",
+      "sha256": "a02ae3fdc97f4c85568f9becdba27fd66f66993493352abe15fed14965c88c8f"
+    },
+    {
+      "path": "scripts/reconcile-associative-family-pronoun-metadata-v5.mjs",
+      "sha256": "4096149a8c092adcf0c4e528e60af43402b8364d07aa303b18445b4362515d06"
+    },
+    {
+      "path": "scripts/refresh-associative-family-v5-report.mjs",
+      "sha256": "92d4727b2a4bad79b9a628e6e3a6e85fd940c6f644af4c11ab632a82b7bd55ec"
+    },
+    {
+      "path": "scripts/remove-incoherent-ending-families-v5.mjs",
+      "sha256": "572782ff549f6161a94da85b859afbd43ac0c1e7a5007353e2ffccb8c6b530d6"
+    },
+    {
+      "path": "scripts/remove-incoherent-inflection-families-v5.mjs",
+      "sha256": "7671201444649d1016752f1a13d951d73a2a8a053d68be2e6d62a3ef8801325f"
+    },
+    {
+      "path": "scripts/remove-incoherent-surface-family-v5.mjs",
+      "sha256": "bc8d6d3b240e1c1c8fb39785dd51dbe1926387ce7f6b889037a9e7c088529093"
+    },
+    {
+      "path": "scripts/remove-surface-ru-ka-v5.mjs",
+      "sha256": "c3e9463c5acf4c97b31dd7d908a0087b3a6e0a3dde68c46f7c15faccefd4367c"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-10.mjs",
+      "sha256": "67687cbb8cbf4962ba226f82eb2d06101ab61d470bc4919ad53769d3354463d0"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-11.mjs",
+      "sha256": "b876390a5bafb8bef0e75bd06ddffb091b1996868f91cb5979b8dddcaa80ef9a"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-12.mjs",
+      "sha256": "0598d92c66409212afc93d4e609bacc142a3dbc695f021fb9c0ebf9228ddcbbb"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-5.mjs",
+      "sha256": "7e1ab0796894be407a073bfef697f2a73b2afae1e5f4e48c865f404575fe9570"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-6.mjs",
+      "sha256": "72967bfc2ecead10cf22412b5cf51407f5f97716552168b774fb27251dd328d7"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-7.mjs",
+      "sha256": "9e36609d4e943d245c3ce58b620863d45a585c82badcbf6a34b0adeee3c4b3b2"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-8.mjs",
+      "sha256": "00d2bb0c237bd492c86f1de1c8e3a56df4da1a44f5bda692395f89d5667b33f2"
+    },
+    {
+      "path": "scripts/remove-surface-suffix-families-batch-9.mjs",
+      "sha256": "960e4660c5be5311eb695b9985f54eca974c0c33c714ab7ca42caa658e27c770"
+    },
+    {
+      "path": "scripts/repair-associative-family-controls.mjs",
+      "sha256": "3d68dc33aff3bf27077c230d622c13e583a168ec287a9d71e70851ece9f26672"
+    },
+    {
+      "path": "scripts/repair-associative-family-val-ru-20260930.mjs",
+      "sha256": "e21a0c5bae2c8b4f485141dba4bee47e1d0197f11804775365e4eeb7b342c9bb"
+    },
+    {
+      "path": "scripts/repair-repository-associative-family-v5-noise.mjs",
+      "sha256": "2fae541b584e4a1fc089d3d629ecfe5e7a76e1e1c4c6da29ec2aa96e6457d290"
+    },
+    {
+      "path": "scripts/sample-associative-family-memberships.mjs",
+      "sha256": "d30200d7053c2341ce88428beb54b9f306b081384cbcdee123545bb0f14c1d7e"
+    },
+    {
+      "path": "scripts/score-associative-family-annotations.mjs",
+      "sha256": "ed909ef344fc621ec2a33ebc6801f08dc32c978cdf33436f1de66d71b53e2107"
+    },
+    {
+      "path": "scripts/stamp-accepted-at.mjs",
+      "sha256": "c83a5cd57311032fff48de23d9a474d83130852f4a1b57e6b9acbed8d20922ef"
+    },
+    {
+      "path": "scripts/summarize-v5-morphology.py",
+      "sha256": "891e53b851a014368018105f0e6200bb4b137ec543565f53b7aa1b42eb84054a"
+    },
+    {
+      "path": "scripts/validate-associative-index.mjs",
+      "sha256": "0111e35168fb7561614df61e0b3cae18c4300d867366eb4551f7d907418a2074"
+    },
+    {
+      "path": "scripts/validate-associative-static-search-index.mjs",
+      "sha256": "09b9cd2090723fb19130c0e53fc703e03f0db0da6cdf5d8c0488d451aa2892d6"
+    },
+    {
+      "path": "tests/history-adjudication.test.mjs",
+      "sha256": "fe57490e00bb6d14e38f92525dcb810ff382c6b25c067d086d5164dfdb51b26e"
+    }
+  ],
+  "runtime": {
+    "python": "Python 3.12.14",
+    "node": "v24.22.1"
+  },
+  "historical_code_receipts_rewritten": false
+}

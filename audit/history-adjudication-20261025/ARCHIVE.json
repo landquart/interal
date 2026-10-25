@@ -1,0 +1,42 @@
+{
+  "schema": "interal-historical-archive/1",
+  "file": "history-adjudication-final-20261025.zip",
+  "bytes": 305593933,
+  "sha256": "d092eb072afabebeb3d8ade17c10b26e563a23b27e4a135d6d7e40a363e41fa7",
+  "primary_library_file_id": "libfile_af91af9ea9c48191bf964f2c1893507e",
+  "private_archive": true,
+  "license": "Underlying-source rights unchanged; public redistribution not certified",
+  "backup": {
+    "status": "ALL_PARTS_REDOWNLOADED_SHA256_VERIFIED_REASSEMBLED_ZIP_CRC_AND_SQLITE_INTEGRITY_OK",
+    "parts": [
+      {
+        "file": "history-adjudication-final-20261025.zip.part-01",
+        "bytes": 83886080,
+        "sha256": "7c8c716034925826da3d402952b44ab33383a235e71d011abb23a7e02aaed51d",
+        "drive_id": "1cnv8HADNh0gNB1jPrbxJtf9QN1oPqs4y"
+      },
+      {
+        "file": "history-adjudication-final-20261025.zip.part-02",
+        "bytes": 83886080,
+        "sha256": "5e45f5fc299555af7ce6c1243df82f86e7368d370f2a1f16c54308781af73830",
+        "drive_id": "1-lVH1qQdTC5840OQFdO4GbG3PQLMrKAp"
+      },
+      {
+        "file": "history-adjudication-final-20261025.zip.part-03",
+        "bytes": 83886080,
+        "sha256": "6f2bc7380ff530ae4dd6d05dc77eba78faeec7fb5e7fd85fb0c73781963e317b",
+        "drive_id": "1uToRHIrNsIaWKXZU1wGvgRjUawHzsmYV"
+      },
+      {
+        "file": "history-adjudication-final-20261025.zip.part-04",
+        "bytes": 53935693,
+        "sha256": "27da556bae2d70d7999b287802facd01b4a8b3b01b66a90b5581ab89b94d9f39",
+        "drive_id": "1XW1eqqtutTLlreuZNhhbxI5iiAkyZBCj"
+      }
+    ]
+  },
+  "original_source_archive_ref": "../associative-history-registry/SOURCE-ARCHIVE.json",
+  "contents_scope": "Derived SQLite, exact tombstone/event stream, initial and final registry, coverage and independent member/alias replay reports; implementation source and later validation logs are in Git",
+  "cold_restore": "Acquire parts by their exact IDs in order, verify each SHA-256 and size, concatenate in listed order, verify full archive SHA-256, verify ZIP CRC, extract to a new private directory; open SQLite with mode=ro and run PRAGMA integrity_check; run the source-based independent verifier separately. Never install historical memberships as current data.",
+  "production_data_restored": false
+}

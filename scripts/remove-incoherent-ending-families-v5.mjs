@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
 assertHistoricalRepairAllowed();
 // Apply six explicit ending-based family decisions; lock members and evidence before writing.

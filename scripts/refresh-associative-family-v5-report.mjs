@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 // Recompute existing family report summaries from committed family shards; no index rebuild.
 import { createHash } from 'node:crypto';
 import { readFile, readdir, writeFile } from 'node:fs/promises';

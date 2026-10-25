@@ -1,4 +1,13 @@
 """Independent read-only v5 census. Python stdlib; disk-backed exact ID accounting."""
+
+# Installed writer boundary; isolated restored tools retain self-contained replay.
+from pathlib import Path as _HistoryFencePath
+import sys as _history_fence_sys
+_history_fence_root=next((p for p in _HistoryFencePath(__file__).resolve().parents if (p/'associativvordes/mutation_guard.py').is_file()),None)
+if _history_fence_root is not None:
+    _history_fence_sys.path.insert(0,str(_history_fence_root))
+    from associativvordes.mutation_guard import install as _install_history_fence
+    _install_history_fence()
 import argparse, collections, contextlib, gzip, hashlib, json, math, os, pathlib, resource, shutil, sqlite3, subprocess, sys, tarfile, tempfile, time
 VERSION='v5-baseline-1.0.0'
 LANGS=('en','de','fr','es','it','ru')

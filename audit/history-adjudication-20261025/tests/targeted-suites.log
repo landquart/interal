@@ -1,0 +1,91 @@
+history-adjudication 0
+✔ historical scope and installed mutation fences fail closed (683.952599ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 688.770875
+
+associative-history-registry 0
+✔ historical constraints: finite scopes, corruption, supersession, and restore (1375.891159ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1380.847019
+
+associative-release-control 0
+✔ controlled release signatures, atomicity, history and incremental contracts (3853.3006ms)
+✔ real calculator preserves unknown inputs and does not certify empty before/after (6.279466ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3865.263691
+
+associative-v5-integration 0
+✔ one installed v5 implementation: real module end-to-end and incompatible inputs (59203.574047ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59208.826964
+
+associative-cleanup-quality 0
+✔ empty gold and no removals produce null precision, not perfect safety (30.067389ms)
+✔ removal precision, correct-link false-removal risk and detection recall have different denominators (23.632374ms)
+✔ linked dependence clusters cross languages and cases; they never become family merges (33.540635ms)
+✔ human gold rejects synthetic answers, stale scopes, one reviewer and arbitration as review (30.827583ms)
+✔ a qualified exact structural scope never grants semantic or production authority (29.721318ms)
+✔ 4367043681: NOT_RUN has no performance estimates even with complete gold (25.581615ms)
+✔ 4367043683: resolved human answers require an explicit relation (32.616018ms)
+✔ 4367043688: missing required bundle sources fail before publication (41.454435ms)
+✔ 4367043686: documentary additions share existing family clusters and rebind all cards (67.372168ms)
+✔ 4367062598: verifier rejects 1599 per language before opening the population index (193.98339ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 516.043559
+
+associative-semantic-cleanup 0
+✔ sense-specific semantic decisions require exact independent authority and both guards (32.543054ms)
+✔ semantic release bridge preserves separate senses and fails on changed manifests (47.832732ms)
+✔ frozen semantic inventory keeps documentary facts, old IDs and unresolved senses separate (49.641632ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 137.512811
+
+associative-v5-release-readiness 0
+✔ real pinned inputs yield only a blocked package; separate-process replay is exact (361.958914ms)
+✔ missing, changed, additional and self-qualified package artifacts fail closed (120.646542ms)
+✔ input corruption, missing history, repeated paths and malformed JSON are rejected (37.069687ms)
+✔ stale production HEAD and historical risk acceptance cannot authorize a release (52.102625ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 579.345929

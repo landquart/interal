@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
 """Content-addressed research archive and real cold restore, outside the repository."""
+
+# Installed writer boundary; isolated restored tools retain self-contained replay.
+from pathlib import Path as _HistoryFencePath
+import sys as _history_fence_sys
+_history_fence_root=next((p for p in _HistoryFencePath(__file__).resolve().parents if (p/'associativvordes/mutation_guard.py').is_file()),None)
+if _history_fence_root is not None:
+    _history_fence_sys.path.insert(0,str(_history_fence_root))
+    from associativvordes.mutation_guard import install as _install_history_fence
+    _install_history_fence()
 import argparse,hashlib,json,os,pathlib,shutil,zipfile
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 def digest(p):

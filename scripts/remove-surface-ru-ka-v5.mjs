@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
 assertHistoricalRepairAllowed();
 // Apply the locked Russian -ka surface-family decision; check members before writing.

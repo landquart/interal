@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { createHash } from 'node:crypto';
 import { access, mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import { basename, dirname, join } from 'node:path';

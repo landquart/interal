@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
 assertHistoricalRepairAllowed();
 // Materialize only the complete case reviews in manual-surface-family-decisions.json.

@@ -1,3 +1,4 @@
+import './lib/installed-history-fence.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 
 const dictionaryPath = new URL('../indoeuropanvordes/pie_vordes', import.meta.url);

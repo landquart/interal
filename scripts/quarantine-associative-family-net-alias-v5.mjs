@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { assertHistoricalRepairAllowed } from './lib/assert-historical-repair.mjs';
 assertHistoricalRepairAllowed();
 import {createHash} from 'node:crypto';import{readFile,writeFile}from'node:fs/promises';import{join}from'node:path';import{gunzipSync,gzipSync}from'node:zlib';

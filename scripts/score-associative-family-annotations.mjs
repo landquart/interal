@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import './lib/installed-history-fence.mjs';
 import { readFile, writeFile } from 'node:fs/promises';
 import { cohensKappa, confusionMatrix, stratifiedClusterBootstrap, weightedPrecision } from './lib/associative-annotation-stats.mjs';
 

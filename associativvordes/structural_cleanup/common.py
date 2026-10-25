@@ -1,4 +1,13 @@
 """Exact immutable inputs and publication primitives; no production writer."""
+
+# Installed writer boundary; isolated restored tools retain self-contained replay.
+from pathlib import Path as _HistoryFencePath
+import sys as _history_fence_sys
+_history_fence_root=next((p for p in _HistoryFencePath(__file__).resolve().parents if (p/'associativvordes/mutation_guard.py').is_file()),None)
+if _history_fence_root is not None:
+    _history_fence_sys.path.insert(0,str(_history_fence_root))
+    from associativvordes.mutation_guard import install as _install_history_fence
+    _install_history_fence()
 import hashlib, importlib.util, json, os, pathlib, shutil, subprocess, tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
