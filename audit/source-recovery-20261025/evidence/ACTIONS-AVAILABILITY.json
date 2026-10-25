@@ -1,0 +1,49 @@
+{
+  "observed_at": "2026-10-25T14:08:50.586765+00:00",
+  "failed_original_artifacts": [
+    {
+      "artifact_id": 10665305365,
+      "action": "download_workflow_artifact",
+      "status": "404",
+      "error_code": "NOT_FOUND"
+    },
+    {
+      "artifact_id": 10665150741,
+      "action": "download_workflow_artifact",
+      "status": "404",
+      "error_code": "NOT_FOUND"
+    },
+    {
+      "artifact_id": 10550262690,
+      "action": "download_workflow_artifact",
+      "status": "404",
+      "error_code": "NOT_FOUND"
+    }
+  ],
+  "original_run": {
+    "total_count": 1,
+    "artifacts": [
+      {
+        "id": 10590553513,
+        "node_id": "MDg6QXJ0aWZhY3QxMDU5MDU1MzUxMw==",
+        "name": "associative-family-v5-input-lock",
+        "size_in_bytes": 690,
+        "url": "https://api.github.com/repos/landquart/interal/actions/artifacts/10590553513",
+        "archive_download_url": "https://api.github.com/repos/landquart/interal/actions/artifacts/10590553513/zip",
+        "expired": false,
+        "digest": "sha256:36d9e42130924e90791840f14864a3edd58d0aa45f0330251ea8dcd50afff537",
+        "created_at": "2026-09-19T19:22:59Z",
+        "updated_at": "2026-09-19T19:22:59Z",
+        "expires_at": "2026-12-18T18:30:27Z",
+        "workflow_run": {
+          "id": 35461412225,
+          "repository_id": 1207751910,
+          "head_repository_id": 1207751910,
+          "head_branch": "agent/associative-family-production-v3",
+          "head_sha": "7a11f43b8115b94e15d4f8524350ed952162236e"
+        }
+      }
+    ]
+  },
+  "annotation_kit_exact_bytes": "ANNOTATION-ARTIFACT.json"
+}

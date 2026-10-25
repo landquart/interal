@@ -1,0 +1,100 @@
+{
+  "schema": "interal-source-cold-restore/1",
+  "status": "BYTES_AND_SEQUENTIAL_COLD_RESTORE_VERIFIED",
+  "archive": "diagnostic-final.zip",
+  "bytes": 1724399286,
+  "sha256": "3b8f61690fcb48a21325878685f3dd7c4920e645233ef083955ebd28fd61774a",
+  "parts": [
+    {
+      "file": "diagnostic-final.zip.part001",
+      "bytes": 419430400,
+      "sha256": "cbaa81f1e8e97ebed5850dc6b9844904b6e47091f18e5d53270baba160e0ccc2",
+      "library_file_id": "libfile_a011b0b7fa3481918413543fffb5b475"
+    },
+    {
+      "file": "diagnostic-final.zip.part002",
+      "bytes": 419430400,
+      "sha256": "590d8c2ca2901002e74a47831e1b892a9a41da9da3119f6903b18f16f87aac09",
+      "library_file_id": "libfile_7a26cc0e91388191af294e69a4ec214a"
+    },
+    {
+      "file": "diagnostic-final.zip.part003",
+      "bytes": 419430400,
+      "sha256": "4f9adf8183a07e3c30c5b7524fe07ba10577f402ee51225cde67858ec29f2a89",
+      "library_file_id": "libfile_fcf49f65ea408191b57ea71c429ec1d4"
+    },
+    {
+      "file": "diagnostic-final.zip.part004",
+      "bytes": 419430400,
+      "sha256": "eefc4047b2e7483370bc505b3a923cedbd6d910c6858097be28e513ec73414b2",
+      "library_file_id": "libfile_b308adb339f08191ae5ef56ae1485bf6"
+    },
+    {
+      "file": "diagnostic-final.zip.part005",
+      "bytes": 46677686,
+      "sha256": "a038388fc2aa9dc87b86ec28031a470a881a1724526aedb0bca0893940dcb698",
+      "library_file_id": "libfile_10a0f523bfa48191b5084e0785f69d4c"
+    }
+  ],
+  "members": [
+    {
+      "path": "COVERAGE.json",
+      "bytes": 105369,
+      "sha256": "35765e1a8ccb4ae44fab407c927db4883fb9ea6ce0d4bdd4c090d1390fbb5237",
+      "schema": "v5-diagnostic-coverage/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "MANIFEST.json",
+      "bytes": 37275,
+      "sha256": "4d957d03342b66ef7069460e03f3e80750479b7accee34f0d4f75116048eae27",
+      "schema": "v5-global-diagnostics/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "RESOURCE-BENCHMARK.json",
+      "bytes": 175,
+      "sha256": "8f49fedbfb5aef90086f47dc3e5af0c7c2dfad208668d25dfdddc240b47a67c8",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "SUMMARY.json",
+      "bytes": 39331,
+      "sha256": "4f16cbbdb8d7dc600bdacdcec86268dc9dc1ecb6f7523358690262505fa9a145",
+      "schema": "v5-global-diagnostics/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "registry.sqlite",
+      "bytes": 9639800832,
+      "sha256": "4669ed75d79a327aebb86b5e3755378c107c38a45fcb2b07a1c5510c6084cfc9",
+      "schema": "SQLite3",
+      "sqlite_integrity": "ok",
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "BACKUP-MANIFEST.json",
+      "bytes": 695,
+      "sha256": "375c76e94d8770656d463791c97a68deee8f07c5e8f7963814f5fabdd4eedff9",
+      "schema": "v5-diagnostic-backup/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    }
+  ],
+  "sqlite_databases": 1,
+  "all_sqlite_integrity_ok": true,
+  "full_environment_restored_simultaneously": false,
+  "pipeline_replayed": false,
+  "production_writes": 0
+}

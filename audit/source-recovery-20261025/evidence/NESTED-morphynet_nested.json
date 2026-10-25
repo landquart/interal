@@ -1,0 +1,31 @@
+{
+  "schema": "interal-source-cold-restore/1",
+  "status": "BYTES_AND_SEQUENTIAL_COLD_RESTORE_VERIFIED",
+  "archive": "rus.inflectional.v1.zip",
+  "bytes": 10279691,
+  "sha256": "80b2c608f220a25049d632340377a5c06282c4de1db39e35277591951445f9d9",
+  "parts": [
+    {
+      "file": "rus.inflectional.v1.zip",
+      "bytes": 10279691,
+      "sha256": "80b2c608f220a25049d632340377a5c06282c4de1db39e35277591951445f9d9",
+      "library_file_id": null
+    }
+  ],
+  "members": [
+    {
+      "path": "rus.inflectional.v1.tsv",
+      "bytes": 137083813,
+      "sha256": "bac6b791e9999ef030fa4e63ed468332c08b3254714ea8d114c63b26a14ada1d",
+      "schema": "opaque-bytes",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    }
+  ],
+  "sqlite_databases": 0,
+  "all_sqlite_integrity_ok": true,
+  "full_environment_restored_simultaneously": false,
+  "pipeline_replayed": false,
+  "production_writes": 0
+}

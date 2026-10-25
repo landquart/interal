@@ -1,0 +1,337 @@
+{
+  "schema": "interal-source-cold-restore/1",
+  "status": "BYTES_AND_SEQUENTIAL_COLD_RESTORE_VERIFIED",
+  "archive": "interal-v5-cleanup-quality-20261024-v2.zip",
+  "bytes": 14818311,
+  "sha256": "07ef8c73370861b40091fb88d13e364310bc27085b38994b25b1fd6e628c8d6f",
+  "parts": [
+    {
+      "file": "interal-v5-cleanup-quality-20261024-v2.zip",
+      "bytes": 14818311,
+      "sha256": "07ef8c73370861b40091fb88d13e364310bc27085b38994b25b1fd6e628c8d6f",
+      "library_file_id": "libfile_7ead692cb8b88191bff9f204a85202c8"
+    }
+  ],
+  "members": [
+    {
+      "path": "release/BLIND-A.ndjson.gz",
+      "bytes": 1817453,
+      "sha256": "b947514a666bc4ffd306986e988bfdf0488e3066540a78772cd3cbdf730fcb6e",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/BLIND-B.ndjson.gz",
+      "bytes": 1817116,
+      "sha256": "4c7d7dc68810978005f7e604acde3ddae9b16b7cccdc558a35975e7ed3fd4712",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/BLINDING-POLICY.json",
+      "bytes": 435,
+      "sha256": "abc7c1cc956b5771d77bf4d1d5937a4fd35ea529b9281e978586a267cfed85c5",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/CHALLENGE.ndjson.gz",
+      "bytes": 46405,
+      "sha256": "93bf9986df20641311191f31aa6a9348767389a50adc0f5d348a1e22377deab4",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/DISAGREEMENTS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/DOCUMENTARY-SUPPLEMENT.json",
+      "bytes": 449,
+      "sha256": "b61348456b5cd70648a6fe83a53c8eb0816c13d6b77ef328e1b2a2911093d082",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/HOLDOUT.json",
+      "bytes": 561,
+      "sha256": "ddb581af38c258dfcb4dd3d7fa8dc4a8e1fc667f597e844afb53739c4c09a23d",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/INPUTS.json",
+      "bytes": 417,
+      "sha256": "5e1f114297279d9efbdf2d5e2fdd9953a0c485b5d2fd2bb8dda912368abd0eaa",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/MANIFEST.json",
+      "bytes": 2885,
+      "sha256": "cf0f14f57af5c79bdb21cebfdee575547f7480a04abc12a9af31ed3e07b93624",
+      "schema": "cleanup-quality-packets/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/OLD-STUDY-COMPATIBILITY.json",
+      "bytes": 1379,
+      "sha256": "fea488289daebf64c1a97d8adf44d4f7258e83c4d12740fb99366a3ce848e3dd",
+      "schema": "cleanup-old-study-compatibility/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/PREDICTIONS.ndjson.gz",
+      "bytes": 3952357,
+      "sha256": "57b35bb55608e9e60d6f529ea6f358b6f205d87eb7b8dfb958e4535afdc4323d",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/PROBABILITY.ndjson.gz",
+      "bytes": 3569710,
+      "sha256": "357fed5e294c6095d43f710de8f981b7d3c4c2a9f553e17d7a9201b028e25318",
+      "schema": "compressed-source",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/PROPOSAL-INVENTORY.json",
+      "bytes": 1520,
+      "sha256": "0b46b8c3f7441fce42c4f3cf11fe71af1ff06829570abb1f0e835f52a12ea1bc",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/RAW-ADJUDICATIONS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/RAW-HUMAN-REVIEWS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/RESOURCE.json",
+      "bytes": 87,
+      "sha256": "e6ecdbd7b41d967bf64d35c3eec788f5e9be15c40b189d48de378f1ad189ac29",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/ROSTER.json",
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "release/SAMPLING-DESIGN.json",
+      "bytes": 611,
+      "sha256": "72b64c922f54e2b6974ee5c2772c8bb6e3eb71ff1e432788ded48b46ad97c0c8",
+      "schema": "cleanup-probability-design/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/DISAGREEMENTS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/FROZEN-GOLD.json",
+      "bytes": 2206727,
+      "sha256": "85e24cd2bf816e0a87207f6f9f1644ed2a19d51177e3cb66fbf53f7ee1fce92d",
+      "schema": "cleanup-frozen-gold/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/MANIFEST.json",
+      "bytes": 1269,
+      "sha256": "ad784fd89e7f3632adee08e1bd40f4add684dcc7840ab4474977bdc3111640b0",
+      "schema": "cleanup-quality-evaluation/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/METRICS.json",
+      "bytes": 84990,
+      "sha256": "fe45c14be5aeffbbf798dece1a92a70d0180bee2983b86e70155e3f994dad400",
+      "schema": "cleanup-quality-metrics/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/OPERATION-GATES.json",
+      "bytes": 3402,
+      "sha256": "5b637b7501149d2a980672c37981ccf8dbd175362f6aaf33596620b515e5e314",
+      "schema": "cleanup-operation-admission/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/RAW-ADJUDICATIONS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/RAW-HUMAN-REVIEWS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "evaluation/ROSTER.json",
+      "bytes": 3,
+      "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "pinned-normative/FAMILY-MEMBERSHIP-POLICY.md",
+      "bytes": 8119,
+      "sha256": "ed3a4ec5f462b28123fc640a563ee675016e83288b57f6f359087a3be7c8170b",
+      "schema": "opaque-bytes",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "pinned-normative/NATIONAL-CORRESPONDENCES.md",
+      "bytes": 5652,
+      "sha256": "01add47aecee9fafdc820f11bf6e0e14a147a022e9793d686f20a1ae7dce27b0",
+      "schema": "opaque-bytes",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "pinned-normative/NORMATIVE-DEFINITIONS.md",
+      "bytes": 5771,
+      "sha256": "d7467809cb609cc131f67a138812a8e91da1161801e33942baad8a88cfc017e3",
+      "schema": "opaque-bytes",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "pinned-normative/SOURCE-LOCK.json",
+      "bytes": 1239,
+      "sha256": "ee008f3a6663331380c821ca11ccd1af6ab8b2503012297908d895183df8c2aa",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "pinned-normative/decision.schema.json",
+      "bytes": 13499,
+      "sha256": "a4d30f0c6f1a5488a73191dbe36c8d975e1d50ed074cbc963d18a4a986a19360",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "pinned-normative/rules.json",
+      "bytes": 1219,
+      "sha256": "050065577f4ae4387b753d783e5e4760d4406fd5b85c18b15b6243e1b4a2018b",
+      "schema": "JSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "historical-kit/v5-probability-kit-v2.zip",
+      "bytes": 2808130,
+      "sha256": "0e19c9d40961da7be037a63156576db0d8a5093c2e61134b6c10bb3c7dc593f8",
+      "schema": "opaque-bytes",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "INDEPENDENT-VERIFICATION.json",
+      "bytes": 1723,
+      "sha256": "165a85d4d7864e7b365107b35b71d7feb368880f5761037a95499d5ff82e3f25",
+      "schema": "cleanup-quality-independent-verification/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "ARCHIVE-CONTENTS.json",
+      "bytes": 4488,
+      "sha256": "b38674a41f2319b526f6d36017d9ab87ac2579779dc69ca2a2539653967d4679",
+      "schema": "cleanup-quality-research-bundle/1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    }
+  ],
+  "sqlite_databases": 0,
+  "all_sqlite_integrity_ok": true,
+  "full_environment_restored_simultaneously": false,
+  "pipeline_replayed": false,
+  "production_writes": 0
+}

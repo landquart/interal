@@ -1,0 +1,85 @@
+{
+  "schema": "interal-source-cold-restore/1",
+  "status": "BYTES_AND_SEQUENTIAL_COLD_RESTORE_VERIFIED",
+  "archive": "annotation-kit.zip",
+  "bytes": 2808130,
+  "sha256": "0e19c9d40961da7be037a63156576db0d8a5093c2e61134b6c10bb3c7dc593f8",
+  "parts": [
+    {
+      "file": "annotation-kit.zip",
+      "bytes": 2808130,
+      "sha256": "0e19c9d40961da7be037a63156576db0d8a5093c2e61134b6c10bb3c7dc593f8",
+      "library_file_id": null
+    }
+  ],
+  "members": [
+    {
+      "path": "SHA256SUMS",
+      "bytes": 725,
+      "sha256": "16375f60d49a9facdbfbddd1e72926a59bc712c816817608d52d715205a9ae39",
+      "schema": "opaque-bytes",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "annotation-a.jsonl",
+      "bytes": 5549292,
+      "sha256": "ca438b730775dd41e805d7d8d62f98afda3e67fedc86f4cc726c2f7797dafd7e",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "annotation-b.jsonl",
+      "bytes": 5549292,
+      "sha256": "ca438b730775dd41e805d7d8d62f98afda3e67fedc86f4cc726c2f7797dafd7e",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "annotation-packets.jsonl",
+      "bytes": 13620368,
+      "sha256": "ae56a0cee4c6ab75d03ea0f5d969338ac19d2c7a1196fc773799c4f853193d9d",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "annotation-qa-preflight.json",
+      "bytes": 408,
+      "sha256": "66d5826bc7e7d06559657f4c025ee635459ba57d2ef9c511885d322ad74a5071",
+      "schema": "1",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "gold-sample.jsonl",
+      "bytes": 15516405,
+      "sha256": "5ef0a53f257878acc6c65c04ff943dc9a3699f9499e4f7a59b3ebeab5037ede8",
+      "schema": "NDJSON",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    },
+    {
+      "path": "sampling-report.json",
+      "bytes": 775,
+      "sha256": "3d481756dd3e8a918f8dfcfe4fc2230b64c6d8a9640e210da5ea7342e41a2bab",
+      "schema": "2",
+      "sqlite_integrity": null,
+      "git_blob_sha1": null,
+      "physical_restore": true
+    }
+  ],
+  "sqlite_databases": 0,
+  "all_sqlite_integrity_ok": true,
+  "full_environment_restored_simultaneously": false,
+  "pipeline_replayed": false,
+  "production_writes": 0
+}
