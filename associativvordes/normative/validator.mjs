@@ -47,7 +47,12 @@ export function validateDecision(d) {
   const refs = new Map(d.evidence.map(e => [e.id,e]));
   demand(refs.size === d.evidence.length, 'duplicate evidence ID');
   for (const e of d.evidence) {
-    demand(sameScope(e.scope,d.scope), 'evidence scope mismatch');
+    const intermediate=d.relation_type==='indirect' && d.correspondence?.steps.some(step=>
+      step.evidence_ids.includes(e.id) && e.scope.family_id===d.scope.family_id && e.scope.element_id===d.scope.element_id &&
+      e.scope.context_id===d.scope.context_id && e.scope.language && e.scope.lemma_id &&
+      ((e.scope.lexeme_id===step.from && e.scope.sense_id===step.from_sense) ||
+       (e.scope.lexeme_id===step.to && e.scope.sense_id===step.to_sense)));
+    demand(sameScope(e.scope,d.scope) || intermediate, 'evidence scope mismatch');
     demand(e.assertion_sha256 === digest({source:e.source,version:e.version,locator:e.locator,finding:e.finding}), 'assertion digest mismatch');
   }
   const checkRefs = values => values.forEach(id => demand(refs.has(id), 'unknown evidence ID: '+id));
@@ -89,8 +94,10 @@ function proofTrusted(d,trust) {
     ['dictionary','grammar','reviewed_document'].includes(byId.get(id)?.origin);
   const polarity=d.decision==='CONFIRMED_NONMEMBER'?'rebuts':'supports';
   return axes.every(axis=>d.axis_evidence[axis].some(id=>valid(id) && (axis!=='relation_status'||byId.get(id).polarity===polarity))) &&
-    (d.decision!=='CONFIRMED_MEMBER' || d.correspondence.evidence_ids.some(valid) &&
-      d.correspondence.steps.every(step=>step.evidence_ids.some(valid)));
+    (d.decision!=='CONFIRMED_MEMBER' || d.correspondence.evidence_ids.some(id=>valid(id) && byId.get(id).polarity==='supports') &&
+      d.correspondence.evidence_ids.every(id=>!valid(id) || byId.get(id).polarity==='supports') &&
+      d.correspondence.steps.every(step=>step.evidence_ids.some(id=>valid(id) && byId.get(id).polarity==='supports') &&
+        step.evidence_ids.every(id=>!valid(id) || byId.get(id).polarity==='supports')));
 }
 
 // A null legacy discriminator covers all narrower scopes; never treats unknown as false.
@@ -107,14 +114,17 @@ export function evaluateMembership(d,{history=[],verifiedEvidenceIds=new Set(),a
   const hold=active.some(h=>h.guard==='uncertain' || h.guard==='pending');
   const relationPolarities=new Set(d.axis_evidence.relation_status.filter(id=>verifiedEvidenceIds.has(id) &&
     verifiedEvidenceDigests.get(id)===digest(d.evidence.find(e=>e.id===id))).map(id=>d.evidence.find(e=>e.id===id).polarity));
-  if (relationPolarities.size>1 || d.evidence_status==='contradictory' || ['lexical_identity_status','sense_status','relation_status'].some(k=>d[k]==='conflict') ||
-    active.some(h=>h.decision==='CONFLICT') || d.decision==='CONFLICT') return {decision:'CONFLICT',reason:'incompatible_evidence_or_decisions'};
-  if (negative.length) return d.decision==='CONFIRMED_MEMBER' ?
-    {decision:'CONFLICT',reason:'prior_negative_decision',blocked_by:negative.map(h=>h.id)} :
-    {decision:negative.some(h=>h.decision==='CONFIRMED_NONMEMBER')?'CONFIRMED_NONMEMBER':'UNRESOLVED',reason:'preserved_prior_negative',blocked_by:negative.map(h=>h.id)};
+  const authorized=authorizedDecisionIds.has(d.id) && authorizedDecisionDigests.get(d.id)===digest(d) &&
+    (d.provenance.origin==='human_review' || d.provenance.origin==='test_fixture' && allowTestFixtures);
   const confirmed=d.decision.startsWith('CONFIRMED_') && proofTrusted(d,trust);
+  if (relationPolarities.size>1 || authorized && (d.evidence_status==='contradictory' || ['lexical_identity_status','sense_status','relation_status'].some(k=>d[k]==='conflict') || d.decision==='CONFLICT') ||
+    active.some(h=>h.decision==='CONFLICT')) return {decision:'CONFLICT',reason:'incompatible_evidence_or_decisions'};
   const opposite=active.some(h=>h.decision?.startsWith('CONFIRMED_') && h.decision!==d.decision);
   if (confirmed && opposite) return {decision:'CONFLICT',reason:'opposite_current_decision'};
+  if (negative.length && confirmed && d.decision==='CONFIRMED_NONMEMBER') return {decision:d.decision,reason:'fresh_verified_refutation_preserves_legacy_guard'};
+  if (negative.length) return confirmed && d.decision==='CONFIRMED_MEMBER' ?
+    {decision:'CONFLICT',reason:'prior_negative_decision',blocked_by:negative.map(h=>h.id)} :
+    {decision:negative.some(h=>h.decision==='CONFIRMED_NONMEMBER')?'CONFIRMED_NONMEMBER':'UNRESOLVED',reason:'preserved_prior_negative',blocked_by:negative.map(h=>h.id)};
   if (hold) return {decision:'UNRESOLVED',reason:'prior_hold_requires_review'};
   return confirmed ? {decision:d.decision,reason:'scoped_verified_evidence_and_authorized_review'} :
     {decision:'UNRESOLVED',reason:'insufficient_evidence_or_authority'};
@@ -161,3 +171,4 @@ if (process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href) {
   try { validateDecision(JSON.parse(readFileSync(process.argv[2],'utf8'))); console.log('VALID_CONTRACT_ONLY'); }
   catch(error) { console.error(error.message); process.exitCode=1; }
 }
+
