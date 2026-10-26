@@ -1,0 +1,32 @@
+{
+  "binaries": {
+    "ollama": false,
+    "llama-server": false,
+    "vllm": false,
+    "nvidia-smi": false
+  },
+  "loopback": [
+    {
+      "url": "http://127.0.0.1:11434/api/tags",
+      "elapsed_seconds": 0.0016756669999722362,
+      "status": "UNAVAILABLE",
+      "error_type": "URLError"
+    },
+    {
+      "url": "http://127.0.0.1:8000/v1/models",
+      "elapsed_seconds": 0.0001541069999575484,
+      "status": "UNAVAILABLE",
+      "error_type": "URLError"
+    },
+    {
+      "url": "http://127.0.0.1:8080/v1/models",
+      "elapsed_seconds": 6.236199999420933e-05,
+      "status": "UNAVAILABLE",
+      "error_type": "URLError"
+    }
+  ],
+  "scope": "This execution host and these three endpoints only; user computer not inspected",
+  "generation_requests": 0,
+  "paid_requests": 0,
+  "observed_at": "2026-10-26T01:42:03.381412+00:00"
+}

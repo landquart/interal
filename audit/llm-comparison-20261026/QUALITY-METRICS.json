@@ -1,0 +1,654 @@
+{
+  "status": "NOT_MEASURED",
+  "real_predictions": 0,
+  "overall": {
+    "cases": 0,
+    "resolved_gold": 0,
+    "uncertain_gold": 0,
+    "confirmation_precision": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "wilson95": null
+    },
+    "negative_precision": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "wilson95": null
+    },
+    "dangerous_false_exclusion_rate": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "wilson95": null
+    },
+    "membership_recall_including_abstentions": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "wilson95": null
+    },
+    "erroneous_membership_detection_recall": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "wilson95": null
+    },
+    "abstain_fraction": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "wilson95": null
+    },
+    "confusion": {
+      "INCLUDE": {
+        "ABSTAIN": 0,
+        "EXCLUDE": 0,
+        "INCLUDE": 0
+      },
+      "EXCLUDE": {
+        "ABSTAIN": 0,
+        "EXCLUDE": 0,
+        "INCLUDE": 0
+      }
+    },
+    "sense_accuracy": {
+      "numerator": 0,
+      "denominator": 0,
+      "value": null,
+      "wilson95": null
+    },
+    "calibration": {
+      "value": null,
+      "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+    },
+    "production_application_authorized": false
+  },
+  "by_language": {
+    "en": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    },
+    "de": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    },
+    "fr": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    },
+    "es": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    },
+    "it": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    },
+    "ru": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    }
+  },
+  "named_families": {
+    "manu": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    },
+    "regul": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    },
+    "creat": {
+      "cases": 0,
+      "resolved_gold": 0,
+      "uncertain_gold": 0,
+      "confirmation_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "negative_precision": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "dangerous_false_exclusion_rate": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "membership_recall_including_abstentions": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "erroneous_membership_detection_recall": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "abstain_fraction": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "confusion": {
+        "INCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        },
+        "EXCLUDE": {
+          "ABSTAIN": 0,
+          "EXCLUDE": 0,
+          "INCLUDE": 0
+        }
+      },
+      "sense_accuracy": {
+        "numerator": 0,
+        "denominator": 0,
+        "value": null,
+        "wilson95": null
+      },
+      "calibration": {
+        "value": null,
+        "status": "NO_PREREGISTERED_PROBABILITY_CHANNEL"
+      },
+      "production_application_authorized": false
+    }
+  },
+  "relation_metrics": null,
+  "historical_correspondence": null,
+  "allomorph_false_exclusions": null,
+  "factual_rationale_accuracy": null,
+  "winner": null,
+  "production_application_authorized": false
+}

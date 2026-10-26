@@ -1,0 +1,79 @@
+{
+  "schema": "interal-llm-comparison-method/1",
+  "date": "2026-10-26",
+  "status": "METHOD_FROZEN_EXECUTION_REGISTRATION_BLOCKED",
+  "parent_commit": "46a12b47ba6eac3e60f046da7d83a0dd334e67cb",
+  "seed": "interal-llm22-before-model-responses-v1",
+  "arms": {
+    "baseline": "Scientific target identity, POS, sense, root and national correspondence; no external morphology, graph, rules or alternative hints",
+    "evidence": "baseline plus independently verified exact-scope evidence, including refutations",
+    "graph": "evidence plus documented directed morphological graph with intermediate scopes and source dependencies",
+    "rules_alternatives": "graph plus installed normative definitions and explicitly checked alternative origins/senses",
+    "hybrid": "same raw rules_alternatives prediction, then deterministic ABSTAIN for missing independent fact review or ANY registered high-risk flag; preserve raw and routed verdict"
+  },
+  "candidate_policy": "All locally installed attested non-cloud models eligible; Qwen/DeepSeek only if available and revision pinned. No external provider/model approved. Do not rank model brands. This is not a survey of all commercially available models.",
+  "required_execution_registration": [
+    "qualified human calibration certificate and immutable gold artifact",
+    "independently authorized exact question hashes",
+    "complete certified transitive leakage inventory",
+    "separate nonempty calibration/development/untouched holdout",
+    "preserved old holdout digest and exposure inventory",
+    "independent source/sense/normative fact certificates",
+    "exact provider/model/revision/quantization/runtime/hardware roster",
+    "identical response schema across arms and validated runner",
+    "budget/provider/endpoint permission for paid execution",
+    "exact prompt/implementation/parameters hashes",
+    "frozen arm schedule and missingness policy",
+    "independent scientific and statistical reviewer signoff"
+  ],
+  "split_policy": "New calibration and development must be independently collected outside preserved holdout groups. Prompt21 reserve is provisional and is not automatically an LLM calibration/dev set. Never split old holdout into tuning subsets. No holdout predictions before final registration. Transitive leakage linkage must be externally verified.",
+  "execution": {
+    "temperature": 0,
+    "max_output_tokens": 1600,
+    "max_attempts": 1,
+    "concurrency": 1,
+    "schedule": "seeded randomized paired model/arm order within case; freeze full schedule before requests; one primary pass, no best-of reruns",
+    "tuning": "calibration fits empirical reliability only; development selects model/arm, routing and fixed risk gates; freeze before one holdout evaluation",
+    "baseline_policy": "Same scientific problem and response schema, but no external evidence restriction preventing INCLUDE/EXCLUDE; these remain unverified proposals"
+  },
+  "measurement": {
+    "confirmation_precision": "TP/(TP+FP)",
+    "negative_precision": "TN/(TN+FN)",
+    "dangerous_false_exclusion_rate": "FN/all gold INCLUDE, including model abstentions in denominator",
+    "membership_recall": "TP/all gold INCLUDE, abstentions count as missed positives",
+    "exclusion_recall": "TN/all gold EXCLUDE, abstentions count as missed negatives",
+    "abstain": "model ABSTAIN/all received model decisions; transport/schema failures reported separately over assigned requests",
+    "calibration": "Do not solicit confidence or change normative prohibition. Fit empirical reliability of predeclared observable evidence/risk bins on separate calibration gold, freeze bins and support; report predicted risk vs observed error, reliability diagram/Brier on untouched holdout with uncertainty. NOT IMPLEMENTED; no values without data.",
+    "senses": "exact verified sense ID accuracy and missingness separately",
+    "rationales": "independent qualified humans audit every atomic factual claim, citation entailment, source identity/version/scope, contradictory evidence and alternative analysis. Citation validity alone is insufficient; two LLMs are not independent gold.",
+    "strata": [
+      "en",
+      "de",
+      "fr",
+      "es",
+      "it",
+      "ru",
+      "all adjudicated relation classes",
+      "manu",
+      "regul",
+      "creat",
+      "historical correspondence",
+      "allomorph"
+    ],
+    "uncertainty": "Diagnostic Wilson intervals are not population certification. Final analysis requires preregistered grouped/stratified bootstrap (seed fixed, 10000 resamples), paired case comparison, design weights for probability holdout; challenge sets separate. Do not claim independence of correlated family/source observations.",
+    "cost": "separate provider-rated vs invoice-reconciled cost; usage per request, hardware cost unknown unless measured",
+    "speed": "p50/p95 generation latency, cold/warm context, tokens/sec and wall throughput; independent human annotation timing required for human speedup claims"
+  },
+  "candidate_gates_proposed_not_production_authority": {
+    "include_precision_point_min": 0.97,
+    "include_precision_lower95_min": 0.95,
+    "per_language_precision_point_min": 0.95,
+    "negative_precision_lower95_min": 0.99,
+    "dangerous_exclusion_upper95_max": 0.01,
+    "membership_recall_point_min": 0.92,
+    "per_language_recall_point_min": 0.88,
+    "scope": "Research selection gates, not changed linguistic thresholds. All must pass on untouched holdout with sufficient per-stratum effective support. Empty strata or unknown facts block promotion. Allomorph/historical false exclusions require individual review; systematic rejection disqualifies candidate. No winner if none pass. Manual-only/no winner is valid."
+  },
+  "registration_limit": "Only method locked now. Complete execution preregistration and actual benchmark remain BLOCKED; do not backdate or silently fill pinned models after viewing outcomes.",
+  "production_application_authorized": false
+}
