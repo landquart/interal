@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "runs": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "associativvordes.llm_comparison.test_compare",
+        "-v"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "test_blind_projection_and_exact_approval (associativvordes.llm_comparison.test_compare.ComparisonTests.test_blind_projection_and_exact_approval) ... ok\ntest_empty_named_strata_preserved (associativvordes.llm_comparison.test_compare.ComparisonTests.test_empty_named_strata_preserved) ... ok\ntest_false_exclusion_and_abstention_denominators (associativvordes.llm_comparison.test_compare.ComparisonTests.test_false_exclusion_and_abstention_denominators) ... ok\ntest_group_leakage_and_missing_splits (associativvordes.llm_comparison.test_compare.ComparisonTests.test_group_leakage_and_missing_splits) ... ok\ntest_high_risk_abstains (associativvordes.llm_comparison.test_compare.ComparisonTests.test_high_risk_abstains) ... ok\ntest_missing_and_duplicate_predictions_rejected (associativvordes.llm_comparison.test_compare.ComparisonTests.test_missing_and_duplicate_predictions_rejected) ... ok\ntest_unknown_metrics_are_null (associativvordes.llm_comparison.test_compare.ComparisonTests.test_unknown_metrics_are_null) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nOK\n",
+      "scope": "engineering tests, not linguistic certification"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "associativvordes/auto_annotation",
+        "-q"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "----------------------------------------------------------------------\nRan 47 tests in 0.614s\n\nOK\n",
+      "scope": "engineering tests, not linguistic certification"
+    }
+  ],
+  "full_repository_ci_claimed": false,
+  "independent_scientific_verification": false
+}

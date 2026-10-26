@@ -1,0 +1,81 @@
+{
+  "schema": "llm-comparison-inventory/1",
+  "parent_commit": "46a12b47ba6eac3e60f046da7d83a0dd334e67cb",
+  "files": [
+    {
+      "path": "associativvordes/llm_comparison/README.md",
+      "bytes": 2441,
+      "sha256": "f7cc91c969ce19a1d97a8618e76d1aeaa6cab61a08cf52c984d970009944cc52"
+    },
+    {
+      "path": "associativvordes/llm_comparison/__init__.py",
+      "bytes": 83,
+      "sha256": "5c98d0cafbdfbe6187de32d835867e21355b3f707899899df3129a1864b45295"
+    },
+    {
+      "path": "associativvordes/llm_comparison/compare.py",
+      "bytes": 9046,
+      "sha256": "759d46fc75f9961509e759fa93e1b4dc746675c87fb5ba769ad46eceee8dd3a1"
+    },
+    {
+      "path": "associativvordes/llm_comparison/test_compare.py",
+      "bytes": 3175,
+      "sha256": "8820032b6047db62ce939fb7589bdd2be602773aad6611c12bb311e8fc1322e1"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/COST-TIME.json",
+      "bytes": 366,
+      "sha256": "61882d98c2180d2a7751157a5787d2fb55c896243dbf65d8280fae489246b963"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/FROZEN-PREDICTIONS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/INPUT-PREFLIGHT.json",
+      "bytes": 2146,
+      "sha256": "48147db6f5302a2678eacd53cdb5771fd1a137c8b295c5c775879ac5311bd143"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/LLM-COMPARISON-REPORT.md",
+      "bytes": 9868,
+      "sha256": "8cc5ad19ac4a1be4d9a9955f154e302ffbe01bf1cdf8246daae429a59e0f65d0"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/MODEL-AVAILABILITY.json",
+      "bytes": 845,
+      "sha256": "ec3aac5b0a8496f0ce8bad5e6071d760a6a6feca7c6425f6c52ec44ca05ef33b"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/OFFLINE-CHECK.json",
+      "bytes": 183,
+      "sha256": "d78770776a3d85e1392e0f1e7609f08c25ca44540dd7d4b2c70e28479c3c01d2"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/PREREGISTRATION.json",
+      "bytes": 5980,
+      "sha256": "309d17601d28415a2996824d6736ba5b11edc790a791b9c048f233e9fd62e350"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/QUALITY-METRICS.json",
+      "bytes": 15145,
+      "sha256": "ac9551f1d7f8597131ed697826ff3b56799afc12f17d9a6a2b06ae44cc5bee3c"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/RECOMMENDED-PROCESS.json",
+      "bytes": 978,
+      "sha256": "6d96e28d35566ab30dc59876fea62e3fe17b9c9408065af670f13f0bb81fc65e"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/REQUEST-RESPONSE-RECEIPTS.ndjson",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "audit/llm-comparison-20261026/TEST-REPORT.json",
+      "bytes": 1956,
+      "sha256": "3ae363e137555b7c396e9039ae1ac0a2e5b60dff220642081d28ebd8c1e72f76"
+    }
+  ]
+}

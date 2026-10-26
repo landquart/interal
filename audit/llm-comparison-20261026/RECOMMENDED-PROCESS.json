@@ -1,0 +1,34 @@
+{
+  "status": "NO_QUALIFIED_MODEL",
+  "model": null,
+  "providers": {},
+  "allow_paid": false,
+  "budget_usd": "0",
+  "max_requests": 0,
+  "automatic_semantic_acceptance": false,
+  "production_application_authorized": false,
+  "permitted_now": [
+    "integrity checks",
+    "card preparation after independent authorization",
+    "source provenance checks",
+    "manual review"
+  ],
+  "research_hybrid": "candidate procedure only, not measured or recommended for autonomous decisions",
+  "mandatory_human_review_classes": [
+    "all current cases until certification",
+    "manu",
+    "regul",
+    "creat",
+    "historical correspondence",
+    "allomorph",
+    "homonymy/polysemy",
+    "uncertain identity/POS/sense",
+    "alternative origin",
+    "compound/mixed/indirect path",
+    "conflicting or dependent sources",
+    "unverified factual claim",
+    "proposed exclusion",
+    "family merge or split",
+    "any disagreement, ABSTAIN, malformed/refused/failed output"
+  ]
+}
