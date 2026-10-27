@@ -35,20 +35,27 @@
   ],
   "thresholds": {
     "root": {
-      "languages": 3,
-      "groups": 2,
-      "FAv": 35
+      "ordinary": {
+        "min_associative_languages_without_direct": 3,
+        "min_language_groups": 2,
+        "FAr": 35
+      },
+      "hybrid": {
+        "direct_languages": 4,
+        "min_additional_associative_languages": 1,
+        "derivative_P": 35
+      }
     },
     "preposition": {
       "languages": 3,
       "groups": 2,
-      "FAv": 35
+      "FAp": 35
     },
     "suffix": {
       "languages": 3,
       "groups": 2,
       "ipm_each": 3,
-      "FAa": 15
+      "Fa": 15
     }
   },
   "preserved_metrics": [
@@ -59,13 +66,23 @@
     "A",
     "F",
     "P",
-    "FAv",
-    "FAₐ"
+    "FAr",
+    "FAp",
+    "Fa"
   ],
   "forbidden_automation": [
     "create_root",
     "recognize_root",
     "substring_expansion",
     "formula_change"
-  ]
+  ],
+  "recognition_rules_version": "2026-10-27",
+  "legacy_read_aliases": {
+    "FAv": [
+      "FAr",
+      "FAp"
+    ],
+    "FAa": "Fa",
+    "associativ_affix": "analogical_affix"
+  }
 }
