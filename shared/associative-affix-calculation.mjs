@@ -6,7 +6,8 @@ import {
   requireSpeakerCount
 } from './control-language-demographics.mjs';
 
-export const ASSOCIATIVE_AFFIX_THRESHOLD = 15;
+export const ASSOCIATIVE_AFFIX_THRESHOLD = 15; // legacy read-only alias
+export const ANALOGICAL_AFFIX_THRESHOLD = ASSOCIATIVE_AFFIX_THRESHOLD;
 export const ASSOCIATIVE_AFFIX_MIN_IPM = 3;
 export const ASSOCIATIVE_AFFIX_MAX_WORDS = 5;
 
@@ -81,13 +82,14 @@ export function calculateAssociativeAffix(frequencyWords = {}) {
     minimum_language_groups: representedLanguageGroups >= 2,
     minimum_ipm_each_language: representedLanguages > 0 && languageDetails.every((item) => item.totalIpm >= ASSOCIATIVE_AFFIX_MIN_IPM),
     one_to_five_words_each_language: representedLanguages > 0 && languageDetails.every((item) => item.selectedCount >= 1 && item.selectedCount <= ASSOCIATIVE_AFFIX_MAX_WORDS),
-    FAa_threshold: Number.isFinite(FAa) && FAa >= ASSOCIATIVE_AFFIX_THRESHOLD
+    Fa_threshold: Number.isFinite(FAa) && FAa >= ASSOCIATIVE_AFFIX_THRESHOLD,
+    FAa_threshold: Number.isFinite(FAa) && FAa >= ASSOCIATIVE_AFFIX_THRESHOLD // legacy alias
   };
   const accepted = !incompleteLanguages.length && criteria.minimum_languages
     && criteria.minimum_language_groups
     && criteria.minimum_ipm_each_language
     && criteria.one_to_five_words_each_language
-    && criteria.FAa_threshold;
+    && criteria.Fa_threshold;
 
   return {
     methodology_version: METHODOLOGY_VERSION,
@@ -101,9 +103,13 @@ export function calculateAssociativeAffix(frequencyWords = {}) {
     languageTotalIpm,
     languageDetails,
     normalizedFrequencyWords,
-    FAa,
+    Fa: FAa,
+    FAa, // legacy alias for older cards
     threshold: ASSOCIATIVE_AFFIX_THRESHOLD,
     criteria,
     accepted
   };
 }
+
+// Canonical post-2026-10-27 name; mathematical frequency aggregation is unchanged.
+export const calculateAnalogicalAffix = calculateAssociativeAffix;
