@@ -175,7 +175,8 @@ function normalizeLanguageArrayMap(value, languages) {
 
 const AFFIX_PROCEDURE_CRITERIA = {
   international_affix: { required: 'at_least_5_of_6', actual: 'strong' },
-  associativ_affix: { required: 'at_least_3_of_6', actual: 'requires_check' },
+  analogical_affix: { required: 'at_least_3_of_6', actual: 'requires_check' },
+  associativ_affix: { required: 'at_least_3_of_6', actual: 'requires_check' }, // historical cards
   alter_affix: { required: 'partial_presence_or_alternative_need', actual: 'weak_or_partial' }
 };
 const AFFIX_PROCEDURES = new Set(Object.keys(AFFIX_PROCEDURE_CRITERIA));
@@ -197,7 +198,7 @@ function evaluateAffixDecision(card) {
     criteria.immediate_recognition = evidence.immediateRecognition === true;
     criteria.stable_international_presence = evidence.stableInternationalPresence === true;
     accepted = coveredLanguages >= 5 && criteria.immediate_recognition && criteria.stable_international_presence;
-  } else if (procedure === 'associativ_affix') {
+  } else if (['analogical_affix', 'associativ_affix'].includes(procedure)) {
     const frequencyWords = card.evidence?.frequencyWords || card.frequencyWords || {};
     calculation = calculateAssociativeAffix(frequencyWords);
     Object.assign(criteria, {
@@ -210,8 +211,10 @@ function evaluateAffixDecision(card) {
     criteria.ipm_threshold = 3;
     criteria.ipm_passed = calculation.criteria.minimum_ipm_each_language;
     criteria.word_count_passed = calculation.criteria.one_to_five_words_each_language;
-    criteria.FAa_threshold = calculation.threshold;
-    criteria.FAa_passed = calculation.criteria.FAa_threshold;
+    criteria.Fa_threshold = calculation.threshold;
+    criteria.FAa_threshold = calculation.threshold; // legacy alias
+    criteria.Fa_passed = calculation.criteria.Fa_threshold;
+    criteria.FAa_passed = calculation.criteria.Fa_threshold; // legacy alias
     criteria.recognition_type = card.recognitionType || card.criteria?.recognition_type || 'needs_manual_review';
     criteria.meaningClear = card.criteria?.meaningClear === true;
     needsManualReview = calculation.review_required || typeof card.criteria?.meaningClear !== 'boolean';
@@ -283,7 +286,7 @@ function buildAffixesCheckPrompt(input) { return `You check an Interal affix and
 
 Methodology for affixes:
 - international_affix: present in many widespread borrowings and/or stable common Indo-European correspondences; at least 5 of 6 control languages; form/pronunciation may differ if immediate recognition remains possible.
-- associativ_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is associative and analogical, not immediate; provide 1–5 distinct lemmas per represented language. Confirm that each lemma contains this affix with the required meaning; set meaningClear=false if any selected lemma fails that check. IPM values are provisional and will be deterministically verified against local frequency lists.
+- analogical_affix: present in at least 3 control languages and 2 language groups; borrowings are fewer; recognition is established through morphological analogies and independently checked morpheme/function correspondence, not merely through familiar-looking letters; provide 1–5 distinct lemmas per represented language. Confirm that each lemma contains this affix with the required meaning; set meaningClear=false if any selected lemma fails that check. IPM values are provisional and will be deterministically verified against local frequency lists.
 - alter_affix: needed when affixes for the required meaning differ significantly across control languages, or when a more widespread affix has several morphological forms because of derivation and/or several meanings.
 - Standardization: consider both ordinary forms in individual words and forms in derived words; do not automatically transfer source-language endings; choose the more widespread, prototypical, or derivationally convenient form.
 - If the optional input comment is present, use it only as analyst context for interpreting the candidate affix; do not copy the comment into the output JSON and do not add explanatory fields.
@@ -291,9 +294,9 @@ Methodology for affixes:
 Input:
 ${JSON.stringify(input, null, 2)}
 
-Select procedure as one of: international_affix, associativ_affix, alter_affix.
+Select procedure as one of: international_affix, analogical_affix, alter_affix.
 Return checkable data, not a declaration of acceptance. Include evidence, risks, recommendedForm and separate boolean criteria. Return only valid JSON. Do not add markdown. Schema:
-{"id":"af_string","status":"draft","form":"string","morphemeType":"suffix or prefix","procedure":"international_affix or associativ_affix or alter_affix","version":"1.0","card_type":"affix_card","vord_type":"af","created_at":"ISO datetime string","meaning":{"en":"string","de":"string","fr":"string","es":"string","it":"string","ru":"string"},"criteria":{"necessityConfirmed":true,"noSeriousConflicts":true,"shortestSuitableAlternative":true,"partialInternationalPresence":true,"derivationallyViable":true,"meaningClear":true,"noBetterStandardProcedure":true,"recognition_type":"associative"},"evidence":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"immediateRecognition":true,"stableInternationalPresence":true,"frequencyWords":{"en":[{"word":"string","ipm":3}]}},"forms":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"auxiliaryLanguages":{"pl":[],"sv":[],"ca":[],"oc":[],"ro":[]}}}`; }
+{"id":"af_string","status":"draft","form":"string","morphemeType":"suffix or prefix","procedure":"international_affix or analogical_affix or alter_affix","version":"1.0","card_type":"affix_card","vord_type":"af","created_at":"ISO datetime string","meaning":{"en":"string","de":"string","fr":"string","es":"string","it":"string","ru":"string"},"criteria":{"necessityConfirmed":true,"noSeriousConflicts":true,"shortestSuitableAlternative":true,"partialInternationalPresence":true,"derivationallyViable":true,"meaningClear":true,"noBetterStandardProcedure":true,"recognition_type":"associative"},"evidence":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"immediateRecognition":true,"stableInternationalPresence":true,"frequencyWords":{"en":[{"word":"string","ipm":3}]}},"forms":{"controlLanguages":{"en":[],"de":[],"fr":[],"es":[],"it":[],"ru":[]},"auxiliaryLanguages":{"pl":[],"sv":[],"ca":[],"oc":[],"ro":[]}}}`; }
 
 function normalizeAffixesAlterCard(generated, input) {
   const now = new Date().toISOString();
