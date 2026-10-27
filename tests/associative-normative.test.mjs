@@ -169,9 +169,9 @@ for(const kind of ['root','preposition']) test(kind+' recognition boundaries and
   assert.equal(assessRecognition(kind,x).recognition_authorized,false);
 });
 test('suffix preserves FAa 15 and >=3 IPM in EACH language',()=>{
-  const x={languages:['en','fr','ru'],FAa:15,ipm:{en:3,fr:3,ru:3},calculator_gates_passed:true};
+  const x={languages:['en','fr','ru'],Fa:15,ipm:{en:3,fr:3,ru:3},calculator_gates_passed:true,analogical_gates_passed:true};
   assert.equal(assessRecognition('suffix',x).eligible,true);
-  for(const bad of [{FAa:14.99},{ipm:{en:3,fr:3,ru:2.99}},{ipm:{en:3,fr:3}}])
+  for(const bad of [{Fa:14.99},{ipm:{en:3,fr:3,ru:2.99}},{ipm:{en:3,fr:3}}])
     assert.equal(assessRecognition('suffix',{...x,...bad}).eligible,false);
   assert.deepEqual(rules.preserved_metrics,['Di','Pr','Sh','SWOW','A','F','P','FAv','FAₐ']);
 });
