@@ -33,12 +33,12 @@ const hasOwn = (object, key) => Object.prototype.hasOwnProperty.call(object, key
 const nonEmpty = value => typeof value === 'string' && value.trim().length > 0;
 const FINAL_PERCENTAGE_SCHEMAS = Object.freeze({
   av: Object.freeze({
-    code: 'FAᵥ',
-    paths: Object.freeze(['result.FAv', 'calculation.FAv', 'FAv', 'result.FA', 'calculation.FA', 'FA'])
+    code: 'FAr',
+    paths: Object.freeze(['result.FAr', 'calculation.FAr', 'FAr', 'result.FAp', 'calculation.FAp', 'FAp', 'result.FAv', 'calculation.FAv', 'FAv', 'result.FA', 'calculation.FA', 'FA'])
   }),
   af: Object.freeze({
-    code: 'FAₐ',
-    paths: Object.freeze(['result.FAa', 'calculation.FAa', 'FAa'])
+    code: 'Fa',
+    paths: Object.freeze(['result.Fa', 'calculation.Fa', 'Fa', 'result.FAa', 'calculation.FAa', 'FAa'])
   }),
   iv: Object.freeze({
     code: 'PI',
@@ -197,9 +197,9 @@ export function validateCardSchema(card, options = {}) {
     if (card.card_type !== 'affix_card') throw new CardSchemaError('card_type', 'must be "affix_card"');
     if (!nonEmpty(card.form)) throw new CardSchemaError('form', 'is required');
     if (!['suffix', 'prefix'].includes(card.morpheme_type ?? card.morphemeType)) throw new CardSchemaError('morpheme_type', 'must be "suffix" or "prefix"');
-    if (!['international_affix', 'associativ_affix', 'alter_affix'].includes(card.procedure)) throw new CardSchemaError('procedure', 'has an invalid value');
-    if (card.procedure === 'associativ_affix' && isRecord(card.calculation)) {
-      for (const metric of ['speakersTotal', 'weightedScoreTotal', 'FAa']) {
+    if (!['international_affix', 'analogical_affix', 'associativ_affix', 'alter_affix'].includes(card.procedure)) throw new CardSchemaError('procedure', 'has an invalid value');
+    if (['analogical_affix', 'associativ_affix'].includes(card.procedure) && isRecord(card.calculation)) {
+      for (const metric of ['speakersTotal', 'weightedScoreTotal', ...(card.calculation.Fa != null ? ['Fa'] : ['FAa'])]) {
         if (typeof card.calculation[metric] !== 'number' || !Number.isFinite(card.calculation[metric])) {
           throw new CardSchemaError(`calculation.${metric}`, 'must be a finite number');
         }
