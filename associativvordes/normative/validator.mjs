@@ -130,18 +130,84 @@ export function evaluateMembership(d,{history=[],verifiedEvidenceIds=new Set(),a
     {decision:'UNRESOLVED',reason:'insufficient_evidence_or_authority'};
 }
 
-// Necessary numeric conditions only. Existing calculator/review gates remain authoritative.
-export function assessRecognition(kind, result) {
-  demand(Object.hasOwn(rules.thresholds,kind),'unknown element kind');
-  const t=rules.thresholds[kind], langs=result.languages;
-  if (!Array.isArray(langs) || new Set(langs).size!==langs.length || langs.some(l=>!rules.languages[l]))
-    return {eligible:false,reason:'invalid_languages',recognition_authorized:false};
-  const groups=new Set(langs.map(l=>rules.languages[l])).size;
-  const finite=x=>typeof x==='number' && Number.isFinite(x) && x>=0 && x<=100;
-  const score=kind==='suffix'?result.FAa:result.FAv;
-  const pass=result.calculator_gates_passed===true && finite(score) && langs.length>=t.languages && groups>=t.groups &&
-    score>=(kind==='suffix'?t.FAa:t.FAv) && (kind!=='suffix'||langs.every(l=>typeof result.ipm?.[l]==='number' && Number.isFinite(result.ipm[l]) && result.ipm[l]>=t.ipm_each));
-  return {eligible:pass,reason:pass?'necessary_conditions_met':'conditions_missing_or_failed',recognition_authorized:false};
+// Necessary conditions only. This function cannot authorize normative recognition.
+// Direct correspondences are distinct from Di and must have independently confirmed
+// national lexeme/sense evidence. Unknown languages never count as absent.
+export function assessRecognition(kind, result = {}) {
+  demand(Object.hasOwn(rules.thresholds, kind), 'unknown element kind');
+  const finite = x => typeof x === 'number' && Number.isFinite(x) && x >= 0 && x <= 100;
+  const controls = Object.keys(rules.languages);
+  const validList = values => Array.isArray(values) &&
+    new Set(values).size === values.length && values.every(l => rules.languages[l]);
+  const groupsOf = values => new Set(values.map(l => rules.languages[l])).size;
+  const verdict = (eligible, reason) => ({ eligible, reason, recognition_authorized: false });
+  if (result.calculator_gates_passed !== true || result.review_required === true)
+    return verdict(false, 'calculator_or_review_gates_failed');
+
+  if (kind === 'root') {
+    const direct = result.direct_statuses;
+    if (!direct || controls.some(l => !['confirmed','checked_absent'].includes(direct[l])))
+      return verdict(false, 'direct_correspondences_incomplete');
+    // This gate must be based on reviewable lexeme/sense evidence, not on a model guess.
+    if (result.direct_correspondences_verified !== true)
+      return verdict(false, 'direct_correspondences_unverified');
+    const directLanguages = controls.filter(l => direct[l] === 'confirmed');
+    const withoutDirect = controls.filter(l => direct[l] === 'checked_absent');
+
+    if (result.recognition_method === 'ordinary') {
+      const langs = result.languages;
+      if (!validList(langs) || langs.some(l => !withoutDirect.includes(l)))
+        return verdict(false, 'invalid_ordinary_associative_languages');
+      const t = rules.thresholds.root.ordinary;
+      const pass = langs.length >= t.min_associative_languages_without_direct &&
+        groupsOf(langs) >= t.min_language_groups && finite(result.FAr) && result.FAr >= t.FAr &&
+        result.associative_evidence_verified === true;
+      return verdict(pass, pass ? 'necessary_conditions_met' : 'ordinary_criteria_not_met');
+    }
+    if (result.recognition_method === 'hybrid') {
+      const t = rules.thresholds.root.hybrid;
+      if (directLanguages.length !== t.direct_languages || withoutDirect.length !== 2)
+        return verdict(false, 'not_four_direct_languages');
+      const qualifying = (Array.isArray(result.derivatives) ? result.derivatives : []).filter(d =>
+        withoutDirect.includes(d.language) &&
+        d.membership_status === 'CONFIRMED_MEMBER' &&
+        d.association_status === 'supported' &&
+        d.review_status === 'verified' &&
+        d.evidence_verified === true &&
+        finite(d.P_interval?.min) && finite(d.P_interval?.max) &&
+        d.P_interval.min <= d.P_interval.max &&
+        d.P_interval.min >= t.derivative_P
+      );
+      const pass = new Set(qualifying.map(d=>d.language)).size >= t.min_additional_associative_languages;
+      return verdict(pass, pass ? 'necessary_conditions_met' : 'hybrid_derivative_not_qualified');
+    }
+    return verdict(false, 'recognition_method_required');
+  }
+
+  const langs = result.languages;
+  if (!validList(langs)) return verdict(false, 'invalid_languages');
+  const groups = groupsOf(langs);
+
+  if (kind === 'preposition') {
+    const t = rules.thresholds.preposition;
+    const pass = langs.length >= t.languages && groups >= t.groups &&
+      finite(result.FAp) && result.FAp >= t.FAp &&
+      result.associative_evidence_verified === true &&
+      result.grammatical_gates_passed === true;
+    return verdict(pass, pass ? 'necessary_conditions_met' : 'preposition_criteria_not_met');
+  }
+
+  if (kind === 'suffix') {
+    const t = rules.thresholds.suffix;
+    const score = result.Fa ?? result.FAa; // FAa is a read-only legacy alias.
+    const pass = langs.length >= t.languages && groups >= t.groups &&
+      finite(score) && score >= t.Fa &&
+      langs.every(l => typeof result.ipm?.[l] === 'number' &&
+        Number.isFinite(result.ipm[l]) && result.ipm[l] >= t.ipm_each) &&
+      result.analogical_gates_passed === true;
+    return verdict(pass, pass ? 'necessary_conditions_met' : 'analogical_affix_criteria_not_met');
+  }
+  return verdict(false, 'unsupported_kind');
 }
 
 export function evaluateAssociation(d,context={}) {
